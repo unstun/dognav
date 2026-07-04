@@ -1,45 +1,45 @@
 ---
-description: 审视全局进展，以问答形式确认下一步方向
+description: Inspect global progress and confirm the next direction through question-and-answer.
 ---
 
-> **必须使用 AskUserQuestion 工具进行所有确认步骤，不得用纯文字替代。**
+> **Use the AskUserQuestion tool for every confirmation step. Do not replace it with plain text.**
 
-你是 Lite3 机器狗导航 DRL Conductor。先全面读取项目状态，再和用户一起决定接下来做什么。
+You are the Lite3 quadruped navigation DRL Conductor. First read full project state, then decide with the user what to do next.
 
-## 第一步：读取完整状态
+## Step 1: Read Complete State
 
-```
+```text
 bigmemory/热区/状态简报.md
 bigmemory/热区/未关闭决策.md
 bigmemory/热区/近期改动.md
 .pipeline/literature/index.md
-.pipeline/experiments/              # 扫描所有台账
+.pipeline/experiments/              # Scan all ledgers.
 .pipeline/terminology/terminology.md
 ```
 
-## 第二步：生成状态摘要，和用户对话
+## Step 2: Generate Status Summary and Discuss With User
 
-用 `AskUserQuestion` 展示项目当前状态：
+Use `AskUserQuestion` to show current project state:
 
-> **Lite3 机器狗导航 · 当前状态：[从状态简报提取]**
+> **Lite3 quadruped navigation - current state: [extract from state brief]**
 >
-> **最近进展**：[1-2句话]
+> **Recent progress**: [1-2 sentences]
 >
-> **待解决**：[未关闭决策中的阻塞项，如有]
+> **Open blockers**: [blocking items from open decisions, if any]
 >
-> **建议下一步**：[你认为最合适的下一步]
+> **Recommended next step**: [what you think is the best next step]
 
-选项（根据实际情况动态生成）：
-- `按建议继续：[具体下一步]`
-- `我有其他想法`
-- `先看看详细的实验/文献状态`
+Options should be generated dynamically from actual state:
+- `Follow recommendation: [specific next step]`
+- `I have another idea`
+- `Show detailed experiment/literature status first`
 
-## 第三步：根据用户选择行动
+## Step 3: Act Based on User Choice
 
-- 选择继续：建议使用对应的命令（`/survey`、`/experiment`、`/write`、`/review`）
-- 选择调整：`AskUserQuestion` 进一步了解想法
-- 选择查看详情：列出 `.pipeline/experiments/` 和 `.pipeline/literature/index.md` 的内容摘要
+- If continuing: recommend the matching command (`/survey`, `/experiment`, `/write`, `/review`).
+- If adjusting: use `AskUserQuestion` to understand the idea.
+- If viewing details: summarize `.pipeline/experiments/` and `.pipeline/literature/index.md`.
 
-## 最后：更新热区
+## Final Step: Update Hot Zone
 
-如果对话中产生了新的方向决策或任务调整，更新 `bigmemory/热区/状态简报.md`。
+If the discussion produces a new direction decision or task adjustment, update `bigmemory/热区/状态简报.md`.

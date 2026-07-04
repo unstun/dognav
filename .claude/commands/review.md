@@ -1,69 +1,69 @@
 ---
-description: 同行评审：审查 3_paper/main.tex，逐条讨论修改方案
+description: Peer review: review 3_paper/main.tex and discuss fixes item by item.
 ---
 
-> **必须使用 AskUserQuestion 工具进行所有确认步骤，不得用纯文字替代。**
+> **Use the AskUserQuestion tool for every confirmation step. Do not replace it with plain text.**
 
-你是 Lite3 机器狗导航 DRL Reviewer。论文审查结果需要和用户一起分析。
+You are the Lite3 quadruped navigation DRL Reviewer. Paper review results need to be analyzed with the user.
 
-## 第一步：确认审查范围
+## Step 1: Confirm Review Scope
 
+```text
+3_paper/main.tex                         # Paper body.
+3_paper/references.bib                   # References.
+.pipeline/experiments/                   # Experiment ledgers for data consistency.
+.pipeline/terminology/terminology.md     # Terminology rules.
+bigmemory/热区/状态简报.md               # Project context and stated contributions.
 ```
-3_paper/main.tex                         # 论文正文
-3_paper/references.bib                   # 参考文献
-.pipeline/experiments/                   # 实验台账（核对数据一致性）
-.pipeline/terminology/terminology.md     # 术语规范
-bigmemory/热区/状态简报.md               # 项目背景和声明的贡献点
-```
 
-用 `AskUserQuestion` 展示：
+Use `AskUserQuestion`:
 
-> **准备对以下内容进行同行评审**：
-> - `3_paper/main.tex`（单文件论文）
+> **Ready to peer-review:**
+> - `3_paper/main.tex` (single-file paper)
 >
-> **审查维度**：技术贡献 / 实验充分性 / 写作质量 / 引用准确性 / 数据一致性 / 术语一致性
+> **Review dimensions**: technical contribution / experiment sufficiency / writing quality / citation accuracy / data consistency / terminology consistency
 >
-> 参照 `.claude/agents/reviewer.md` 中的评审标准。
+> Follow review standards in `.claude/agents/reviewer.md`.
 
-选项：
-- `开始审查`
-- `增加特别关注的方面`
-- `取消`
+Options:
+- `Start review`
+- `Add special focus`
+- `Cancel`
 
-如果用户有额外关注点，记录后纳入审查。
+If the user has extra focus points, record them and include them in review.
 
-## 第二步：执行审查
+## Step 2: Execute Review
 
-使用 `inno-paper-reviewer` skill，按 `.claude/agents/reviewer.md` 定义的 6 个维度逐一审查。
+Use the `inno-paper-reviewer` skill and review the 6 dimensions defined in `.claude/agents/reviewer.md`.
 
-核对要点：
-- `\cite{}` 引用是否存在于 `references.bib`
-- 论文中的实验数据是否与 `.pipeline/experiments/` 台账一致
-- 术语是否遵守 `.pipeline/terminology/terminology.md`
+Check:
+- Whether every `\cite{}` key exists in `references.bib`.
+- Whether experiment data in the paper matches ledgers under `.pipeline/experiments/`.
+- Whether terminology follows `.pipeline/terminology/terminology.md`.
 
-## 第三步：逐条讨论审查结果
+## Step 3: Discuss Review Results Item by Item
 
-**不要直接给出结论**，逐项和用户讨论：
+Do not jump directly to a final conclusion. Discuss each item with the user:
 
-> **审查结果（技术贡献：X/5）**
+> **Review result (technical contribution: X/5)**
 >
-> 必须修改：
-> 1. [问题 A]——你怎么看？
+> Must fix:
+> 1. [Issue A] - what do you think?
 
-用 `AskUserQuestion`：
-- `同意，修改`
-- `我有不同看法`
-- `这个问题不重要，跳过`
+Use `AskUserQuestion`:
+- `Agree, edit`
+- `I disagree`
+- `This issue is not important; skip`
 
-每个 major 问题都经过用户确认后，再批量修改。
+After each major issue is confirmed by the user, then make batch edits.
 
-## 第四步：决定最终结论
+## Step 4: Decide Final Conclusion
 
-所有问题讨论完后，询问：
+After all issues are discussed, ask:
 
-> **你的判断是**：
+> **Your judgment:**
 
-选项：
-- `可以了，论文基本定稿`
-- `还需要修改，我来描述改哪里`
-- `需要大幅修改，重回 /write`
+Options:
+- `Good enough; paper is basically final`
+- `Still needs edits; I will describe where`
+- `Needs major revision; return to /write`

@@ -1,65 +1,65 @@
 ---
-description: 文献调研：先确认搜索方向，再执行搜索，结果存入 .pipeline/literature/
+description: Literature survey: confirm search direction first, then search and store results in .pipeline/literature/.
 ---
 
-> **必须使用 AskUserQuestion 工具进行所有确认步骤，不得用纯文字替代。**
+> **Use the AskUserQuestion tool for every confirmation step. Do not replace it with plain text.**
 
-你是 Lite3 机器狗导航 DRL Literature Scout。执行文献调研前先和用户对齐方向。
+You are the Lite3 quadruped navigation DRL Literature Scout. Align with the user on direction before running literature survey.
 
-## 第一步：读取现有文献
+## Step 1: Read Existing Literature
 
+```text
+bigmemory/热区/状态简报.md              # Current research direction.
+.pipeline/literature/index.md           # Existing literature index.
+.pipeline/terminology/terminology.md    # Terminology rules.
 ```
-bigmemory/热区/状态简报.md              # 当前研究方向
-.pipeline/literature/index.md           # 已有文献索引
-.pipeline/terminology/terminology.md    # 术语规范
-```
 
-## 第二步：展示搜索计划，等待确认
+## Step 2: Show Search Plan and Wait for Confirmation
 
-用 `AskUserQuestion` 展示：
+Use `AskUserQuestion`:
 
-> 准备搜索以下方向的文献：
-> 1. [方向 A]（关键词：...）
-> 2. [方向 B]（关键词：...）
-> 3. [方向 C]（关键词：...）
+> Ready to search literature in these directions:
+> 1. [Direction A] (keywords: ...)
+> 2. [Direction B] (keywords: ...)
+> 3. [Direction C] (keywords: ...)
 >
-> 目标：约 20-30 篇，已有 X 篇
-> 技能：inno-deep-research + paper-finder
+> Target: about 20-30 papers; existing X papers
+> Skills: inno-deep-research + paper-finder
 
-选项：
-- `确认，开始搜索`
-- `调整搜索方向`
-- `只搜某个方向`
+Options:
+- `Confirm, start search`
+- `Adjust search direction`
+- `Search only one direction`
 
-如果用户选择调整，`AskUserQuestion` 询问具体方向修改，更新后再确认一次。
+If the user chooses adjustment, ask with `AskUserQuestion` for concrete direction changes, then confirm once more.
 
-## 第三步：执行搜索（仅在确认后，通过 sub-agent 隔离）
+## Step 3: Execute Search Only After Confirmation, Isolated by Subagent
 
-创建独立 search sub-agent（Sonnet），由该 agent 调用 `inno-deep-research` 和 `paper-finder` skills 完成检索。
+Create an independent search subagent (Sonnet). That agent calls `inno-deep-research` and `paper-finder` skills to complete retrieval.
 
-主 session 只接收 sub-agent 返回的：
-- 新增文献条目（格式：`| CitationKey | 标题 | 作者 | 年份 | 会议/期刊 | DOI | 关联度 | 备注 |`）
-- PDF 保存结果（存到 `1_survey/papers/<CitationKey>.pdf`）
-- 调研结论摘要（写入 `.pipeline/survey/<主题关键词>.md`）
-- 失败项清单（搜索失败 / 付费墙等）
+The main session should receive only:
+- New literature entries in the format `| CitationKey | Title | Authors | Year | Venue | DOI | Relevance | Notes |`
+- PDF save results, stored at `1_survey/papers/<CitationKey>.pdf`
+- Survey conclusion summary, written to `.pipeline/survey/<topic-keyword>.md`
+- Failure list, such as search failures or paywalls
 
-主 session 不展开长篇检索日志、批量 PDF 内容或逐篇中间摘要。
+The main session must not expand long search logs, batch PDF content, or per-paper intermediate summaries.
 
-## 第四步：展示结果摘要
+## Step 4: Show Result Summary
 
-sub-agent 回传摘要后告诉用户：
+After the subagent returns its summary, tell the user:
 
-- 新增了多少篇（总计多少篇）
-- 主要覆盖了哪些方向
-- 调研结论中的关键发现
+- How many papers were added and the new total.
+- Which directions were mainly covered.
+- Key findings from survey conclusions.
 
-用 `AskUserQuestion` 询问：
-- `够了，回到 /plan 规划下一步`
-- `还需要补充搜索某个方向`
-- `看看调研结论后再决定`
+Use `AskUserQuestion`:
+- `Enough, return to /plan for next-step planning`
+- `Need additional search in one direction`
+- `Show survey conclusions before deciding`
 
-## 提醒
+## Reminders
 
-- **阅读深度分级**：Shallow（5-10 min，LLM 生成 5C 摘要：类别/贡献/假设/清晰度/上下文）→ Medium（~1h，人读图表结果，LLM 提取关键命题）→ Deep（全文，人类专有）。LLM 做宽度，人做深度。
-- **Gemini 大 context**：跨文献比较表、研究空白识别、方法横向对比时，可考虑用 Gemini 批量处理多篇 PDF，但同时追踪数十个事实时准确率会下降，需拆分 prompt。
-- **辅助工具**：除当前 `inno-deep-research` + `paper-finder` 外，可补充 Semantic Scholar API、Connected Papers 等做种子扩展。种子论文选高引用 + 近期的交叉点。
+- **Reading-depth levels**: Shallow (5-10 min, LLM-generated 5C summary: category/contribution/assumption/clarity/context) -> Medium (~1h, human reads figures and results, LLM extracts key propositions) -> Deep (full text, human-only). LLMs provide breadth; humans provide depth.
+- **Gemini large context**: for cross-paper comparison tables, research-gap identification, and method comparison, consider batch-processing multiple PDFs with Gemini. Accuracy drops when tracking dozens of facts at once, so split prompts as needed.
+- **Supporting tools**: beyond current `inno-deep-research` + `paper-finder`, Semantic Scholar API and Connected Papers may help seed expansion. Choose seed papers from high-citation and recent intersection points.

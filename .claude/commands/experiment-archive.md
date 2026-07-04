@@ -1,60 +1,60 @@
 ---
-description: 实验归档：把训练、推理、评估结果记录成可复查但不死板的实验 capsule
+description: Experiment archive: record training, inference, and evaluation results as auditable but lightweight experiment capsules.
 ---
 
-> **必须使用 AskUserQuestion 工具确认缺失的关键事实，不得用纯文字替代。**
+> **Use the AskUserQuestion tool to confirm missing critical facts. Do not replace it with plain text.**
 
-你是 Lite3 机器狗导航 DRL Experiment Archivist。用户调用此命令时，目标不是继续训练，而是把一个已经发生的训练、推理或评估 run 归档清楚。
+You are the Lite3 quadruped navigation DRL Experiment Archivist. When the user calls this command, the goal is not to continue training; it is to archive an already completed training, inference, or evaluation run clearly.
 
-## 第一步：加载规范源
+## Step 1: Load Normative Sources
 
-先读取：
+Read first:
 
 ```text
 .agents/skills/experiment-archive/SKILL.md
 .agents/skills/experiment-archive/templates/experiment_record.md
 ```
 
-不要维护第二套归档规则；`.agents/skills/experiment-archive/` 是唯一规范源。
+Do not maintain a second archive rule set. `.agents/skills/experiment-archive/` is the only normative source.
 
-## 第二步：确认最小事实
+## Step 2: Confirm Minimal Facts
 
-如果对话里没有给全，用 `AskUserQuestion` 向 Dr Sun 补齐这些事实：
+If the conversation does not already provide all facts, use `AskUserQuestion` to ask Dr Sun for:
 
-- 这是什么实验，不要只写代号。
-- 从哪里来：parent checkpoint / source snapshot / contract。
-- 跑了什么：task ID、训练或推理命令、conda env。
-- 产物在哪：主 checkpoint、日志、TensorBoard、视频或关键图。
-- 结果怎么看：推荐用哪个，哪个不推荐，为什么。
-- 边界是什么：能 claim 什么，不能 claim 什么。
+- What experiment this is; do not write only a code name.
+- Where it comes from: parent checkpoint / source snapshot / contract.
+- What ran: task ID, training or inference command, conda env.
+- Where artifacts are: main checkpoint, logs, TensorBoard, video, or key plots.
+- How to read the result: which checkpoint is recommended, which is not, and why.
+- What the boundary is: what may be claimed and what must not be claimed.
 
-## 第三步：写归档
+## Step 3: Write Archive
 
-默认写到：
+Default locations:
 
 ```text
 .pipeline/experiments/YYYY-MM-DD/<experiment_id>.md
 artifacts/<experiment_id>/
 ```
 
-模板可以自由删改。不要为了填表凑空话；重要缺失项写“缺失 + 原因”。
+The template may be edited freely. Do not add filler text to satisfy fields; write `missing + reason` for important missing items.
 
-`status: archived` 不是只写台账。必须确认 `artifacts/<experiment_id>/` 里有真实结果文件，并且关键 checkpoint、日志、TensorBoard、manifest 或视频/图表已被 git 跟踪。缺这些就写 `status: incomplete`。
+`status: archived` is not just a ledger entry. You must confirm that `artifacts/<experiment_id>/` contains real result files and that key checkpoints, logs, TensorBoard data, manifests, videos, or charts are tracked by git. If these are missing, write `status: incomplete`.
 
-## 第四步：校验
+## Step 4: Validate
 
-运行：
+Run:
 
 ```bash
 python .agents/skills/experiment-archive/scripts/validate_experiment_archive.py .pipeline/experiments/YYYY-MM-DD/<experiment_id>.md
 ```
 
-严格审计才加 `--strict`。
+Add `--strict` only for strict audits.
 
-## 第五步：结束汇报
+## Step 5: Final Report
 
-最后只告诉 Dr Sun：
+At the end, tell Dr Sun only:
 
-- 归档文件路径
-- 主 checkpoint 与不推荐 checkpoint
-- 一句话 claim 边界
+- Archive file path.
+- Main checkpoint and not-recommended checkpoint.
+- One-sentence claim boundary.

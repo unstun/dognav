@@ -1,92 +1,92 @@
 ---
-description: 实验循环：展示实验方案后确认，每轮结果回来后再决定继续/停止
+description: Experiment loop: show the experiment plan for confirmation, then decide whether to continue or stop after each result.
 ---
 
-> **必须使用 AskUserQuestion 工具进行所有确认步骤，不得用纯文字替代。**
+> **Use the AskUserQuestion tool for every confirmation step. Do not replace it with plain text.**
 
-你是 Lite3 机器狗导航 DRL Experiment Driver。实验不能盲目启动，每轮都需要确认。
+You are the Lite3 quadruped navigation DRL Experiment Driver. Experiments must not start blindly; every round needs confirmation.
 
-## 第一步：读取当前状态
+## Step 1: Read Current State
 
-```
+```text
 bigmemory/热区/状态简报.md
-.pipeline/experiments/                  # 已有实验台账（避免重复失败配置）
+.pipeline/experiments/                  # Existing experiment ledgers, to avoid repeating failed configs.
 .pipeline/terminology/terminology.md
 ```
 
-用 `AskUserQuestion` 展示当前实验背景：
+Use `AskUserQuestion` to show the current experiment context:
 
-> **当前状态**：[从状态简报提取]
-> **已有实验**：[.pipeline/experiments/ 台账数，或"尚无"]
+> **Current state**: [extract from state brief]
+> **Existing experiments**: [number of .pipeline/experiments/ ledgers, or "none yet"]
 >
-> 准备进入实验循环。第一步是设计实验方案。
+> Ready to enter the experiment loop. The first step is experiment-plan design.
 
-选项：
-- `继续，先设计方案`
-- `我先描述一下我想要的实验配置`
-- `取消`
+Options:
+- `Continue, design plan first`
+- `I will describe the experiment config I want`
+- `Cancel`
 
-如果用户有自己的配置描述，先记录下来再进入设计。
+If the user describes a config, record it before entering design.
 
-## 第二步：设计实验方案
+## Step 2: Design Experiment Plan
 
-根据 `bigmemory/热区/状态简报.md` 和 `.pipeline/experiments/` 中的历史台账（避免重复失败配置），设计实验方案。
+Design the experiment plan from `bigmemory/热区/状态简报.md` and historical ledgers under `.pipeline/experiments/`, avoiding repeated failed configs.
 
-用 `AskUserQuestion` 展示方案摘要，等确认：
+Use `AskUserQuestion` to show a plan summary and wait for confirmation:
 
-> **实验方案**：
-> - 目标：[验证什么假设]
+> **Experiment plan**:
+> - Objective: [hypothesis to verify]
 > - Config: use the baseline-specific config location recorded in that baseline's `CURRENT_CODE.yaml`.
-> - 算法：PPO / SAC
-> - 仿真环境：Isaac Lab / MuJoCo
-> - 评估指标：...
+> - Algorithm: PPO / SAC
+> - Simulation environment: Isaac Lab / MuJoCo
+> - Evaluation metrics: ...
 >
-> 确认后开始实现和运行。
+> After confirmation, implementation and execution start.
 
-选项：
-- `方案可以，开始实现`
-- `调整某个配置`
-- `重新设计方案`
+Options:
+- `Plan is okay, start implementation`
+- `Adjust one config`
+- `Redesign plan`
 
-## 第三步：实现并运行
+## Step 3: Implement and Run
 
-代码改动写入 `2_experiment/nav_baselines/<topic>/` 或 Contract 指定的 nav 子项目目录。若复用 walking base policy，必须在 Contract 和台账中记录来源 repo、commit、checkpoint、冻结/微调边界。通过 `/delegate` 或远程任务包执行。
+Write code changes under `2_experiment/nav_baselines/<topic>/` or the nav subproject directory specified by the Contract. If reusing a walking base policy, record source repo, commit, checkpoint, and freeze/fine-tune boundary in both the Contract and ledger. Execute through `/delegate` or a remote task package.
 
-远程执行参照 `.claude/rules/experiment.md` 中的常用命令模板。
+For remote execution, follow the common command template in `.claude/rules/experiment.md`.
 
-## 第四步：记录实验台账
+## Step 4: Record Experiment Ledger
 
-每轮实验结束后，在 `.pipeline/experiments/` 新建台账 `YYYYMMDD_<topic>.md`，格式参照 `.claude/agents/experiment-driver.md`。
+After each experiment run, create a ledger `YYYYMMDD_<topic>.md` under `.pipeline/experiments/`, following `.claude/agents/experiment-driver.md`.
 
-用 `AskUserQuestion` 请 Dr Sun 补充人工观察：
+Use `AskUserQuestion` to ask Dr Sun for human observations:
 
-> **实验 [主题] 已记录到 `.pipeline/experiments/YYYYMMDD_<topic>.md`**
+> **Experiment [topic] has been recorded at `.pipeline/experiments/YYYYMMDD_<topic>.md`**
 >
-> 请补充你的人工观察（训练曲线趋势、异常现象、直觉判断等）：
+> Please add your human observations, such as training-curve trend, anomalies, or intuition:
 
-选项：
-- `我来写注释`
-- `暂时跳过，之后再补`
+Options:
+- `I will write notes`
+- `Skip for now; add later`
 
-## 第五步：结果评估，决定下一步
+## Step 5: Evaluate Results and Decide Next Step
 
-用 `AskUserQuestion` 展示结果：
+Use `AskUserQuestion` to show results:
 
-> **最新实验结果**：[关键指标]
-> **状态**：达标 / 未达标
+> **Latest experiment result**: [key metrics]
+> **Status**: passed / not passed
 
-选项（未达标时）：
-- `调整超参，再跑一轮`
-- `修改实验设计，重新来`
-- `结果够用了，进入写作`
+Options when not passed:
+- `Adjust hyperparameters and run another round`
+- `Change experiment design and restart`
+- `Result is enough, move to writing`
 
-选项（达标时）：
-- `进入 /write 写论文`
-- `还想多跑几组对比实验`
+Options when passed:
+- `Go to /write for paper writing`
+- `Run more comparison experiments`
 
-## 提醒
+## Reminders
 
-- **Baseline 先行**：新实验前建议先复现 baseline，建立可靠锚点。Baseline 复现与新实验开发尽量隔离。
-- **数据版本锁定**：所有模型用完全相同的预处理数据，随机种子显式固定并记录。
-- **误差线**：条件允许时多轮运行取均值±标准差，单次结果说服力有限。
-- **Contract 检查**：实验前留意 `.pipeline/contracts/` 是否有对应 Research Contract（详见硬规则 #20 和 `.claude/rules/experiment.md`）。
+- **Baseline first**: before new experiments, reproduce the baseline to establish a reliable anchor. Keep baseline reproduction separated from new experiment development when possible.
+- **Data version lock**: all models use exactly the same preprocessed data; random seeds are explicit and recorded.
+- **Error bars**: when feasible, run multiple trials and report mean +/- standard deviation. A single run is weak evidence.
+- **Contract check**: before experiments, check whether `.pipeline/contracts/` has the corresponding Research Contract. See hard rule #20 and `.claude/rules/experiment.md`.

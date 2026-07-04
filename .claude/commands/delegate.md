@@ -1,66 +1,66 @@
 ---
-description: Conductor 规划任务，spawn codex:codex-rescue 子 agent 后台执行（B 模式）
+description: Conductor plans a task and spawns a codex:codex-rescue subagent for background execution (mode B).
 ---
 
-> **必须使用 AskUserQuestion 工具进行所有确认步骤，不得用纯文字替代。**
-> **Cursor 禁用本命令作为 Codex 默认路径**：Cursor 下使用 `/delegate-offline` 风格, 只生成 prompt 供 Dr Sun 手动输入 Codex。
+> **Use the AskUserQuestion tool for every confirmation step. Do not replace it with plain text.**
+> **This command is disabled as the default Codex path in Cursor**: in Cursor, use `/delegate-offline` style and only generate a prompt for Dr Sun to manually input into Codex.
 
-你是 Lite3 机器狗导航 DRL Conductor。此命令用于**将代码 / 实验任务委派给 Codex 执行**——主 Claude 只做规划和结果综合，节约 Opus token（B 模式）。
+You are the Lite3 quadruped navigation DRL Conductor. This command **delegates code or experiment tasks to Codex**. The main Claude session only plans and integrates results, saving Opus tokens (mode B).
 
-## 第一步：读取上下文
+## Step 1: Read Context
 
-```
+```text
 bigmemory/热区/状态简报.md
 bigmemory/热区/未关闭决策.md
 .pipeline/experiments/
 .pipeline/terminology/terminology.md
 ```
 
-## 第二步：展示计划，等待确认
+## Step 2: Show Plan and Wait for Confirmation
 
-用 `AskUserQuestion` 向 Dr Sun 展示将要委派的任务摘要：
+Use `AskUserQuestion` to show Dr Sun the task summary to be delegated:
 
-- **任务内容**：1-2 句话描述将交给 Codex 做什么
-- **上下文注入**：AGENTS.md 通道自动提供硬规则与术语；prompt 中额外附带的信息
-- **输出位置**：Codex 产出写入哪里
+- **Task**: 1-2 sentence description of what Codex will do.
+- **Context injection**: AGENTS.md automatically provides hard rules and terminology; list extra prompt context.
+- **Output location**: where Codex should write outputs.
 
-选项：
-- `确认，spawn 子 agent 执行`
-- `我来调整任务描述`
-- `取消`
+Options:
+- `Confirm, spawn subagent`
+- `I will adjust the task description`
+- `Cancel`
 
-## 第三步：spawn codex:codex-rescue 子 agent（仅在确认后）
+## Step 3: Spawn codex:codex-rescue Subagent Only After Confirmation
 
-调用 Agent 工具，参数如下：
+Call the Agent tool with:
 
 - `subagent_type`: `codex:codex-rescue`
-- `description`: ≤6 字任务概括
-- `prompt`: 完整任务描述，需包含
-  - 项目背景（从状态简报提取）
-  - 实验代码按 nav baseline 子项目声明 Python module；默认目录 `2_experiment/nav_baselines/<topic>/`
-  - walking base policy 若被复用，必须声明来源 repo、commit、checkpoint 和冻结/微调边界
-  - 实验目录 `2_experiment/`
-  - `.pipeline/experiments/` 最近 3 个台账的标题和结论（避免重复）
-  - 任务描述
-  - 输出要求：代码改动写入对应 nav 子项目目录；实验台账 `.pipeline/experiments/YYYYMMDD_<topic>.md`；遵守 `.pipeline/terminology/terminology.md`
-- `run_in_background`: `true`（后台执行，主 session 可继续做别的；完成后系统自动通知）
+- `description`: <=6-character task summary
+- `prompt`: complete task description, including:
+  - project context extracted from the state brief
+  - experiment code must declare a Python module by nav baseline subproject; default directory is `2_experiment/nav_baselines/<topic>/`
+  - if a walking base policy is reused, state source repo, commit, checkpoint, and freeze/fine-tune boundary
+  - experiment directory `2_experiment/`
+  - titles and conclusions from the latest 3 ledgers under `.pipeline/experiments/`, to avoid repeats
+  - task description
+  - output requirements: code changes under the matching nav subproject directory; experiment ledger `.pipeline/experiments/YYYYMMDD_<topic>.md`; follow `.pipeline/terminology/terminology.md`
+- `run_in_background`: `true` so the subagent runs in the background and the main session can continue; the system will notify when done.
 
-## 第四步：等待完成，读取结果
+## Step 4: Wait for Completion and Read Results
 
-子 agent 返回后，读取其摘要，并检查落盘产出：
+After the subagent returns, read its summary and check persisted outputs:
 
 ```bash
 ls .pipeline/experiments/ | tail -5
 git log --oneline -5
 ```
 
-向 Dr Sun 简要说明：做了什么、产出了哪些文件、有没有问题。
+Briefly tell Dr Sun what was done, which files were produced, and whether there are issues.
 
-用 `AskUserQuestion` 询问：
-- `接受结果，继续下一步`
-- `需要修改某处`
-- `这个结果有问题，放弃`
+Use `AskUserQuestion`:
+- `Accept result, continue next step`
+- `Need changes somewhere`
+- `This result is wrong; discard`
 
-## 何时改用 /delegate-offline
+## When To Use /delegate-offline
 
-若任务需要 Dr Sun 在独立终端里全程观察 Codex 输出（调试 / 交互 / 长时间训练），或当前 CLI 是 Cursor，改用 `/delegate-offline`——它只生成 prompt，由 Dr Sun 在独立终端跑 `codex` CLI。
+If Dr Sun needs to watch Codex output in an independent terminal for debugging, interaction, or long training, or if the current CLI is Cursor, use `/delegate-offline`; it only generates a prompt for Dr Sun to run with the independent `codex` CLI.
