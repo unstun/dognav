@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Training artifacts
+*.pt
+*.pth
+*.onnx
+*.pkl
+wandb/
+tensorboard_logs/
+runs*/
+/logs/**
+
+# Local temporary files and large materials
+/tmp/
+/outputs/
+node_modules/
+/artifacts/**
+!/artifacts/README.md
+!/artifacts/INDEX.md
+!/artifacts/**/
+!/artifacts/**/manifest.yaml
+!/artifacts/**/tracked_checkpoints/
+!/artifacts/**/tracked_checkpoints/**/*.pt
+!/artifacts/**/tracked_checkpoints/**/*.pth
+!/artifacts/**/tracked_logs/
+!/artifacts/**/tracked_logs/**
+/artifacts/**/tmp_*/
+
+# Isaac Sim / Lab
+_isaac_sim/
+*.usd.bak
+
+# External repositories
+2_experiment/source_references/*/upstream/
+2_experiment/source_references/*/external/
+
+# IDE
+.vscode/
+.idea/
+.playwright-mcp/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.key
+credentials.json
+
+# LaTeX build artifacts
+3_paper/*.aux
+3_paper/*.log
+3_paper/*.out
+3_paper/*.toc
+3_paper/*.bbl
+3_paper/*.blg
+3_paper/*.fdb_latexmk
+3_paper/*.fls
+3_paper/*.synctex.gz
+
+# Large literature files
+*.pdf
+1_survey/papers/*.pdf
+1_survey/papers/**/*.pdf
+1_survey/papers/translated/
+1_survey/papers/arxiv_src/
+1_survey/papers/md/*_figs/
+1_survey/papers/translated/arxiv_batch_*/
+1_survey/papers/inbox_grok_*/

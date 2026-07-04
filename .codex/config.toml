@@ -1,0 +1,18 @@
+# Project-scoped Codex configuration.
+# Loaded only after the project is trusted by Codex.
+project_doc_max_bytes = 65536
+
+[features]
+hooks = true
+codex_hooks = true
+
+[agents]
+max_threads = 6
+max_depth = 1
+
+[shell_environment_policy]
+inherit = "core"
+
+[shell_environment_policy.set]
+GIT_AUTHOR_EMAIL = "codex@machine-dog-nav.local"
+GIT_AUTHOR_NAME = "Codex"
