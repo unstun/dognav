@@ -2,8 +2,10 @@
 """
 .codex/scripts/dump_conversation.py
 
-Codex App 侧入口 wrapper —— 转发到主脚本 .claude/scripts/dump_conversation.py。
-默认强制 source=codex，避免 auto 误选其他平台；用户可显式指定 --source 覆盖。
+Codex App entry wrapper: forwards to the main script at
+.claude/scripts/dump_conversation.py.
+Forces source=codex by default to avoid auto-selecting another platform; users
+may pass --source explicitly to override it.
 """
 
 import os
@@ -11,14 +13,14 @@ import sys
 from pathlib import Path
 
 # ------------------------------------------------------------------ #
-#  转发逻辑
+#  Forwarding logic
 # ------------------------------------------------------------------ #
 
 PROJ_ROOT = Path(__file__).resolve().parents[2]
 MAIN_SCRIPT = PROJ_ROOT / ".claude" / "scripts" / "dump_conversation.py"
 
 if not MAIN_SCRIPT.exists():
-    sys.exit(f"[错误] 未找到主脚本: {MAIN_SCRIPT}")
+    sys.exit(f"[error] main script not found: {MAIN_SCRIPT}")
 
 args = sys.argv[1:]
 if not any(a.startswith("--source") or a == "-s" for a in args):

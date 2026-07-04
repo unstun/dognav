@@ -4,7 +4,8 @@
 # ----------------------------------------------------------------------------
 # Claude Code's hook receives file_path for Edit/Write. Codex reports
 # apply_patch, so this wrapper scans changed trusted-knowledge Markdown files.
-# 扫描范围包含 unstaged、staged 和 untracked,避免新建/已暂存文档漏掉。
+# The scan covers unstaged, staged, and untracked files so new or already staged
+# documents are not missed.
 # ============================================================================
 set -euo pipefail
 

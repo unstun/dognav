@@ -1,38 +1,38 @@
-# Codex 主入口适配
+# Codex Main-Entry Adapter
 
-本目录是 Codex CLI / Codex App 的项目级 harness 入口。`AGENTS.md` 是跨 CLI 规则真源。
+This directory is the project-level harness entry for Codex CLI and Codex App. `AGENTS.md` is the cross-CLI source of truth for rules.
 
-## 当前仓库边界
+## Current Repository Boundary
 
 - project root: `/Users/sun/tongbu/study/phdproject/machine-dog-nav`
 - project topic: Lite3 quadruped navigation DRL
 - source of truth: local repo
 - walking base repo: `/Users/sun/tongbu/study/phdproject/machine-dog`
 
-## 项目级配置
+## Project-Level Configuration
 
-`.codex/config.toml` 只放项目共享配置：
+`.codex/config.toml` contains only shared project configuration:
 
 - `project_doc_max_bytes = 65536`
 - hooks enabled
-- subagent/thread depth 上限
+- subagent/thread depth limits
 - Codex git author
 
-模型、MCP、plugins、sandbox、approval 默认留给用户级配置或启动参数管理。
+Models, MCP, plugins, sandbox, and approval settings should remain in user-level configuration or launch arguments by default.
 
 ## Hooks
 
-`.codex/hooks.json` 继承本项目可用 hook：
+`.codex/hooks.json` inherits hooks available to this project:
 
-- `UserPromptSubmit`: 注入 git 状态、热区新鲜度；若 `.trellis/` 不存在，Trellis breadcrumb hook 静默退出。
-- `PreToolUse`: 文件修改前做 git auto-backup。
-- `PostToolUse`: 修改受信任知识库 Markdown 后，将 `reviewed: true` 重置为 `reviewed: false`。
+- `UserPromptSubmit`: inject git state and hot-zone freshness; if `.trellis/` does not exist, the Trellis breadcrumb hook exits silently.
+- `PreToolUse`: create a git auto-backup before file edits.
+- `PostToolUse`: after trusted-knowledge Markdown edits, reset `reviewed: true` to `reviewed: false`.
 
 ## Skills
 
-Codex skills 入口为 `.agents/skills/`。这些 skills 从 walking 基础仓库迁移而来，后续使用前必须检查是否仍含旧实验路径或旧证据 claim。
+The Codex skills entry is `.agents/skills/`. These skills were migrated from the walking base repository; before future use, check whether they still contain old experiment paths or old evidence claims.
 
-## 验证建议
+## Suggested Checks
 
 ```bash
 git status --short

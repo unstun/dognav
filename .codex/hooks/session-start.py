@@ -92,8 +92,8 @@ def _normalize_windows_shell_path(path_str: str) -> str:
 warnings.filterwarnings("ignore")
 
 FIRST_REPLY_NOTICE = """<first-reply-notice>
-On the first visible assistant reply in this session, begin with exactly one short Chinese sentence:
-Trellis SessionStart 已注入：workflow、当前任务状态、开发者身份、git 状态、active tasks、spec 索引已加载。
+On the first visible assistant reply in this session, begin with exactly one short sentence:
+Trellis SessionStart has injected workflow, current task state, developer identity, git state, active tasks, and spec index.
 Then continue directly with the user's request. This notice is one-shot: do not repeat it after the first assistant reply in the same session.
 </first-reply-notice>"""
 

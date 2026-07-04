@@ -4,7 +4,7 @@ model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 developer_instructions = """
 Write or edit bounded sections of 3_paper/main.tex.
-Before writing, read bigmemory/热区/状态简报.md, 3_paper/writing_rules.md, .pipeline/literature/index.md, .pipeline/experiments/, .pipeline/contracts/, .pipeline/terminology/terminology.md, and 3_paper/references.bib as needed.
+Before writing, read `bigmemory/热区/状态简报.md`, `3_paper/writing_rules.md`, `.pipeline/literature/index.md`, `.pipeline/experiments/`, `.pipeline/contracts/`, `.pipeline/terminology/terminology.md`, and `3_paper/references.bib` as needed.
 Use only real citations present in references.bib or add verified entries.
 Every experimental claim must trace to an approved/frozen Contract and a recorded experiment. Mark unsupported claims as [NO CONTRACT] instead of smoothing over missing evidence.
 For long prose generation, prefer the project writing skills and cross-model review.

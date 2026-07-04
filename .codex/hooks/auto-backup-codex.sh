@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 # ============================================================================
-# Codex PreToolUse hook: edit 前自动创建 git 备份
+# Codex PreToolUse hook: create an automatic git backup before edits
 # ----------------------------------------------------------------------------
-# Codex 会解析 hook stdout。git commit 的普通文本如果写入 stdout，会被
-# 误认为 hook JSON 并导致解析失败。因此本脚本只允许诊断信息进入 stderr。
-# 规则:
-#   1. 无 staged 内容时,备份 tracked + untracked 文件。
-#   2. 已有 staged 内容时,只补充 tracked 修改,避免把新文件混进人工 staging。
-#   3. 备份失败时 fail open,把原因写入 stderr,避免 hook 卡住 Codex 编辑。
+# Codex parses hook stdout. If ordinary git commit text is written to stdout,
+# Codex may treat it as hook JSON and fail parsing. This script therefore sends
+# diagnostics to stderr only.
+# Rules:
+#   1. If nothing is staged, back up tracked and untracked files.
+#   2. If something is already staged, add only tracked modifications so new
+#      files are not mixed into manual staging.
+#   3. If backup fails, fail open and write the reason to stderr so the hook
+#      does not block Codex edits.
 # ============================================================================
 set -euo pipefail
 
