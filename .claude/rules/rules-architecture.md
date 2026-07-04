@@ -4,35 +4,35 @@ paths:
   - "CLAUDE.md"
   - "AGENTS.md"
 ---
-# CLAUDE.md 维护规范
+# CLAUDE.md Maintenance Rules
 
-## 注入机制
+## Injection Mechanism
 
-- CLAUDE.md 以 user message 注入(非 system prompt),Claude 逐条判断相关性。
-- `.claude/rules/*.md` 无 `paths` 则每次会话全量加载;有 `paths` 则仅在读取匹配文件时注入。
-- 指令预算约 150-200 条,根文件目标 ≤100 行。
+- `CLAUDE.md` is injected as a user message, not a system prompt, and Claude judges relevance rule by rule.
+- `.claude/rules/*.md` without `paths` is fully loaded every session; with `paths`, it is injected only when matching files are read.
+- Instruction budget is about 150-200 rules; the root file target is <=100 lines.
 
-## 写作原则
+## Writing Principles
 
-- **正面框架优于负面**:MUST 优于 NEVER。NEVER 占比应 <10%。
-- **附加理由(Why)**:帮助 AI 判断边界情况。
-- **IMPORTANT/YOU MUST 有效但滥用稀释效果**:仅用于真正关键的规则。
-- **首尾偏差(U-shaped)**:最重要的规则放首尾。
+- **Positive framing over negative framing**: MUST is better than NEVER. Keep NEVER below 10%.
+- **Add Why**: reasons help AI handle boundary cases.
+- **IMPORTANT/YOU MUST works but is diluted by overuse**: reserve it for truly critical rules.
+- **U-shaped bias**: place the most important rules at the beginning and end.
 
-## 内容取舍
+## Content Selection
 
-**有效内容**(应保留):
-- 非显而易见的工具决策
-- 非常规配置和项目特有约束
-- AI 反复犯错的规则
+**Effective content to keep**:
+- Non-obvious tool decisions.
+- Unusual configuration and project-specific constraints.
+- Rules AI repeatedly violates.
 
-**无效内容**(应删除或外置):
-- 目录结构/架构概述(agent 善于自发现)
-- 叙事性背景段落
-- 过时的结构描述
-- linter 可执行的代码风格规则
+**Ineffective content to delete or move out**:
+- Directory structure or architecture overviews that agents can discover.
+- Narrative background paragraphs.
+- Stale structure descriptions.
+- Code-style rules executable by linters.
 
 ## Advisory vs Deterministic
 
-- CLAUDE.md 是 advisory,hooks 是 deterministic。
-- 必须零例外执行的机械性规则应 hook 化。
+- `CLAUDE.md` is advisory; hooks are deterministic.
+- Mechanical rules that require zero exceptions should become hooks.

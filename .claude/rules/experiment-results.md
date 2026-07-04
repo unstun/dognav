@@ -1,8 +1,8 @@
 ---
 paths: [".pipeline/experiments/**", "2_experiment/**", "3_paper/**"]
 ---
-# 实验结果展示
+# Experiment Result Presentation
 
-MUST：展示实验/分析结果时，**先给脚本/代码自动输出的原始数据**（Excel / CSV / 表格数值），
-AI 的解读若有，须标明"以下为脚本统计"并放原始数据**之后**，不得先给结论摘要。
-Why: Dr Sun 不接受无原始数据支撑的 AI 结论——"我不想每次都看到充满 AI 幻觉的结论"。
+MUST: when presenting experiment or analysis results, show raw data automatically emitted by scripts/code first, such as Excel, CSV, or table values.
+If AI interpretation is included, label it as script statistics/interpretation and put it after the raw data. Do not lead with a conclusion summary.
+Why: Dr Sun does not accept AI conclusions without raw-data support.

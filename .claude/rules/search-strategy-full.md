@@ -2,82 +2,85 @@
 paths: [".pipeline/survey/**", ".pipeline/literature/**", "1_survey/**", "**/*literature*", "**/*survey*"]
 ---
 # ============================================================
-# 联网检索策略（完整版）
-# 硬规则 #12 详细决策框架
+# Web Search Strategy (Full)
+# Hard Rule #12 Detailed Decision Framework
 # ============================================================
 
-核心原则：**默认联网，信息质量优先**。用 agent 隔离控制 context 膨胀，而非限制联网次数。
+Core principle: **default to web access when needed, and prioritize information quality**. Control context growth by isolating work in agents, not by limiting search count.
 
-## 决策流
+## Decision Flow
 
+```text
+Query arrives
+  |
+  |-- Existing project information?
+  |     -> Auggie MCP semantic retrieval
+  |        -> If Auggie MCP errors, fall back to Grep + Glob
+  |
+  |-- Quick verification (1-2 facts or concept checks)
+  |     -> Grok Search MCP direct call; lightweight result enters Opus context
+  |        -> Precise question: enable_planning=false
+  |        -> Complex question: enable_planning=true
+  |
+  |-- Deep research (multi-step / multi-source / technical choice / literature search)
+  |     -> spawn Search Agent (model=sonnet)
+  |        -> multiple rounds of WebSearch + WebFetch + Grok Search
+  |        -> return <=800-character summary + source URLs
+  |        -> Opus context receives only the summary
+  |
+  |-- Paywall / tool-limited page (WebFetch 403, login required, etc.)
+  |     -> list retrieval items for Dr Sun to handle in Super Grok web UI
+  |        -> AI continues after Dr Sun returns results
+  |        -> Why: Super Grok is already subscribed, has zero token cost here, and may be higher quality
+  |
+  |-- Framework/library docs
+  |     -> context7 MCP, more precise than general search
+  |
+  `-- Page requiring JS rendering
+        -> Playwright MCP as a last resort
 ```
-查询进来
-  │
-  ├─ 项目内已有信息？ ──→ Auggie MCP 语义检索
-  │     └─ Auggie MCP 报错 → Grep + Glob 回退
-  │
-  ├─ 快速验证（1-2 条事实、概念确认）
-  │     └→ Grok Search MCP 直连（结果轻量，直接进 Opus context）
-  │         ├─ 精确问题：enable_planning=false
-  │         └─ 复杂问题：enable_planning=true
-  │
-  ├─ 深度调研（多步/多源/技术选型/文献搜索）
-  │     └→ spawn Search Agent (model=sonnet)
-  │         → 多轮 WebSearch + WebFetch + Grok Search
-  │         → 返回 ≤800 字摘要 + 源 URL
-  │         → Opus context 只接收摘要，不膨胀
-  │
-  ├─ 付费墙 / 工具受限页面（WebFetch 403、需登录等）
-  │     └→ 列检索项清单交 Dr Sun 用 Super Grok 网页端处理
-  │         → Dr Sun 返回结果后 AI 继续处理
-  │         → Why: Super Grok 已订阅，零 token 开销，质量更高
-  │
-  ├─ 框架/库文档查询 ──→ context7 MCP（比通用搜索更精确）
-  │
-  └─ 必须 JS 渲染的页面 ──→ Playwright MCP（最后手段）
-```
 
-## 可用工具清单
+## Available Tools
 
-| 工具 | 类型 | 适用场景 | Context 影响 |
-|------|------|----------|-------------|
-| Auggie MCP (`mcp__auggie.codebase_retrieval`) | MCP | 项目内语义搜索；Codex 当前 server 为 `auggie`，实际 transport 以 `codex mcp get auggie` 为准；`codebase-retrieval` 仅作能力名或旧写法 | 依赖 Auggie 索引 |
-| Grok Search (`web_search`) | MCP | 快速验证 + 综合答案 | 轻量（直连） |
-| Grok Search (`get_sources`) | MCP | 验证源 URL 质量 | 极轻 |
-| WebSearch | 内置 | 广泛搜索获取链接列表 | 中等 |
-| WebFetch | 内置 | 读具体 URL 精提取 | 受 prompt 精确度控制 |
-| context7 (`resolve-library-id` / `query-docs`) | MCP | 框架/库官方文档 | 轻量 |
-| Playwright | MCP | JS 渲染页面 | 极重，最后手段 |
+| Tool | Type | Use Case | Context Impact |
+|---|---|---|---|
+| Auggie MCP (`mcp__auggie.codebase_retrieval`) | MCP | Project semantic search; current Codex server is `auggie`, actual transport follows `codex mcp get auggie`; `codebase-retrieval` is only capability name or legacy spelling | Depends on Auggie index |
+| Grok Search (`web_search`) | MCP | Quick verification and synthesized answer | Lightweight direct call |
+| Grok Search (`get_sources`) | MCP | Verify source URL quality | Very light |
+| WebSearch | built-in | Broad search for links | Medium |
+| WebFetch | built-in | Read a specific URL precisely | Controlled by prompt precision |
+| context7 (`resolve-library-id` / `query-docs`) | MCP | Official framework/library docs | Light |
+| Playwright | MCP | JS-rendered pages | Very heavy; last resort |
 
-## Grok Search MCP 使用规范
+## Grok Search MCP Usage
 
-- 精确问题：`enable_planning=false`，快速返回
-- 复杂/多面问题：`enable_planning=true`，自动 6 阶段规划
-- `platform` 参数限定搜索容易超时，非必要不用
-- 搜索后如需验证源质量，调 `get_sources` 拿 URL 列表
+- Precise question: `enable_planning=false` for quick return.
+- Complex/multifaceted question: `enable_planning=true` for automatic 6-stage planning.
+- The `platform` parameter can cause timeouts when over-constrained; avoid it unless necessary.
+- After search, call `get_sources` if source URL quality needs validation.
 
-## Search Agent 规范
+## Search Agent Rules
 
-**所有联网搜索 Agent 一律 `model: "sonnet"`**，禁用 opus。
-Why: 搜索是 IO 密集型任务（等网络、解析页面），不需要 opus 级推理；sonnet 足够且成本低，隔离 context 后主会话不受影响。
+**All web search agents use `model: "sonnet"`**. Do not use Opus.
+Why: search is IO-bound, waiting on network and parsing pages. It does not need Opus-level reasoning; Sonnet is enough and cheaper, and isolation protects the main context.
 
-深度调研时 spawn Sonnet subagent（skill: `web-search`），规范：
+For deep research, spawn a Sonnet subagent using skill `web-search`:
 
-- Agent 自主选择 WebSearch / WebFetch / Grok Search 最佳组合
-- 输出 ≤800 字摘要 + 源 URL 列表
-- 引号/数据必须来自 WebFetch 原文或 Grok 返回内容，禁 LLM 编造
-- Agent 内部 WebFetch ≤5 次（控制 subagent 自身 context）
-- 搞不定的问题列清单上报，由 Dr Sun 或主 AI 决定下一步
+- Agent chooses the best combination of WebSearch / WebFetch / Grok Search.
+- Output <=800-character summary + source URL list.
+- Quotes/data must come from WebFetch original text or Grok returned content. LLM fabrication is forbidden.
+- Internal WebFetch calls <=5 to control subagent context.
+- If blocked, report a list of unresolved items for Dr Sun or the main AI to decide.
 
-## 防膨胀机制
+## Anti-Bloat Mechanism
 
-- **快查路径**：Grok 直连结果轻量，可接受进 Opus context
-- **深度路径**：Search Agent 隔离，主 context 只接收精简摘要
-- **WebFetch prompt 必须精确**：模糊 prompt 导致全文灌入，精确 prompt 是手动版 dynamic filtering
-- **禁混 WebFetch/WebSearch 同批并行**：WebFetch 403 会级联拖垮同批调用
+- **Quick path**: Grok direct results are lightweight enough for Opus context.
+- **Deep path**: Search Agent isolates work; main context receives only compact summary.
+- **WebFetch prompt must be precise**: vague prompts pour full pages into context; precise prompts are manual dynamic filtering.
+- **Do not mix WebFetch and WebSearch in one parallel batch**: WebFetch 403 can degrade same-batch WebSearch calls.
 
-## 禁止项
+## Forbidden
 
-- 禁凭 AI 训练记忆回答专业问题（硬规则 #8）
-- 禁为付费墙文献使用 Playwright（token 成本过高）
-- PDF 链接大概率解析失败，优先 HTML 版本（如 `arxiv.org/html/`）
+- Do not answer professional questions from AI training memory alone (hard rule #8).
+- Do not use Playwright for paywalled literature; token cost is too high.
+- PDF links often fail to parse. Prefer HTML versions such as `arxiv.org/html/`.

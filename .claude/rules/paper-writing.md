@@ -1,31 +1,31 @@
 ---
 paths: ["3_paper/**", "**/*.tex", "**/*.bib"]
 ---
-# 论文写作规则
+# Paper Writing Rules
 
-## 语言与写作流
+## Language and Writing Flow
 
-- MUST:论文正文先中文写作,定稿后统一英文润色,README 等项目文档也用中文。
-- MUST:论文润色工作流——多 Agent 并行搜同领域真实句子 → 提炼句式特征 → 按句式改写并标注对标原句 → 自检是否丢失信息。
+- MUST: draft paper body text in Chinese first, then polish into English after finalization. Project README-style documentation is also written in Chinese unless explicitly changed.
+- MUST: paper polishing workflow: parallel agents collect real sentences from the same field -> extract sentence-pattern features -> rewrite according to those patterns while marking matched source sentences -> self-check that information was not lost.
 
-## 引用核查四步
+## Four-Step Citation Check
 
-1. `search_web` / Semantic Scholar 定位论文
-2. DOI 2 源交叉确认
-3. `curl -LH "Accept: application/x-bibtex" https://doi.org/<DOI>` 获取 BibTeX
-4. 确认 claim 在原文中存在
+1. Use `search_web` / Semantic Scholar to locate the paper.
+2. Cross-check the DOI with two sources.
+3. Run `curl -LH "Accept: application/x-bibtex" https://doi.org/<DOI>` to fetch BibTeX.
+4. Confirm the claim exists in the original text.
 
-失败标 `[CITATION NEEDED]`,严禁凭记忆生成 BibTeX。
+If verification fails, mark `[CITATION NEEDED]`. Never generate BibTeX from memory.
 
-## Claim→Contract 追溯
+## Claim-to-Contract Traceability
 
-- MUST:论文中的实验 claim 须对应 `.pipeline/contracts/` 中某个 Contract 的 success/failure signal。
-- MUST:无对应 Contract 的实验结果不可写入论文 claim，标 `[NO CONTRACT]`。
-- MUST:Contract 判定为 failure 的实验，论文中不可重新包装为 success。
+- MUST: every experimental claim in the paper maps to a Contract success/failure signal under `.pipeline/contracts/`.
+- MUST: experiment results without a corresponding Contract must not be written as paper claims; mark `[NO CONTRACT]`.
+- MUST: an experiment judged as failure by the Contract must not be repackaged as success in the paper.
 
-## 禁止事项
+## Forbidden
 
-- NEVER:使用括号补充说明(缩写定义除外,如"深度强化学习(DRL)"),改用"即""由…构成""如图…所示"。
-- NEVER:公式中使用代码风格变量名,须用标准数学记法,独立公式末尾不加标点。
-- NEVER:方法论写 enumerate 列表式段落,须散文叙事。
-- NEVER:捏造术语、过度包装简单概念、使用推销性语言,术语须溯源文献。
+- NEVER: use parentheses for explanatory inserts, except abbreviation definitions such as Deep Reinforcement Learning (DRL). Prefer prose alternatives like "that is", "consists of", or "as shown in Figure...".
+- NEVER: use code-style variable names in formulas. Use standard mathematical notation and omit punctuation at the end of display equations.
+- NEVER: write methodology as enumerate-style paragraph lists; use prose narrative.
+- NEVER: fabricate terminology, over-package simple concepts, or use sales language. Terminology must trace to literature.

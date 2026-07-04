@@ -1,8 +1,8 @@
 ---
 paths: ["CLAUDE.md", "AGENTS.md", ".claude/rules/**"]
 ---
-# 行为规则存放位置
+# Behavior Rule Storage Location
 
-反馈 / 偏好 / 行为规范 → 存到 `CLAUDE.md` 或 `.claude/rules/*.md`（版本控制、项目可见）。
-不存 `~/.claude/projects/` 私有路径（对 Dr Sun 不可见、不在版本控制内）。
-文字多时用 `.claude/rules/<topic>.md` + 在 CLAUDE.md 或本文件内一行索引。
+Feedback, preferences, and behavior norms should be stored in `CLAUDE.md` or `.claude/rules/*.md`, which are version-controlled and visible to the project.
+Do not store them under private `~/.claude/projects/` paths, which Dr Sun cannot see and which are not version-controlled.
+For longer text, use `.claude/rules/<topic>.md` plus a one-line index in `CLAUDE.md` or this file.

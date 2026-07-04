@@ -1,4 +1,4 @@
-# Compact 约束
+# Compact Constraint
 
-IMPORTANT: context 使用过半时优先 `/archive` 归档当前进度。
-compact 前完成归档，bigmemory 中已写入的内容不受 compact 影响。
+IMPORTANT: when more than half of context is used, prefer `/archive` to archive current progress.
+Complete archiving before compacting; content already written to bigmemory is not affected by compact.

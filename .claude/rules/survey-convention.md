@@ -4,47 +4,50 @@ paths:
   - .pipeline/literature/**
 ---
 
-# 调研材料管理规范
+# Survey Material Management Rules
 
-## 1_survey/ 目录结构
+## 1_survey/ Directory Structure
 
-```
+```text
 1_survey/
-├── README.md                                # 总索引（必须维护）
-├── papers/                                  # 论文 PDF（跨轮次共享）
-│   └── AuthorYear_ShortTitle.pdf
-└── YYYY-MM-DD_<目的短语>/                    # 每轮调研一个目录
-    ├── gemini-deep-research.md
-    ├── chatgpt-deep-research.md
-    ├── grok-deep-research.md
-    └── ...                                  # 该轮次的其他笔记
+|-- README.md                                # Master index; must be maintained.
+|-- papers/                                  # Paper PDFs shared across rounds.
+|   `-- AuthorYear_ShortTitle.pdf
+`-- YYYY-MM-DD_<purpose-phrase>/             # One directory per survey round.
+    |-- gemini-deep-research.md
+    |-- chatgpt-deep-research.md
+    |-- grok-deep-research.md
+    `-- ...                                  # Other notes for this round.
 ```
 
-## 命名规范
+## Naming Rules
 
-### 调研轮次目录
-`YYYY-MM-DD_<目的短语>/`，目的用小写英文短横线连接：
+### Survey Round Directory
+
+`YYYY-MM-DD_<purpose-phrase>/`, with the purpose phrase in lowercase English kebab-case:
 - `2026-04-16_quadruped-drl-landscape/`
 - `2026-05-01_reward-shaping-deep-dive/`
 
-### 轮次内报告文件
-`<来源>-deep-research.md`，来源即模型/平台名：
+### Report Files Within a Round
+
+`<source>-deep-research.md`, where source is the model/platform name:
 - `gemini-deep-research.md`
 - `chatgpt-deep-research.md`
 - `grok-deep-research.md`
-- 手动笔记用 `notes.md` 或 `<主题>-notes.md`
+- Manual notes use `notes.md` or `<topic>-notes.md`.
 
-### 论文 PDF
-`AuthorYear_ShortTitle.pdf`，存 `papers/`（跨轮次共享），与 `3_paper/references.bib` 的 CitationKey 一致。
+### Paper PDFs
 
-## README.md 索引表维护
+`AuthorYear_ShortTitle.pdf`, stored under `papers/` and matching the CitationKey in `3_paper/references.bib`.
 
-每次新建调研轮次后必须更新 `1_survey/README.md`，包含：
+## README.md Index Maintenance
 
-| 字段 | 说明 |
-|------|------|
-| 目录 | 轮次目录名（反引号包裹） |
-| 日期 | YYYY-MM-DD |
-| 目的 | 一句话说明为什么做这轮调研 |
-| 来源 | 用了哪些模型/平台 |
-| 状态 | ✅ 完成 / 🔄 进行中 / ❌ 待开始 |
+Every time a survey round directory is created, update `1_survey/README.md` with:
+
+| Field | Meaning |
+|---|---|
+| Directory | round directory name, wrapped in backticks |
+| Date | YYYY-MM-DD |
+| Purpose | one sentence explaining why this survey round exists |
+| Sources | which models/platforms were used |
+| Status | done / in progress / todo |
