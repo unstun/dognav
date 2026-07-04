@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "url": "https://arxiv.org/abs/2103.04351",
+  "provider": "tavily",
+  "content": "![](/static/base/1.0.1/images/icons/smileybones-small.svg)\n![archive](/static/base/1.0.1/images/arxiv-logo-primary-light.svg)\n\n# Computer Science > Robotics\n\n# Title:Learning a State Representation and Navigation in Cluttered and Dynamic Environments\n\n|  |  |\n| --- | --- |\n| Comments: | 8 pages, 8 figures, 2 tables |\n| Subjects: | Robotics (cs.RO); Artificial Intelligence (cs.AI); Computer Vision and Pattern Recognition (cs.CV); Machine Learning (cs.LG) |\n| Cite as: | [arXiv:2103.04351](https://arxiv.org/abs/2103.04351) [cs.RO] |\n|  | (or  [arXiv:2103.04351v1](https://arxiv.org/abs/2103.04351v1) [cs.RO] for this version) |\n|  | <https://doi.org/10.48550/arXiv.2103.04351> Focus to learn more  arXiv-issued DOI via DataCite |\n| Journal reference: | IEEE Robotics and Automation Letters 2021 |\n\n## Submission history\n\n## Access Paper:\n\n### Current browse context:\n\n### References & Citations\n\n### [DBLP](https://dblp.uni-trier.de) - CS Bibliography\n\n## BibTeX formatted citation\n\n### Bookmark\n\n![BibSonomy](/static/browse/0.3.4/images/icons/social/bibsonomy.png)\n![Reddit](/static/browse/0.3.4/images/icons/social/reddit.png)\n\n# Bibliographic and Citation Tools\n\n# Code, Data and Media Associated with this Article\n\n# Demos\n\n# Recommenders and Search Tools\n\n# arXivLabs: experimental projects with community collaborators\n\narXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website.\n\nBoth individuals and organizations that work with arXivLabs have embraced and accepted our values of openness, community, excellence, and user data privacy. arXiv is committed to these values and only works with partners that adhere to them.\n\nHave an idea for a project that will add value for arXiv's community? [**Learn more about arXivLabs**](https://info.arxiv.org/labs/index.html).\n\n![Simons Foundation](/static/base/1.0.1/images/funders/simons-foundation.png)\n![Schmidt Sciences](/static/base/1.0.1/images/funders/schmidt-sciences.png)",
+  "provider_attempts": [
+    {
+      "capability": "web_fetch",
+      "provider": "tavily",
+      "status": "ok",
+      "error_type": "",
+      "error": "",
+      "elapsed_ms": 1144.09,
+      "result_count": 1
+    }
+  ],
+  "fallback_used": false,
+  "elapsed_ms": 1144.18
+}
