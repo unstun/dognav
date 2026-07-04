@@ -1,36 +1,36 @@
-# .pipeline/ — 项目知识库
+# .pipeline/ - Project Knowledge Base
 
-`.pipeline/` 存放长期有效的结构化项目知识，不按天归档，不自动过期。它与 `bigmemory/` 互补：`bigmemory/` 管当前会话状态，`.pipeline/` 管可复查事实、合同、台账和评审。
+`.pipeline/` stores long-lived structured project knowledge. It is not archived by day and does not expire automatically. It complements `bigmemory/`: `bigmemory/` tracks current session state, while `.pipeline/` tracks auditable facts, contracts, ledgers, and reviews.
 
-## 数据库清单
+## Database Inventory
 
-| 目录 | 用途 | 格式 |
+| Directory | Purpose | Format |
 |---|---|---|
-| `terminology/` | 术语规范表 | 单文件 Markdown 表格 |
-| `literature/` | 文献库索引 | Markdown |
-| `survey/` | 调研主题、结论和出处 | 每个主题一个 `.md` |
-| `experiments/` | 实验台账 | 每轮实验一个 `.md` |
-| `contracts/` | Research Contract 预注册 | 每个实验主题一个 `.md` |
-| `codex_tasks/` | Codex 手动任务包归档 | 每个任务包一个 `.md` |
-| `goals/` | 自主执行 goal 定义 | 每个 goal 一个 `.md` |
-| `plans/` | 实施计划 | 每个计划一个 `.md` |
-| `audits/` | 代码/产出验收审计 | 每次审计一个 `.md` |
-| `reviews/` | 同行评审记录 | 每次评审一个 `.md` |
-| `heartbeats/` | 远端任务心跳日志 | 日志文件 |
-| `incidents/` | 事故记录 | 每个事故一个 `.md` |
+| `terminology/` | terminology table | single Markdown table |
+| `literature/` | literature index | Markdown |
+| `survey/` | survey topics, conclusions, and sources | one `.md` per topic |
+| `experiments/` | experiment ledger | one `.md` per run |
+| `contracts/` | Research Contract pre-registration | one `.md` per experiment topic |
+| `codex_tasks/` | manual Codex task package archive | one `.md` per task package |
+| `goals/` | autonomous goal definitions | one `.md` per goal |
+| `plans/` | implementation plans | one `.md` per plan |
+| `audits/` | code/output acceptance audits | one `.md` per audit |
+| `reviews/` | peer review records | one `.md` per review |
+| `heartbeats/` | remote task heartbeat logs | log files |
+| `incidents/` | incident records | one `.md` per incident |
 
-## 当前入口
+## Current Entries
 
-| 主题 | 入口 |
+| Topic | Entry |
 |---|---|
-| 术语规范 | `terminology/terminology.md` |
-| Research Contract 规则 | `contracts/README.md` |
-| nav 文献索引 | `literature/README.md` |
-| nav 调研记录 | `survey/README.md` |
-| nav 实验台账 | `experiments/README.md` |
+| terminology | `terminology/terminology.md` |
+| Research Contract rules | `contracts/README.md` |
+| nav literature index | `literature/README.md` |
+| nav survey records | `survey/README.md` |
+| nav experiment ledger | `experiments/README.md` |
 
-## 维护原则
+## Maintenance Principles
 
-- `draft` 文档可以修改；`approved` 或 `frozen` Contract 不得原地改。
-- 任何 claim 必须能回到 Contract、代码、日志、原文或本地文件。
-- walking 仓库内容只能作为 source reference，不能作为 nav 当前结论。
+- `draft` documents may be edited; `approved` or `frozen` Contracts must not be edited in place.
+- Every claim must trace back to a Contract, code, logs, original text, or local files.
+- Content from the walking repository may only be used as source reference, not as current nav conclusions.

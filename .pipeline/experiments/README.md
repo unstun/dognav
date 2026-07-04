@@ -1,13 +1,13 @@
 # Experiment Ledger
 
-本目录记录 nav 实验台账。当前尚无 approved Contract，因此不得记录正式训练结果。
+This directory records the nav experiment ledger. There is no approved Contract yet, so formal training results must not be recorded here.
 
-每条实验记录至少包含：
+Each experiment record must include at least:
 
-- Contract 路径和状态。
-- 代码 commit。
-- 训练命令。
-- 配置文件。
-- 运行环境。
-- success/failure signals 的实际读数。
-- 结论边界。
+- Contract path and status.
+- Code commit.
+- Training command.
+- Config file.
+- Runtime environment.
+- Actual readings for success/failure signals.
+- Conclusion boundaries.

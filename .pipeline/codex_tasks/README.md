@@ -1,17 +1,17 @@
 # Codex Tasks
 
-Codex 手动任务包归档目录。
+Archive directory for manual Codex task packages.
 
-每个任务包建议命名为：
+Recommended task package naming:
 
 ```text
 YYYY-MM-DD_<topic>.md
 ```
 
-任务包必须写清：
+Each task package must state:
 
-- Source of Truth：本地 repo 是唯一代码真源。
-- Sync Gate：远端或外部 CLI 的修改必须同步回本地。
-- 文件范围。
-- 验证命令。
-- 回传格式。
+- Source of Truth: the local repo is the only code source of truth.
+- Sync Gate: remote or external-CLI changes must be synchronized back locally.
+- File scope.
+- Verification commands.
+- Return format.
