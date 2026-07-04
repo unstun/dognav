@@ -5,13 +5,13 @@ description: Claude Code compatibility shim for the machine-dog-nav harness setu
 
 # Project Setup
 
-本仓库的 Codex skill 真源在 `.agents/skills/project-setup/SKILL.md`。
+The source of truth for this repository's Codex skill is `.agents/skills/project-setup/SKILL.md`.
 
-Claude Code 如需初始化或检查 harness，先读取：
+If Claude Code needs to initialize or check the harness, read these first:
 
 1. `AGENTS.md`
 2. `.agents/skills/project-setup/SKILL.md`
 3. `.pipeline/README.md`
 4. `bigmemory/格式规范.md`
 
-不要把旧 `machine-dog` walking 合同、台账或实验产物复制进本仓库。
+Do not copy old `machine-dog` walking contracts, ledgers, or experiment artifacts into this repository.

@@ -46,7 +46,7 @@ Before starting, convert the task into checkable goals. Bug fixes need a reprodu
 
 1. MUST: Start every reply with `Dr Sun,`.
 2. MUST: Reply in Chinese by default. Questions addressed to Dr Sun must be in Chinese.
-3. STYLE: When an English technical term first appears, provide a Chinese explanation when useful, for example `trajectory adherence（轨迹遵循）`.
+3. STYLE: When an English technical term first appears, provide a Chinese explanation when useful for Dr Sun.
 4. MUST: Optimize code and comments for human review.
 5. MUST: Plan before editing files; for large tasks, write the plan before starting.
 

@@ -1,5 +1,5 @@
 # .claude/skills
 
-本仓库主要使用 `.agents/skills/` 作为 Codex skill 入口。
+This repository primarily uses `.agents/skills/` as the Codex skills entry.
 
-如果后续需要 Claude Code 专用 skill，可放在本目录；迁移前必须检查是否含旧 `machine-dog` walking 路径或旧实验结论。
+If Claude Code-specific skills are needed later, place them in this directory. Before migrating any skill, check whether it contains old `machine-dog` walking paths or old experiment conclusions.

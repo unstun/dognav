@@ -24,13 +24,13 @@ baseline: none
 
 - Signal 1:
 
-## Failure Signals（独立定义，不是 success 的反面）
+## Failure Signals (defined independently; not the opposite of success)
 
 - Signal 1:
 
 ## Ablation Plan
 
-| 实验 | 预期结果 | 判定标准 |
+| Experiment | Expected Result | Judgment Standard |
 |---|---|---|
 |  |  |  |
 

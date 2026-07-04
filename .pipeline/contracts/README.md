@@ -1,12 +1,12 @@
 # Research Contracts
 
-实验前的预注册承诺。一旦提交并被 Dr Sun 批准，禁止原地修改。需修改则新建 v2，并在文件头写明变更原因。
+Pre-registration commitments before experiments. Once submitted and approved by Dr Sun, a Contract must not be edited in place. If changes are needed, create v2 and state the reason in the file header.
 
-## 当前状态
+## Current Status
 
-本仓库尚无 approved nav Contract。正式训练、远端长跑和论文 claim 都必须等待第一个 nav Contract 达到 `approved` 或 `frozen`。
+This repository has no approved nav Contract yet. Formal training, long remote runs, and paper claims must wait until the first nav Contract reaches `approved` or `frozen`.
 
-## 模板
+## Template
 
 ~~~yaml
 ---
@@ -19,46 +19,46 @@ baseline: <baseline name or none>
 ---
 ~~~
 
-### status 三态
+### Status Values
 
-- `draft`：草拟中，可继续修改。
-- `approved`：Dr Sun 审阅通过，可作为实验依据。
-- `frozen`：已进入执行或已被论文/评审引用，只能新建 v2。
+- `draft`: in drafting; may still be edited.
+- `approved`: reviewed and approved by Dr Sun; may be used as experiment basis.
+- `frozen`: already in execution or cited by a paper/review; changes require a new v2.
 
 ~~~markdown
-# [实验主题] Research Contract
+# [Experiment Topic] Research Contract
 
 ## Research Question
-[这个 nav 实验要回答什么问题]
+[What question this nav experiment answers]
 
 ## Hypothesis
-[明确的假设陈述]
+[Explicit hypothesis statement]
 
 ## Method
-[方法描述，说明 walking base policy 是否冻结、微调或不用]
+[Method description, including whether the walking base policy is frozen, fine-tuned, or unused]
 
 ## Inputs and Outputs
 - Inputs:
 - Outputs:
 
 ## Success Signals
-- Signal 1: [具体指标 + 阈值]
+- Signal 1: [specific metric + threshold]
 - Signal 2:
 
-## Failure Signals（独立定义，不是 success 的反面）
-- Signal 1: [具体失败条件]
+## Failure Signals (defined independently; not the opposite of success)
+- Signal 1: [specific failure condition]
 - Signal 2:
 
 ## Ablation Plan
-| 实验 | 预期结果 | 判定标准 |
+| Experiment | Expected Result | Judgment Standard |
 |---|---|---|
 | ... | ... | ... |
 
 ## Hyperparameters
-[锁定的超参列表]
+[Locked hyperparameter list]
 
 ## Data / Terrain Split
-[训练/验证/测试场景划分]
+[Train/validation/test scene split]
 
 ## Evidence To Archive
 - code commit:

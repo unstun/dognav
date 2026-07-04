@@ -287,8 +287,8 @@ def _get_task_status(trellis_dir: Path, hook_input: dict) -> str:
         "instruction does NOT apply to you — you are already the dispatched sub-agent. "
         "Implement / check directly without spawning another sub-agent of the same kind.\n"
         "User override (per-turn escape hatch): if the user's CURRENT message explicitly tells the "
-        "main session to handle it directly (\"你直接改\" / \"别派 sub-agent\" / \"main session 写就行\" / "
-        "\"do it inline\" / \"不用 sub-agent\"), honor it for this turn and edit code directly. "
+        "main session to handle it directly (\"edit directly\" / \"do not dispatch a sub-agent\" / "
+        "\"main session should do it\" / \"do it inline\"), honor it for this turn and edit code directly. "
         "Per-turn only; do NOT invent an override the user did not say."
     )
 
