@@ -1,4 +1,0 @@
-interface:
-  display_name: "AutoDL 网页控制"
-  short_description: "AutoDL 普通容器实例网页开机和关机状态检查安全流程"
-  default_prompt: "使用 $autodl-web-control 通过 AutoDL 网页控制台安全查看、开机或关机普通容器实例。"
