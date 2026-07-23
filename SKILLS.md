@@ -1,4 +1,16 @@
-# Matt Pocock's Skills — installed here
+# Project And Vendor Skills
+
+This repository has two skill sources:
+
+1. Project-owned research skills are tracked as real directories in
+   `.agents/skills/` and linked into `.claude/skills/`.
+2. Matt Pocock's promoted skills are linked from the ignored live clone
+   `.skills-upstream/`.
+
+Project-owned skills take precedence if a vendor skill later uses the same
+name. `sync-skills.sh` will not replace a tracked project skill.
+
+## Matt Pocock's skills
 
 The 20 curated ("promoted") skills from
 [mattpocock/skills](https://github.com/mattpocock/skills) are wired into this
@@ -9,9 +21,9 @@ project for **both** coding agents:
 | Claude Code | `.claude/skills/` | project-level skills                           |
 | Codex       | `.agents/skills/` | Agent-Skills standard (scanned from repo root) |
 
-Both folders contain relative **symlinks** into a live clone of the upstream
-repo at `.skills-upstream/` (git-ignored). Same `SKILL.md` format works for both
-harnesses, so one set of files serves both.
+Vendor entries in both folders are relative **symlinks** into the live clone at
+`.skills-upstream/` (git-ignored). Project-owned entries remain in the
+repository.
 
 ## Updating (author-driven — you don't maintain anything)
 

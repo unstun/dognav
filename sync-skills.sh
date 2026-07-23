@@ -47,6 +47,13 @@ while IFS= read -r rel; do
     echo "skip (no SKILL.md): $rel" >&2
     continue
   fi
+  # Project-owned skills are tracked as real directories under
+  # .agents/skills. Never replace them with a vendor symlink if upstream later
+  # promotes a skill with the same name.
+  project_skill="$ROOT/.agents/skills/$name"
+  if [ -d "$project_skill" ] && [ ! -L "$project_skill" ]; then
+    continue
+  fi
   for DEST in "${DESTS[@]}"; do
     target="$DEST/$name"
     # Honor per-harness exclusions (currently: code-review out of Claude Code).
@@ -54,7 +61,7 @@ while IFS= read -r rel; do
       [ -L "$target" ] && rm -f "$target"
       continue
     fi
-    # Replace a real dir/file left by an older copy-based install.
+    # Replace a real dir/file left by an older vendor copy-based install.
     if [ -e "$target" ] && [ ! -L "$target" ]; then
       rm -rf "$target"
     fi

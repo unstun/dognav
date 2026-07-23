@@ -1,15 +1,133 @@
-# machine-dog-nav
+# Lite3 Autonomous Navigation Research Project
 
-## Agent skills
+> Scope: `/Users/sun/tongbu/study/phdproject/machine-dog-nav/**`.
+> Source of truth: this file (`AGENTS.md`). `CLAUDE.md` imports it through
+> `@AGENTS.md`.
 
-### Issue tracker
+## Project Purpose
 
-Issues and PRDs live as GitHub issues, managed via the `gh` CLI. External PRs are **not** a triage surface. See `docs/agents/issue-tracker.md`.
+This repository develops autonomous navigation above the Lite3 locomotion
+controller maintained in the sibling `machine-dog` repository. The immediate
+direction is to study and reuse open-source systems, beginning with the
+geometric-waypoint-to-locomotion loop. That starting point is not a permanent
+scope ceiling: perception, mapping, obstacle avoidance, terrain-aware planning,
+VLA, simulation, and real-robot integration may be added when evidence supports
+them.
 
-### Triage labels
+The two repositories have different responsibilities:
 
-Default vocabulary: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+- `machine-dog`: locomotion training, evaluation, and deployment.
+- `machine-dog-nav`: navigation research, upstream acquisition, integration,
+  evaluation, and navigation-to-locomotion interface work.
 
-### Domain docs
+## Identity And Protocol
 
-Multi-context: `CONTEXT-MAP.md` at the root points to per-context `CONTEXT.md` files. See `docs/agents/domain.md`.
+This is a long-horizon PhD research project. Each session handles one task:
+read state -> plan -> do one bounded task -> verify -> write state -> commit.
+
+1. Every reply to Dr Sun starts with `Dr Sun,`.
+2. Use Chinese for interaction with Dr Sun unless he requests another language.
+   Use clear professional English for code, configuration, and repository-facing
+   technical documentation unless the requested artifact is Chinese.
+3. At the start of a session, identify the current stage:
+   **planning -> experiment + analysis -> writing**. Do not silently mix stages.
+4. Human review comes before speed. If requirements have several materially
+   different interpretations, explain the difference and ask before choosing.
+
+## Research Discipline
+
+1. AI output is untrusted until verified. Search results and prior AI summaries
+   are leads, not evidence.
+2. Read local sources first. For professional claims, verify primary papers,
+   official documentation, or the upstream repository itself and cite a short
+   file reference or URL.
+3. Separate these labels:
+   - `surveyed`: papers or repositories were inspected.
+   - `reproduced`: an upstream run was executed with recorded evidence.
+   - `integrated`: upstream behavior works inside this repository.
+   - `validated`: the declared acceptance test passed.
+   Never promote one label into another.
+4. Prefer an existing open-source implementation over writing a new framework
+   from scratch, but record its URL, license, pinned commit, dependencies,
+   original run instructions, and local modifications.
+5. Keep third-party source inside this project under a dated, purpose-named
+   directory. Do not use `/tmp` as durable storage.
+6. `.pipeline/terminology/terminology.md` is the terminology source of truth.
+   Check it before introducing project terms in research or design documents.
+
+## Source Of Truth And Sync Gate
+
+The local `machine-dog-nav` repository is the only source of truth for
+navigation code and project state.
+
+- Upstream repositories are read-only references until deliberately imported.
+- Remote machines and simulator workspaces are execution copies only.
+- Temporary remote diagnostic edits are allowed, but final changes must return
+  to the same local paths and be visible in local `git diff`.
+- A remote-only success is not reproducible evidence.
+- Navigation-to-locomotion integration must pin the sibling `machine-dog`
+  interface version or commit instead of copying an unidentified policy.
+
+## Engineering Rules
+
+1. Think before editing. Convert requests into checkable goals and state a short
+   plan for non-trivial work.
+2. Keep scope small. Do not refactor or reformat unrelated files.
+3. Preserve user changes in a dirty worktree. Stage only paths owned by the
+   current task.
+4. Automatic pre-edit or session commits are forbidden. Commit only after a
+   meaningful change is verified and the staged diff is reviewed.
+5. Do not claim `fixed`, `working`, `reproduced`, or `complete` without a direct
+   test, build, simulator run, or equivalent runtime check.
+6. Formal training, long remote runs, destructive data operations, and
+   real-robot actuation require explicit authorization from Dr Sun.
+7. For external execution packages, state:
+   - local source of truth;
+   - exact sync gate;
+   - expected artifacts;
+   - claim boundary if the run is incomplete.
+8. Store research PDFs, source snapshots, run logs, configurations, models, and
+   evaluation artifacts inside the project using date/topic/purpose paths.
+
+## Project State Layout
+
+- `.trellis/`: tasks, workflow, specifications, and session journals.
+- `.pipeline/`: reviewed research indexes, terminology, surveys, experiment
+  records, templates, and external task packages.
+- `bigmemory/热区/`: current status, recent changes, and open decisions.
+- `bigmemory/冷区/`: durable change, pitfall, research, rationale, and milestone
+  records.
+- `docs/research/`: human-readable research documents.
+
+Existing repository conventions remain active:
+
+- Issues and PRDs live as GitHub issues, managed with `gh`. See
+  `docs/agents/issue-tracker.md`.
+- Default triage labels are `needs-triage`, `needs-info`, `ready-for-agent`,
+  `ready-for-human`, and `wontfix`. See `docs/agents/triage-labels.md`.
+- Multi-context domain documentation follows `docs/agents/domain.md`.
+
+## Current Boundary
+
+As of 2026-07-23, the repository has research material but no verified
+navigation implementation, simulator task, checkpoint, or runtime result.
+The first implementation task must follow a separate upstream code survey and
+reproducibility review.
+
+<!-- TRELLIS:START -->
+# Trellis Instructions
+
+This project is managed by Trellis. Working knowledge lives under `.trellis/`:
+
+- `.trellis/workflow.md` — development phases and task lifecycle.
+- `.trellis/spec/` — package- and layer-scoped guidelines.
+- `.trellis/workspace/` — per-developer journals.
+- `.trellis/tasks/` — active and archived tasks.
+
+If a Trellis command is available, prefer it over manually duplicating task
+state. Additional project helpers live in `.agents/skills/` and agent
+definitions in `.codex/agents/`.
+
+Managed by Trellis. Edits outside this block are preserved; this block may be
+updated by a future `trellis update`.
+<!-- TRELLIS:END -->
