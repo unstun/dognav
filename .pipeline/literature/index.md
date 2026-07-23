@@ -7,6 +7,7 @@
 |---|---|---|---|---|
 | NavigationSurvey20260706 | VLA Navigation & Legged Path Planning | local survey | surveyed, not independently reproduced | `docs/research/2026-07-06-vla-and-legged-navigation-survey.md` |
 | NavigationOpenSourceSurvey20260723 | Lite3 Navigation Open-Source Survey | local repository survey | surveyed, upstream programs not executed | `docs/research/2026-07-23-lite3-navigation-open-source-survey.md` |
+| QuadrupedNavigationUpstreamSurvey20260723 | Current Quadruped Navigation Upstream Survey | corrective repository survey | surveyed, upstream programs not executed | `.pipeline/survey/2026-07-23_quadruped_navigation_upstream_survey.md` |
 
 Repository URL, license, pinned commit, dependencies, original run command, and
 local reproduction evidence must be recorded before selecting an upstream base.
