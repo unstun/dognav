@@ -1,0 +1,212 @@
+{
+  "status": "accepted_model_baseline",
+  "date": "2026-07-27",
+  "user_authorization": {
+    "request": "align the two front J17A small-hole axes with the two front shallow chassis-hole axes by modifying the model",
+    "scope_interpretation": "preserve the source J17A; create a derived J17A that relocates only its front stepped-hole pair; add no new base",
+    "fusion_document_must_remain_unsaved": true
+  },
+  "source_identity": {
+    "robot_source": {
+      "path": "references/upstream/2026-07-27_lite3-exploration-assembly-cad/source/original/lite3-exploration-assembly.step",
+      "sha256": "d0ad78189f8f9154a780796d2deffcc848c094700776d7c9d6f6da092106c6eb",
+      "visible_child": "Lite3体验版总装.STEP",
+      "source_body": "Body13"
+    },
+    "j17a_source": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J17A-lidar base.STEP",
+      "sha256": "52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490",
+      "declared_variant": "Lite3 Venture only",
+      "source_geometry_modified": false,
+      "source_volume_cm3": 31.805746881166314
+    }
+  },
+  "rejection_propagation": {
+    "superseded_revision": "LITE3_VENTURE_RECEIVER_PROXY_REV_A",
+    "superseded_status": "rejected_by_human_review",
+    "superseded_fusion_visibility": "hidden",
+    "reason": "Rev A aligned invented chassis receivers instead of the two front small-hole screw axes."
+  },
+  "human_review": {
+    "date": "2026-07-27",
+    "decision": "accepted_for_execution",
+    "instruction": "继续，执行",
+    "scope": "freeze and export the Rev B front-pair-aligned model baseline; no physical fabrication or real-robot approval"
+  },
+  "target_interface": {
+    "role": "front shallow chassis screw-hole pair identified by human review",
+    "count": 2,
+    "central_opening_diameter_mm": 2.5,
+    "shallow_recess_diameter_mm": 8.0,
+    "centre_pitch_mm": 64.99999965936993,
+    "world_centres_mm_xz": [
+      [
+        -336.9700799841137,
+        2606.848709041382
+      ],
+      [
+        -271.9700803247437,
+        2606.849092121596
+      ]
+    ]
+  },
+  "source_j17a_front_pair": {
+    "count": 2,
+    "through_diameter_mm": 4.5,
+    "counterbore_diameter_mm": 8.0,
+    "centre_pitch_mm": 67.88225099390817,
+    "rear_pair_modified": false
+  },
+  "fusion_modification": {
+    "component": "J17A_FRONT_PAIR_65MM_ADAPTED_REV_B_NOT_OFFICIAL_CAD",
+    "body": "J17A_body_front_2_holes_relocated_to_Experience_65mm_pair",
+    "evidence_class": "user_authorized_model_correction_not_official_cad",
+    "source_j17a": {
+      "preserved": true,
+      "hidden_in_current_preview": true
+    },
+    "operation": {
+      "filled_original_front_stepped_holes": 2,
+      "cut_relocated_front_through_holes": 2,
+      "cut_relocated_front_counterbores": 2,
+      "through_diameter_mm": 4.5,
+      "counterbore_diameter_mm": 8.0,
+      "rear_pair_unchanged": true
+    },
+    "derived_body": {
+      "brep_body_count": 1,
+      "mesh_body_count": 0,
+      "solid": true,
+      "lump_count": 1,
+      "shell_count": 1,
+      "face_count": 141,
+      "volume_cm3": 32.140771157226666
+    }
+  },
+  "pose_capture": {
+    "snapshot": "Front_2x_Shallow_Holes_65mm_Aligned_Contact_Pose",
+    "snapshot_count": 2,
+    "pending_snapshot": false,
+    "whole_stack_translation_mm_xyz": [
+      -0.15187861032877947,
+      -3.12837,
+      40.92351231511543
+    ],
+    "rotation_determinants": {
+      "j17a": 1.0,
+      "j20a": 1.0,
+      "s410": 1.0,
+      "mid360": 1.0
+    }
+  },
+  "validation": {
+    "adapted_front_axis_count": 2,
+    "target_axis_count": 2,
+    "axis_direction_dot": 1.0000000000000002,
+    "maximum_axis_line_residual_mm": 3.083798808770177e-13,
+    "robot_candidate_bodies_checked": 4,
+    "positive_robot_adapted_j17a_intersections": 0,
+    "adapted_j17a_robot_shell_minimum_distance_mm": 3.04836486115e-313,
+    "adapted_j17a_j20a_intersection_mm3": 0.0,
+    "adapted_j17a_s410_intersection_mm3": 0.0,
+    "adapted_j17a_mid360_intersection_mm3": 0.0,
+    "j20a_s410_intersection_mm3": 0.0,
+    "j20a_mid360_intersection_mm3": 0.0,
+    "s410_mid360_intersection_mm3": 0.0,
+    "source_j17a_hidden": true,
+    "superseded_rev_a_hidden": true,
+    "source_robot_shell_visible": true,
+    "fusion_document": {
+      "name": "Untitled",
+      "modified": true,
+      "saved": false
+    }
+  },
+  "exports": {
+    "lite3-j17a-front-pair-65mm-rev-b.f3d": {
+      "role": "complete editable Fusion archive",
+      "bytes": 126210700,
+      "sha256": "889b3b6cd8487b600a37d1ce4b29868ee356cc55debf380bdca3554fbc2be46e",
+      "export_manager_success": true,
+      "archive_test": "zip container; all 15 directly testable members passed; 195 Fusion-specific members reported unsupported compression or encoding by unzip"
+    },
+    "j17a-front-pair-65mm-adapted-rev-b.step": {
+      "role": "lightweight adapted J17A component only",
+      "bytes": 267046,
+      "sha256": "debede467637c5bca850ace215e3c5946517b1b985e79af798926cabca51c7bb",
+      "schema": "AP214",
+      "export_manager_success": true,
+      "clean_import_validation": {
+        "tool": "FreeCAD",
+        "valid": true,
+        "closed": true,
+        "solids": 1,
+        "shells": 1,
+        "faces": 141,
+        "volume_mm3": 32140.875562581823,
+        "bounds_mm": [
+          115.59999999999997,
+          27.061438737603538,
+          153.73454386686035
+        ]
+      }
+    }
+  },
+  "screenshots": {
+    "front-pair-axis-alignment-top.png": {
+      "sha256": "67f63be07a58a6bfc7c402efa9ce4f707006bc44f37b5fddd221000a005e9137",
+      "pixels": [
+        1800,
+        1200
+      ]
+    },
+    "front-pair-axis-alignment-transparent-top.png": {
+      "sha256": "61be4f9a045e780446a937b29833060cd6425abd6410ac7c70c5ebb9f49194ea",
+      "pixels": [
+        1800,
+        1200
+      ]
+    },
+    "full-stack-isometric.png": {
+      "sha256": "7d7067f0fd5d19e0879f6ae34e3d15217c6fa28a87b3c2653b4a78e37726fea9",
+      "pixels": [
+        1800,
+        1200
+      ]
+    },
+    "full-stack-side.png": {
+      "sha256": "d1c079c55e5e76a1c37842c40937c7549c54867f86c2f7528d1c389a9d44cebc",
+      "pixels": [
+        1800,
+        1200
+      ]
+    },
+    "full-stack-top.png": {
+      "sha256": "f401d05ca9a819a3be83e51fc1178a9ff97a518fe22b30a41a5aea735b80943c",
+      "pixels": [
+        1800,
+        1200
+      ]
+    }
+  },
+  "excluded": [
+    "new robot-side base or adapter",
+    "modification of the source J17A",
+    "relocation of the rear J17A hole pair",
+    "D435",
+    "BZ20",
+    "AGX",
+    "industrial PC",
+    "fabrication release",
+    "real-robot drilling or installation procedure"
+  ],
+  "claim_boundary": [
+    "The two adapted front J17A axes coincide with the two front shallow chassis-hole axes in the current Fusion assembly.",
+    "The J17A diameter 8 mm counterbore is the screw-head seat, its diameter 4.5 mm bore is shaft clearance, and the chassis diameter 2.5 mm opening is the receiving/pilot feature; their unequal diameters are expected.",
+    "Exact thread designation, screw length, engagement, torque, material, anti-rotation, service access, and load path remain unresolved.",
+    "Only the front pair is aligned. The unchanged rear J17A pair is not claimed as installed.",
+    "Numerical contact and zero positive intersection are geometry evidence, not load-bearing or fit validation.",
+    "The derived J17A is not official factory CAD.",
+    "Dr Sun accepted execution of this model baseline; the active Fusion tab remains Untitled and unsaved, while the complete local F3D archive and adapted-J17A STEP are durable project artifacts."
+  ]
+}

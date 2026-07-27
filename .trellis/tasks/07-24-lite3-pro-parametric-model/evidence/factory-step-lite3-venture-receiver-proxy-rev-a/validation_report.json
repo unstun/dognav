@@ -1,0 +1,150 @@
+{
+  "status": "rejected_by_human_review",
+  "date": "2026-07-27",
+  "user_authorization": {
+    "request": "modify the model to repair the erroneous mounting offset",
+    "scope_interpretation": "rejected interpretation: preserve the official J17A sensor carrier and add a derived four-receiver chassis proxy",
+    "fusion_document_must_remain_unsaved": true
+  },
+  "source_identity": {
+    "robot_source": {
+      "path": "references/upstream/2026-07-27_lite3-exploration-assembly-cad/source/original/lite3-exploration-assembly.step",
+      "sha256": "d0ad78189f8f9154a780796d2deffcc848c094700776d7c9d6f6da092106c6eb",
+      "visible_child": "Lite3体验版总装.STEP",
+      "role": "user-provided Exploration parent with Experience robot child"
+    },
+    "j17a_source": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J17A-lidar base.STEP",
+      "sha256": "52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490",
+      "declared_variant": "Lite3 Venture only",
+      "source_geometry_modified": false
+    },
+    "assembly_evidence": {
+      "official_video_frame": "references/upstream/2026-07-26_lite3-official-fast-livo2-install-video/derived/sensor-install-closeup/frame-07.jpg",
+      "finding": "The presenter identifies the four large J17A counterbored holes as the four robot-side installation positions."
+    }
+  },
+  "diagnosis": {
+    "global_scale_problem": false,
+    "circled_experience_body_features": {
+      "count": 2,
+      "centre_pitch_mm": 65.00172,
+      "inner_diameter_mm": 2.5,
+      "outer_ring_diameter_mm": 4.55,
+      "role": "rejected interpretation; human review identified the front shallow pair as the intended screw interface"
+    },
+    "j17a_installation_group": {
+      "count": 4,
+      "through_diameter_mm": 4.5,
+      "counterbore_diameter_mm": 8.0,
+      "pattern_mm": [
+        67.88225,
+        67.88225
+      ]
+    },
+    "root_cause": "Rev A matched an invented four-receiver chassis pattern instead of relocating the two front J17A screw axes onto the two front shallow chassis-hole axes."
+  },
+  "fusion_modification": {
+    "component": "LITE3_VENTURE_RECEIVER_PROXY_REV_A",
+    "body": "Experience_top_shell_with_4x_M4_receiver_proxies_NOT_OFFICIAL_CAD",
+    "evidence_class": "interface_receiver_proxy_not_official_cad",
+    "source_top_shell": {
+      "preserved": true,
+      "hidden_in_current_preview": true
+    },
+    "derived_top_shell": {
+      "brep_body_count": 1,
+      "mesh_body_count": 0,
+      "solid": true,
+      "lump_count": 1,
+      "shell_count": 1,
+      "face_count": 1729,
+      "volume_cm3": 435.64983842642823
+    },
+    "receiver_proxy": {
+      "count": 4,
+      "outer_diameter_mm": 8.0,
+      "hidden_depth_mm": 6.0,
+      "pilot_diameter_mm": 3.3,
+      "pilot_role": "nominal M4 tapping-envelope proxy; no helical thread is asserted",
+      "world_centres_mm_xz": [
+        [
+          -338.2593270410547,
+          2498.0431372724644
+        ],
+        [
+          -270.3770760471463,
+          2498.043137272464
+        ],
+        [
+          -338.259327041054,
+          2565.9253882663734
+        ],
+        [
+          -270.3770760471458,
+          2565.925388266373
+        ]
+      ]
+    }
+  },
+  "pose_capture": {
+    "snapshot": "Forward_30mm_Down_2p4mm_Sensor_Pose",
+    "snapshot_count": 1,
+    "pending_snapshot": false,
+    "whole_stack_forward_mm": 30.0,
+    "whole_stack_down_mm": 2.4,
+    "rotation_determinants": {
+      "j17a": 1.0,
+      "j20a": 1.0,
+      "s410": 1.0,
+      "mid360": 1.0
+    }
+  },
+  "validation": {
+    "j17a_installation_axis_count": 4,
+    "receiver_axis_count": 4,
+    "maximum_axis_residual_mm": 7.105427357601002e-13,
+    "derived_shell_j17a_intersection_mm3": 0.0,
+    "derived_shell_j17a_minimum_distance_mm": 0.006602556325305616,
+    "receiver_boss_other_body_intersections": 0,
+    "j17a_source_volume_cm3": 31.805746881166314,
+    "j17a_source_volume_changed": false,
+    "fusion_document": {
+      "name": "Untitled",
+      "modified": true,
+      "saved": false
+    }
+  },
+  "human_review": {
+    "date": "2026-07-27",
+    "decision": "rejected",
+    "reason": "The front two small chassis holes are the intended screw interface. Aligning invented receivers to the wider unchanged J17A pattern leaves the actual screw axes unusable.",
+    "replacement": "factory-step-j17a-front-pair-65mm-adapted-rev-b",
+    "fusion_visibility": "hidden"
+  },
+  "screenshots": {
+    "j17a-receiver-axis-diagnostic-top.png": "cbc513a162b8a0572628b75b7434cf8bde4d142e567a80db34b1b33c0a8921ac",
+    "receiver-proxy-full-stack-top.png": "55f35d934887e50f424f87628fa9fd73c97ebafbe35951e253b71ccba64d0a71",
+    "receiver-proxy-full-stack-isometric.png": "923fe8caa4ab8f792942a669852cac42ddcf90ddf859bd8338febcd93870551c",
+    "receiver-proxy-full-stack-side.png": "79d8ac58c4edc858a1c9b97e1da413865b033624d53a2231d65d40e1306f40c1"
+  },
+  "excluded": [
+    "J17A scaling",
+    "J17A hole relocation",
+    "separate visible adapter plate",
+    "D435",
+    "BZ20",
+    "AGX",
+    "industrial PC",
+    "fabrication release",
+    "real-robot drilling or installation procedure"
+  ],
+  "claim_boundary": [
+    "The four invented receiver axes were exact only within the rejected Rev A construction.",
+    "The receiver boss diameter, depth, pilot diameter, thread, material, strength, and internal load path are not manufacturer-published Venture geometry.",
+    "The derived shell is an interface proxy, not official factory CAD and not fit-validated hardware.",
+    "Human review supersedes the Rev A interpretation and identifies the front shallow pair as the intended screw-axis target.",
+    "Rev A is retained only as negative evidence and is hidden in the current Fusion assembly.",
+    "The current Fusion document remains unsaved."
+  ]
+}
