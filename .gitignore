@@ -121,9 +121,8 @@ __pycache__/
 **/frames/
 **/*-frames/
 
-# Mesh exports are large; small task deliverables are re-included below.
+# Mesh exports are large.
 *.stl
-!.trellis/tasks/**/cad/*.stl
 
 # Whole-scene STEP exports are regenerable from the Fusion document.
 *-scene-*.step
@@ -156,7 +155,3 @@ __pycache__/
 *.dwg
 *.gcode
 *.backup
-
-# The current printable deliverable is small enough to keep in the repository.
-!.trellis/tasks/**/cad/carrier-rev-*.step
-!.trellis/tasks/**/cad/carrier-rev-*.stl
