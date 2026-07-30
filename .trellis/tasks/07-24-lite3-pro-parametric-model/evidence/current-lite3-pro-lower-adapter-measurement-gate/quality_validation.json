@@ -1,0 +1,126 @@
+{
+  "schema_version": 4,
+  "stage": "experiment_and_analysis",
+  "status": "photo_and_scan_registered_measurement_gate_pass_receiver_contract_open",
+  "source_checks": [
+    {
+      "stored_name": "photo-01.jpg",
+      "exists": true,
+      "sha256_matches": true,
+      "pixels_match": true
+    },
+    {
+      "stored_name": "photo-02.jpg",
+      "exists": true,
+      "sha256_matches": true,
+      "pixels_match": true
+    },
+    {
+      "stored_name": "photo-03.jpg",
+      "exists": true,
+      "sha256_matches": true,
+      "pixels_match": true
+    },
+    {
+      "stored_name": "photo-04.jpg",
+      "exists": true,
+      "sha256_matches": true,
+      "pixels_match": true
+    },
+    {
+      "stored_name": "photo-05.jpg",
+      "exists": true,
+      "sha256_matches": true,
+      "pixels_match": true
+    },
+    {
+      "stored_name": "photo-06.jpg",
+      "exists": true,
+      "sha256_matches": true,
+      "pixels_match": true
+    },
+    {
+      "stored_name": "photo-07.jpg",
+      "exists": true,
+      "sha256_matches": true,
+      "pixels_match": true
+    },
+    {
+      "stored_name": "photo-08.jpg",
+      "exists": true,
+      "sha256_matches": true,
+      "pixels_match": true
+    },
+    {
+      "stored_name": "photo-09.jpg",
+      "exists": true,
+      "sha256_matches": true,
+      "pixels_match": true
+    },
+    {
+      "stored_name": "photo-10.jpg",
+      "exists": true,
+      "sha256_matches": true,
+      "pixels_match": true
+    }
+  ],
+  "proxy_hash_checks": {
+    "fcstd": true,
+    "step": true,
+    "expanded_keepout_step": true
+  },
+  "scan_hash_checks": {
+    "fcstd": true,
+    "step": true,
+    "keepout_step": true
+  },
+  "measurement_card": {
+    "path": "renders/current-lite3-pro-receiver-measurement-card-rev-b.png",
+    "sha256": "79b7d300dd9d53883a25e5f7fcf0ae52f24a084e20977325cc8d6e317c9a34fb",
+    "bytes": 213149,
+    "pixels": [
+      1800,
+      1200
+    ]
+  },
+  "checks": {
+    "source_file_count_is_ten": true,
+    "all_source_files_exist": true,
+    "all_source_hashes_match": true,
+    "all_source_pixel_dimensions_match": true,
+    "declared_duplicate_is_byte_identical": true,
+    "front_pair_pitch_is_65_mm": true,
+    "front_pair_pitch_matches_parameter_file": true,
+    "centre_candidate_axis_matches": true,
+    "compute_enclosure_front_matches": true,
+    "enclosure_nominal_dimensions_match": true,
+    "three_visible_axes_recorded": true,
+    "no_receiver_accepted": true,
+    "all_thread_and_depth_fields_remain_null": true,
+    "all_receiver_material_and_load_path_fields_remain_open": true,
+    "receiver_rows_contain_every_required_field": true,
+    "printable_geometry_remains_blocked": true,
+    "proxy_validation_pass": true,
+    "proxy_output_hashes_match": true,
+    "proxy_contains_no_stl": true,
+    "scan_registered_interface_validation_pass": true,
+    "scan_registered_output_hashes_match": true,
+    "measurement_gate_uses_scan_rev_b_nominal_footprint": true,
+    "measurement_gate_uses_scan_rev_b_expanded_keepout": true,
+    "two_front_recesses_are_explicit": true,
+    "current_upper_and_d435i_studies_pass": true,
+    "measurement_request_has_a_b_c_receiver_points": true,
+    "measurement_request_axes_match_parameter_file": true,
+    "measurement_request_keeps_every_receiver_open": true,
+    "measurement_request_includes_clearance_sweep": true,
+    "measurement_card_exists_and_is_1800_by_1200": true
+  },
+  "pass": true,
+  "remaining_gates": [
+    "front-pair thread designation and usable depth",
+    "centre visible axis receiver role, thread, depth, material, and load path",
+    "compute-enclosure foot, vent, connector, cable, and cover-service sweeps",
+    "human review of the selected receiver set before printable geometry"
+  ],
+  "claim_boundary": "This quality pass verifies photo preservation, scan Rev B two-recess geometry, conservative keep-out propagation, current upper/D435i study linkage, and release-gate enforcement. It does not validate a fastener, load-bearing adapter, physical fit, or print release."
+}

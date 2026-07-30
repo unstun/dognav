@@ -1,0 +1,63 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "awaiting_single_axis_visual_review",
+  "document": "lite3-j17a-j20a-monolithic-rear-web-print-adaptation-rev-b-review",
+  "indices": {
+    "rev_b_hidden": 35,
+    "rev_c_single_axis_preview": 36,
+    "bottom_up_bolt": 37,
+    "top_nut": 38,
+    "official_s410_guard": 3,
+    "superseded_direct_thread_screw": 28,
+    "all_hidden_direct_thread_screws": [
+      28,
+      29,
+      30,
+      31
+    ]
+  },
+  "contract": {
+    "selected_position": "S1_TOP_LEFT",
+    "axis_point_cm": [
+      -32.90685957328745,
+      21.378538809797107,
+      260.49515922999285
+    ],
+    "mount_normal": [
+      0.0,
+      0.9659258262890683,
+      0.25881904510252074
+    ],
+    "printed_receiver": "plain through hole",
+    "hole_diameter_mm": 5.2,
+    "bolt": {
+      "direction": "bottom/underside to top",
+      "nominal": "M5x14 visual candidate",
+      "under_head_length_mm": 14.0,
+      "head_diameter_mm": 8.5,
+      "head_height_mm": 5.0
+    },
+    "nut": {
+      "location": "top side of S410 foot",
+      "across_flats_mm": 8.0,
+      "thickness_mm": 4.0,
+      "thread_geometry": "not modeled; simplified visual opening"
+    },
+    "measured_stack_mm": 7.399625639030631,
+    "modeled_thread_protrusion_above_nut_mm": 2.6003743609693677
+  },
+  "geometry": {
+    "rev_c_body_count": 1,
+    "rev_c_is_solid": true,
+    "bolt_is_solid": true,
+    "nut_is_solid": true,
+    "root_occurrence_count": 39
+  },
+  "preservation": {
+    "rev_b_preserved_and_hidden": true,
+    "official_s410_preserved": true,
+    "only_one_rev_c_hole_widened_for_preview": true,
+    "f3d": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-rev-c-s410-through-bolt-top-nut-print-correction/lite3-rev-c-s410-single-through-bolt-top-nut-preview.f3d"
+  },
+  "claim_boundary": "Single-axis user-corrected visual/print candidate only. Exact bolt standard, nut type, fit, print tolerance, torque, strength, vibration, and real-robot safety remain unvalidated."
+}

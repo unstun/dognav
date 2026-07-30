@@ -1,0 +1,48 @@
+topic: livox-mid360-official-cad
+date: 2026-07-24
+status: surveyed
+
+upstream:
+  manufacturer: Livox
+  product_page: https://www.livoxtech.com/mid-360
+  download_page: https://www.livoxtech.com/mid-360/downloads
+  direct_model_url: https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Mid360/mid-360-asm.stp
+  product_manual: https://terra-1-g.djicdn.com/851d20f7b9f64838a34cd02351370894/Livox/Livox_Mid-360_User_Manual_EN.pdf
+  model_license: "No separate reuse license was displayed on the official download page"
+
+files:
+  - name: mid-360-asm.stp
+    local_source_path: source/original/mid-360-asm.stp
+    size_bytes: 8030891
+    sha256: b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02
+    format: ISO 10303-21 STEP
+  - name: mid360-product-detail.jpg
+    local_source_path: source/official_images/mid360-product-detail.jpg
+    size_bytes: 57731
+    sha256: 2e55cec2594b9a64d16ccf88bd87d4e02214f6700215c5f26e93d734b82dbfb8
+    format: JPEG
+    note: Official Livox product image used only as appearance evidence.
+  - name: mid360-product-hero.svg
+    local_source_path: source/official_images/mid360-product-hero.svg
+    size_bytes: 4343
+    sha256: 069c8e78b7b791e38c3d144960f712ea253e5fdba5489cf7960b074d43f7d9db
+    format: SVG
+    note: Official Livox product-page hero asset.
+
+freecad_inspection:
+  source_modified: false
+  solid_count: 7
+  shell_count: 23
+  face_count: 1715
+  full_bbox_mm:
+    min: [-32.439189, -25.917100, -33.396763]
+    max: [40.300000, 35.480000, 33.398330]
+    size: [72.739189, 61.397100, 66.795094]
+  mechanical_axes: >-
+    The official STEP uses +Y as the sensor's upward body axis. Its four-hole
+    mounting face is at the negative-Y end, and the side connector extends
+    toward +X. This source frame is converted explicitly before placement in
+    the replica's X-forward, Y-left, Z-up frame.
+  claim_boundary: >-
+    This is the manufacturer-published Mid-360 exterior CAD. Its presence does
+    not make the surrounding Lite3 assembly factory CAD or prove physical fit.

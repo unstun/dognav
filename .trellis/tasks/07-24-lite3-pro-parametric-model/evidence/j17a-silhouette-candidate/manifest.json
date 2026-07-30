@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "purpose": "evidence_only_j17a_factory_silhouette_comparison",
+  "current_glb": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/reference/lite3_lidar_1_1_reference.glb",
+  "j17a_history_glb": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-j17a-ipc-base/models/reference/lite3_lidar_1_1_reference.glb",
+  "alignment_method": "rigid translation aligning the J17A-history J20A bounding-box centroid to the current source-backed J20A bounding-box centroid",
+  "alignment_translation_mm": [
+    20.175997,
+    0.0,
+    24.999991
+  ],
+  "forbidden_current_nodes": [
+    "CAMERA_MOUNT_BRACKET",
+    "CAMERA_CARRIER_PLATE",
+    "CAMERA_RECEIVER_YOKE",
+    "CAMERA_FASTENERS",
+    "FACTORY_LIDAR_MOUNTS"
+  ],
+  "claim_boundary": "This is an evidence overlay, not an accepted replica revision. J17A remains related-source candidate geometry.",
+  "entries": [
+    {
+      "node_name": "TORSO",
+      "source": "current_source_geometry",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-silhouette-candidate/meshes/TORSO.stl",
+      "bounds_mm": [
+        [
+          -269.58999,
+          -108.387001,
+          298.602581
+        ],
+        [
+          278.800011,
+          108.386002,
+          425.462544
+        ]
+      ],
+      "extent_mm": [
+        548.390001,
+        216.773003,
+        126.859963
+      ],
+      "vertex_count": 156536,
+      "face_count": 299349
+    },
+    {
+      "node_name": "FACTORY_INTERFACE",
+      "source": "current_source_geometry",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-silhouette-candidate/meshes/FACTORY_INTERFACE.stl",
+      "bounds_mm": [
+        [
+          -64.999998,
+          -46.0,
+          428.000003
+        ],
+        [
+          94.999999,
+          46.0,
+          474.799991
+        ]
+      ],
+      "extent_mm": [
+        159.999996,
+        92.0,
+        46.799988
+      ],
+      "vertex_count": 754,
+      "face_count": 1504
+    },
+    {
+      "node_name": "FACTORY_INTERFACE_CONNECTORS",
+      "source": "current_source_geometry",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-silhouette-candidate/meshes/FACTORY_INTERFACE_CONNECTORS.stl",
+      "bounds_mm": [
+        [
+          -57.0,
+          -45.699999,
+          439.300001
+        ],
+        [
+          82.000002,
+          -44.9,
+          454.299986
+        ]
+      ],
+      "extent_mm": [
+        139.000002,
+        0.799999,
+        14.999986
+      ],
+      "vertex_count": 56,
+      "face_count": 84
+    },
+    {
+      "node_name": "FACTORY_INTERFACE_VENTS",
+      "source": "current_source_geometry",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-silhouette-candidate/meshes/FACTORY_INTERFACE_VENTS.stl",
+      "bounds_mm": [
+        [
+          -48.0,
+          45.200001,
+          456.699997
+        ],
+        [
+          78.000002,
+          46.0,
+          458.900005
+        ]
+      ],
+      "extent_mm": [
+        126.000002,
+        0.799999,
+        2.200007
+      ],
+      "vertex_count": 64,
+      "face_count": 96
+    },
+    {
+      "node_name": "MID360_ADAPTER",
+      "source": "current_source_geometry",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-silhouette-candidate/meshes/MID360_ADAPTER.stl",
+      "bounds_mm": [
+        [
+          96.175998,
+          -39.999999,
+          436.874986
+        ],
+        [
+          192.175999,
+          39.999999,
+          461.874992
+        ]
+      ],
+      "extent_mm": [
+        96.000001,
+        79.999998,
+        25.000006
+      ],
+      "vertex_count": 2749,
+      "face_count": 5554
+    },
+    {
+      "node_name": "MID360_GUARD",
+      "source": "current_source_geometry",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-silhouette-candidate/meshes/MID360_GUARD.stl",
+      "bounds_mm": [
+        [
+          101.044789,
+          -34.729622,
+          438.389719
+        ],
+        [
+          195.223659,
+          34.729626,
+          524.132907
+        ]
+      ],
+      "extent_mm": [
+        94.17887,
+        69.459248,
+        85.743189
+      ],
+      "vertex_count": 18487,
+      "face_count": 36998
+    },
+    {
+      "node_name": "MID360_BODY",
+      "source": "current_source_geometry",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-silhouette-candidate/meshes/MID360_BODY.stl",
+      "bounds_mm": [
+        [
+          115.548931,
+          -32.39302,
+          443.149447
+        ],
+        [
+          178.836554,
+          32.39302,
+          466.002822
+        ]
+      ],
+      "extent_mm": [
+        63.287623,
+        64.786039,
+        22.853374
+      ],
+      "vertex_count": 57114,
+      "face_count": 19038
+    },
+    {
+      "node_name": "MID360_HOUSING_EXTERIOR",
+      "source": "current_source_geometry",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-silhouette-candidate/meshes/MID360_HOUSING_EXTERIOR.stl",
+      "bounds_mm": [
+        [
+          116.345018,
+          -32.436918,
+          446.703702
+        ],
+        [
+          183.462158,
+          32.436918,
+          492.693722
+        ]
+      ],
+      "extent_mm": [
+        67.11714,
+        64.873837,
+        45.99002
+      ],
+      "vertex_count": 468051,
+      "face_count": 156017
+    },
+    {
+      "node_name": "MID360_OPTICAL_WINDOW",
+      "source": "current_source_geometry",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-silhouette-candidate/meshes/MID360_OPTICAL_WINDOW.stl",
+      "bounds_mm": [
+        [
+          130.808234,
+          -25.493156,
+          476.79019
+        ],
+        [
+          181.217253,
+          25.493156,
+          511.357129
+        ]
+      ],
+      "extent_mm": [
+        50.409019,
+        50.986312,
+        34.566939
+      ],
+      "vertex_count": 28164,
+      "face_count": 9388
+    },
+    {
+      "node_name": "MID360_CONNECTOR",
+      "source": "current_source_geometry",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-silhouette-candidate/meshes/MID360_CONNECTOR.stl",
+      "bounds_mm": [
+        [
+          110.092364,
+          -11.0,
+          464.397043
+        ],
+        [
+          126.686618,
+          11.0,
+          480.974078
+        ]
+      ],
+      "extent_mm": [
+        16.594253,
+        22.0,
+        16.577035
+      ],
+      "vertex_count": 96906,
+      "face_count": 32302
+    },
+    {
+      "node_name": "D435I_CAMERA",
+      "source": "current_source_geometry",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-silhouette-candidate/meshes/D435I_CAMERA.stl",
+      "bounds_mm": [
+        [
+          207.103446,
+          -44.914201,
+          427.941501
+        ],
+        [
+          236.735195,
+          45.000099,
+          455.801308
+        ]
+      ],
+      "extent_mm": [
+        29.631749,
+        89.9143,
+        27.859807
+      ],
+      "vertex_count": 154149,
+      "face_count": 231127
+    },
+    {
+      "node_name": "J17A_SENSOR_CARRIER_CANDIDATE",
+      "source": "related_lite3_venture_fast_livo2_source_model",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-silhouette-candidate/meshes/J17A_SENSOR_CARRIER_CANDIDATE.stl",
+      "bounds_mm": [
+        [
+          61.851997,
+          -57.500001,
+          439.93856
+        ],
+        [
+          215.586547,
+          57.500001,
+          466.999993
+        ]
+      ],
+      "extent_mm": [
+        153.73455,
+        115.000002,
+        27.061433
+      ],
+      "vertex_count": 6042,
+      "face_count": 12156
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "artifact": "lite3-complete-installation-animation-with-s410-no-text.mp4",
+  "source_model": "lite3-complete-s410-guard-installed-source.f3d",
+  "status": "rejected_unreasonable_s410_fastening_animation",
+  "rejection_reason": "The four S410 screws translate simultaneously as one group without individual rotation or a human-executable tool sequence.",
+  "claim_boundary": "Visual assembly-order, source-hole alignment, sampled guard-path interference, and gross access demonstration only; exact supplied screw length, head standard, wrench envelope, thread engagement, torque, tolerance, structural strength, vibration, and physical-installation safety are not validated.",
+  "source_contract": {
+    "guard": "Official manufacturer 1CA5-S410 BRep and drawing",
+    "guard_holes": "4 x 5.2 mm through clearance holes",
+    "j20": "Official manufacturer 1T21-J20A BRep and drawing",
+    "j20_holes": "4 x M5 through-thread holes",
+    "guard_geometry_modified": false,
+    "j20_geometry_modified": false,
+    "rigid_alignment_only": true
+  },
+  "axis_alignment": {
+    "source_assembly_common_offset_mm": 0.1708494997522819,
+    "correction_cm": [
+      0.0,
+      -0.0044219104382,
+      0.0165027944219
+    ],
+    "corrected_guard_to_j20_axis_max_mm": 4.41127615807212e-13,
+    "corrected_screw_to_guard_axis_max_mm": 4.545902364027965e-13
+  },
+  "guard_fasteners": {
+    "count": 4,
+    "nominal_visual_candidate": "M5x8 socket-head screw",
+    "component_brep_body_count": 8,
+    "nuts_required": false,
+    "reason": "The J20 receiver holes are modeled and called out as M5 through threads."
+  },
+  "guard_approach_interference": {
+    "sample_frames": [
+      276,
+      280,
+      284,
+      288,
+      292,
+      296,
+      300,
+      304,
+      308,
+      311
+    ],
+    "guard_mid360_interference_count": 0,
+    "guard_mid360_interference_volume_cm3": 0.0,
+    "guard_j20_interference_count_before_seating": 0,
+    "guard_j20_interference_volume_cm3": 0.0
+  },
+  "assembly_order": [
+    "D435i to bare J17",
+    "two D435i screws before J20 and MID360",
+    "four J17/J20 through-bolts pre-inserted bottom-up",
+    "MID360 to J20 off-robot subassembly",
+    "four MID360 underside screws",
+    "official S410 guard lowered over MID360",
+    "four S410-to-J20 M5 visual screws",
+    "complete J20/MID360/S410 subassembly lowered over protruding J17 bolts",
+    "front top nuts",
+    "rear top washers and locknuts",
+    "rear locating spacers on Lite3",
+    "lateral carrier alignment outside robot envelope",
+    "normal approach to Lite3",
+    "front and rear exposed base screws"
+  ],
+  "video": {
+    "codec": "h264",
+    "duration_seconds": 30.0,
+    "fps": 24,
+    "frame_count": 720,
+    "height": 720,
+    "pixel_format": "yuv420p",
+    "sha256": "5b41a398cfedf179c28a56fb5a431ba33c4aee1f396f3b796f4d0bc3358c05ba",
+    "size_bytes": 4334933,
+    "width": 1280,
+    "contains_text_overlay": false
+  },
+  "source_model_archive": {
+    "sha256": "e55c6c4fb2c0218eefe8f614733d618365cce9f1d0e7cebf86b43a321c13f046",
+    "size_bytes": 128006292
+  },
+  "final_state_check": {
+    "root_occurrence_count": 28,
+    "official_guard_visible": true,
+    "guard_fasteners_visible": true,
+    "guard_fastener_count": 4,
+    "max_transform_difference": 3.552713678800501e-15,
+    "occurrence_mismatches": [],
+    "opacity_mismatches": [],
+    "pending_snapshot": false
+  }
+}

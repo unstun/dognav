@@ -1,0 +1,16 @@
+{
+  "stage": "experiment_and_analysis",
+  "source_step": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-j17a-j20a-monolithic-print-adaptation-candidate/j17a-j20a-monolithic-print-adaptation-rev-a.step",
+  "importer": "FreeCAD clean process",
+  "shape_object_count": 1,
+  "shape_types": [
+    "Solid"
+  ],
+  "solid_count": 1,
+  "shell_count": 1,
+  "face_count": 192,
+  "volume_mm3": 59899.38399837132,
+  "all_shapes_valid": true,
+  "all_shapes_closed": true,
+  "pass": true
+}

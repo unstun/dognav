@@ -1,0 +1,53 @@
+{
+  "compared_fields": [
+    "model_id",
+    "required_component_names",
+    "object_count",
+    "official_target_bbox_mm",
+    "assembly_bbox",
+    "height_error_mm",
+    "preserved_width_difference_mm",
+    "components"
+  ],
+  "geometry_metrics_match": true,
+  "model_id": "lite3_lidar_v107_visual_reconstruction",
+  "output_hashes": {
+    "lite3_lidar_v107_reconstruction.FCStd": {
+      "deterministic_expected": false,
+      "hashes_match": false,
+      "note": "Container/header metadata can differ; geometry metrics are compared.",
+      "primary": "7382a15e032d3926aea70896742dd464715e6ff9a8fb08f524049774707cb71a",
+      "second": "a4dc821212bf2b362b448c7e91605cf11ec9847e852af6cfb4136510c3844e61"
+    },
+    "lite3_lidar_v107_standing_visual.stl": {
+      "deterministic_expected": true,
+      "hashes_match": true,
+      "note": "Raw hashes must match across clean builds.",
+      "primary": "1644c7714bdda7152438ad9da85d7573702459e024ad98b8b4106107b8b85000",
+      "second": "1644c7714bdda7152438ad9da85d7573702459e024ad98b8b4106107b8b85000"
+    },
+    "lite3_lidar_v107_upper_module.step": {
+      "deterministic_expected": false,
+      "hashes_match": false,
+      "note": "Container/header metadata can differ; geometry metrics are compared.",
+      "primary": "be7694ea589f4c9c2382ce29f7bea9ac7027c766429bbd04346f3e08b1d03e66",
+      "second": "0995941fe3691937f963e87f9447e004f8fcb36338dbe2fefe8f467a24ae478b"
+    },
+    "lite3_lidar_v107_upper_module.stl": {
+      "deterministic_expected": true,
+      "hashes_match": true,
+      "note": "Raw hashes must match across clean builds.",
+      "primary": "392142448a279bf8569fd7ea5d89f5e72e20fb7b626471be722d3b6fd402643f",
+      "second": "392142448a279bf8569fd7ea5d89f5e72e20fb7b626471be722d3b6fd402643f"
+    }
+  },
+  "parameter_sha256": {
+    "match": true,
+    "primary": "cdf8c78487e148f259ccaa7f46fe0fd3fbccd4e158162e03b6faf907b0984a2d",
+    "second": "cdf8c78487e148f259ccaa7f46fe0fd3fbccd4e158162e03b6faf907b0984a2d"
+  },
+  "parameter_values_match": true,
+  "primary_validation_sha256": "3fe685d9b0c4de45e29acee968f0bb113065d05bcf3713f82181f9c691127fa1",
+  "schema_version": 1,
+  "second_validation_sha256": "86464784b9fc1cbb80240eeada8e4364a49f0f110fdd97748667c1eb320c8e19"
+}

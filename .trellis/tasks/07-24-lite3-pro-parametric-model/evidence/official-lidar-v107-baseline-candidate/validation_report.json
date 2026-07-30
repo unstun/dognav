@@ -1,0 +1,488 @@
+{
+  "schema_version": 1,
+  "candidate": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate",
+  "check_count": 27,
+  "passed_count": 27,
+  "failed_count": 0,
+  "status": "passed",
+  "checks": [
+    {
+      "name": "target_identity",
+      "passed": true,
+      "actual": "Lite3 LiDAR assembly shown in official V1.0.7 manual",
+      "expected": "Lite3 LiDAR assembly shown in official V1.0.7 manual"
+    },
+    {
+      "name": "rejected_tracks_absent_from_entries",
+      "passed": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "name": "required_nodes_present",
+      "passed": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "name": "evidence_class_partition",
+      "passed": true,
+      "actual": {},
+      "expected": {}
+    },
+    {
+      "name": "guard_top_matches_official_height",
+      "passed": true,
+      "actual": 496.0,
+      "expected": 496.0
+    },
+    {
+      "name": "standing_envelope_image_fit",
+      "passed": true,
+      "actual": {
+        "extents_mm": [
+          604.784973,
+          372.657928,
+          496.0
+        ],
+        "error_mm": [
+          -5.215027,
+          2.657928,
+          0.0
+        ]
+      },
+      "expected": {
+        "target_mm": [
+          610.0,
+          370.0,
+          496.0
+        ],
+        "tolerance_mm": [
+          10.0,
+          4.0,
+          1e-06
+        ]
+      }
+    },
+    {
+      "name": "interface_carrier_zero_overlap",
+      "passed": true,
+      "actual": 0.0,
+      "expected": "<= 0.000001 mm3"
+    },
+    {
+      "name": "interface_local_support_zero_overlap",
+      "passed": true,
+      "actual": 0.0,
+      "expected": "<= 0.000001 mm3"
+    },
+    {
+      "name": "profiled_supports_do_not_penetrate_body",
+      "passed": true,
+      "actual": {
+        "minimum_clearance_mm": 0.250008,
+        "sample_count": 2036
+      },
+      "expected": {
+        "minimum_clearance_mm": [
+          0.0,
+          0.5
+        ],
+        "sample_count": "> 0"
+      }
+    },
+    {
+      "name": "mounting_chains_have_no_unintended_overlap",
+      "passed": true,
+      "actual": {
+        "total_mm3": 0.0,
+        "breakdown_mm3": {
+          "local_support_to_d435": 0.0,
+          "body_fastener_to_j17a": 0.0,
+          "interface_feet_to_local_support": 0.0
+        }
+      },
+      "expected": "<= 0.000001 mm3"
+    },
+    {
+      "name": "interface_mounting_pads_bridge_deck_gap",
+      "passed": true,
+      "actual": {
+        "pad_height_mm": 7.899495,
+        "interface_bottom_z_mm": 399.867065,
+        "deck_contact_z_mm": 391.9675705432892
+      },
+      "expected": "positive pad height exactly spanning image-registered deck gap"
+    },
+    {
+      "name": "interface_four_fastened_feet",
+      "passed": true,
+      "actual": {
+        "foot_axes_mm": [
+          [
+            -86.0,
+            -36.0
+          ],
+          [
+            -86.0,
+            36.0
+          ],
+          [
+            82.0,
+            -36.0
+          ],
+          [
+            82.0,
+            36.0
+          ]
+        ],
+        "clearance_hole_diameter_mm": 3.4,
+        "receiver_minor_diameter_mm": 2.5,
+        "receiver_depth_mm": 5.0,
+        "classification": "image_inferred_mechanical_proxy"
+      },
+      "expected": "four bored feet with M3 fastener and receiver proxies"
+    },
+    {
+      "name": "j17a_four_m3_local_supports",
+      "passed": true,
+      "actual": {
+        "source_thread_callout": "4 x M3",
+        "source_pattern_mm": [
+          110.0,
+          86.0
+        ],
+        "current_axes_mm": [
+          [
+            137.85199699999998,
+            -43.0
+          ],
+          [
+            137.85199699999998,
+            43.0
+          ],
+          [
+            247.851997,
+            -43.0
+          ],
+          [
+            247.851997,
+            43.0
+          ]
+        ],
+        "source_thread_depth_geometry_mm": 2.5,
+        "seating_z_mm": 417.867065,
+        "support_records": [
+          {
+            "j17a_axis_mm": [
+              137.85199699999998,
+              -43.0
+            ],
+            "body_fastener_axis_mm": [
+              137.85199699999998,
+              -49.0
+            ],
+            "j17a_seating_z_mm": 417.867065,
+            "main_body_surface_z_mm": 388.966545,
+            "body_fastener_surface_z_mm": 391.966646,
+            "low_mount_top_z_mm": 397.967042,
+            "profiled_bottom_z_range_mm": [
+              392.083395,
+              392.217293
+            ],
+            "bottom_clearance_mm": 0.25
+          },
+          {
+            "j17a_axis_mm": [
+              137.85199699999998,
+              43.0
+            ],
+            "body_fastener_axis_mm": [
+              137.85199699999998,
+              49.0
+            ],
+            "j17a_seating_z_mm": 417.867065,
+            "main_body_surface_z_mm": 391.953026,
+            "body_fastener_surface_z_mm": 391.95482,
+            "low_mount_top_z_mm": 397.966906,
+            "profiled_bottom_z_range_mm": [
+              392.007212,
+              392.217208
+            ],
+            "bottom_clearance_mm": 0.25
+          },
+          {
+            "j17a_axis_mm": [
+              247.851997,
+              -43.0
+            ],
+            "body_fastener_axis_mm": [
+              247.851997,
+              -49.0
+            ],
+            "j17a_seating_z_mm": 417.867065,
+            "main_body_surface_z_mm": 375.346982,
+            "body_fastener_surface_z_mm": 371.100817,
+            "low_mount_top_z_mm": 386.404246,
+            "profiled_bottom_z_range_mm": [
+              360.047355,
+              382.469175
+            ],
+            "bottom_clearance_mm": 0.25
+          },
+          {
+            "j17a_axis_mm": [
+              247.851997,
+              43.0
+            ],
+            "body_fastener_axis_mm": [
+              247.851997,
+              49.0
+            ],
+            "j17a_seating_z_mm": 417.867065,
+            "main_body_surface_z_mm": 375.304741,
+            "body_fastener_surface_z_mm": 371.19519,
+            "low_mount_top_z_mm": 386.418792,
+            "profiled_bottom_z_range_mm": [
+              360.637129,
+              382.257685
+            ],
+            "bottom_clearance_mm": 0.25
+          }
+        ],
+        "classification": "source_axis_plus_image_inferred_local_support"
+      },
+      "expected": "four source-axis M3 supports with separate body fastener axes"
+    },
+    {
+      "name": "d435_direct_mount_contact",
+      "passed": true,
+      "actual": 0.0002,
+      "expected": "<= 0.01 mm sampled surface distance"
+    },
+    {
+      "name": "manual_pose_parameters",
+      "passed": true,
+      "actual": {
+        "hip_y_rad": -0.68,
+        "knee_rad": 1.48,
+        "classification": "image_estimate_from_manual_side_view"
+      },
+      "expected": {
+        "hip_y_rad": -0.68,
+        "knee_rad": 1.48,
+        "classification": "image_estimate_from_manual_side_view"
+      }
+    },
+    {
+      "name": "source_hash.current_reference_glb",
+      "passed": true,
+      "actual": "c0a0708cdd9b82d197258c54fc095e188c9868ea73bd9a26396559d9d6616fc1",
+      "expected": "c0a0708cdd9b82d197258c54fc095e188c9868ea73bd9a26396559d9d6616fc1"
+    },
+    {
+      "name": "source_hash.related_source_history_glb",
+      "passed": true,
+      "actual": "8091a77a024ccb32eed225a5fbebe9ad5036bba9eb375344424650130fb33c01",
+      "expected": "8091a77a024ccb32eed225a5fbebe9ad5036bba9eb375344424650130fb33c01"
+    },
+    {
+      "name": "source_hash.official_full_body_visual",
+      "passed": true,
+      "actual": "fff454ac3c3944ba34296c7b772ef58469f350463691445da2e615d08dcbd1d3",
+      "expected": "fff454ac3c3944ba34296c7b772ef58469f350463691445da2e615d08dcbd1d3"
+    },
+    {
+      "name": "source_hash.official_d435_visual_mesh",
+      "passed": true,
+      "actual": "0a2538acbf7199274874465af4b1f700616da234538e14c8232f1069abc3370d",
+      "expected": "0a2538acbf7199274874465af4b1f700616da234538e14c8232f1069abc3370d"
+    },
+    {
+      "name": "source_hash.d435_fastener_reference_mesh",
+      "passed": true,
+      "actual": "8efeac4133ad022ab215742cb9896491dbf7d9d7bc775691704300860aed5ba1",
+      "expected": "8efeac4133ad022ab215742cb9896491dbf7d9d7bc775691704300860aed5ba1"
+    },
+    {
+      "name": "source_hash.official_current_lidar_front_left_image",
+      "passed": true,
+      "actual": "b9a8e83c9761d0f556d9c498b7c201b08c25eef5cfc32fff75608ed0deaaedd1",
+      "expected": "b9a8e83c9761d0f556d9c498b7c201b08c25eef5cfc32fff75608ed0deaaedd1"
+    },
+    {
+      "name": "source_hash.related_source_j17a_step",
+      "passed": true,
+      "actual": "52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490",
+      "expected": "52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490"
+    },
+    {
+      "name": "interface_reference_stl",
+      "passed": true,
+      "actual": {
+        "watertight": true,
+        "winding_consistent": true,
+        "connected_components": 2
+      },
+      "expected": {
+        "watertight": true,
+        "winding_consistent": true,
+        "connected_components": 2
+      }
+    },
+    {
+      "name": "freecad_model_readable",
+      "passed": true,
+      "actual": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/models/lite3_lidar_v107_baseline_candidate.FCStd",
+        "size_bytes": 22996628,
+        "bad_zip_member": null
+      },
+      "expected": "readable non-empty FCStd archive"
+    },
+    {
+      "name": "rejected_tracks_absent_from_fcstd",
+      "passed": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "name": "mechanical_chain_present_in_fcstd",
+      "passed": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "name": "review_renders_complete",
+      "passed": true,
+      "actual": {
+        "full-standing-isometric.png": {
+          "size_px": [
+            1800,
+            1350
+          ],
+          "size_bytes": 320378
+        },
+        "full-standing-front.png": {
+          "size_px": [
+            1800,
+            1350
+          ],
+          "size_bytes": 142651
+        },
+        "full-standing-side.png": {
+          "size_px": [
+            1800,
+            1350
+          ],
+          "size_bytes": 190772
+        },
+        "full-standing-rear.png": {
+          "size_px": [
+            1800,
+            1350
+          ],
+          "size_bytes": 128039
+        },
+        "full-standing-top.png": {
+          "size_px": [
+            1800,
+            1350
+          ],
+          "size_bytes": 157625
+        },
+        "upper-assembly-isometric.png": {
+          "size_px": [
+            1800,
+            1350
+          ],
+          "size_bytes": 135018
+        },
+        "upper-assembly-front.png": {
+          "size_px": [
+            1800,
+            1350
+          ],
+          "size_bytes": 60828
+        },
+        "upper-assembly-side.png": {
+          "size_px": [
+            1800,
+            1350
+          ],
+          "size_bytes": 95359
+        },
+        "upper-assembly-rear.png": {
+          "size_px": [
+            1800,
+            1350
+          ],
+          "size_bytes": 47692
+        },
+        "upper-assembly-top.png": {
+          "size_px": [
+            1800,
+            1350
+          ],
+          "size_bytes": 93441
+        },
+        "assembly-mechanism-isometric.png": {
+          "size_px": [
+            1800,
+            1350
+          ],
+          "size_bytes": 190073
+        },
+        "assembly-mechanism-side.png": {
+          "size_px": [
+            1800,
+            1350
+          ],
+          "size_bytes": 112311
+        },
+        "assembly-mechanism-bottom.png": {
+          "size_px": [
+            1800,
+            1350
+          ],
+          "size_bytes": 72088
+        },
+        "official-vs-candidate-front.png": {
+          "size_px": [
+            2000,
+            1120
+          ],
+          "size_bytes": 410944
+        },
+        "official-vs-candidate-side.png": {
+          "size_px": [
+            2000,
+            1120
+          ],
+          "size_bytes": 476161
+        },
+        "official-vs-candidate-isometric.png": {
+          "size_px": [
+            2000,
+            1120
+          ],
+          "size_bytes": 635811
+        },
+        "official-v107-baseline-comparison.png": {
+          "size_px": [
+            2000,
+            1540
+          ],
+          "size_bytes": 580778
+        }
+      },
+      "expected": {
+        "count": 17,
+        "minimum_size_px": [
+          1000,
+          900
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "awaiting_visual_review",
+  "document": "Untitled",
+  "source_occurrence_count": 34,
+  "candidate_occurrence_index": 34,
+  "final_occurrence_count": 35,
+  "component": "J17A_J20A_MONOLITHIC_PRINT_ADAPTATION_REV_A_NOT_OFFICIAL_CAD",
+  "body": "J17A_J20A_MONOLITHIC_ONE_SOLID_REV_A",
+  "classification": "print_adaptation",
+  "official_cad": false,
+  "source_components": {
+    "j17a": "J17A_ORIGINAL_MANUFACTURER_BREP_CORRECT_UPPER_65MM_PAIR",
+    "j20a": "1T21-J20A-小激光安装板"
+  },
+  "source_metrics": {
+    "j17a_volume_mm3": 31805.746881165036,
+    "j20a_volume_mm3": 26174.29211743631
+  },
+  "fusion_groups": [
+    {
+      "group": "former_front_m3_axis_1",
+      "axis_cm": [
+        -32.24700964468146,
+        20.468141858307483,
+        259.73489005808057
+      ],
+      "core_diameter_mm": 5.0,
+      "cap_diameter_mm": 7.0,
+      "source_role_replaced": "J17A clearance to J20A M3 thread"
+    },
+    {
+      "group": "former_front_m3_axis_2",
+      "axis_cm": [
+        -28.647009644681464,
+        20.468141858307483,
+        259.73489005808057
+      ],
+      "core_diameter_mm": 5.0,
+      "cap_diameter_mm": 7.0,
+      "source_role_replaced": "J17A clearance to J20A M3 thread"
+    },
+    {
+      "group": "former_rear_m4_axis_1",
+      "axis_cm": [
+        -33.84112221937691,
+        22.018141858307484,
+        251.89077750838507
+      ],
+      "core_diameter_mm": 6.8,
+      "cap_diameter_mm": 8.0,
+      "source_role_replaced": "J17A counterbore/clearance to J20A M4 thread"
+    },
+    {
+      "group": "former_rear_m4_axis_2",
+      "axis_cm": [
+        -27.05289706998607,
+        22.018141858307484,
+        251.89077750838507
+      ],
+      "core_diameter_mm": 6.8,
+      "cap_diameter_mm": 8.0,
+      "source_role_replaced": "J17A counterbore/clearance to J20A M4 thread"
+    }
+  ],
+  "candidate_metrics": {
+    "brep_body_count": 1,
+    "mesh_body_count": 0,
+    "is_solid": true,
+    "lump_count": 1,
+    "shell_count": 1,
+    "face_count": 192,
+    "volume_mm3": 59896.41459376361,
+    "bounds_cm": {
+      "min": [
+        -36.197009644681465,
+        19.861997984547166,
+        246.88489005837425
+      ],
+      "max": [
+        -24.697009644681465,
+        23.218141858307483,
+        262.2583444450599
+      ]
+    }
+  },
+  "preservation": {
+    "manufacturer_sources_unchanged": true,
+    "manufacturer_sources_hidden": true,
+    "maximum_source_transform_difference": 2.842170943040401e-14,
+    "pre_change_f3d": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-j17a-j20a-monolithic-print-adaptation-candidate/pre-monolithic-34-occurrence-scene-backup.f3d",
+    "candidate_step": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-j17a-j20a-monolithic-print-adaptation-candidate/j17a-j20a-monolithic-print-adaptation-rev-a.step",
+    "pending_snapshot": false
+  },
+  "claim_boundary": "One-piece B-rep and access-preserving geometry candidate only; material, print orientation, strength, fatigue, torque, vibration, and real-hardware safety remain unvalidated."
+}

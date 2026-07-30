@@ -1,0 +1,120 @@
+{
+  "schema_version": 2,
+  "stage": "experiment_and_analysis",
+  "status": "official_manufacturer_d435i_brep_exported_from_standalone_cloud_translation",
+  "fusion_stability_strategy": {
+    "opened_only": "standalone D435i_Solid cloud data file",
+    "robot_assembly_opened": false,
+    "source_document_edited": false,
+    "source_document_saved": false,
+    "close_without_save": true
+  },
+  "cloud_source": {
+    "project": "Default Project",
+    "folder": "Lite3 CAD source imports",
+    "name": "D435i_Solid",
+    "file_extension": "f3d",
+    "lineage_id": "urn:adsk.wipprod:dm.lineage:elFpDAAPTv-vsPMhVZt0dw",
+    "version_id": "urn:adsk.wipprod:fs.file:vf.elFpDAAPTv-vsPMhVZt0dw?version=1",
+    "version_number": 1
+  },
+  "manufacturer_source": {
+    "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-25_realsense-d435i-cad/source/original/D435i_Solid.SLDPRT",
+    "bytes": 1712243,
+    "sha256": "9cdbfdc7085ea5430ec9007eb1d895c7ff513c40b77c298a275ded33edf65525",
+    "identity_note": "The standalone cloud file is the Fusion translation named D435i_Solid retained in the dedicated source-import folder; the original manufacturer SLDPRT is retained locally by hash."
+  },
+  "component": {
+    "name": "D435i_Solid",
+    "brep_body_count": 2,
+    "solid_body_count": 2,
+    "mesh_body_count_all_components": 0,
+    "bounds_cm": {
+      "min": [
+        -4.4904656112350025,
+        -1.25,
+        -2.5049999986780067
+      ],
+      "max": [
+        4.499984999986182,
+        1.2499957706380682,
+        0.0
+      ]
+    },
+    "dims_cm": [
+      8.990450611221185,
+      2.499995770638068,
+      2.5049999986780067
+    ],
+    "sorted_dims_cm": [
+      2.499995770638068,
+      2.5049999986780067,
+      8.990450611221185
+    ],
+    "bodies": [
+      {
+        "name": "Body1",
+        "is_solid": true,
+        "faces": 633,
+        "volume_cm3": 45.69134613643018,
+        "bounds_cm": {
+          "min": [
+            -4.4904656112350025,
+            -1.25,
+            -2.5049999986780067
+          ],
+          "max": [
+            4.499984999986182,
+            1.2499957706380682,
+            0.0
+          ]
+        }
+      },
+      {
+        "name": "Body2",
+        "is_solid": true,
+        "faces": 8,
+        "volume_cm3": 0.07952446422649871,
+        "bounds_cm": {
+          "min": [
+            -4.0195,
+            -0.7695,
+            -0.01
+          ],
+          "max": [
+            4.2994999999995995,
+            0.7695,
+            -0.0034000000000000002
+          ]
+        }
+      }
+    ],
+    "all_component_topology": [
+      {
+        "name": "D435i_Solid",
+        "brep_body_count": 2,
+        "solid_body_count": 2,
+        "mesh_body_count": 0
+      }
+    ]
+  },
+  "output": {
+    "path": "cad/d435i-official-manufacturer-brep-from-standalone-cloud.step",
+    "bytes": 3281016,
+    "sha256": "344d16ba3e1640b9014aed7b1a26aebaa4e5c4dde283d52bd68fe6d210db3c19"
+  },
+  "checks": {
+    "cloud_project_exact": true,
+    "cloud_folder_exact": true,
+    "cloud_name_exact": true,
+    "cloud_extension_exact": true,
+    "cloud_lineage_exact": true,
+    "manufacturer_sldprt_hash_exact": true,
+    "one_two_solid_brep_component": true,
+    "zero_mesh_bodies": true,
+    "manufacturer_envelope_match": true,
+    "step_written": true
+  },
+  "claim_boundary": "This proves a standalone STEP export of the retained manufacturer-derived D435i B-rep. It does not validate the current-Pro camera pose, support, robot interface, screw length, human tool access, or print release.",
+  "pass": true
+}

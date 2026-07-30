@@ -1,0 +1,6 @@
+__pycache__/
+.venv/
+rebuild-check*/
+slicer/gcode/
+slicer/prusaslicer-data/
+evidence/render_cache/

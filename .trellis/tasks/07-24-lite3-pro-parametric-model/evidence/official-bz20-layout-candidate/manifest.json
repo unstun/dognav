@@ -1,0 +1,415 @@
+{
+  "schema_version": 1,
+  "purpose": "official_fast_livo2_sensor_and_bz20_layout_review",
+  "removed_geometry": [
+    "160_x_92_x_46.8_mm_generic_FACTORY_INTERFACE_placeholder",
+    "pro_to_j17a_spanning_hidden_adapter",
+    "invented_camera_rails_plate_yoke"
+  ],
+  "bz20_source_nominal_extent_mm": [
+    108.0,
+    96.0,
+    30.0
+  ],
+  "bz20_image_estimated_translation_mm": [
+    2.652557,
+    4.498856,
+    330.462585
+  ],
+  "full_body_source_path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/evidence/body-diagnostic/lite3-official-visual-z-up.stl",
+  "full_body_ground_normalization_mm": 2.501525,
+  "full_body_top_alignment_delta_mm": 1e-06,
+  "bz20_to_j17a_gap_x_mm": 3.0,
+  "bz20_to_torso_gap_z_mm": 2.5,
+  "d435_to_torso_gap_z_mm": 8.293274,
+  "collision_checks": {
+    "bz20_to_j17a_intersection_mm3": 0.0,
+    "bz20_to_torso_aabb_overlap": false,
+    "d435_to_torso_aabb_overlap": false,
+    "open_visual_torso_boolean_state": "not_run; official torso visual is not a closed solid"
+  },
+  "j17a_fastener_centers_mm": [
+    [
+      72.676,
+      -43.0,
+      446.0
+    ],
+    [
+      72.676,
+      43.0,
+      446.0
+    ],
+    [
+      182.676,
+      -43.0,
+      446.0
+    ],
+    [
+      182.676,
+      43.0,
+      446.0
+    ]
+  ],
+  "visible_fastener_contract": {
+    "j17a_robot_side_mounting_axis_references": 4,
+    "d435_to_j17a_m3_locations": 2,
+    "exact_screw_lengths": "unresolved",
+    "j17a_robot_side_receiver_structure": "not_modelled_pending_pro_adapter_and_user_ipc_geometry"
+  },
+  "industrial_pc_state": "not_modelled; the official rear AGX device and the user's different industrial PC are separate from BZ20",
+  "pro_adapter_state": "not_designed_pending_user_industrial_pc_geometry_and_mounting_data",
+  "claim_boundary": "This is a source-backed visual placement candidate for the official Lite3 Venture FAST-LIVO2 extension. BZ20 placement is estimated from official video frames. It is not a Lite3 Pro conversion, a measured fit to the user's industrial PC, or a load-rated real-robot bracket.",
+  "entries": [
+    {
+      "node_name": "TORSO",
+      "role": "official_lite3_exterior_context",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/TORSO.stl",
+      "bounds_mm": [
+        [
+          -269.589996,
+          -108.387001,
+          298.60257
+        ],
+        [
+          278.800018,
+          108.386002,
+          425.462555
+        ]
+      ],
+      "extent_mm": [
+        548.390015,
+        216.773003,
+        126.859985
+      ],
+      "vertex_count": 148899,
+      "face_count": 299349,
+      "watertight": false,
+      "connected_components": 55,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "FULL_LITE3_OFFICIAL_VISUAL",
+      "role": "official_full_standing_visual_context_not_printable_geometry",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/FULL_LITE3_OFFICIAL_VISUAL.stl",
+      "bounds_mm": [
+        [
+          -318.036682,
+          -186.328964,
+          0.0
+        ],
+        [
+          278.800018,
+          186.328964,
+          425.462554
+        ]
+      ],
+      "extent_mm": [
+        596.8367,
+        372.657928,
+        425.462554
+      ],
+      "vertex_count": 3537702,
+      "face_count": 1179234,
+      "watertight": false,
+      "connected_components": 1179234,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "J17A_SENSOR_CARRIER_SOURCE",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/J17A_SENSOR_CARRIER_SOURCE.stl",
+      "bounds_mm": [
+        [
+          61.851997,
+          -57.5,
+          439.938568
+        ],
+        [
+          215.586548,
+          57.5,
+          467.0
+        ]
+      ],
+      "extent_mm": [
+        153.73455,
+        115.0,
+        27.061432
+      ],
+      "vertex_count": 6042,
+      "face_count": 12156,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 31824.554291
+    },
+    {
+      "node_name": "MID360_ADAPTER",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/MID360_ADAPTER.stl",
+      "bounds_mm": [
+        [
+          96.175995,
+          -40.0,
+          436.875
+        ],
+        [
+          192.175995,
+          40.0,
+          461.875
+        ]
+      ],
+      "extent_mm": [
+        96.0,
+        80.0,
+        25.0
+      ],
+      "vertex_count": 2749,
+      "face_count": 5554,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 26174.778835
+    },
+    {
+      "node_name": "MID360_GUARD",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/MID360_GUARD.stl",
+      "bounds_mm": [
+        [
+          101.044792,
+          -34.729622,
+          438.389709
+        ],
+        [
+          195.223663,
+          34.729626,
+          524.132935
+        ]
+      ],
+      "extent_mm": [
+        94.178871,
+        69.459248,
+        85.743225
+      ],
+      "vertex_count": 18487,
+      "face_count": 36998,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 20703.585347
+    },
+    {
+      "node_name": "MID360_BODY",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/MID360_BODY.stl",
+      "bounds_mm": [
+        [
+          115.548927,
+          -32.393021,
+          443.149445
+        ],
+        [
+          178.836548,
+          32.393021,
+          466.002808
+        ]
+      ],
+      "extent_mm": [
+        63.287621,
+        64.786041,
+        22.853363
+      ],
+      "vertex_count": 9515,
+      "face_count": 19038,
+      "watertight": true,
+      "connected_components": 2,
+      "volume_mm3": 15329.536023
+    },
+    {
+      "node_name": "MID360_HOUSING_EXTERIOR",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/MID360_HOUSING_EXTERIOR.stl",
+      "bounds_mm": [
+        [
+          116.345016,
+          -32.43692,
+          446.703705
+        ],
+        [
+          183.462158,
+          32.43692,
+          492.693726
+        ]
+      ],
+      "extent_mm": [
+        67.117142,
+        64.87384,
+        45.990021
+      ],
+      "vertex_count": 78120,
+      "face_count": 156015,
+      "watertight": false,
+      "connected_components": 1,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "MID360_OPTICAL_WINDOW",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/MID360_OPTICAL_WINDOW.stl",
+      "bounds_mm": [
+        [
+          130.808228,
+          -25.493156,
+          476.790192
+        ],
+        [
+          181.217255,
+          25.493156,
+          511.357117
+        ]
+      ],
+      "extent_mm": [
+        50.409027,
+        50.986313,
+        34.566925
+      ],
+      "vertex_count": 4696,
+      "face_count": 9388,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 35091.731462
+    },
+    {
+      "node_name": "MID360_CONNECTOR",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/MID360_CONNECTOR.stl",
+      "bounds_mm": [
+        [
+          110.092361,
+          -11.0,
+          464.397034
+        ],
+        [
+          126.686615,
+          11.0,
+          480.974091
+        ]
+      ],
+      "extent_mm": [
+        16.594254,
+        22.0,
+        16.577057
+      ],
+      "vertex_count": 16145,
+      "face_count": 32302,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 1904.90656
+    },
+    {
+      "node_name": "D435I_CAMERA_DIRECT",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/D435I_CAMERA_DIRECT.stl",
+      "bounds_mm": [
+        [
+          191.128677,
+          -44.9142,
+          433.755829
+        ],
+        [
+          220.760422,
+          45.000099,
+          461.615662
+        ]
+      ],
+      "extent_mm": [
+        29.631744,
+        89.914299,
+        27.859833
+      ],
+      "vertex_count": 154145,
+      "face_count": 231127,
+      "watertight": false,
+      "connected_components": 133,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "D435_DIRECT_FASTENER_REFERENCES",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/D435_DIRECT_FASTENER_REFERENCES.stl",
+      "bounds_mm": [
+        [
+          188.322479,
+          -25.25,
+          448.564667
+        ],
+        [
+          198.233307,
+          25.25,
+          455.636566
+        ]
+      ],
+      "extent_mm": [
+        9.910828,
+        50.5,
+        7.071899
+      ],
+      "vertex_count": 390,
+      "face_count": 768,
+      "watertight": true,
+      "connected_components": 4,
+      "volume_mm3": 193.44005
+    },
+    {
+      "node_name": "BZ20_BACKLOAD_SHELL_SOURCE",
+      "role": "official_source_geometry_with_image_estimated_rigid_transform",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/BZ20_BACKLOAD_SHELL_SOURCE.stl",
+      "bounds_mm": [
+        [
+          -49.148003,
+          -48.0,
+          427.962555
+        ],
+        [
+          58.851997,
+          48.0,
+          457.962555
+        ]
+      ],
+      "extent_mm": [
+        108.0,
+        96.0,
+        30.0
+      ],
+      "vertex_count": 4338,
+      "face_count": 8692,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 55974.141537
+    },
+    {
+      "node_name": "J17A_FOUR_MOUNT_FASTENER_REFERENCES",
+      "role": "official_video_mounting_axes_with_unresolved_screw_length",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/J17A_FOUR_MOUNT_FASTENER_REFERENCES.stl",
+      "bounds_mm": [
+        [
+          69.926,
+          -45.75,
+          440.0
+        ],
+        [
+          185.426,
+          45.75,
+          449.0
+        ]
+      ],
+      "extent_mm": [
+        115.5,
+        91.5,
+        9.0
+      ],
+      "vertex_count": 784,
+      "face_count": 1536,
+      "watertight": true,
+      "connected_components": 8,
+      "volume_mm3": 434.260642
+    }
+  ]
+}

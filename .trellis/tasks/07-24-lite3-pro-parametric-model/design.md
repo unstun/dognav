@@ -1,5 +1,247 @@
 # Design: Lite3 LiDAR High-Fidelity Printable Replica
 
+## Current-Pro Revision Design Correction (2026-07-29)
+
+The purchased current Pro is a new robot-interface target.  The legacy
+V1.0.7 `74 x 94 mm` rectangle, the Venture J17A robot-side interface, and the
+Experience-derived V1 axes are three different evidence tracks; none may be
+silently substituted for the physical current-Pro receiver set.
+
+### Split architecture
+
+The design is split at a serviceable interface:
+
+1. **Reusable upper sensor module.**  Preserve the reviewed Mid-360, D435i,
+   S410, J17A/J20A-derived geometry, source sensor axes, and off-robot assembly
+   order.  This is not proof of robot fit.
+2. **Current-Pro lower adapter.**  A new, separately named print adaptation
+   will connect the reusable module to measured receivers on Dr Sun's robot.
+   It remains replaceable and must not be fused to the upper module before the
+   physical fit review.
+
+The lower adapter must place the upper module in the vacant forward region
+shown by the user photo and current official LiDAR visual.  It must not pass
+under, cut, move, or visually hide the long compute enclosure to compensate for
+unknown geometry.  The enclosure, its feet, front edge, ventilation, cable,
+and driver access form one measured keep-out.
+
+### Frozen and open parameters
+
+Frozen source-backed upper-module parameters include the official sensor
+models and their internal mounting axes.  Open current-Pro parameters are:
+
+- every usable robot receiver X/Y coordinate and seating Z;
+- thread designation, usable depth, recess, and candidate screw length;
+- compute-enclosure front edge, width, height, feet, cable, ventilation, and
+  service corridor;
+- upper-module forward offset and adapter elevation;
+- printable rail/web width, height, fillets, and minimum wall after the fit
+  envelope is known.
+
+The current official product image is permitted to establish only that the
+sensor module belongs ahead of the enclosure.  It cannot supply any of these
+numeric parameters.
+
+### Physical measurement scaffold and compact layout (2026-07-30)
+
+Ten physical tape-measure photographs now define a local, uncertainty-bearing
+coordinate scaffold.  The midpoint of the two front small-hole axes is
+`[0, 0, 0]`; their lateral coordinates are `Y=+/-32.5 mm`.  The visible centre
+candidate is approximately `[-75, 0, 0] mm`, the nose edge is `X=+20 mm`, and
+the nominal compute enclosure begins at `X=-100 mm`.  Its photo envelope is
+approximately `200 x 100 x 50 mm`; the collision proxy expands this to
+`X=[-305,-96]`, `Y=[-54,54]`, and `Z=[0,54] mm` in the early photo-only
+revision.  Scan Rev B supersedes the lateral collision bounds with
+`Y=[-57,+60] mm` and supplies the two-recess nominal polygon described below.
+
+This scaffold deliberately separates **visible axes** from **receivers**.  The
+front pair has a two-view photo-measured pitch, but its thread and usable depth
+are null.  The centre feature is only a visible candidate axis; its mounting
+role, thread, depth, material, and onward load path are unknown.  Therefore the
+current accepted receiver count is zero.
+
+The retained V1/J17A-derived upper carrier is approximately `153.7 mm` long,
+while the measured nose-to-expanded-enclosure zone is approximately `116 mm`.
+Direct reuse would require about `37.7 mm` of overhang or enclosure overlap.
+The current design direction is instead a compact `110 x 115 mm` planning
+surface with the S410/Mid-360 source geometry centred at approximately
+`X=-37.5 mm` and the D435i official `90 x 25 x 25 mm` envelope at the front.
+The source-geometry layout leaves `6.0 mm` to the expanded enclosure and
+`2.5 mm` to the measured nose edge.
+
+The planning surface has zero thickness and no holes.  It is a packaging test,
+not the lower adapter.  Receiver bores, structural ribs, cable routing, optical
+directions, tool corridors, material, and print orientation follow only after
+human placement review and the physical receiver contract.
+
+### Physical scan reference and coordinate correction (2026-07-30)
+
+The user-provided GLB is a textured room scan, not an isolated CAD model.  Its
+raw bounds include the floor and unrelated objects, so whole-scene PCA is not a
+valid robot orientation method.  The scan pipeline first crops the physical
+Lite3 region, then fits the dense flat top of the long compute enclosure.  The
+enclosure fit gives a robot long-axis yaw of `160.777014948 deg`; corrected
+physical photographs identify the rounded empty nose as the positive front
+end.  The resulting right-handed scan frame is `+X front`, `+Y left`, and
+`+Z up`.
+
+This scan frame is temporary and intentionally does **not** replace the R127
+mount frame.  Its X/Y origin is the compute-enclosure top centroid because that
+surface is dense and stable in the scan.  The final lower-adapter frame still
+requires translation to the front small-hole midpoint after those receiver
+axes are confirmed.  Keeping the two frames distinct prevents a convenient
+scan datum from becoming a false fastener datum.
+
+The 0.1-to-99.9-percentile enclosure-top span is approximately
+`199.585 x 108.618 mm`, which corroborates metre-scaled GLB coordinates and the
+physical enclosure measurements.  The oriented point reference, textured OBJ,
+and 3 mm clustered STL support visual and collision work only.  Scan texture,
+mesh noise, and occlusion are not precise enough to authorize small-hole
+centres, diameters, threads, or structural use.
+
+The compute enclosure's nominal footprint is also non-rectangular.  At its
+front end, two side recesses begin near mount-frame `X=-130 mm` and run roughly
+`30 mm` to the `X=-100 mm` front face.  The left exterior steps from about
+`Y=+55.879` to `+44 mm`; the right exterior steps from about `Y=-52.739` to
+`-42 mm`.  Revision B therefore uses an eight-vertex concave footprint for the
+nominal visual B-rep.  Its corner radii remain simplified.  Collision screening
+continues to use the larger rectangular `X=[-305,-96]`, `Y=[-57,+60]`,
+`Z=[0,54] mm` keep-out; the two visual recesses do not grant usable volume.
+
+All top photographs are also stored in a consistent `front -> right`
+orientation for comparison.  They remain perspective images, so no dimension
+is upgraded merely because a photograph was rotated.
+
+### Scan-registered sensor review assemblies (2026-07-30)
+
+The source-backed J20A/MID-360/S410 transforms are unchanged in upper-assembly
+Rev B.  Only the chassis context changes: the scan-derived two-recess nominal
+enclosure is visible for review and the larger rectangular Rev B keep-out is
+used for collision screening.  The upper assembly remains `5.0 mm` ahead of
+that conservative keep-out, with zero positive-volume intersection among the
+three source components or against the keep-out.  This preserves the reusable
+upper module without treating the enclosure recesses as mounting pockets.
+
+The D435i support remains a separate camera-first study.  Its rear bridge
+preserves two 3.4 mm clearances on the official 45 mm M3 axes; two side posts
+and future lower-union pads form one connected solid.  Moving the post front
+edge back to `X=11.5 mm` removes the former positive-volume camera penetration.
+At the current review pose the nominal camera envelope is 20 degrees
+downward, clears the source upper assembly by approximately `7.781 mm`, and
+extends approximately `24.198 mm` beyond the measured nose edge.  That
+overhang is a visible placement question, not an accepted design result.
+
+The headless Rev B document uses the official D435i datasheet envelope for
+collision checks.  The detailed manufacturer B-rep remains preserved in the
+Fusion review archive and must be used in the final appearance/animation
+track.  The two lower pads have no bores and establish no Lite3 receiver,
+thread, usable depth, screw length, or structural load path.
+
+### Receiver measurement gate (2026-07-30)
+
+The lower-adapter gate now uses the same Rev B enclosure contract as the upper
+review: the scan-derived eight-vertex footprint is nominal display geometry,
+while `X=[-305,-96]`, `Y=[-57,+60]`, `Z=[0,54] mm` remains the collision
+authority.  Neither visible recess is treated as an attachment pocket or as
+free cable volume.
+
+The physical request is split into four callouts.  A and B are the two front
+axes at `Y=+/-32.5 mm` and must be checked independently for thread, usable
+depth, counterbore/recess, material, insert, and onward load path.  C is the
+centre feature at approximately `X=-75 mm`; its first question is whether it
+is structural at all.  D covers enclosure feet, ventilation, inserted plugs,
+cable bends, cover service, and tool corridors.  Until A/B/C/D are reviewed,
+the ledger records zero accepted receivers and no printable lower-adapter
+geometry.
+
+### Rejection propagation
+
+The V1 carrier's upper topology, sensor-axis checks, collision methodology,
+and animation implementation are retained as reusable or negative evidence.
+Its robot-side attachment is rejected: the animated rows are `65.0 mm` and
+`105.004442 mm` wide, separated by `133.998676 mm`, on planes `5.0 mm` apart.
+The V1 `robot_rear_pair_pitch` field also contains the `67.882251 mm` web width
+rather than the animated rear screw pitch.  These values may not seed the
+current-Pro lower adapter.
+
+The design remains a measurement-ready architecture, not a fabrication-ready
+part, until the current physical receiver and enclosure ledger is complete.
+
+## Superseded Physical-Lite3 Fusion Adapter V1 Design (2026-07-29)
+
+This design records the archived V1 upper-module work. The current-Pro lower
+interface is governed by the revision correction above.
+
+The purchased robot is the design target.  Its existing long white Interface
+box remains an external keep-out, while the new carrier occupies only the
+front top-deck region shown free in the user photograph.  The robot STEP,
+photo, manufacturer bracket STEP files, and sensor CAD remain separate evidence
+tracks so a convenient assembly does not become a false factory claim.
+
+### Mechanical architecture
+
+The printable part is
+`LITE3_MID360_D435I_MONOLITHIC_CARRIER_V1_NOT_OFFICIAL_CAD`.  It derives from
+the exterior and hole geometry of J17A and J20A and joins their load paths with
+four internal fusion regions plus a continuous rear web.  The rear web spans
+the two former rear layer-connection regions; front fusion regions preserve the
+original lower/upper source envelopes.  Manufacturer J17A and J20A occurrences
+remain unchanged and hidden in the review assembly.
+
+The carrier intentionally retains these interfaces:
+
+- the original robot-side 65 mm front pair and original rear support features;
+- two 3.2 mm J17A camera clearance holes on 45 mm centres;
+- four J20A Mid-360 clearances on the 48 x 36 mm source pattern;
+- four J20A M5 guard receivers aligned to S410's 5.2 mm clearances.
+
+D435i remains a separate official B-rep and seats directly on J17A.  Mid-360
+remains a separate official B-rep and seats on J20A.  S410 remains a separate
+manufacturer guard.  The monolithic carrier removes the J17A-to-J20A layer
+fasteners only; it does not remove the sensor, guard, or robot fasteners.
+
+### Parameters and evidence boundary
+
+The source generator exposes rear-web thickness/depth, front fusion diameter,
+minimum wall, Interface keep-out clearance, robot front/rear pitch, spacer
+height, and candidate screw lengths.  Parameters recovered from B-rep geometry
+are locked separately from physical-only values.  The default robot-side M3x8
+front screws, M3x12 rear screws, and rear spacers are display candidates until
+the purchased robot's thread and depth are measured.
+
+The Interface envelope is deliberately translucent in diagnostic renders and
+opaque white in the final context render.  It is named
+`PHYSICAL_INTERFACE_KEEP_OUT_PENDING_MEASUREMENT`, excluded from exports, and
+must never be confused with the earlier rejected 160/233 mm reconstructed box.
+
+### Human-executable assembly
+
+1. Off-robot, seat D435i on bare carrier/J17A and install its two M3 screws from
+   the bracket side into the camera threads.
+2. Off-robot, seat Mid-360 on the J20A portion and install four underside M3
+   screws in a diagonal sequence.
+3. Seat S410 on its four J20A axes and install its four screws independently in
+   a cross pattern.
+4. Place any measured rear locating spacers on Lite3, then bring the complete
+   sensor carrier to the robot along the deck normal without passing through
+   the Interface envelope.
+5. Start the four robot-side screws loosely, verify seating and cable freedom,
+   then cross-tighten.  Actual torque is absent until manufacturer or measured
+   hardware evidence exists.
+
+The animation uses close-ups at each active axis, ghosting only during hidden
+path diagnosis, and finishes with a fully opaque global robot view.
+
+### Preliminary structural intent
+
+The FDM target is carbon-fibre nylon for the moving-robot candidate; PETG may
+be used only for a dimensional prototype.  The rear web and front fusion
+regions are sized for a conservative analytical check using declared payload,
+acceleration, safety factor, and printed-material allowable stress.  This check
+is a screening calculation, not a fatigue/impact certification.  The release
+gate remains a printed coupon, stationary proof load, fastener-retention test,
+and low-speed tethered trial after dimensional fit is confirmed.
+
 ## Current J17A Front-Pair Adaptation Design (2026-07-27)
 
 Human review established the two front shallow chassis holes as the intended

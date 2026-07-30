@@ -1,0 +1,168 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "historical_internal_geometry_pass_rejected_for_current_pro_interface",
+  "component": "LITE3_MID360_D435I_MONOLITHIC_CARRIER_V1_NOT_OFFICIAL_CAD",
+  "classification": "print_adaptation",
+  "official_cad": false,
+  "source": {
+    "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-j17a-j20a-monolithic-rear-web-print-adaptation-rev-b/j17a-j20a-monolithic-rear-web-print-adaptation-rev-b.step",
+    "sha256": "ee74424eab271aa382cc81822c58d14ccf72913dd71d3ef2db5bf8f970876042",
+    "metrics": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "shell_count": 1,
+      "face_count": 201,
+      "edge_count": 575,
+      "volume_mm3": 68186.31994895225,
+      "bounds_mm": {
+        "min": [
+          -362.570096446815,
+          198.6199798454698,
+          2468.84890058374
+        ],
+        "max": [
+          -246.970096446815,
+          232.18141858307678,
+          2622.5834444506
+        ],
+        "size": [
+          115.6,
+          33.56143873760698,
+          153.7345438668599
+        ]
+      }
+    }
+  },
+  "candidate_metrics": {
+    "shape_type": "Compound",
+    "is_valid": true,
+    "is_closed": true,
+    "solid_count": 1,
+    "shell_count": 1,
+    "face_count": 195,
+    "edge_count": 557,
+    "volume_mm3": 74958.51640932777,
+    "bounds_mm": {
+      "min": [
+        -362.570096446815,
+        198.6199798454698,
+        2468.84890058374
+      ],
+      "max": [
+        -246.970096446815,
+        232.18141858307678,
+        2622.5834444506
+      ],
+      "size": [
+        115.6,
+        33.56143873760698,
+        153.7345438668599
+      ]
+    }
+  },
+  "outputs": {
+    "fcstd": {
+      "path": "cad/lite3-mid360-d435i-monolithic-carrier-v1.FCStd",
+      "bytes": 114106,
+      "sha256": "ee5a8c5ebf665d15b749c3884e22106bf87807111e0eaea49e69da6c394d4120"
+    },
+    "step": {
+      "path": "cad/lite3-mid360-d435i-monolithic-carrier-v1.step",
+      "bytes": 356094,
+      "sha256": "638ab3378661640bac5c216ed3ba3be807dc75ff6cd542fe2e9e2b16f1f724c2",
+      "clean_import": {
+        "shape_type": "Solid",
+        "is_valid": true,
+        "is_closed": true,
+        "solid_count": 1,
+        "shell_count": 1,
+        "face_count": 195,
+        "edge_count": 557,
+        "volume_mm3": 74958.51640963969,
+        "bounds_mm": {
+          "min": [
+            -362.5700964468,
+            198.61997984547,
+            2468.848900584
+          ],
+          "max": [
+            -246.9700964468,
+            232.18141858307,
+            2622.5834444510015
+          ],
+          "size": [
+            115.6,
+            33.561438737600014,
+            153.73454386700132
+          ]
+        }
+      }
+    },
+    "stl": {
+      "path": "cad/lite3-mid360-d435i-monolithic-carrier-v1.stl",
+      "bytes": 1321484,
+      "sha256": "a6277babd3f03b9e75ab00517d71c2f01b550091746baad6e98832827852a7df",
+      "mesh": {
+        "facet_count": 26428,
+        "point_count": 13168,
+        "edge_count": 39642,
+        "is_solid": true,
+        "count_components": 1,
+        "volume_mm3": 74933.6796875,
+        "bound_box_mm": {
+          "size": [
+            115.0,
+            33.561431884765625,
+            153.734619140625
+          ]
+        }
+      }
+    }
+  },
+  "checks": {
+    "source_one_valid_closed_solid": true,
+    "clean_step_one_valid_closed_solid": true,
+    "stl_solid_one_component": true,
+    "source_to_candidate_added_volume_mm3": 6772.196460375519,
+    "volume_round_trip_relative_error": 4.161239014079905e-12,
+    "stl_volume_relative_error": 0.0003313395597658888
+  },
+  "parameters_sha256": "81ed7e1368813c68a630585531e52a8492c321c22f8873fdd7924bfaeead8fe2",
+  "claim_boundary": "The exported carrier retains internal V1 topology evidence only. Its Experience-style robot interface is rejected for the purchased current Lite3 Pro; do not fabricate or install it.",
+  "pass": true,
+  "engineering_change": {
+    "operation": "thicken_continuous_rear_web_toward_robot_rear",
+    "target_thickness_mm": 10.0,
+    "web_source_engagement_mm3": 11895.423656469775,
+    "result_metrics": {
+      "shape_type": "Compound",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "shell_count": 1,
+      "face_count": 195,
+      "edge_count": 557,
+      "volume_mm3": 74958.51640932777,
+      "bounds_mm": {
+        "min": [
+          -362.570096446815,
+          198.6199798454698,
+          2468.84890058374
+        ],
+        "max": [
+          -246.970096446815,
+          232.18141858307678,
+          2622.5834444506
+        ],
+        "size": [
+          115.6,
+          33.56143873760698,
+          153.7345438668599
+        ]
+      }
+    },
+    "source_geometry_preserved": true
+  }
+}

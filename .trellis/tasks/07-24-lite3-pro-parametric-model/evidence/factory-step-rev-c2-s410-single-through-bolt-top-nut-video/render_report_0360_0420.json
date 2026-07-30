@@ -1,0 +1,145 @@
+{
+  "frame_start": 360,
+  "frame_end": 420,
+  "frame_list": null,
+  "rendered_frames": [
+    360,
+    361,
+    362,
+    363,
+    364,
+    365,
+    366,
+    367,
+    368,
+    369,
+    370,
+    371,
+    372,
+    373,
+    374,
+    375,
+    376,
+    377,
+    378,
+    379,
+    380,
+    381,
+    382,
+    383,
+    384,
+    385,
+    386,
+    387,
+    388,
+    389,
+    390,
+    391,
+    392,
+    393,
+    394,
+    395,
+    396,
+    397,
+    398,
+    399,
+    400,
+    401,
+    402,
+    403,
+    404,
+    405,
+    406,
+    407,
+    408,
+    409,
+    410,
+    411,
+    412,
+    413,
+    414,
+    415,
+    416,
+    417,
+    418,
+    419
+  ],
+  "rendered_count": 60,
+  "frame_size": [
+    1280,
+    720
+  ],
+  "output_dir": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-rev-c2-s410-single-through-bolt-top-nut-video/frames",
+  "sequence": {
+    "off_robot_preassembly_outboard_of_lite3": [
+      0,
+      293
+    ],
+    "preassembly_standoff_mm": 150.0,
+    "bolt_bottom_up": [
+      36,
+      89
+    ],
+    "bolt_pre_tight_gap_mm": 0.8,
+    "nut_top_down_six_turns": [
+      132,
+      185
+    ],
+    "short_l_key_approach_from_underside": [
+      222,
+      233
+    ],
+    "four_quarter_turn_bolt_tightening_strokes": [
+      234,
+      293
+    ],
+    "rear_locating_spacers_placed_before_stack": [
+      294,
+      317
+    ],
+    "fastened_stack_lowered_onto_lite3": [
+      318,
+      347
+    ],
+    "front_left_m3x8_base_screw": [
+      348,
+      383
+    ],
+    "front_right_m3x8_base_screw": [
+      384,
+      419
+    ],
+    "rear_left_m3x12_base_screw": [
+      426,
+      461
+    ],
+    "rear_right_m3x12_base_screw": [
+      462,
+      497
+    ],
+    "opaque_local_base_connection": [
+      498,
+      521
+    ],
+    "exact_final_scene_and_global_pullback": [
+      522,
+      569
+    ],
+    "lite3_context_visible_during_overview_and_mount": true,
+    "total_final_bolt_advance_mm": 0.8,
+    "base_screw_driver_visual_only": true,
+    "base_screw_driver_type": "long_reach_hex_key",
+    "base_screw_torque_claim": false,
+    "guard_front_base_access_channels": {
+      "count": 2,
+      "diameter_mm": 7.0,
+      "full_depth": true,
+      "official_cad": false,
+      "component": "S410_GUARD_FRONT_BASE_2X_M3_FULL_DEPTH_ACCESS_HOLES_7MM_VISUAL_PRINT_CANDIDATE_NOT_OFFICIAL_CAD"
+    },
+    "receiver_engagement_is_visual_candidate": true,
+    "text_overlay": false
+  },
+  "scene_restored": true,
+  "error": null
+}

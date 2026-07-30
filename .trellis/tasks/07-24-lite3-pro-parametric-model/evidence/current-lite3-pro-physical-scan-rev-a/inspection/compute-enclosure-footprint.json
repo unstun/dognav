@@ -1,0 +1,462 @@
+{
+  "schema_version": 1,
+  "status": "two_front_recesses_recovered_from_scan",
+  "source_glb": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/source/2026-07-30-user-glb-scan/7_30_2026.glb",
+  "mount_frame_registration": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/inspection/scan-photo-scaffold-registration.json",
+  "top_surface_band_z_mm": [
+    435.0,
+    450.0
+  ],
+  "sample_count": 10025,
+  "outer_envelope_mm": {
+    "x": [
+      -299.58516985178125,
+      -100.0
+    ],
+    "y": [
+      -52.739342748056195,
+      55.878777875488026
+    ]
+  },
+  "recess_detection": {
+    "detected_shoulder_x_mm": -129.5,
+    "nominal_shoulder_x_mm": -130,
+    "nominal_front_x_mm": -100.0,
+    "nominal_longitudinal_length_mm": 30.0,
+    "inner_y_percentile_mm": [
+      -42.38904867581387,
+      43.93969493286466
+    ],
+    "nominal_inner_y_mm": [
+      -42,
+      44
+    ],
+    "right_recess_depth_mm": 10.739342748056195,
+    "left_recess_depth_mm": 11.878777875488026,
+    "bin_width_mm": 1.0,
+    "change_rule": "first three consecutive X bins with 0.5-to-99.5-percentile width below 95 mm"
+  },
+  "nominal_footprint_polygon_mm": [
+    [
+      -299.58516985178125,
+      -52.739342748056195
+    ],
+    [
+      -130,
+      -52.739342748056195
+    ],
+    [
+      -130,
+      -42
+    ],
+    [
+      -100.0,
+      -42
+    ],
+    [
+      -100.0,
+      44
+    ],
+    [
+      -130,
+      44
+    ],
+    [
+      -130,
+      55.878777875488026
+    ],
+    [
+      -299.58516985178125,
+      55.878777875488026
+    ]
+  ],
+  "claim_boundary": "Scan-derived exterior footprint with millimetre-rounded step faces. Corner radii, vertical wall detail, feet, ports, and manufacturing tolerances remain simplified or open.",
+  "manufacturing_release": false,
+  "x_bin_diagnostics": [
+    {
+      "x_center_mm": -154.5,
+      "count": 45,
+      "low_y_mm": -51.32762242346541,
+      "high_y_mm": 54.82259984347053,
+      "width_mm": 106.15022226693594
+    },
+    {
+      "x_center_mm": -153.5,
+      "count": 43,
+      "low_y_mm": -51.29890328444794,
+      "high_y_mm": 54.93973733810463,
+      "width_mm": 106.23864062255257
+    },
+    {
+      "x_center_mm": -152.5,
+      "count": 46,
+      "low_y_mm": -51.37576268574139,
+      "high_y_mm": 55.00113591405587,
+      "width_mm": 106.37689859979727
+    },
+    {
+      "x_center_mm": -151.5,
+      "count": 60,
+      "low_y_mm": -51.42552782427078,
+      "high_y_mm": 54.84870921917561,
+      "width_mm": 106.27423704344639
+    },
+    {
+      "x_center_mm": -150.5,
+      "count": 52,
+      "low_y_mm": -51.529006366767646,
+      "high_y_mm": 55.13706868353511,
+      "width_mm": 106.66607505030277
+    },
+    {
+      "x_center_mm": -149.5,
+      "count": 48,
+      "low_y_mm": -51.451451280368616,
+      "high_y_mm": 54.79013700819849,
+      "width_mm": 106.2415882885671
+    },
+    {
+      "x_center_mm": -148.5,
+      "count": 55,
+      "low_y_mm": -51.68442176864807,
+      "high_y_mm": 55.060933182562806,
+      "width_mm": 106.74535495121089
+    },
+    {
+      "x_center_mm": -147.5,
+      "count": 47,
+      "low_y_mm": -51.49667810839006,
+      "high_y_mm": 55.17009194505777,
+      "width_mm": 106.66677005344783
+    },
+    {
+      "x_center_mm": -146.5,
+      "count": 56,
+      "low_y_mm": -51.82983709047827,
+      "high_y_mm": 55.07223335817283,
+      "width_mm": 106.9020704486511
+    },
+    {
+      "x_center_mm": -145.5,
+      "count": 56,
+      "low_y_mm": -52.0002713009436,
+      "high_y_mm": 55.05997978455842,
+      "width_mm": 107.06025108550202
+    },
+    {
+      "x_center_mm": -144.5,
+      "count": 53,
+      "low_y_mm": -51.43143346119757,
+      "high_y_mm": 55.113838690062806,
+      "width_mm": 106.54527215126038
+    },
+    {
+      "x_center_mm": -143.5,
+      "count": 62,
+      "low_y_mm": -51.9819303944038,
+      "high_y_mm": 55.095168556094855,
+      "width_mm": 107.07709895049865
+    },
+    {
+      "x_center_mm": -142.5,
+      "count": 54,
+      "low_y_mm": -51.92393991828812,
+      "high_y_mm": 54.73751715665638,
+      "width_mm": 106.66145707494451
+    },
+    {
+      "x_center_mm": -141.5,
+      "count": 80,
+      "low_y_mm": -52.038084206843784,
+      "high_y_mm": 55.00536343082713,
+      "width_mm": 107.04344763767091
+    },
+    {
+      "x_center_mm": -140.5,
+      "count": 97,
+      "low_y_mm": -52.17676998714282,
+      "high_y_mm": 54.9704128915767,
+      "width_mm": 107.14718287871952
+    },
+    {
+      "x_center_mm": -139.5,
+      "count": 90,
+      "low_y_mm": -52.29535107028562,
+      "high_y_mm": 54.85204078150093,
+      "width_mm": 107.14739185178655
+    },
+    {
+      "x_center_mm": -138.5,
+      "count": 74,
+      "low_y_mm": -51.84427178549904,
+      "high_y_mm": 54.10222072327294,
+      "width_mm": 105.94649250877198
+    },
+    {
+      "x_center_mm": -137.5,
+      "count": 90,
+      "low_y_mm": -52.44735229401849,
+      "high_y_mm": 54.81414161923579,
+      "width_mm": 107.26149391325428
+    },
+    {
+      "x_center_mm": -136.5,
+      "count": 67,
+      "low_y_mm": -52.45404996433889,
+      "high_y_mm": 54.747136039820866,
+      "width_mm": 107.20118600415975
+    },
+    {
+      "x_center_mm": -135.5,
+      "count": 69,
+      "low_y_mm": -52.24845432130356,
+      "high_y_mm": 54.3604544580578,
+      "width_mm": 106.60890877936137
+    },
+    {
+      "x_center_mm": -134.5,
+      "count": 50,
+      "low_y_mm": -52.15454761314651,
+      "high_y_mm": 53.98600091992566,
+      "width_mm": 106.14054853307218
+    },
+    {
+      "x_center_mm": -133.5,
+      "count": 64,
+      "low_y_mm": -51.986137194009935,
+      "high_y_mm": 54.02568067259645,
+      "width_mm": 106.01181786660638
+    },
+    {
+      "x_center_mm": -132.5,
+      "count": 77,
+      "low_y_mm": -51.68958652421582,
+      "high_y_mm": 53.58729584431997,
+      "width_mm": 105.27688236853578
+    },
+    {
+      "x_center_mm": -131.5,
+      "count": 100,
+      "low_y_mm": -50.51599122388392,
+      "high_y_mm": 52.949241498013045,
+      "width_mm": 103.46523272189697
+    },
+    {
+      "x_center_mm": -130.5,
+      "count": 91,
+      "low_y_mm": -47.895702403118364,
+      "high_y_mm": 52.03118270978018,
+      "width_mm": 99.92688511289855
+    },
+    {
+      "x_center_mm": -129.5,
+      "count": 72,
+      "low_y_mm": -42.888594197821526,
+      "high_y_mm": 49.595043003790614,
+      "width_mm": 92.48363720161214
+    },
+    {
+      "x_center_mm": -128.5,
+      "count": 62,
+      "low_y_mm": -40.814736965358684,
+      "high_y_mm": 46.246811491245445,
+      "width_mm": 87.06154845660413
+    },
+    {
+      "x_center_mm": -127.5,
+      "count": 59,
+      "low_y_mm": -40.33303308050855,
+      "high_y_mm": 44.736462192536806,
+      "width_mm": 85.06949527304536
+    },
+    {
+      "x_center_mm": -126.5,
+      "count": 52,
+      "low_y_mm": -40.469988434633116,
+      "high_y_mm": 44.1489068898409,
+      "width_mm": 84.61889532447401
+    },
+    {
+      "x_center_mm": -125.5,
+      "count": 47,
+      "low_y_mm": -40.36788446009995,
+      "high_y_mm": 44.013217107002134,
+      "width_mm": 84.38110156710209
+    },
+    {
+      "x_center_mm": -124.5,
+      "count": 56,
+      "low_y_mm": -40.358760198006465,
+      "high_y_mm": 43.777809665018594,
+      "width_mm": 84.13656986302506
+    },
+    {
+      "x_center_mm": -123.5,
+      "count": 63,
+      "low_y_mm": -40.41608875200321,
+      "high_y_mm": 43.82260829596751,
+      "width_mm": 84.23869704797073
+    },
+    {
+      "x_center_mm": -122.5,
+      "count": 56,
+      "low_y_mm": -40.69357977678899,
+      "high_y_mm": 43.79964332916716,
+      "width_mm": 84.49322310595615
+    },
+    {
+      "x_center_mm": -121.5,
+      "count": 63,
+      "low_y_mm": -40.010518049371456,
+      "high_y_mm": 43.81978940948024,
+      "width_mm": 83.83030745885169
+    },
+    {
+      "x_center_mm": -120.5,
+      "count": 57,
+      "low_y_mm": -40.24810943558234,
+      "high_y_mm": 43.859303549136555,
+      "width_mm": 84.1074129847189
+    },
+    {
+      "x_center_mm": -119.5,
+      "count": 49,
+      "low_y_mm": -40.66556331880528,
+      "high_y_mm": 43.74458778296236,
+      "width_mm": 84.41015110176764
+    },
+    {
+      "x_center_mm": -118.5,
+      "count": 43,
+      "low_y_mm": -40.12164166482458,
+      "high_y_mm": 43.740147206602465,
+      "width_mm": 83.86178887142705
+    },
+    {
+      "x_center_mm": -117.5,
+      "count": 45,
+      "low_y_mm": -40.99739210247648,
+      "high_y_mm": 43.86100177847432,
+      "width_mm": 84.8583938809508
+    },
+    {
+      "x_center_mm": -116.5,
+      "count": 47,
+      "low_y_mm": -41.06565797904815,
+      "high_y_mm": 43.69913616234116,
+      "width_mm": 84.7647941413893
+    },
+    {
+      "x_center_mm": -115.5,
+      "count": 29,
+      "low_y_mm": -40.674224150127955,
+      "high_y_mm": 43.83223482955691,
+      "width_mm": 84.50645897968487
+    },
+    {
+      "x_center_mm": -114.5,
+      "count": 33,
+      "low_y_mm": -41.263574322925564,
+      "high_y_mm": 43.64207077462432,
+      "width_mm": 84.9056450975499
+    },
+    {
+      "x_center_mm": -113.5,
+      "count": 32,
+      "low_y_mm": -41.22506582593031,
+      "high_y_mm": 43.90250905915275,
+      "width_mm": 85.12757488508305
+    },
+    {
+      "x_center_mm": -112.5,
+      "count": 27,
+      "low_y_mm": -40.801517225071635,
+      "high_y_mm": 43.965510115205866,
+      "width_mm": 84.76702734027751
+    },
+    {
+      "x_center_mm": -111.5,
+      "count": 52,
+      "low_y_mm": -41.889725378352594,
+      "high_y_mm": 43.84227004145038,
+      "width_mm": 85.73199541980297
+    },
+    {
+      "x_center_mm": -110.5,
+      "count": 29,
+      "low_y_mm": -42.01551770261875,
+      "high_y_mm": 43.92711881400157,
+      "width_mm": 85.94263651662033
+    },
+    {
+      "x_center_mm": -109.5,
+      "count": 44,
+      "low_y_mm": -42.118889469193725,
+      "high_y_mm": 43.95472042276814,
+      "width_mm": 86.07360989196187
+    },
+    {
+      "x_center_mm": -108.5,
+      "count": 40,
+      "low_y_mm": -42.44501926363643,
+      "high_y_mm": 43.81387481086713,
+      "width_mm": 86.25889407450356
+    },
+    {
+      "x_center_mm": -107.5,
+      "count": 33,
+      "low_y_mm": -42.55277663805371,
+      "high_y_mm": 43.67839524004147,
+      "width_mm": 86.23117187809518
+    },
+    {
+      "x_center_mm": -106.5,
+      "count": 48,
+      "low_y_mm": -42.2733930844754,
+      "high_y_mm": 43.621529247210944,
+      "width_mm": 85.89492233168635
+    },
+    {
+      "x_center_mm": -105.5,
+      "count": 47,
+      "low_y_mm": -42.402245293757126,
+      "high_y_mm": 43.084832090860345,
+      "width_mm": 85.48707738461746
+    },
+    {
+      "x_center_mm": -104.5,
+      "count": 84,
+      "low_y_mm": -41.95033788443167,
+      "high_y_mm": 43.322623923082,
+      "width_mm": 85.27296180751367
+    },
+    {
+      "x_center_mm": -103.5,
+      "count": 163,
+      "low_y_mm": -41.879099684621764,
+      "high_y_mm": 43.134516263879554,
+      "width_mm": 85.01361594850133
+    },
+    {
+      "x_center_mm": -102.5,
+      "count": 213,
+      "low_y_mm": -41.0863261548943,
+      "high_y_mm": 42.01668253920889,
+      "width_mm": 83.10300869410318
+    },
+    {
+      "x_center_mm": -101.5,
+      "count": 166,
+      "low_y_mm": -40.56718993145858,
+      "high_y_mm": 41.76062309794706,
+      "width_mm": 82.32781302940563
+    },
+    {
+      "x_center_mm": -100.5,
+      "count": 106,
+      "low_y_mm": -40.1188198513371,
+      "high_y_mm": 9.642837715539677,
+      "width_mm": 49.76165756687678
+    }
+  ]
+}

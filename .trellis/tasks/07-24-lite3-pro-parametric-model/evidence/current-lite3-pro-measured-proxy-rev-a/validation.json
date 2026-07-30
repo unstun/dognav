@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "photo_measured_proxy_pass_receiver_contract_open",
+  "classification": "collision_and_layout_proxy_not_printable",
+  "official_cad": false,
+  "source": {
+    "measurement_results": "evidence/current-lite3-pro-lower-adapter-measurement-gate/measurement_results.json",
+    "measurement_results_sha256": "6875c13fba384aee5fa7ab9efa0b72df0915f04f7ba1631085bf30a0f2e0a064",
+    "source_index": "evidence/current-lite3-pro-lower-adapter-measurement-gate/source/2026-07-30-user-physical-measurements/source_index.json",
+    "source_index_sha256": "9e3b68ce8869ea98f44b29fe9da0deffabfb55872d7105cb6636a74da4aaf4bc"
+  },
+  "objects": {
+    "PhotoDeckEnvelope": {
+      "label": "PHOTO_DECK_SILHOUETTE_PROXY_NOT_OFFICIAL_CAD",
+      "evidence_class": "photo_measured_silhouette_proxy",
+      "metrics": {
+        "shape_type": "Solid",
+        "is_valid": true,
+        "is_closed": true,
+        "solid_count": 1,
+        "shell_count": 1,
+        "face_count": 8,
+        "volume_mm3": 59940.0,
+        "bounds_mm": {
+          "min": [
+            -100.0,
+            -70.0,
+            -4.0
+          ],
+          "max": [
+            20.0,
+            70.0,
+            0.0
+          ],
+          "size": [
+            120.0,
+            140.0,
+            4.0
+          ]
+        }
+      }
+    },
+    "ComputeEnclosureNominal": {
+      "label": "COMPUTE_ENCLOSURE_200x100x50_PHOTO_PROXY",
+      "evidence_class": "photo_measured_external_envelope",
+      "metrics": {
+        "shape_type": "Solid",
+        "is_valid": true,
+        "is_closed": true,
+        "solid_count": 1,
+        "shell_count": 1,
+        "face_count": 6,
+        "volume_mm3": 999999.9999999999,
+        "bounds_mm": {
+          "min": [
+            -300.0,
+            -50.0,
+            0.0
+          ],
+          "max": [
+            -100.0,
+            50.0,
+            50.0
+          ],
+          "size": [
+            200.0,
+            100.0,
+            50.0
+          ]
+        }
+      }
+    },
+    "ComputeEnclosureExpandedKeepout": {
+      "label": "COMPUTE_ENCLOSURE_EXPANDED_MEASUREMENT_KEEPOUT",
+      "evidence_class": "uncertainty_expanded_collision_keepout",
+      "metrics": {
+        "shape_type": "Solid",
+        "is_valid": true,
+        "is_closed": true,
+        "solid_count": 1,
+        "shell_count": 1,
+        "face_count": 6,
+        "volume_mm3": 1218888.0,
+        "bounds_mm": {
+          "min": [
+            -305.0,
+            -54.0,
+            0.0
+          ],
+          "max": [
+            -96.0,
+            54.0,
+            54.0
+          ],
+          "size": [
+            209.0,
+            108.0,
+            54.0
+          ]
+        }
+      }
+    },
+    "FrontLeftAxis": {
+      "label": "FRONT_LEFT_AXIS_THREAD_UNMEASURED",
+      "evidence_class": "photo_measured_axis_marker",
+      "metrics": {
+        "shape_type": "Solid",
+        "is_valid": true,
+        "is_closed": true,
+        "solid_count": 1,
+        "shell_count": 1,
+        "face_count": 3,
+        "volume_mm3": 339.2920065876976,
+        "bounds_mm": {
+          "min": [
+            -3.0,
+            29.5,
+            -6.0
+          ],
+          "max": [
+            3.0,
+            35.5,
+            6.0
+          ],
+          "size": [
+            6.0,
+            6.0,
+            12.0
+          ]
+        }
+      }
+    },
+    "FrontRightAxis": {
+      "label": "FRONT_RIGHT_AXIS_THREAD_UNMEASURED",
+      "evidence_class": "photo_measured_axis_marker",
+      "metrics": {
+        "shape_type": "Solid",
+        "is_valid": true,
+        "is_closed": true,
+        "solid_count": 1,
+        "shell_count": 1,
+        "face_count": 3,
+        "volume_mm3": 339.2920065876976,
+        "bounds_mm": {
+          "min": [
+            -3.0,
+            -35.5,
+            -6.0
+          ],
+          "max": [
+            3.0,
+            -29.5,
+            6.0
+          ],
+          "size": [
+            6.0,
+            6.0,
+            12.0
+          ]
+        }
+      }
+    },
+    "CentreCandidateAxis": {
+      "label": "CENTRE_CANDIDATE_AXIS_RECEIVER_ROLE_UNVERIFIED",
+      "evidence_class": "photo_measured_candidate_axis_marker",
+      "metrics": {
+        "shape_type": "Solid",
+        "is_valid": true,
+        "is_closed": true,
+        "solid_count": 1,
+        "shell_count": 1,
+        "face_count": 3,
+        "volume_mm3": 339.2920065876976,
+        "bounds_mm": {
+          "min": [
+            -78.0,
+            -3.0,
+            -6.0
+          ],
+          "max": [
+            -72.0,
+            3.0,
+            6.0
+          ],
+          "size": [
+            6.0,
+            6.0,
+            12.0
+          ]
+        }
+      }
+    },
+    "NoseEdgeDatum": {
+      "label": "NOSE_EDGE_DATUM_X_PLUS_20",
+      "evidence_class": "photo_measured_edge_marker",
+      "metrics": {
+        "shape_type": "Solid",
+        "is_valid": true,
+        "is_closed": true,
+        "solid_count": 1,
+        "shell_count": 1,
+        "face_count": 6,
+        "volume_mm3": 80.00000000000007,
+        "bounds_mm": {
+          "min": [
+            19.6,
+            -50.0,
+            0.2
+          ],
+          "max": [
+            20.400000000000002,
+            50.0,
+            1.2
+          ],
+          "size": [
+            0.8000000000000007,
+            100.0,
+            1.0
+          ]
+        }
+      }
+    }
+  },
+  "outputs": {
+    "fcstd": {
+      "path": "cad/current-lite3-pro-photo-measured-proxy-rev-a.FCStd",
+      "bytes": 9585,
+      "sha256": "cbebb064762daa9d5b113cf76d8440f40201585eec0eac77109c9769f9f75e7d"
+    },
+    "step": {
+      "path": "cad/current-lite3-pro-photo-measured-proxy-rev-a.step",
+      "bytes": 36647,
+      "sha256": "e1c0405f6476ee0b421c81529620a901406c1e5d3f102ce9a73a2fb964548c35",
+      "clean_import": {
+        "shape_type": "Compound",
+        "is_valid": true,
+        "is_closed": true,
+        "solid_count": 6,
+        "shell_count": 6,
+        "face_count": 29,
+        "volume_mm3": 1061037.876019768,
+        "bounds_mm": {
+          "min": [
+            -300.0,
+            -70.0,
+            -6.0
+          ],
+          "max": [
+            20.4,
+            70.00000000003278,
+            50.0
+          ],
+          "size": [
+            320.4,
+            140.0000000000328,
+            56.0
+          ]
+        }
+      }
+    },
+    "expanded_keepout_step": {
+      "path": "cad/current-lite3-pro-expanded-enclosure-keepout-rev-a.step",
+      "bytes": 6978,
+      "sha256": "7810e43a897f04886edfbf458089c7b9a95d680efae1a5a10af1db3a5dbeab2d",
+      "clean_import": {
+        "shape_type": "Solid",
+        "is_valid": true,
+        "is_closed": true,
+        "solid_count": 1,
+        "shell_count": 1,
+        "face_count": 6,
+        "volume_mm3": 1218888.0,
+        "bounds_mm": {
+          "min": [
+            -305.0,
+            -54.0,
+            0.0
+          ],
+          "max": [
+            -96.0,
+            54.0,
+            54.0
+          ],
+          "size": [
+            209.0,
+            108.0,
+            54.0
+          ]
+        }
+      }
+    }
+  },
+  "checks": {
+    "all_proxy_objects_valid": true,
+    "front_pair_axis_pitch_mm": 65.0,
+    "front_pair_axis_pitch_matches_measurement": true,
+    "nominal_enclosure_bounds_match_measurement": true,
+    "expanded_keepout_contains_nominal": true,
+    "printable_adapter_present": false,
+    "thread_or_depth_inferred": false
+  },
+  "release_gate": {
+    "printable_geometry_allowed": false,
+    "blocking_inputs": [
+      "front-pair thread designation",
+      "front-pair usable thread depth",
+      "centre candidate mounting role, thread, depth, and load path",
+      "remaining cable, connector, vent, foot, and service sweeps"
+    ]
+  },
+  "claim_boundary": "This package validates only the photo-measured proxy and axis scaffold. It is not official CAD, a printable adapter, or physical-fit evidence.",
+  "pass": true
+}

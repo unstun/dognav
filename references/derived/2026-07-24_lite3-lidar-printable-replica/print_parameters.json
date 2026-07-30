@@ -1,0 +1,745 @@
+{
+  "schema_version": 1,
+  "model_id": "lite3_laser_mid360_printable_static_replica",
+  "artifact_label": "printable_static_replica",
+  "forbidden_labels": [
+    "factory_cad",
+    "manufacturing_exact",
+    "functional_robot",
+    "fit_validated"
+  ],
+  "coordinate_system": {
+    "unit": "millimetre",
+    "axes": "X forward, Y left, Z up",
+    "ground_z_mm": 0.0
+  },
+  "sources": {
+    "urdf": {
+      "path": "references/upstream/2026-07-24_deep-robotics-model/source/high_res_official/Lite3/urdf/Lite3_high_res.urdf",
+      "sha256": "826406741af2766ff2b1aff44939e49ab03a471810617a2b05e43f1954a0fb91",
+      "evidence_class": "source_model"
+    },
+    "hip_dae": {
+      "path": "references/upstream/2026-07-24_deep-robotics-model/source/high_res_official/Lite3/meshes/hip.dae",
+      "sha256": "ca01f4cb329e93a80d013dd0b620a7e5bbf6aad2586a4d6382fb01011f2cadca",
+      "evidence_class": "source_model"
+    },
+    "shank_dae": {
+      "path": "references/upstream/2026-07-24_deep-robotics-model/source/high_res_official/Lite3/meshes/shank.dae",
+      "sha256": "2bb7bda48666c9f6bb14299eeb7879b1db48d766eb9d0fade08cccb5192dc257",
+      "evidence_class": "source_model"
+    },
+    "thigh_dae": {
+      "path": "references/upstream/2026-07-24_deep-robotics-model/source/high_res_official/Lite3/meshes/thigh.dae",
+      "sha256": "72b4b78b072d4607b5b0d818e80de6759a9ff593e3aa5a09a314f9c0a29fc20f",
+      "evidence_class": "source_model"
+    },
+    "torso_dae": {
+      "path": "references/upstream/2026-07-24_deep-robotics-model/source/high_res_official/Lite3/meshes/torso.dae",
+      "sha256": "e0cbf5d239d945ba4c02edee311732472245fba6b92131cfab12cd1f740c45a6",
+      "evidence_class": "source_model"
+    },
+    "lidar_manual_pdf": {
+      "path": "references/upstream/2026-07-24_lite3-design-drawings/source/original/Jueying-Lite3-LiDAR-User-Manual-CE-V1.0.7-0.pdf",
+      "sha256": "25ef3cc19e9ebc8211a8504bd55dbd7cf4dcf511e60d5c59a90c29ed0ffb698f",
+      "evidence_class": "official_nominal"
+    },
+    "manual_parts_page": {
+      "path": "references/upstream/2026-07-24_lite3-design-drawings/derived/lite3-lidar-manual-07.png",
+      "sha256": "83c1bc6b867961ab9264d00c9600b2acfd2e45404329972fd9d1fcf0bd6d5c94",
+      "evidence_class": "official_nominal"
+    },
+    "official_product_image": {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/lite3-official-lidar-product.png",
+      "sha256": "cca511f69983ba5fd85612a3e30f0a0e487824955d32c570c617b32e5371635a",
+      "evidence_class": "official_nominal"
+    },
+    "mid360_step": {
+      "path": "references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02",
+      "evidence_class": "source_model"
+    },
+    "mid360_product_image": {
+      "path": "references/upstream/2026-07-24_livox-mid360-cad/source/official_images/mid360-product-detail.jpg",
+      "sha256": "2e55cec2594b9a64d16ccf88bd87d4e02214f6700215c5f26e93d734b82dbfb8",
+      "evidence_class": "official_nominal"
+    },
+    "d435i_solidworks_part": {
+      "path": "references/upstream/2026-07-25_realsense-d435i-cad/source/original/D435i_Solid.SLDPRT",
+      "sha256": "9cdbfdc7085ea5430ec9007eb1d895c7ff513c40b77c298a275ded33edf65525",
+      "evidence_class": "source_model",
+      "source_note": "Preserved official CAD input. The local build does not translate proprietary SLDPRT geometry."
+    },
+    "d435i_ros_mesh": {
+      "path": "references/upstream/2026-07-25_realsense-d435i-ros-mesh/source/original/d435.dae",
+      "sha256": "42f3b66f47a1f8f425a2e4dc07c1d9c283183167d8441f520a15623d98f9bf78",
+      "evidence_class": "source_model",
+      "source_note": "Official RealSense ROS visual mesh. The pinned official _d435i.urdf.xacro includes _d435.urdf.xacro, which uses this mesh for the D435i aluminum peripheral case."
+    },
+    "d435i_ros_d435_urdf": {
+      "path": "references/upstream/2026-07-25_realsense-d435i-ros-mesh/source/original/_d435.urdf.xacro",
+      "sha256": "ae3f57e8d38b3a6d5cc9de059e4afe545e4b895717d638b75d2ad0642cfb7f1b",
+      "evidence_class": "source_model"
+    },
+    "d435i_ros_d435i_urdf": {
+      "path": "references/upstream/2026-07-25_realsense-d435i-ros-mesh/source/original/_d435i.urdf.xacro",
+      "sha256": "b16e710e95435e1dfb66316aa5c186b47cd6c4183b3dab8bf8940c801cc9d052",
+      "evidence_class": "source_model"
+    },
+    "d435i_ros_package_manifest": {
+      "path": "references/upstream/2026-07-25_realsense-d435i-ros-mesh/source/original/package.xml",
+      "sha256": "7432ab5a1c6e490abb79ebd1ec44ba3800efc373d9f4d0ad38de48e037127848",
+      "evidence_class": "source_model"
+    },
+    "d435i_ros_license": {
+      "path": "references/upstream/2026-07-25_realsense-d435i-ros-mesh/source/original/LICENSE",
+      "sha256": "7092398b52290edddcb41c6e2297f4c6343eb315ea6c83edfdbeea2a73adfbdb",
+      "evidence_class": "source_model"
+    },
+    "d435i_datasheet": {
+      "path": "references/upstream/2026-07-25_realsense-d435i-cad/source/original/Intel-RealSense-D400-Series-Datasheet.pdf",
+      "sha256": "d0156b43a82da64e809c6ae45a5b5d41f34d8697363534ed81f2e4407f38eaa4",
+      "evidence_class": "official_nominal"
+    },
+    "j17a_step": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J17A-lidar base.STEP",
+      "sha256": "52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490",
+      "evidence_class": "source_model"
+    },
+    "j17a_drawing": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J17A-lidar base.pdf",
+      "sha256": "1c75b39b62e1360dcd99c1fae0ece61ce45348479ae56ded1c7ac968c4076604",
+      "evidence_class": "official_nominal"
+    },
+    "j20a_step": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J20A-small lidar base.STEP",
+      "sha256": "341b08ca08526e5ee0e9fbeca0bfda9d9970062c6605e979adc52b31955c9bc9",
+      "evidence_class": "source_model"
+    },
+    "j20a_drawing": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J20A-small lidar base.pdf",
+      "sha256": "d0c9b0173b9ed6475da2aed6d1a90efcbdd540ac2b976af0148a2ba48473f695",
+      "evidence_class": "official_nominal"
+    },
+    "s410_step": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1CA5-S410-Lidar protector.STEP",
+      "sha256": "7fd23a776b45c7d8571ef77ba9e8b05520eced0b97f62487ba03f88bbc9df810",
+      "evidence_class": "source_model"
+    },
+    "s410_drawing": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1CA5-S410-Lidar protector.pdf",
+      "sha256": "e71fa54ee97d9e429c0d3a9c4f7d850e15a132adabf65f7d2a68fc7293517023",
+      "evidence_class": "official_nominal"
+    },
+    "mid360_tessellated_mesh": {
+      "path": "references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_full_official.stl",
+      "sha256": "2f6cffded4262d5c151c9bd6010837c3b47feb83d3af26614d71ef426f776c23",
+      "evidence_class": "print_adaptation"
+    },
+    "mid360_optical_window_mesh": {
+      "path": "references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_optical_window_official.stl",
+      "sha256": "18a0961144ecdbf1ce3f7fd7164263ff3583833151335753dbff33f25159c5f8",
+      "evidence_class": "source_model"
+    },
+    "mid360_body_mesh": {
+      "path": "references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_body_official.stl",
+      "sha256": "63a2704562e4d632b4b0d634037eae0a6ed376e887f8ae0e1e4d21c4fd9440ab",
+      "evidence_class": "source_model"
+    },
+    "mid360_housing_exterior_mesh": {
+      "path": "references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_housing_exterior_official.stl",
+      "sha256": "b296260f763a5cae3442e46622242696bdd9b3923293ebf423e983e5d1cddf9c",
+      "evidence_class": "source_model"
+    },
+    "mid360_connector_mesh": {
+      "path": "references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_connector_official.stl",
+      "sha256": "6322a17c6d97eb4f5cb2932106d2e8615fd594263ddd1ed3294af632775f1762",
+      "evidence_class": "source_model"
+    },
+    "j20a_tessellated_mesh": {
+      "path": "references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/j20a_official.stl",
+      "sha256": "39370afad104d5f3a9b7edb3f3034064687640842b41d719d7867d585809b2fd",
+      "evidence_class": "print_adaptation"
+    },
+    "j17a_tessellated_mesh": {
+      "path": "references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/j17a_official.stl",
+      "sha256": "bdc4a8591223721f9efcbe25330b8cf86eaa2f1d30e8269fa826612b2c5d3e2c",
+      "evidence_class": "print_adaptation"
+    },
+    "s410_tessellated_mesh": {
+      "path": "references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/s410_official.stl",
+      "sha256": "e3b4c638015d0acb8afe12f01a38c16e07542de591871f3980ba1ece094218af",
+      "evidence_class": "print_adaptation"
+    },
+    "jetson_agx_orin_module_tessellated_mesh": {
+      "path": "references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/jetson_agx_orin_module_official.stl",
+      "sha256": "241aaf7ea3247d67624d6fddad30fd1f5085ef0b4ca4d12798f44eb4c166a112",
+      "evidence_class": "superseded_internal_compatibility",
+      "source_note": "Compatibility-only input during migration; never exported or claimed as Lite3 LiDAR equipment."
+    },
+    "agx_orin_base_tessellated_mesh": {
+      "path": "references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/agx_orin_base_official.stl",
+      "sha256": "c9f19a328be5fe6418c8f9b3218acb88225530bc077ffcb0fd038a43b49f5146",
+      "evidence_class": "superseded_internal_compatibility",
+      "source_note": "Compatibility-only input during migration; never exported or claimed as Lite3 LiDAR equipment."
+    }
+  },
+  "official_envelope": {
+    "length_mm": {
+      "value": 610.0,
+      "evidence_class": "official_nominal"
+    },
+    "width_mm": {
+      "value": 370.0,
+      "evidence_class": "official_nominal"
+    },
+    "height_mm": {
+      "value": 496.0,
+      "evidence_class": "official_nominal"
+    },
+    "acceptance_tolerance_mm": {
+      "value": [15.0, 5.0, 5.0],
+      "evidence_class": "print_adaptation",
+      "source_note": "The official high-resolution URDF/DAE standing source is 596.84 mm long after the rejected synthetic camera bar is removed. The 15 mm X tolerance preserves source scale 1.0 instead of stretching official geometry to the 610 mm brochure envelope; Y and Z retain the 5 mm gate."
+    }
+  },
+  "assembled_variant_envelope": {
+    "length_mm": {
+      "value": 610.0,
+      "evidence_class": "official_nominal"
+    },
+    "width_mm": {
+      "value": 370.0,
+      "evidence_class": "official_nominal"
+    },
+    "height_mm": {
+      "value": 525.0,
+      "evidence_class": "image_estimate",
+      "source_note": "The public Venture J17A/J20A/S410 source stack remains taller than the factory LiDAR silhouette. This 525 mm geometry target isolates that known sensor-carrier mismatch; the compute enclosure is now kept below the guard and no longer governs assembled height."
+    },
+    "acceptance_tolerance_mm": {
+      "value": [15.0, 5.0, 2.0],
+      "evidence_class": "print_adaptation",
+      "source_note": "Length and width retain the official-body acceptance bands. Height is checked against the explicitly non-factory public-component reconstruction until the unpublished factory radar carrier is replaced."
+    }
+  },
+  "factory_standing_pose": {
+    "hip_y_rad": {
+      "value": -0.653535,
+      "evidence_class": "source_model"
+    },
+    "knee_rad": {
+      "value": 1.27109,
+      "evidence_class": "source_model"
+    },
+    "foot_collision_radius_mm": {
+      "value": 20.0,
+      "evidence_class": "source_model"
+    }
+  },
+  "master_reconstruction": {
+    "components": {
+      "torso": {
+        "voxel_pitch_mm": 1.0,
+        "simplify_tolerance_mm": 0.0,
+        "minimum_component_volume_mm3": 1000.0,
+        "bridge_boxes_mm": [
+          {
+            "center": [-108.0, -72.0, 35.0],
+            "size": [5.0, 6.0, 6.0],
+            "evidence_class": "print_adaptation"
+          }
+        ]
+      },
+      "hip": {
+        "voxel_pitch_mm": 0.5,
+        "simplify_tolerance_mm": 0.0,
+        "minimum_component_volume_mm3": 100.0,
+        "bridge_boxes_mm": []
+      },
+      "thigh": {
+        "voxel_pitch_mm": 0.75,
+        "simplify_tolerance_mm": 0.0,
+        "minimum_component_volume_mm3": 100.0,
+        "bridge_boxes_mm": []
+      },
+      "shank": {
+        "voxel_pitch_mm": 0.75,
+        "simplify_tolerance_mm": 0.0,
+        "minimum_component_volume_mm3": 100.0,
+        "bridge_boxes_mm": []
+      }
+    },
+    "smoothing": {
+      "enabled": true,
+      "method": "taubin_topology_preserving",
+      "lambda": 0.4,
+      "nu": 0.41,
+      "iterations": 50,
+      "maximum_p99_displacement_mm": 0.5,
+      "maximum_abs_volume_change_percent": 0.1,
+      "evidence_class": "print_adaptation",
+      "source_note": "Applied only to the watertight print track. The 1:1 p99 displacement limit scales to 0.125 mm in the 1:4 FDM kit, below the declared 0.20 mm layer height."
+    },
+    "surface_sample_count": 10000
+  },
+  "official_sensor_reconstruction": {
+    "mid360_voxel_pitch_mm": 0.4,
+    "mid360_minimum_component_volume_mm3": 50.0,
+    "d435i_voxel_pitch_mm": 0.35,
+    "d435i_minimum_component_volume_mm3": 1000.0,
+    "d435i_surface_sample_count": 6000,
+    "minimum_declared_structural_feature_master_mm": 4.0,
+    "surface_sample_count": 15000,
+    "source_note": "The Mid-360 manufacturer STEP and official RealSense D435i ROS mesh both retain exact visual tracks. Resolution-bounded voxel reconstructions separately produce closed printable bodies; neither printable mesh is relabeled as source CAD."
+  },
+  "print_profile": {
+    "name": "FDM_0.4mm_nozzle_static_display",
+    "scale": 0.25,
+    "nominal_scale": "1:4",
+    "build_volume_mm": [220.0, 220.0, 250.0],
+    "layer_height_mm": 0.2,
+    "nozzle_diameter_mm": 0.4,
+    "minimum_feature_mm": 0.8,
+    "pin_diameter_mm": 2.4,
+    "pin_length_mm": 10.0,
+    "pin_radial_clearance_mm": 0.2,
+    "pin_count": 12,
+    "spare_pin_count": 2,
+    "assembled_reference_voxel_pitch_mm": 0.5
+  },
+  "assembly_mounts": {
+    "upper_module": {
+      "pin_centers_master_mm": [
+        [0.0, -47.0, 423.0],
+        [40.0, 47.0, 423.0]
+      ],
+      "pin_length_print_mm": 4.8,
+      "pin_overlap_print_mm": 0.8,
+      "pin_radius_print_mm": 1.2,
+      "socket_radius_print_mm": 1.4,
+      "socket_extra_depth_print_mm": 0.6,
+      "deck_pocket_xy_clearance_print_mm": 0.2,
+      "deck_pocket_vertical_clearance_print_mm": 0.2,
+      "evidence_class": "print_adaptation"
+    },
+    "camera_mount_bracket": {
+      "print_clearance_hole_diameter_master_mm": 4.8,
+      "print_equivalent_screw_shaft_diameter_master_mm": 3.2,
+      "print_equivalent_screw_head_height_master_mm": 3.2,
+      "socket_target": "s410_guard_integrated_camera_receiver_yoke",
+      "evidence_class": "print_adaptation",
+      "source_note": "The carrier-side bracket plate follows the two 45 mm-spaced camera-interface axes measured from the pinned J17A source model. Two blind-bore receiver bosses are tied by 4 mm struts into the official S410 guard geometry so the carrier screws terminate in an explicit upper-module receiver instead of open space. Plate thickness, receiver yoke, side rails and print clearances are printable engineering adaptations."
+    }
+  },
+  "d435i_mounting_contract": {
+    "product": "Intel RealSense D435i",
+    "official_drawing": "Intel RealSense D400 Series Product Family Datasheet, Rev 017, Figure 10-9",
+    "official_rear_thread": "M3",
+    "official_rear_thread_count": 2,
+    "official_rear_thread_spacing_mm": 45.0,
+    "official_maximum_thread_insertion_mm": 3.0,
+    "official_recommended_combined_torque_nm": 0.4,
+    "camera_screw": "M3x6 socket-head cap screw",
+    "camera_screw_length_mm": 6.0,
+    "camera_screw_shaft_diameter_mm": 3.0,
+    "camera_screw_head_diameter_mm": 5.5,
+    "camera_screw_head_height_mm": 3.0,
+    "camera_screw_hex_flat_mm": 2.5,
+    "camera_screw_hex_depth_mm": 1.5,
+    "bracket_plate_width_mm": 70.0,
+    "bracket_carrier_plate_width_mm": 62.0,
+    "bracket_plate_height_mm": 16.0,
+    "bracket_plate_thickness_mm": 3.2,
+    "bracket_main_face_clearance_mm": 0.6,
+    "bracket_mating_pad_outer_diameter_mm": 12.0,
+    "bracket_central_quarter_twenty_access_diameter_mm": 8.0,
+    "bracket_arm_width_mm": 4.0,
+    "bracket_arm_thickness_mm": 4.0,
+    "carrier_screw": "M3x6 socket-head cap screw",
+    "carrier_screw_length_mm": 6.0,
+    "receiver_boss_outer_diameter_mm": 12.0,
+    "receiver_boss_depth_mm": 6.0,
+    "receiver_bore_depth_mm": 3.0,
+    "receiver_face_gap_mm": 0.02,
+    "receiver_guard_engagement_mm": 2.0,
+    "receiver_strut_width_mm": 4.0,
+    "receiver_strut_thickness_mm": 4.0,
+    "side_join_screw": "M3x8 socket-head cap screw",
+    "side_join_screw_count": 4,
+    "side_join_screw_length_mm": 8.0,
+    "side_join_vertical_offset_mm": 4.0,
+    "evidence_class": {
+      "official_camera_thread": "official_nominal",
+      "camera_bracket_geometry": "print_adaptation",
+      "carrier_side_attachment": "source_model_and_print_adaptation"
+    },
+    "claim_boundary": "The D435i thread size, count, 45 mm spacing, 3 mm maximum insertion and 0.4 Nm combined torque are official. The carrier-side axes come from the pinned J17A source model. The dual mating plates, side rails, S410-engaged receiver yoke, carrier screw selection and print clearances are engineering adaptations because the complete factory Lite3 LiDAR camera-bracket drawing is not public."
+  },
+  "lidar_module": {
+    "claim": "The official Lite3 LiDAR manual separately identifies a visible top Interface unit and lists NVIDIA Jetson Xavier NX as the AI computer. It does not publish an internal assembly drawing locating the Xavier NX inside that visible unit. The Interface exterior, port groups and compact top deck are therefore reconstructed from official exterior views without exposing or locating an unverified Jetson development kit. Official Livox Mid-360 geometry and related public Venture J17A/J20A/S410 source components remain separately identified and must not be relabeled as unpublished factory assembly CAD.",
+    "parameters_mm": {
+      "deck_center": {
+        "value": [20.0, 0.0, 425.0],
+        "evidence_class": "print_adaptation",
+        "source_note": "Low-profile reconstructed equipment deck placed above the watertight Lite3 torso without solid intersection."
+      },
+      "deck_size": {
+        "value": [320.0, 116.0, 6.0],
+        "evidence_class": "image_estimate",
+        "source_note": "Outer registration envelope for the compact contoured deck shown beneath the factory LiDAR equipment; not a manufacturer drawing."
+      },
+      "lite3_payload_hole_pattern": {
+        "value": [74.0, 94.0],
+        "evidence_class": "official_nominal",
+        "source_note": "Official Lite3 Pro/LiDAR user-manual payload interface: four M3 holes on 74 mm robot-X by 94 mm robot-Y centre spacing."
+      },
+      "lite3_payload_hole_diameter": {
+        "value": 3.5,
+        "evidence_class": "print_adaptation",
+        "source_note": "Open printable clearance diameter for the official M3 interface; not a published manufacturing-hole diameter or tolerance."
+      },
+      "base_rear_pad_center_x": {
+        "value": -60.0,
+        "evidence_class": "image_estimate"
+      },
+      "base_rear_pad_size": {
+        "value": [210.0, 108.0, 6.0],
+        "evidence_class": "image_estimate",
+        "source_note": "Compact rear pad follows the visible factory Interface enclosure footprint instead of using two unsupported longitudinal rails."
+      },
+      "base_center_bridge_size": {
+        "value": [54.0, 100.0, 6.0],
+        "evidence_class": "print_adaptation",
+        "source_note": "Short bridge keeps the display deck connected around the official Lite3 payload-hole pattern."
+      },
+      "base_side_rail_center_x": {
+        "value": 127.676,
+        "evidence_class": "superseded_internal_compatibility"
+      },
+      "base_side_rail_center_y": {
+        "value": 51.0,
+        "evidence_class": "superseded_internal_compatibility"
+      },
+      "base_side_rail_size": {
+        "value": [134.0, 12.0, 6.0],
+        "evidence_class": "print_adaptation",
+        "source_note": "Two short side ribs connect the J17A crossbars; they no longer run beneath the factory Interface enclosure."
+      },
+      "base_sensor_crossbar_x": {
+        "value": [72.676, 182.676],
+        "evidence_class": "source_model",
+        "source_note": "Robot-X positions mapped from the J17A 110 mm mounting-hole span after a 10 mm forward clearance shift."
+      },
+      "base_sensor_crossbar_size": {
+        "value": [24.0, 114.0, 6.0],
+        "evidence_class": "print_adaptation",
+        "source_note": "Short transverse supports retain the J17A carrier while leaving its circular opening unobstructed."
+      },
+      "factory_interface_box_center": {
+        "value": [15.0, 0.0, 451.8],
+        "evidence_class": "image_estimate",
+        "source_note": "Registered to the official LiDAR product view: the visible Interface enclosure ends immediately behind the radar carrier instead of being displaced rearward to clear the unrelated Venture J17A assembly. This does not locate the separately listed Xavier NX AI computer."
+      },
+      "factory_interface_box_envelope": {
+        "value": [160.0, 92.0, 46.0],
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated from the official LiDAR manual orthographic/product views and connector proportions; not official manufacturing dimensions."
+      },
+      "factory_interface_box_corner_radius": {
+        "value": 3.0,
+        "evidence_class": "image_estimate"
+      },
+      "factory_interface_box_panel_recess_depth": {
+        "value": 2.0,
+        "evidence_class": "print_adaptation"
+      },
+      "factory_interface_box_mount_foot_height": {
+        "value": 1.0,
+        "evidence_class": "print_adaptation",
+        "source_note": "Minimal hidden printable seating feature between the visible Interface unit and deck; not a published factory foot dimension."
+      },
+      "factory_interface_box_mount_pattern": {
+        "value": [132.0, 68.0],
+        "evidence_class": "print_adaptation",
+        "source_note": "Hidden four-point display alignment pattern; it is deliberately not presented as a factory fastener pattern."
+      },
+      "factory_interface_box_mount_hole_diameter": {
+        "value": 3.5,
+        "evidence_class": "print_adaptation",
+        "source_note": "Printable open locator diameter for the hidden display attachment."
+      },
+      "factory_interface_box_port_face_y": {
+        "value": -46.0,
+        "evidence_class": "image_estimate",
+        "source_note": "The official manual shows the power and data connectors on one long enclosure face."
+      },
+      "factory_lidar_mount_x": {
+        "value": [112.0, 188.0],
+        "evidence_class": "image_estimate",
+        "source_note": "Four local radar support locations inferred from the official exterior views; no spanning carrier plate is present."
+      },
+      "factory_lidar_mount_y": {
+        "value": [-34.0, 34.0],
+        "evidence_class": "image_estimate"
+      },
+      "factory_lidar_mount_bottom_z": {
+        "value": 428.0,
+        "evidence_class": "print_adaptation",
+        "source_note": "Hidden seating level immediately above the Lite3 top interface."
+      },
+      "factory_lidar_mount_top_z": {
+        "value": 436.75,
+        "evidence_class": "image_estimate",
+        "source_note": "Stops below the tilted J20A exterior with numerical-zero visible overlap."
+      },
+      "factory_lidar_mount_outer_diameter": {
+        "value": 9.0,
+        "evidence_class": "print_adaptation"
+      },
+      "factory_lidar_mount_hole_diameter": {
+        "value": 3.5,
+        "evidence_class": "print_adaptation",
+        "source_note": "Open printable fastener-reference bore; not a published factory hole."
+      },
+      "agx_orin_base_translation": {
+        "value": [0.0, 0.0, 0.0],
+        "evidence_class": "superseded_internal_compatibility"
+      },
+      "agx_orin_base_deck_mount_centers_source": {
+        "value": [[-90.0, 425.0, -40.0], [-90.0, 425.0, 40.0], [-60.0, 425.0, 0.0]],
+        "evidence_class": "superseded_internal_compatibility"
+      },
+      "agx_orin_base_deck_mount_diameters": {
+        "value": [3.6, 3.6, 4.8],
+        "evidence_class": "superseded_internal_compatibility"
+      },
+      "agx_orin_base_device_mount_centers_source": {
+        "value": [[-84.0, 432.0, 36.0], [-40.0, 432.0, 36.0], [-40.0, 432.0, -36.0], [-84.0, 432.0, -36.0]],
+        "evidence_class": "superseded_internal_compatibility"
+      },
+      "agx_orin_base_device_mount_diameter": {
+        "value": 2.8,
+        "evidence_class": "superseded_internal_compatibility"
+      },
+      "agx_orin_compute_crossbar_size": {
+        "value": [24.0, 100.0, 6.0],
+        "evidence_class": "superseded_internal_compatibility"
+      },
+      "jetson_agx_orin_center": {
+        "value": [-62.5, 0.0, 454.2],
+        "evidence_class": "superseded_internal_compatibility"
+      },
+      "jetson_agx_orin_envelope": {
+        "value": [110.0, 110.0, 71.65],
+        "evidence_class": "superseded_internal_compatibility"
+      },
+      "jetson_agx_orin_port_cut_depth": {
+        "value": 8.0,
+        "evidence_class": "superseded_internal_compatibility"
+      },
+      "jetson_agx_orin_blind_mount_depth": {
+        "value": 8.0,
+        "evidence_class": "superseded_internal_compatibility"
+      },
+      "jetson_agx_orin_blind_mount_diameter": {
+        "value": 2.9,
+        "evidence_class": "superseded_internal_compatibility"
+      },
+      "jetson_agx_orin_module_bottom_z": {
+        "value": 432.0,
+        "evidence_class": "superseded_internal_compatibility"
+      },
+      "sensor_assembly_origin": {
+        "value": [100.176, 0.0, 436.875],
+        "evidence_class": "image_estimate",
+        "source_note": "Moves the J20A/Mid-360 stack 10.176 mm forward relative to the J17A hole-registered carrier and raises the complete sensor stack by the minimum tested 25.0 mm that clears the official Lite3 exterior and revised payload base. This remains visual placement, not a measured real-robot fit datum."
+      },
+      "sensor_source_axes": {
+        "value": "source +X to robot +X, source +Y to robot +Z, source +Z to robot -Y",
+        "evidence_class": "source_model"
+      },
+      "j20a_tilt_deg": {
+        "value": 15.0,
+        "evidence_class": "official_nominal",
+        "source_note": "The official J20A drawing marks 15 degrees and the STEP mounting-plane normal is (sin(15 degrees), cos(15 degrees), 0) in its source frame."
+      },
+      "j20a_mid360_pattern_center_source": {
+        "value": [45.676, 11.625, 0.0],
+        "evidence_class": "source_model"
+      },
+      "j17a_ring_center_source": {
+        "value": [11.25, 0.0, 2.5],
+        "evidence_class": "source_model",
+        "source_note": "Centre of the J17A circular carrier opening on its nominal plate plane."
+      },
+      "j17a_j20a_hole_axis_x_correction": {
+        "value": -10.176,
+        "evidence_class": "source_model",
+        "source_note": "Replaces the former ring-centre registration in robot X. The correction aligns J20A source hole axis X=1.558875 mm with the J17A source counterbore axis X=-22.691125 mm."
+      },
+      "j17a_j20a_seating_clearance_z": {
+        "value": -11.75,
+        "evidence_class": "print_adaptation",
+        "source_note": "Separates the independently tessellated official J17A and J20A solids at their mounting interface after their bolt axes are registered; not a published spacer dimension."
+      },
+      "j17a_source_axes": {
+        "value": "source +X to robot +X, source +Y to robot -Y, source +Z to robot +Z",
+        "evidence_class": "source_model"
+      },
+      "j17a_mount_hole_pattern": {
+        "value": [110.0, 86.0],
+        "evidence_class": "source_model",
+        "source_note": "Four J17A base holes centred at source X -51.75/58.25 mm and Y +/-43 mm."
+      },
+      "j17a_mount_hole_diameter": {
+        "value": 3.5,
+        "evidence_class": "print_adaptation",
+        "source_note": "Printable clearance through the sensor crossbars at the four source-model J17A hole centres; not a published manufacturing tolerance."
+      },
+      "j17a_mount_plane_source_z": {
+        "value": 0.0,
+        "evidence_class": "source_model",
+        "source_note": "Nominal lower mounting plane of the official J17A carrier."
+      },
+      "j17a_base_spacer_outer_diameter": {
+        "value": 12.0,
+        "evidence_class": "print_adaptation",
+        "source_note": "Four annular printable stand-offs replace the former solid hidden bridge and leave the J17A mounting holes open."
+      },
+      "j17a_base_spacer_overlap": {
+        "value": 0.25,
+        "evidence_class": "print_adaptation",
+        "source_note": "Small Boolean tie-in at each spacer end for a one-piece display print; excluded from the independent visible-part collision gate."
+      },
+      "sensor_connector_sleeve_outer_diameter": {
+        "value": 6.0,
+        "evidence_class": "print_adaptation",
+        "source_note": "Annular one-piece print ties follow real source-model bolt axes instead of crossing visible housings."
+      },
+      "sensor_connector_sleeve_inner_diameter": {
+        "value": 2.4,
+        "evidence_class": "print_adaptation",
+        "source_note": "Keeps a visible central bore through the printable connector sleeves."
+      },
+      "sensor_connector_sleeve_length": {
+        "value": 30.0,
+        "evidence_class": "print_adaptation",
+        "source_note": "Long enough to tie the independently tessellated mating parts along their source-model bolt axes."
+      },
+      "j17a_j20a_connector_lines_source": {
+        "value": [
+          [1.558875, 16.0, -33.941125],
+          [1.558875, 16.0, 33.941125]
+        ],
+        "evidence_class": "source_model",
+        "source_note": "Two J20A cylindrical hole axes that register to the J17A counterbore row."
+      },
+      "j20a_s410_connector_lines_source": {
+        "value": [
+          [86.567416, 2.740266, -24.598499],
+          [86.567416, 2.740266, 24.598499],
+          [5.979192, 24.333816, -24.880279],
+          [5.979192, 24.333816, 24.880279]
+        ],
+        "evidence_class": "source_model",
+        "source_note": "Four J20A guard-fastener axes paired with the official S410 hole pattern."
+      },
+      "mid360_mount_hole_pattern": {
+        "value": [48.0, 36.0],
+        "evidence_class": "source_model",
+        "source_note": "Four-hole rectangle shared by the official Mid-360 and J20A source geometry."
+      },
+      "j20a_mid360_hole_diameter": {
+        "value": 3.5,
+        "evidence_class": "official_nominal",
+        "source_note": "The official J20A drawing specifies four 3.50 mm through holes."
+      },
+      "mid360_mount_plane_center_source": {
+        "value": [0.0, -25.9171, 0.0],
+        "evidence_class": "source_model"
+      },
+      "mid360_mount_normal_offset": {
+        "value": 3.0,
+        "evidence_class": "print_adaptation",
+        "source_note": "Moves the voxel-sealed printable exterior outward along the official J20A mounting normal so Mid-360 and J20A do not interpenetrate. This is a reconstruction seating correction, not a published spacer dimension."
+      },
+      "mid360_connector_yaw_deg": {
+        "value": 180.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Turns the real M12 connector toward the rear interface enclosure while preserving the 48 x 36 mm symmetric four-hole pattern."
+      },
+      "mid360_vertical_fov_deg": {
+        "value": [-7.0, 52.0],
+        "evidence_class": "official_nominal",
+        "source_note": "Published Livox Mid-360 vertical field of view. Global front/rear envelopes after mounting tilt are longitudinal-plane approximations."
+      },
+      "s410_rotation_source_z_deg": {
+        "value": -15.0,
+        "evidence_class": "source_model"
+      },
+      "s410_translation_source": {
+        "value": [46.0, 13.5, 0.0],
+        "evidence_class": "source_model"
+      },
+      "s410_mount_normal_clearance": {
+        "value": 0.12,
+        "evidence_class": "print_adaptation",
+        "source_note": "Sub-tessellation seating clearance along the official J20A 15-degree mounting normal; removes the 0.11 mm numerical surface overlap without changing the published guard hole pattern."
+      },
+      "s410_hole_centers_source": {
+        "value": [
+          [-41.65, 2.0, -24.74],
+          [-41.65, 2.0, 24.74],
+          [41.65, 2.0, -24.74],
+          [41.65, 2.0, 24.74]
+        ],
+        "evidence_class": "source_model"
+      },
+      "mid360_adapter_bridge_size": {
+        "value": [38.0, 5.0, 26.0],
+        "evidence_class": "print_adaptation",
+        "source_note": "Hidden bridge remains inside the 48 x 36 mm mounting-hole rectangle, deliberately overlaps the J20A and shifted printable Mid-360 bodies, and preserves 0.8 mm equivalent hole-edge material at 1:4."
+      },
+      "mid360_adapter_bridge_normal_offset": {
+        "value": 1.5,
+        "evidence_class": "print_adaptation",
+        "source_note": "Centers the 5 mm hidden bridge across the 3 mm reconstruction seating correction."
+      },
+      "d435i_nominal_size": {
+        "value": [25.0, 90.0, 25.0],
+        "evidence_class": "official_nominal",
+        "source_note": "Depth, width and height from RealSense D400 datasheet table 3-52."
+      },
+      "d435i_mount_center_j17a_source": {
+        "value": [69.5355, 0.0, 17.0923],
+        "evidence_class": "source_model"
+      },
+      "d435i_mount_axis_j17a_source": {
+        "value": [0.9396926, 0.0, -0.3420201],
+        "evidence_class": "source_model",
+        "source_note": "Axis of the two cylindrical J17A camera-mount faces; 20 degrees downward toward robot +X."
+      },
+      "d435i_mount_hole_spacing": {
+        "value": 45.0,
+        "evidence_class": "official_nominal",
+        "source_note": "Intel RealSense D400 Series Product Family Datasheet Rev 017 Figure 10-9: two rear M3 mounting points on 45 mm centres."
+      },
+      "d435i_ros_source_bbox": {
+        "value": [89.91429954767227, 25.00000037252903, 25.054700672626495],
+        "evidence_class": "source_model",
+        "source_note": "Measured directly from the pinned official d435.dae in source X/Y/Z order."
+      },
+      "d435i_ros_source_axes": {
+        "value": "source X to camera width, source Y to camera up, source +Z to camera forward",
+        "evidence_class": "source_model",
+        "source_note": "Matches the source orientation and the transform declared by the pinned official _d435.urdf.xacro."
+      },
+      "d435i_mount_standoff": {
+        "value": 17.0,
+        "evidence_class": "print_adaptation",
+        "source_note": "Provides room for two separately pre-assembled mating plates and opposing M3 socket heads, leaving a 3.4 mm head-to-head service gap while preserving the 20 degree downward camera axis."
+      }
+    }
+  }
+}

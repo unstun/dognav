@@ -1,0 +1,46 @@
+schema_version: 1
+topic: lite3-fcc-regulatory-photos
+acquired_at: 2026-07-26
+status: surveyed
+
+upstream:
+  publisher: Federal Communications Commission
+  grantee: Hangzhou Yunshenchu Technology Co., Ltd.
+  fcc_id: 2BFQD-JUEYINGLITE3
+  external_photos_page: https://fccid.io/2BFQD-JUEYINGLITE3/External-Photos/External-photo-8333125
+  internal_photos_page: https://fccid.io/2BFQD-JUEYINGLITE3/Internal-Photos/Internal-photo-8333126
+
+files:
+  - name: external-photo-8333125.pdf
+    local_source_path: source/original/external-photo-8333125.pdf
+    size_bytes: 945705
+    sha256: e6efa4de62cf461ec2e6acf047fbf449962928ee125f4c5f563a217c1226b95f
+    page_count: 6
+    format: PDF
+  - name: internal-photo-8333126.pdf
+    local_source_path: source/original/internal-photo-8333126.pdf
+    size_bytes: 2541963
+    sha256: e2d1d533ef8ca3c9b01a2b0c5f29792852ae49fceedeff430233f1c40577d982
+    page_count: 10
+    format: PDF
+  - name: model-identity-declaration-8333020.pdf
+    local_source_path: source/original/model-identity-declaration-8333020.pdf
+    size_bytes: 73018
+    sha256: 7a971980e48449ceade723c8e16931657ec70f52979581e668599919885ff9e8
+    format: PDF
+
+inspection:
+  test_model: Jueying Lite3 LiDAR
+  external_photo_pages: [4, 5, 6]
+  lidar_revision: legacy_cylindrical_sensor_in_long_white_shell
+  depth_camera: integrated_at_front_of_upper_shell
+  identity_declaration: >-
+    Basic, Venture, and Pro are declared electrically identical variants made
+    by removing hardware from the LiDAR test model.
+
+claim_boundary: >-
+  The regulatory package is primary evidence for the tested factory LiDAR
+  revision, which uses a cylindrical laser scanner in a long white enclosure.
+  Electrical-identity language does not prove that the variants share the same
+  top mechanical geometry. These photos do not establish the later Mid-360
+  FAST-LIVO2 extension requested for the replica.

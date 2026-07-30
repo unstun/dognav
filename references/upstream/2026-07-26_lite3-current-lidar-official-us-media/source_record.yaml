@@ -1,0 +1,78 @@
+schema_version: 1
+topic: lite3-current-lidar-official-us-product-media
+acquired_at: 2026-07-26
+status: surveyed
+
+upstream:
+  publisher: DEEP Robotics US
+  product_page: https://www.deeprobotics.us/products/lite-3/
+
+files:
+  - name: lite3-lidar-current-front-left-800x600.jpg
+    local_source_path: >-
+      source/original/lite3-lidar-current-front-left-800x600.jpg
+    url: >-
+      https://www.deeprobotics.us/wp-content/uploads/2025/08/deep-robotics-lite3-lidar-quadruped-robot.jpg
+    dimensions_px: [800, 600]
+    sha256: b9a8e83c9761d0f556d9c498b7c201b08c25eef5cfc32fff75608ed0deaaedd1
+    observed_evidence:
+      - current guarded Mid-360 and front D435 arrangement
+      - long rear Interface enclosure
+      - discrete local supports beneath the front sensor carrier and Interface
+  - name: lite3-lidar-current-studio-2048x2048.jpg
+    local_source_path: >-
+      source/original/lite3-lidar-current-studio-2048x2048.jpg
+    url: >-
+      https://www.deeprobotics.us/wp-content/uploads/2026/01/deep-robotics-lite3-LiDAR-quadruped-robot-studio-shot-education-research.jpg.jpg
+    wordpress_media_id: 4637
+    dimensions_px: [2048, 2048]
+    sha256: 48161512a32366f2f0a62e8ebe22eecdd0e462fdba40857258812d2c6020b2cc
+    note: >-
+      Official-site promotional studio artwork retained only as visual
+      corroboration; it is not treated as measurement-grade photography.
+  - name: lite3-lidar-current-studio-alt-2048x2048.jpg
+    local_source_path: >-
+      source/original/lite3-lidar-current-studio-alt-2048x2048.jpg
+    url: >-
+      https://www.deeprobotics.us/wp-content/uploads/2025/12/deep-robotics-lite3-quadruped-robot-research-education-inspection-1.jpg
+    wordpress_media_id: 4601
+    dimensions_px: [2048, 2048]
+    sha256: 62f6b4f9c5b485c9ea97878268cbdca2921cd63d8e5ef960a34146626b25e1e4
+    note: >-
+      Official-site promotional image retained only as visual corroboration;
+      it is not treated as measurement-grade photography.
+  - name: lite3-web-cover-8s.mp4
+    local_source_path: source/original/lite3-web-cover-8s.mp4
+    url: >-
+      https://www.deeprobotics.us/wp-content/uploads/2025/08/Lite3-Web-cover.mp4
+    wordpress_media_id: 3789
+    duration_seconds: 7.755011
+    dimensions_px: [1920, 1080]
+    sha256: 9b1a4037de0b9011cda281fcca578eb770bd23a1f0e4d5697642f4803d915c33
+    inspection: >-
+      The sampled frames show motion and modular-payload promotion but do not
+      expose the current LiDAR mounting hardware.
+  - name: lite3-product-video-86s.mp4
+    local_source_path: source/original/lite3-product-video-86s.mp4
+    url: >-
+      https://www.deeprobotics.us/wp-content/uploads/2025/07/DEEP-Robotics-Lite3.mp4
+    wordpress_media_id: 3393
+    duration_seconds: 86.216009
+    dimensions_px: [1280, 720]
+    sha256: 73a363ca5517f18c7259ca5d0b2730122d1cdcf29006dc7a118eb90c69982d08
+    inspection: >-
+      The sampled frames show the base robot and generic module promotion.
+      They do not provide a current Mid-360/D435/Interface assembly close-up.
+
+derived_review_artifacts:
+  - derived/web-cover-contact-sheet.jpg
+  - derived/product-video-contact-sheet.jpg
+
+claim_boundary: >-
+  These official regional product images corroborate the visible architecture
+  of the current Lite3 LiDAR upper assembly: the front sensor carrier and rear
+  Interface enclosure are independently supported on the robot top by discrete
+  local supports. They do not publish the hidden robot-side receiver geometry,
+  screw thread, engagement depth, tolerances, or factory CAD. The visible
+  replica track therefore omits hidden receivers entirely; a later printable
+  attachment, if requested, must be a separately labeled adaptation.

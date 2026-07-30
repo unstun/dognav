@@ -1,0 +1,2335 @@
+{
+  "document": "lite3-j17a-j20a-monolithic-rear-web-print-adaptation-rev-b-review",
+  "root_occurrence_count": 42,
+  "robot_root_index": 0,
+  "robot_root_name": "Lite3Ì½Ë÷°æ×Ü×°:1",
+  "robot_component_name": "Lite3Ì½Ë÷°æ×Ü×°",
+  "robot_full_path": "Lite3Ì½Ë÷°æ×Ü×°:1",
+  "robot_direct_brep_bodies": 0,
+  "robot_child_occurrences": 2,
+  "robot_nested_occurrence_count": 320,
+  "final_visible_root_occurrences": [
+    {
+      "index": 0,
+      "name": "Lite3Ì½Ë÷°æ×Ü×°:1",
+      "component": "Lite3Ì½Ë÷°æ×Ü×°"
+    },
+    {
+      "index": 3,
+      "name": "1CA5-S410- 激光雷达防护架:1",
+      "component": "1CA5-S410- 激光雷达防护架"
+    },
+    {
+      "index": 4,
+      "name": "MID-360_4_ASM:1",
+      "component": "MID-360_4_ASM"
+    },
+    {
+      "index": 11,
+      "name": "LITE3_FULLSTACK_MID360_M3x8_UNDERSIDE_SCREW_1_J20F11_TO_MIDB2_VISUAL_CANDIDATE:1",
+      "component": "LITE3_FULLSTACK_MID360_M3x8_UNDERSIDE_SCREW_1_J20F11_TO_MIDB2_VISUAL_CANDIDATE"
+    },
+    {
+      "index": 12,
+      "name": "LITE3_FULLSTACK_MID360_M3x8_UNDERSIDE_SCREW_2_J20F12_TO_MIDB0_VISUAL_CANDIDATE:1",
+      "component": "LITE3_FULLSTACK_MID360_M3x8_UNDERSIDE_SCREW_2_J20F12_TO_MIDB0_VISUAL_CANDIDATE"
+    },
+    {
+      "index": 13,
+      "name": "LITE3_FULLSTACK_MID360_M3x8_UNDERSIDE_SCREW_3_J20F13_TO_MIDB1_VISUAL_CANDIDATE:1",
+      "component": "LITE3_FULLSTACK_MID360_M3x8_UNDERSIDE_SCREW_3_J20F13_TO_MIDB1_VISUAL_CANDIDATE"
+    },
+    {
+      "index": 14,
+      "name": "LITE3_FULLSTACK_MID360_M3x8_UNDERSIDE_SCREW_4_J20F14_TO_MIDB3_VISUAL_CANDIDATE:1",
+      "component": "LITE3_FULLSTACK_MID360_M3x8_UNDERSIDE_SCREW_4_J20F14_TO_MIDB3_VISUAL_CANDIDATE"
+    },
+    {
+      "index": 15,
+      "name": "LITE3_FULLSTACK_D435I_REAL_BREP_OFFICIAL_MANUFACTURER_CAD:1",
+      "component": "LITE3_FULLSTACK_D435I_REAL_BREP_OFFICIAL_MANUFACTURER_CAD"
+    },
+    {
+      "index": 16,
+      "name": "LITE3_FULLSTACK_D435I_M3x5_DIRECT_SCREW_1_J17A_TO_CAMERA_THREAD_VISUAL_CANDIDATE:1",
+      "component": "LITE3_FULLSTACK_D435I_M3x5_DIRECT_SCREW_1_J17A_TO_CAMERA_THREAD_VISUAL_CANDIDATE"
+    },
+    {
+      "index": 17,
+      "name": "LITE3_FULLSTACK_D435I_M3x5_DIRECT_SCREW_2_J17A_TO_CAMERA_THREAD_VISUAL_CANDIDATE:1",
+      "component": "LITE3_FULLSTACK_D435I_M3x5_DIRECT_SCREW_2_J17A_TO_CAMERA_THREAD_VISUAL_CANDIDATE"
+    },
+    {
+      "index": 24,
+      "name": "BASE_TO_LITE3_FRONT_2X_M3X8_SOCKET_HEAD_SCREWS_REAL_BREP:1",
+      "component": "BASE_TO_LITE3_FRONT_2X_M3X8_SOCKET_HEAD_SCREWS_REAL_BREP"
+    },
+    {
+      "index": 25,
+      "name": "BASE_TO_LITE3_REAR_2X_OD8_ID3P5_LOCATING_SPACERS_REAL_BREP:1",
+      "component": "BASE_TO_LITE3_REAR_2X_OD8_ID3P5_LOCATING_SPACERS_REAL_BREP"
+    },
+    {
+      "index": 26,
+      "name": "BASE_TO_LITE3_REAR_2X_M3X12_SOCKET_HEAD_SCREWS_REAL_BREP:1",
+      "component": "BASE_TO_LITE3_REAR_2X_M3X12_SOCKET_HEAD_SCREWS_REAL_BREP"
+    },
+    {
+      "index": 39,
+      "name": "J17A_J20A_REV_C2_S410_SINGLE_THROUGH_HOLE_HEAD_ACCESS_PREVIEW_NOT_OFFICIAL_CAD:1",
+      "component": "J17A_J20A_REV_C2_S410_SINGLE_THROUGH_HOLE_HEAD_ACCESS_PREVIEW_NOT_OFFICIAL_CAD"
+    },
+    {
+      "index": 40,
+      "name": "S410_S1_M5X14_BOTTOM_UP_BOLT_HEAD_ACCESS_PREVIEW:1",
+      "component": "S410_S1_M5X14_BOTTOM_UP_BOLT_HEAD_ACCESS_PREVIEW"
+    },
+    {
+      "index": 41,
+      "name": "S410_S1_M5_TOP_HEX_NUT_HEAD_ACCESS_PREVIEW:1",
+      "component": "S410_S1_M5_TOP_HEX_NUT_HEAD_ACCESS_PREVIEW"
+    }
+  ],
+  "robot_nested_occurrences": [
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+____________.STEP.STEP:1+YSCM212-____.STEP.STEP:1",
+      "component": "YSCM212-____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+____________.STEP.STEP:1+hexagon socket countersunk head screws gb_GB_FASTENER_SCREWS_HSCHS M3X8-N.STEP.STEP:1",
+      "component": "hexagon socket countersunk head screws gb_GB_FASTENER_SCREWS_HSCHS M3X8-N.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+____________.STEP.STEP:1",
+      "component": "____________.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+____________-1.STEP.STEP:1+YSCM212-____.STEP.STEP:2",
+      "component": "YSCM212-____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+____________-1.STEP.STEP:1+hexagon socket countersunk head screws gb_GB_FASTENER_SCREWS_HSCHS M3X8-N.STEP.STEP:2",
+      "component": "hexagon socket countersunk head screws gb_GB_FASTENER_SCREWS_HSCHS M3X8-N.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+____________-1.STEP.STEP:1",
+      "component": "____________-1.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_ZB______ASM.STEP.STEP:1+LT210_ZB_XB_____.STEP.STEP:1",
+      "component": "LT210_ZB_XB_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_ZB______ASM.STEP.STEP:1+1T21-S140-______.STEP.STEP:1",
+      "component": "1T21-S140-______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_ZB______ASM.STEP.STEP:1+RK3588_2.STEP.STEP:1",
+      "component": "RK3588_2.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_ZB______ASM.STEP.STEP:1+LT210_ZB_SB_____.STEP.STEP:1",
+      "component": "LT210_ZB_SB_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_ZB______ASM.STEP.STEP:1+1T21-S010-____.STEP.STEP:1",
+      "component": "1T21-S010-____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_ZB______ASM.STEP.STEP:1+1T21-S150-______.STEP.STEP:1",
+      "component": "1T21-S150-______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_ZB______ASM.STEP.STEP:1+1T21-S140-______.STEP.STEP:2",
+      "component": "1T21-S140-______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_ZB______ASM.STEP.STEP:1+1T21-S140-______.STEP.STEP:3",
+      "component": "1T21-S140-______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_ZB______ASM.STEP.STEP:1+1T21-S140-______.STEP.STEP:4",
+      "component": "1T21-S140-______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_ZB______ASM.STEP.STEP:1+1T21-S010-____.STEP.STEP:2",
+      "component": "1T21-S010-____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_ZB______ASM.STEP.STEP:1+1T21-S150-______.STEP.STEP:2",
+      "component": "1T21-S150-______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_ZB______ASM.STEP.STEP:1+1T21-S150-______.STEP.STEP:3",
+      "component": "1T21-S150-______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_ZB______ASM.STEP.STEP:1+1T21-S150-______.STEP.STEP:4",
+      "component": "1T21-S150-______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_ZB______ASM.STEP.STEP:1",
+      "component": "LT210_ZB______ASM.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+____________-2.STEP.STEP:1+YSCM212-____.STEP.STEP:3",
+      "component": "YSCM212-____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+____________-2.STEP.STEP:1+hexagon socket countersunk head screws gb_GB_FASTENER_SCREWS_HSCHS M3X8-N.STEP.STEP:3",
+      "component": "hexagon socket countersunk head screws gb_GB_FASTENER_SCREWS_HSCHS M3X8-N.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+____________-2.STEP.STEP:1",
+      "component": "____________-2.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+____________-3.STEP.STEP:1+YSCM212-____.STEP.STEP:4",
+      "component": "YSCM212-____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+____________-3.STEP.STEP:1+hexagon socket countersunk head screws gb_GB_FASTENER_SCREWS_HSCHS M3X8-N.STEP.STEP:4",
+      "component": "hexagon socket countersunk head screws gb_GB_FASTENER_SCREWS_HSCHS M3X8-N.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+____________-3.STEP.STEP:1",
+      "component": "____________-3.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+____.STEP.STEP:1",
+      "component": "____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S04D_____.STEP.STEP:1",
+      "component": "1T21-S04D_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZB3B___________.STEP.STEP:1",
+      "component": "1T21-ZB3B___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21_S03B_____.STEP.STEP:1",
+      "component": "1T21_S03B_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+YSC_YC_ZS00020_01__________01.STEP.STEP:1",
+      "component": "YSC_YC_ZS00020_01__________01.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T20-S04B-__________.STEP.STEP:1",
+      "component": "1T20-S04B-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T20_S05B-__________.STEP.STEP:1",
+      "component": "1T20_S05B-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S07A-________.STEP.STEP:1",
+      "component": "1T21-S07A-________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S110-__________.STEP.STEP:1",
+      "component": "1T21-S110-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+YSC_YC_ZS00019_01-________.STEP.STEP:1",
+      "component": "YSC_YC_ZS00019_01-________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S08B_________.STEP.STEP:1",
+      "component": "1T21-S08B_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+01_LT200_BT_____.STEP.STEP:1",
+      "component": "01_LT200_BT_____.STEP.STEP",
+      "direct_brep_bodies": 8,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT200_TB_LB_____.STEP.STEP:1",
+      "component": "LT200_TB_LB_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_DY_JK___________.STEP.STEP:1",
+      "component": "LT210_DY_JK___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+LT210_ZB_SB_____-0.STEP.STEP:1",
+      "component": "LT210_ZB_SB_____-0.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+YSC_YC_ZS00010_01_____.STEP.STEP:1",
+      "component": "YSC_YC_ZS00010_01_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S13B-______.STEP.STEP:1",
+      "component": "1T21-S13B-______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S09A-______.STEP.STEP:1",
+      "component": "1T21-S09A-______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZD02 __________.STEP.STEP:1",
+      "component": "1T21-ZD02 __________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZD03 __________.STEP.STEP:1",
+      "component": "1T21-ZD03 __________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+________.STEP.STEP:1",
+      "component": "________.STEP.STEP",
+      "direct_brep_bodies": 3,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+4010________.STEP.STEP:1",
+      "component": "4010________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S160-________.STEP.STEP:1",
+      "component": "1T21-S160-________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+M2.5x7+4 ______.STEP.STEP:1",
+      "component": "M2.5x7+4 ______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21_S01C_________.STEP.STEP:1",
+      "component": "1T21_S01C_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1",
+      "component": "1T21-S02G-________.STEP.STEP",
+      "direct_brep_bodies": 14,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZB2B_________.STEP.STEP:1",
+      "component": "1T21-ZB2B_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S170___________.STEP.STEP:1",
+      "component": "1T21-S170___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZB1B_________.STEP.STEP:1",
+      "component": "1T21-ZB1B_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+YESENSE.STEP.STEP:1",
+      "component": "YESENSE.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+____.STEP.STEP:2",
+      "component": "____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S110-__________.STEP.STEP:2",
+      "component": "1T21-S110-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S110-__________.STEP.STEP:3",
+      "component": "1T21-S110-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S110-__________.STEP.STEP:4",
+      "component": "1T21-S110-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+YSC_YC_ZS00019_01-________.STEP.STEP:2",
+      "component": "YSC_YC_ZS00019_01-________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+YSC_YC_ZS00010_01_____.STEP.STEP:2",
+      "component": "YSC_YC_ZS00010_01_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+YSC_YC_ZS00010_01_____.STEP.STEP:3",
+      "component": "YSC_YC_ZS00010_01_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+YSC_YC_ZS00010_01_____.STEP.STEP:4",
+      "component": "YSC_YC_ZS00010_01_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S09A-______.STEP.STEP:2",
+      "component": "1T21-S09A-______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S160-________.STEP.STEP:2",
+      "component": "1T21-S160-________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+M2.5x7+4 ______.STEP.STEP:2",
+      "component": "M2.5x7+4 ______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S160-________.STEP.STEP:3",
+      "component": "1T21-S160-________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S170___________.STEP.STEP:2",
+      "component": "1T21-S170___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZB3B___________.STEP.STEP:2",
+      "component": "1T21-ZB3B___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZB3B___________.STEP.STEP:3",
+      "component": "1T21-ZB3B___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZB3B___________.STEP.STEP:4",
+      "component": "1T21-ZB3B___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1",
+      "component": "lite3________.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____.STEP.STEP:1+04_LT210_DJ_DZ_________.STEP.STEP:1+1T21_L01D_________.STEP.STEP:1",
+      "component": "1T21_L01D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____.STEP.STEP:1+04_LT210_DJ_DZ_________.STEP.STEP:1+B6700ZZ.STEP.STEP:1",
+      "component": "B6700ZZ.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____.STEP.STEP:1+04_LT210_DJ_DZ_________.STEP.STEP:1+1T21_L01E_________.STEP.STEP:1",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____.STEP.STEP:1+04_LT210_DJ_DZ_________.STEP.STEP:1",
+      "component": "04_LT210_DJ_DZ_________.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____.STEP.STEP:1+04_LT210_DJ_JS_12______.STEP.STEP:1+1T21-L02G___________.STEP.STEP:1",
+      "component": "1T21-L02G___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____.STEP.STEP:1+04_LT210_DJ_JS_12______.STEP.STEP:1+1T21-L03E_______.STEP.STEP:4",
+      "component": "1T21-L03E_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____.STEP.STEP:1+04_LT210_DJ_JS_12______.STEP.STEP:1+1T21_L05C_______.STEP.STEP:1",
+      "component": "1T21_L05C_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____.STEP.STEP:1+04_LT210_DJ_JS_12______.STEP.STEP:1",
+      "component": "04_LT210_DJ_JS_12______.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____.STEP.STEP:1+1T21-L35B-__________.STEP.STEP:1",
+      "component": "1T21-L35B-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____.STEP.STEP:1+1T21-L06E___________.STEP.STEP:1",
+      "component": "1T21-L06E___________.STEP.STEP",
+      "direct_brep_bodies": 2,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____.STEP.STEP:1",
+      "component": "03_LT210_DJ_12_6012____.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-1.STEP.STEP:1+04_LT210_DJ_DZ_________-1.STEP.STEP:1+LT200_60DJ_ZZ_60________.STEP.STEP:1",
+      "component": "LT200_60DJ_ZZ_60________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-1.STEP.STEP:1+04_LT210_DJ_DZ_________-1.STEP.STEP:1+1T21_L01D_________.STEP.STEP:2",
+      "component": "1T21_L01D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-1.STEP.STEP:1+04_LT210_DJ_DZ_________-1.STEP.STEP:1+B6700ZZ.STEP.STEP:2",
+      "component": "B6700ZZ.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-1.STEP.STEP:1+04_LT210_DJ_DZ_________-1.STEP.STEP:1+1T21_L01E_________.STEP.STEP:2",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-1.STEP.STEP:1+04_LT210_DJ_DZ_________-1.STEP.STEP:1",
+      "component": "04_LT210_DJ_DZ_________-1.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-1.STEP.STEP:1+04_LT210_DJ_JS_12______-1.STEP.STEP:1+1T21-L02G___________.STEP.STEP:2",
+      "component": "1T21-L02G___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-1.STEP.STEP:1+04_LT210_DJ_JS_12______-1.STEP.STEP:1+1T21-L03E_______.STEP.STEP:5",
+      "component": "1T21-L03E_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-1.STEP.STEP:1+04_LT210_DJ_JS_12______-1.STEP.STEP:1+1T21_L05C_______.STEP.STEP:2",
+      "component": "1T21_L05C_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-1.STEP.STEP:1+04_LT210_DJ_JS_12______-1.STEP.STEP:1",
+      "component": "04_LT210_DJ_JS_12______-1.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-1.STEP.STEP:1+1T21-L35B-__________.STEP.STEP:2",
+      "component": "1T21-L35B-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-1.STEP.STEP:1+1T21-L06E___________.STEP.STEP:2",
+      "component": "1T21-L06E___________.STEP.STEP",
+      "direct_brep_bodies": 2,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-1.STEP.STEP:1",
+      "component": "03_LT210_DJ_12_6012____-1.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____.STEP.STEP:1+04_LT210_DJ_DZ_________-2.STEP.STEP:1+1T21_L01D_________.STEP.STEP:3",
+      "component": "1T21_L01D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____.STEP.STEP:1+04_LT210_DJ_DZ_________-2.STEP.STEP:1+B6700ZZ.STEP.STEP:3",
+      "component": "B6700ZZ.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____.STEP.STEP:1+04_LT210_DJ_DZ_________-2.STEP.STEP:1+1T21_L01E_________.STEP.STEP:3",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____.STEP.STEP:1+04_LT210_DJ_DZ_________-2.STEP.STEP:1",
+      "component": "04_LT210_DJ_DZ_________-2.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____.STEP.STEP:1+04_LT210_DJ_JS_18______.STEP.STEP:1+1T21_L35C_18______.STEP.STEP:1",
+      "component": "1T21_L35C_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____.STEP.STEP:1+04_LT210_DJ_JS_18______.STEP.STEP:1+1T21_L34E_18__________.STEP.STEP:1",
+      "component": "1T21_L34E_18__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____.STEP.STEP:1+04_LT210_DJ_JS_18______.STEP.STEP:1+1T21-L03E_______.STEP.STEP:1",
+      "component": "1T21-L03E_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____.STEP.STEP:1+04_LT210_DJ_JS_18______.STEP.STEP:1",
+      "component": "04_LT210_DJ_JS_18______.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____.STEP.STEP:1+1T21_L30D___________.STEP.STEP:1",
+      "component": "1T21_L30D___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____.STEP.STEP:1+1T21-L32A_______.STEP.STEP:1",
+      "component": "1T21-L32A_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____.STEP.STEP:1+1T21_L31A_________.STEP.STEP:1",
+      "component": "1T21_L31A_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____.STEP.STEP:1+1T21_L01E_________.STEP.STEP:4",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____.STEP.STEP:1",
+      "component": "03_LT210_DJ_12_6018____.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+03_LT220_XT_________.STEP.STEP:1+10-24-4____________.STEP.STEP:1",
+      "component": "10-24-4____________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+03_LT220_XT_________.STEP.STEP:1+1T20-L340_________.STEP.STEP:1",
+      "component": "1T20-L340_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+03_LT220_XT_________.STEP.STEP:1+1T21_L24C_____.STEP.STEP:1",
+      "component": "1T21_L24C_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+03_LT220_XT_________.STEP.STEP:1+1T21_L25A_____.STEP.STEP:1",
+      "component": "1T21_L25A_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+03_LT220_XT_________.STEP.STEP:1+MDZB10-10.STEP.STEP:1",
+      "component": "MDZB10-10.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+03_LT220_XT_________.STEP.STEP:1+10-24-4____________.STEP.STEP:2",
+      "component": "10-24-4____________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+03_LT220_XT_________.STEP.STEP:1+1T20-L340_________.STEP.STEP:2",
+      "component": "1T20-L340_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+03_LT220_XT_________.STEP.STEP:1",
+      "component": "03_LT220_XT_________.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+______________.STEP.STEP:1+1T21-L17D-__________.STEP.STEP:1",
+      "component": "1T21-L17D-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+______________.STEP.STEP:1+1T21-Z12A_____________.STEP.STEP:1",
+      "component": "1T21-Z12A_____________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+______________.STEP.STEP:1",
+      "component": "______________.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+1T21_L36A_18______.STEP.STEP:1",
+      "component": "1T21_L36A_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+1T21_L44B_18____.STEP.STEP:1",
+      "component": "1T21_L44B_18____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+1T20_L130_________.STEP.STEP:1",
+      "component": "1T20_L130_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+1T21_L28A_______.STEP.STEP:1",
+      "component": "1T21_L28A_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+M3.STEP.STEP:1",
+      "component": "M3.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+1T21-L16D-__________.STEP.STEP:1",
+      "component": "1T21-L16D-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+1T21-L45B_18______.STEP.STEP:1",
+      "component": "1T21-L45B_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+1T20_L130_________.STEP.STEP:2",
+      "component": "1T20_L130_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+1T21-L17D-__________.STEP.STEP:3",
+      "component": "1T21-L17D-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1+1T21-L45B_18______.STEP.STEP:2",
+      "component": "1T21-L45B_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+03_LT210_TL_CB_______________.STEP.STEP:1",
+      "component": "03_LT210_TL_CB_______________.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+1T21-L23D_________.STEP.STEP:1",
+      "component": "1T21-L23D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1+1T21-L32A_______.STEP.STEP:4",
+      "component": "1T21-L32A_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZH_XB______.STEP.STEP:1",
+      "component": "LT220_TB_ZH_XB______.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-2.STEP.STEP:1+04_LT210_DJ_DZ_________-3.STEP.STEP:1+1T21_L01D_________.STEP.STEP:4",
+      "component": "1T21_L01D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-2.STEP.STEP:1+04_LT210_DJ_DZ_________-3.STEP.STEP:1+B6700ZZ.STEP.STEP:4",
+      "component": "B6700ZZ.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-2.STEP.STEP:1+04_LT210_DJ_DZ_________-3.STEP.STEP:1+1T21_L01E_________.STEP.STEP:5",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-2.STEP.STEP:1+04_LT210_DJ_DZ_________-3.STEP.STEP:1",
+      "component": "04_LT210_DJ_DZ_________-3.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-2.STEP.STEP:1+04_LT210_DJ_JS_12______-2.STEP.STEP:1+1T21-L02G___________.STEP.STEP:3",
+      "component": "1T21-L02G___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-2.STEP.STEP:1+04_LT210_DJ_JS_12______-2.STEP.STEP:1+1T21-L03E_______.STEP.STEP:6",
+      "component": "1T21-L03E_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-2.STEP.STEP:1+04_LT210_DJ_JS_12______-2.STEP.STEP:1+1T21_L05C_______.STEP.STEP:3",
+      "component": "1T21_L05C_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-2.STEP.STEP:1+04_LT210_DJ_JS_12______-2.STEP.STEP:1",
+      "component": "04_LT210_DJ_JS_12______-2.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-2.STEP.STEP:1+1T21-L06E___________.STEP.STEP:3",
+      "component": "1T21-L06E___________.STEP.STEP",
+      "direct_brep_bodies": 2,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-2.STEP.STEP:1",
+      "component": "03_LT210_DJ_12_6012____-2.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-3.STEP.STEP:1+04_LT210_DJ_DZ_________-4.STEP.STEP:1+1T21_L01D_________.STEP.STEP:5",
+      "component": "1T21_L01D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-3.STEP.STEP:1+04_LT210_DJ_DZ_________-4.STEP.STEP:1+B6700ZZ.STEP.STEP:5",
+      "component": "B6700ZZ.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-3.STEP.STEP:1+04_LT210_DJ_DZ_________-4.STEP.STEP:1+1T21_L01E_________.STEP.STEP:6",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-3.STEP.STEP:1+04_LT210_DJ_DZ_________-4.STEP.STEP:1",
+      "component": "04_LT210_DJ_DZ_________-4.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-3.STEP.STEP:1+04_LT210_DJ_JS_12______-3.STEP.STEP:1+1T21-L02G___________.STEP.STEP:4",
+      "component": "1T21-L02G___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-3.STEP.STEP:1+04_LT210_DJ_JS_12______-3.STEP.STEP:1+1T21-L03E_______.STEP.STEP:7",
+      "component": "1T21-L03E_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-3.STEP.STEP:1+04_LT210_DJ_JS_12______-3.STEP.STEP:1+1T21_L05C_______.STEP.STEP:4",
+      "component": "1T21_L05C_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-3.STEP.STEP:1+04_LT210_DJ_JS_12______-3.STEP.STEP:1",
+      "component": "04_LT210_DJ_JS_12______-3.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-3.STEP.STEP:1+1T21-L35B-__________.STEP.STEP:3",
+      "component": "1T21-L35B-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-3.STEP.STEP:1+1T21-L06E___________.STEP.STEP:4",
+      "component": "1T21-L06E___________.STEP.STEP",
+      "direct_brep_bodies": 2,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-3.STEP.STEP:1",
+      "component": "03_LT210_DJ_12_6012____-3.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-1.STEP.STEP:1+10-24-4____________.STEP.STEP:3",
+      "component": "10-24-4____________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-1.STEP.STEP:1+10-24-4____________.STEP.STEP:4",
+      "component": "10-24-4____________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-1.STEP.STEP:1+1T20-L340_________.STEP.STEP:3",
+      "component": "1T20-L340_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-1.STEP.STEP:1+1T20-L340_________.STEP.STEP:4",
+      "component": "1T20-L340_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-1.STEP.STEP:1+1T21_L24C_____.STEP.STEP:2",
+      "component": "1T21_L24C_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-1.STEP.STEP:1+1T21_L25A_____.STEP.STEP:2",
+      "component": "1T21_L25A_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-1.STEP.STEP:1+MDZB10-10.STEP.STEP:2",
+      "component": "MDZB10-10.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-1.STEP.STEP:1",
+      "component": "03_LT220_XT_________-1.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+______________-1.STEP.STEP:1+1T21-L17D-__________.STEP.STEP:2",
+      "component": "1T21-L17D-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+______________-1.STEP.STEP:1+1T21-Z12A_____________.STEP.STEP:2",
+      "component": "1T21-Z12A_____________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+______________-1.STEP.STEP:1",
+      "component": "______________-1.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+1T21_L36A_18______.STEP.STEP:2",
+      "component": "1T21_L36A_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+1T21_L44B_18____.STEP.STEP:2",
+      "component": "1T21_L44B_18____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+1T20_L130_________.STEP.STEP:3",
+      "component": "1T20_L130_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+1T20_L130_________.STEP.STEP:4",
+      "component": "1T20_L130_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+1T21_L28A_______.STEP.STEP:2",
+      "component": "1T21_L28A_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+M3.STEP.STEP:2",
+      "component": "M3.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+1T21-L16D-__________.STEP.STEP:2",
+      "component": "1T21-L16D-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+1T21-L17D-__________.STEP.STEP:4",
+      "component": "1T21-L17D-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+1T21-L45B_18______.STEP.STEP:3",
+      "component": "1T21-L45B_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1+1T21-L45B_18______.STEP.STEP:4",
+      "component": "1T21-L45B_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_TL_CB_______________-1.STEP.STEP:1",
+      "component": "03_LT210_TL_CB_______________-1.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-1.STEP.STEP:1+04_LT210_DJ_DZ_________-5.STEP.STEP:1+1T21_L01D_________.STEP.STEP:6",
+      "component": "1T21_L01D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-1.STEP.STEP:1+04_LT210_DJ_DZ_________-5.STEP.STEP:1+B6700ZZ.STEP.STEP:6",
+      "component": "B6700ZZ.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-1.STEP.STEP:1+04_LT210_DJ_DZ_________-5.STEP.STEP:1+1T21_L01E_________.STEP.STEP:7",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-1.STEP.STEP:1+04_LT210_DJ_DZ_________-5.STEP.STEP:1",
+      "component": "04_LT210_DJ_DZ_________-5.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-1.STEP.STEP:1+04_LT210_DJ_JS_18______-1.STEP.STEP:1+1T21-L03E_______.STEP.STEP:2",
+      "component": "1T21-L03E_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-1.STEP.STEP:1+04_LT210_DJ_JS_18______-1.STEP.STEP:1+1T21_L35C_18______.STEP.STEP:2",
+      "component": "1T21_L35C_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-1.STEP.STEP:1+04_LT210_DJ_JS_18______-1.STEP.STEP:1+1T21_L34E_18__________.STEP.STEP:2",
+      "component": "1T21_L34E_18__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-1.STEP.STEP:1+04_LT210_DJ_JS_18______-1.STEP.STEP:1",
+      "component": "04_LT210_DJ_JS_18______-1.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-1.STEP.STEP:1+1T21_L30D___________.STEP.STEP:2",
+      "component": "1T21_L30D___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-1.STEP.STEP:1+1T21-L32A_______.STEP.STEP:2",
+      "component": "1T21-L32A_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-1.STEP.STEP:1+1T21_L31A_________.STEP.STEP:2",
+      "component": "1T21_L31A_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-1.STEP.STEP:1+1T21_L01E_________.STEP.STEP:8",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-1.STEP.STEP:1",
+      "component": "03_LT210_DJ_12_6018____-1.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+1T21-L23D_________.STEP.STEP:2",
+      "component": "1T21-L23D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1+1T21-L32A_______.STEP.STEP:5",
+      "component": "1T21-L32A_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_ZQ_XB______.STEP.STEP:1",
+      "component": "LT220_TB_ZQ_XB______.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-4.STEP.STEP:1+04_LT210_DJ_DZ_________-6.STEP.STEP:1+1T21_L01D_________.STEP.STEP:7",
+      "component": "1T21_L01D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-4.STEP.STEP:1+04_LT210_DJ_DZ_________-6.STEP.STEP:1+B6700ZZ.STEP.STEP:7",
+      "component": "B6700ZZ.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-4.STEP.STEP:1+04_LT210_DJ_DZ_________-6.STEP.STEP:1+1T21_L01E_________.STEP.STEP:9",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-4.STEP.STEP:1+04_LT210_DJ_DZ_________-6.STEP.STEP:1",
+      "component": "04_LT210_DJ_DZ_________-6.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-4.STEP.STEP:1+04_LT210_DJ_JS_12______-4.STEP.STEP:1+1T21-L02G___________.STEP.STEP:5",
+      "component": "1T21-L02G___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-4.STEP.STEP:1+04_LT210_DJ_JS_12______-4.STEP.STEP:1+1T21-L03E_______.STEP.STEP:8",
+      "component": "1T21-L03E_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-4.STEP.STEP:1+04_LT210_DJ_JS_12______-4.STEP.STEP:1+1T21_L05C_______.STEP.STEP:5",
+      "component": "1T21_L05C_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-4.STEP.STEP:1+04_LT210_DJ_JS_12______-4.STEP.STEP:1",
+      "component": "04_LT210_DJ_JS_12______-4.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-4.STEP.STEP:1+1T21-L35B-__________.STEP.STEP:4",
+      "component": "1T21-L35B-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-4.STEP.STEP:1+1T21-L06E___________.STEP.STEP:5",
+      "component": "1T21-L06E___________.STEP.STEP",
+      "direct_brep_bodies": 2,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-4.STEP.STEP:1",
+      "component": "03_LT210_DJ_12_6012____-4.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-5.STEP.STEP:1+04_LT210_DJ_DZ_________-7.STEP.STEP:1+1T21_L01D_________.STEP.STEP:8",
+      "component": "1T21_L01D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-5.STEP.STEP:1+04_LT210_DJ_DZ_________-7.STEP.STEP:1+B6700ZZ.STEP.STEP:8",
+      "component": "B6700ZZ.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-5.STEP.STEP:1+04_LT210_DJ_DZ_________-7.STEP.STEP:1+1T21_L01E_________.STEP.STEP:10",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-5.STEP.STEP:1+04_LT210_DJ_DZ_________-7.STEP.STEP:1",
+      "component": "04_LT210_DJ_DZ_________-7.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-5.STEP.STEP:1+04_LT210_DJ_JS_12______-5.STEP.STEP:1+1T21-L02G___________.STEP.STEP:6",
+      "component": "1T21-L02G___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-5.STEP.STEP:1+04_LT210_DJ_JS_12______-5.STEP.STEP:1+1T21-L03E_______.STEP.STEP:9",
+      "component": "1T21-L03E_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-5.STEP.STEP:1+04_LT210_DJ_JS_12______-5.STEP.STEP:1+1T21_L05C_______.STEP.STEP:6",
+      "component": "1T21_L05C_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-5.STEP.STEP:1+04_LT210_DJ_JS_12______-5.STEP.STEP:1",
+      "component": "04_LT210_DJ_JS_12______-5.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-5.STEP.STEP:1+1T21-L35B-__________.STEP.STEP:5",
+      "component": "1T21-L35B-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-5.STEP.STEP:1+1T21-L06E___________.STEP.STEP:6",
+      "component": "1T21-L06E___________.STEP.STEP",
+      "direct_brep_bodies": 2,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-5.STEP.STEP:1",
+      "component": "03_LT210_DJ_12_6012____-5.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+03_LT220_XT_________-2.STEP.STEP:1+10-24-4____________.STEP.STEP:5",
+      "component": "10-24-4____________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+03_LT220_XT_________-2.STEP.STEP:1+10-24-4____________.STEP.STEP:6",
+      "component": "10-24-4____________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+03_LT220_XT_________-2.STEP.STEP:1+1T20-L340_________.STEP.STEP:5",
+      "component": "1T20-L340_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+03_LT220_XT_________-2.STEP.STEP:1+1T20-L340_________.STEP.STEP:6",
+      "component": "1T20-L340_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+03_LT220_XT_________-2.STEP.STEP:1+1T21_L24C_____.STEP.STEP:3",
+      "component": "1T21_L24C_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+03_LT220_XT_________-2.STEP.STEP:1+1T21_L25A_____.STEP.STEP:3",
+      "component": "1T21_L25A_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+03_LT220_XT_________-2.STEP.STEP:1+MDZB10-10.STEP.STEP:3",
+      "component": "MDZB10-10.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+03_LT220_XT_________-2.STEP.STEP:1",
+      "component": "03_LT220_XT_________-2.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+1T21-Z13A_____________.STEP.STEP:1",
+      "component": "1T21-Z13A_____________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+1T21-L14D-__________.STEP.STEP:1",
+      "component": "1T21-L14D-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+1T21-L15D-__________.STEP.STEP:1",
+      "component": "1T21-L15D-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+1T21_L36A_18______2023-7-5.STEP.STEP:1",
+      "component": "1T21_L36A_18______2023-7-5.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+1T21_L36A_18______.STEP.STEP:3",
+      "component": "1T21_L36A_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+1T21_L44B_18____.STEP.STEP:3",
+      "component": "1T21_L44B_18____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+1T20_L130_________.STEP.STEP:5",
+      "component": "1T20_L130_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+1T20_L130_________.STEP.STEP:6",
+      "component": "1T20_L130_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+1T21-L45B_18______.STEP.STEP:5",
+      "component": "1T21-L45B_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+1T21-L45B_18______.STEP.STEP:6",
+      "component": "1T21-L45B_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+1T21_L28A_______.STEP.STEP:3",
+      "component": "1T21_L28A_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1+M3.STEP.STEP:3",
+      "component": "M3.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_TR_CB_______________.STEP.STEP:1",
+      "component": "03_LT210_TR_CB_______________.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-2.STEP.STEP:1+04_LT210_DJ_DZ_________-8.STEP.STEP:1+1T21_L01D_________.STEP.STEP:9",
+      "component": "1T21_L01D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-2.STEP.STEP:1+04_LT210_DJ_DZ_________-8.STEP.STEP:1+B6700ZZ.STEP.STEP:9",
+      "component": "B6700ZZ.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-2.STEP.STEP:1+04_LT210_DJ_DZ_________-8.STEP.STEP:1+1T21_L01E_________.STEP.STEP:11",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-2.STEP.STEP:1+04_LT210_DJ_DZ_________-8.STEP.STEP:1",
+      "component": "04_LT210_DJ_DZ_________-8.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-2.STEP.STEP:1+04_LT210_DJ_JS_18______-2.STEP.STEP:1+1T21-L03E_______.STEP.STEP:3",
+      "component": "1T21-L03E_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-2.STEP.STEP:1+04_LT210_DJ_JS_18______-2.STEP.STEP:1+1T21_L35C_18______.STEP.STEP:3",
+      "component": "1T21_L35C_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-2.STEP.STEP:1+04_LT210_DJ_JS_18______-2.STEP.STEP:1+1T21_L34E_18__________.STEP.STEP:3",
+      "component": "1T21_L34E_18__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-2.STEP.STEP:1+04_LT210_DJ_JS_18______-2.STEP.STEP:1",
+      "component": "04_LT210_DJ_JS_18______-2.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-2.STEP.STEP:1+1T21_L30D___________.STEP.STEP:3",
+      "component": "1T21_L30D___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-2.STEP.STEP:1+1T21_L31A_________.STEP.STEP:3",
+      "component": "1T21_L31A_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-2.STEP.STEP:1+1T21_L01E_________.STEP.STEP:12",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-2.STEP.STEP:1",
+      "component": "03_LT210_DJ_12_6018____-2.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+1T21-L23D_________.STEP.STEP:3",
+      "component": "1T21-L23D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1+1T21-L32A_______.STEP.STEP:6",
+      "component": "1T21-L32A_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YH_XB______.STEP.STEP:1",
+      "component": "LT220_TB_YH_XB______.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-6.STEP.STEP:1+04_LT210_DJ_DZ_________-9.STEP.STEP:1+1T21_L01D_________.STEP.STEP:10",
+      "component": "1T21_L01D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-6.STEP.STEP:1+04_LT210_DJ_DZ_________-9.STEP.STEP:1+LT200_60DJ_ZZ_60________.STEP.STEP:2",
+      "component": "LT200_60DJ_ZZ_60________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-6.STEP.STEP:1+04_LT210_DJ_DZ_________-9.STEP.STEP:1+B6700ZZ.STEP.STEP:10",
+      "component": "B6700ZZ.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-6.STEP.STEP:1+04_LT210_DJ_DZ_________-9.STEP.STEP:1+1T21_L01E_________.STEP.STEP:13",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-6.STEP.STEP:1+04_LT210_DJ_DZ_________-9.STEP.STEP:1",
+      "component": "04_LT210_DJ_DZ_________-9.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-6.STEP.STEP:1+04_LT210_DJ_JS_12______-6.STEP.STEP:1+1T21_L05B_______.STEP.STEP:1",
+      "component": "1T21_L05B_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-6.STEP.STEP:1+04_LT210_DJ_JS_12______-6.STEP.STEP:1+B684ZZ.STEP.STEP:1",
+      "component": "B684ZZ.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-6.STEP.STEP:1+04_LT210_DJ_JS_12______-6.STEP.STEP:1+1T21-L02G___________.STEP.STEP:7",
+      "component": "1T21-L02G___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-6.STEP.STEP:1+04_LT210_DJ_JS_12______-6.STEP.STEP:1+1T21-L03E_______.STEP.STEP:10",
+      "component": "1T21-L03E_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-6.STEP.STEP:1+04_LT210_DJ_JS_12______-6.STEP.STEP:1+1T21_L05C_______.STEP.STEP:7",
+      "component": "1T21_L05C_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-6.STEP.STEP:1+04_LT210_DJ_JS_12______-6.STEP.STEP:1",
+      "component": "04_LT210_DJ_JS_12______-6.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-6.STEP.STEP:1+1T21-L35B-__________.STEP.STEP:6",
+      "component": "1T21-L35B-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-6.STEP.STEP:1+1T21-L06E___________.STEP.STEP:7",
+      "component": "1T21-L06E___________.STEP.STEP",
+      "direct_brep_bodies": 2,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-6.STEP.STEP:1",
+      "component": "03_LT210_DJ_12_6012____-6.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-7.STEP.STEP:1+04_LT210_DJ_DZ_________-10.STEP.STEP:1+1T21_L01D_________.STEP.STEP:11",
+      "component": "1T21_L01D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-7.STEP.STEP:1+04_LT210_DJ_DZ_________-10.STEP.STEP:1+LT200_60DJ_ZZ_60________.STEP.STEP:3",
+      "component": "LT200_60DJ_ZZ_60________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-7.STEP.STEP:1+04_LT210_DJ_DZ_________-10.STEP.STEP:1+B6700ZZ.STEP.STEP:11",
+      "component": "B6700ZZ.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-7.STEP.STEP:1+04_LT210_DJ_DZ_________-10.STEP.STEP:1+1T21_L01E_________.STEP.STEP:14",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-7.STEP.STEP:1+04_LT210_DJ_DZ_________-10.STEP.STEP:1",
+      "component": "04_LT210_DJ_DZ_________-10.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-7.STEP.STEP:1+04_LT210_DJ_JS_12______-7.STEP.STEP:1+1T21-L02E___________.STEP.STEP:1",
+      "component": "1T21-L02E___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-7.STEP.STEP:1+04_LT210_DJ_JS_12______-7.STEP.STEP:1+1T21-L03C_______.STEP.STEP:1",
+      "component": "1T21-L03C_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-7.STEP.STEP:1+04_LT210_DJ_JS_12______-7.STEP.STEP:1+1T21_L05B_______.STEP.STEP:2",
+      "component": "1T21_L05B_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-7.STEP.STEP:1+04_LT210_DJ_JS_12______-7.STEP.STEP:1",
+      "component": "04_LT210_DJ_JS_12______-7.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-7.STEP.STEP:1+1T21-L35B-__________.STEP.STEP:7",
+      "component": "1T21-L35B-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-7.STEP.STEP:1+1T21-L06E___________.STEP.STEP:8",
+      "component": "1T21-L06E___________.STEP.STEP",
+      "direct_brep_bodies": 2,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6012____-7.STEP.STEP:1",
+      "component": "03_LT210_DJ_12_6012____-7.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-3.STEP.STEP:1+04_LT210_DJ_DZ_________-11.STEP.STEP:1+1T21_L01D_________.STEP.STEP:12",
+      "component": "1T21_L01D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-3.STEP.STEP:1+04_LT210_DJ_DZ_________-11.STEP.STEP:1+B6700ZZ.STEP.STEP:12",
+      "component": "B6700ZZ.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-3.STEP.STEP:1+04_LT210_DJ_DZ_________-11.STEP.STEP:1+1T21_L01E_________.STEP.STEP:15",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-3.STEP.STEP:1+04_LT210_DJ_DZ_________-11.STEP.STEP:1",
+      "component": "04_LT210_DJ_DZ_________-11.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-3.STEP.STEP:1+04_LT210_DJ_JS_18______-3.STEP.STEP:1+1T21-L03C_______.STEP.STEP:2",
+      "component": "1T21-L03C_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-3.STEP.STEP:1+04_LT210_DJ_JS_18______-3.STEP.STEP:1+1T21_L35C_18______.STEP.STEP:4",
+      "component": "1T21_L35C_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-3.STEP.STEP:1+04_LT210_DJ_JS_18______-3.STEP.STEP:1+1T21_L34E_18__________.STEP.STEP:4",
+      "component": "1T21_L34E_18__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-3.STEP.STEP:1+04_LT210_DJ_JS_18______-3.STEP.STEP:1",
+      "component": "04_LT210_DJ_JS_18______-3.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-3.STEP.STEP:1+1T21_L30D___________.STEP.STEP:4",
+      "component": "1T21_L30D___________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-3.STEP.STEP:1+1T21-L32A_______.STEP.STEP:3",
+      "component": "1T21-L32A_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-3.STEP.STEP:1+1T21_L31A_________.STEP.STEP:4",
+      "component": "1T21_L31A_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-3.STEP.STEP:1+1T21_L01E_________.STEP.STEP:16",
+      "component": "1T21_L01E_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_DJ_12_6018____-3.STEP.STEP:1",
+      "component": "03_LT210_DJ_12_6018____-3.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-3.STEP.STEP:1+10-24-4____________.STEP.STEP:7",
+      "component": "10-24-4____________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-3.STEP.STEP:1+10-24-4____________.STEP.STEP:8",
+      "component": "10-24-4____________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-3.STEP.STEP:1+1T20-L340_________.STEP.STEP:7",
+      "component": "1T20-L340_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-3.STEP.STEP:1+1T20-L340_________.STEP.STEP:8",
+      "component": "1T20-L340_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-3.STEP.STEP:1+1T21_L24C_____.STEP.STEP:4",
+      "component": "1T21_L24C_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-3.STEP.STEP:1+1T21_L25A_____.STEP.STEP:4",
+      "component": "1T21_L25A_____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-3.STEP.STEP:1+MDZB10-10.STEP.STEP:4",
+      "component": "MDZB10-10.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+03_LT220_XT_________-3.STEP.STEP:1",
+      "component": "03_LT220_XT_________-3.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+1T21_L36A_18______.STEP.STEP:4",
+      "component": "1T21_L36A_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+1T21_L44B_18____.STEP.STEP:4",
+      "component": "1T21_L44B_18____.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+1T20_L130_________.STEP.STEP:7",
+      "component": "1T20_L130_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+1T20_L130_________.STEP.STEP:8",
+      "component": "1T20_L130_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+1T21-L45B_18______.STEP.STEP:7",
+      "component": "1T21-L45B_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+1T21-L45B_18______.STEP.STEP:8",
+      "component": "1T21-L45B_18______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+1T21_L28A_______.STEP.STEP:4",
+      "component": "1T21_L28A_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+M3.STEP.STEP:4",
+      "component": "M3.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+1T21-Z13A_____________.STEP.STEP:2",
+      "component": "1T21-Z13A_____________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+1T21-L14D-__________.STEP.STEP:2",
+      "component": "1T21-L14D-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+1T21-L15D-__________.STEP.STEP:2",
+      "component": "1T21-L15D-__________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1+1T21_L36A_18______2023-7-5.STEP.STEP:2",
+      "component": "1T21_L36A_18______2023-7-5.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+03_LT210_TR_CB_______________-1.STEP.STEP:1",
+      "component": "03_LT210_TR_CB_______________-1.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+1T21-L23D_________.STEP.STEP:4",
+      "component": "1T21-L23D_________.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1+1T21-L32A_______.STEP.STEP:7",
+      "component": "1T21-L32A_______.STEP.STEP",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+LT220_TB_YQ_XB______.STEP.STEP:1",
+      "component": "LT220_TB_YQ_XB______.STEP.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1",
+      "component": "Lite3ÌåÑé°æ×Ü×°.STEP",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Ì½Ë÷°æ±³ÔØÄ£¿é:1+1T21-BZ20-µ¥±³ÔØÍâ¿Ç:1",
+      "component": "1T21-BZ20-µ¥±³ÔØÍâ¿Ç",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": false
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Ì½Ë÷°æ±³ÔØÄ£¿é:1+1T21-BZ1B-µ¥±³ÔØ»ù×ù:1",
+      "component": "1T21-BZ1B-µ¥±³ÔØ»ù×ù",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": false
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Ì½Ë÷°æ±³ÔØÄ£¿é:1+±³ÔØÀ©Õ¹µçÂ·°åµ¥²ã:1",
+      "component": "±³ÔØÀ©Õ¹µçÂ·°åµ¥²ã",
+      "direct_brep_bodies": 1,
+      "direct_mesh_bodies": 0,
+      "is_visible": false
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Ì½Ë÷°æ±³ÔØÄ£¿é:1",
+      "component": "Ì½Ë÷°æ±³ÔØÄ£¿é",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": false
+    },
+    {
+      "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1",
+      "component": "Lite3Ì½Ë÷°æ×Ü×°",
+      "direct_brep_bodies": 0,
+      "direct_mesh_bodies": 0,
+      "is_visible": true
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+topic: physical-lite3-mid360-d435i-fusion-adapter-v1
+date: 2026-07-29
+stage: experiment_and_analysis
+status: superseded_rejected_for_current_lite3_pro_robot_interface
+
+current_revision_audit:
+  path: references/upstream/2026-07-29_lite3-current-pro-revision-audit/source_record.yaml
+  conclusion: >-
+    The purchased robot is the current Lite3 Pro revision. The legacy Pro
+    manual, Venture/J17A hardware, and Experience-style V1 robot interface do
+    not establish current-Pro fit.
+
+physical_target:
+  file: physical-lite3-user-photo-2026-07-29.jpg
+  sha256: b471b3af11a649630c19e1fd7b6989600ccdb58034217b8e6c464d527e66664c
+  pixel_dimensions: [1280, 1707]
+  format: JPEG
+  provenance: user-provided photograph of purchased Lite3
+  established:
+    - white physical current Lite3 Pro target, confirmed by Dr Sun
+    - existing white Interface enclosure remains installed
+    - vacant forward top-deck region
+    - robot-front orientation
+  not_established:
+    - metric scale
+    - hidden hole centres
+    - thread specification or usable depth
+    - exact Interface dimensions
+  redistribution: private task evidence; do not redistribute
+
+sources:
+  lite3_brep:
+    path: references/upstream/2026-07-27_lite3-exploration-assembly-cad/source/original/lite3-exploration-assembly.step
+    sha256: d0ad78189f8f9154a780796d2deffcc848c094700776d7c9d6f6da092106c6eb
+    provenance: user-provided manufacturer-style STEP
+    variant_boundary: top-level Exploration assembly with Experience robot-base child; not proven identical to the photographed chassis
+    license: unknown; do not redistribute
+  j17a:
+    path: references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J17A-lidar base.STEP
+    sha256: 52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490
+    upstream: https://github.com/DeepRoboticsLab/fast-livo2-deep-robotics
+    classification: officially linked Lite3 Venture-only extension component; upper-module related-source evidence, not current-Pro robot-side fit
+  j20a:
+    path: references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J20A-small lidar base.STEP
+    sha256: 341b08ca08526e5ee0e9fbeca0bfda9d9970062c6605e979adc52b31955c9bc9
+    upstream: https://github.com/DeepRoboticsLab/fast-livo2-deep-robotics
+    classification: officially linked Lite3 Venture-only extension component; upper-module related-source evidence, not current-Pro robot-side fit
+  s410:
+    path: references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1CA5-S410-Lidar protector.STEP
+    sha256: 7fd23a776b45c7d8571ef77ba9e8b05520eced0b97f62487ba03f88bbc9df810
+    upstream: https://github.com/DeepRoboticsLab/fast-livo2-deep-robotics
+    classification: officially linked Lite3 Venture-only extension component; upper-module related-source evidence, not current-Pro robot-side fit
+  mid360:
+    path: references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp
+    sha256: b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02
+    upstream: https://www.livoxtech.com/mid-360/downloads
+    classification: official manufacturer exterior CAD
+  d435i:
+    path: references/upstream/2026-07-25_realsense-d435i-cad/source/original/D435i_Solid.SLDPRT
+    sha256: 9cdbfdc7085ea5430ec9007eb1d895c7ff513c40b77c298a275ded33edf65525
+    upstream: https://dev.realsenseai.com/docs/cad-files/
+    classification: official manufacturer product CAD translated to B-rep by Fusion
+
+derived_part:
+  name: LITE3_MID360_D435I_MONOLITHIC_CARRIER_V1_NOT_OFFICIAL_CAD
+  classification: print_adaptation
+  official_cad: false
+  source_geometry: unchanged J17A/J20A exterior and interface regions
+  new_geometry: two local front fusion regions plus 10 mm continuous rear web
+
+claim_boundary: >-
+  The package preserves a coherent archived V1 upper-module candidate and
+  negative interface evidence. It is rejected for the purchased current Lite3
+  Pro robot-side fit, screws, spacers, installation sequence, fabrication, and
+  motion. A separate lower adapter requires physical current-Pro measurements.

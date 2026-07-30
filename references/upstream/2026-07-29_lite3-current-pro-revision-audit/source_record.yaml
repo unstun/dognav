@@ -1,0 +1,110 @@
+schema_version: 1
+retrieved_at: "2026-07-29T23:13:00-07:00"
+purpose: "Separate the currently marketed Lite3 Pro/LiDAR hardware revision from the legacy V1.0.7 Pro manual before designing a robot-side sensor adapter."
+
+target:
+  identity: "Dr Sun's purchased current Lite3 Pro"
+  user_photo: ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/physical-lite3-mid360-d435i-fusion-adapter-v1/source/physical-lite3-user-photo-2026-07-29.jpg"
+  user_photo_sha256: "b471b3af11a649630c19e1fd7b6989600ccdb58034217b8e6c464d527e66664c"
+  visible_observations:
+    - "Long white perception-compute enclosure occupies most of the rear/centre top deck."
+    - "Only the forward top-deck region is visibly available for an added sensor carrier."
+    - "Perspective and blur do not support metric extraction of hole centres, thread size, depth, or enclosure position."
+
+sources:
+  - id: "current_2025_brochure"
+    authority: "DEEP Robotics official brochure"
+    url: "https://www.deeprobotics.us/wp-content/uploads/2025/08/DEEPRobotics-Lite3-Quadruped-Robot-ENV-7.2.2025.pdf"
+    local_path: "source/original/DEEPRobotics-Lite3-Quadruped-Robot-ENV-7.2.2025.pdf"
+    bytes: 6254633
+    sha256: "bc674a26f86a64de12ca6eb371eb4e068e73f7c6b293eae41606eb9860fe5a47"
+    license: "DEEP Robotics copyrighted product literature; retained for private research evidence, do not redistribute"
+    document_creation_date: "2025-07-01"
+    findings:
+      pro_standing_size_mm: [610, 370, 450]
+      pro_weight_with_battery_kg: 12.9
+      pro_walking_load_kg: 4.0
+      lidar_standing_size_mm: [610, 370, 496]
+      lidar_weight_with_battery_kg: 13.5
+      lidar_walking_load_kg: 2.5
+    missing:
+      - "No mounting-hole drawing."
+      - "No compute-enclosure dimensions or datum."
+      - "No current robot-side bracket CAD."
+
+  - id: "current_2025_pro_product_image"
+    authority: "DEEP Robotics official US product page"
+    page_url: "https://www.deeprobotics.us/products/lite-3/"
+    asset_url: "https://www.deeprobotics.us/wp-content/smush-webp/2025/08/deep-robotics-lite3-pro-quadruped-robot.jpg.webp"
+    local_path: "source/original/current-pro-official-2025.webp"
+    bytes: 15786
+    sha256: "dd517c38121da1b871b7d825b43f0c563d49191ca13c13f2eea75239b677b20f"
+    license: "DEEP Robotics copyrighted product image; retained for private research evidence, do not redistribute"
+    finding: "Current marketed Pro visual includes the long rear/centre compute enclosure seen in the user's physical photograph."
+    boundary: "Visual identity/layout evidence only; not a dimensional drawing."
+
+  - id: "current_2025_lidar_product_image"
+    authority: "DEEP Robotics official US product page"
+    page_url: "https://www.deeprobotics.us/products/lite-3/"
+    asset_url: "https://www.deeprobotics.us/wp-content/smush-webp/2025/08/deep-robotics-lite3-lidar-quadruped-robot.jpg.webp"
+    local_path: "source/original/current-lidar-official-2025.webp"
+    bytes: 17830
+    sha256: "4e7ffa01ba6f1a07eece6fd98f899d66afe665917aed342808a8b06eff876da3"
+    license: "DEEP Robotics copyrighted product image; retained for private research evidence, do not redistribute"
+    finding: "Current marketed LiDAR visual keeps the same compute enclosure and places the LiDAR/depth-camera module ahead of it."
+    boundary: "The image does not reveal the hidden lower carrier, hole axes, fasteners, or revision tolerances."
+
+  - id: "official_fast_livo2_2026"
+    authority: "DeepRoboticsLab official GitHub repository"
+    repository_url: "https://github.com/DeepRoboticsLab/fast-livo2-deep-robotics"
+    pinned_commit: "624b45c90bb76484a1612eaf243b962461c84819"
+    local_path: "source/original/fast-livo2-readme-624b45c.md"
+    bytes: 19208
+    sha256: "58441860c5e9c1e314b2fd3417def0e359c3664bceb8c1c08f683fd972029ab0"
+    license: "GPL-2.0"
+    license_path: "source/original/fast-livo2-LICENSE-624b45c.txt"
+    license_bytes: 18092
+    license_sha256: "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+    findings:
+      - "The documented printed hardware setup is explicitly Lite3 Venture only."
+      - "The README states Pro/LiDAR already contains onboard perception compute and does not need that compute extension."
+      - "The repository does not publish a current Pro robot-side LiDAR bracket CAD."
+
+legacy_manual:
+  local_path: "../2026-07-24_lite3-design-drawings/source/original/Jueying-Lite3-Pro-User-Manual-V1.0.7-0.pdf"
+  bytes: 3661230
+  sha256: "98a98329d2a0136b3072693ec43b820c5085eb13d0c817f686b9e7bcf0b60251"
+  license: "DEEP Robotics copyrighted manual; retained for private research evidence, do not redistribute"
+  document_date: "2024-03-26"
+  published_interface: "4 x M3 on a 74 x 94 mm hole-centre rectangle"
+  legacy_specs:
+    standing_size_mm: [610, 370, 445]
+    weight_with_battery_kg: 12.7
+  classification: "version-specific legacy evidence; not accepted as the current delivered robot interface"
+
+revision_delta:
+  official_height_change_mm: 5
+  official_weight_change_kg: 0.2
+  conclusion: "At least one Pro product revision exists between the legacy manual and the current brochure. The legacy 74 x 94 mm pattern must not be transferred to the purchased robot without physical confirmation."
+
+design_gate:
+  accepted_current_robot_hole_axes: null
+  accepted_current_thread_and_depth: null
+  accepted_compute_enclosure_envelope: null
+  next_required_measurements:
+    - "Coordinates/pitches of every usable current-Pro top-deck receiver relative to robot centreline and a forward datum."
+    - "Thread designation, usable engagement depth, counterbore/head-seat geometry, and deck seating height."
+    - "Compute-enclosure front edge, width, height, feet, cable exit, and tool-access keep-outs."
+  allowed_before_measurement:
+    - "Preserve the existing Mid-360/D435i/S410 upper-module relationships as a reusable subassembly."
+    - "Prepare a parameter ledger and visual placement envelope ahead of the compute enclosure."
+  forbidden_before_measurement:
+    - "Do not release a robot-side bracket for printing."
+    - "Do not call 74 x 94 mm the current robot interface."
+    - "Do not reuse Venture/J17A robot-side holes as a Pro fit claim."
+
+derived:
+  triptych_path: "derived/current-pro-user-current-lidar-triptych.jpg"
+  triptych_bytes: 51122
+  triptych_sha256: "c557f847d207d52839affb67f1e47e6c95243bebeb15176680e4b2484adbd35a"
+  triptych_order: ["official current Pro", "user physical Pro", "official current LiDAR"]

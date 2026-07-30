@@ -1,0 +1,67 @@
+schema_version: 1
+topic: lite3-current-lidar-retail-gallery
+acquired_at: 2026-07-26
+status: surveyed
+
+sources:
+  - id: deep_robotics_online_shop
+    publisher: Deep Robotics Online Shop
+    page_url: https://shop.deeprobotics.us/products/lite-3
+    role: official_shop
+  - id: roboticsselect
+    publisher: RoboticsSelect
+    page_url: https://roboticsselect.com/products/deep-robotics-lite3-pro-copy
+    role: dealer
+
+files:
+  - name: official-shop-lidar.png
+    source_id: deep_robotics_online_shop
+    url: https://shop.deeprobotics.us/cdn/shop/files/deep-robotics-lite3-lidar-quadruped-robot-autonomous-mapping-navigation-research.png?v=1760016257&width=1445
+    local_source_path: source/original/official-shop-lidar.png
+    size_bytes: 721080
+    sha256: b699559fe37811c4b1b9809f518bf531528aab623fe6a512beebec6fb37cf13c
+    dimensions_px: [1445, 1445]
+  - name: dealer-01.jpg
+    source_id: roboticsselect
+    local_source_path: source/original/dealer-01.jpg
+    size_bytes: 160877
+    sha256: fda75b568c388f572eeb7688ce7e76e08a7af59dd9bc95ca4fd3b49fc0b7f558
+    dimensions_px: [1500, 1500]
+  - name: dealer-02.jpg
+    source_id: roboticsselect
+    local_source_path: source/original/dealer-02.jpg
+    size_bytes: 185704
+    sha256: 857b5ff709bb625bde8f2af0fda3c8aca2e35d4a2bd81ea8179887d12ac8dfd2
+    dimensions_px: [1500, 1500]
+  - name: dealer-03.jpg
+    source_id: roboticsselect
+    local_source_path: source/original/dealer-03.jpg
+    size_bytes: 151805
+    sha256: b50146081e19e06aead153356dd6dddf6446b594f692f60bc4c9d8ef300761a5
+    dimensions_px: [1500, 1500]
+  - name: dealer-04.jpg
+    source_id: roboticsselect
+    local_source_path: source/original/dealer-04.jpg
+    size_bytes: 173929
+    sha256: 6c6b0180e6a85bc0ab592c2b148de4895347c5dce83ad7310c260d4458445fbb
+    dimensions_px: [1500, 1500]
+  - name: dealer-05.jpg
+    source_id: roboticsselect
+    local_source_path: source/original/dealer-05.jpg
+    size_bytes: 196516
+    sha256: 990ad2b0e91cf147acd0129ef8d627c74cbc00ea2277f6f01a39f8e4feaf89bc
+    dimensions_px: [1500, 1500]
+
+inspection:
+  result: >-
+    The official-shop LiDAR image and the dealer gallery primarily show the
+    legacy cylindrical-LiDAR configuration. They do not expose a manufacturing
+    drawing for a Mid-360 carrier. Dealer text permits either Livox or Leishen
+    hardware and therefore cannot establish one exact mechanical revision.
+
+claim_boundary: >-
+  These retail images are useful for separating historical product revisions,
+  but they do not define the requested V1.0.7 official-LiDAR assembly. The
+  V1.0.7 LiDAR manual is the target-identity source. The separate FAST-LIVO2
+  video and published J17A/J20A/S410 files are related component candidates
+  only and do not prove factory V1.0.7 carrier or Interface geometry.

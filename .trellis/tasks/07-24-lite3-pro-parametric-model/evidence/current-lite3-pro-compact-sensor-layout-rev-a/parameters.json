@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "compact_layout_candidate_not_printable",
+  "coordinate_frame": {
+    "origin": "current-Pro measured front-pair midpoint",
+    "x_axis": "robot forward",
+    "y_axis": "robot left",
+    "z_axis": "up",
+    "unit": "millimetre"
+  },
+  "current_pro_inputs": {
+    "measurement_results": "../current-lite3-pro-lower-adapter-measurement-gate/measurement_results.json",
+    "expanded_compute_keepout_bounds_mm": {
+      "x": [-305.0, -96.0],
+      "y": [-54.0, 54.0],
+      "z": [0.0, 54.0]
+    },
+    "nose_edge_x_mm": 20.0,
+    "front_axes_mm": [[0.0, 32.5, 0.0], [0.0, -32.5, 0.0]],
+    "centre_candidate_axis_mm": [-75.0, 0.0, 0.0]
+  },
+  "source_geometry": {
+    "mid360": {
+      "path": "references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02",
+      "classification": "official_visual_and_interface_cad",
+      "source_bbox_mm": [72.739189, 61.3971, 66.795094]
+    },
+    "s410": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1CA5-S410-Lidar protector.STEP",
+      "sha256": "7fd23a776b45c7d8571ef77ba9e8b05520eced0b97f62487ba03f88bbc9df810",
+      "classification": "official_related_venture_component",
+      "source_brep_bbox_mm": [105.0, 74.332019, 105.0]
+    },
+    "d435i": {
+      "path": "references/upstream/2026-07-25_realsense-d435i-cad/source/original/D435i_Solid.SLDPRT",
+      "sha256": "9cdbfdc7085ea5430ec9007eb1d895c7ff513c40b77c298a275ded33edf65525",
+      "classification": "official_cad_preserved_but_not_translated_in_this_package",
+      "official_nominal_envelope_mm": [90.0, 25.0, 25.0],
+      "envelope_tolerance_mm": [0.15, 0.15, 0.15]
+    },
+    "retained_v1_upper_carrier": {
+      "path": "../physical-lite3-mid360-d435i-fusion-adapter-v1/cad/lite3-mid360-d435i-monolithic-carrier-v1.step",
+      "classification": "rejected_robot_interface_upper_geometry_reference_only",
+      "plan_length_mm": 153.734544,
+      "plan_width_mm": 115.0
+    }
+  },
+  "candidate_layout": {
+    "layout_support_surface_bounds_mm": {
+      "x": [-92.0, 18.0],
+      "y": [-57.5, 57.5],
+      "z": 6.0
+    },
+    "s410_raw_brep_centre_mm": [-37.5, 0.0],
+    "s410_base_z_mm": 8.0,
+    "mid360_mount_centre_mm": [-37.5, 0.0],
+    "mid360_mount_base_z_mm": 8.0,
+    "d435i_nominal_envelope_bounds_mm": {
+      "x": [-7.5, 17.5],
+      "y": [-45.0, 45.0],
+      "z": [84.0, 109.0]
+    },
+    "status": "layout envelope only; support surface has zero thickness and is not a printable part"
+  },
+  "design_observation": {
+    "measured_nose_to_expanded_enclosure_front_mm": 116.0,
+    "retained_v1_plan_length_mm": 153.734544,
+    "retained_v1_excess_length_mm": 37.734544,
+    "compact_layout_length_mm": 110.0,
+    "conclusion": "The retained older carrier cannot fit wholly inside the current front zone. A compact current-Pro carrier is required; its S410/Mid-360 layout can fit in plan before fastener and structure design."
+  },
+  "release_gate": {
+    "printable_geometry_allowed": false,
+    "blocking_inputs": [
+      "current-Pro receiver thread and usable depth",
+      "centre candidate structural receiver role",
+      "actual cable connector and bend sweeps",
+      "human review of sensor placement and optical directions"
+    ]
+  }
+}

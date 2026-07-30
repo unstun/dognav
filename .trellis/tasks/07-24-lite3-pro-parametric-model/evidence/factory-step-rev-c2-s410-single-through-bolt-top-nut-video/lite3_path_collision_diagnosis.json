@@ -1,0 +1,236 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "diagnosed",
+  "collision_tolerance_mm3": 0.01,
+  "states": [
+    {
+      "frame": 36,
+      "bolt_offset_mm": -13.0,
+      "tool_visible": false,
+      "bolt_hits": [
+        {
+          "volume_mm3": 59.28816300981727,
+          "occurrence_index": 51,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1",
+          "component": "1T21-S02G-________.STEP.STEP",
+          "body_index": 12,
+          "body_name": "Body13"
+        }
+      ],
+      "tool_hits": []
+    },
+    {
+      "frame": 48,
+      "bolt_offset_mm": -11.40695339105436,
+      "tool_visible": false,
+      "bolt_hits": [
+        {
+          "volume_mm3": 59.3070736373346,
+          "occurrence_index": 51,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1",
+          "component": "1T21-S02G-________.STEP.STEP",
+          "body_index": 12,
+          "body_name": "Body13"
+        }
+      ],
+      "tool_hits": []
+    },
+    {
+      "frame": 60,
+      "bolt_offset_mm": -7.760646708356562,
+      "tool_visible": false,
+      "bolt_hits": [
+        {
+          "volume_mm3": 122.59613586236095,
+          "occurrence_index": 51,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1",
+          "component": "1T21-S02G-________.STEP.STEP",
+          "body_index": 12,
+          "body_name": "Body13"
+        }
+      ],
+      "tool_hits": []
+    },
+    {
+      "frame": 72,
+      "bolt_offset_mm": -3.7603296681152907,
+      "tool_visible": false,
+      "bolt_hits": [
+        {
+          "volume_mm3": 107.80049081770281,
+          "occurrence_index": 51,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1",
+          "component": "1T21-S02G-________.STEP.STEP",
+          "body_index": 12,
+          "body_name": "Body13"
+        }
+      ],
+      "tool_hits": []
+    },
+    {
+      "frame": 89,
+      "bolt_offset_mm": -0.8000000000000007,
+      "tool_visible": false,
+      "bolt_hits": [],
+      "tool_hits": []
+    },
+    {
+      "frame": 234,
+      "bolt_offset_mm": -0.8,
+      "tool_visible": true,
+      "bolt_hits": [],
+      "tool_hits": [
+        {
+          "volume_mm3": 35.822933211060906,
+          "occurrence_index": 52,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZB2B_________.STEP.STEP:1",
+          "component": "1T21-ZB2B_________.STEP.STEP",
+          "body_index": 0,
+          "body_name": "Body1",
+          "tool_body_index": 1
+        },
+        {
+          "volume_mm3": 24.297108147392162,
+          "occurrence_index": 51,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1",
+          "component": "1T21-S02G-________.STEP.STEP",
+          "body_index": 12,
+          "body_name": "Body13",
+          "tool_body_index": 0
+        },
+        {
+          "volume_mm3": 17.05377024192039,
+          "occurrence_index": 44,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZD02 __________.STEP.STEP:1",
+          "component": "1T21-ZD02 __________.STEP.STEP",
+          "body_index": 0,
+          "body_name": "Body1",
+          "tool_body_index": 1
+        }
+      ]
+    },
+    {
+      "frame": 249,
+      "bolt_offset_mm": -0.6,
+      "tool_visible": true,
+      "bolt_hits": [],
+      "tool_hits": [
+        {
+          "volume_mm3": 39.84775148779347,
+          "occurrence_index": 52,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZB2B_________.STEP.STEP:1",
+          "component": "1T21-ZB2B_________.STEP.STEP",
+          "body_index": 0,
+          "body_name": "Body1",
+          "tool_body_index": 1
+        },
+        {
+          "volume_mm3": 24.297093471137703,
+          "occurrence_index": 51,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1",
+          "component": "1T21-S02G-________.STEP.STEP",
+          "body_index": 12,
+          "body_name": "Body13",
+          "tool_body_index": 0
+        },
+        {
+          "volume_mm3": 16.827486686412044,
+          "occurrence_index": 44,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZD02 __________.STEP.STEP:1",
+          "component": "1T21-ZD02 __________.STEP.STEP",
+          "body_index": 0,
+          "body_name": "Body1",
+          "tool_body_index": 1
+        }
+      ]
+    },
+    {
+      "frame": 264,
+      "bolt_offset_mm": -0.4,
+      "tool_visible": true,
+      "bolt_hits": [],
+      "tool_hits": [
+        {
+          "volume_mm3": 43.807417103989025,
+          "occurrence_index": 52,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZB2B_________.STEP.STEP:1",
+          "component": "1T21-ZB2B_________.STEP.STEP",
+          "body_index": 0,
+          "body_name": "Body1",
+          "tool_body_index": 1
+        },
+        {
+          "volume_mm3": 24.297078809668445,
+          "occurrence_index": 51,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1",
+          "component": "1T21-S02G-________.STEP.STEP",
+          "body_index": 12,
+          "body_name": "Body13",
+          "tool_body_index": 0
+        },
+        {
+          "volume_mm3": 16.758512540161476,
+          "occurrence_index": 44,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZD02 __________.STEP.STEP:1",
+          "component": "1T21-ZD02 __________.STEP.STEP",
+          "body_index": 0,
+          "body_name": "Body1",
+          "tool_body_index": 1
+        }
+      ]
+    },
+    {
+      "frame": 279,
+      "bolt_offset_mm": -0.20000000000000004,
+      "tool_visible": true,
+      "bolt_hits": [],
+      "tool_hits": [
+        {
+          "volume_mm3": 47.57059639444216,
+          "occurrence_index": 52,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZB2B_________.STEP.STEP:1",
+          "component": "1T21-ZB2B_________.STEP.STEP",
+          "body_index": 0,
+          "body_name": "Body1",
+          "tool_body_index": 1
+        },
+        {
+          "volume_mm3": 24.297064174096146,
+          "occurrence_index": 51,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1",
+          "component": "1T21-S02G-________.STEP.STEP",
+          "body_index": 12,
+          "body_name": "Body13",
+          "tool_body_index": 0
+        },
+        {
+          "volume_mm3": 16.750169663090514,
+          "occurrence_index": 44,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-ZD02 __________.STEP.STEP:1",
+          "component": "1T21-ZD02 __________.STEP.STEP",
+          "body_index": 0,
+          "body_name": "Body1",
+          "tool_body_index": 1
+        }
+      ]
+    },
+    {
+      "frame": 288,
+      "bolt_offset_mm": 0.0,
+      "tool_visible": true,
+      "bolt_hits": [],
+      "tool_hits": [
+        {
+          "volume_mm3": 24.291582841360114,
+          "occurrence_index": 51,
+          "full_path": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1",
+          "component": "1T21-S02G-________.STEP.STEP",
+          "body_index": 12,
+          "body_name": "Body13",
+          "tool_body_index": 0
+        }
+      ]
+    }
+  ],
+  "claim_boundary": "Names the Lite3 CAD bodies intersected by sampled animation states; it does not validate hand access or real-hardware safety."
+}

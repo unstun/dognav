@@ -1,0 +1,94 @@
+schema_version: 1
+topic: lite3-current-manufacturer-product-gallery
+acquired_at: 2026-07-26
+status: surveyed
+
+upstream:
+  publisher: Hangzhou Yunshenchu Technology Co., Ltd. (DEEP Robotics)
+  product_page: https://www.deeprobotics.cn/robot/index/lite3.html
+  page_role: current_manufacturer_product_page
+  observed_variants:
+    - 体验版
+    - 探索版
+    - 专业版
+    - 激光版
+
+files:
+  - name: 1.png
+    url: https://www.deeprobotics.cn/public/static/robot/images/lite3/1.png
+    local_source_path: source/original/1.png
+    size_bytes: 253093
+    sha256: 60cddc7e553abeec38dca53a49057319e4b5dbb0f43e563c22ab8f24c456579c
+    dimensions_px: [900, 900]
+  - name: 2.png
+    url: https://www.deeprobotics.cn/public/static/robot/images/lite3/2.png
+    local_source_path: source/original/2.png
+    size_bytes: 197448
+    sha256: 750f7ef85a6141a1ace52732936d0ebf601602ec2c2292b1006dbff25d6c05f6
+    dimensions_px: [900, 900]
+  - name: 3.png
+    url: https://www.deeprobotics.cn/public/static/robot/images/lite3/3.png
+    local_source_path: source/original/3.png
+    size_bytes: 190666
+    sha256: 7a4575d11a3102753ef6534388ea004f89f519426831dae4bac875549a170229
+    dimensions_px: [900, 900]
+  - name: 4.png
+    url: https://www.deeprobotics.cn/public/static/robot/images/lite3/4.png
+    local_source_path: source/original/4.png
+    size_bytes: 204404
+    sha256: cae23f1ed0972fe85d2867b6339e02705849c8c5ad20dd19607a3ad134631aaf
+    dimensions_px: [900, 900]
+  - name: 5.png
+    url: https://www.deeprobotics.cn/public/static/robot/images/lite3/5.png
+    local_source_path: source/original/5.png
+    size_bytes: 180601
+    sha256: 7570d972f5625b071413e4f6a61e9ae5d982158b5fa0566ac91ac0f527ea77c8
+    dimensions_px: [900, 900]
+  - name: p1.jpg
+    url: https://www.deeprobotics.cn/public/static/robot/images/lite3/p1.jpg
+    local_source_path: source/original/p1.jpg
+    size_bytes: 122029
+    sha256: fabda5030c33b39cb1787c1ff8a23a684625f8fed441a54284b8af7adaa2b06a
+    dimensions_px: [800, 810]
+  - name: p2.jpg
+    url: https://www.deeprobotics.cn/public/static/robot/images/lite3/p2.jpg
+    local_source_path: source/original/p2.jpg
+    size_bytes: 152447
+    sha256: 42d0b34fbff337ccafcc8e9683d16b1a50a316906e78e8b7d8dc32a83f9ac947
+    dimensions_px: [800, 920]
+  - name: p3.jpg
+    url: https://www.deeprobotics.cn/public/static/robot/images/lite3/p3.jpg
+    local_source_path: source/original/p3.jpg
+    size_bytes: 110695
+    sha256: 978233f7e28721b0b10ff5ccbbc5ba1616cc830b49e4561e73e630aace623750
+    dimensions_px: [800, 902]
+  - name: p4.jpg
+    url: https://www.deeprobotics.cn/public/static/robot/images/lite3/p4.jpg
+    local_source_path: source/original/p4.jpg
+    size_bytes: 108605
+    sha256: 9b8e20e5fc2774f8c0bd57afd47ee14059e4ac17fa538706572df3a5996b6faf
+    dimensions_px: [800, 859]
+  - name: p5.jpg
+    url: https://www.deeprobotics.cn/public/static/robot/images/lite3/p5.jpg
+    local_source_path: source/original/p5.jpg
+    size_bytes: 76778
+    sha256: 19c44027b3ef8309ea155c1cd645ca4987e0bafcd97ec01808a1ed325e690052
+    dimensions_px: [800, 618]
+  - name: p6.jpg
+    url: https://www.deeprobotics.cn/public/static/robot/images/lite3/p6.jpg
+    local_source_path: source/original/p6.jpg
+    size_bytes: 88212
+    sha256: 85879cf5bc0533d99d44330e267442b709ff9bfd71cfb01555185eb7526c86ab
+    dimensions_px: [800, 766]
+
+inspection:
+  result: >-
+    The current manufacturer page lists a LiDAR variant, but the eleven
+    preserved gallery/detail assets show the generic Lite3 exterior and do not
+    expose a LiDAR-version camera bracket, hidden fasteners, or mounting CAD.
+  negative_evidence: true
+
+claim_boundary: >-
+  These assets confirm the current manufacturer product page and generic Lite3
+  body appearance only. They do not authorize reconstruction of the factory
+  LiDAR bracket or any hidden interface geometry.

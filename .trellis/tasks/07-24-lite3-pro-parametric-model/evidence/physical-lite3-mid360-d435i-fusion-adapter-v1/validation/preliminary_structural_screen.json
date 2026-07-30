@@ -1,0 +1,49 @@
+{
+  "status": "historical_internal_screen_rejected_for_current_pro_load_path",
+  "claim_boundary": "The simple V1 web screen does not represent the purchased current-Pro receiver geometry or load path. It is historical upper-module evidence only and cannot release V1 or a future lower adapter.",
+  "source_masses": {
+    "mid360_kg": {
+      "value": 0.265,
+      "source": "Livox official product specification"
+    },
+    "d435i_kg": {
+      "value": 0.075,
+      "source": "RealSense D400 Series datasheet table 3-52"
+    },
+    "s410_guard_kg": {
+      "value": 0.162399828755524,
+      "method": "source STEP volume times declared steel density"
+    },
+    "printed_carrier_kg": {
+      "value": 0.08620229387072693,
+      "method": "candidate STEP volume times declared PA-CF density"
+    },
+    "fastener_and_cable_allowance_kg": 0.08,
+    "screened_total_kg": 0.6686021226262508
+  },
+  "load_case": {
+    "acceleration_g": 5.0,
+    "load_factor": 2.0,
+    "lever_arm_mm": 120.0,
+    "design_force_n": 65.56747005852722,
+    "design_moment_n_mm": 7868.096407023267
+  },
+  "rear_web_screen": {
+    "width_mm": 67.88225149390843,
+    "thickness_mm": 10.0,
+    "section_modulus_mm3": 1131.370858231807,
+    "shear_area_mm2": 678.8225149390843,
+    "nominal_bending_stress_mpa": 6.954480354320006,
+    "nominal_average_shear_mpa": 0.09659000492111118,
+    "declared_printed_allowable_mpa": 18.0,
+    "nominal_bending_margin": 2.5882595223406883
+  },
+  "required_before_motion": [
+    "measure every selected current-Pro receiver and usable depth",
+    "design and validate a separate current-Pro lower adapter and load path",
+    "print orientation and dried-filament coupon tensile/bend tests",
+    "stationary 2x proof load for ten minutes",
+    "fastener retention and witness-mark inspection",
+    "tethered low-speed vibration trial with periodic crack inspection"
+  ]
+}

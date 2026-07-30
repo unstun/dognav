@@ -1,0 +1,28 @@
+{
+  "id": "scan-planner-reproduction",
+  "name": "scan-planner-reproduction",
+  "title": "Reproduce SCAN-Planner Upstream",
+  "description": "Pin, inspect, and reproduce the original SCAN-Planner upstream simulation before any ROS 2 or Lite3 adaptation.",
+  "status": "planning",
+  "dev_type": "research",
+  "scope": "upstream-reproduction",
+  "package": null,
+  "priority": "P2",
+  "creator": "sun",
+  "assignee": "sun",
+  "createdAt": "2026-07-23",
+  "completedAt": null,
+  "branch": null,
+  "base_branch": "main",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [
+    "07-24-lite3-pro-parametric-model"
+  ],
+  "parent": null,
+  "relatedFiles": [],
+  "notes": "",
+  "meta": {}
+}

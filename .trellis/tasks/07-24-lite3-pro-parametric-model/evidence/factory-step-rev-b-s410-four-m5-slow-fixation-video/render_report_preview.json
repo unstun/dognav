@@ -1,0 +1,56 @@
+{
+  "error": null,
+  "frame_end": 696,
+  "frame_size": [
+    1280,
+    720
+  ],
+  "frame_start": 0,
+  "output_dir": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-rev-b-s410-four-m5-slow-fixation-video/frames",
+  "rendered_count": 10,
+  "rendered_frames": [
+    0,
+    48,
+    96,
+    143,
+    168,
+    221,
+    384,
+    437,
+    600,
+    695
+  ],
+  "requested_frame_list": [
+    0,
+    48,
+    96,
+    143,
+    168,
+    221,
+    384,
+    437,
+    600,
+    695
+  ],
+  "scene_restored": true,
+  "sequence": {
+    "direct_thread_into_rev_b": true,
+    "guard_landing": [
+      48,
+      143
+    ],
+    "nuts": false,
+    "start_all_cross_order": [
+      28,
+      31,
+      29,
+      30
+    ],
+    "tighten_cross_order": [
+      28,
+      31,
+      29,
+      30
+    ]
+  }
+}

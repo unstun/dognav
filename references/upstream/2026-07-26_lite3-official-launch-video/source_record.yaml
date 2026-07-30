@@ -1,0 +1,35 @@
+schema_version: 1
+topic: lite3-official-launch-video
+acquired_at: 2026-07-26
+status: surveyed
+
+upstream:
+  publisher: DEEP Robotics
+  bilibili_owner: 云深处科技
+  bilibili_owner_mid: 22477177
+  url: https://www.bilibili.com/video/BV1Xx4y1N7HW/
+  bvid: BV1Xx4y1N7HW
+  aid: 993395558
+  cid: 1052713476
+  title: 云深处发布 | 绝影 Lite3 机器狗，灵动如影，无界拓展
+
+files:
+  - name: lite3-official-launch-BV1Xx4y1N7HW-q16.mp4
+    local_source_path: source/original/lite3-official-launch-BV1Xx4y1N7HW-q16.mp4
+    size_bytes: 4364477
+    sha256: 9aea9e358d70689358b2cebd938fd5b7bab00ca90243b2ddb6794fb39f3fd205
+    duration_seconds: 100.522
+    video_codec: h264
+    audio_codec: aac
+    dimensions_px: [640, 360]
+    frame_rate_fps: 25
+
+inspection:
+  result: >-
+    The launch sequence shows the earlier factory LiDAR configuration with a
+    cylindrical scanner under a long white upper enclosure. It does not show
+    the later Mid-360/J17A/S410 FAST-LIVO2 extension.
+
+claim_boundary: >-
+  This is primary historical appearance evidence for the 2023 launch revision,
+  not geometry authorization for the requested true-Mid-360 extension.

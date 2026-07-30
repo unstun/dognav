@@ -1,0 +1,28 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "historical_render_pass_rejected_for_current_pro_scene",
+  "renders": [
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/physical-lite3-mid360-d435i-fusion-adapter-v1/renders/01-carrier-v1-isolated-oblique.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/physical-lite3-mid360-d435i-fusion-adapter-v1/renders/02-carrier-v1-10mm-rear-web-highlight.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/physical-lite3-mid360-d435i-fusion-adapter-v1/renders/03-complete-sensor-module-oblique.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/physical-lite3-mid360-d435i-fusion-adapter-v1/renders/04-lite3-interface-context-top.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/physical-lite3-mid360-d435i-fusion-adapter-v1/renders/05-lite3-four-point-base-fasteners-closeup.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/physical-lite3-mid360-d435i-fusion-adapter-v1/renders/06-sensor-fov-and-cable-diagnostics.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/physical-lite3-mid360-d435i-fusion-adapter-v1/renders/07-complete-lite3-global-isometric.png"
+  ],
+  "contains_text_overlay": false,
+  "diagnostic_only": {
+    "white_interface": "visual keep-out overlay; dimensions pending physical measurement",
+    "orange_rear_web": "10 mm engineering thickening",
+    "cyan_camera_frustum": "D435i view diagnostic",
+    "blue_lidar_cylinder": "Mid-360 360-degree scan keep-out diagnostic",
+    "green_cable_volumes": "conservative cable assumptions pending actual cables"
+  },
+  "restoration": {
+    "visibility_mismatches": [],
+    "custom_graphics_deleted": true,
+    "custom_graphics_count_before": 0,
+    "custom_graphics_count_after": 0
+  },
+  "pass": true
+}

@@ -1,0 +1,58 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "awaiting_visual_review",
+  "document": "Untitled",
+  "parent_occurrence_count": 35,
+  "candidate_occurrence_index": 35,
+  "final_occurrence_count": 36,
+  "component": "J17A_J20A_MONOLITHIC_REAR_WEB_PRINT_ADAPTATION_REV_B_NOT_OFFICIAL_CAD",
+  "body": "J17A_J20A_MONOLITHIC_REAR_WEB_ONE_SOLID_REV_B",
+  "classification": "print_adaptation",
+  "official_cad": false,
+  "parent_component": "J17A_J20A_MONOLITHIC_PRINT_ADAPTATION_REV_A_NOT_OFFICIAL_CAD",
+  "rear_web": {
+    "intent": "join the two former rear M4 connection regions as one FDM web",
+    "x_span_mm": 67.88225149390843,
+    "depth_mm": 27.5,
+    "thickness_mm": 6.0,
+    "top_z_cm": 251.75,
+    "bottom_z_cm": 251.15,
+    "raw_volume_mm3": 11200.571496495311,
+    "engagement": {
+      "rev_a_mm3": 2913.6336424372544,
+      "manufacturer_j17a_region_mm3": 1308.277954366806,
+      "manufacturer_j20a_region_mm3": 1377.9706675949087
+    }
+  },
+  "candidate_metrics": {
+    "brep_body_count": 1,
+    "mesh_body_count": 0,
+    "is_solid": true,
+    "lump_count": 1,
+    "shell_count": 1,
+    "face_count": 201,
+    "volume_mm3": 68183.35244781975,
+    "added_net_volume_mm3": 8286.937854056137,
+    "bounds_cm": {
+      "min": [
+        -36.197009644681465,
+        19.861997984547166,
+        246.88489005837425
+      ],
+      "max": [
+        -24.697009644681465,
+        23.218141858307483,
+        262.2583444450599
+      ]
+    }
+  },
+  "preservation": {
+    "rev_a_unchanged_and_hidden": true,
+    "manufacturer_sources_unchanged_and_hidden": true,
+    "maximum_parent_transform_difference": 2.842170943040401e-14,
+    "frozen_parent_f3d": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-j17a-j20a-monolithic-print-adaptation-candidate/lite3-j17a-j20a-monolithic-print-adaptation-rev-a-review.f3d",
+    "candidate_step": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-j17a-j20a-monolithic-rear-web-print-adaptation-rev-b/j17a-j20a-monolithic-rear-web-print-adaptation-rev-b.step",
+    "pending_snapshot": false
+  },
+  "claim_boundary": "One-piece FDM geometry and packaging candidate only; material, print orientation, strength, fatigue, torque, vibration, cable routing, fabrication tolerance, and real-hardware safety remain unvalidated."
+}

@@ -1,0 +1,117 @@
+{
+  "status": "candidate_orientation_verified_by_render",
+  "source_glb": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/source/2026-07-30-user-glb-scan/7_30_2026.glb",
+  "source_character": "textured room scan containing robot, floor, and unrelated objects",
+  "raw_robot_roi_gltf_units": {
+    "x": [
+      -0.25,
+      0.62
+    ],
+    "y": [
+      0.0,
+      0.49
+    ],
+    "z": [
+      -0.24,
+      0.34
+    ]
+  },
+  "clean_standard_crop_mm": {
+    "x": [
+      -340.0,
+      340.0
+    ],
+    "y": [
+      -230.0,
+      230.0
+    ],
+    "z": [
+      6.0,
+      470.0
+    ]
+  },
+  "enclosure_top_fit_y_gltf_units": [
+    0.457,
+    0.468
+  ],
+  "fit": {
+    "sample_count": 9473,
+    "raw_xz_centroid": [
+      0.0984788258141875,
+      0.08069121446891589
+    ],
+    "raw_forward_unit_xz": [
+      -0.9442443645153946,
+      0.32924547085862643
+    ],
+    "raw_axis_angle_deg": 160.77701494792922,
+    "yaw_correction_deg": -160.77701494792922,
+    "covariance": [
+      [
+        0.004154080582898777,
+        -0.0009622205064347786
+      ],
+      [
+        -0.0009622205064347786,
+        0.0017300381684994504
+      ]
+    ],
+    "eigenvalues": [
+      0.001394524655666852,
+      0.0044895940957313755
+    ],
+    "principal_ratio": 3.2194440431635702,
+    "raw_xz_bounds": {
+      "min": [
+        -0.010537348687648773,
+        0.0027994620613753796
+      ],
+      "max": [
+        0.2073143869638443,
+        0.15400712192058563
+      ]
+    },
+    "enclosure_top_0p1_to_99p9_span_mm": [
+      199.58516985178125,
+      108.61812062354423
+    ]
+  },
+  "local_floor_reference_raw_y": 0.02014036700129509,
+  "floor_suppression_mm": 6.0,
+  "standard_frame": {
+    "units": "mm",
+    "x": "+front",
+    "y": "+left; right-handed with +X front and +Z up",
+    "z": "+up",
+    "origin_x_y": "compute-enclosure top centroid",
+    "origin_z": "1st-percentile local floor height"
+  },
+  "isolated_point_count": 170000,
+  "isolated_bounds_mm": {
+    "min": [
+      -339.89976538155804,
+      -229.96751874741614,
+      6.000525876879694
+    ],
+    "max": [
+      329.10522279607716,
+      229.95077408195093,
+      446.7736907303333
+    ],
+    "size": [
+      669.0049881776351,
+      459.91829282936703,
+      440.77316485345364
+    ]
+  },
+  "upper_body_point_count": 113816,
+  "scale_check": {
+    "status": "provisionally_consistent",
+    "basis": "The fitted enclosure top has a scan envelope consistent with the independently tape-measured approximately 200 x 100 mm housing.",
+    "manufacturing_gate": "Do not derive hole diameters or threads from the scan until discrete landmarks are checked against caliper measurements."
+  },
+  "output_character": {
+    "ply": "oriented colored point reference, not a watertight manufacturing mesh",
+    "original_glb": "preserved unchanged as the authoritative scan artifact"
+  }
+}

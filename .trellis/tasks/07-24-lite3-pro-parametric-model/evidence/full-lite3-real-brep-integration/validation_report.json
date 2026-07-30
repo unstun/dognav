@@ -1,0 +1,95 @@
+{
+  "status": "rejected_by_human_visual_review",
+  "generated_at": "2026-07-28",
+  "stage": "experiment_and_analysis",
+  "source_of_truth": {
+    "lite3_assembly": "references/upstream/2026-07-27_lite3-exploration-assembly-cad/source/original/lite3-exploration-assembly.step",
+    "accepted_rev_b_f3d": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-j17a-front-pair-65mm-adapted-rev-b/lite3-j17a-front-pair-65mm-rev-b.f3d",
+    "accepted_sensor_subassembly_f3d": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-d435i-brep-on-accepted-j17a/lite3-venture-j17a-j20a-mid360-d435i-brep-rear-m4-bolt-washer-locknut-face-colored-complete.f3d"
+  },
+  "integration": {
+    "lite3_model_label": "Lite3 exploration assembly CAD; not relabeled as Lite3 Pro",
+    "subassembly_to_lite3_translation_cm": [
+      -30.447008015442904,
+      20.456141858307483,
+      256.1657775084534
+    ],
+    "accepted_front_axis_centers_world_xz_cm": [
+      [
+        -33.69700799841137,
+        260.6848709041382
+      ],
+      [
+        -27.19700803247437,
+        260.6849092121596
+      ]
+    ],
+    "adapted_interface": "J17A_FRONT_PAIR_65MM_ADAPTED_REV_B_NOT_OFFICIAL_CAD",
+    "optional_s410_guard": "preserved_hidden",
+    "industrial_pc": "not_present",
+    "integrated_occurrences": 17,
+    "integrated_brep_bodies": 34,
+    "root_occurrences": 24,
+    "all_occurrences": 350
+  },
+  "geometry_validation": {
+    "integrated_transform_residual_before_animation": 0.0,
+    "integrated_transform_residual_after_animation": 1.1368683772161603e-13,
+    "integrated_body_counts_match_source": true,
+    "integrated_occurrences_visible": true,
+    "integrated_mesh_bodies": 0,
+    "whole_assembly_mesh_bodies_by_occurrence": 0,
+    "rotation_determinant_min": 1.0,
+    "rotation_determinant_max": 1.0,
+    "pending_position_snapshot_after_animation": false,
+    "adapted_j17_visible": true,
+    "official_source_j17_hidden": true,
+    "rev_a_receiver_proxy_hidden": true,
+    "d435_official_brep_body2_visible": true
+  },
+  "artifacts": {
+    "fusion_archive": {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/full-lite3-real-brep-integration/lite3-real-brep-j17a-j20a-mid360-d435i-complete-internal-fasteners.f3d",
+      "size_bytes": 127885226,
+      "sha256": "63981758301f53eed94fe16ff3c1cbf0afa395255653b6f4d33929bef3a9ed65"
+    },
+    "video": {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/full-lite3-real-brep-integration/lite3-full-sensor-stack-connect-to-real-lite3-no-text.mp4",
+      "size_bytes": 4801572,
+      "sha256": "4d03498d3ccc5956124395b644bc1db5e1273544dfffad3982faa242470943d8",
+      "codec": "h264",
+      "width": 1280,
+      "height": 720,
+      "frame_rate": 24,
+      "frames": 240,
+      "duration_seconds": 10.0,
+      "audio_streams": 0,
+      "text_overlays": 0
+    },
+    "close_view": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/full-lite3-real-brep-integration/full-lite3-connected-close.png",
+    "isometric_view": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/full-lite3-real-brep-integration/full-lite3-connected-isometric.png"
+  },
+  "claim_boundary": {
+    "validated": [
+      "The accepted complete sensor subassembly is placed on the real Lite3 BRep assembly at the accepted Rev B front-pair pose.",
+      "The copied D435 and internal fastener geometry matches the accepted subassembly transforms.",
+      "The delivered assembly contains no mesh bodies and no industrial PC.",
+      "The video demonstrates the rigid subassembly approaching and seating on the Lite3 model."
+    ],
+    "not_validated": [
+      "The exact Lite3-to-J17 screw standard, length, thread engagement, washers, torque, and load path.",
+      "Physical manufacturability or real-robot fit without measurement of the actual robot.",
+      "That the adapted Rev B J17 geometry is official manufacturer CAD.",
+      "That every internal fastener marked VISUAL_CANDIDATE is the final procurement specification."
+    ]
+  },
+  "human_review": {
+    "date": "2026-07-28",
+    "result": "rejected",
+    "reported_issues": [
+      "The Lite3 connection no longer appears aligned with the previously reviewed hole placement.",
+      "A white translucent-looking piece is visible in the assembly render."
+    ],
+    "disposition": "Do not reuse the MP4 or F3D as accepted integration evidence. Return to the base-only yellow-to-blue hole review before rebuilding the full stack."
+  }
+}

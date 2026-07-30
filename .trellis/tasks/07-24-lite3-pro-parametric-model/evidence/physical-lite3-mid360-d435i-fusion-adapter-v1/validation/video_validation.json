@@ -1,0 +1,69 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "historical_video_decode_pass_rejected_for_current_pro_sequence",
+  "output": {
+    "path": "video/lite3-mid360-d435i-fusion-adapter-v1-installation-no-text.mp4",
+    "bytes": 4632333,
+    "sha256": "6b74ce8affa7288b82aa115dc1291ef5b756247aefce765ce0181ca2fd20d394",
+    "codec": "h264",
+    "pixel_format": "yuv420p",
+    "width": 1280,
+    "height": 720,
+    "fps": 24,
+    "frames": 960,
+    "duration_seconds": 40.0,
+    "audio_stream_count": 0,
+    "contains_text_overlay": false
+  },
+  "source_frames": {
+    "expected": 960,
+    "present": 960,
+    "missing": 0,
+    "zero_size": 0,
+    "chunk_ranges": [[0, 239], [240, 479], [480, 719], [720, 959]],
+    "chunk_frame_counts": [240, 240, 240, 240],
+    "all_chunk_reports_pass": true,
+    "maximum_restoration_transform_difference": 2.842170943040401e-14,
+    "visibility_mismatches": [],
+    "pending_snapshot": false
+  },
+  "sequence": [
+    "bare one-piece carrier",
+    "D435i approach",
+    "two independent D435i screws with close-up tool motion",
+    "Mid-360 approach",
+    "four underside Mid-360 screws in cross order",
+    "S410 approach",
+    "four independent S410 screws in cross order",
+    "complete off-robot module hold",
+    "two rear spacers placed while the module stays 100 mm above Lite3",
+    "complete module lowers onto Lite3",
+    "four Lite3 base screws in cross order",
+    "local installed hold",
+    "complete standing Lite3 global hold"
+  ],
+  "assembly_constraints": {
+    "d435i_installed_before_upper_obstruction": true,
+    "mid360_underside_screws_installed_off_robot": true,
+    "s410_lowered_over_mid360_without_pass_through": true,
+    "spacers_installed_before_module_landing": true,
+    "base_screws_animated_independently": true,
+    "removed_inter_layer_fasteners": 0,
+    "loose_nuts": 0,
+    "reason": "The lower and upper source brackets are one printed solid in V1; D435i and Mid-360 use sensor threads and the S410 uses J20A-derived receiver axes."
+  },
+  "decode_validation": {
+    "ffmpeg_full_decode_errors": 0,
+    "ffprobe_stream_count": 1,
+    "ffprobe_video_stream_count": 1
+  },
+  "visual_review": {
+    "contact_sheet": "validation/installation-video-contact-sheet.jpg",
+    "contact_sheet_bytes": 63419,
+    "contact_sheet_sha256": "c03b8912fe9010db0e8aaa7ec223f4f39ff0d6aebb30fb8a3e68fe542ac4c8a0",
+    "representative_frames_reviewed": [0, 80, 120, 180, 230, 300, 380, 430, 500, 580, 625, 700, 750, 810, 900, 959],
+    "result": "step order, action close-ups, final local view, and complete standing Lite3 global view are visible"
+  },
+  "pass": true,
+  "claim_boundary": "The animation decodes and preserves the archived V1 digital order, but its robot body, holes, screws, spacers, and module-to-robot sequence are rejected for the purchased current Lite3 Pro. Do not use it as installation guidance."
+}

@@ -1,0 +1,20 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "awaiting_visual_review",
+  "renders": [
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-j17a-j20a-monolithic-print-adaptation-candidate/monolithic-isolated-oblique.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-j17a-j20a-monolithic-print-adaptation-candidate/monolithic-with-sensors-oblique.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-j17a-j20a-monolithic-print-adaptation-candidate/monolithic-four-fusion-zones-xray.png"
+  ],
+  "contains_text_overlay": false,
+  "transient_fusion_zone_color": "orange",
+  "candidate_xray_opacity": 0.3,
+  "restoration": {
+    "visibility_mismatches": [],
+    "candidate_opacity_restored": true,
+    "custom_graphics_removed": true,
+    "custom_graphics_count_before": 0,
+    "custom_graphics_count_after": 0
+  },
+  "pass": true
+}

@@ -1,0 +1,35 @@
+schema_version: 1
+topic: lite3-perception-development-manual
+acquired_at: 2026-07-26
+status: surveyed
+
+upstream:
+  publisher: DEEP Robotics
+  title: Jueying Lite3 Perception Development Manual beta V2.2.2
+  url: >-
+    https://www.deeprobotics.us/wp-content/uploads/2025/10/Jueying-Lite3-Perception-Development-Manual-beta-V2.2.2-0.pdf
+
+files:
+  - name: Jueying-Lite3-Perception-Development-Manual-beta-V2.2.2-0.pdf
+    local_source_path: >-
+      source/original/Jueying-Lite3-Perception-Development-Manual-beta-V2.2.2-0.pdf
+    sha256: 99e5da5942683852b0683f70851912220283ac9b18175bfb0d04aa7710cc7fad
+    page_count: 57
+    format: PDF
+
+inspected_evidence:
+  - pdf_page: 6
+    finding: >-
+      Lite3 Pro/LiDAR uses NVIDIA Jetson Xavier NX as the perception host.
+  - pdf_page: 13
+    finding: Lite3 Pro/LiDAR is equipped with Intel RealSense D435i.
+  - pdf_pages: [30, 36, 41, 48, 53]
+    finding: The supplied perception environment exposes Livox LiDAR startup.
+  - pdf_pages: [44, 56]
+    finding: >-
+      ROS and ROS 2 driver workspaces explicitly include mid360_ws.
+
+claim_boundary: >-
+  This manual confirms the supported perception-host and sensor families. It
+  does not publish the factory LiDAR bracket CAD, enclosure geometry, mounting
+  datums, sensor extrinsics, tolerances, or fastener specifications.

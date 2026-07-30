@@ -1,0 +1,72 @@
+[
+  {
+    "source": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-lower-adapter-measurement-gate/source/2026-07-30-user-physical-measurements/photo-01.jpg",
+    "output": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/derived/oriented-photos/photo-01.jpg",
+    "counter_clockwise_rotation_deg": 180,
+    "perspective_rectified": false,
+    "measurement_claim": "qualitative orientation reference only"
+  },
+  {
+    "source": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-lower-adapter-measurement-gate/source/2026-07-30-user-physical-measurements/photo-02.jpg",
+    "output": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/derived/oriented-photos/photo-02.jpg",
+    "counter_clockwise_rotation_deg": 180,
+    "perspective_rectified": false,
+    "measurement_claim": "qualitative orientation reference only"
+  },
+  {
+    "source": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-lower-adapter-measurement-gate/source/2026-07-30-user-physical-measurements/photo-03.jpg",
+    "output": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/derived/oriented-photos/photo-03.jpg",
+    "counter_clockwise_rotation_deg": 180,
+    "perspective_rectified": false,
+    "measurement_claim": "qualitative orientation reference only"
+  },
+  {
+    "source": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-lower-adapter-measurement-gate/source/2026-07-30-user-physical-measurements/photo-04.jpg",
+    "output": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/derived/oriented-photos/photo-04.jpg",
+    "counter_clockwise_rotation_deg": 0,
+    "perspective_rectified": false,
+    "measurement_claim": "qualitative orientation reference only"
+  },
+  {
+    "source": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-lower-adapter-measurement-gate/source/2026-07-30-user-physical-measurements/photo-05.jpg",
+    "output": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/derived/oriented-photos/photo-05.jpg",
+    "counter_clockwise_rotation_deg": 180,
+    "perspective_rectified": false,
+    "measurement_claim": "qualitative orientation reference only"
+  },
+  {
+    "source": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-lower-adapter-measurement-gate/source/2026-07-30-user-physical-measurements/photo-06.jpg",
+    "output": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/derived/oriented-photos/photo-06.jpg",
+    "counter_clockwise_rotation_deg": 180,
+    "perspective_rectified": false,
+    "measurement_claim": "qualitative orientation reference only"
+  },
+  {
+    "source": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-lower-adapter-measurement-gate/source/2026-07-30-user-physical-measurements/photo-07.jpg",
+    "output": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/derived/oriented-photos/photo-07.jpg",
+    "counter_clockwise_rotation_deg": 180,
+    "perspective_rectified": false,
+    "measurement_claim": "qualitative orientation reference only"
+  },
+  {
+    "source": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-lower-adapter-measurement-gate/source/2026-07-30-user-physical-measurements/photo-08.jpg",
+    "output": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/derived/oriented-photos/photo-08.jpg",
+    "counter_clockwise_rotation_deg": 180,
+    "perspective_rectified": false,
+    "measurement_claim": "qualitative orientation reference only"
+  },
+  {
+    "source": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-lower-adapter-measurement-gate/source/2026-07-30-user-physical-measurements/photo-09.jpg",
+    "output": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/derived/oriented-photos/photo-09.jpg",
+    "counter_clockwise_rotation_deg": 0,
+    "perspective_rectified": false,
+    "measurement_claim": "qualitative orientation reference only"
+  },
+  {
+    "source": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-lower-adapter-measurement-gate/source/2026-07-30-user-physical-measurements/photo-10.jpg",
+    "output": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/derived/oriented-photos/photo-10.jpg",
+    "counter_clockwise_rotation_deg": 90,
+    "perspective_rectified": false,
+    "measurement_claim": "qualitative orientation reference only"
+  }
+]

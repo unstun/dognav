@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "accepted_for_sequence_continuation",
+  "visual_acceptance": {
+    "reviewer": "Dr Sun",
+    "date": "2026-07-29",
+    "authorized_next_step": "Add S410 to the accepted J20A/MID360 subassembly, then fasten that upper subassembly to the first-layer J17A."
+  },
+  "scope": {
+    "included_occurrence_indices": [2, 4, 11, 12, 13, 14],
+    "included": [
+      "J20A second-layer bracket",
+      "official Livox MID360 BRep",
+      "four independent visual M3x8 screw candidates"
+    ],
+    "excluded": [
+      "J17A",
+      "D435i",
+      "S410",
+      "Lite3 robot",
+      "nuts",
+      "unrelated fasteners"
+    ]
+  },
+  "animation": {
+    "video": "lite3-restart-step-02-j20a-mid360-direct-thread-no-text.mp4",
+    "codec": "h264",
+    "width": 1280,
+    "height": 720,
+    "frame_rate_fps": 24,
+    "frame_count": 312,
+    "duration_seconds": 13.0,
+    "contains_text_overlay": false,
+    "sequence": {
+      "mid360_approach_to_modeled_mount_position": [24, 71],
+      "screw_11": [80, 115],
+      "screw_13": [116, 151],
+      "screw_12": [152, 187],
+      "screw_14": [188, 223],
+      "tightening_order": [11, 13, 12, 14],
+      "nuts": 0
+    }
+  },
+  "components": {
+    "j20a": {
+      "occurrence_index": 2,
+      "brep_body_count": 1,
+      "mesh_body_count": 0
+    },
+    "mid360": {
+      "occurrence_index": 4,
+      "brep_body_count": 22,
+      "mesh_body_count": 0
+    },
+    "screws": {
+      "occurrence_indices": [11, 12, 13, 14],
+      "brep_body_count_each": 3,
+      "mesh_body_count_each": 0
+    }
+  },
+  "geometry_validation": {
+    "j20a_hole_count": 4,
+    "j20a_clearance_hole_diameter_mm": 3.5,
+    "mid360_mount_axis_count": 4,
+    "mid360_mount_diameter_mm": 3.0,
+    "pattern_mm": [48.0, 36.0],
+    "mid360_axis_residuals_mm": [
+      0.0014762420970151728,
+      0.0014762420970151728,
+      0.0014762420969787115,
+      0.0014762420969787115
+    ],
+    "screw_axis_residuals_mm": [
+      2.0539894095510545e-12,
+      8.94090112173471e-13,
+      6.923947527425662e-13,
+      6.975028614797423e-13
+    ],
+    "modeled_j20a_mid360_minimum_clearance_mm": 0.20001660820976405,
+    "modeled_j20a_mid360_cross_interference_mm3": 0.0,
+    "forced_contact_test": {
+      "translation_mm": -0.20001660820976405,
+      "minimum_distance_mm": 3.552713678800501e-14,
+      "cross_interference_mm3": 784.0477492783936,
+      "decision": "preserve the modeled clearance; do not force face contact"
+    },
+    "screw_to_j20a_minimum_distances_mm": [
+      8.171241461241152e-13,
+      5.329070518200751e-13,
+      3.552713678800501e-13,
+      3.907985046680551e-13
+    ],
+    "screw_to_j20a_cross_interference_mm3": [0.0, 0.0, 0.0, 0.0]
+  },
+  "render_restore_validation": {
+    "maximum_transform_difference": 2.842170943040401e-14,
+    "visibility_mismatches": [],
+    "pending_snapshot": false
+  },
+  "claim_boundary": {
+    "validated": "Four J20A holes, four MID360 mounting axes, four screw axes, modeled clearance, zero modeled cross-interference, isolated sequence, and render restoration.",
+    "not_validated": "Physical thread engagement, supplied screw length, torque, tool access, and real-hardware installation.",
+    "m3x8_status": "visual candidate"
+  },
+  "sources": [
+    {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J20A-small lidar base.STEP",
+      "sha256": "341b08ca08526e5ee0e9fbeca0bfda9d9970062c6605e979adc52b31955c9bc9"
+    },
+    {
+      "path": "references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "lite3-restart-step-02-j20a-mid360-direct-thread-no-text.mp4",
+      "sha256": "051824d5767869fbd645e5a1f9e8fc4fdbc3730b97b0bda30c22f7ad71cfc7da"
+    },
+    {
+      "path": "keyframe-contact-sheet.png",
+      "sha256": "98de78ebfc44f2f61e040fcacc7c56736d077f6a470f19e06f0688fd636472ed"
+    }
+  ]
+}

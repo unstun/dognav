@@ -1,5 +1,293 @@
 # Lite3 LiDAR High-Fidelity Printable Replica
 
+## Current-Pro Hardware-Revision Correction (2026-07-29)
+
+Stage: `experiment + analysis`
+
+Dr Sun confirmed that the purchased robot is the current Lite3 Pro hardware
+revision and that it differs from the earlier Pro.  The 2024-03-26 Pro User
+Manual V1.0.7-0 remains valid evidence for its own revision, including its
+`4 x M3`, `74 x 94 mm` payload pattern, but it is no longer accepted as the
+robot-side interface for the purchased unit without physical confirmation.
+
+The official 2025 brochure reports the marketed Pro at
+`610 x 370 x 450 mm`, `12.9 kg`, and `4 kg` walking load, whereas the legacy
+manual reports `610 x 370 x 445 mm` and `12.7 kg`.  The current official Pro
+and LiDAR images also show the long rear/centre compute enclosure visible in
+Dr Sun's photograph, with the LiDAR/depth-camera module ahead of it.  No current
+official mounting-hole drawing or lower-bracket CAD was found.
+
+The official FAST-LIVO2 repository at commit `624b45c` explicitly scopes its
+printable hardware to `Lite3 Venture (ONLY THIS VERSION!)`.  J17A/J20A/S410
+therefore remain related-source upper-module evidence and cannot establish the
+current Pro robot-side interface.
+
+### Current-revision requirements
+
+- R116. Treat Dr Sun's physical current Lite3 Pro as the only robot-side fit
+  target.  Keep the legacy Pro, current Pro, Venture, LiDAR, and local
+  Exploration/Experience bodies as separate identities.
+- R117. Preserve the legacy V1.0.7 `4 x M3`, `74 x 94 mm` pattern as
+  version-specific evidence only.  Do not use it as a current-Pro dimension
+  until the purchased robot is measured.
+- R118. Record the current official Pro/LiDAR brochure specifications and
+  product images with URLs and checksums.  Product images establish only
+  layout, not hidden interfaces or manufacturing scale.
+- R119. Reject the V1 Experience-derived robot-side axes and the
+  Venture/J17A robot-side holes as current-Pro fit evidence.  Preserve them as
+  negative evidence; do not delete or relabel them.
+- R120. Preserve the Mid-360, D435i, S410, and monolithic upper-carrier
+  relationships as a separable reusable sensor module.  Their internal digital
+  checks do not validate the lower robot interface.
+- R121. Design the current-Pro lower adapter only from measured physical hole
+  axes, seating planes, thread/depth, and compute-enclosure keep-outs.  Unknown
+  values must remain explicit parameters rather than image-derived dimensions.
+- R122. Keep the sensor module ahead of the long compute enclosure, consistent
+  with the current official LiDAR visual, without claiming the image reveals
+  the hidden factory carrier.
+- R123. Keep the current-Pro lower adapter separate from the upper sensor
+  module until fit, assembly access, and enclosure clearance pass human review.
+- R124. Provide top-accessible robot fasteners, an open compute-enclosure
+  keep-out, and a human-feasible assembly order.  Do not cover a required screw
+  before it is tightened.
+- R125. Do not release current-Pro printable CAD, purchase final screws, print,
+  drill, or actuate until the physical measurement gate closes.
+- R126. Preserve all ten 2026-07-30 tape-measure photographs byte-for-byte and
+  classify their numeric readings as `photo_measured_estimate` with explicit
+  uncertainty, not manufacturer dimensions.
+- R127. Use the measured front small-hole pair midpoint as the current-Pro
+  local origin.  Record the `65.0 +/- 1.0 mm` lateral pitch, the visible centre
+  candidate approximately `75 +/- 3 mm` rearward, the compute-enclosure front
+  approximately `100 +/- 4 mm` rearward, and its approximately
+  `200 +/- 5 x 100 +/- 4 x 50 +/- 2 mm` envelope.
+- R128. Keep the three visible axes separate from accepted load-bearing
+  receivers.  Until thread, usable depth, material, and onward load path are
+  physically verified, the accepted receiver count remains zero and no bore
+  or screw length may be selected.
+- R129. Reject direct reuse of the retained approximately `153.7 mm` carrier
+  plan length in the approximately `116 mm` measured nose-to-expanded-box
+  zone.  Evaluate a compact current-Pro sensor layout before designing the
+  replacement carrier.
+- R130. The compact layout may use the official Mid-360 B-rep, the related-
+  source S410 B-rep, and the official D435i datasheet envelope.  It must remain
+  a zero-thickness/non-printable planning track until receiver and structural
+  gates close.
+- R131. Report the minimum clearance against the uncertainty-expanded compute
+  enclosure and the nose edge.  A collision-free envelope does not establish
+  cable clearance, optical validity, fastener access, strength, or physical
+  fit.
+- R132. Present the measured hole map and compact sensor placement for human
+  review before generating any current-Pro lower-adapter solid.
+- R133. Preserve the user-provided 2026-07-30 ZIP and GLB physical scan
+  byte-for-byte with hashes.  Treat the GLB as a textured room scan containing
+  the robot, floor, and unrelated objects, not as a clean robot CAD assembly.
+- R134. Correct scan orientation from a robot-local geometric datum rather
+  than whole-scene PCA.  Use the compute-enclosure top to fit yaw, and use the
+  corrected physical photographs to disambiguate which end is the front.
+- R135. Keep the temporary scan frame separate from the final mount frame.
+  The scan frame may use the compute-enclosure top centroid for orientation;
+  the final current-Pro mount frame remains the front small-hole midpoint from
+  R127 after those axes are physically confirmed.
+- R136. Accept the corrected scan only for scale, exterior envelope,
+  keep-out, and relative-placement review.  Do not infer small-hole diameter,
+  thread, insertion depth, or load-bearing role from scan texture or noisy
+  mesh cavities.
+- R137. Any cropped or simplified OBJ/STL derived from the scan must be named
+  as reference-only, remain separate from printable parts, and carry an
+  explicit manufacturing prohibition.
+- R138. Rotate photographs into one front-direction convention before visual
+  comparison.  Rotation alone does not rectify perspective; unrectified
+  photos remain qualitative or uncertainty-bearing evidence.
+- R139. Model the nominal current-Pro compute enclosure with the two
+  scan-visible front-side recesses rather than a simple rectangle.  Keep a
+  separate rectangular uncertainty-expanded collision keep-out so the
+  recesses are not treated as guaranteed free sensor or cable volume.
+- R140. Rebuild the source-backed J20A/MID-360/S410 upper assembly against the
+  scan-registered Rev B keep-out.  Show the two-recess nominal enclosure in the
+  review document, but do not merge it into a printable sensor part or infer a
+  lower receiver from its exterior.
+- R141. Keep the D435i camera-first support as a separate print-adaptation
+  study.  It must preserve the official 45 mm rear M3 axis pitch, form one
+  connected solid, and avoid positive-volume intersection with the camera
+  envelope, upper sensor assembly, and scan Rev B keep-out.  Its lower union
+  pads remain non-receiver geometry until the physical load path is confirmed.
+- R142. Propagate the scan Rev B two-recess enclosure into the lower-adapter
+  measurement gate.  Provide a visual and machine-readable A/B/C/D request:
+  A/B independently measure both front receivers, C determines whether the
+  centre feature is structural, and D captures feet, ventilation, connectors,
+  cable bends, cover service, and tool access.  Keep printable geometry blocked
+  until every selected receiver has thread, usable depth, recess, material,
+  threaded-insert, and onward-load-path evidence.
+
+### Current-revision acceptance checks
+
+- AC80. Legacy and current Pro source versions, specifications, URLs, hashes,
+  and claim boundaries are recorded independently.
+- AC81. The official current Pro, Dr Sun's physical Pro, and official current
+  LiDAR visual comparison is available as a review image.
+- AC82. V1 is prominently marked rejected for the current-Pro robot interface;
+  its actual animated pitches and metadata error are machine-readable.
+- AC83. The official FAST-LIVO2 Venture-only hardware scope is pinned and no
+  J17A robot-side fit claim is transferred to Pro.
+- AC84. The future lower adapter input ledger requires measured current-Pro
+  hole axes, thread/depth, seating height, enclosure front edge, width, height,
+  feet, ventilation, cable, and tool keep-outs.
+- AC85. Before those measurements exist, the task may provide revision audit
+  and visual-envelope evidence but must report current-Pro printable fit as
+  unvalidated.
+- AC86. Ten physical photographs, original filenames, pixel sizes, hashes,
+  duplicate relation, and evidence roles are archived and machine-validated.
+- AC87. The photo-measured proxy cleanly exports and reimports as B-rep
+  geometry with exactly `65.0 mm` between the two blue front-axis markers, a
+  separate yellow centre-candidate marker, and a separate expanded enclosure
+  keep-out; no STL exists.
+- AC88. The current receiver ledger records three visible axes, zero accepted
+  receivers, null thread/depth fields, and `printable_geometry_allowed=false`.
+- AC89. A source-geometry layout proves that the retained `153.734544 mm`
+  carrier is `37.734544 mm` longer than the measured front zone, while a
+  `110 x 115 mm` planning surface can contain the sensor envelopes in plan.
+- AC90. The compact B-rep layout has a proper determinant-`+1` source transform,
+  zero Mid-360/S410/D435i-envelope intersection with the expanded compute-box
+  keep-out, `6.0 mm` S410 fore/aft clearance, and `2.5 mm` D435i-envelope
+  clearance to the measured nose edge.
+- AC91. AC86-AC90 are packaging/layout evidence only.  Printable geometry,
+  fastener selection, strength, optical/cable validation, and physical fit
+  remain open until Dr Sun reviews the placement and supplies the receiver
+  thread/depth contract.
+- AC92. The archived GLB has SHA-256
+  `294bf7e121c8ddd55c479b11efa2f0008e649a8ba72fd666722090220abb72c7`,
+  parses as GLB 2.0, and records `353508` vertices, `617023` triangles, and two
+  embedded textures.
+- AC93. The enclosure-top fit uses `9473` scan samples, reports a yaw
+  correction of `-160.777014948 deg`, and yields a 0.1-to-99.9-percentile
+  enclosure span of approximately `199.585 x 108.618 mm`.
+- AC94. Corrected scan and photograph views show the same rounded nose at
+  `+X/front`; the standard scan frame is right-handed with `+Y/left` and
+  `+Z/up`.
+- AC95. The textured upper-body OBJ and 3 mm clustered lightweight STL pass
+  count/byte validation and are marked `manufacturing_use=false`.
+- AC96. AC92-AC95 do not close the receiver gate.  The accepted structural
+  receiver count remains zero and no current-Pro printable lower adapter is
+  released.
+- AC97. The scan-footprint analysis uses `10025` top-surface samples, detects
+  the recess shoulder at approximately `X=-129.5 mm`, and rounds the nominal
+  two-recess polygon to `X=-130 mm`, inner `Y=[-42,+44] mm`.  The nominal
+  recessed run is `30 mm`; left/right inset depths are approximately
+  `11.879/10.739 mm`.  Corner radii remain simplified.
+- AC98. The scan-registered upper Rev B preserves the source-backed transforms,
+  reports less than `0.01 mm` axis residual for MID-360 and S410, zero
+  positive-volume upper/keep-out intersection, `5.0 mm` X clearance to the
+  conservative keep-out, and a valid 10-face nominal two-recess enclosure.
+- AC99. The scan-registered D435i support Rev B is one valid closed solid,
+  cleanly reimports from STEP, preserves the `45.0 mm` camera axis pitch, and
+  reports zero positive-volume intersection for support/camera, support/upper,
+  camera/upper, and support/keep-out pairs.  Its approximately `24.198 mm`
+  nose overhang and all lower-receiver decisions remain human/physical gates.
+- AC100. The lower-adapter gate consumes the scan Rev B eight-vertex nominal
+  footprint and `X=[-305,-96]`, `Y=[-57,+60]`, `Z=[0,54] mm` conservative
+  keep-out.  Its `1800 x 1200` Chinese measurement card labels A/B/C/D, keeps
+  all three receiver rows open, records zero accepted receivers, and keeps
+  `printable_geometry_allowed=false`.
+
+## Superseded Physical-Lite3 Fusion-Adapter V1 Goal (2026-07-29)
+
+This historical goal produced V1. Its upper-module evidence is retained, but
+R116-R125 supersede every robot-side fit, screw, spacer, video, and fabrication
+claim below.
+
+Stage: `experiment + analysis`
+
+Dr Sun supplied a photograph of the purchased white Lite3 and authorized a
+new engineering adapter rather than another factory-replica reconstruction.
+The long white `Interface` enclosure already installed on the robot is retained
+unchanged.  The new hardware must occupy the vacant front top-deck region and
+combine an official Livox Mid-360 B-rep, an official Intel RealSense D435i
+B-rep, and the source-derived S410 guard on a printable carrier.
+
+The current carrier baseline is the unchanged manufacturer J17A/J20A geometry
+with an explicitly nonofficial FDM fusion web.  The earlier
+`J17A_FRONT_PAIR_65MM_ADAPTED_REV_B_NOT_OFFICIAL_CAD` hole-remodeling track is
+superseded: later review found an original J17A 65 mm pair that already aligns
+to the selected front Lite3 axes.  No source hole may be filled, moved, scaled,
+or silently reinterpreted in the new build.
+
+The real photograph proves target identity, occupied/free deck regions, and
+front direction, but it does not prove hidden threads, usable depth, or scale.
+The robot-side screw lengths, rear receiver engagement, Interface clearance,
+and final manufacturing tolerance therefore remain physical-measurement gates.
+The new model may expose them as parameters and show candidate hardware, but
+must not label them verified dimensions.
+
+### Current requirements
+
+- R100. Preserve the supplied physical-Lite3 photograph with checksum and
+  classify every observation from it as `user_photo_evidence`, not CAD scale.
+- R101. Use the local full Lite3 B-rep only as the robot geometry context.  Keep
+  the visible robot opaque and do not relabel the Exploration/Experience STEP
+  variant as Pro, Venture, or factory LiDAR CAD.
+- R102. Keep the purchased white `Interface` enclosure in place.  Represent it
+  only by a separately named, adjustable keep-out envelope when the exact CAD
+  is unavailable; the envelope is not a printable part.
+- R103. Use the original manufacturer J17A and J20A source geometry as the
+  seed.  The delivered carrier is a separately named `print_adaptation` and
+  must not overwrite or masquerade as either manufacturer source.
+- R104. The printable carrier must be one connected closed solid and include a
+  continuous rear FDM web, local front fusion regions, and retained original
+  sensor and robot-side clearance paths.  It must export as editable source,
+  STEP, and STL.
+- R105. D435i mounts first and directly to J17A through the source-backed 45 mm
+  pair into the camera's rear M3 threads.  No camera-side nut is allowed.  The
+  modeled insertion must not exceed 3 mm.
+- R106. Mid-360 mounts to J20A on the source 48 x 36 mm four-axis pattern before
+  the upper module is joined to the lower carrier.  Preserve its official
+  B-rep and 15-degree source orientation.
+- R107. S410 remains a separate guard, seats on the J20A M5 receiver axes, and
+  is installed with four independently serviceable screws.  It is not fused
+  into the printed carrier.
+- R108. Base attachment uses both the selected front and rear Lite3 support
+  regions.  Candidate fasteners and locating spacers must remain separately
+  named; chassis thread, usable depth, and screw length stay `pending_measurement`
+  until the physical robot is gauged.
+- R109. Provide an explicit human-executable assembly order, tool corridors,
+  cable exit/bend envelopes, D435i view corridor, Mid-360 scan keep-out, and
+  robot/Interface collision checks.  A zero-volume intersection alone is not
+  a strength or fit claim.
+- R110. Produce a slow, no-text installation animation with action-driven
+  close-ups and a final global Lite3 view.  D435i must be installed before
+  geometry that would block its screws; underside Mid-360 screws must be
+  installed off-robot.
+- R111. Provide a BOM that distinguishes source-backed interfaces, visual
+  fastener candidates, print assumptions, and purchase/measurement gates.
+- R112. Run clean STEP import, STL manifold, and slicer smoke checks.  Record
+  material, orientation, wall/infill assumptions, but do not authorize a moving
+  robot from a slicer pass.
+- R113. Record a conservative preliminary load calculation for the sensor
+  payload and the continuous rear web.  Strength, fatigue, vibration, and real
+  impact safety remain unvalidated until material coupons and a physical proof
+  test pass.
+- R114. Do not start printing, drill the robot, tighten real hardware, or move
+  the physical Lite3 under this goal.
+- R115. Current completion means a review-ready engineering package.  Physical
+  fit and deployment remain blocked on Dr Sun's measurements and visual review.
+
+### Current acceptance checks
+
+- AC73. The preserved user photo has a recorded SHA-256 and pixel dimensions.
+- AC74. The carrier is one valid closed B-rep solid and its clean imported STEP
+  has one solid, one lump/shell, and no mesh substitute.
+- AC75. D435i/Mid-360/S410 interface-axis counts are `2/4/4`; all source bodies
+  retain rigid transforms with determinant `+1`.
+- AC76. Positive-volume collision is zero between the carrier, three sensor/
+  guard bodies, the selected robot context, and the adjustable Interface
+  keep-out at the declared nominal pose.
+- AC77. Every modeled screw and a conservative driver corridor is clear in the
+  declared sequence; unresolved thread engagement is reported rather than
+  inferred.
+- AC78. The STEP, STL, editable source, BOM, parameter file, validation report,
+  renders, contact sheet, and decodable no-text MP4 are present and hashed.
+- AC79. The final package prominently lists the physical measurements required
+  before print or real-robot installation.
+
 ## Current Authorized J17A Front-Pair Revision (2026-07-27)
 
 Dr Sun rejected the four-receiver chassis proxy and confirmed that the two

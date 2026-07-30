@@ -1,0 +1,481 @@
+{
+  "schema_version": 1,
+  "purpose": "minimum_forward_shift_placement_review_before_hidden_adapter",
+  "target_interface_clearance_mm": 3.0,
+  "required_rigid_sensor_shift_mm": [
+    36.148003,
+    0.0,
+    0.0
+  ],
+  "resulting_j17a_interface_aabb_gap_x_mm": 3.0,
+  "j17a_interface_boolean_intersection_mm3": 0.0,
+  "torso_top_z_mm": 425.462555,
+  "shifted_d435_min_z_mm": 433.755829,
+  "shifted_d435_torso_vertical_aabb_clearance_mm": 8.293274,
+  "j17a_fastener_centers_mm": [
+    [
+      108.824003,
+      -43.0,
+      446.0
+    ],
+    [
+      108.824003,
+      43.0,
+      446.0
+    ],
+    [
+      218.824003,
+      -43.0,
+      446.0
+    ],
+    [
+      218.824003,
+      43.0,
+      446.0
+    ]
+  ],
+  "lite3_pro_hole_axis_centers_mm": [
+    [
+      -17.0,
+      -47.0,
+      428.0
+    ],
+    [
+      -17.0,
+      47.0,
+      428.0
+    ],
+    [
+      57.0,
+      -47.0,
+      428.0
+    ],
+    [
+      57.0,
+      47.0,
+      428.0
+    ]
+  ],
+  "accepted_visible_geometry_changes": [],
+  "placement_claim_boundary": "The 36 mm-class shift is the minimum derived from the current 160 x 92 x 46 mm image-estimated Interface placeholder plus a 3 mm clearance. It preserves source geometry but is not a measured physical-robot datum.",
+  "fastener_claim_boundary": "The official video proves four J17A mounting locations and the manual proves the Lite3 Pro 74 x 94 mm pattern. The diagnostic fastener envelopes do not prove an adapter shape, screw length, thread engagement, or a load-rated Pro installation.",
+  "adapter_state": "not_designed_pending_placement_and_physical_interface_review",
+  "entries": [
+    {
+      "node_name": "TORSO",
+      "role": "context",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/TORSO.stl",
+      "bounds_mm": [
+        [
+          -269.589996,
+          -108.387001,
+          298.60257
+        ],
+        [
+          278.800018,
+          108.386002,
+          425.462555
+        ]
+      ],
+      "extent_mm": [
+        548.390015,
+        216.773003,
+        126.859985
+      ],
+      "vertex_count": 148899,
+      "face_count": 299349,
+      "watertight": false,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "FACTORY_INTERFACE",
+      "role": "context",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/FACTORY_INTERFACE.stl",
+      "bounds_mm": [
+        [
+          -65.0,
+          -46.0,
+          428.0
+        ],
+        [
+          95.0,
+          46.0,
+          474.799988
+        ]
+      ],
+      "extent_mm": [
+        160.0,
+        92.0,
+        46.799988
+      ],
+      "vertex_count": 754,
+      "face_count": 1504,
+      "watertight": true,
+      "volume_mm3": 674752.614328
+    },
+    {
+      "node_name": "FACTORY_INTERFACE_CONNECTORS",
+      "role": "context",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/FACTORY_INTERFACE_CONNECTORS.stl",
+      "bounds_mm": [
+        [
+          -57.0,
+          -45.699997,
+          439.299988
+        ],
+        [
+          82.0,
+          -44.900002,
+          454.299988
+        ]
+      ],
+      "extent_mm": [
+        139.0,
+        0.799995,
+        15.0
+      ],
+      "vertex_count": 56,
+      "face_count": 84,
+      "watertight": true,
+      "volume_mm3": 639.196342
+    },
+    {
+      "node_name": "FACTORY_INTERFACE_VENTS",
+      "role": "context",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/FACTORY_INTERFACE_VENTS.stl",
+      "bounds_mm": [
+        [
+          -48.0,
+          45.200001,
+          456.700012
+        ],
+        [
+          78.0,
+          46.0,
+          458.899994
+        ]
+      ],
+      "extent_mm": [
+        126.0,
+        0.799999,
+        2.199982
+      ],
+      "vertex_count": 64,
+      "face_count": 96,
+      "watertight": true,
+      "volume_mm3": 140.798702
+    },
+    {
+      "node_name": "J17A_ORIGINAL_POSITION_GHOST",
+      "role": "diagnostic_only",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/J17A_ORIGINAL_POSITION_GHOST.stl",
+      "bounds_mm": [
+        [
+          61.851997,
+          -57.5,
+          439.938568
+        ],
+        [
+          215.586548,
+          57.5,
+          467.0
+        ]
+      ],
+      "extent_mm": [
+        153.73455,
+        115.0,
+        27.061432
+      ],
+      "vertex_count": 6042,
+      "face_count": 12156,
+      "watertight": true,
+      "volume_mm3": 31824.554291
+    },
+    {
+      "node_name": "J17A_SENSOR_CARRIER_SOURCE",
+      "role": "source_sensor_shifted_as_one_rigid_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/J17A_SENSOR_CARRIER_SOURCE.stl",
+      "bounds_mm": [
+        [
+          98.0,
+          -57.5,
+          439.938568
+        ],
+        [
+          251.73455,
+          57.5,
+          467.0
+        ]
+      ],
+      "extent_mm": [
+        153.73455,
+        115.0,
+        27.061432
+      ],
+      "vertex_count": 6042,
+      "face_count": 12156,
+      "watertight": true,
+      "volume_mm3": 31824.554291
+    },
+    {
+      "node_name": "MID360_ADAPTER",
+      "role": "source_sensor_shifted_as_one_rigid_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/MID360_ADAPTER.stl",
+      "bounds_mm": [
+        [
+          132.323997,
+          -40.0,
+          436.875
+        ],
+        [
+          228.323997,
+          40.0,
+          461.875
+        ]
+      ],
+      "extent_mm": [
+        96.0,
+        80.0,
+        25.0
+      ],
+      "vertex_count": 2749,
+      "face_count": 5554,
+      "watertight": true,
+      "volume_mm3": 26174.778835
+    },
+    {
+      "node_name": "MID360_GUARD",
+      "role": "source_sensor_shifted_as_one_rigid_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/MID360_GUARD.stl",
+      "bounds_mm": [
+        [
+          137.192795,
+          -34.729622,
+          438.389709
+        ],
+        [
+          231.371666,
+          34.729626,
+          524.132935
+        ]
+      ],
+      "extent_mm": [
+        94.178871,
+        69.459248,
+        85.743225
+      ],
+      "vertex_count": 18487,
+      "face_count": 36998,
+      "watertight": true,
+      "volume_mm3": 20703.585347
+    },
+    {
+      "node_name": "MID360_BODY",
+      "role": "source_sensor_shifted_as_one_rigid_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/MID360_BODY.stl",
+      "bounds_mm": [
+        [
+          151.69693,
+          -32.393021,
+          443.149445
+        ],
+        [
+          214.98455,
+          32.393021,
+          466.002808
+        ]
+      ],
+      "extent_mm": [
+        63.287621,
+        64.786041,
+        22.853363
+      ],
+      "vertex_count": 9515,
+      "face_count": 19038,
+      "watertight": true,
+      "volume_mm3": 15329.536023
+    },
+    {
+      "node_name": "MID360_HOUSING_EXTERIOR",
+      "role": "source_sensor_shifted_as_one_rigid_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/MID360_HOUSING_EXTERIOR.stl",
+      "bounds_mm": [
+        [
+          152.493019,
+          -32.43692,
+          446.703705
+        ],
+        [
+          219.610161,
+          32.43692,
+          492.693726
+        ]
+      ],
+      "extent_mm": [
+        67.117142,
+        64.87384,
+        45.990021
+      ],
+      "vertex_count": 78120,
+      "face_count": 156015,
+      "watertight": false,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "MID360_OPTICAL_WINDOW",
+      "role": "source_sensor_shifted_as_one_rigid_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/MID360_OPTICAL_WINDOW.stl",
+      "bounds_mm": [
+        [
+          166.95623,
+          -25.493156,
+          476.790192
+        ],
+        [
+          217.365257,
+          25.493156,
+          511.357117
+        ]
+      ],
+      "extent_mm": [
+        50.409027,
+        50.986313,
+        34.566925
+      ],
+      "vertex_count": 4696,
+      "face_count": 9388,
+      "watertight": true,
+      "volume_mm3": 35091.731462
+    },
+    {
+      "node_name": "MID360_CONNECTOR",
+      "role": "source_sensor_shifted_as_one_rigid_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/MID360_CONNECTOR.stl",
+      "bounds_mm": [
+        [
+          146.240364,
+          -11.0,
+          464.397034
+        ],
+        [
+          162.834618,
+          11.0,
+          480.974091
+        ]
+      ],
+      "extent_mm": [
+        16.594254,
+        22.0,
+        16.577057
+      ],
+      "vertex_count": 16145,
+      "face_count": 32302,
+      "watertight": true,
+      "volume_mm3": 1904.90656
+    },
+    {
+      "node_name": "D435I_CAMERA_DIRECT",
+      "role": "source_sensor_shifted_as_one_rigid_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/D435I_CAMERA_DIRECT.stl",
+      "bounds_mm": [
+        [
+          227.27668,
+          -44.9142,
+          433.755829
+        ],
+        [
+          256.908424,
+          45.000099,
+          461.615662
+        ]
+      ],
+      "extent_mm": [
+        29.631744,
+        89.914299,
+        27.859833
+      ],
+      "vertex_count": 154145,
+      "face_count": 231127,
+      "watertight": false,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "D435_DIRECT_FASTENER_REFERENCES",
+      "role": "source_sensor_shifted_as_one_rigid_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/D435_DIRECT_FASTENER_REFERENCES.stl",
+      "bounds_mm": [
+        [
+          224.470482,
+          -25.25,
+          448.564667
+        ],
+        [
+          234.38131,
+          25.25,
+          455.636566
+        ]
+      ],
+      "extent_mm": [
+        9.910828,
+        50.5,
+        7.071899
+      ],
+      "vertex_count": 390,
+      "face_count": 768,
+      "watertight": true,
+      "volume_mm3": 193.44005
+    },
+    {
+      "node_name": "J17A_FOUR_FASTENER_REFERENCES",
+      "role": "official_video_mounting_axis_reference",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/J17A_FOUR_FASTENER_REFERENCES.stl",
+      "bounds_mm": [
+        [
+          106.074003,
+          -45.75,
+          436.0
+        ],
+        [
+          221.574003,
+          45.75,
+          449.0
+        ]
+      ],
+      "extent_mm": [
+        115.5,
+        91.5,
+        13.0
+      ],
+      "vertex_count": 784,
+      "face_count": 1536,
+      "watertight": true,
+      "volume_mm3": 575.228929
+    },
+    {
+      "node_name": "LITE3_PRO_74X94_HOLE_AXIS_REFERENCES",
+      "role": "official_manual_interface_reference",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-clearance-placement-candidate/meshes/LITE3_PRO_74X94_HOLE_AXIS_REFERENCES.stl",
+      "bounds_mm": [
+        [
+          -18.75,
+          -48.75,
+          423.0
+        ],
+        [
+          58.75,
+          48.75,
+          434.0
+        ]
+      ],
+      "extent_mm": [
+        77.5,
+        97.5,
+        11.0
+      ],
+      "vertex_count": 392,
+      "face_count": 768,
+      "watertight": true,
+      "volume_mm3": 422.121706
+    }
+  ]
+}

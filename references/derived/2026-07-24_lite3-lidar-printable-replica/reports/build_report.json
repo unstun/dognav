@@ -1,0 +1,2230 @@
+{
+  "artifact_label": "printable_static_replica",
+  "assembly_mounts": {
+    "camera_mount_bracket": {
+      "camera_fasteners": 2,
+      "carrier_fasteners": 2,
+      "carrier_side_axis_source": "pinned_J17A_source_model",
+      "carrier_side_hole_spacing_mm": 45.0,
+      "evidence_class": "print_adaptation",
+      "official_camera_hole_spacing_mm": 45.0,
+      "print_clearance_hole_diameter_master_mm": 4.8,
+      "print_equivalent_screw_shaft_diameter_master_mm": 3.2,
+      "print_radial_clearance_mm": 0.19999999999999996,
+      "receiver_bore_depth_mm": 3.0,
+      "receiver_boss_count": 2,
+      "receiver_geometry_node": "CAMERA_RECEIVER_YOKE",
+      "receiver_guard_engagement": "integrated_into_S410_guard",
+      "side_join_fasteners": 4,
+      "socket_target": "s410_guard_integrated_camera_receiver_yoke"
+    },
+    "upper_module": {
+      "deck_pocket": {
+        "center_mm": [
+          5.0,
+          0.0,
+          106.25
+        ],
+        "size_mm": [
+          80.4,
+          29.4,
+          1.9
+        ],
+        "vertical_clearance_mm": 0.2,
+        "xy_clearance_mm": 0.2
+      },
+      "evidence_class": "print_adaptation",
+      "pins": [
+        {
+          "id": "UPPER_PIN_1",
+          "pin_end_mm": [
+            0.0,
+            -11.75,
+            106.55
+          ],
+          "pin_radius_mm": 1.2,
+          "pin_start_mm": [
+            0.0,
+            -11.75,
+            101.75
+          ],
+          "socket_end_mm": [
+            0.0,
+            -11.75,
+            107.14999999999999
+          ],
+          "socket_radius_mm": 1.4,
+          "socket_start_mm": [
+            0.0,
+            -11.75,
+            101.15
+          ]
+        },
+        {
+          "id": "UPPER_PIN_2",
+          "pin_end_mm": [
+            10.0,
+            11.75,
+            106.55
+          ],
+          "pin_radius_mm": 1.2,
+          "pin_start_mm": [
+            10.0,
+            11.75,
+            101.75
+          ],
+          "socket_end_mm": [
+            10.0,
+            11.75,
+            107.14999999999999
+          ],
+          "socket_radius_mm": 1.4,
+          "socket_start_mm": [
+            10.0,
+            11.75,
+            101.15
+          ]
+        }
+      ]
+    }
+  },
+  "body_geometry_tracks": {
+    "printable_reference": {
+      "bbox_max_mm": [
+        279.59275903335026,
+        186.77261460266348,
+        426.7859510629781
+      ],
+      "bbox_min_mm": [
+        -318.5981469592219,
+        -186.77261460266348,
+        0.0
+      ],
+      "bbox_size_mm": [
+        598.1909059925722,
+        373.54522920532696,
+        426.7859510629781
+      ],
+      "body_source": "watertight_voxel_reconstruction_with_bounded_topology_preserving_smoothing",
+      "claim": "Multi-object printable reference; not the original manufacturer CAD surface.",
+      "ground_error_mm": 0.0,
+      "output": "models/reference/lite3_lidar_1_1_reference.3mf",
+      "print_ready": true
+    },
+    "visual_reference": {
+      "bbox_max_mm": [
+        278.80001068115234,
+        186.32896026074886,
+        425.4625397447276
+      ],
+      "bbox_min_mm": [
+        -318.03669718481893,
+        -186.32896026074886,
+        0.0
+      ],
+      "bbox_size_mm": [
+        596.8367078659712,
+        372.6579205214977,
+        425.4625397447276
+      ],
+      "body_source": "official_high_resolution_urdf_dae",
+      "claim": "Smooth official exterior for visual/CAD reference. The source contains open and non-manifold shells.",
+      "ground_error_mm": 0.0,
+      "output": "models/reference/lite3_lidar_1_1_reference.glb",
+      "print_ready": false
+    }
+  },
+  "claim_boundary": "Static printable exterior replica. LiDAR dimensions not published by the manufacturer remain image estimates. Not functional, load-bearing, fit-validated, or manufacturing-exact.",
+  "forbidden_labels": [
+    "factory_cad",
+    "manufacturing_exact",
+    "functional_robot",
+    "fit_validated"
+  ],
+  "joint_holes": {
+    "FL_HipX_joint": {
+      "axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "center_mm": [
+        43.625,
+        15.5,
+        88.2972170776022
+      ],
+      "child": "FL_HIP",
+      "hole_radius_mm": 1.4,
+      "parent": "TORSO"
+    },
+    "FL_HipY_joint": {
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "center_mm": [
+        43.625,
+        39.8375,
+        88.2972170776022
+      ],
+      "child": "FL_THIGH",
+      "hole_radius_mm": 1.4,
+      "parent": "FL_HIP"
+    },
+    "FL_Knee_joint": {
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "center_mm": [
+        13.22516125829748,
+        39.8375,
+        48.60024232538106
+      ],
+      "child": "FL_SHANK",
+      "hole_radius_mm": 1.4,
+      "parent": "FL_THIGH"
+    },
+    "FR_HipX_joint": {
+      "axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "center_mm": [
+        43.625,
+        -15.5,
+        88.2972170776022
+      ],
+      "child": "FR_HIP",
+      "hole_radius_mm": 1.4,
+      "parent": "TORSO"
+    },
+    "FR_HipY_joint": {
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "center_mm": [
+        43.625,
+        -39.8375,
+        88.2972170776022
+      ],
+      "child": "FR_THIGH",
+      "hole_radius_mm": 1.4,
+      "parent": "FR_HIP"
+    },
+    "FR_Knee_joint": {
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "center_mm": [
+        13.22516125829748,
+        -39.8375,
+        48.60024232538106
+      ],
+      "child": "FR_SHANK",
+      "hole_radius_mm": 1.4,
+      "parent": "FR_THIGH"
+    },
+    "HL_HipX_joint": {
+      "axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "center_mm": [
+        -43.625,
+        15.5,
+        88.2972170776022
+      ],
+      "child": "HL_HIP",
+      "hole_radius_mm": 1.4,
+      "parent": "TORSO"
+    },
+    "HL_HipY_joint": {
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "center_mm": [
+        -43.625,
+        39.8375,
+        88.2972170776022
+      ],
+      "child": "HL_THIGH",
+      "hole_radius_mm": 1.4,
+      "parent": "HL_HIP"
+    },
+    "HL_Knee_joint": {
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "center_mm": [
+        -74.02483874170251,
+        39.8375,
+        48.60024232538106
+      ],
+      "child": "HL_SHANK",
+      "hole_radius_mm": 1.4,
+      "parent": "HL_THIGH"
+    },
+    "HR_HipX_joint": {
+      "axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "center_mm": [
+        -43.625,
+        -15.5,
+        88.2972170776022
+      ],
+      "child": "HR_HIP",
+      "hole_radius_mm": 1.4,
+      "parent": "TORSO"
+    },
+    "HR_HipY_joint": {
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "center_mm": [
+        -43.625,
+        -39.8375,
+        88.2972170776022
+      ],
+      "child": "HR_THIGH",
+      "hole_radius_mm": 1.4,
+      "parent": "HR_HIP"
+    },
+    "HR_Knee_joint": {
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "center_mm": [
+        -74.02483874170251,
+        -39.8375,
+        48.60024232538106
+      ],
+      "child": "HR_SHANK",
+      "hole_radius_mm": 1.4,
+      "parent": "HR_THIGH"
+    }
+  },
+  "lidar_geometry_audit": {
+    "boolean_intersection_mm3": {
+      "factory_mounts_to_j20a": 0.0,
+      "j20a_to_hidden_bridge": 2965.4648609243013,
+      "mid360_to_hidden_bridge": 1267.5051999999735,
+      "mid360_to_j20a": 0.0,
+      "mid360_to_s410": 0.0
+    },
+    "camera_mounting": {
+      "bracket_connected_components": 1,
+      "bracket_geometry_node": "CAMERA_MOUNT_BRACKET",
+      "bracket_to_adapter_intersection_mm3": 0.0,
+      "bracket_to_carrier_plate_intersection_mm3": -3.9738394783965337e-16,
+      "bracket_to_factory_mounts_intersection_mm3": 0.0,
+      "bracket_to_guard_clearance": {
+        "method": "bidirectional_deterministic_vertex_sample",
+        "minimum_mm": 5.194711111904777,
+        "p01_mm": 5.945745215010638,
+        "sample_count": 8703
+      },
+      "bracket_to_guard_intersection_mm3": 0.0,
+      "bracket_to_interface_intersection_mm3": 0.0,
+      "bracket_to_torso_intersection_mm3": 0.0,
+      "bracket_watertight": true,
+      "calculated_camera_thread_insertion_mm": 2.1999999999999997,
+      "calculated_carrier_thread_insertion_mm": 2.1999999999999997,
+      "camera_mating_pad_count": 2,
+      "camera_screw": "M3x6 socket-head cap screw",
+      "camera_screw_count": 2,
+      "camera_to_bracket_intersection_mm3": 4.091353247548049e-14,
+      "camera_to_factory_mounts_intersection_mm3": 0.0,
+      "carrier_mating_pad_count": 2,
+      "carrier_plate_connected_components": 1,
+      "carrier_plate_geometry_node": "CAMERA_CARRIER_PLATE",
+      "carrier_plate_to_adapter_intersection_mm3": 0.0,
+      "carrier_plate_to_guard_clearance": {
+        "method": "bidirectional_deterministic_vertex_sample",
+        "minimum_mm": 1.073515007967,
+        "p01_mm": 3.804148238126007,
+        "sample_count": 8904
+      },
+      "carrier_plate_to_guard_intersection_mm3": 0.0,
+      "carrier_plate_to_receiver_yoke_clearance": {
+        "method": "bidirectional_deterministic_vertex_sample",
+        "minimum_mm": 0.019999999999931725,
+        "p01_mm": 0.019999999999976793,
+        "sample_count": 1294
+      },
+      "carrier_plate_watertight": true,
+      "carrier_screw": "M3x6 socket-head cap screw",
+      "carrier_screw_count": 2,
+      "fastener_geometry_node": "CAMERA_FASTENERS",
+      "j17a_mount_axis": [
+        0.9396926,
+        0.0,
+        -0.3420201
+      ],
+      "official_maximum_thread_insertion_mm": 3.0,
+      "official_nominal_bbox_mm": [
+        25.0,
+        90.0,
+        25.0
+      ],
+      "official_rear_thread": "M3",
+      "official_rear_thread_count": 2,
+      "official_rear_thread_spacing_mm": 45.0,
+      "official_recommended_combined_torque_nm": 0.4,
+      "official_visual_to_factory_mounts_clearance": {
+        "method": "bidirectional_deterministic_vertex_sample",
+        "minimum_mm": 14.634989356444615,
+        "p01_mm": 17.502830038365293,
+        "sample_count": 8576
+      },
+      "opposing_head_service_gap_mm": 3.3999999999999986,
+      "print_bracket_to_print_carrier_plate_intersection_mm3": 0.0,
+      "print_camera_to_factory_mounts_intersection_mm3": 0.0,
+      "print_camera_to_print_bracket_intersection_mm3": -1.1502980393315541e-14,
+      "print_clearance_hole_diameter_master_mm": 4.8,
+      "print_equivalent_screw_shaft_diameter_master_mm": 3.2,
+      "print_fastener_connected_components": 8,
+      "print_geometry_node": "FRONT_CAMERA_BAR",
+      "print_geometry_source": "rear_plane_trimmed_voxel_reconstruction_of_official_ros_mesh_with_two_print_clearance_blind_holes",
+      "print_receiver_yoke_to_guard_engagement_mm3": 43.9377749245514,
+      "print_receiver_yoke_to_print_carrier_plate_intersection_mm3": 0.0,
+      "print_receiver_yoke_to_print_fasteners_intersection_mm3": 0.0,
+      "product": "Intel RealSense D435i",
+      "receiver_bore_depth_mm": 3.0,
+      "receiver_boss_outer_diameter_mm": 12.0,
+      "receiver_count": 2,
+      "receiver_face_gap_mm": 0.02,
+      "receiver_guard_engaged_anchor_mm": [
+        [
+          190.26829736424617,
+          -32.41686663841022,
+          451.1131767186377
+        ],
+        [
+          190.91199351298485,
+          32.62389448851717,
+          453.0778883494919
+        ]
+      ],
+      "receiver_guard_engagement_mm": 2.0,
+      "receiver_guard_surface_anchor_mm": [
+        [
+          189.88938317608236,
+          -30.503360748291016,
+          451.55467331713794
+        ],
+        [
+          190.41340416707095,
+          30.688026428222656,
+          453.13972294557453
+        ]
+      ],
+      "receiver_minimum_radial_wall_print_mm": 0.9,
+      "receiver_strut_size_mm": [
+        4.0,
+        4.0
+      ],
+      "receiver_yoke_connected_components": 2,
+      "receiver_yoke_geometry_node": "CAMERA_RECEIVER_YOKE",
+      "receiver_yoke_to_adapter_intersection_mm3": 0.0,
+      "receiver_yoke_to_carrier_plate_intersection_mm3": 0.0,
+      "receiver_yoke_to_factory_mounts_intersection_mm3": 0.0,
+      "receiver_yoke_to_fasteners_intersection_mm3": 0.0,
+      "receiver_yoke_to_guard_engagement_mm3": 43.9377749245514,
+      "receiver_yoke_to_interface_intersection_mm3": 0.0,
+      "receiver_yoke_to_torso_intersection_mm3": 0.0,
+      "receiver_yoke_watertight": true,
+      "side_join_screw": "M3x8 socket-head cap screw",
+      "side_join_screw_count": 4,
+      "socket_target": "s410_guard_integrated_camera_receiver_yoke",
+      "source_to_robot_transform": [
+        [
+          0.0,
+          0.3420201117486014,
+          0.9396926322790203,
+          0.2334799923747667
+        ],
+        [
+          1.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.9396926322790204,
+          -0.34202011174860136,
+          0.43695874657639433
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "visible_collision_proxy": "source_derived_watertight_print_body_for_open_official_visual_mesh",
+      "visual_fastener_connected_components": 8,
+      "visual_geometry_node": "D435I_CAMERA",
+      "visual_geometry_source": "official_realsense_ros_d435_mesh_used_by_d435i_urdf",
+      "visual_print_ready": false,
+      "visual_source_bbox_mm": [
+        89.91429954767227,
+        25.00000037252903,
+        25.054700672626495
+      ]
+    },
+    "declared_visible_engagement_pairs": [
+      "MID360_GUARD__CAMERA_RECEIVER_YOKE"
+    ],
+    "hidden_bridge_size_mm": [
+      38.0,
+      5.0,
+      26.0
+    ],
+    "hidden_bridge_to_hole_edge_clearance_mm": [
+      3.25,
+      3.25
+    ],
+    "longitudinal_fov_approximation_deg": {
+      "front": [
+        -22.0,
+        37.0
+      ],
+      "method": "native vertical FOV rotated in the front/rear longitudinal planes",
+      "native": [
+        -7.0,
+        52.0
+      ],
+      "rear": [
+        8.0,
+        67.0
+      ]
+    },
+    "mount_hole_diameter_mm": 3.5,
+    "mount_hole_pattern_mm": [
+      48.0,
+      36.0
+    ],
+    "mount_normal_offset_mm": 3.0,
+    "payload_base": {
+      "ai_computer_identity": "NVIDIA Jetson Xavier NX",
+      "ai_computer_location": "not_published",
+      "architecture": "no_visible_spanning_plate_with_local_interface_feet_and_lidar_mounts",
+      "factory_interface_center_mm": [
+        15.0,
+        0.0,
+        451.8
+      ],
+      "factory_interface_envelope_mm": [
+        160.0,
+        92.0,
+        46.0
+      ],
+      "factory_interface_mount_pattern_mm": [
+        132.0,
+        68.0
+      ],
+      "factory_interface_to_mounts_intersection_mm3": 0.0,
+      "factory_interface_to_payload_base_intersection_mm3": -1.2284472201722085e-12,
+      "factory_interface_to_torso_intersection_mm3": 0.0,
+      "factory_lidar_mount_count": 4,
+      "factory_lidar_mount_open_hole_diameter_mm": 3.5,
+      "hole_probe_intersection_mm3": -5.997059441009451e-15,
+      "j17a_hole_pattern_mm": [
+        110.0,
+        86.0
+      ],
+      "j17a_hole_probe_intersection_mm3": -9.926167350636332e-15,
+      "j17a_open_hole_diameter_mm": 3.5,
+      "minimum_payload_to_j17a_hole_ligament_mm": 12.67828717757229,
+      "official_hole_pattern_mm": [
+        74.0,
+        94.0
+      ],
+      "open_hole_diameter_mm": 3.5,
+      "sensor_crossbar_size_mm": [
+        24.0,
+        114.0,
+        6.0
+      ],
+      "sensor_crossbar_x_mm": [
+        72.676,
+        182.676
+      ],
+      "visible_component_identity": "DEEP Robotics Interface",
+      "visible_spanning_plate": false
+    },
+    "surface_clearance": {
+      "connector_to_s410": {
+        "method": "bidirectional_deterministic_vertex_sample",
+        "minimum_mm": 10.78242848702769,
+        "p01_mm": 12.515438261452719,
+        "sample_count": 16000
+      },
+      "mid360_to_s410": {
+        "method": "bidirectional_deterministic_vertex_sample",
+        "minimum_mm": 0.7526714873632063,
+        "p01_mm": 2.8867295931989068,
+        "sample_count": 16000
+      }
+    },
+    "upper_boolean_removed_negative_internal_shells_mm3": [
+      89.95977995158056,
+      89.96510173838267
+    ],
+    "upper_module_connected_components": 1,
+    "visible_collision_matrix_mm3": {
+      "CAMERA_CARRIER_PLATE__CAMERA_RECEIVER_YOKE": 0.0,
+      "CAMERA_MOUNT_BRACKET__CAMERA_CARRIER_PLATE": -3.9738394783965337e-16,
+      "CAMERA_MOUNT_BRACKET__CAMERA_RECEIVER_YOKE": 0.0,
+      "D435I_CAMERA__CAMERA_CARRIER_PLATE": 0.0,
+      "D435I_CAMERA__CAMERA_MOUNT_BRACKET": 4.091353247548049e-14,
+      "D435I_CAMERA__CAMERA_RECEIVER_YOKE": 0.0,
+      "FACTORY_INTERFACE__CAMERA_CARRIER_PLATE": 0.0,
+      "FACTORY_INTERFACE__CAMERA_MOUNT_BRACKET": 0.0,
+      "FACTORY_INTERFACE__CAMERA_RECEIVER_YOKE": 0.0,
+      "FACTORY_INTERFACE__D435I_CAMERA": 0.0,
+      "FACTORY_INTERFACE__FACTORY_LIDAR_MOUNTS": 0.0,
+      "FACTORY_INTERFACE__MID360_ADAPTER": 0.0,
+      "FACTORY_INTERFACE__MID360_GUARD": 0.0,
+      "FACTORY_INTERFACE__MID360_SENSOR": 0.0,
+      "FACTORY_LIDAR_MOUNTS__CAMERA_CARRIER_PLATE": 0.0,
+      "FACTORY_LIDAR_MOUNTS__CAMERA_MOUNT_BRACKET": 0.0,
+      "FACTORY_LIDAR_MOUNTS__CAMERA_RECEIVER_YOKE": 0.0,
+      "FACTORY_LIDAR_MOUNTS__D435I_CAMERA": 0.0,
+      "FACTORY_LIDAR_MOUNTS__MID360_ADAPTER": 0.0,
+      "FACTORY_LIDAR_MOUNTS__MID360_GUARD": 0.0,
+      "FACTORY_LIDAR_MOUNTS__MID360_SENSOR": 0.0,
+      "MID360_ADAPTER__CAMERA_CARRIER_PLATE": 0.0,
+      "MID360_ADAPTER__CAMERA_MOUNT_BRACKET": 0.0,
+      "MID360_ADAPTER__CAMERA_RECEIVER_YOKE": 0.0,
+      "MID360_ADAPTER__D435I_CAMERA": 0.0,
+      "MID360_ADAPTER__MID360_GUARD": 0.0,
+      "MID360_ADAPTER__MID360_SENSOR": 0.0,
+      "MID360_GUARD__CAMERA_CARRIER_PLATE": 0.0,
+      "MID360_GUARD__CAMERA_MOUNT_BRACKET": 0.0,
+      "MID360_GUARD__CAMERA_RECEIVER_YOKE": 43.937774924551505,
+      "MID360_GUARD__D435I_CAMERA": 0.0,
+      "MID360_GUARD__MID360_SENSOR": 0.0,
+      "MID360_SENSOR__CAMERA_CARRIER_PLATE": 0.0,
+      "MID360_SENSOR__CAMERA_MOUNT_BRACKET": 0.0,
+      "MID360_SENSOR__CAMERA_RECEIVER_YOKE": 0.0,
+      "MID360_SENSOR__D435I_CAMERA": 0.0,
+      "TORSO__CAMERA_CARRIER_PLATE": 0.0,
+      "TORSO__CAMERA_MOUNT_BRACKET": 0.0,
+      "TORSO__CAMERA_RECEIVER_YOKE": 0.0,
+      "TORSO__D435I_CAMERA": 0.0,
+      "TORSO__FACTORY_INTERFACE": 0.0,
+      "TORSO__FACTORY_LIDAR_MOUNTS": 0.0,
+      "TORSO__MID360_ADAPTER": 0.0,
+      "TORSO__MID360_GUARD": 0.0,
+      "TORSO__MID360_SENSOR": 0.0
+    },
+    "visible_component_names": [
+      "TORSO",
+      "FACTORY_INTERFACE",
+      "FACTORY_LIDAR_MOUNTS",
+      "MID360_ADAPTER",
+      "MID360_GUARD",
+      "MID360_SENSOR",
+      "D435I_CAMERA",
+      "CAMERA_MOUNT_BRACKET",
+      "CAMERA_CARRIER_PLATE",
+      "CAMERA_RECEIVER_YOKE"
+    ]
+  },
+  "master_reconstruction": {
+    "agx_orin_base": {
+      "bbox_size_mm": [
+        130.8832778930664,
+        34.00283813476563,
+        115.0
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "faces": 58394,
+      "nonmanifold_edges": 0,
+      "vertices": 29169,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "d435i": {
+      "bbox_size_mm": [
+        90.3,
+        25.549999999999997,
+        25.55
+      ],
+      "bridge_boxes_mm": [],
+      "connected_components": 1,
+      "faces": 344234,
+      "filled_voxels": 960503,
+      "master_to_source_surface_distance": {
+        "max_mm": 0.42625482704978496,
+        "median_mm": 0.2249992460012437,
+        "p95_mm": 0.3275656806599139,
+        "p99_mm": 0.3571220068096838
+      },
+      "retained_voxel_components": 1,
+      "simplify_tolerance_mm": 0.0,
+      "smoothing": {
+        "enabled": false
+      },
+      "source_to_master_surface_distance": {
+        "max_mm": 4.714750699391126,
+        "median_mm": 0.3002087044776335,
+        "p95_mm": 1.930028774626418,
+        "p99_mm": 3.02541392343501
+      },
+      "surface_voxels": 244240,
+      "vertices": 171759,
+      "volume_mm3": 41212.93811979167,
+      "voxel_pitch_mm": 0.35,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "hip": {
+      "bbox_size_mm": [
+        92.10320140070039,
+        68.52893244057066,
+        79.63408998727672
+      ],
+      "bridge_boxes_mm": [],
+      "connected_components": 1,
+      "faces": 610330,
+      "filled_voxels": 695099,
+      "master_to_source_surface_distance": {
+        "max_mm": 0.609244843543417,
+        "median_mm": 0.2927311329819079,
+        "p95_mm": 0.45079634724012746,
+        "p99_mm": 0.4940762649544668
+      },
+      "retained_voxel_components": 1,
+      "simplify_tolerance_mm": 0.0,
+      "smoothing": {
+        "enabled": true,
+        "iterations": 50,
+        "lambda": 0.4,
+        "method": "trimesh.filter_taubin",
+        "nu": 0.41,
+        "vertex_displacement_mm": {
+          "max": 0.31328055735959903,
+          "median": 0.11232101572250185,
+          "p95": 0.2050222727711446,
+          "p99": 0.23120484299163427
+        },
+        "volume_change_percent": 0.014386383814591707
+      },
+      "source_to_master_surface_distance": {
+        "max_mm": 2.925440069032484,
+        "median_mm": 0.32912522786000725,
+        "p95_mm": 1.2516194656947857,
+        "p99_mm": 2.2501920872794563
+      },
+      "surface_voxels": 316944,
+      "vertices": 305065,
+      "volume_mm3": 86956.82585158385,
+      "voxel_pitch_mm": 0.5,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "j17a": {
+      "bbox_size_mm": [
+        153.7345428466797,
+        115.0,
+        27.061438560485843
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "faces": 12156,
+      "nonmanifold_edges": 0,
+      "vertices": 6042,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "j20a": {
+      "bbox_size_mm": [
+        96.0,
+        25.0,
+        80.0
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "faces": 5554,
+      "nonmanifold_edges": 0,
+      "vertices": 2749,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "jetson_agx_orin_module": {
+      "bbox_size_mm": [
+        87.00000000000001,
+        100.0,
+        15.956992149353026
+      ],
+      "boundary_edges": 14,
+      "components": 28,
+      "faces": 375634,
+      "nonmanifold_edges": 7,
+      "vertices": 187790,
+      "watertight": false,
+      "winding_consistent": true
+    },
+    "mid360": {
+      "bbox_size_mm": [
+        73.20000000000002,
+        60.400000000000006,
+        65.2
+      ],
+      "bridge_boxes_mm": [],
+      "connected_components": 1,
+      "faces": 441708,
+      "filled_voxels": 2272499,
+      "master_to_source_surface_distance": {
+        "max_mm": 0.5153350129874388,
+        "median_mm": 0.27998883813474773,
+        "p95_mm": 0.3841034057415334,
+        "p99_mm": 0.4082876688793045
+      },
+      "retained_voxel_components": 1,
+      "simplify_tolerance_mm": 0.0,
+      "smoothing": {
+        "enabled": false
+      },
+      "source_to_master_surface_distance": {
+        "max_mm": 17.783816191046345,
+        "median_mm": 0.3241391716130363,
+        "p95_mm": 5.184110114415779,
+        "p99_mm": 11.504529884638742
+      },
+      "surface_voxels": 305208,
+      "vertices": 220852,
+      "volume_mm3": 145435.33600000004,
+      "voxel_pitch_mm": 0.4,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "mid360_body": {
+      "bbox_size_mm": [
+        64.78604125976562,
+        8.100000381469727,
+        64.78604125976562
+      ],
+      "boundary_edges": 57114,
+      "components": 19038,
+      "faces": 19038,
+      "nonmanifold_edges": 0,
+      "vertices": 57114,
+      "watertight": false,
+      "winding_consistent": true
+    },
+    "mid360_connector": {
+      "bbox_size_mm": [
+        13.799999237060549,
+        16.000000953674316,
+        22.0
+      ],
+      "boundary_edges": 96906,
+      "components": 32302,
+      "faces": 32302,
+      "nonmanifold_edges": 0,
+      "vertices": 96906,
+      "watertight": false,
+      "winding_consistent": true
+    },
+    "mid360_housing_exterior": {
+      "bbox_size_mm": [
+        64.87384033203125,
+        32.54710102081299,
+        64.87384033203125
+      ],
+      "boundary_edges": 468051,
+      "components": 156017,
+      "faces": 156017,
+      "nonmanifold_edges": 0,
+      "vertices": 468051,
+      "watertight": false,
+      "winding_consistent": true
+    },
+    "mid360_optical_window": {
+      "bbox_size_mm": [
+        50.98631286621094,
+        27.172781944274902,
+        50.98631286621094
+      ],
+      "boundary_edges": 28164,
+      "components": 9388,
+      "faces": 9388,
+      "nonmanifold_edges": 0,
+      "vertices": 28164,
+      "watertight": false,
+      "winding_consistent": true
+    },
+    "s410": {
+      "bbox_size_mm": [
+        93.51084899902344,
+        73.98999786376953,
+        69.45924758911133
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "faces": 36998,
+      "nonmanifold_edges": 0,
+      "vertices": 18487,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "shank": {
+      "bbox_size_mm": [
+        51.17890453572988,
+        35.433054582811984,
+        267.95024519379615
+      ],
+      "bridge_boxes_mm": [],
+      "connected_components": 1,
+      "faces": 162276,
+      "filled_voxels": 314470,
+      "master_to_source_surface_distance": {
+        "max_mm": 0.9460295625642604,
+        "median_mm": 0.4722891551161954,
+        "p95_mm": 0.6711545529928594,
+        "p99_mm": 0.7421469377388161
+      },
+      "retained_voxel_components": 1,
+      "simplify_tolerance_mm": 0.0,
+      "smoothing": {
+        "enabled": true,
+        "iterations": 50,
+        "lambda": 0.4,
+        "method": "trimesh.filter_taubin",
+        "nu": 0.41,
+        "vertex_displacement_mm": {
+          "max": 0.5246832280041276,
+          "median": 0.14075208848628684,
+          "p95": 0.3143793326736712,
+          "p99": 0.36044439064868955
+        },
+        "volume_change_percent": 0.04024884124875266
+      },
+      "source_to_master_surface_distance": {
+        "max_mm": 10.266933366525784,
+        "median_mm": 0.5543118462090976,
+        "p95_mm": 6.62810093344086,
+        "p99_mm": 8.035447058292307
+      },
+      "surface_voxels": 89590,
+      "vertices": 81098,
+      "volume_mm3": 132641.29479283493,
+      "voxel_pitch_mm": 0.75,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "thigh": {
+      "bbox_size_mm": [
+        87.91867221886979,
+        117.90495620203947,
+        260.3767404082782
+      ],
+      "bridge_boxes_mm": [],
+      "connected_components": 1,
+      "faces": 686598,
+      "filled_voxels": 565639,
+      "master_to_source_surface_distance": {
+        "max_mm": 1.0025105924111108,
+        "median_mm": 0.46845694529751947,
+        "p95_mm": 0.662863433023867,
+        "p99_mm": 0.7414009316899072
+      },
+      "retained_voxel_components": 1,
+      "simplify_tolerance_mm": 0.0,
+      "smoothing": {
+        "enabled": true,
+        "iterations": 50,
+        "lambda": 0.4,
+        "method": "trimesh.filter_taubin",
+        "nu": 0.41,
+        "vertex_displacement_mm": {
+          "max": 0.4934095925684227,
+          "median": 0.17591342244126684,
+          "p95": 0.3174032280237721,
+          "p99": 0.35647322984940194
+        },
+        "volume_change_percent": 0.06404347697628923
+      },
+      "source_to_master_surface_distance": {
+        "max_mm": 3.9095653712612504,
+        "median_mm": 0.5151374645374732,
+        "p95_mm": 1.9207470448464175,
+        "p99_mm": 2.4635102811638996
+      },
+      "surface_voxels": 365234,
+      "vertices": 343207,
+      "volume_mm3": 239049.20837734896,
+      "voxel_pitch_mm": 0.75,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "torso": {
+      "bbox_size_mm": [
+        550.1370533283819,
+        217.2744138261497,
+        128.20760122642704
+      ],
+      "bridge_boxes_mm": [
+        {
+          "center": [
+            -108.0,
+            -72.0,
+            35.0
+          ],
+          "evidence_class": "print_adaptation",
+          "size": [
+            5.0,
+            6.0,
+            6.0
+          ]
+        }
+      ],
+      "connected_components": 1,
+      "faces": 1777070,
+      "filled_voxels": 2619893,
+      "master_to_source_surface_distance": {
+        "max_mm": 1.2429195954688594,
+        "median_mm": 0.5358615731350738,
+        "p95_mm": 0.9410036511882692,
+        "p99_mm": 1.0348580822720659
+      },
+      "retained_voxel_components": 1,
+      "simplify_tolerance_mm": 0.0,
+      "smoothing": {
+        "enabled": true,
+        "iterations": 50,
+        "lambda": 0.4,
+        "method": "trimesh.filter_taubin",
+        "nu": 0.41,
+        "vertex_displacement_mm": {
+          "max": 0.6525373457020116,
+          "median": 0.11955785555871887,
+          "p95": 0.4004678856941619,
+          "p99": 0.45542618189816986
+        },
+        "volume_change_percent": -0.019490965415101803
+      },
+      "source_to_master_surface_distance": {
+        "max_mm": 37.95606725227137,
+        "median_mm": 0.86178563184101,
+        "p95_mm": 15.641374711219692,
+        "p99_mm": 24.81951244262412
+      },
+      "surface_voxels": 1368187,
+      "vertices": 888295,
+      "volume_mm3": 2621380.2180832415,
+      "voxel_pitch_mm": 1.0,
+      "watertight": true,
+      "winding_consistent": true
+    }
+  },
+  "model_id": "lite3_laser_mid360_printable_static_replica",
+  "outputs": {
+    "ASSEMBLY_PINS.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/ASSEMBLY_PINS.stl",
+      "sha256": "46127af9a91345c3757c531bff6c95bb56d721829240cf3e85d5467744444ae7",
+      "size_bytes": 112084
+    },
+    "CAMERA_CARRIER_PLATE.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/CAMERA_CARRIER_PLATE.stl",
+      "sha256": "99d4358477f35307e3456ca766f15e642492c6ccc83546e7b2fe6b2c2d9121af",
+      "size_bytes": 77084
+    },
+    "CAMERA_FASTENERS.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/CAMERA_FASTENERS.stl",
+      "sha256": "d7a359c0dbc4d8ab8e6082b0cd6e7806e80965c00a000c6a0bcf294d408d07a2",
+      "size_bytes": 139284
+    },
+    "CAMERA_MOUNT_BRACKET.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/CAMERA_MOUNT_BRACKET.stl",
+      "sha256": "48e03c7b7d69595a7ede79023e37834591c04ee5cc925e2d304fdac7153c1aff",
+      "size_bytes": 66784
+    },
+    "FACTORY_INTERFACE.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/FACTORY_INTERFACE.stl",
+      "sha256": "889b5a36b463b13690969f1ea2b85c2f1ba547e4bb3bdbcf7a2ddaec26ba1243",
+      "size_bytes": 75284
+    },
+    "FL_HIP.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/FL_HIP.stl",
+      "sha256": "53636cb3eb73aa29a75ebee59716e08d20ebacb6fec46036389f979b53359684",
+      "size_bytes": 24129384
+    },
+    "FL_SHANK.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/FL_SHANK.stl",
+      "sha256": "6b988509d5387ead1eca0601e1e1e38b421476c348a8df889217a670ad842f20",
+      "size_bytes": 7550684
+    },
+    "FL_THIGH.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/FL_THIGH.stl",
+      "sha256": "68a99c3c7aa3c2eb15d34c0483295b942749ac0cab36e593fd169aaa2bff1a64",
+      "size_bytes": 31949784
+    },
+    "FRONT_CAMERA_BAR.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/FRONT_CAMERA_BAR.stl",
+      "sha256": "b75c94bfeb2ad4856724acf753221dae764388500b08019c12e5252821bde179",
+      "size_bytes": 1651284
+    },
+    "FR_HIP.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/FR_HIP.stl",
+      "sha256": "d80f6e051e6a07e69f7d44ec22099bc92388ce8de31ee8c09596866903910be8",
+      "size_bytes": 24152384
+    },
+    "FR_SHANK.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/FR_SHANK.stl",
+      "sha256": "1404d087a76358657a401041be351f52d0ba6dcfdf4bd8d085f85a51d41e0b88",
+      "size_bytes": 7550684
+    },
+    "FR_THIGH.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/FR_THIGH.stl",
+      "sha256": "c687a3c0d254cf26feb3d69efc8a03412190cc02b3a2d0207439498a70786199",
+      "size_bytes": 31955384
+    },
+    "HL_HIP.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/HL_HIP.stl",
+      "sha256": "9f0eac11a99fa1b6a860210bdcb9e31c613c960f6e06da9a37e768a94ed02318",
+      "size_bytes": 24150884
+    },
+    "HL_SHANK.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/HL_SHANK.stl",
+      "sha256": "9077f5b07c7d4aa247af96cbbb78f01877cbbe853a26d78076a9f8f33acff176",
+      "size_bytes": 7550684
+    },
+    "HL_THIGH.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/HL_THIGH.stl",
+      "sha256": "d1c60a8c73d4761d2a953aa83d441a96d36d1cc1759aeaf5b5c774dd0fd14825",
+      "size_bytes": 31949784
+    },
+    "HR_HIP.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/HR_HIP.stl",
+      "sha256": "31601a06f7b1170006e02fc736195538437dfa7f83bb4b9095b3bdcb5ab15e15",
+      "size_bytes": 24128384
+    },
+    "HR_SHANK.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/HR_SHANK.stl",
+      "sha256": "627b48e557ffafda987583cde68e39cd7ff8fb46252de2124b4c9b724a6f3a8d",
+      "size_bytes": 7550684
+    },
+    "HR_THIGH.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/HR_THIGH.stl",
+      "sha256": "48e2d4aab1bc8e118b96c58041bb97ef6c8140a366ead6e4bfc24b0e728dba0c",
+      "size_bytes": 31955384
+    },
+    "TORSO.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/TORSO.stl",
+      "sha256": "a58e58e5af58cd8fa1c5000e618abbc4577fc6064d9c6aa178d6d5cda74a13ce",
+      "size_bytes": 55988584
+    },
+    "UPPER_LIDAR_MODULE.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/UPPER_LIDAR_MODULE.stl",
+      "sha256": "8b14aa21612371072b87fbca7173e422d7215f9b40ced0d188b31e5a6fc2c5ce",
+      "size_bytes": 3577084
+    },
+    "camera_carrier_plate_master_1_1.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/camera_carrier_plate_master_1_1.stl",
+      "sha256": "421c67bce30e1a4666d2419fbff1e303d3b1b5721ff69f6f3d7e078318390f1d",
+      "size_bytes": 77084
+    },
+    "camera_fasteners_master_1_1.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/camera_fasteners_master_1_1.stl",
+      "sha256": "de85c1005499ecaf736050e3f86c0612a8976c303747120cdf8d583fa4a48d43",
+      "size_bytes": 148884
+    },
+    "camera_mount_bracket_master_1_1.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/camera_mount_bracket_master_1_1.stl",
+      "sha256": "c166ad2afcaa1ebb43e7e65e58d358148ed7a851e0b99ff5cc6410b4ba6f4e64",
+      "size_bytes": 66784
+    },
+    "d435i_sensor_master_1_1.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/d435i_sensor_master_1_1.stl",
+      "sha256": "39de27a235fd53932557900a12da8981654106f282658ec31fe9f193e779d57a",
+      "size_bytes": 17211784
+    },
+    "front_camera_bar_master_1_1.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/front_camera_bar_master_1_1.stl",
+      "sha256": "323f9662a14a206d4bc581cb96ab8c667225b192c0cdb0805166f7cc4f75569c",
+      "size_bytes": 1651284
+    },
+    "hip_master_1_1.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/hip_master_1_1.stl",
+      "sha256": "93f738a82021b6e2839115de9093a30d4badfdb904dd7f6e4b4430b656da64c5",
+      "size_bytes": 30516584
+    },
+    "j17a_sensor_carrier_master_1_1.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/j17a_sensor_carrier_master_1_1.stl",
+      "sha256": "73a6f4784cce88d77ee24c7ed2535a9d978ede435fa6134b477c4c5ed06fb9c8",
+      "size_bytes": 607884
+    },
+    "j20a_adapter_master_1_1.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/j20a_adapter_master_1_1.stl",
+      "sha256": "8a6e1a1c28f6819948c814cabff945932554bffdab25b53652f777b48df6602b",
+      "size_bytes": 277784
+    },
+    "lite3_lidar_1_1_reference.3mf": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/reference/lite3_lidar_1_1_reference.3mf",
+      "sha256": "40512009a85437f552b90a22efc7107a90515947b516eb2b4697ab538e566817",
+      "size_bytes": 157184806
+    },
+    "lite3_lidar_1_1_reference.glb": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/reference/lite3_lidar_1_1_reference.glb",
+      "sha256": "c0a0708cdd9b82d197258c54fc095e188c9868ea73bd9a26396559d9d6616fc1",
+      "size_bytes": 35032004
+    },
+    "lite3_lidar_1_4_assembled.glb": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/reference/lite3_lidar_1_4_assembled.glb",
+      "sha256": "4723766a659f6cd34b8948996519288c67cd120cb5c8a8cc91aefd5123afb23a",
+      "size_bytes": 114724488
+    },
+    "lite3_lidar_1_4_assembled_reference.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/reference/lite3_lidar_1_4_assembled_reference.stl",
+      "sha256": "f075694ee3929272e6eb2501d84f6f1f52fd5b0ed6071e4439e6e505ba8abf0d",
+      "size_bytes": 49776484
+    },
+    "lite3_lidar_1_4_print_layout.glb": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/reference/lite3_lidar_1_4_print_layout.glb",
+      "sha256": "70252fe26f50f8d3d4bc7e8631fbb1529fee61296df7e62bc208133d36dfcf0a",
+      "size_bytes": 102257376
+    },
+    "mid360_sensor_master_1_1.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/mid360_sensor_master_1_1.stl",
+      "sha256": "50dd3bea1999a9a6afa003e910ff35cf25afccefa74f986f7a575fa8ae2dc533",
+      "size_bytes": 22085484
+    },
+    "s410_guard_master_1_1.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/s410_guard_master_1_1.stl",
+      "sha256": "38979d4fe0a250898e449347ef7bd6ea5b29fc3894b50b3702c66718f09d2a7f",
+      "size_bytes": 1849984
+    },
+    "shank_master_1_1.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/shank_master_1_1.stl",
+      "sha256": "a12e6128976c88271738010dec07c29b5ac8d9658a0e747b652b0b7930a4086a",
+      "size_bytes": 8113884
+    },
+    "thigh_master_1_1.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/thigh_master_1_1.stl",
+      "sha256": "5e4739a37706a98f6b2499a880274c3647c743291b23649dbc9afa169a996bc0",
+      "size_bytes": 34329984
+    },
+    "torso_master_1_1.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/torso_master_1_1.stl",
+      "sha256": "c5640acf5f59d30cdf4dee23d022944fee287322380b0ad9035e193382d0922e",
+      "size_bytes": 88853584
+    },
+    "upper_lidar_module_master_1_1.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/upper_lidar_module_master_1_1.stl",
+      "sha256": "56fb2b3effd7eec998572aa156abb5899c5003a4a4c043bf57da262a51666224",
+      "size_bytes": 3649284
+    }
+  },
+  "parameters_path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/print_parameters.json",
+  "parameters_sha256": "564adc0a7a49fe4ce9d3f0481d1f33c2cb346a2d3f56e55d2c162a14aed641c4",
+  "print_parts": {
+    "ASSEMBLY_PINS": {
+      "bbox_max_mm": [
+        37.2,
+        7.2,
+        10.0
+      ],
+      "bbox_min_mm": [
+        -1.2,
+        -1.2,
+        0.0
+      ],
+      "bbox_size_mm": [
+        38.400000000000006,
+        8.4,
+        10.0
+      ],
+      "boundary_edges": 0,
+      "components": 14,
+      "degenerate_faces": 0,
+      "faces": 2240,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 1148,
+      "volume_mm3": 630.743763042211,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "CAMERA_CARRIER_PLATE": {
+      "bbox_max_mm": [
+        7.75,
+        2.000000000000007,
+        0.950000000000044
+      ],
+      "bbox_min_mm": [
+        -7.75,
+        -2.000000000000007,
+        0.0
+      ],
+      "bbox_size_mm": [
+        15.5,
+        4.000000000000014,
+        0.950000000000044
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 1540,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 766,
+      "volume_mm3": 37.0406518552973,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "CAMERA_FASTENERS": {
+      "bbox_max_mm": [
+        16.4,
+        5.686028009726542,
+        1.3720560194530869
+      ],
+      "bbox_min_mm": [
+        -1.4000000000000001,
+        -1.1500000000000172,
+        0.0
+      ],
+      "bbox_size_mm": [
+        17.799999999999997,
+        6.836028009726559,
+        1.3720560194530869
+      ],
+      "boundary_edges": 0,
+      "components": 8,
+      "degenerate_faces": 0,
+      "faces": 2784,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 1408,
+      "volume_mm3": 16.582472209464843,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "CAMERA_MOUNT_BRACKET": {
+      "bbox_max_mm": [
+        8.75,
+        2.0,
+        3.371688084048027
+      ],
+      "bbox_min_mm": [
+        -8.75,
+        -2.0,
+        0.0
+      ],
+      "bbox_size_mm": [
+        17.5,
+        4.0,
+        3.371688084048027
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 1334,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 663,
+      "volume_mm3": 62.38982468295044,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "FACTORY_INTERFACE": {
+      "bbox_max_mm": [
+        20.0,
+        11.5,
+        11.700000000000019
+      ],
+      "bbox_min_mm": [
+        -20.0,
+        -11.5,
+        0.0
+      ],
+      "bbox_size_mm": [
+        40.0,
+        23.0,
+        11.700000000000019
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 1504,
+      "fits_build_volume": true,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 754,
+      "volume_mm3": 10543.0096897501,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "FL_HIP": {
+      "bbox_max_mm": [
+        11.674723885051977,
+        9.95425286117893,
+        16.586865610182347
+      ],
+      "bbox_min_mm": [
+        -11.674723885051977,
+        -9.95425286117893,
+        0.0
+      ],
+      "bbox_size_mm": [
+        23.349447770103954,
+        19.90850572235786,
+        16.586865610182347
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 482586,
+      "fits_build_volume": true,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 241187,
+      "volume_mm3": 1315.8816049484378,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "FL_SHANK": {
+      "bbox_max_mm": [
+        33.50153894929684,
+        6.301028962324256,
+        8.858223018462972
+      ],
+      "bbox_min_mm": [
+        -33.50153894929684,
+        -6.301028962324256,
+        0.0
+      ],
+      "bbox_size_mm": [
+        67.00307789859367,
+        12.602057924648513,
+        8.858223018462972
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 151012,
+      "fits_build_volume": true,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 75466,
+      "volume_mm3": 2071.801730851464,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "FL_THIGH": {
+      "bbox_max_mm": [
+        32.54736539044426,
+        14.748117739148087,
+        21.986671291260304
+      ],
+      "bbox_min_mm": [
+        -32.54736539044426,
+        -14.748117739148087,
+        0.0
+      ],
+      "bbox_size_mm": [
+        65.09473078088853,
+        29.496235478296175,
+        21.986671291260304
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 638994,
+      "fits_build_volume": true,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 319403,
+      "volume_mm3": 3706.0989602542227,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "FRONT_CAMERA_BAR": {
+      "bbox_max_mm": [
+        11.2875,
+        3.1937500000000085,
+        6.307425168156642
+      ],
+      "bbox_min_mm": [
+        -11.2875,
+        -3.1937500000000085,
+        0.0
+      ],
+      "bbox_size_mm": [
+        22.575,
+        6.387500000000017,
+        6.307425168156642
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 33024,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 16154,
+      "volume_mm3": 636.5086586185233,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "FR_HIP": {
+      "bbox_max_mm": [
+        11.674723885051977,
+        9.95425286117893,
+        16.586865610182347
+      ],
+      "bbox_min_mm": [
+        -11.674723885051977,
+        -9.95425286117893,
+        0.0
+      ],
+      "bbox_size_mm": [
+        23.349447770103954,
+        19.90850572235786,
+        16.586865610182347
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 483046,
+      "fits_build_volume": true,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 241417,
+      "volume_mm3": 1316.2396878657876,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "FR_SHANK": {
+      "bbox_max_mm": [
+        33.501538949296844,
+        6.301028962324256,
+        8.858223018462972
+      ],
+      "bbox_min_mm": [
+        -33.501538949296844,
+        -6.301028962324256,
+        0.0
+      ],
+      "bbox_size_mm": [
+        67.00307789859369,
+        12.602057924648513,
+        8.858223018462972
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 151012,
+      "fits_build_volume": true,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 75466,
+      "volume_mm3": 2071.801730851464,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "FR_THIGH": {
+      "bbox_max_mm": [
+        32.545399112108655,
+        14.738066065879215,
+        21.977608080411095
+      ],
+      "bbox_min_mm": [
+        -32.545399112108655,
+        -14.738066065879215,
+        0.0
+      ],
+      "bbox_size_mm": [
+        65.09079822421731,
+        29.47613213175843,
+        21.977608080411095
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 639106,
+      "fits_build_volume": true,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 319459,
+      "volume_mm3": 3706.1205341573045,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "HL_HIP": {
+      "bbox_max_mm": [
+        11.674833708257612,
+        9.954252488193418,
+        16.585509835107256
+      ],
+      "bbox_min_mm": [
+        -11.674833708257612,
+        -9.954252488193418,
+        0.0
+      ],
+      "bbox_size_mm": [
+        23.349667416515224,
+        19.908504976386837,
+        16.585509835107256
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 483016,
+      "fits_build_volume": true,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 241402,
+      "volume_mm3": 1316.3957904387346,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "HL_SHANK": {
+      "bbox_max_mm": [
+        33.501538949296844,
+        6.301028962324256,
+        8.858223018462965
+      ],
+      "bbox_min_mm": [
+        -33.501538949296844,
+        -6.301028962324256,
+        0.0
+      ],
+      "bbox_size_mm": [
+        67.00307789859369,
+        12.602057924648513,
+        8.858223018462965
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 151012,
+      "fits_build_volume": true,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 75466,
+      "volume_mm3": 2071.801730851464,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "HL_THIGH": {
+      "bbox_max_mm": [
+        32.54736539044426,
+        14.74811773914809,
+        21.986671291260294
+      ],
+      "bbox_min_mm": [
+        -32.54736539044426,
+        -14.74811773914809,
+        0.0
+      ],
+      "bbox_size_mm": [
+        65.09473078088853,
+        29.49623547829618,
+        21.986671291260294
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 638994,
+      "fits_build_volume": true,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 319403,
+      "volume_mm3": 3706.0989602542227,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "HR_HIP": {
+      "bbox_max_mm": [
+        11.674723885051975,
+        9.95425286117893,
+        16.586865610182343
+      ],
+      "bbox_min_mm": [
+        -11.674723885051975,
+        -9.95425286117893,
+        0.0
+      ],
+      "bbox_size_mm": [
+        23.34944777010395,
+        19.90850572235786,
+        16.586865610182343
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 482566,
+      "fits_build_volume": true,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 241177,
+      "volume_mm3": 1315.8811865754697,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "HR_SHANK": {
+      "bbox_max_mm": [
+        33.50153894929682,
+        6.301028962324256,
+        8.858223018462972
+      ],
+      "bbox_min_mm": [
+        -33.50153894929682,
+        -6.301028962324256,
+        0.0
+      ],
+      "bbox_size_mm": [
+        67.00307789859365,
+        12.602057924648513,
+        8.858223018462972
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 151012,
+      "fits_build_volume": true,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 75466,
+      "volume_mm3": 2071.801730851464,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "HR_THIGH": {
+      "bbox_max_mm": [
+        32.545399112108655,
+        14.738066065879215,
+        21.977608080411102
+      ],
+      "bbox_min_mm": [
+        -32.545399112108655,
+        -14.738066065879215,
+        0.0
+      ],
+      "bbox_size_mm": [
+        65.09079822421731,
+        29.47613213175843,
+        21.977608080411102
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 639106,
+      "fits_build_volume": true,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 319459,
+      "volume_mm3": 3706.1205341573054,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "TORSO": {
+      "bbox_max_mm": [
+        68.76612153320934,
+        27.159302661170656,
+        32.05934493651823
+      ],
+      "bbox_min_mm": [
+        -68.76612153320934,
+        -27.159302661170656,
+        0.0
+      ],
+      "bbox_size_mm": [
+        137.5322430664187,
+        54.31860532234131,
+        32.05934493651823
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 1119770,
+      "fits_build_volume": true,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 559641,
+      "volume_mm3": 40699.27475887519,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "UPPER_LIDAR_MODULE": {
+      "bbox_max_mm": [
+        45.67533603997168,
+        14.458093536898264,
+        26.43022669317702
+      ],
+      "bbox_min_mm": [
+        -45.67533603997168,
+        -14.458093536898264,
+        0.0
+      ],
+      "bbox_size_mm": [
+        91.35067207994337,
+        28.91618707379653,
+        26.43022669317702
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "degenerate_faces": 0,
+      "faces": 71540,
+      "manifold_status": "Error.NoError",
+      "nonmanifold_edges": 0,
+      "vertices": 35696,
+      "volume_mm3": 6191.690263124081,
+      "watertight": true,
+      "winding_consistent": true
+    }
+  },
+  "print_profile": {
+    "assembled_reference_voxel_pitch_mm": 0.5,
+    "build_volume_mm": [
+      220.0,
+      220.0,
+      250.0
+    ],
+    "layer_height_mm": 0.2,
+    "minimum_feature_mm": 0.8,
+    "name": "FDM_0.4mm_nozzle_static_display",
+    "nominal_scale": "1:4",
+    "nozzle_diameter_mm": 0.4,
+    "pin_count": 12,
+    "pin_diameter_mm": 2.4,
+    "pin_length_mm": 10.0,
+    "pin_radial_clearance_mm": 0.2,
+    "scale": 0.25,
+    "spare_pin_count": 2
+  },
+  "schema_version": 1,
+  "source_topology": {
+    "agx_orin_base_step_tessellation": {
+      "bbox_size_mm": [
+        130.8832778930664,
+        34.00283813476563,
+        115.0
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "faces": 58394,
+      "nonmanifold_edges": 0,
+      "vertices": 29169,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "d435i_ros_visual_mesh": {
+      "bbox_size_mm": [
+        89.91429954767227,
+        25.00000037252903,
+        25.054700672626495
+      ],
+      "boundary_edges": 80141,
+      "components": 133,
+      "faces": 231127,
+      "nonmanifold_edges": 0,
+      "vertices": 154149,
+      "watertight": false,
+      "winding_consistent": true
+    },
+    "hip": {
+      "bbox_size_mm": [
+        91.74297749996185,
+        67.79997237026691,
+        78.99998128414154
+      ],
+      "boundary_edges": 6,
+      "components": 6,
+      "faces": 75402,
+      "nonmanifold_edges": 3,
+      "vertices": 37574,
+      "watertight": false,
+      "winding_consistent": true
+    },
+    "j17a_step_tessellation": {
+      "bbox_size_mm": [
+        153.7345428466797,
+        115.0,
+        27.061438560485843
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "faces": 12156,
+      "nonmanifold_edges": 0,
+      "vertices": 6042,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "j20a_step_tessellation": {
+      "bbox_size_mm": [
+        96.0,
+        25.0,
+        80.0
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "faces": 5554,
+      "nonmanifold_edges": 0,
+      "vertices": 2749,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "jetson_agx_orin_module_step_tessellation": {
+      "bbox_size_mm": [
+        87.00000000000001,
+        100.0,
+        15.956992149353026
+      ],
+      "boundary_edges": 14,
+      "components": 28,
+      "faces": 375634,
+      "nonmanifold_edges": 7,
+      "vertices": 187790,
+      "watertight": false,
+      "winding_consistent": true
+    },
+    "mid360_body_step_tessellation": {
+      "bbox_size_mm": [
+        64.78604125976562,
+        8.100000381469727,
+        64.78604125976562
+      ],
+      "boundary_edges": 57114,
+      "components": 19038,
+      "faces": 19038,
+      "nonmanifold_edges": 0,
+      "vertices": 57114,
+      "watertight": false,
+      "winding_consistent": true
+    },
+    "mid360_connector_step_tessellation": {
+      "bbox_size_mm": [
+        13.799999237060549,
+        16.000000953674316,
+        22.0
+      ],
+      "boundary_edges": 96906,
+      "components": 32302,
+      "faces": 32302,
+      "nonmanifold_edges": 0,
+      "vertices": 96906,
+      "watertight": false,
+      "winding_consistent": true
+    },
+    "mid360_full_step_tessellation": {
+      "bbox_size_mm": [
+        72.73691940307617,
+        60.09710121154785,
+        64.87384033203125
+      ],
+      "boundary_edges": 938238,
+      "components": 312746,
+      "faces": 312746,
+      "nonmanifold_edges": 0,
+      "vertices": 938238,
+      "watertight": false,
+      "winding_consistent": true
+    },
+    "mid360_housing_exterior_step_tessellation": {
+      "bbox_size_mm": [
+        64.87384033203125,
+        32.54710102081299,
+        64.87384033203125
+      ],
+      "boundary_edges": 468051,
+      "components": 156017,
+      "faces": 156017,
+      "nonmanifold_edges": 0,
+      "vertices": 468051,
+      "watertight": false,
+      "winding_consistent": true
+    },
+    "mid360_optical_window_step_tessellation": {
+      "bbox_size_mm": [
+        50.98631286621094,
+        27.172781944274902,
+        50.98631286621094
+      ],
+      "boundary_edges": 28164,
+      "components": 9388,
+      "faces": 9388,
+      "nonmanifold_edges": 0,
+      "vertices": 28164,
+      "watertight": false,
+      "winding_consistent": true
+    },
+    "s410_step_tessellation": {
+      "bbox_size_mm": [
+        93.51084899902344,
+        73.98999786376953,
+        69.45924758911133
+      ],
+      "boundary_edges": 0,
+      "components": 1,
+      "faces": 36998,
+      "nonmanifold_edges": 0,
+      "vertices": 18487,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "shank": {
+      "bbox_size_mm": [
+        50.059959292411804,
+        33.99990126490593,
+        267.2438845038414
+      ],
+      "boundary_edges": 6,
+      "components": 6,
+      "faces": 27050,
+      "nonmanifold_edges": 2,
+      "vertices": 13511,
+      "watertight": false,
+      "winding_consistent": true
+    },
+    "thigh": {
+      "bbox_size_mm": [
+        87.42491900920868,
+        117.32893250882626,
+        259.480994194746
+      ],
+      "boundary_edges": 264,
+      "components": 9,
+      "faces": 117514,
+      "nonmanifold_edges": 24,
+      "vertices": 58687,
+      "watertight": false,
+      "winding_consistent": true
+    },
+    "torso": {
+      "bbox_size_mm": [
+        548.3900010585785,
+        216.77300333976746,
+        126.85996294021606
+      ],
+      "boundary_edges": 18192,
+      "components": 1729,
+      "faces": 299349,
+      "nonmanifold_edges": 21,
+      "vertices": 156536,
+      "watertight": false,
+      "winding_consistent": false
+    }
+  },
+  "sources": {
+    "agx_orin_base_tessellated_mesh": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/agx_orin_base_official.stl",
+      "sha256": "c9f19a328be5fe6418c8f9b3218acb88225530bc077ffcb0fd038a43b49f5146",
+      "size_bytes": 2919784
+    },
+    "d435i_datasheet": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-25_realsense-d435i-cad/source/original/Intel-RealSense-D400-Series-Datasheet.pdf",
+      "sha256": "d0156b43a82da64e809c6ae45a5b5d41f34d8697363534ed81f2e4407f38eaa4",
+      "size_bytes": 5536987
+    },
+    "d435i_ros_d435_urdf": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-25_realsense-d435i-ros-mesh/source/original/_d435.urdf.xacro",
+      "sha256": "ae3f57e8d38b3a6d5cc9de059e4afe545e4b895717d638b75d2ad0642cfb7f1b",
+      "size_bytes": 7527
+    },
+    "d435i_ros_d435i_urdf": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-25_realsense-d435i-ros-mesh/source/original/_d435i.urdf.xacro",
+      "sha256": "b16e710e95435e1dfb66316aa5c186b47cd6c4183b3dab8bf8940c801cc9d052",
+      "size_bytes": 1395
+    },
+    "d435i_ros_license": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-25_realsense-d435i-ros-mesh/source/original/LICENSE",
+      "sha256": "7092398b52290edddcb41c6e2297f4c6343eb315ea6c83edfdbeea2a73adfbdb",
+      "size_bytes": 10758
+    },
+    "d435i_ros_mesh": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-25_realsense-d435i-ros-mesh/source/original/d435.dae",
+      "sha256": "42f3b66f47a1f8f425a2e4dc07c1d9c283183167d8441f520a15623d98f9bf78",
+      "size_bytes": 15782439
+    },
+    "d435i_ros_package_manifest": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-25_realsense-d435i-ros-mesh/source/original/package.xml",
+      "sha256": "7432ab5a1c6e490abb79ebd1ec44ba3800efc373d9f4d0ad38de48e037127848",
+      "size_bytes": 1071
+    },
+    "d435i_solidworks_part": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-25_realsense-d435i-cad/source/original/D435i_Solid.SLDPRT",
+      "sha256": "9cdbfdc7085ea5430ec9007eb1d895c7ff513c40b77c298a275ded33edf65525",
+      "size_bytes": 1712243
+    },
+    "hip_dae": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_deep-robotics-model/source/high_res_official/Lite3/meshes/hip.dae",
+      "sha256": "ca01f4cb329e93a80d013dd0b620a7e5bbf6aad2586a4d6382fb01011f2cadca",
+      "size_bytes": 8915022
+    },
+    "j17a_drawing": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J17A-lidar base.pdf",
+      "sha256": "1c75b39b62e1360dcd99c1fae0ece61ce45348479ae56ded1c7ac968c4076604",
+      "size_bytes": 209889
+    },
+    "j17a_step": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J17A-lidar base.STEP",
+      "sha256": "52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490",
+      "size_bytes": 479443
+    },
+    "j17a_tessellated_mesh": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/j17a_official.stl",
+      "sha256": "bdc4a8591223721f9efcbe25330b8cf86eaa2f1d30e8269fa826612b2c5d3e2c",
+      "size_bytes": 607884
+    },
+    "j20a_drawing": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J20A-small lidar base.pdf",
+      "sha256": "d0c9b0173b9ed6475da2aed6d1a90efcbdd540ac2b976af0148a2ba48473f695",
+      "size_bytes": 169366
+    },
+    "j20a_step": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J20A-small lidar base.STEP",
+      "sha256": "341b08ca08526e5ee0e9fbeca0bfda9d9970062c6605e979adc52b31955c9bc9",
+      "size_bytes": 172298
+    },
+    "j20a_tessellated_mesh": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/j20a_official.stl",
+      "sha256": "39370afad104d5f3a9b7edb3f3034064687640842b41d719d7867d585809b2fd",
+      "size_bytes": 277784
+    },
+    "jetson_agx_orin_module_tessellated_mesh": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/jetson_agx_orin_module_official.stl",
+      "sha256": "241aaf7ea3247d67624d6fddad30fd1f5085ef0b4ca4d12798f44eb4c166a112",
+      "size_bytes": 18781784
+    },
+    "lidar_manual_pdf": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-design-drawings/source/original/Jueying-Lite3-LiDAR-User-Manual-CE-V1.0.7-0.pdf",
+      "sha256": "25ef3cc19e9ebc8211a8504bd55dbd7cf4dcf511e60d5c59a90c29ed0ffb698f",
+      "size_bytes": 6250520
+    },
+    "manual_parts_page": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-design-drawings/derived/lite3-lidar-manual-07.png",
+      "sha256": "83c1bc6b867961ab9264d00c9600b2acfd2e45404329972fd9d1fcf0bd6d5c94",
+      "size_bytes": 304659
+    },
+    "mid360_body_mesh": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_body_official.stl",
+      "sha256": "63a2704562e4d632b4b0d634037eae0a6ed376e887f8ae0e1e4d21c4fd9440ab",
+      "size_bytes": 951984
+    },
+    "mid360_connector_mesh": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_connector_official.stl",
+      "sha256": "6322a17c6d97eb4f5cb2932106d2e8615fd594263ddd1ed3294af632775f1762",
+      "size_bytes": 1615184
+    },
+    "mid360_housing_exterior_mesh": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_housing_exterior_official.stl",
+      "sha256": "b296260f763a5cae3442e46622242696bdd9b3923293ebf423e983e5d1cddf9c",
+      "size_bytes": 7800934
+    },
+    "mid360_optical_window_mesh": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_optical_window_official.stl",
+      "sha256": "18a0961144ecdbf1ce3f7fd7164263ff3583833151335753dbff33f25159c5f8",
+      "size_bytes": 469484
+    },
+    "mid360_product_image": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_livox-mid360-cad/source/official_images/mid360-product-detail.jpg",
+      "sha256": "2e55cec2594b9a64d16ccf88bd87d4e02214f6700215c5f26e93d734b82dbfb8",
+      "size_bytes": 57731
+    },
+    "mid360_step": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02",
+      "size_bytes": 8030891
+    },
+    "mid360_tessellated_mesh": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_full_official.stl",
+      "sha256": "2f6cffded4262d5c151c9bd6010837c3b47feb83d3af26614d71ef426f776c23",
+      "size_bytes": 15637384
+    },
+    "official_product_image": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/lite3-official-lidar-product.png",
+      "sha256": "cca511f69983ba5fd85612a3e30f0a0e487824955d32c570c617b32e5371635a",
+      "size_bytes": 238053
+    },
+    "s410_drawing": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1CA5-S410-Lidar protector.pdf",
+      "sha256": "e71fa54ee97d9e429c0d3a9c4f7d850e15a132adabf65f7d2a68fc7293517023",
+      "size_bytes": 215195
+    },
+    "s410_step": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1CA5-S410-Lidar protector.STEP",
+      "sha256": "7fd23a776b45c7d8571ef77ba9e8b05520eced0b97f62487ba03f88bbc9df810",
+      "size_bytes": 1860818
+    },
+    "s410_tessellated_mesh": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/s410_official.stl",
+      "sha256": "e3b4c638015d0acb8afe12f01a38c16e07542de591871f3980ba1ece094218af",
+      "size_bytes": 1849984
+    },
+    "shank_dae": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_deep-robotics-model/source/high_res_official/Lite3/meshes/shank.dae",
+      "sha256": "2bb7bda48666c9f6bb14299eeb7879b1db48d766eb9d0fade08cccb5192dc257",
+      "size_bytes": 3020337
+    },
+    "thigh_dae": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_deep-robotics-model/source/high_res_official/Lite3/meshes/thigh.dae",
+      "sha256": "72b4b78b072d4607b5b0d818e80de6759a9ff593e3aa5a09a314f9c0a29fc20f",
+      "size_bytes": 14259570
+    },
+    "torso_dae": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_deep-robotics-model/source/high_res_official/Lite3/meshes/torso.dae",
+      "sha256": "e0cbf5d239d945ba4c02edee311732472245fba6b92131cfab12cd1f740c45a6",
+      "size_bytes": 32454043
+    },
+    "urdf": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_deep-robotics-model/source/high_res_official/Lite3/urdf/Lite3_high_res.urdf",
+      "sha256": "826406741af2766ff2b1aff44939e49ab03a471810617a2b05e43f1954a0fb91",
+      "size_bytes": 15063
+    }
+  },
+  "standing_reference_1_1": {
+    "bbox_max_mm": [
+      278.80001068115234,
+      186.32896026074886,
+      524.1329305419924
+    ],
+    "bbox_min_mm": [
+      -318.03669718481893,
+      -186.32896026074886,
+      0.0
+    ],
+    "bbox_size_mm": [
+      596.8367078659712,
+      372.6579205214977,
+      524.1329305419924
+    ],
+    "factory_official_target_mm": [
+      610.0,
+      370.0,
+      496.0
+    ],
+    "ground_error_mm": 0.0,
+    "height_target_evidence_class": "image_estimate",
+    "official_target_mm": [
+      610.0,
+      370.0,
+      525.0
+    ]
+  }
+}

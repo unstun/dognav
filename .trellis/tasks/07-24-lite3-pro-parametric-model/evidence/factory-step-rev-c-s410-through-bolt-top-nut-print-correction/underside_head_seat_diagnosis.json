@@ -1,0 +1,616 @@
+{
+  "stage": "experiment_and_analysis",
+  "shaft_collision_mm3": 0.0,
+  "head_collision_at_nominal_seat_mm3": 59.969058497610014,
+  "first_clear_offset": {
+    "head_seat_offset_below_nominal_mm": 6.3,
+    "intersection_mm3": 4.7543943142677e-06
+  },
+  "trials": [
+    {
+      "head_seat_offset_below_nominal_mm": 0.0,
+      "intersection_mm3": 59.969058497610014
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 0.1,
+      "intersection_mm3": 57.550634760717614
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 0.2,
+      "intersection_mm3": 55.26237542365826
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 0.3,
+      "intersection_mm3": 53.119615424593285
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 0.4,
+      "intersection_mm3": 51.06384195322191
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 0.5,
+      "intersection_mm3": 49.01376695446164
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 0.6,
+      "intersection_mm3": 46.95813611432245
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 0.7,
+      "intersection_mm3": 44.89698449257348
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 0.8,
+      "intersection_mm3": 42.83034837381688
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 0.9,
+      "intersection_mm3": 40.75849339473761
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 1.0,
+      "intersection_mm3": 38.72477092844008
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 1.1,
+      "intersection_mm3": 36.78108713539908
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 1.2,
+      "intersection_mm3": 34.906597096650685
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 1.3,
+      "intersection_mm3": 33.050000100814216
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 1.4,
+      "intersection_mm3": 31.215744973611418
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 1.5,
+      "intersection_mm3": 29.39831544944614
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 1.6,
+      "intersection_mm3": 27.589488934513295
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 1.7,
+      "intersection_mm3": 25.786556029939206
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 1.8,
+      "intersection_mm3": 23.99153599987061
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 1.9,
+      "intersection_mm3": 22.210892220435984
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 2.0,
+      "intersection_mm3": 20.456152993316294
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 2.1,
+      "intersection_mm3": 18.74131921520457
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 2.2,
+      "intersection_mm3": 17.086904187791678
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 2.3,
+      "intersection_mm3": 15.505030047407713
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 2.4,
+      "intersection_mm3": 14.002601052685977
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 2.5,
+      "intersection_mm3": 12.58881198480918
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 2.6,
+      "intersection_mm3": 11.276441337414859
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 2.7,
+      "intersection_mm3": 10.084565420452583
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 2.8,
+      "intersection_mm3": 9.049145829457478
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 2.9,
+      "intersection_mm3": 8.232993870614298
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 3.0,
+      "intersection_mm3": 7.625333756427887
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 3.1,
+      "intersection_mm3": 7.186344383860461
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 3.2,
+      "intersection_mm3": 6.850555240623441
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 3.3,
+      "intersection_mm3": 6.53274090385296
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 3.4,
+      "intersection_mm3": 6.220973110966654
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 3.5,
+      "intersection_mm3": 5.915239153791667
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 3.6,
+      "intersection_mm3": 5.615525845489222
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 3.7,
+      "intersection_mm3": 5.321819778318351
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 3.8,
+      "intersection_mm3": 5.0341055427472865
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 3.9,
+      "intersection_mm3": 4.7523675797418115
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 4.0,
+      "intersection_mm3": 4.476589239100379
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 4.1,
+      "intersection_mm3": 4.206752894040363
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 4.2,
+      "intersection_mm3": 3.942840002273295
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 4.3,
+      "intersection_mm3": 3.6848310659885577
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 4.4,
+      "intersection_mm3": 3.4327056168868233
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 4.5,
+      "intersection_mm3": 3.186442200066456
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 4.6,
+      "intersection_mm3": 2.946152386087181
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 4.7,
+      "intersection_mm3": 2.7115367828114585
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 4.8,
+      "intersection_mm3": 2.482712710744587
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 4.9,
+      "intersection_mm3": 2.2596545978389235
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 5.0,
+      "intersection_mm3": 2.0423357941987437
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 5.1,
+      "intersection_mm3": 1.8307285513690978
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 5.2,
+      "intersection_mm3": 1.6248040006090292
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 5.3,
+      "intersection_mm3": 1.424532130155625
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 5.4,
+      "intersection_mm3": 1.2298817613989816
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 5.5,
+      "intersection_mm3": 1.0408205238523778
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 5.6,
+      "intersection_mm3": 0.8573148288944807
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 5.7,
+      "intersection_mm3": 0.6793298421095395
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 5.8,
+      "intersection_mm3": 0.5068294541991026
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 5.9,
+      "intersection_mm3": 0.3397762502929302
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 6.0,
+      "intersection_mm3": 0.18203380156698973
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 6.1,
+      "intersection_mm3": 0.06642619460182134
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 6.2,
+      "intersection_mm3": 0.010748816225494163
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 6.3,
+      "intersection_mm3": 4.7543943142677e-06
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 6.4,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 6.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 6.6,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 6.7,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 6.8,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 6.9,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 7.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 7.1,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 7.2,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 7.3,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 7.4,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 7.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 7.6,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 7.7,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 7.8,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 7.9,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 8.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 8.1,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 8.2,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 8.3,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 8.4,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 8.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 8.6,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 8.7,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 8.8,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 8.9,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 9.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 9.1,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 9.2,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 9.3,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 9.4,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 9.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 9.6,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 9.7,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 9.8,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 9.9,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 10.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 10.1,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 10.2,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 10.3,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 10.4,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 10.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 10.6,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 10.7,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 10.8,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 10.9,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 11.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 11.1,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 11.2,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 11.3,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 11.4,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 11.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 11.6,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 11.7,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 11.8,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 11.9,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 12.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 12.1,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 12.2,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 12.3,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 12.4,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 12.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 12.6,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 12.7,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 12.8,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 12.9,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 13.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 13.1,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 13.2,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 13.3,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 13.4,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 13.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 13.6,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 13.7,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 13.8,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 13.9,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 14.0,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 14.1,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 14.2,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 14.3,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 14.4,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 14.5,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 14.6,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 14.7,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 14.8,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 14.9,
+      "intersection_mm3": 0.0
+    },
+    {
+      "head_seat_offset_below_nominal_mm": 15.0,
+      "intersection_mm3": 0.0
+    }
+  ],
+  "interpretation": "A zero shaft collision with a positive head collision means the 5.2 mm through hole is clear but the current underside surface cannot accept the 8.5 mm socket-head envelope at the modeled hole-face endpoint."
+}

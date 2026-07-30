@@ -1,0 +1,78 @@
+{
+  "status": "pending_human_visual_review",
+  "stage": "experiment + analysis",
+  "scope": "Lite3 real BRep plus original J17A base only",
+  "rejected_geometry_not_reused": "J17A_FRONT_PAIR_65MM_ADAPTED_REV_B_NOT_OFFICIAL_CAD",
+  "restored_source": "factory-step-j17a-base-2x-m3x8-screws/lite3-j17a-four-point-base-fastened.f3d",
+  "review_model": "lite3-j17a-original-brep-correct-upper-65mm-pair-review.f3d",
+  "j17_source_geometry": "original manufacturer BRep; no mesh and no hole remodeling",
+  "j17_transform": [
+    0.0,
+    1.0,
+    0.0,
+    -30.447009644681465,
+    0.0,
+    0.0,
+    1.0,
+    20.468141858307483,
+    1.0,
+    0.0,
+    0.0,
+    254.15989005808058,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "selected_j17_pair": {
+    "description": "original upper pair immediately below the folded front flange",
+    "pitch_mm": 65.0,
+    "left_axis_fusion_units": [
+      -33.697009644681465,
+      260.68489005808055
+    ],
+    "right_axis_fusion_units": [
+      -27.197009644681465,
+      260.68489005808055
+    ]
+  },
+  "axis_residuals_mm": {
+    "left": {
+      "dx": -0.000016463,
+      "dz": 0.000191539
+    },
+    "right": {
+      "dx": -0.000016122,
+      "dz": -0.000191541
+    }
+  },
+  "appearance_check": {
+    "j17_faces_total": 125,
+    "j17_faces_steel_satin": 125,
+    "transparent_j17_faces": 0
+  },
+  "white_transparent_piece_diagnosis": "The thin triangular ears are part of the original J17A BRep. They are not a Lite3 part or an added helper body. Their previous white/translucent look was an appearance/rendering problem; the geometry is preserved and now opaque.",
+  "active_document_check": {
+    "open_documents": 1,
+    "root_occurrences": 4,
+    "visible_physical_components": [
+      "real Lite3",
+      "original J17A"
+    ],
+    "diagnostic_components": [
+      "yellow J17 selected-hole sleeves",
+      "blue Lite3 accepted receiver axes"
+    ]
+  },
+  "excluded_until_human_acceptance": [
+    "J20A upper bracket",
+    "MID360",
+    "D435i",
+    "fasteners",
+    "industrial PC"
+  ],
+  "evidence": [
+    "base-only-restored-correct-upper-65mm-pair-top.png",
+    "base-only-restored-correct-upper-65mm-pair-oblique.png"
+  ]
+}

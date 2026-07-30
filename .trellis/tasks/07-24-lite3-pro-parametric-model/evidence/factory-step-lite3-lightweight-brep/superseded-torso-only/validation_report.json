@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "status": "validated",
+  "purpose": "lite3_real_brep_lightweight_fusion_foundation",
+  "source": {
+    "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-27_lite3-exploration-assembly-cad/source/original/lite3-exploration-assembly.step",
+    "size_bytes": 165783662,
+    "sha256": "d0ad78189f8f9154a780796d2deffcc848c094700776d7c9d6f6da092106c6eb",
+    "robot_root_name": "lite3_________STEP_STEP",
+    "robot_root_metrics": {
+      "solid_count": 89,
+      "shell_count": 89,
+      "face_count": 22803,
+      "edge_count": 61039,
+      "volume_mm3": 1582511.850688,
+      "bbox_min_mm": [
+        -108.439813,
+        -111.009066,
+        -286.307711
+      ],
+      "bbox_max_mm": [
+        279.960916,
+        99.018132,
+        318.108792
+      ],
+      "bbox_size_mm": [
+        388.400729,
+        210.027198,
+        604.416503
+      ],
+      "is_valid": false
+    }
+  },
+  "operation": {
+    "geometry_changed": false,
+    "mesh_conversion": false,
+    "assembly_tree_flattened": true,
+    "separate_exploration_backload_excluded": true,
+    "duplicate_parent_representations_excluded": true,
+    "source_invalid_solids_preserved": [
+      {
+        "zero_based_index": 9,
+        "metrics": {
+          "solid_count": 1,
+          "shell_count": 1,
+          "face_count": 6050,
+          "edge_count": 15454,
+          "volume_mm3": 6955.330921,
+          "bbox_min_mm": [
+            -40.929319,
+            43.450033,
+            -47.308807
+          ],
+          "bbox_max_mm": [
+            41.069565,
+            48.0,
+            5.648535
+          ],
+          "bbox_size_mm": [
+            81.998884,
+            4.549967,
+            52.957342
+          ],
+          "is_valid": false
+        }
+      },
+      {
+        "zero_based_index": 66,
+        "metrics": {
+          "solid_count": 1,
+          "shell_count": 1,
+          "face_count": 4829,
+          "edge_count": 13410,
+          "volume_mm3": 562977.716059,
+          "bbox_min_mm": [
+            -105.90006,
+            -111.009066,
+            -131.00006
+          ],
+          "bbox_max_mm": [
+            279.960916,
+            99.018132,
+            131.00006
+          ],
+          "bbox_size_mm": [
+            385.860976,
+            210.027198,
+            262.00012
+          ],
+          "is_valid": false
+        }
+      },
+      {
+        "zero_based_index": 79,
+        "metrics": {
+          "solid_count": 1,
+          "shell_count": 1,
+          "face_count": 1849,
+          "edge_count": 5267,
+          "volume_mm3": 433781.602878,
+          "bbox_min_mm": [
+            -108.439813,
+            -28.959844,
+            -286.307711
+          ],
+          "bbox_max_mm": [
+            108.438258,
+            81.254634,
+            316.614979
+          ],
+          "bbox_size_mm": [
+            216.878071,
+            110.214477,
+            602.92269
+          ],
+          "is_valid": false
+        }
+      }
+    ]
+  },
+  "outputs": {
+    "fcstd": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-lite3-lightweight-brep/lite3-real-brep-lightweight.FCStd",
+      "size_bytes": 21958474,
+      "sha256": "df9dad7c970f42a63eb84d5f564498486b0a5df40c9494edac54002320a25d1e"
+    },
+    "step": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-lite3-lightweight-brep/lite3-real-brep-lightweight.step",
+      "size_bytes": 62483016,
+      "sha256": "066ecebe3e5d4f9863b0b4087f2c20610ac917cf948f9c34dabee78d2de2d0c9",
+      "triangulated_face_set_count": 0,
+      "round_trip_metrics": {
+        "solid_count": 89,
+        "shell_count": 89,
+        "face_count": 22803,
+        "edge_count": 61038,
+        "volume_mm3": 1581854.236497,
+        "bbox_min_mm": [
+          -108.439813,
+          -111.009066,
+          -286.307711
+        ],
+        "bbox_max_mm": [
+          279.960916,
+          99.018132,
+          318.108792
+        ],
+        "bbox_size_mm": [
+          388.400729,
+          210.027198,
+          604.416503
+        ],
+        "is_valid": false
+      }
+    }
+  },
+  "claim_boundary": "The output is a flattened copy of the real source robot-root B-rep. It excludes the separate backload branch and duplicated assembly hierarchy, but does not prove physical sensor fit, robot variant identity, or a mounting interface."
+}

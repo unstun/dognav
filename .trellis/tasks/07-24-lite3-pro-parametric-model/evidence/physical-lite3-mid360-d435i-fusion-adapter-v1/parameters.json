@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "supersession": {
+    "status": "rejected_for_current_lite3_pro_robot_interface",
+    "reason": "The purchased robot is a current Lite3 Pro hardware revision, while V1 used an Experience-style B-rep context and Venture/J17A-derived robot attachment assumptions.",
+    "legacy_pro_manual_pattern_mm": [74.0, 94.0],
+    "legacy_pattern_status": "2024-03-26 Pro V1.0.7 revision only; not accepted for current delivered robot",
+    "current_pro_measured_pattern_mm": null,
+    "current_pro_thread_and_depth": null,
+    "actual_v1_animation_axes_mm": {
+      "front_row_lateral_pitch": 65.0,
+      "rear_row_lateral_pitch": 105.00444223978232,
+      "row_center_longitudinal_separation": 133.99867564632996,
+      "seating_plane_difference": 5.0
+    },
+    "metadata_error": "geometry_mm.robot_rear_pair_pitch stored the rear web width, not the animated rear screw pitch",
+    "allowed_reuse": "upper sensor-module geometry and internal digital validation methods only",
+    "forbidden_reuse": "robot-side holes, screws, spacers, placement, installation video, or physical-fit claim"
+  },
+  "component": "LITE3_MID360_D435I_MONOLITHIC_CARRIER_V1_NOT_OFFICIAL_CAD",
+  "classification": "print_adaptation",
+  "official_cad": false,
+  "geometry_mm": {
+    "rear_web_width": {
+      "value": 67.88225149390843,
+      "evidence": "derived_from_manufacturer_j17a_j20a_pose"
+    },
+    "rear_web_depth": {
+      "value": 27.5,
+      "evidence": "engineering_parameter"
+    },
+    "rear_web_thickness": {
+      "value": 10.0,
+      "evidence": "engineering_parameter"
+    },
+    "rear_web_world_bounds": {
+      "x_min": -338.4112221937691,
+      "x_max": -270.5289706998607,
+      "y_min": 204.68141858307484,
+      "y_max": 232.18141858307484,
+      "front_z": 2517.5,
+      "evidence": "derived_from_reviewed_fusion_source_pose"
+    },
+    "front_fusion_region_count": {
+      "value": 2,
+      "evidence": "engineering_parameter"
+    },
+    "robot_front_pair_pitch": {
+      "value": 65.0,
+      "evidence": "rejected Experience-style local B-rep context; not current Lite3 Pro"
+    },
+    "robot_rear_pair_pitch": {
+      "value": 67.88225149390843,
+      "evidence": "invalid metadata: this is rear-web width, not the animated 105.004442 mm rear screw pitch"
+    },
+    "rear_spacer_od": {
+      "value": 8.0,
+      "evidence": "visual_candidate_pending_measurement"
+    },
+    "rear_spacer_id": {
+      "value": 3.5,
+      "evidence": "visual_candidate_pending_measurement"
+    },
+    "rear_spacer_height": {
+      "value": 4.0,
+      "evidence": "visual_candidate_pending_measurement"
+    }
+  },
+  "sensor_interfaces": {
+    "d435i": {
+      "count": 2,
+      "nominal": "M3 rear internal threads",
+      "pitch_mm": 45.0,
+      "j17a_clearance_diameter_mm": 3.2,
+      "maximum_camera_insertion_mm": 3.0,
+      "candidate_fastener": "2 x M3x5 socket-head",
+      "candidate_engagement_mm": 2.5,
+      "nuts": 0,
+      "status": "source_backed_interface_candidate_length"
+    },
+    "mid360": {
+      "count": 4,
+      "pattern_mm": [48.0, 36.0],
+      "candidate_fastener": "4 x M3x8 socket-head",
+      "install_direction": "J20A underside into Mid-360",
+      "status": "source_backed_pattern_candidate_length"
+    },
+    "s410": {
+      "count": 4,
+      "guard_clearance_diameter_mm": 5.2,
+      "receiver": "J20A modeled M5 thread axes",
+      "candidate_fastener": "4 x M5x8 socket-head",
+      "nuts": 0,
+      "status": "source_backed_axes_candidate_length"
+    }
+  },
+  "robot_interface": {
+    "front_candidate_fastener": "2 x M3x8 socket-head",
+    "rear_candidate_fastener": "2 x M3x12 socket-head plus locating spacers",
+    "physical_thread": "pending_measurement",
+    "usable_thread_depth_mm": null,
+    "final_screw_length_mm": null,
+    "torque_nm": null,
+    "status": "rejected_for_current_lite3_pro_robot_interface"
+  },
+  "interface_keepout_mm": {
+    "nominal_length": 240.0,
+    "nominal_width": 100.0,
+    "nominal_height": 55.0,
+    "nominal_front_clearance": 10.0,
+    "evidence": "conservative_visualization_envelope_from_user_photo_only",
+    "status": "pending_three_physical_dimensions_and_front_edge_datum",
+    "export_as_print_part": false
+  },
+  "tool_and_cable_envelopes_mm": {
+    "driver_corridor_diameter": 6.0,
+    "driver_corridor_length": 30.0,
+    "driver_corridor_entry_offset": 5.0,
+    "d435i_usb_minimum_bend_radius": 20.0,
+    "mid360_cable_minimum_bend_radius": 30.0,
+    "cable_values_status": "conservative_design_assumptions_pending_actual_cables"
+  },
+  "printing": {
+    "moving_robot_candidate_material": "PA6-CF or PA12-CF after dry-print coupon validation",
+    "dimensional_prototype_material": "PETG only",
+    "nominal_nozzle_mm": 0.6,
+    "nominal_layer_height_mm": 0.25,
+    "perimeters": 6,
+    "top_bottom_layers": 8,
+    "infill_percent": 45,
+    "infill_pattern": "gyroid",
+    "status": "slicer_smoke_defaults_not_manufacturing_release"
+  },
+  "structural_screen": {
+    "carrier_density_g_cm3": 1.15,
+    "guard_density_g_cm3": 7.85,
+    "fastener_and_cable_allowance_kg": 0.08,
+    "design_acceleration_g": 5.0,
+    "load_factor": 2.0,
+    "cantilever_arm_mm": 120.0,
+    "printed_allowable_stress_mpa": 18.0,
+    "status": "screening_assumptions_not_certification"
+  }
+}

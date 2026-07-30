@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "status": "superseded_rejected_for_current_lite3_pro_robot_interface",
+  "target": "Dr Sun's purchased current Lite3 Pro hardware revision",
+  "target_photo_sha256": "b471b3af11a649630c19e1fd7b6989600ccdb58034217b8e6c464d527e66664c",
+  "legacy_official_pro_manual": {
+    "version": "V1.0.7-0",
+    "document_date": "2024-03-26",
+    "sha256": "98a98329d2a0136b3072693ec43b820c5085eb13d0c817f686b9e7bcf0b60251",
+    "published_pattern_mm": [74.0, 94.0],
+    "thread_callout": "4 x M3",
+    "status": "legacy revision evidence only"
+  },
+  "current_official_pro_brochure": {
+    "document_creation_date": "2025-07-01",
+    "sha256": "bc674a26f86a64de12ca6eb371eb4e068e73f7c6b293eae41606eb9860fe5a47",
+    "standing_size_mm": [610, 370, 450],
+    "weight_with_battery_kg": 12.9,
+    "walking_load_kg": 4.0,
+    "mounting_pattern": null,
+    "status": "current marketed revision evidence without mechanical interface drawing"
+  },
+  "v1_animation_robot_axes": {
+    "source_file": "scripts/render_installation_animation_v1.py",
+    "source_coordinate_unit": "centimetre",
+    "derived_metrics_mm": {
+      "front_row_lateral_pitch": 65.0,
+      "rear_row_lateral_pitch": 105.00444223978232,
+      "row_center_longitudinal_separation": 133.99867564632996,
+      "seating_plane_difference": 5.0,
+      "row_center_lateral_offset": 0.001612
+    },
+    "legacy_74_by_94_same_orientation_delta_mm": {
+      "front_width": -29.0,
+      "rear_width": 11.00444223978232,
+      "row_spacing": 59.99867564632996,
+      "coplanarity": 5.0
+    },
+    "legacy_74_by_94_rotated_delta_mm": {
+      "front_width": -9.0,
+      "rear_width": 31.00444223978232,
+      "row_spacing": 39.99867564632996,
+      "coplanarity": 5.0
+    },
+    "rigid_match_to_legacy_pattern": false,
+    "match_to_current_delivered_pro": "not_testable_without_physical_current-Pro axes"
+  },
+  "parameter_metadata_error": {
+    "field": "geometry_mm.robot_rear_pair_pitch",
+    "stored_value_mm": 67.88225149390843,
+    "actual_animated_rear_pitch_mm": 105.00444223978232,
+    "cause": "stored value is rear-web width, not a screw-axis pitch"
+  },
+  "retained_claims": [
+    "upper carrier is one valid closed digital solid inside the V1 scene",
+    "D435i, Mid-360, and S410 internal interface-axis checks",
+    "internal collision, render, video, and slicer-method evidence"
+  ],
+  "rejected_claims": [
+    "current Lite3 Pro robot-side fit",
+    "current Lite3 Pro screw and spacer selection",
+    "current Lite3 Pro installation order",
+    "compute-enclosure clearance on the purchased robot",
+    "fabrication readiness"
+  ],
+  "next_gate": "measure current-Pro usable receivers, thread/depth, seating planes, and compute-enclosure keep-outs before generating a separate lower adapter"
+}

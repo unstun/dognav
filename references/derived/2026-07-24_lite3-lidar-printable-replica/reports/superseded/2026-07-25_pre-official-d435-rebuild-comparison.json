@@ -1,0 +1,850 @@
+{
+  "artifact_label": "printable_static_replica",
+  "exact_hash_and_size_matches": 33,
+  "expected_exact_hash_and_size_matches": 33,
+  "nondeterministic_container": "lite3_lidar_1_1_reference.3mf",
+  "nondeterministic_container_geometry_equivalent": true,
+  "output_count": 34,
+  "output_set_equal": true,
+  "outputs": {
+    "ASSEMBLY_PINS.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/ASSEMBLY_PINS.stl",
+        "sha256": "46127af9a91345c3757c531bff6c95bb56d721829240cf3e85d5467744444ae7",
+        "size_bytes": 112084
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/ASSEMBLY_PINS.stl",
+        "sha256": "46127af9a91345c3757c531bff6c95bb56d721829240cf3e85d5467744444ae7",
+        "size_bytes": 112084
+      }
+    },
+    "CAMERA_LENSES.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/CAMERA_LENSES.stl",
+        "sha256": "b0135dd31ff80a68883121fc8e648f9f9da59f6d9cabb00e1936a4cc950cf9e9",
+        "size_bytes": 32084
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/CAMERA_LENSES.stl",
+        "sha256": "b0135dd31ff80a68883121fc8e648f9f9da59f6d9cabb00e1936a4cc950cf9e9",
+        "size_bytes": 32084
+      }
+    },
+    "FL_HIP.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/FL_HIP.stl",
+        "sha256": "53636cb3eb73aa29a75ebee59716e08d20ebacb6fec46036389f979b53359684",
+        "size_bytes": 24129384
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/FL_HIP.stl",
+        "sha256": "53636cb3eb73aa29a75ebee59716e08d20ebacb6fec46036389f979b53359684",
+        "size_bytes": 24129384
+      }
+    },
+    "FL_SHANK.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/FL_SHANK.stl",
+        "sha256": "6b988509d5387ead1eca0601e1e1e38b421476c348a8df889217a670ad842f20",
+        "size_bytes": 7550684
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/FL_SHANK.stl",
+        "sha256": "6b988509d5387ead1eca0601e1e1e38b421476c348a8df889217a670ad842f20",
+        "size_bytes": 7550684
+      }
+    },
+    "FL_THIGH.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/FL_THIGH.stl",
+        "sha256": "68a99c3c7aa3c2eb15d34c0483295b942749ac0cab36e593fd169aaa2bff1a64",
+        "size_bytes": 31949784
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/FL_THIGH.stl",
+        "sha256": "68a99c3c7aa3c2eb15d34c0483295b942749ac0cab36e593fd169aaa2bff1a64",
+        "size_bytes": 31949784
+      }
+    },
+    "FRONT_CAMERA_BAR.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/FRONT_CAMERA_BAR.stl",
+        "sha256": "d7a4631eae71f4fa5919f41674b8f7aa9a988ddc18a9219c76686838084e4a12",
+        "size_bytes": 58284
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/FRONT_CAMERA_BAR.stl",
+        "sha256": "d7a4631eae71f4fa5919f41674b8f7aa9a988ddc18a9219c76686838084e4a12",
+        "size_bytes": 58284
+      }
+    },
+    "FR_HIP.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/FR_HIP.stl",
+        "sha256": "d80f6e051e6a07e69f7d44ec22099bc92388ce8de31ee8c09596866903910be8",
+        "size_bytes": 24152384
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/FR_HIP.stl",
+        "sha256": "d80f6e051e6a07e69f7d44ec22099bc92388ce8de31ee8c09596866903910be8",
+        "size_bytes": 24152384
+      }
+    },
+    "FR_SHANK.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/FR_SHANK.stl",
+        "sha256": "1404d087a76358657a401041be351f52d0ba6dcfdf4bd8d085f85a51d41e0b88",
+        "size_bytes": 7550684
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/FR_SHANK.stl",
+        "sha256": "1404d087a76358657a401041be351f52d0ba6dcfdf4bd8d085f85a51d41e0b88",
+        "size_bytes": 7550684
+      }
+    },
+    "FR_THIGH.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/FR_THIGH.stl",
+        "sha256": "c687a3c0d254cf26feb3d69efc8a03412190cc02b3a2d0207439498a70786199",
+        "size_bytes": 31955384
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/FR_THIGH.stl",
+        "sha256": "c687a3c0d254cf26feb3d69efc8a03412190cc02b3a2d0207439498a70786199",
+        "size_bytes": 31955384
+      }
+    },
+    "HL_HIP.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/HL_HIP.stl",
+        "sha256": "9f0eac11a99fa1b6a860210bdcb9e31c613c960f6e06da9a37e768a94ed02318",
+        "size_bytes": 24150884
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/HL_HIP.stl",
+        "sha256": "9f0eac11a99fa1b6a860210bdcb9e31c613c960f6e06da9a37e768a94ed02318",
+        "size_bytes": 24150884
+      }
+    },
+    "HL_SHANK.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/HL_SHANK.stl",
+        "sha256": "9077f5b07c7d4aa247af96cbbb78f01877cbbe853a26d78076a9f8f33acff176",
+        "size_bytes": 7550684
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/HL_SHANK.stl",
+        "sha256": "9077f5b07c7d4aa247af96cbbb78f01877cbbe853a26d78076a9f8f33acff176",
+        "size_bytes": 7550684
+      }
+    },
+    "HL_THIGH.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/HL_THIGH.stl",
+        "sha256": "d1c60a8c73d4761d2a953aa83d441a96d36d1cc1759aeaf5b5c774dd0fd14825",
+        "size_bytes": 31949784
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/HL_THIGH.stl",
+        "sha256": "d1c60a8c73d4761d2a953aa83d441a96d36d1cc1759aeaf5b5c774dd0fd14825",
+        "size_bytes": 31949784
+      }
+    },
+    "HR_HIP.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/HR_HIP.stl",
+        "sha256": "31601a06f7b1170006e02fc736195538437dfa7f83bb4b9095b3bdcb5ab15e15",
+        "size_bytes": 24128384
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/HR_HIP.stl",
+        "sha256": "31601a06f7b1170006e02fc736195538437dfa7f83bb4b9095b3bdcb5ab15e15",
+        "size_bytes": 24128384
+      }
+    },
+    "HR_SHANK.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/HR_SHANK.stl",
+        "sha256": "627b48e557ffafda987583cde68e39cd7ff8fb46252de2124b4c9b724a6f3a8d",
+        "size_bytes": 7550684
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/HR_SHANK.stl",
+        "sha256": "627b48e557ffafda987583cde68e39cd7ff8fb46252de2124b4c9b724a6f3a8d",
+        "size_bytes": 7550684
+      }
+    },
+    "HR_THIGH.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/HR_THIGH.stl",
+        "sha256": "48e2d4aab1bc8e118b96c58041bb97ef6c8140a366ead6e4bfc24b0e728dba0c",
+        "size_bytes": 31955384
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/HR_THIGH.stl",
+        "sha256": "48e2d4aab1bc8e118b96c58041bb97ef6c8140a366ead6e4bfc24b0e728dba0c",
+        "size_bytes": 31955384
+      }
+    },
+    "INDUSTRIAL_PC.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/INDUSTRIAL_PC.stl",
+        "sha256": "875bff1665652dd736d2cf8b909f2f133eeb12229c378d370af7c13e9120e990",
+        "size_bytes": 14384
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/INDUSTRIAL_PC.stl",
+        "sha256": "875bff1665652dd736d2cf8b909f2f133eeb12229c378d370af7c13e9120e990",
+        "size_bytes": 14384
+      }
+    },
+    "INDUSTRIAL_PC_TOP_CLAMPS.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/INDUSTRIAL_PC_TOP_CLAMPS.stl",
+        "sha256": "a2c50b3c58bff80abbfd813c602e34d946581e879601cd6cc44fd4fac88c555f",
+        "size_bytes": 51484
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/INDUSTRIAL_PC_TOP_CLAMPS.stl",
+        "sha256": "a2c50b3c58bff80abbfd813c602e34d946581e879601cd6cc44fd4fac88c555f",
+        "size_bytes": 51484
+      }
+    },
+    "TORSO.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/TORSO.stl",
+        "sha256": "341e7efb04b723b92137bdd7a671bcf39de434cda4b54db6a80433c9f501426f",
+        "size_bytes": 55828484
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/TORSO.stl",
+        "sha256": "341e7efb04b723b92137bdd7a671bcf39de434cda4b54db6a80433c9f501426f",
+        "size_bytes": 55828484
+      }
+    },
+    "UPPER_LIDAR_MODULE.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/print_1_4/UPPER_LIDAR_MODULE.stl",
+        "sha256": "6d87162ccc9c69baefa003eada7fa4110fc9e34de20376ab5c5b92a12db5a6d1",
+        "size_bytes": 4153684
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/print_1_4/UPPER_LIDAR_MODULE.stl",
+        "sha256": "6d87162ccc9c69baefa003eada7fa4110fc9e34de20376ab5c5b92a12db5a6d1",
+        "size_bytes": 4153684
+      }
+    },
+    "front_camera_bar_master_1_1.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/front_camera_bar_master_1_1.stl",
+        "sha256": "1e2d69d3c9283bc3e60af5f41165e058d64e1d7227851972b3dba4d7c42460b0",
+        "size_bytes": 55084
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/master_1_1/front_camera_bar_master_1_1.stl",
+        "sha256": "1e2d69d3c9283bc3e60af5f41165e058d64e1d7227851972b3dba4d7c42460b0",
+        "size_bytes": 55084
+      }
+    },
+    "hip_master_1_1.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/hip_master_1_1.stl",
+        "sha256": "93f738a82021b6e2839115de9093a30d4badfdb904dd7f6e4b4430b656da64c5",
+        "size_bytes": 30516584
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/master_1_1/hip_master_1_1.stl",
+        "sha256": "93f738a82021b6e2839115de9093a30d4badfdb904dd7f6e4b4430b656da64c5",
+        "size_bytes": 30516584
+      }
+    },
+    "j17a_sensor_carrier_master_1_1.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/j17a_sensor_carrier_master_1_1.stl",
+        "sha256": "73a6f4784cce88d77ee24c7ed2535a9d978ede435fa6134b477c4c5ed06fb9c8",
+        "size_bytes": 607884
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/master_1_1/j17a_sensor_carrier_master_1_1.stl",
+        "sha256": "73a6f4784cce88d77ee24c7ed2535a9d978ede435fa6134b477c4c5ed06fb9c8",
+        "size_bytes": 607884
+      }
+    },
+    "j20a_adapter_master_1_1.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/j20a_adapter_master_1_1.stl",
+        "sha256": "8a6e1a1c28f6819948c814cabff945932554bffdab25b53652f777b48df6602b",
+        "size_bytes": 277784
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/master_1_1/j20a_adapter_master_1_1.stl",
+        "sha256": "8a6e1a1c28f6819948c814cabff945932554bffdab25b53652f777b48df6602b",
+        "size_bytes": 277784
+      }
+    },
+    "lite3_lidar_1_1_reference.3mf": {
+      "exact_hash_and_size": false,
+      "format_note": "The 3MF XML serialization is not byte deterministic in trimesh 4.12.2. Geometry count, face/vertex counts, bounds, and volumes are compared instead.",
+      "geometry_equivalent": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/reference/lite3_lidar_1_1_reference.3mf",
+        "sha256": "ff29a80cb5cef2af1335bb9b1a835e233988eb1b62e478aa5b6eb8e354f75939",
+        "size_bytes": 156807250
+      },
+      "primary_scene_signature": {
+        "bbox_size": [
+          598.1909059925722,
+          373.54522920532696,
+          524.1329305419924
+        ],
+        "geometries": {
+          "CAMERA_LENSES": {
+            "bbox_size": [
+              4.403493689262717,
+              71.38,
+              7.618971849716388
+            ],
+            "faces": 640,
+            "vertices": 328,
+            "volume": 280.8059719487287
+          },
+          "FL_HIP": {
+            "bbox_size": [
+              92.10320140070036,
+              68.52893244057066,
+              79.63408998727675
+            ],
+            "faces": 610330,
+            "vertices": 305065,
+            "volume": 86956.82585158391
+          },
+          "FL_SHANK": {
+            "bbox_size": [
+              167.27241101268146,
+              35.43305458281199,
+              226.7849707111768
+            ],
+            "faces": 162276,
+            "vertices": 81098,
+            "volume": 132641.2947928349
+          },
+          "FL_THIGH": {
+            "bbox_size": [
+              184.51155794370854,
+              117.90495620203947,
+              219.43725363665158
+            ],
+            "faces": 686598,
+            "vertices": 343207,
+            "volume": 239049.20837734893
+          },
+          "FRONT_CAMERA_BAR": {
+            "bbox_size": [
+              32.55239806819492,
+              90.0,
+              32.042818600690566
+            ],
+            "faces": 1100,
+            "vertices": 552,
+            "volume": 55444.35059320802
+          },
+          "FR_HIP": {
+            "bbox_size": [
+              92.10320140070036,
+              68.52893244057066,
+              79.63408998727675
+            ],
+            "faces": 610330,
+            "vertices": 305065,
+            "volume": 86956.82585158391
+          },
+          "FR_SHANK": {
+            "bbox_size": [
+              167.27241101268146,
+              35.43305458281199,
+              226.7849707111768
+            ],
+            "faces": 162276,
+            "vertices": 81098,
+            "volume": 132641.2947928349
+          },
+          "FR_THIGH": {
+            "bbox_size": [
+              184.51155794370854,
+              117.90495620203947,
+              219.43725363665158
+            ],
+            "faces": 686598,
+            "vertices": 343207,
+            "volume": 239049.20837734893
+          },
+          "HL_HIP": {
+            "bbox_size": [
+              92.10320140070036,
+              68.52893244057066,
+              79.63408998727675
+            ],
+            "faces": 610330,
+            "vertices": 305065,
+            "volume": 86956.82585158391
+          },
+          "HL_SHANK": {
+            "bbox_size": [
+              167.27241101268146,
+              35.43305458281199,
+              226.7849707111768
+            ],
+            "faces": 162276,
+            "vertices": 81098,
+            "volume": 132641.294792835
+          },
+          "HL_THIGH": {
+            "bbox_size": [
+              184.51155794370857,
+              117.90495620203947,
+              219.43725363665158
+            ],
+            "faces": 686598,
+            "vertices": 343207,
+            "volume": 239049.20837734887
+          },
+          "HR_HIP": {
+            "bbox_size": [
+              92.10320140070036,
+              68.52893244057066,
+              79.63408998727675
+            ],
+            "faces": 610330,
+            "vertices": 305065,
+            "volume": 86956.82585158391
+          },
+          "HR_SHANK": {
+            "bbox_size": [
+              167.27241101268146,
+              35.43305458281199,
+              226.7849707111768
+            ],
+            "faces": 162276,
+            "vertices": 81098,
+            "volume": 132641.29479283481
+          },
+          "HR_THIGH": {
+            "bbox_size": [
+              184.51155794370857,
+              117.90495620203947,
+              219.43725363665158
+            ],
+            "faces": 686598,
+            "vertices": 343207,
+            "volume": 239049.20837734887
+          },
+          "INDUSTRIAL_PC": {
+            "bbox_size": [
+              180.0,
+              76.0,
+              40.0
+            ],
+            "faces": 286,
+            "vertices": 145,
+            "volume": 544715.6286132812
+          },
+          "INDUSTRIAL_PC_TOP_CLAMPS": {
+            "bbox_size": [
+              138.0,
+              106.0,
+              4.000000000000057
+            ],
+            "faces": 1028,
+            "vertices": 510,
+            "volume": 14889.404744930178
+          },
+          "TORSO": {
+            "bbox_size": [
+              550.1370533283819,
+              217.2744138261497,
+              128.20760122642707
+            ],
+            "faces": 1777070,
+            "vertices": 888295,
+            "volume": 2621380.2180832415
+          },
+          "UPPER_LIDAR_MODULE": {
+            "bbox_size": [
+              330.41054284667973,
+              116.0,
+              102.13293054199244
+            ],
+            "faces": 83806,
+            "vertices": 41791,
+            "volume": 325896.1210339512
+          }
+        },
+        "geometry_count": 18
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/reference/lite3_lidar_1_1_reference.3mf",
+        "sha256": "fb2f7446396eed8ae15b66430ca362c2d4cdf94c23a8a2d5f57f8dfa046158d4",
+        "size_bytes": 156807243
+      },
+      "rebuild_scene_signature": {
+        "bbox_size": [
+          598.1909059925722,
+          373.54522920532696,
+          524.1329305419924
+        ],
+        "geometries": {
+          "CAMERA_LENSES": {
+            "bbox_size": [
+              4.403493689262717,
+              71.38,
+              7.618971849716388
+            ],
+            "faces": 640,
+            "vertices": 328,
+            "volume": 280.8059719487287
+          },
+          "FL_HIP": {
+            "bbox_size": [
+              92.10320140070036,
+              68.52893244057066,
+              79.63408998727675
+            ],
+            "faces": 610330,
+            "vertices": 305065,
+            "volume": 86956.82585158391
+          },
+          "FL_SHANK": {
+            "bbox_size": [
+              167.27241101268146,
+              35.43305458281199,
+              226.7849707111768
+            ],
+            "faces": 162276,
+            "vertices": 81098,
+            "volume": 132641.2947928349
+          },
+          "FL_THIGH": {
+            "bbox_size": [
+              184.51155794370854,
+              117.90495620203947,
+              219.43725363665158
+            ],
+            "faces": 686598,
+            "vertices": 343207,
+            "volume": 239049.20837734893
+          },
+          "FRONT_CAMERA_BAR": {
+            "bbox_size": [
+              32.55239806819492,
+              90.0,
+              32.042818600690566
+            ],
+            "faces": 1100,
+            "vertices": 552,
+            "volume": 55444.35059320802
+          },
+          "FR_HIP": {
+            "bbox_size": [
+              92.10320140070036,
+              68.52893244057066,
+              79.63408998727675
+            ],
+            "faces": 610330,
+            "vertices": 305065,
+            "volume": 86956.82585158391
+          },
+          "FR_SHANK": {
+            "bbox_size": [
+              167.27241101268146,
+              35.43305458281199,
+              226.7849707111768
+            ],
+            "faces": 162276,
+            "vertices": 81098,
+            "volume": 132641.2947928349
+          },
+          "FR_THIGH": {
+            "bbox_size": [
+              184.51155794370854,
+              117.90495620203947,
+              219.43725363665158
+            ],
+            "faces": 686598,
+            "vertices": 343207,
+            "volume": 239049.20837734893
+          },
+          "HL_HIP": {
+            "bbox_size": [
+              92.10320140070036,
+              68.52893244057066,
+              79.63408998727675
+            ],
+            "faces": 610330,
+            "vertices": 305065,
+            "volume": 86956.82585158391
+          },
+          "HL_SHANK": {
+            "bbox_size": [
+              167.27241101268146,
+              35.43305458281199,
+              226.7849707111768
+            ],
+            "faces": 162276,
+            "vertices": 81098,
+            "volume": 132641.294792835
+          },
+          "HL_THIGH": {
+            "bbox_size": [
+              184.51155794370857,
+              117.90495620203947,
+              219.43725363665158
+            ],
+            "faces": 686598,
+            "vertices": 343207,
+            "volume": 239049.20837734887
+          },
+          "HR_HIP": {
+            "bbox_size": [
+              92.10320140070036,
+              68.52893244057066,
+              79.63408998727675
+            ],
+            "faces": 610330,
+            "vertices": 305065,
+            "volume": 86956.82585158391
+          },
+          "HR_SHANK": {
+            "bbox_size": [
+              167.27241101268146,
+              35.43305458281199,
+              226.7849707111768
+            ],
+            "faces": 162276,
+            "vertices": 81098,
+            "volume": 132641.29479283481
+          },
+          "HR_THIGH": {
+            "bbox_size": [
+              184.51155794370857,
+              117.90495620203947,
+              219.43725363665158
+            ],
+            "faces": 686598,
+            "vertices": 343207,
+            "volume": 239049.20837734887
+          },
+          "INDUSTRIAL_PC": {
+            "bbox_size": [
+              180.0,
+              76.0,
+              40.0
+            ],
+            "faces": 286,
+            "vertices": 145,
+            "volume": 544715.6286132812
+          },
+          "INDUSTRIAL_PC_TOP_CLAMPS": {
+            "bbox_size": [
+              138.0,
+              106.0,
+              4.000000000000057
+            ],
+            "faces": 1028,
+            "vertices": 510,
+            "volume": 14889.404744930178
+          },
+          "TORSO": {
+            "bbox_size": [
+              550.1370533283819,
+              217.2744138261497,
+              128.20760122642707
+            ],
+            "faces": 1777070,
+            "vertices": 888295,
+            "volume": 2621380.2180832415
+          },
+          "UPPER_LIDAR_MODULE": {
+            "bbox_size": [
+              330.41054284667973,
+              116.0,
+              102.13293054199244
+            ],
+            "faces": 83806,
+            "vertices": 41791,
+            "volume": 325896.1210339512
+          }
+        },
+        "geometry_count": 18
+      }
+    },
+    "lite3_lidar_1_1_reference.glb": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/reference/lite3_lidar_1_1_reference.glb",
+        "sha256": "47b435e9c4576f6a48228426adc282fd5e5bf4aaa18e05a063bb764690a38bc0",
+        "size_bytes": 29409528
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/reference/lite3_lidar_1_1_reference.glb",
+        "sha256": "47b435e9c4576f6a48228426adc282fd5e5bf4aaa18e05a063bb764690a38bc0",
+        "size_bytes": 29409528
+      }
+    },
+    "lite3_lidar_1_4_assembled.glb": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/reference/lite3_lidar_1_4_assembled.glb",
+        "sha256": "104973822a53801b63a9ab7388653ba25f0cd00a11a5cb328b6db84f7530a580",
+        "size_bytes": 114215044
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/reference/lite3_lidar_1_4_assembled.glb",
+        "sha256": "104973822a53801b63a9ab7388653ba25f0cd00a11a5cb328b6db84f7530a580",
+        "size_bytes": 114215044
+      }
+    },
+    "lite3_lidar_1_4_assembled_reference.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/reference/lite3_lidar_1_4_assembled_reference.stl",
+        "sha256": "73828c87d83ba736f7137f1aacc65f1cc0068ec4e10e874402c3c79af7f8b411",
+        "size_bytes": 50951484
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/reference/lite3_lidar_1_4_assembled_reference.stl",
+        "sha256": "73828c87d83ba736f7137f1aacc65f1cc0068ec4e10e874402c3c79af7f8b411",
+        "size_bytes": 50951484
+      }
+    },
+    "lite3_lidar_1_4_print_layout.glb": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/reference/lite3_lidar_1_4_print_layout.glb",
+        "sha256": "e6510e3238234fb534deb3e4919dc44f3824ca94f974a94d939b1d551db8b055",
+        "size_bytes": 101686940
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/reference/lite3_lidar_1_4_print_layout.glb",
+        "sha256": "e6510e3238234fb534deb3e4919dc44f3824ca94f974a94d939b1d551db8b055",
+        "size_bytes": 101686940
+      }
+    },
+    "mid360_sensor_master_1_1.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/mid360_sensor_master_1_1.stl",
+        "sha256": "50dd3bea1999a9a6afa003e910ff35cf25afccefa74f986f7a575fa8ae2dc533",
+        "size_bytes": 22085484
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/master_1_1/mid360_sensor_master_1_1.stl",
+        "sha256": "50dd3bea1999a9a6afa003e910ff35cf25afccefa74f986f7a575fa8ae2dc533",
+        "size_bytes": 22085484
+      }
+    },
+    "s410_guard_master_1_1.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/s410_guard_master_1_1.stl",
+        "sha256": "38979d4fe0a250898e449347ef7bd6ea5b29fc3894b50b3702c66718f09d2a7f",
+        "size_bytes": 1849984
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/master_1_1/s410_guard_master_1_1.stl",
+        "sha256": "38979d4fe0a250898e449347ef7bd6ea5b29fc3894b50b3702c66718f09d2a7f",
+        "size_bytes": 1849984
+      }
+    },
+    "shank_master_1_1.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/shank_master_1_1.stl",
+        "sha256": "a12e6128976c88271738010dec07c29b5ac8d9658a0e747b652b0b7930a4086a",
+        "size_bytes": 8113884
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/master_1_1/shank_master_1_1.stl",
+        "sha256": "a12e6128976c88271738010dec07c29b5ac8d9658a0e747b652b0b7930a4086a",
+        "size_bytes": 8113884
+      }
+    },
+    "thigh_master_1_1.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/thigh_master_1_1.stl",
+        "sha256": "5e4739a37706a98f6b2499a880274c3647c743291b23649dbc9afa169a996bc0",
+        "size_bytes": 34329984
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/master_1_1/thigh_master_1_1.stl",
+        "sha256": "5e4739a37706a98f6b2499a880274c3647c743291b23649dbc9afa169a996bc0",
+        "size_bytes": 34329984
+      }
+    },
+    "torso_master_1_1.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/torso_master_1_1.stl",
+        "sha256": "c5640acf5f59d30cdf4dee23d022944fee287322380b0ad9035e193382d0922e",
+        "size_bytes": 88853584
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/master_1_1/torso_master_1_1.stl",
+        "sha256": "c5640acf5f59d30cdf4dee23d022944fee287322380b0ad9035e193382d0922e",
+        "size_bytes": 88853584
+      }
+    },
+    "upper_lidar_module_master_1_1.stl": {
+      "exact_hash_and_size": true,
+      "primary": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/upper_lidar_module_master_1_1.stl",
+        "sha256": "19dee13563d5ff0a70ecc296f33e4fb956e6c6c3099b3c0932e0c182e8379faa",
+        "size_bytes": 4190384
+      },
+      "rebuild": {
+        "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/models/master_1_1/upper_lidar_module_master_1_1.stl",
+        "sha256": "19dee13563d5ff0a70ecc296f33e4fb956e6c6c3099b3c0932e0c182e8379faa",
+        "size_bytes": 4190384
+      }
+    }
+  },
+  "passed": true,
+  "primary_report": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/reports/build_report.json",
+  "rebuild_report": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-collision-free/reports/build_report.json",
+  "schema_version": 1,
+  "structural_sections_equal": {
+    "assembly_mounts": true,
+    "body_geometry_tracks": true,
+    "joint_holes": true,
+    "lidar_geometry_audit": true,
+    "master_reconstruction": true,
+    "parameters_sha256": true,
+    "print_parts": true,
+    "sources": true,
+    "standing_reference_1_1": true
+  }
+}

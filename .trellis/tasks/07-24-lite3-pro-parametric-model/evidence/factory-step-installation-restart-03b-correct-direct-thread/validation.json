@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "awaiting_visual_review",
+  "scope": {
+    "starting_subassemblies": [
+      "visually accepted J17A/D435i first layer",
+      "visually accepted J20A/MID360 upper subassembly"
+    ],
+    "added_in_this_step": [
+      "official S410 guard",
+      "four independent S410-to-J20A M5x8 visual screw candidates",
+      "two transient M3x6 J17A-to-J20A direct-thread visual candidates",
+      "two transient M4x10 J17A-to-J20A direct-thread visual candidates"
+    ],
+    "excluded_from_every_frame": [
+      "Lite3 robot",
+      "robot-side attachment hardware",
+      "rejected M3x12 J17A/J20A long through-bolts",
+      "rejected M4x18 J17A/J20A long through-bolts",
+      "far-side nuts",
+      "washers",
+      "locknuts"
+    ]
+  },
+  "animation": {
+    "video": "lite3-restart-step-03b-correct-direct-thread-no-text.mp4",
+    "codec": "h264",
+    "pixel_format": "yuv420p",
+    "width": 1280,
+    "height": 720,
+    "frame_rate_fps": 24,
+    "frame_count": 480,
+    "duration_seconds": 20.0,
+    "contains_text_overlay": false,
+    "sequence": {
+      "s410_approach": [24, 71],
+      "s410_m5_cross_order": [28, 31, 29, 30],
+      "upper_subassembly_to_j17a": [208, 247],
+      "direct_thread_order": [
+        "front_left_m3",
+        "front_right_m3",
+        "rear_left_m4",
+        "rear_right_m4"
+      ],
+      "nuts": 0,
+      "washers": 0,
+      "locknuts": 0
+    }
+  },
+  "fastener_contract": {
+    "s410_to_j20a": {
+      "count": 4,
+      "nominal_visual_candidate": "M5x8 socket-head screw",
+      "path": "screw head -> S410 diameter 5.2 mm clearance foot -> J20A M5 threaded receiver",
+      "s410_clearance_diameter_mm": 5.2,
+      "j20a_modeled_receiver_diameter_mm": 4.2,
+      "maximum_axis_residual_mm": 2.768414426840601e-12,
+      "far_side_nut": false
+    },
+    "front_j17a_to_j20a": {
+      "count": 2,
+      "nominal_visual_candidate": "M3x6 socket-head screw",
+      "path": "screw head -> J17A clearance path -> J20A modeled M3 threaded receiver",
+      "shaft_diameter_mm": 3.0,
+      "j17a_clearance_diameter_mm": 3.5,
+      "j20a_modeled_receiver_diameter_mm": 2.5,
+      "j17a_traversal_mm": 2.5,
+      "modeled_j20a_engagement_mm": 3.5,
+      "maximum_axis_residual_mm": 0.0,
+      "far_side_nut": false
+    },
+    "rear_j17a_to_j20a": {
+      "count": 2,
+      "nominal_visual_candidate": "M4x10 socket-head screw",
+      "path": "screw head -> J17A diameter 8 mm counterbore -> J17A diameter 4.5 mm clearance -> J20A modeled M4 threaded receiver",
+      "shaft_diameter_mm": 4.0,
+      "j17a_counterbore_diameter_mm": 8.0,
+      "j17a_clearance_diameter_mm": 4.5,
+      "j20a_modeled_receiver_diameter_mm": 3.3,
+      "j17a_traversal_mm": 3.0,
+      "modeled_j20a_engagement_mm": 7.0,
+      "maximum_axis_residual_mm": 2.499999851586022e-7,
+      "far_side_nut": false
+    }
+  },
+  "render_validation": {
+    "source_frame_count": 480,
+    "first_frame": "frames/frame_0000.png",
+    "last_frame": "frames/frame_0479.png",
+    "source_frame_width": 1280,
+    "source_frame_height": 720,
+    "video_decode_errors": 0,
+    "review_keyframes": [40, 88, 216, 264, 300, 336, 372, 408, 456]
+  },
+  "fusion_restore_validation": {
+    "maximum_transform_difference": 5.684341886080802e-14,
+    "visibility_mismatches": [],
+    "opacity_mismatches": [],
+    "custom_graphics_removed": true,
+    "custom_graphics_group_count_before": 0,
+    "custom_graphics_group_count_after": 0,
+    "pending_snapshot": false
+  },
+  "claim_boundary": {
+    "validated": "Source-model fastening direction, hole-axis registration, absence of far-side nuts/washers in the replacement animation, full frame sequence, video decode, and Fusion scene restoration.",
+    "not_validated": "Factory-supplied screw lengths or head forms, usable thread engagement, torque, exact hand-tool access, strength, vibration, fabrication release, or real-hardware safety.",
+    "transient_direct_screws": "The M3x6 and M4x10 screw solids are temporary display graphics used only in the rendered frames. They are not persistent manufacturer CAD and do not modify the Fusion document."
+  },
+  "sources": [
+    {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J17A-lidar base.STEP",
+      "sha256": "52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490"
+    },
+    {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J20A-small lidar base.STEP",
+      "sha256": "341b08ca08526e5ee0e9fbeca0bfda9d9970062c6605e979adc52b31955c9bc9"
+    },
+    {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1CA5-S410-Lidar protector.STEP",
+      "sha256": "7fd23a776b45c7d8571ef77ba9e8b05520eced0b97f62487ba03f88bbc9df810"
+    },
+    {
+      "path": "references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02"
+    },
+    {
+      "path": "references/upstream/2026-07-25_realsense-d435i-cad/source/original/D435i_Solid.SLDPRT",
+      "sha256": "9cdbfdc7085ea5430ec9007eb1d895c7ff513c40b77c298a275ded33edf65525"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "lite3-restart-step-03b-correct-direct-thread-no-text.mp4",
+      "size_bytes": 3459908,
+      "sha256": "318ff4c45b63820dd7f94abe52c4d87765c04ffb68c51a2cf52a24b1f9b84c8b"
+    },
+    {
+      "path": "keyframe-contact-sheet.png",
+      "sha256": "52804106d265253944c02c39df7cd92c4aafa3084d747dbf32e37176ae430b57"
+    },
+    {
+      "path": "render_report.json",
+      "sha256": "a0174604f19b261f3708c8875632138840160cf6e2bfb1c686c28191a5eed23e"
+    }
+  ]
+}
+

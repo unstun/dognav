@@ -1,0 +1,428 @@
+{
+  "schema_version": 1,
+  "model_id": "lite3_lidar_v107_visual_reconstruction",
+  "artifact_labels": {
+    "upper_module": "appearance_reconstruction",
+    "full_assembly": "visual_only",
+    "forbidden_label": "fit_validated"
+  },
+  "sources": {
+    "standing_stl": {
+      "path": "references/upstream/2026-07-24_deep-robotics-model/source/Lite3-official-high-res-factory-stand-fusion-y-up.stl",
+      "sha256": "b2a4d7a1551ebac211d7450f8f57c3a2a198d5d36e70b9c75dccea24f9c55e0c",
+      "evidence_class": "source_model",
+      "source_note": "Unchanged official high-resolution URDF/DAE derivative in factory-standing pose."
+    },
+    "lidar_manual_pdf": {
+      "path": "references/upstream/2026-07-24_lite3-design-drawings/source/original/Jueying-Lite3-LiDAR-User-Manual-CE-V1.0.7-0.pdf",
+      "sha256": "25ef3cc19e9ebc8211a8504bd55dbd7cf4dcf511e60d5c59a90c29ed0ffb698f",
+      "evidence_class": "official_nominal",
+      "source_note": "Official current Lite3 LiDAR User Manual V1.0.7-0."
+    },
+    "manual_overview_page": {
+      "path": "references/upstream/2026-07-24_lite3-design-drawings/derived/lite3-lidar-manual-06.png",
+      "sha256": "d66100b0b70d509fc309b988b7640ee5e186ae48875d4189b8328ab5776774b0",
+      "evidence_class": "official_nominal",
+      "source_note": "Rendered official overview with front/side layout and 496 mm height."
+    },
+    "manual_parts_page": {
+      "path": "references/upstream/2026-07-24_lite3-design-drawings/derived/lite3-lidar-manual-07.png",
+      "sha256": "83c1bc6b867961ab9264d00c9600b2acfd2e45404329972fd9d1fcf0bd6d5c94",
+      "evidence_class": "official_nominal",
+      "source_note": "Rendered official current LiDAR component layout."
+    }
+  },
+  "coordinate_system": {
+    "unit": "millimetre",
+    "canonical_axes": "X forward, Y left, Z up",
+    "ground_z_mm": {
+      "value": 0.0,
+      "evidence_class": "source_model",
+      "source_note": "Final standing assembly ground plane."
+    },
+    "source_rotation_x_deg": {
+      "value": 90.0,
+      "evidence_class": "source_model",
+      "source_note": "Rotates the existing Fusion-oriented Y-up STL back to Z-up."
+    },
+    "source_scale": {
+      "value": 1.0,
+      "evidence_class": "source_model",
+      "source_note": "Official standing mesh must remain at scale 1.0."
+    }
+  },
+  "official_envelope": {
+    "parameters": {
+      "length_mm": {
+        "value": 610.0,
+        "evidence_class": "official_nominal",
+        "source_note": "LiDAR User Manual V1.0.7-0."
+      },
+      "width_mm": {
+        "value": 370.0,
+        "evidence_class": "official_nominal",
+        "source_note": "Headline manual dimension; source mesh width is preserved instead."
+      },
+      "height_mm": {
+        "value": 496.0,
+        "evidence_class": "official_nominal",
+        "source_note": "LiDAR User Manual V1.0.7-0."
+      },
+      "height_tolerance_mm": {
+        "value": 1.0,
+        "evidence_class": "official_nominal",
+        "source_note": "Acceptance tolerance for the appearance reconstruction."
+      }
+    }
+  },
+  "mounting_reference": {
+    "source_note": "Image-estimated support plate with official nominal Pro/LiDAR hole datum.",
+    "parameters": {
+      "length_mm": {
+        "value": 300.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated from V1.0.7 top enclosure footprint."
+      },
+      "width_mm": {
+        "value": 130.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated from V1.0.7 upper-body proportions."
+      },
+      "thickness_mm": {
+        "value": 4.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Appearance-only support thickness."
+      },
+      "corner_radius_mm": {
+        "value": 8.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Appearance-only edge radius."
+      },
+      "center_x_mm": {
+        "value": 20.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated placement on the official visual torso."
+      },
+      "center_y_mm": {
+        "value": 0.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Centered laterally for the visual reconstruction."
+      },
+      "base_z_mm": {
+        "value": 421.5,
+        "evidence_class": "image_estimate",
+        "source_note": "Slight visual overlap with the non-watertight torso mesh."
+      },
+      "pattern_x_mm": {
+        "value": 74.0,
+        "evidence_class": "official_nominal",
+        "source_note": "Official Pro/LiDAR four-M3 longitudinal centre spacing."
+      },
+      "pattern_y_mm": {
+        "value": 94.0,
+        "evidence_class": "official_nominal",
+        "source_note": "Official Pro/LiDAR four-M3 lateral centre spacing."
+      },
+      "reference_hole_radius_mm": {
+        "value": 1.5,
+        "evidence_class": "official_nominal",
+        "source_note": "Nominal M3 radius; thread depth and fit are unknown."
+      }
+    }
+  },
+  "upper_interface_enclosure": {
+    "source_note": "Current V1.0.7 long rectangular upper enclosure.",
+    "parameters": {
+      "length_mm": {
+        "value": 210.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated from current manual side and rear views."
+      },
+      "width_mm": {
+        "value": 74.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated from current manual front and rear views."
+      },
+      "height_mm": {
+        "value": 37.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated from current manual side view."
+      },
+      "corner_radius_mm": {
+        "value": 4.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Appearance-only enclosure fillet."
+      },
+      "center_x_mm": {
+        "value": -15.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated longitudinal placement behind the radar."
+      },
+      "center_y_mm": {
+        "value": 0.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Centered laterally."
+      },
+      "base_z_mm": {
+        "value": 425.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Placed on the upper mounting-reference plate."
+      },
+      "port_count": {
+        "value": 3,
+        "evidence_class": "image_estimate",
+        "source_note": "Visible side-aperture group in current product evidence."
+      },
+      "port_width_mm": {
+        "value": 12.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Appearance-only aperture width."
+      },
+      "port_height_mm": {
+        "value": 9.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Appearance-only aperture height."
+      },
+      "port_depth_mm": {
+        "value": 3.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Shallow visual pocket; not an interface specification."
+      },
+      "port_pitch_mm": {
+        "value": 19.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated visual spacing."
+      },
+      "port_group_center_x_mm": {
+        "value": 48.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated visible-side placement."
+      },
+      "port_base_z_mm": {
+        "value": 440.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated visible-side placement."
+      }
+    }
+  },
+  "laser_radar_core": {
+    "source_note": "Appearance-led guarded radar body; exact sensor model is unknown.",
+    "parameters": {
+      "center_x_mm": {
+        "value": 150.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated from current manual views."
+      },
+      "center_y_mm": {
+        "value": 0.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Centered in the protective hoop."
+      },
+      "base_z_mm": {
+        "value": 431.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated on the current upper platform."
+      },
+      "radius_mm": {
+        "value": 20.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated visible radar body radius."
+      },
+      "cylinder_height_mm": {
+        "value": 22.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated lower body height."
+      },
+      "dome_height_mm": {
+        "value": 20.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated upper dome height."
+      }
+    }
+  },
+  "cooling_fins": {
+    "source_note": "Repeated upper cooling-fin group visible in V1.0.7 evidence.",
+    "parameters": {
+      "center_x_mm": {
+        "value": 118.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Placed behind the radar core."
+      },
+      "center_y_mm": {
+        "value": 0.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Centered laterally."
+      },
+      "base_z_mm": {
+        "value": 430.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated upper support surface."
+      },
+      "base_length_mm": {
+        "value": 42.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated radiator base length."
+      },
+      "base_width_mm": {
+        "value": 58.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated radiator base width."
+      },
+      "base_height_mm": {
+        "value": 5.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Appearance-only base thickness."
+      },
+      "fin_count": {
+        "value": 9,
+        "evidence_class": "image_estimate",
+        "source_note": "Count chosen to reproduce the visible fin density."
+      },
+      "fin_length_mm": {
+        "value": 36.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated fin length."
+      },
+      "fin_thickness_mm": {
+        "value": 2.2,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated fin thickness."
+      },
+      "fin_height_mm": {
+        "value": 30.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated fin height."
+      },
+      "fin_pitch_mm": {
+        "value": 6.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated lateral fin pitch."
+      }
+    }
+  },
+  "protective_hoop": {
+    "source_note": "Current V1.0.7 arched guard around the laser radar.",
+    "parameters": {
+      "center_x_mm": {
+        "value": 150.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Aligned to the laser-radar core."
+      },
+      "center_y_mm": {
+        "value": 0.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Centered laterally."
+      },
+      "arc_center_z_mm": {
+        "value": 458.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Chosen with radius values to reach the official 496 mm height."
+      },
+      "major_radius_mm": {
+        "value": 34.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated guard radius."
+      },
+      "tube_radius_mm": {
+        "value": 4.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated guard section radius."
+      },
+      "support_base_z_mm": {
+        "value": 423.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated support attachment height."
+      },
+      "arc_segments": {
+        "value": 16,
+        "evidence_class": "image_estimate",
+        "source_note": "Modeling resolution for the parametric guard."
+      }
+    }
+  },
+  "front_sensor_bar": {
+    "source_note": "Current V1.0.7 front depth-camera/sensor bar.",
+    "parameters": {
+      "center_x_mm": {
+        "value": 285.4,
+        "evidence_class": "image_estimate",
+        "source_note": "Extends the preserved source mesh toward the official 610 mm length."
+      },
+      "center_y_mm": {
+        "value": 0.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Centered laterally in the front view."
+      },
+      "base_z_mm": {
+        "value": 414.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated from current front and side views."
+      },
+      "depth_x_mm": {
+        "value": 13.2,
+        "evidence_class": "image_estimate",
+        "source_note": "Chosen so the visual assembly approaches the official 610 mm length without scaling the base."
+      },
+      "width_y_mm": {
+        "value": 100.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated sensor-bar width."
+      },
+      "height_z_mm": {
+        "value": 18.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated sensor-bar height."
+      },
+      "corner_radius_mm": {
+        "value": 3.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Appearance-only edge radius."
+      },
+      "aperture_count": {
+        "value": 3,
+        "evidence_class": "image_estimate",
+        "source_note": "Visible front sensor apertures."
+      },
+      "aperture_radius_mm": {
+        "value": 4.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Appearance-only aperture size."
+      },
+      "aperture_pitch_mm": {
+        "value": 28.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Estimated lateral spacing."
+      }
+    }
+  },
+  "meshing": {
+    "parameters": {
+      "linear_deflection_mm": {
+        "value": 0.25,
+        "evidence_class": "image_estimate",
+        "source_note": "Visual export tessellation."
+      },
+      "angular_deflection_deg": {
+        "value": 12.0,
+        "evidence_class": "image_estimate",
+        "source_note": "Visual export tessellation."
+      },
+      "metric_tolerance_mm": {
+        "value": 0.01,
+        "evidence_class": "image_estimate",
+        "source_note": "Numerical comparison tolerance."
+      }
+    }
+  },
+  "visual": {
+    "colors_rgb": {
+      "Official_Lite3_Base_Mesh": [0.82, 0.84, 0.88],
+      "Upper_Mounting_References": [0.88, 0.88, 0.86],
+      "Upper_Interface_Enclosure": [0.72, 0.74, 0.76],
+      "Laser_Radar_Core": [0.08, 0.12, 0.18],
+      "Cooling_Fins": [0.20, 0.22, 0.24],
+      "Protective_Hoop": [0.12, 0.13, 0.15],
+      "Front_Sensor_Bar": [0.70, 0.72, 0.74]
+    }
+  }
+}

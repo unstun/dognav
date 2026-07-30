@@ -1,0 +1,109 @@
+{
+  "status": "rejected_interface_mismatch",
+  "date": "2026-07-27",
+  "supersedes": "../factory-step-lite3-real-brep-sensor-stack-corrected-baseline/",
+  "review_correction": {
+    "reason": "preceding sensor stack appeared too far rearward compared with the official laser version",
+    "primary_view_landmarks": [
+      "official laser-version product image",
+      "official FAST-LIVO2 installation video frame-292s",
+      "sensor centre relative to robot nose and front hip/cover"
+    ],
+    "whole_stack_forward_mm": 30.0,
+    "front_axis": "+Z",
+    "whole_stack_down_mm": 2.4,
+    "internal_source_part_transforms_changed": false,
+    "evidence_class": "image_estimate"
+  },
+  "fusion_document": {
+    "name": "Untitled",
+    "saved": false,
+    "modified": true,
+    "root_occurrences": 5
+  },
+  "source_hashes": {
+    "lite3": "d0ad78189f8f9154a780796d2deffcc848c094700776d7c9d6f6da092106c6eb",
+    "j17a": "52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490",
+    "j20a": "341b08ca08526e5ee0e9fbeca0bfda9d9970062c6605e979adc52b31955c9bc9",
+    "s410": "7fd23a776b45c7d8571ef77ba9e8b05520eced0b97f62487ba03f88bbc9df810",
+    "mid360": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02"
+  },
+  "occurrence_transforms": {
+    "j17a": {
+      "translation_cm": [-30.431820154, 20.768978858, 252.073426277],
+      "rotation_determinant": 1
+    },
+    "j20a": {
+      "translation_cm": [-30.431820154, 21.018978858, 249.648426277],
+      "rotation_determinant": 1
+    },
+    "s410": {
+      "translation_cm": [-30.431820154, 22.379267417, 254.251183088],
+      "rotation_determinant": 1
+    },
+    "mid360": {
+      "translation_cm": [-30.431820154, 24.878208536, 254.938612816],
+      "rotation_determinant": 1
+    }
+  },
+  "solid_body_counts": {
+    "visible_robot": 272,
+    "j17a": 1,
+    "j20a": 1,
+    "s410": 1,
+    "mid360": 7
+  },
+  "mesh_bodies": 0,
+  "final_collision_checks_mm3": {
+    "robot_j17a": 0,
+    "j17a_j20a": 0,
+    "j20a_s410": 0,
+    "j20a_mid360": 0,
+    "s410_mid360": 0
+  },
+  "robot_j17a_minimum_distance_mm": 0.006602556,
+  "mount_interface_audit": {
+    "report": "mount_interface_audit.json",
+    "hole_group": "official-video-identified 4 x diameter 4.50 mm through holes with diameter 8 mm counterbores",
+    "superseded_wrong_hole_group": "4 x M3 on 110 x 86 mm pattern",
+    "j17a_installation_pattern_mm": [67.88225, 67.88225],
+    "j17a_circled_front_row_pitch_mm": 67.88225,
+    "robot_circled_front_row_pitch_mm": 65.00172,
+    "current_longitudinal_centre_offset_mm": 40.92332,
+    "pitch_difference_mm": 2.88053,
+    "residual_per_hole_after_midpoint_alignment_mm": 1.440265,
+    "robot_candidate_centre_count": 71,
+    "centre_tolerance_mm": 0.5,
+    "required_matches": 4,
+    "best_match_count": 1,
+    "result": "no_matching_four_hole_pattern",
+    "review_effect": "candidate rejected; no further visual translation permitted"
+  },
+  "screenshots": {
+    "forward-30mm-isometric.png": "cbf7d8824cd0bb2298fb9e81cb6aa35141913cc4a8dae61b818d7582709def1a",
+    "forward-30mm-side.png": "d5faf6c84c944f8b426901dba8ca7d9efa1f757db87f87165879e81b9dd3d0aa",
+    "forward-30mm-top.png": "a963b60eb9ef3bc380bd308575402224cf7325c712d2f5613ba1b2c48258eebb"
+  },
+  "excluded": [
+    "exploration_backload",
+    "custom_adapter",
+    "custom_base",
+    "hidden_bridge",
+    "d435",
+    "bz20",
+    "agx",
+    "industrial_pc",
+    "factory_interface_reconstruction",
+    "mesh_substitutes"
+  ],
+  "claim_boundary": [
+    "rejected official-view-constrained appearance and packaging candidate",
+    "forward translation is not a published factory dimension",
+    "not a verified robot-side mount",
+    "J17A Lite3 Venture interface is not demonstrated on the supplied Exploration/Experience robot source",
+    "not fastener or receiver validated",
+    "not cable or service-access validated",
+    "not load-path validated",
+    "not fabrication ready"
+  ]
+}

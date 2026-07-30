@@ -1,0 +1,12 @@
+2b0c263491bf2a3387bc439d40b1bf7a0db9507b45bc8d465e57b5c45d1ff784  ./README.md
+0b6c1d2578925a637d23671fe17d0cc262472749fc86d5b88e9ee04c96be0cc3  ./STATUS.md
+02ab86e9ad94e48944b581c237116bb2768436868e6508a14480457071ac331e  ./build_measured_proxy.py
+7810e43a897f04886edfbf458089c7b9a95d680efae1a5a10af1db3a5dbeab2d  ./cad/current-lite3-pro-expanded-enclosure-keepout-rev-a.step
+cbebb064762daa9d5b113cf76d8440f40201585eec0eac77109c9769f9f75e7d  ./cad/current-lite3-pro-photo-measured-proxy-rev-a.FCStd
+e1c0405f6476ee0b421c81529620a901406c1e5d3f102ce9a73a2fb964548c35  ./cad/current-lite3-pro-photo-measured-proxy-rev-a.step
+f2e110a9835cb70c8b6dd6c99328c1d7d9bb5723bbf1002abf0609a9b487396e  ./render_measured_proxy.py
+b55f172cdb8968145a3fede2c2e5a08dc092ce5590e7d2f2d5e769ad57fcd7cf  ./render_measurement_evidence.py
+ad3dc9d08d85f306e64a31a9f13e55dd0e7c74f58c2028d80eebc4169bcae59d  ./renders/00-physical-measurement-evidence-sheet.jpg
+417032fd53119deab16fd5f9113fb4fdebf5ea9eaabc0b23a922215d7525db0b  ./renders/01-current-pro-measured-hole-map-top.png
+e08dec047d00770d6b301138aab301ed6f3e9a8593bc2610a726a45d10652ac1  ./renders/02-current-pro-measured-proxy-isometric.png
+d78ab77d645396bab2e2cc0173123f966f6767b9c25031e7b10b0a3a166b65b6  ./validation.json

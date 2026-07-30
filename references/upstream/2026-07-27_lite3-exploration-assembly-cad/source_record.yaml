@@ -1,0 +1,50 @@
+topic: lite3-exploration-assembly-cad
+date: 2026-07-27
+status: surveyed
+
+provenance:
+  source_type: user-provided local download
+  original_download_path: "/Users/sun/Downloads/6074-Lite3探索版总装.STEP"
+  public_url: null
+  license: unknown
+  redistribution: "Do not redistribute until provenance and permission are established"
+
+files:
+  - original_name: "6074-Lite3探索版总装.STEP"
+    local_source_path: "source/original/lite3-exploration-assembly.step"
+    size_bytes: 165783662
+    sha256: d0ad78189f8f9154a780796d2deffcc848c094700776d7c9d6f6da092106c6eb
+    format: "ISO 10303-21 STEP AP214"
+    units: millimetres
+    authoring_system: "SolidWorks 2020 / SwSTEP 2.0"
+    source_timestamp: "2023-10-21T02:23:11"
+
+step_structure:
+  product_count: 137
+  next_assembly_usage_occurrence_count: 319
+  advanced_brep_shape_representation_count: 77
+  manifold_solid_brep_count: 99
+  closed_shell_count: 99
+  triangulated_face_set_count: 0
+  top_level_product_name: "Lite3探索版总装"
+  robot_base_child_name: "Lite3体验版总装.STEP"
+  excluded_backload_child_name: "探索版背载模块"
+  excluded_backload_known_children:
+    - "1T21-BZ20-单背载外壳"
+    - "1T21-BZ1B-单背载基座"
+    - "背载扩展电路板单层"
+
+freecad_inspection:
+  object_count: 921
+  shape_object_count: 851
+  solid_count: 1427
+  face_count: 440637
+
+variant_boundary: >-
+  The top-level source is named Exploration, but the robot-base child is named
+  Experience. No evidence in the supplied file establishes that this chassis is
+  Lite3 Pro.
+
+license_boundary: >-
+  This is a user-provided manufacturer-style CAD export, not evidence of a
+  public or open-source release.

@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "rejected_wrong_j17a_j20a_through_bolt_nut_logic",
+  "rejection": {
+    "scope": "complete_step_03_animation",
+    "reason": "The J17A/J20A interface was rendered as pre-inserted long through-bolts closed by top-side nuts and washers. The source geometry instead supports a direct-thread interpretation: screw head and clearance path in J17A, threaded receiver in J20A.",
+    "preservation": "Keep the video and frames as immutable negative evidence. Do not reuse their J17A/J20A fastener order or top-side nut/washer closure.",
+    "not_rejected": "The separate S410 diameter 5.2 mm clearance-hole to J20A M5 threaded-hole observation remains source-backed. Exact screw length remains unresolved."
+  },
+  "scope": {
+    "starting_subassemblies": [
+      "accepted J17A/D435i first layer",
+      "accepted J20A/MID360 upper subassembly"
+    ],
+    "added_in_this_step": [
+      "official S410 guard",
+      "four independent S410-to-J20A M5x8 visual screw candidates",
+      "short L-key animation tool",
+      "two front J17A/J20A M3 through-bolt and nut visual pairs",
+      "two rear J17A/J20A M4 through-bolt, washer, and locknut visual groups"
+    ],
+    "excluded": [
+      "Lite3 robot",
+      "robot-side screws and spacers",
+      "hidden receiver proxies",
+      "grouped S410 screw draft",
+      "long T-driver"
+    ]
+  },
+  "animation": {
+    "video": "lite3-restart-step-03-s410-upper-to-j17a-no-text.mp4",
+    "codec": "h264",
+    "width": 1280,
+    "height": 720,
+    "frame_rate_fps": 24,
+    "frame_count": 600,
+    "duration_seconds": 25.0,
+    "contains_text_overlay": false,
+    "sequence": {
+      "s410_approach": [24, 71],
+      "s410_start_cross_order": [28, 31, 29, 30],
+      "s410_tighten_cross_order": [28, 31, 29, 30],
+      "j17a_bottom_up_fasteners": [7, 8, 18, 19],
+      "upper_subassembly_join": [336, 383],
+      "front_top_nuts": [9, 10],
+      "rear_washer_locknut_pairs": [[20, 22], [21, 23]]
+    }
+  },
+  "components": {
+    "j17a": {"occurrence_index": 1, "brep_body_count": 1, "mesh_body_count": 0},
+    "j20a": {"occurrence_index": 2, "brep_body_count": 1, "mesh_body_count": 0},
+    "s410": {"occurrence_index": 3, "brep_body_count": 1, "mesh_body_count": 0},
+    "mid360": {"occurrence_index": 4, "brep_body_count": 22, "mesh_body_count": 0},
+    "d435i": {"occurrence_index": 15, "brep_body_count": 2, "mesh_body_count": 0}
+  },
+  "axis_validation": {
+    "front_m3": {
+      "fastener_indices": [7, 8],
+      "shaft_diameter_mm": 3.0,
+      "j17a_clearance_diameter_mm": 3.5,
+      "j20a_modeled_receiver_diameter_mm": 2.5,
+      "maximum_axis_residual_mm": 0.0
+    },
+    "rear_m4": {
+      "fastener_indices": [18, 19],
+      "shaft_diameter_mm": 4.0,
+      "j17a_clearance_diameter_mm": 4.5,
+      "j20a_modeled_receiver_diameter_mm": 3.3,
+      "maximum_axis_residual_mm": 2.499999851586022e-7
+    },
+    "s410_m5": {
+      "fastener_indices": [28, 29, 30, 31],
+      "shaft_diameter_mm": 5.0,
+      "s410_clearance_diameter_mm": 5.2,
+      "j20a_modeled_receiver_diameter_mm": 4.2,
+      "maximum_axis_residual_mm": 2.768414426840601e-12
+    },
+    "nut_and_washer_closure_maximum_axis_residual_mm": 4.0194366942304643e-13
+  },
+  "final_geometry": {
+    "j17a_j20a": {"minimum_distance_mm": 0.0, "cross_interference_mm3": 0.0},
+    "j17a_d435i": {"minimum_distance_mm": 5.8960474636649364e-8, "cross_interference_mm3": 0.0},
+    "j20a_s410": {"minimum_distance_mm": 9.688568751980575e-8, "cross_interference_mm3": 0.0},
+    "j20a_mid360": {"minimum_distance_mm": 0.2000166082096268, "cross_interference_mm3": 0.0},
+    "s410_mid360": {"minimum_distance_mm": 1.2390918122771115, "cross_interference_mm3": 0.0}
+  },
+  "path_validation": {
+    "s410_approach_samples": 6,
+    "s410_approach_nonzero_cross_interference_samples": 0,
+    "upper_join_samples": 8,
+    "upper_join_nonzero_cross_interference_samples": 0,
+    "short_l_key_samples": 24,
+    "short_l_key_nonzero_external_interference_samples": 0
+  },
+  "render_restore_validation": {
+    "maximum_transform_difference": 3.197442310920451e-14,
+    "visibility_mismatches": [],
+    "pending_snapshot": false
+  },
+  "claim_boundary": {
+    "validated": "Source-model hole axes, zero undeclared cross-part interference at the sampled guard/tool/join states, assembly visibility/order, video decode, and Fusion scene restoration.",
+    "not_validated": "Factory-supplied fastener lengths, usable thread engagement, torque, exact hand-tool access, strength, vibration, or real-hardware safety.",
+    "layer_top_nuts": "Rejected visual closure. No independent evidence supports far-side nuts or washers where J20A already supplies the modeled threaded receivers."
+  },
+  "sources": [
+    {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J17A-lidar base.STEP",
+      "sha256": "52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490"
+    },
+    {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J20A-small lidar base.STEP",
+      "sha256": "341b08ca08526e5ee0e9fbeca0bfda9d9970062c6605e979adc52b31955c9bc9"
+    },
+    {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1CA5-S410-Lidar protector.STEP",
+      "sha256": "7fd23a776b45c7d8571ef77ba9e8b05520eced0b97f62487ba03f88bbc9df810"
+    },
+    {
+      "path": "references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02"
+    },
+    {
+      "path": "references/upstream/2026-07-25_realsense-d435i-cad/source/original/D435i_Solid.SLDPRT",
+      "sha256": "9cdbfdc7085ea5430ec9007eb1d895c7ff513c40b77c298a275ded33edf65525"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "lite3-restart-step-03-s410-upper-to-j17a-no-text.mp4",
+      "sha256": "023e25596f38a3fdb0216ce43530fd3bfb25a7f69d3317c7b0ff25eddaef0728"
+    },
+    {
+      "path": "keyframe-contact-sheet.png",
+      "sha256": "4567e247b29ef8c5ac41ffc307df0558a76eb4256867753056e73998818d6201"
+    }
+  ]
+}

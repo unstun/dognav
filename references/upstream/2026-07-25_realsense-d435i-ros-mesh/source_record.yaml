@@ -1,0 +1,65 @@
+topic: realsense-d435i-official-ros-mesh
+date: 2026-07-25
+status: surveyed
+
+upstream:
+  repository: https://github.com/realsenseai/realsense-ros
+  pinned_commit: 60c850958d651130fc2cc3d10efb37ff5be93da5
+  publisher: RealSense, Inc.
+  package: realsense2_description
+  package_version: 4.58.3
+  license: Apache-2.0
+
+files:
+  - name: d435.dae
+    local_source_path: source/original/d435.dae
+    upstream_path: realsense2_description/meshes/d435.dae
+    size_bytes: 15782439
+    sha256: 42f3b66f47a1f8f425a2e4dc07c1d9c283183167d8441f520a15623d98f9bf78
+    format: COLLADA 1.4.1
+    unit: metre
+    up_axis: Z_UP
+  - name: _d435.urdf.xacro
+    local_source_path: source/original/_d435.urdf.xacro
+    upstream_path: realsense2_description/urdf/_d435.urdf.xacro
+    size_bytes: 7527
+    sha256: ae3f57e8d38b3a6d5cc9de059e4afe545e4b895717d638b75d2ad0642cfb7f1b
+  - name: _d435i.urdf.xacro
+    local_source_path: source/original/_d435i.urdf.xacro
+    upstream_path: realsense2_description/urdf/_d435i.urdf.xacro
+    size_bytes: 1395
+    sha256: b16e710e95435e1dfb66316aa5c186b47cd6c4183b3dab8bf8940c801cc9d052
+  - name: package.xml
+    local_source_path: source/original/package.xml
+    upstream_path: realsense2_description/package.xml
+    size_bytes: 1071
+    sha256: 7432ab5a1c6e490abb79ebd1ec44ba3800efc373d9f4d0ad38de48e037127848
+  - name: LICENSE
+    local_source_path: source/original/LICENSE
+    upstream_path: LICENSE
+    size_bytes: 10758
+    sha256: 7092398b52290edddcb41c6e2297f4c6343eb315ea6c83edfdbeea2a73adfbdb
+
+mesh_audit:
+  geometry_count: 18
+  source_bbox_mm: [89.91429954767227, 25.00000037252903, 25.054700672626495]
+  source_bounds_mm:
+    min: [-44.91420090198517, -12.500000186264515, -25.054700672626495]
+    max: [45.0000986456871, 12.500000186264515, 0.0]
+  source_axes: >-
+    Source X is camera width, source Y is camera height, and source +Z points
+    from the rear enclosure toward the front optical plate. This follows the
+    transform used by the pinned official _d435.urdf.xacro.
+
+provenance_note: >-
+  The pinned official _d435i.urdf.xacro includes _d435.urdf.xacro, and the
+  latter uses meshes/d435.dae for the aluminum peripheral camera case. The
+  D435i visual exterior in this project therefore uses this official ROS mesh
+  directly. It is not presented as a conversion of the separately preserved
+  proprietary D435i_Solid.SLDPRT.
+
+claim_boundary: >-
+  This is the official RealSense ROS visual mesh used for D435i robot
+  description, not manufacturing CAD. The exact source mesh is retained for
+  the visual track. A separately reported voxel reconstruction is required
+  for a closed printable solid.

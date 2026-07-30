@@ -1,0 +1,36 @@
+{
+  "status": "reference_only",
+  "source": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/source/2026-07-30-user-glb-scan/7_30_2026.glb",
+  "crop_mm": {
+    "x": [
+      -300.0,
+      320.0
+    ],
+    "y": [
+      -210.0,
+      210.0
+    ],
+    "z": [
+      300.0,
+      455.0
+    ]
+  },
+  "textured_obj": {
+    "obj": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/derived/upper-body-mesh-reference/lite3-pro-oriented-upper-body-reference-mm.obj",
+    "mtl": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/derived/upper-body-mesh-reference/lite3-pro-oriented-upper-body-reference-mm.mtl",
+    "textures": [
+      "scan-texture-0.jpg",
+      "scan-texture-1.jpg"
+    ],
+    "vertices": 113769,
+    "triangles": 195954
+  },
+  "lightweight_stl": {
+    "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-physical-scan-rev-a/derived/upper-body-mesh-reference/lite3-pro-oriented-upper-body-reference-3mm-lightweight.stl",
+    "vertex_cluster_grid_mm": 3.0,
+    "vertices": 33706,
+    "triangles": 66320,
+    "manufacturing_use": false
+  },
+  "warning": "Both outputs are scan references. Do not print, tap, or dimension small holes from them."
+}

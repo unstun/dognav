@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "classification": "d435i_support_candidate_not_print_release",
+  "camera_interface": {
+    "official_nominal_envelope_mm": [90.0, 25.0, 25.0],
+    "rear_thread_count": 2,
+    "rear_thread_nominal": "M3",
+    "rear_thread_pitch_mm": 45.0,
+    "maximum_thread_insertion_mm": 3.0,
+    "recommended_combined_torque_nm": 0.4,
+    "downward_optical_tilt_deg": 20.0
+  },
+  "support_candidate": {
+    "camera_forward_shift_for_support_mm": 8.5,
+    "rear_bridge": {
+      "thickness_along_camera_axis_mm": 4.0,
+      "width_mm": 64.0,
+      "height_mm": 16.0,
+      "m3_clearance_diameter_mm": 3.4
+    },
+    "side_posts": {
+      "count": 2,
+      "x_range_mm": [6.0, 11.5],
+      "y_ranges_mm": [[-32.0, -26.0], [26.0, 32.0]],
+      "z_range_mm": [7.8, 26.0]
+    },
+    "future_lower_union_pads": {
+      "count": 2,
+      "x_range_mm": [6.0, 16.0],
+      "y_ranges_mm": [[-32.0, -26.0], [26.0, 32.0]],
+      "z_range_mm": [4.0, 8.0]
+    }
+  },
+  "assembly_sequence_constraint": "Attach D435i to this support before installing J20A, MID-360 and S410; final in-situ rear driver access is not assumed.",
+  "release_gate": {
+    "stl_allowed": false,
+    "blocking_inputs": [
+      "human review of camera overhang and low-front pose",
+      "front leg sweep and terrain strike envelope",
+      "USB connector and cable bend envelope",
+      "current-Pro receiver threads and lower structural load path",
+      "material, strength, fatigue and slicer validation"
+    ]
+  }
+}

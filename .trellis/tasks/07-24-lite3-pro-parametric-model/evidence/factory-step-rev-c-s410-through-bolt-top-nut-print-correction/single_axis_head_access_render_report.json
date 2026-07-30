@@ -1,0 +1,24 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "awaiting_user_direction_and_layer_review",
+  "rendered": [
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-rev-c-s410-through-bolt-top-nut-print-correction/single-axis-head-access-assembled-side-cutaway.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-rev-c-s410-through-bolt-top-nut-print-correction/single-axis-head-access-exploded-bottom-bolt-top-nut.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-rev-c-s410-through-bolt-top-nut-print-correction/single-axis-head-access-topside-nut.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-rev-c-s410-through-bolt-top-nut-print-correction/single-axis-head-access-underside-bolt-head.png"
+  ],
+  "render_count": 4,
+  "visual_encoding": {
+    "orange": "M5x14 bolt entering from underside",
+    "green": "M5 hex nut seated on top",
+    "blue_arrow": "bottom-up insertion direction",
+    "ghosted_parts": "Rev C printed bracket and official S410 guard",
+    "head_access": "9.5 mm x 6.5 mm underside access bore around the orange bolt head"
+  },
+  "restoration": {
+    "visibility_mismatches": [],
+    "opacity_mismatches": [],
+    "custom_graphics_deleted": true
+  },
+  "claim_boundary": "The images validate direction and modeled packaging only. Hardware standard, fit, torque, print tolerance, strength, vibration, and real-robot safety remain unvalidated."
+}

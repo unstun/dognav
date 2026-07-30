@@ -1,0 +1,67 @@
+{
+  "status": "rejected_interface_mismatch",
+  "date": "2026-07-27",
+  "method": "Fusion-native B-rep circular-edge centre comparison in the common world frame",
+  "hole_group_correction": {
+    "previous_error": "The first audit compared J17A's separate 4 x M3 pattern instead of the four installation holes identified in the official installation video.",
+    "official_drawing_callout": "4 x diameter 4.50 mm through holes with diameter 8 mm counterbores",
+    "official_video_evidence": [
+      "references/upstream/2026-07-26_lite3-official-fast-livo2-install-video/derived/sensor-install-closeup/frame-08.jpg",
+      "references/upstream/2026-07-26_lite3-official-fast-livo2-install-video/derived/sensor-install-closeup/frame-10.jpg"
+    ],
+    "video_interpretation": "The presenter identifies these four large counterbored holes and instructs inserting four screws through them."
+  },
+  "j17a_installation_holes": {
+    "source_record": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source_record.yaml",
+    "declared_robot_variant": "Lite3 Venture only",
+    "through_diameter_mm": 4.5,
+    "counterbore_diameter_mm": 8.0,
+    "fixed_orientation_pattern_mm": [67.88225, 67.88225],
+    "front_row_world_centres_cm": [
+      [-33.825933, 256.592539],
+      [-27.037708, 256.592539]
+    ],
+    "front_row_pitch_mm": 67.88225
+  },
+  "robot_source": {
+    "source_record": "references/upstream/2026-07-27_lite3-exploration-assembly-cad/source_record.yaml",
+    "top_level_product": "Lite3探索版总装",
+    "visible_robot_child": "Lite3体验版总装.STEP",
+    "plausible_vertical_circular_feature_centres": 71,
+    "circled_front_row_world_centres_cm": [
+      [-33.697033, 260.684871],
+      [-27.196861, 260.684871]
+    ],
+    "circled_front_row_pitch_mm": 65.00172
+  },
+  "circled_pair_comparison": {
+    "current_longitudinal_centre_offset_mm": 40.92332,
+    "current_lateral_midpoint_offset_mm": -0.151265,
+    "pitch_difference_mm": 2.88053,
+    "residual_per_hole_after_midpoint_alignment_mm": 1.440265,
+    "interpretation": "The two rows look parallel in perspective, but a rigid translation cannot make both circled centres coaxial because their pitches differ."
+  },
+  "full_pattern_matching_test": {
+    "fixed_orientation": true,
+    "centre_tolerance_mm": 0.5,
+    "required_matches": 4,
+    "best_match_count": 1,
+    "result": "no_matching_67.88225_mm_square_installation_pattern"
+  },
+  "interpretation": [
+    "The 4 x M3 110 x 86 mm pattern remains a real J17A feature but is not the four-hole installation group shown in the official video.",
+    "The current 30 mm visual translation did not register the correct four installation holes.",
+    "Even after translating the circled front rows to a common midpoint, their 2.88053 mm pitch difference prevents two-hole coaxial alignment.",
+    "The source variants therefore still do not provide a demonstrated direct mounting interface."
+  ],
+  "next_source_gate": [
+    "matching Lite3 Venture or Lite3 LiDAR chassis/interface CAD",
+    "official manufacturer adapter or base CAD"
+  ],
+  "forbidden_continuation": [
+    "reuse the 110 x 86 mm M3 group as the direct-installation-hole pattern",
+    "translate the assembly until one feature looks aligned",
+    "invent a custom base under the current instruction",
+    "label the rejected placement as installed or awaiting visual review"
+  ]
+}

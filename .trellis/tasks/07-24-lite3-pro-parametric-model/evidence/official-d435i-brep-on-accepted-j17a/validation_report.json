@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "visual_review_pending",
+  "assembly": {
+    "root_occurrences": 14,
+    "root_mesh_bodies": 0,
+    "industrial_pc_present": false,
+    "base_fasteners": {
+      "m3x12_through_bolts": 2,
+      "m3_hex_nuts": 2
+    },
+    "mid360_fasteners": {
+      "m3x8_underside_screws": 4
+    },
+    "d435i_fasteners": {
+      "m3x5_visual_candidate_screws": 2,
+      "claim_boundary": "The two axes and 45 mm spacing are source-backed. M3x5 is a modeled candidate selected to traverse the 2.5 mm J17A face and remain below the D435i 3 mm maximum insertion limit; it is not a factory screw-length claim."
+    }
+  },
+  "components": {
+    "j17a": {
+      "name": "J17A_ACCEPTED_RECOVERED_BREP",
+      "brep_bodies": 1,
+      "mesh_bodies": 0,
+      "solid": true,
+      "faces": 125,
+      "volume_cm3": 30.666951147825845,
+      "claim_boundary": "Recovered from the pre-crash, user-reviewed Fusion assembly. This is the accepted counterbore-adjusted B-rep, not an untouched re-import of the official J17A STEP."
+    },
+    "j20a": {
+      "name": "J20A_ACCEPTED_RECOVERED_BREP",
+      "brep_bodies": 1,
+      "mesh_bodies": 0,
+      "solid": true,
+      "faces": 47,
+      "volume_cm3": 26.174292117436554
+    },
+    "mid360": {
+      "name": "MID360_REAL_BREP_OFFICIAL_CAD_48x36_4xM3",
+      "unique_brep_bodies": 22,
+      "solid_bodies": 7,
+      "sheet_bodies": 15,
+      "mesh_bodies": 0,
+      "transform_cm": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.25881904510252074,
+        0.9659258262890683,
+        0.0,
+        4.10926628111046,
+        -0.9659258262890683,
+        0.25881904510252074,
+        0.0,
+        2.865043515370914,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "d435i": {
+      "name": "D435I_REAL_BREP_OFFICIAL_MANUFACTURER_CAD",
+      "source_conversion": "Fusion cloud translation of the official manufacturer D435i_Solid.SLDPRT",
+      "brep_bodies": 2,
+      "solid_bodies": 2,
+      "mesh_bodies": 0,
+      "faces": [
+        633,
+        8
+      ],
+      "source_bbox_mm": [
+        89.90450611221185,
+        24.99995770638068,
+        25.049999986780067
+      ],
+      "transform_cm": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.9396926207859093,
+        -0.34202014332566627,
+        0.5104501708593001,
+        0.0,
+        0.34202014332566627,
+        0.9396926207859093,
+        10.247172316052604,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "transform_determinant": 1.0,
+      "source_internal_body_overlap_mm3": 0.7479496059067646,
+      "source_internal_overlap_note": "This overlap is between the two manufacturer-source D435i bodies. It is not a J17A/D435i cross-interference."
+    }
+  },
+  "geometry_validation": {
+    "j17a_j20a": {
+      "minimum_distance_mm": 0.0,
+      "cross_interference_mm3": 0.0
+    },
+    "j20a_mid360": {
+      "minimum_distance_mm": 2.808666774861361e-14,
+      "cross_interference_mm3": 0.0
+    },
+    "j17a_d435i": {
+      "minimum_distance_mm": 5.896009445742102e-08,
+      "cross_interference_mm3": 0.0
+    },
+    "d435i_mount": {
+      "hole_spacing_mm": 45.0,
+      "j17a_hole_diameter_mm": 3.2,
+      "d435i_thread_minor_diameter_mm": 2.5,
+      "axis": [
+        0.0,
+        -0.34202014332566627,
+        0.9396926207859093
+      ],
+      "axis_residuals_mm": [
+        1.1568008267290208e-14,
+        1.1568008267290208e-14
+      ],
+      "maximum_axis_residual_mm": 1.1568008267290208e-14,
+      "seat": "D435i rear mounting plane directly contacts the two short J17A camera faces."
+    }
+  },
+  "round_trip_validation": {
+    "fusion_archive_reimported": true,
+    "root_occurrences": 14,
+    "root_mesh_bodies": 0,
+    "required_components_present": [
+      "J17A_ACCEPTED_RECOVERED_BREP",
+      "J20A_ACCEPTED_RECOVERED_BREP",
+      "MID360_REAL_BREP_OFFICIAL_CAD_48x36_4xM3",
+      "D435I_REAL_BREP_OFFICIAL_MANUFACTURER_CAD"
+    ],
+    "mid360_transform_preserved": true,
+    "d435i_transform_preserved": true
+  },
+  "sources": [
+    {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/mid360-on-j20a-step/mid360-demo-autosave-recovered.f3d",
+      "sha256": "b82256b22a78d7a10e99b32bb1b46c975d6d839105b1c916d78d7b161c184e1b"
+    },
+    {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J17A-lidar base.STEP",
+      "sha256": "52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490"
+    },
+    {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J20A-small lidar base.STEP",
+      "sha256": "341b08ca08526e5ee0e9fbeca0bfda9d9970062c6605e979adc52b31955c9bc9"
+    },
+    {
+      "path": "references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02"
+    },
+    {
+      "path": "references/upstream/2026-07-25_realsense-d435i-cad/source/original/D435i_Solid.SLDPRT",
+      "sha256": "9cdbfdc7085ea5430ec9007eb1d895c7ff513c40b77c298a275ded33edf65525"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "lite3-venture-j17a-j20a-mid360-d435i-brep.f3d",
+      "sha256": "71efccf66aa8d5dd676c32d1d711251847ae013849dfa96596097c12b15b7908"
+    },
+    {
+      "path": "assembly-iso-top-right.png",
+      "sha256": "e6b04b29f885626c8252db98b0d3417c1e1fe35f57b50282adeaa775e1a5102c"
+    },
+    {
+      "path": "assembly-iso-bottom-right.png",
+      "sha256": "a19bc38ef0831f0b6f771ee1e4847da9c8dca9264ca25cc67b6232c76bee4c9f"
+    },
+    {
+      "path": "assembly-front.png",
+      "sha256": "ddeb7b68d071136cf6f961fb1280fb5a6124f281cac13a3350980dcae5d4b852"
+    }
+  ]
+}

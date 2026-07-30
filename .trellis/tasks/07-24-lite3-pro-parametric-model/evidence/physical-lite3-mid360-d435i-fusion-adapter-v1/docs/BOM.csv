@@ -1,0 +1,14 @@
+item_id,quantity,description,specification,receiver_or_retention,evidence_status,release_status
+P01,1,Monolithic sensor carrier,PA6-CF or PA12-CF candidate; 0.6 mm nozzle; 0.25 mm layers; 6 perimeters; 45% gyroid,Rejected V1 Experience-style deck interface; upper geometry only,archived engineering evidence,rejected for current Lite3 Pro fabrication
+S01,1,Livox Mid-360,Official manufacturer sensor CAD,Four-point J20A-derived interface,source-backed sensor,procurement outside scope
+S02,1,Intel RealSense D435i,Official manufacturer sensor CAD,Two rear M3 internal threads at 45 mm pitch; max insertion 3 mm,source-backed sensor,procurement outside scope
+G01,1,S410 protective guard,Manufacturer Lite3 Venture extension geometry,Four J20A-derived M5 receiver axes,related-source candidate,physical fit pending
+F01,2,D435i mounting screw,ISO 4762 M3x5 socket head candidate,Directly into D435i rear M3 threads; modeled engagement 2.5 mm; no nut,axis and insertion limit source-backed; length candidate,verify actual face thickness and screw head
+F02,4,Mid-360 mounting screw,ISO 4762 M3x8 socket head candidate,Installed from carrier underside into Mid-360,pattern source-backed; length candidate,verify official thread depth and supplied hardware
+F03,4,S410 guard screw,ISO 4762 M5x8 socket head candidate,Installed from guard into J20A-derived 4.2 mm tap-drill receivers; no loose nut in V1,axes source-backed; printed-thread strategy unvalidated,decide tapped PA-CF versus metal insert after coupon
+F04,2,Rejected V1 Lite3 front carrier screw,ISO 4762 M3x8 socket head candidate,Experience-style V1 front pair only,rejected interface evidence,do not purchase or install for current Pro
+F05,2,Rejected V1 Lite3 rear carrier screw,ISO 4762 M3x12 socket head candidate,Experience-style V1 rear pair and spacer only,rejected interface evidence,do not purchase or install for current Pro
+F06,2,Rejected V1 rear locating spacer,OD 8 mm; ID 3.5 mm; height 4 mm candidate,Experience-style V1 deck only,rejected visual candidate,do not manufacture for current Pro
+C01,1,D435i USB cable and strain relief,Minimum modeled bend radius 20 mm,Cable path to retained Interface enclosure,design assumption,verify actual plug and cable
+C02,1,Mid-360 power/data cable and strain relief,Minimum modeled bend radius 30 mm,Cable path to retained Interface enclosure,design assumption,verify actual plug and cable
+T01,1,Hex driver access,6 mm diameter x 30 mm straight corridor modeled,All sensor and guard fasteners,modeled clear,select actual bit and wrench after screw-head confirmation

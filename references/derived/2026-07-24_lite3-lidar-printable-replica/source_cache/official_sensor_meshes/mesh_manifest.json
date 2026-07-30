@@ -1,0 +1,564 @@
+{
+  "schema_version": 1,
+  "claim_boundary": "Read-only tessellation of official STEP inputs for the printable replica pipeline; not factory Lite3 assembly CAD.",
+  "meshes": {
+    "mid360_full": {
+      "source": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "source_sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02",
+      "source_solids": 7,
+      "source_shells": 23,
+      "source_faces": 1715,
+      "source_bbox": {
+        "min_mm": [
+          -32.43692041784,
+          -25.91710000002,
+          -32.43692041737
+        ],
+        "max_mm": [
+          40.3,
+          34.18,
+          32.43692041782
+        ],
+        "size_mm": [
+          72.73692041784,
+          60.09710000002,
+          64.87384083519
+        ]
+      },
+      "tessellated_solids_only": false,
+      "solid_indices": null,
+      "shell_indices": null,
+      "tessellated_bbox": {
+        "min_mm": [
+          -32.43692041784,
+          -25.91710000002,
+          -32.43692041737
+        ],
+        "max_mm": [
+          40.3,
+          34.18,
+          32.43692041782
+        ],
+        "size_mm": [
+          72.73692041784,
+          60.09710000002,
+          64.87384083519
+        ]
+      },
+      "linear_deflection_mm": 0.1,
+      "mesh_vertices": 156918,
+      "mesh_facets": 312746,
+      "output": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_full_official.stl",
+      "output_size_bytes": 15637384,
+      "output_sha256": "2f6cffded4262d5c151c9bd6010837c3b47feb83d3af26614d71ef426f776c23"
+    },
+    "mid360_solids": {
+      "source": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "source_sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02",
+      "source_solids": 7,
+      "source_shells": 23,
+      "source_faces": 1715,
+      "source_bbox": {
+        "min_mm": [
+          -32.4391889929254,
+          -25.91710000002,
+          -33.39676347906885
+        ],
+        "max_mm": [
+          40.3,
+          34.18,
+          33.39833012650332
+        ],
+        "size_mm": [
+          72.73918899292539,
+          60.09710000002,
+          66.79509360557216
+        ]
+      },
+      "tessellated_solids_only": true,
+      "solid_indices": null,
+      "shell_indices": null,
+      "tessellated_bbox": {
+        "min_mm": [
+          -32.39302010066,
+          -25.91710000002,
+          -32.39302010063
+        ],
+        "max_mm": [
+          40.3,
+          34.18,
+          32.39302010063
+        ],
+        "size_mm": [
+          72.69302010066,
+          60.09710000002,
+          64.78604020126
+        ]
+      },
+      "linear_deflection_mm": 0.1,
+      "mesh_vertices": 29110,
+      "mesh_facets": 58220,
+      "output": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_solids_official.stl",
+      "output_size_bytes": 2911084,
+      "output_sha256": "892d26f6b47382235d2c8c962be8406db7db9652c662685643a2e4db82d2973f"
+    },
+    "mid360_optical_window": {
+      "source": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "source_sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02",
+      "source_solids": 7,
+      "source_shells": 23,
+      "source_faces": 1715,
+      "source_bbox": {
+        "min_mm": [
+          -32.4391889929254,
+          -25.917100000032026,
+          -33.39676347906885
+        ],
+        "max_mm": [
+          40.300000000000004,
+          34.18,
+          33.39833012650332
+        ],
+        "size_mm": [
+          72.7391889929254,
+          60.09710000003203,
+          66.79509360557216
+        ]
+      },
+      "tessellated_solids_only": true,
+      "solid_indices": [
+        0
+      ],
+      "shell_indices": null,
+      "tessellated_bbox": {
+        "min_mm": [
+          -25.49315589354,
+          7.007218311443,
+          -25.49315589354
+        ],
+        "max_mm": [
+          25.49315589354,
+          34.18,
+          25.49315589354
+        ],
+        "size_mm": [
+          50.98631178708,
+          27.172781688557,
+          50.98631178708
+        ]
+      },
+      "linear_deflection_mm": 0.05,
+      "mesh_vertices": 4696,
+      "mesh_facets": 9388,
+      "output": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_optical_window_official.stl",
+      "output_size_bytes": 469484,
+      "output_sha256": "18a0961144ecdbf1ce3f7fd7164263ff3583833151335753dbff33f25159c5f8"
+    },
+    "mid360_body": {
+      "source": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "source_sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02",
+      "source_solids": 7,
+      "source_shells": 23,
+      "source_faces": 1715,
+      "source_bbox": {
+        "min_mm": [
+          -32.4391889929254,
+          -25.91710000002,
+          -33.39676347906885
+        ],
+        "max_mm": [
+          40.300000000000004,
+          35.480000000000004,
+          33.39833012650332
+        ],
+        "size_mm": [
+          72.7391889929254,
+          61.397100000020004,
+          66.79509360557216
+        ]
+      },
+      "tessellated_solids_only": true,
+      "solid_indices": [
+        1
+      ],
+      "shell_indices": null,
+      "tessellated_bbox": {
+        "min_mm": [
+          -32.39302010066,
+          -25.91710000002,
+          -32.39302010063
+        ],
+        "max_mm": [
+          32.39302010063,
+          -17.8171,
+          32.39302010063
+        ],
+        "size_mm": [
+          64.78604020129,
+          8.10000000002,
+          64.78604020126
+        ]
+      },
+      "linear_deflection_mm": 0.05,
+      "mesh_vertices": 9515,
+      "mesh_facets": 19038,
+      "output": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_body_official.stl",
+      "output_size_bytes": 951984,
+      "output_sha256": "63a2704562e4d632b4b0d634037eae0a6ed376e887f8ae0e1e4d21c4fd9440ab"
+    },
+    "mid360_connector": {
+      "source": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "source_sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02",
+      "source_solids": 7,
+      "source_shells": 23,
+      "source_faces": 1715,
+      "source_bbox": {
+        "min_mm": [
+          -32.4391889929254,
+          -25.917100000032026,
+          -33.39676347906885
+        ],
+        "max_mm": [
+          40.3,
+          35.480000000000004,
+          33.39833012650332
+        ],
+        "size_mm": [
+          72.73918899292539,
+          61.397100000032026,
+          66.79509360557216
+        ]
+      },
+      "tessellated_solids_only": true,
+      "solid_indices": [
+        2
+      ],
+      "shell_indices": null,
+      "tessellated_bbox": {
+        "min_mm": [
+          26.4999999998,
+          -19.66709999993,
+          -11.0
+        ],
+        "max_mm": [
+          40.3,
+          -3.66710000007,
+          10.99999999993
+        ],
+        "size_mm": [
+          13.800000000199997,
+          15.999999999859998,
+          21.99999999993
+        ]
+      },
+      "linear_deflection_mm": 0.05,
+      "mesh_vertices": 16145,
+      "mesh_facets": 32302,
+      "output": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_connector_official.stl",
+      "output_size_bytes": 1615184,
+      "output_sha256": "6322a17c6d97eb4f5cb2932106d2e8615fd594263ddd1ed3294af632775f1762"
+    },
+    "mid360_housing_exterior": {
+      "source": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "source_sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02",
+      "source_solids": 7,
+      "source_shells": 23,
+      "source_faces": 1715,
+      "source_bbox": {
+        "min_mm": [
+          -32.43692041784,
+          -25.917100000032026,
+          -32.43692041737
+        ],
+        "max_mm": [
+          40.300000000000004,
+          35.480000000000004,
+          32.43692041782
+        ],
+        "size_mm": [
+          72.73692041784,
+          61.397100000032026,
+          64.87384083519
+        ]
+      },
+      "tessellated_solids_only": false,
+      "solid_indices": null,
+      "shell_indices": [
+        21
+      ],
+      "tessellated_bbox": {
+        "min_mm": [
+          -32.43692041784,
+          -22.16710103779741,
+          -32.43692041737
+        ],
+        "max_mm": [
+          32.43692041739,
+          10.38,
+          32.43692041782
+        ],
+        "size_mm": [
+          64.87384083523,
+          32.54710103779741,
+          64.87384083519
+        ]
+      },
+      "linear_deflection_mm": 0.05,
+      "mesh_vertices": 78120,
+      "mesh_facets": 156017,
+      "output": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/mid360_housing_exterior_official.stl",
+      "output_size_bytes": 7800934,
+      "output_sha256": "b296260f763a5cae3442e46622242696bdd9b3923293ebf423e983e5d1cddf9c"
+    },
+    "j20a": {
+      "source": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J20A-small lidar base.STEP",
+      "source_sha256": "341b08ca08526e5ee0e9fbeca0bfda9d9970062c6605e979adc52b31955c9bc9",
+      "source_solids": 1,
+      "source_shells": 1,
+      "source_faces": 62,
+      "source_bbox": {
+        "min_mm": [
+          -4.000000000000004,
+          -1.0409497792752398e-16,
+          -40.0
+        ],
+        "max_mm": [
+          92.0,
+          25.0,
+          40.0
+        ],
+        "size_mm": [
+          96.0,
+          25.0,
+          80.0
+        ]
+      },
+      "tessellated_solids_only": true,
+      "solid_indices": null,
+      "shell_indices": null,
+      "tessellated_bbox": {
+        "min_mm": [
+          -4.000000000000004,
+          -1.0409497792752398e-16,
+          -40.0
+        ],
+        "max_mm": [
+          92.0,
+          25.0,
+          40.0
+        ],
+        "size_mm": [
+          96.0,
+          25.0,
+          80.0
+        ]
+      },
+      "linear_deflection_mm": 0.1,
+      "mesh_vertices": 2749,
+      "mesh_facets": 5554,
+      "output": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/j20a_official.stl",
+      "output_size_bytes": 277784,
+      "output_sha256": "39370afad104d5f3a9b7edb3f3034064687640842b41d719d7867d585809b2fd"
+    },
+    "j17a": {
+      "source": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J17A-lidar base.STEP",
+      "source_sha256": "52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490",
+      "source_solids": 1,
+      "source_shells": 1,
+      "source_faces": 177,
+      "source_bbox": {
+        "min_mm": [
+          -72.74999999706338,
+          -57.50000000000001,
+          -6.06143873760315
+        ],
+        "max_mm": [
+          80.984543869793,
+          57.50000000000001,
+          20.999999999999996
+        ],
+        "size_mm": [
+          153.73454386685637,
+          115.00000000000001,
+          27.061438737603147
+        ]
+      },
+      "tessellated_solids_only": true,
+      "solid_indices": null,
+      "shell_indices": null,
+      "tessellated_bbox": {
+        "min_mm": [
+          -72.74999999706338,
+          -57.50000000000001,
+          -6.06143873760315
+        ],
+        "max_mm": [
+          80.984543869793,
+          57.50000000000001,
+          20.999999999999996
+        ],
+        "size_mm": [
+          153.73454386685637,
+          115.00000000000001,
+          27.061438737603147
+        ]
+      },
+      "linear_deflection_mm": 0.1,
+      "mesh_vertices": 6042,
+      "mesh_facets": 12156,
+      "output": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/j17a_official.stl",
+      "output_size_bytes": 607884,
+      "output_sha256": "bdc4a8591223721f9efcbe25330b8cf86eaa2f1d30e8269fa826612b2c5d3e2c"
+    },
+    "s410": {
+      "source": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1CA5-S410-Lidar protector.STEP",
+      "source_sha256": "7fd23a776b45c7d8571ef77ba9e8b05520eced0b97f62487ba03f88bbc9df810",
+      "source_solids": 1,
+      "source_shells": 1,
+      "source_faces": 218,
+      "source_bbox": {
+        "min_mm": [
+          -46.75542263183914,
+          -5.128711437672311e-15,
+          -34.72962413688758
+        ],
+        "max_mm": [
+          46.755422631839146,
+          73.98999899979994,
+          34.72962010106356
+        ],
+        "size_mm": [
+          93.51084526367828,
+          73.98999899979994,
+          69.45924423795114
+        ]
+      },
+      "tessellated_solids_only": true,
+      "solid_indices": null,
+      "shell_indices": null,
+      "tessellated_bbox": {
+        "min_mm": [
+          -46.75542263183914,
+          -5.128711437672311e-15,
+          -34.72962413688758
+        ],
+        "max_mm": [
+          46.755422631839146,
+          73.98999899979994,
+          34.72962010106356
+        ],
+        "size_mm": [
+          93.51084526367828,
+          73.98999899979994,
+          69.45924423795114
+        ]
+      },
+      "linear_deflection_mm": 0.1,
+      "mesh_vertices": 18487,
+      "mesh_facets": 36998,
+      "output": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/s410_official.stl",
+      "output_size_bytes": 1849984,
+      "output_sha256": "e3b4c638015d0acb8afe12f01a38c16e07542de591871f3980ba1ece094218af"
+    },
+    "jetson_agx_orin_module": {
+      "source": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-25_nvidia-jetson-agx-orin-devkit-cad/source/original/p3701_module/p3701-sku0-simplified.stp",
+      "source_sha256": "eda6573c8bf8d5ee32414e16eee6e923c0a20848174a1fa7307e52e2aaf756ba",
+      "source_solids": 19,
+      "source_shells": 33,
+      "source_faces": 2021,
+      "source_bbox": {
+        "min_mm": [
+          -2.5,
+          -8.25,
+          -5.11
+        ],
+        "max_mm": [
+          84.5,
+          91.75,
+          11.18
+        ],
+        "size_mm": [
+          87.0,
+          100.0,
+          16.29
+        ]
+      },
+      "tessellated_solids_only": true,
+      "solid_indices": null,
+      "shell_indices": null,
+      "tessellated_bbox": {
+        "min_mm": [
+          -2.5,
+          -8.25,
+          -4.77699166039
+        ],
+        "max_mm": [
+          84.5,
+          91.75,
+          11.18
+        ],
+        "size_mm": [
+          87.0,
+          100.0,
+          15.956991660389999
+        ]
+      },
+      "linear_deflection_mm": 0.1,
+      "mesh_vertices": 187790,
+      "mesh_facets": 375634,
+      "output": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/jetson_agx_orin_module_official.stl",
+      "output_size_bytes": 18781784,
+      "output_sha256": "241aaf7ea3247d67624d6fddad30fd1f5085ef0b4ca4d12798f44eb4c166a112"
+    },
+    "agx_orin_base": {
+      "source": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/AGX-orin-base.STEP",
+      "source_sha256": "268e30265af60a6daef80bf4949fd04d003122176e04bf8e87be3cf006420a61",
+      "source_solids": 1,
+      "source_shells": 1,
+      "source_faces": 335,
+      "source_bbox": {
+        "min_mm": [
+          -100.88328157299975,
+          -2.0000000000000018,
+          0.0
+        ],
+        "max_mm": [
+          30.0,
+          32.00283707251535,
+          115.0
+        ],
+        "size_mm": [
+          130.88328157299975,
+          34.00283707251535,
+          115.0
+        ]
+      },
+      "tessellated_solids_only": true,
+      "solid_indices": null,
+      "shell_indices": null,
+      "tessellated_bbox": {
+        "min_mm": [
+          -100.88328157299975,
+          -2.0000000000000018,
+          0.0
+        ],
+        "max_mm": [
+          30.0,
+          32.00283707251535,
+          115.0
+        ],
+        "size_mm": [
+          130.88328157299975,
+          34.00283707251535,
+          115.0
+        ]
+      },
+      "linear_deflection_mm": 0.1,
+      "mesh_vertices": 29169,
+      "mesh_facets": 58394,
+      "output": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/source_cache/official_sensor_meshes/agx_orin_base_official.stl",
+      "output_size_bytes": 2919784,
+      "output_sha256": "c9f19a328be5fe6418c8f9b3218acb88225530bc077ffcb0fd038a43b49f5146"
+    }
+  }
+}

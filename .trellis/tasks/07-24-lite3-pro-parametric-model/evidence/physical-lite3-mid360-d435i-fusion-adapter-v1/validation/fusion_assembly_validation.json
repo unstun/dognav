@@ -1,0 +1,229 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "historical_internal_fusion_geometry_pass_rejected_for_current_pro_interface",
+  "document": "lite3-j17a-j20a-monolithic-rear-web-print-adaptation-rev-b-review",
+  "indices": {
+    "source_rev_b_hidden": 35,
+    "carrier_v1": 44,
+    "physical_interface_keepout": 45,
+    "robot": 0,
+    "s410": 3,
+    "mid360": 4,
+    "d435i": 15
+  },
+  "carrier": {
+    "component": "LITE3_MID360_D435I_MONOLITHIC_CARRIER_V1_NOT_OFFICIAL_CAD",
+    "body": "LITE3_MID360_D435I_MONOLITHIC_CARRIER_V1_10MM_REAR_WEB",
+    "brep_body_count": 1,
+    "mesh_body_count": 0,
+    "is_solid": true,
+    "lump_count": 1,
+    "shell_count": 1,
+    "face_count": 195,
+    "volume_mm3": 74955.54795217415
+  },
+  "interface_cylinders": {
+    "d435i_2x_m3_clearance": [
+      {
+        "origin_cm": [
+          -28.197009644681465,
+          22.177372631523244,
+          261.11343973827854
+        ],
+        "radius_mm": 1.5999999999999994,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -32.697009644681465,
+          22.177372631523244,
+          261.11343973827854
+        ],
+        "radius_mm": 1.5999999999999994,
+        "axis_alignment": 1.0
+      }
+    ],
+    "mid360_4x_m3_clearance": [
+      {
+        "origin_cm": [
+          -32.24700964468146,
+          15.077732354412397,
+          256.964165951486
+        ],
+        "radius_mm": 1.7500000000000193,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -28.647009644681464,
+          15.077732354412397,
+          256.964165951486
+        ],
+        "radius_mm": 1.7500000000000193,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -28.647009644681464,
+          16.320063770904483,
+          252.32772198529844
+        ],
+        "radius_mm": 1.7500000000000018,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -32.24700964468146,
+          16.320063770904483,
+          252.32772198529844
+        ],
+        "radius_mm": 1.7500000000000018,
+        "axis_alignment": 1.0
+      }
+    ],
+    "s410_4x_m5_receivers": [
+      {
+        "origin_cm": [
+          -32.906859573287356,
+          20.99216848863984,
+          260.3916316144593
+        ],
+        "radius_mm": 2.0999999999999934,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -27.987159716075574,
+          20.99216848863984,
+          260.3916316144593
+        ],
+        "radius_mm": 2.0999999999999934,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -32.935037516961955,
+          23.1515234383815,
+          252.33280923044802
+        ],
+        "radius_mm": 2.0999999999999903,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -27.958981772400975,
+          23.1515234383815,
+          252.33280923044802
+        ],
+        "radius_mm": 2.0999999999999903,
+        "axis_alignment": 1.0
+      }
+    ]
+  },
+  "sensor_interference": {
+    "d435i_mm3": 0.0,
+    "mid360_mm3": 0.0,
+    "s410_mm3": 0.0
+  },
+  "robot_interference": {
+    "checked_body_count": 291,
+    "hits": []
+  },
+  "physical_interface_keepout": {
+    "classification": "user_photo_keepout_estimate",
+    "collision_mm3": 0.0,
+    "minimum_distance_mm": 10.0,
+    "dimensions_status": "pending_three_physical_dimensions_and_front_edge_datum"
+  },
+  "tool_corridors": {
+    "mid360_underside": [
+      {
+        "axis": 1,
+        "external_entry_offset_mm": 5.0,
+        "carrier_intersection_mm3": 0.0,
+        "interface_intersection_mm3": 0.0
+      },
+      {
+        "axis": 2,
+        "external_entry_offset_mm": 5.0,
+        "carrier_intersection_mm3": 0.0,
+        "interface_intersection_mm3": 0.0
+      },
+      {
+        "axis": 3,
+        "external_entry_offset_mm": 5.0,
+        "carrier_intersection_mm3": 0.0,
+        "interface_intersection_mm3": 0.0
+      },
+      {
+        "axis": 4,
+        "external_entry_offset_mm": 5.0,
+        "carrier_intersection_mm3": 0.0,
+        "interface_intersection_mm3": 0.0
+      }
+    ],
+    "d435i_camera_side": [
+      {
+        "axis": 1,
+        "external_entry_offset_mm": 5.0,
+        "carrier_intersection_mm3": 0.0,
+        "interface_intersection_mm3": 0.0
+      },
+      {
+        "axis": 2,
+        "external_entry_offset_mm": 5.0,
+        "carrier_intersection_mm3": 0.0,
+        "interface_intersection_mm3": 0.0
+      }
+    ],
+    "s410_external": [
+      {
+        "axis": 1,
+        "external_entry_offset_mm": 5.0,
+        "carrier_intersection_mm3": 0.0,
+        "interface_intersection_mm3": 0.0
+      },
+      {
+        "axis": 2,
+        "external_entry_offset_mm": 5.0,
+        "carrier_intersection_mm3": 0.0,
+        "interface_intersection_mm3": 0.0
+      },
+      {
+        "axis": 3,
+        "external_entry_offset_mm": 5.0,
+        "carrier_intersection_mm3": 0.0,
+        "interface_intersection_mm3": 0.0
+      },
+      {
+        "axis": 4,
+        "external_entry_offset_mm": 5.0,
+        "carrier_intersection_mm3": 0.0,
+        "interface_intersection_mm3": 0.0
+      }
+    ]
+  },
+  "rotation_determinants": {
+    "carrier": 1.0,
+    "interface": 1.0,
+    "s410": 1.0,
+    "mid360": 1.0,
+    "d435i": 1.0
+  },
+  "f3d": {
+    "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/physical-lite3-mid360-d435i-fusion-adapter-v1/cad/lite3-mid360-d435i-fusion-adapter-v1-review.f3d",
+    "bytes": 132572518
+  },
+  "claim_boundary": "The archived Fusion scene retains internal V1 registration and upper-module evidence only. Its robot body, keep-out, holes, screws, spacers, and installation path are rejected for the purchased current Lite3 Pro.",
+  "checks": {
+    "topology_pass": true,
+    "interface_count_pass": true,
+    "sensor_collision_pass": true,
+    "robot_collision_pass": true,
+    "interface_keepout_pass": true,
+    "tool_corridor_pass": true,
+    "rigid_transform_pass": true,
+    "f3d_export_pass": true
+  },
+  "pass": true
+}

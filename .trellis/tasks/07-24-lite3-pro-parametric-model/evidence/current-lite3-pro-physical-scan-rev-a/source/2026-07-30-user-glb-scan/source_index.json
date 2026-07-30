@@ -1,0 +1,20 @@
+{
+  "received_date": "2026-07-30",
+  "provenance": "User-provided physical scan of the current Lite3 Professional robot",
+  "archive": {
+    "name": "7_30_2026.zip",
+    "sha256": "f5355bf93b4cab7a91c67700a94691f0b0d26125ef768a62c96bca7122a386f0",
+    "bytes": 24357247,
+    "members": [
+      "7_30_2026.glb"
+    ]
+  },
+  "glb": {
+    "name": "7_30_2026.glb",
+    "sha256": "294bf7e121c8ddd55c479b11efa2f0008e649a8ba72fd666722090220abb72c7",
+    "bytes": 29364472,
+    "format": "glTF Binary 2.0",
+    "character": "Textured room scan containing the robot, floor, and unrelated objects"
+  },
+  "claim_boundary": "The original GLB is preserved unchanged. Derived crops and orientation transforms are reference geometry, not manufacturer CAD and not print-release geometry."
+}

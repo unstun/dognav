@@ -1,0 +1,10 @@
+6ed158149b0f53df039fdc9b721c8d945802cc1c578943099c25e93b90416276  ./README.md
+6a4e6b573106f728a6682d36cd88730738b1855e5dcae2d6cbe5d94175a28005  ./STATUS.md
+af283f6db7b8827d93d757e2e3478c6533d149b39f0241c37b74ac24d073a873  ./build_compact_layout.py
+1334c8fcf4e3332a7503e7f4f32b612d9c2800bdcbc25f5cd12bc64c0158bd0e  ./cad/current-lite3-pro-compact-sensor-layout-rev-a.FCStd
+349dcbed1096f48b459cf2ee5cec1dd210c9925d77033785d313c6ed55913c34  ./cad/current-lite3-pro-compact-sensor-layout-rev-a.step
+3d4c5e0aa855ec8a095870bb27536b7ec5b8592fe365ab7e1f4f0183ad1f3ec9  ./parameters.json
+9410f99dd227adac9eb096d0d5368ad7999a680469afe96727439e82bb7888f6  ./render_compact_layout.py
+870c7740799fcd3fd86d7d408e430b0a9da73a9172cd38a68beace0ef68e243d  ./renders/01-compact-source-layout-top.png
+74ff3f45b8ecf3718d63aba3a7b7d349aed2020cb77b8a0f17b0ab20b5bfb8c9  ./renders/02-old-versus-compact-length-comparison.png
+9e4183dc6fd93173c077bdd3054889948e98615ddfab8c8bf8415c12518ed81f  ./validation.json

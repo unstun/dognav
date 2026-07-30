@@ -1,0 +1,90 @@
+{
+  "frame_start": 162,
+  "frame_end": 216,
+  "frame_list": null,
+  "rendered_frames": [
+    162,
+    163,
+    164,
+    165,
+    166,
+    167,
+    168,
+    169,
+    170,
+    171,
+    172,
+    173,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179,
+    180,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    197,
+    198,
+    199,
+    200,
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215
+  ],
+  "rendered_count": 54,
+  "frame_size": [
+    1280,
+    720
+  ],
+  "output_dir": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-rev-c2-s410-single-through-bolt-top-nut-video/frames",
+  "sequence": {
+    "bolt_bottom_up": [
+      36,
+      89
+    ],
+    "bolt_pre_tight_gap_mm": 0.8,
+    "nut_top_down_six_turns": [
+      132,
+      185
+    ],
+    "tool_approach_from_underside": [
+      222,
+      233
+    ],
+    "four_quarter_turn_tightening_strokes": [
+      234,
+      293
+    ],
+    "total_final_bolt_advance_mm": 0.8,
+    "text_overlay": false
+  },
+  "scene_restored": true,
+  "error": null
+}

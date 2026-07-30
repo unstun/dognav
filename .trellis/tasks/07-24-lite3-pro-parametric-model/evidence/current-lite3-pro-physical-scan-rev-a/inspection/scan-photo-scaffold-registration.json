@@ -1,0 +1,66 @@
+{
+  "status": "planar_candidate_registration_for_human_review",
+  "scan_frame": {
+    "origin": "compute-enclosure top centroid",
+    "units": "mm",
+    "x": "+front",
+    "y": "+left",
+    "z": "+up"
+  },
+  "mount_frame": {
+    "origin": "front small-hole pair midpoint",
+    "scan_frame_origin_xy_mm": [
+      201.3615188650547,
+      0.0
+    ],
+    "scan_frame_origin_x_uncertainty_mm": 4.123105625617661,
+    "z_registration_mm": null,
+    "status": "X translation derived from photo-measured enclosure front; Y assumes centreline; Z and receiver geometry remain open"
+  },
+  "scan_enclosure_top_bounds_mm": {
+    "x": [
+      -98.22365098672655,
+      101.3615188650547
+    ],
+    "y": [
+      -52.739342748056195,
+      55.878777875488026
+    ]
+  },
+  "mount_frame_enclosure_top_bounds_mm": {
+    "x": [
+      -299.58516985178125,
+      -100.0
+    ],
+    "y": [
+      -52.739342748056195,
+      55.878777875488026
+    ]
+  },
+  "predicted_scan_frame_landmarks_mm": {
+    "front_pair": [
+      {
+        "label": "front_left_axis",
+        "scan_xy_mm": [
+          201.3615188650547,
+          32.5
+        ]
+      },
+      {
+        "label": "front_right_axis",
+        "scan_xy_mm": [
+          201.3615188650547,
+          -32.5
+        ]
+      }
+    ],
+    "centre_candidate_xy": [
+      126.3615188650547,
+      0.0
+    ],
+    "usable_nose_edge_x": 221.3615188650547
+  },
+  "enclosure_shape_note": "The plotted red rectangle is the outer envelope, not the true footprint; the true footprint has two front-side recesses.",
+  "claim_boundary": "Overlay tests consistency between the photo scaffold and scan envelope. It does not detect or validate receiver holes, threads, depth, or seating Z.",
+  "manufacturing_release": false
+}

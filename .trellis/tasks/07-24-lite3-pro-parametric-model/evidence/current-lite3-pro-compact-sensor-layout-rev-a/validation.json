@@ -1,0 +1,273 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "compact_source_brep_layout_pass_receiver_contract_open",
+  "classification": "layout_assembly_not_printable",
+  "source": {
+    "parameters_sha256": "3d4c5e0aa855ec8a095870bb27536b7ec5b8592fe365ab7e1f4f0183ad1f3ec9",
+    "proxy_step_sha256": "e1c0405f6476ee0b421c81529620a901406c1e5d3f102ce9a73a2fb964548c35",
+    "keepout_step_sha256": "7810e43a897f04886edfbf458089c7b9a95d680efae1a5a10af1db3a5dbeab2d",
+    "mid360_sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02",
+    "s410_sha256": "7fd23a776b45c7d8571ef77ba9e8b05520eced0b97f62487ba03f88bbc9df810"
+  },
+  "transform_contract": {
+    "source_to_robot_mapping": "new_x=source_z,new_y=source_x,new_z=source_y",
+    "rotation_determinant": 1.0,
+    "mid360_matrix": [
+      0.0,
+      0.0,
+      1.0,
+      -37.50078332371723,
+      1.0,
+      0.0,
+      0.0,
+      -3.930405503537301,
+      0.0,
+      1.0,
+      0.0,
+      33.91710000003202,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "s410_matrix": [
+      0.0,
+      0.0,
+      1.0,
+      -37.5,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      8.342020143325701,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "geometry": {
+    "proxy": {
+      "shape_type": "Compound",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 6,
+      "shell_count": 6,
+      "face_count": 29,
+      "volume_mm3": 1061037.876019768,
+      "bounds_mm": {
+        "min": [
+          -300.0,
+          -70.0,
+          -6.0
+        ],
+        "max": [
+          20.4,
+          70.00000000003278,
+          50.0
+        ],
+        "size": [
+          320.4,
+          140.0000000000328,
+          56.0
+        ]
+      }
+    },
+    "keepout": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "shell_count": 1,
+      "face_count": 6,
+      "volume_mm3": 1218888.0,
+      "bounds_mm": {
+        "min": [
+          -305.0,
+          -54.0,
+          0.0
+        ],
+        "max": [
+          -96.0,
+          54.0,
+          54.0
+        ],
+        "size": [
+          209.0,
+          108.0,
+          54.0
+        ]
+      }
+    },
+    "support_planning_surface": {
+      "shape_type": "Face",
+      "is_valid": true,
+      "is_closed": false,
+      "solid_count": 0,
+      "shell_count": 0,
+      "face_count": 1,
+      "volume_mm3": 0.0,
+      "bounds_mm": {
+        "min": [
+          -92.0,
+          -57.5,
+          6.0
+        ],
+        "max": [
+          18.0,
+          57.5,
+          6.0
+        ],
+        "size": [
+          110.0,
+          115.0,
+          0.0
+        ]
+      }
+    },
+    "s410_source_brep": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "shell_count": 1,
+      "face_count": 218,
+      "volume_mm3": 20687.87627458889,
+      "bounds_mm": {
+        "min": [
+          -90.0,
+          -52.49999999999999,
+          8.000000000000002
+        ],
+        "max": [
+          14.999999999999993,
+          52.49999999999999,
+          82.33201914312565
+        ],
+        "size": [
+          105.0,
+          104.99999999999999,
+          74.33201914312565
+        ]
+      }
+    },
+    "mid360_official_brep": {
+      "shape_type": "Compound",
+      "is_valid": true,
+      "is_closed": false,
+      "solid_count": 7,
+      "shell_count": 23,
+      "face_count": 1715,
+      "volume_mm3": 141854.33730740167,
+      "bounds_mm": {
+        "min": [
+          -70.89754680278607,
+          -36.3695944964627,
+          7.999999999999997
+        ],
+        "max": [
+          -4.1024531972139116,
+          36.3695944964627,
+          69.39710000003203
+        ],
+        "size": [
+          66.79509360557216,
+          72.7391889929254,
+          61.397100000032026
+        ]
+      }
+    },
+    "d435i_official_envelope": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "shell_count": 1,
+      "face_count": 6,
+      "volume_mm3": 56250.0,
+      "bounds_mm": {
+        "min": [
+          -7.5,
+          -45.0,
+          84.0
+        ],
+        "max": [
+          17.5,
+          45.0,
+          109.0
+        ],
+        "size": [
+          25.0,
+          90.0,
+          25.0
+        ]
+      }
+    },
+    "layout_step_clean_import": {
+      "shape_type": "Compound",
+      "is_valid": true,
+      "is_closed": false,
+      "solid_count": 15,
+      "shell_count": 32,
+      "face_count": 1969,
+      "volume_mm3": 1197707.891309846,
+      "bounds_mm": {
+        "min": [
+          -300.0,
+          -70.0,
+          -6.0
+        ],
+        "max": [
+          20.4,
+          70.00000000003278,
+          109.0
+        ],
+        "size": [
+          320.4,
+          140.0000000000328,
+          115.0
+        ]
+      }
+    }
+  },
+  "clearance_mm": {
+    "s410_to_expanded_compute_keepout_x": 6.0,
+    "mid360_to_expanded_compute_keepout_x": 25.102453197213933,
+    "d435i_front_to_measured_nose_edge": 2.5
+  },
+  "intersection_mm3": {
+    "sensor_to_expanded_compute_keepout": {
+      "s410": 0.0,
+      "mid360": 0.0,
+      "d435i_envelope": 0.0
+    }
+  },
+  "checks": {
+    "source_hashes_match_records": true,
+    "rotation_is_proper": true,
+    "all_source_and_envelope_shapes_valid": true,
+    "no_sensor_intersects_expanded_compute_keepout": true,
+    "s410_has_at_least_5mm_fore_aft_clearance": true,
+    "d435i_stays_behind_measured_nose_edge": true,
+    "support_is_zero_thickness_non_solid": true,
+    "printable_lower_adapter_absent": true
+  },
+  "outputs": {
+    "fcstd": {
+      "path": "cad/current-lite3-pro-compact-sensor-layout-rev-a.FCStd",
+      "bytes": 4019428,
+      "sha256": "1334c8fcf4e3332a7503e7f4f32b612d9c2800bdcbc25f5cd12bc64c0158bd0e"
+    },
+    "step": {
+      "path": "cad/current-lite3-pro-compact-sensor-layout-rev-a.step",
+      "bytes": 8603846,
+      "sha256": "349dcbed1096f48b459cf2ee5cec1dd210c9925d77033785d313c6ed55913c34"
+    }
+  },
+  "claim_boundary": "The layout uses the official Mid-360 B-rep, the related-source S410 B-rep, and the official D435i nominal envelope. It proves only a compact collision-free plan against the photo keepout, not a carrier, fastener path, strength, optical validation, or physical fit.",
+  "pass": true
+}

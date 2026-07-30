@@ -1,0 +1,124 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "measured_before_geometry_change",
+  "document": "lite3-j17a-j20a-monolithic-rear-web-print-adaptation-rev-b-review",
+  "selected_position": "S1_TOP_LEFT",
+  "indices": {
+    "rev_b": 35,
+    "s410_guard": 3,
+    "existing_direct_thread_screw": 28
+  },
+  "mount_normal": [
+    0.0,
+    0.9659258262890683,
+    0.25881904510252074
+  ],
+  "selected_axis_outer_point_cm": [
+    -32.90685957328745,
+    21.378538809797107,
+    260.49515922999285
+  ],
+  "selected_axis_outer_projection_cm": 88.07119113044203,
+  "s410_clearance_face": {
+    "body_index": 0,
+    "face_index": 5,
+    "radius_mm": 2.599999999999995,
+    "origin_cm": [
+      -32.906859573287356,
+      20.267724109564615,
+      260.1975173281247
+    ],
+    "axis": [
+      0.0,
+      0.9659258262890683,
+      0.25881904510252074
+    ],
+    "parallel_to_mount_normal": 1.0,
+    "axis_distance_to_selected_point_mm": 2.2887635406131205e-12,
+    "projection_interval_cm": [
+      87.6711911304419,
+      88.07119113044189
+    ],
+    "axial_length_mm": 3.9999999999999147,
+    "edge_vertices_cm": [
+      [
+        -33.166859573287354,
+        20.992168479281418,
+        260.3916316119516
+      ],
+      [
+        -33.166859573287354,
+        20.992168479281418,
+        260.3916316119516
+      ],
+      [
+        -33.166859573287354,
+        21.378538809797043,
+        260.49515922999257
+      ],
+      [
+        -33.166859573287354,
+        21.378538809797043,
+        260.49515922999257
+      ]
+    ]
+  },
+  "rev_b_hole_face": {
+    "body_index": 0,
+    "face_index": 29,
+    "radius_mm": 2.0999999999999934,
+    "origin_cm": [
+      -32.906859573287356,
+      20.99216848863984,
+      260.3916316144593
+    ],
+    "axis": [
+      0.0,
+      0.9659258262890692,
+      0.2588190451025177
+    ],
+    "parallel_to_mount_normal": 1.0,
+    "axis_distance_to_selected_point_mm": 1.4038695036567485e-12,
+    "projection_interval_cm": [
+      87.33122856653883,
+      87.6711911401305
+    ],
+    "axial_length_mm": 3.3996257359167714,
+    "edge_vertices_cm": [
+      [
+        -32.906859573287356,
+        20.718141858307483,
+        260.10079840227104
+      ],
+      [
+        -32.906859573287356,
+        20.718141858307483,
+        260.10079840227104
+      ],
+      [
+        -32.906859573287356,
+        21.04652048811137,
+        260.1887871909386
+      ],
+      [
+        -32.906859573287356,
+        21.04652048811137,
+        260.1887871909386
+      ]
+    ]
+  },
+  "stack": {
+    "underside_projection_cm": 87.33122856653883,
+    "topside_projection_cm": 88.07119113044189,
+    "total_axial_stack_mm": 7.399625639030631,
+    "modeled_overlap_mm": 9.688605473456846e-08,
+    "modeled_gap_mm": 0.0
+  },
+  "candidate_contract": {
+    "printed_part_receiver": "plain M5 clearance hole, not thread",
+    "bolt_direction": "from -mount_normal underside toward +mount_normal top",
+    "nut_location": "+mount_normal top side",
+    "diameter_and_length_status": "to be selected after this measurement; visual and print candidates only"
+  },
+  "claim_boundary": "This report measures the current CAD stack only. It does not establish official supplied hardware, final print tolerance, torque, strength, or real-robot safety."
+}

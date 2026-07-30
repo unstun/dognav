@@ -1,0 +1,125 @@
+{
+  "assembled_bbox_mm": [
+    598.2047394945969,
+    373.5285755835694,
+    426.8422193854833
+  ],
+  "components": {
+    "hip": {
+      "bbox_size_after_mm": [
+        92.06982124921726,
+        68.52886690832278,
+        79.58178378031403
+      ],
+      "bbox_size_before_mm": [
+        92.0,
+        68.5,
+        79.5
+      ],
+      "connected_components": 1,
+      "faces": 610330,
+      "manifold_status": "Error.NoError",
+      "vertex_displacement_mm": {
+        "max": 0.1875553249479335,
+        "median": 0.06811811704587398,
+        "p95": 0.12929528352142672,
+        "p99": 0.14697503425981098
+      },
+      "vertices": 305065,
+      "volume_after_mm3": 86948.95437485653,
+      "volume_before_mm3": 86944.31770833333,
+      "volume_change_percent": 0.005332914956857428,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "shank": {
+      "bbox_size_after_mm": [
+        51.13094533813421,
+        35.35110442526772,
+        267.8715882129041
+      ],
+      "bbox_size_before_mm": [
+        51.0,
+        35.25,
+        267.75
+      ],
+      "connected_components": 1,
+      "faces": 162276,
+      "manifold_status": "Error.NoError",
+      "vertex_displacement_mm": {
+        "max": 0.2881742461710371,
+        "median": 0.08156055984811858,
+        "p95": 0.1939352792336762,
+        "p99": 0.21910284440619973
+      },
+      "vertices": 81098,
+      "volume_after_mm3": 132604.60438122548,
+      "volume_before_mm3": 132587.9296875,
+      "volume_change_percent": 0.012576328603048805,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "thigh": {
+      "bbox_size_after_mm": [
+        87.87713139290764,
+        117.8436313092462,
+        260.38136028513713
+      ],
+      "bbox_size_before_mm": [
+        87.75,
+        117.75,
+        260.25
+      ],
+      "connected_components": 1,
+      "faces": 686598,
+      "manifold_status": "Error.NoError",
+      "vertex_displacement_mm": {
+        "max": 0.2784710852886025,
+        "median": 0.10935714930973041,
+        "p95": 0.19803931298347738,
+        "p99": 0.22259083036227745
+      },
+      "vertices": 343207,
+      "volume_after_mm3": 238971.6357076248,
+      "volume_before_mm3": 238896.2109375,
+      "volume_change_percent": 0.031572191885681354,
+      "watertight": true,
+      "winding_consistent": true
+    },
+    "torso": {
+      "bbox_size_after_mm": [
+        550.1597326803802,
+        217.16198017525633,
+        128.12460842294692
+      ],
+      "bbox_size_before_mm": [
+        550.0,
+        217.0,
+        128.0
+      ],
+      "connected_components": 1,
+      "faces": 1777070,
+      "manifold_status": "Error.NoError",
+      "vertex_displacement_mm": {
+        "max": 0.39199758044100647,
+        "median": 0.06256155961044746,
+        "p95": 0.24642961070687988,
+        "p99": 0.28197703813427455
+      },
+      "vertices": 888295,
+      "volume_after_mm3": 2622082.705770398,
+      "volume_before_mm3": 2621891.25,
+      "volume_change_percent": 0.007302201050406819,
+      "watertight": true,
+      "winding_consistent": true
+    }
+  },
+  "method": {
+    "iterations": 12,
+    "lambda": 0.4,
+    "name": "trimesh.filter_taubin",
+    "nu": 0.41,
+    "topology_preserving": true
+  },
+  "schema_version": 1
+}

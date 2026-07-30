@@ -1,0 +1,56 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "failed",
+  "indices": {
+    "rev_b": 35,
+    "rev_c": 36,
+    "bolt": 37,
+    "nut": 38,
+    "s410_guard": 3
+  },
+  "checks": {
+    "rev_b_preserved": true,
+    "rev_c_one_solid": true,
+    "selected_rev_c_hole_is_5_2_mm": true,
+    "bolt_starts_at_or_below_underside": true,
+    "bolt_reaches_above_topside": true,
+    "nut_starts_on_topside": true,
+    "no_positive_volume_collision": false,
+    "old_direct_thread_screws_hidden": true,
+    "new_bolt_and_nut_visible": true
+  },
+  "clearance_faces_nearest_first": [
+    {
+      "face_index": 1,
+      "radius_mm": 2.6,
+      "axis_distance_mm": 5.153158987977356e-13
+    },
+    {
+      "face_index": 2,
+      "radius_mm": 2.6,
+      "axis_distance_mm": 5.153158987977356e-13
+    }
+  ],
+  "projection_intervals_cm": {
+    "modeled_stack": [
+      87.33122856653883,
+      88.07119113044189
+    ],
+    "bolt": [
+      86.83122856653883,
+      88.73122856653882
+    ],
+    "nut": [
+      88.07119113044186,
+      88.4711911304419
+    ]
+  },
+  "collision_intersection_volumes_mm3": {
+    "bolt_vs_rev_c": 59.969058497610014,
+    "bolt_vs_s410_guard": 0.0,
+    "nut_vs_rev_c": 0.0,
+    "nut_vs_s410_guard": 0.0
+  },
+  "collision_tolerance_mm3": 0.01,
+  "claim_boundary": "CAD packaging validation only; contact pressure, thread engagement, fit, torque, print tolerance, strength, vibration, and real-robot safety remain unvalidated."
+}

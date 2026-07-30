@@ -1,0 +1,59 @@
+schema_version: 1
+topic: makerworld-d435i-mid360-integrated-bracket
+acquired_at: 2026-07-26
+status: surveyed_nonofficial_reference
+
+upstream:
+  platform: MakerWorld
+  model_page: >-
+    https://makerworld.com/zh/models/1838891-d435i-and-mid360-radar-vision-integrated-bracket-m#profileId-1964360
+  public_metadata_api: >-
+    https://api.bambulab.com/v1/design-service/design/1838891
+  design_id: 1838891
+  model_id: US9e48ac69a2daf8
+  title: "D435I和mid360雷视一体支架（MID360倾斜30度)"
+  license_label: BY
+  allow_recreation_metadata: true
+
+published_design_facts:
+  mid360_tilt_deg: 30
+  robot_mount_pattern_mm: [45, 80]
+  robot_fasteners:
+    count: 4
+    specification: M3x6
+  sensor_fasteners:
+    count: 8
+    specification: M3x8
+  orientation_note: >-
+    The short side of the 45 x 80 mm pattern is declared to correspond to the
+    Mid-360 cable side.
+
+raw_source_metadata:
+  file_name: "D435i和MID360支架.sldprt"
+  size_bytes: 289292
+  unikey: 4207b07a-caf8-406b-a961-2e96a21a64c9
+  acquisition_state: unavailable
+  observed_ui_result: "闭源文件无法下载。"
+  note: >-
+    The public page exposes source-file metadata, but the browser download
+    action did not provide the SLDPRT and reported that the closed-source file
+    cannot be downloaded. No local copy is claimed.
+
+decision:
+  use_as_official_lite3_geometry: false
+  reasons:
+    - The model is a third-party MakerWorld design, not DEEP Robotics CAD.
+    - Its 30-degree Mid-360 tilt differs from the official J20A 15-degree plate.
+    - Its 45 x 80 mm robot pattern differs from the Lite3 Pro 74 x 94 mm pattern.
+    - Its eight sensor-fastener arrangement does not match the official J17A
+      video evidence for direct two-M3 D435 attachment.
+  permitted_use: >-
+    Secondary comparison reference only. It may inform a future explicitly
+    nonofficial print adaptation after the user's real industrial-PC geometry
+    is supplied, but it must not be presented as a Lite3 factory replica.
+
+claim_boundary: >-
+  This record preserves public metadata and the observed access boundary. It
+  does not establish the hidden SolidWorks geometry, dimensional accuracy,
+  Lite3 compatibility, manufacturability, or permission beyond the displayed
+  platform metadata.

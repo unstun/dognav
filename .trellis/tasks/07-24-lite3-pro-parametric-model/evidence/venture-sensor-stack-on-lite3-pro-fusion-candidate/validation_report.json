@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "purpose": "lite3_pro_to_venture_fast_livo2_no_ipc_fusion_preview",
+  "source_hashes": {
+    "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J17A-lidar base.STEP": "52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490",
+    "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J20A-small lidar base.STEP": "341b08ca08526e5ee0e9fbeca0bfda9d9970062c6605e979adc52b31955c9bc9",
+    "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1CA5-S410-Lidar protector.STEP": "7fd23a776b45c7d8571ef77ba9e8b05520eced0b97f62487ba03f88bbc9df810",
+    "references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02",
+    "references/upstream/2026-07-24_deep-robotics-model/source/Lite3-official-high-res-factory-stand-fusion-y-up.stl": "b2a4d7a1551ebac211d7450f8f57c3a2a198d5d36e70b9c75dccea24f9c55e0c"
+  },
+  "direct_fit": {
+    "pro_pattern_xy_mm": [
+      74.0,
+      94.0
+    ],
+    "j17a_pattern_xy_mm": [
+      110.0,
+      86.0
+    ],
+    "same_orientation_delta_xy_mm": [
+      36.0,
+      -8.0
+    ],
+    "rotated_j17a_delta_xy_mm": [
+      12.0,
+      16.0
+    ],
+    "direct_bolt_on": false,
+    "adapter_required": true
+  },
+  "adapter": {
+    "source_step": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-j17a-real-assembly-candidate/models/pro_to_j17a_open_truss_adapter.step",
+    "sha256": "b0a6c3eb4853620b699dbc87acd330bf1f84abadffe0bda6b7cb6ad9b9ce30ce",
+    "valid_brep": true,
+    "solid_count": 1,
+    "shell_count": 1,
+    "bounds_mm": [
+      [
+        -24.0,
+        -59.0,
+        420.158569
+      ],
+      [
+        197.851997,
+        59.0,
+        446.0
+      ]
+    ],
+    "extent_mm": [
+      221.851997,
+      118.0,
+      25.841431
+    ],
+    "volume_mm3": 28170.126933,
+    "fastener_axis_probe_intersection_mm3": {
+      "pro_74x94": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "j17a_110x86": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "j17a_positive_intersection_mm3": 0.0,
+    "j17a_seating_distance_mm": 0.0
+  },
+  "fusion_preview": {
+    "document_saved": false,
+    "source_mesh_body_count": 9,
+    "adapter_brep_body_count": 1,
+    "excluded": [
+      "BZ20",
+      "AGX",
+      "industrial_pc",
+      "factory_Interface"
+    ],
+    "screenshots": [
+      "full-assembly-isometric.png",
+      "full-assembly-robot-z-isometric.png",
+      "full-assembly-opaque-robot-z-isometric.png",
+      "sensor-stack-adapter-isometric.png",
+      "sensor-stack-adapter-robot-z-top.png"
+    ]
+  },
+  "claim_boundary": "The source sensor stack and nominal adapter are geometrically assembled without an industrial PC. The local Lite3 mesh has no payload threads. Physical hole spacing, thread depth, datum, material strength, cable clearance, and robot safety are not validated."
+}

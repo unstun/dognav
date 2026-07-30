@@ -1,0 +1,205 @@
+{
+  "artifact": "lite3-complete-installation-s410-sequential-cross-tightening-no-text.mp4",
+  "source_model": "lite3-s410-sequential-cross-tightening-source.f3d",
+  "status": "rejected_sequence_restart",
+  "rejection_reason": "Dr Sun restarted the complete assembly sequence on 2026-07-29. The replacement must begin with only bare J17A, D435i, and two screws entering the camera's own M3 threads before any J20A, MID360, or S410 step is shown.",
+  "change_summary": "The rejected simultaneous four-screw translation is replaced by four independent screws. All four are started one at a time and then tightened in a diagonal cross sequence with a short right-angle L-key and dedicated close-up camera cuts.",
+  "claim_boundary": "Visual assembly order, source-hole alignment, sampled external tool clearance, and gross access demonstration only. Exact supplied screw length, head standard, wrench standard, usable thread engagement, torque, tolerances, structural strength, vibration resistance, and physical-installation safety are not validated.",
+  "source_contract": {
+    "guard": "Official manufacturer 1CA5-S410 BRep and drawing",
+    "guard_holes": "4 x 5.2 mm through clearance holes",
+    "j20": "Official manufacturer 1T21-J20A BRep and drawing",
+    "j20_holes": "4 x M5 through-thread holes",
+    "mid360": "Official Livox MID-360 BRep",
+    "guard_geometry_modified": false,
+    "j20_geometry_modified": false,
+    "mid360_geometry_modified": false,
+    "rigid_alignment_only": true
+  },
+  "axis_alignment": {
+    "source_assembly_common_offset_mm": 0.1708494997522819,
+    "correction_cm": [
+      0.0,
+      -0.0044219104382,
+      0.0165027944219
+    ],
+    "corrected_guard_to_j20_axis_max_mm": 4.41127615807212e-13,
+    "corrected_screw_to_guard_axis_max_mm": 4.545902364027965e-13
+  },
+  "guard_fasteners": {
+    "count": 4,
+    "independent_occurrence_indices": [
+      28,
+      29,
+      30,
+      31
+    ],
+    "nominal_visual_candidate": "M5x8 socket-head screw",
+    "nuts_required": false,
+    "reason": "The J20 receiver holes are modeled and called out as M5 through threads.",
+    "exact_hardware_confirmed": false
+  },
+  "fastening_sequence": {
+    "start_all_cross_order": [
+      "S1 top-left",
+      "S4 bottom-right",
+      "S2 top-right",
+      "S3 bottom-left"
+    ],
+    "start_frame_ranges": {
+      "S1 top-left": [312, 329],
+      "S4 bottom-right": [330, 347],
+      "S2 top-right": [348, 365],
+      "S3 bottom-left": [366, 383]
+    },
+    "remaining_offset_after_start_pass_mm": 3.0,
+    "tighten_cross_order": [
+      "S1 top-left",
+      "S4 bottom-right",
+      "S2 top-right",
+      "S3 bottom-left"
+    ],
+    "tighten_frame_ranges": {
+      "S1 top-left": [384, 401],
+      "S4 bottom-right": [402, 419],
+      "S2 top-right": [420, 437],
+      "S3 bottom-left": [438, 455]
+    },
+    "camera_cut_represents_regrip": true,
+    "simultaneous_screw_motion": false
+  },
+  "tool_access_check": {
+    "tool": "Short right-angle L-key animation-only visual candidate",
+    "tool_occurrence_index": 33,
+    "bit_diameter_mm": 3.2,
+    "straight_engagement_mm": 6.8,
+    "handle_length_mm": 40.0,
+    "stroke_degrees": 90.0,
+    "stroke_ranges_degrees": {
+      "S1 top-left": [240.0, 330.0],
+      "S4 bottom-right": [60.0, 150.0],
+      "S2 top-right": [210.0, 300.0],
+      "S3 bottom-left": [30.0, 120.0]
+    },
+    "sample_frames": [
+      312,
+      320,
+      329,
+      330,
+      338,
+      347,
+      348,
+      356,
+      365,
+      366,
+      374,
+      383,
+      384,
+      392,
+      401,
+      402,
+      410,
+      419,
+      420,
+      428,
+      437,
+      438,
+      446,
+      455
+    ],
+    "external_targets": [
+      "official S410 guard",
+      "official MID-360",
+      "official J20 carrier"
+    ],
+    "maximum_external_interference_volume_cm3": {
+      "guard": 0.0,
+      "mid360": 0.0,
+      "j20": 0.0
+    },
+    "nonzero_external_interference_samples": [],
+    "check_scope": "Each L-key body proxy was checked separately against external geometry. Intentional overlap at the animation tool's own bit-handle joint was excluded from external-collision results."
+  },
+  "sampled_animation_state": {
+    "frame_383_after_all_screws_started": {
+      "all_four_visible": true,
+      "axial_offsets_cm": [
+        0.29999999999998933,
+        0.29999999999998933,
+        0.299999999999983,
+        0.2999999999999967
+      ],
+      "maximum_transverse_residual_cm": 6.25530397860039e-14,
+      "short_l_key_visible": true,
+      "rejected_group_visible": false,
+      "rejected_long_tool_visible": false
+    },
+    "frame_456_after_cross_tightening": {
+      "all_four_visible": true,
+      "maximum_absolute_axial_offset_cm": 4.1179894749166196e-14,
+      "maximum_transverse_residual_cm": 7.245472324212519e-14,
+      "short_l_key_visible": false,
+      "rejected_group_visible": false,
+      "rejected_long_tool_visible": false
+    }
+  },
+  "assembly_order": [
+    "D435i to bare J17",
+    "two D435i screws before J20 and MID360",
+    "four J17/J20 through-bolts pre-inserted bottom-up",
+    "MID360 to J20 off-robot subassembly",
+    "four MID360 underside screws",
+    "official S410 guard lowered over MID360",
+    "four S410-to-J20 M5 visual screws started individually in cross order",
+    "four S410-to-J20 M5 visual screws tightened individually in cross order",
+    "complete J20/MID360/S410 subassembly lowered over protruding J17 bolts",
+    "front top nuts",
+    "rear top washers and locknuts",
+    "rear locating spacers on Lite3",
+    "lateral carrier alignment outside robot envelope",
+    "normal approach to Lite3",
+    "front and rear exposed base screws"
+  ],
+  "video": {
+    "codec": "h264",
+    "duration_seconds": 34.5,
+    "fps": 24,
+    "frame_count": 828,
+    "height": 720,
+    "pixel_format": "yuv420p",
+    "sha256": "48745b28d9a644769b6f01aa7f432f2f62ce87ecbe15dd9efdb40e20626a88e9",
+    "size_bytes": 5245457,
+    "width": 1280,
+    "contains_text_overlay": false
+  },
+  "keyframe_contact_sheet": {
+    "file": "s410-sequential-cross-tightening-keyframes.png",
+    "sha256": "bef508ccd0126c77ff475321d664073512b24b908296d4265c24843ae8c8b0ed",
+    "size_bytes": 563178,
+    "width": 1602,
+    "height": 750
+  },
+  "source_model_archive": {
+    "sha256": "b94cadfc0bc060998a41a9be4e16694089edc99962f481011534a2bead8abedd",
+    "size_bytes": 128050939,
+    "archive_test": "No errors detected for 15 tested files; 243 unsupported-compression entries were skipped by the system unzip utility."
+  },
+  "final_state_check": {
+    "root_occurrence_count": 34,
+    "official_guard_visible": true,
+    "individual_screws_visible": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "rejected_group_visible": false,
+    "rejected_long_tool_visible": false,
+    "short_l_key_visible": false,
+    "max_transform_difference": 5.684341886080802e-14,
+    "transform_mismatches": [],
+    "visibility_mismatches": [],
+    "opacity_mismatches": [],
+    "pending_snapshot": false
+  }
+}

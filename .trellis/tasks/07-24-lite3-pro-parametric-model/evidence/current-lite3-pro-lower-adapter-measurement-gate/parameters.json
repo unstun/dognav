@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "photo_geometry_measured_receiver_contract_open_no_printable_geometry",
+  "target": {
+    "variant": "current Lite3 Pro purchased by Dr Sun",
+    "photo_sha256": "b471b3af11a649630c19e1fd7b6989600ccdb58034217b8e6c464d527e66664c",
+    "official_current_brochure_sha256": "bc674a26f86a64de12ca6eb371eb4e068e73f7c6b293eae41606eb9860fe5a47",
+    "official_current_pro_size_mm": [610, 370, 450],
+    "official_current_pro_weight_kg": 12.9,
+    "official_current_pro_walking_load_kg": 4.0
+  },
+  "coordinate_contract": {
+    "unit": "millimetre",
+    "x_axis": "robot forward from a physically selected forward deck datum",
+    "y_axis": "robot left from the measured centreline",
+    "z_axis": "up from the selected local seating plane",
+    "origin": "midpoint of the measured front small-hole pair on the local deck seating plane",
+    "datum_status": "selected from physical photo evidence"
+  },
+  "photo_measured_geometry": {
+    "source": "measurement_results.json",
+    "front_pair_lateral_pitch_mm": 65.0,
+    "front_pair_lateral_pitch_uncertainty_mm": 1.0,
+    "nose_edge_x_mm": 20.0,
+    "centre_candidate_axis_mm": [-75.0, 0.0, 0.0],
+    "compute_enclosure_front_x_mm": -100.0,
+    "evidence_class": "photo_measured_estimate"
+  },
+  "physical_receiver_inventory": {
+    "accepted_count": 0,
+    "measured_axis_count": 3,
+    "points": [
+      {
+        "label": "front_left_axis",
+        "x_mm": 0.0,
+        "y_mm": 32.5,
+        "seating_z_mm": 0.0,
+        "thread": null,
+        "usable_depth_mm": null,
+        "recess_diameter_mm": null,
+        "recess_depth_mm": null,
+        "receiver_material": null,
+        "threaded_insert_present": null,
+        "onward_load_path": null,
+        "tool_access_direction": "+z",
+        "status": "axis measured; receiver contract open"
+      },
+      {
+        "label": "front_right_axis",
+        "x_mm": 0.0,
+        "y_mm": -32.5,
+        "seating_z_mm": 0.0,
+        "thread": null,
+        "usable_depth_mm": null,
+        "recess_diameter_mm": null,
+        "recess_depth_mm": null,
+        "receiver_material": null,
+        "threaded_insert_present": null,
+        "onward_load_path": null,
+        "tool_access_direction": "+z",
+        "status": "axis measured; receiver contract open"
+      },
+      {
+        "label": "centre_rear_candidate_axis",
+        "x_mm": -75.0,
+        "y_mm": 0.0,
+        "seating_z_mm": 0.0,
+        "thread": null,
+        "usable_depth_mm": null,
+        "recess_diameter_mm": null,
+        "recess_depth_mm": null,
+        "receiver_material": null,
+        "threaded_insert_present": null,
+        "onward_load_path": null,
+        "tool_access_direction": "+z",
+        "status": "visible axis only; mounting role unverified"
+      }
+    ],
+    "required_point_fields": [
+      "label",
+      "x_mm",
+      "y_mm",
+      "seating_z_mm",
+      "thread",
+      "usable_depth_mm",
+      "recess_diameter_mm",
+      "recess_depth_mm",
+      "receiver_material",
+      "threaded_insert_present",
+      "onward_load_path",
+      "tool_access_direction"
+    ],
+    "status": "three visible axes measured; zero receivers accepted until thread, depth, and structural role are verified"
+  },
+  "compute_enclosure_keepout": {
+    "source": "../current-lite3-pro-scan-registered-interface-rev-b/parameters.json",
+    "front_edge_x_mm": -100.0,
+    "rear_edge_x_mm": -299.58516985178125,
+    "left_edge_y_mm": 55.878777875488026,
+    "right_edge_y_mm": -52.739342748056195,
+    "top_z_mm": 50.0,
+    "nominal_footprint_polygon_mm": [
+      [-299.58516985178125, -52.739342748056195],
+      [-130.0, -52.739342748056195],
+      [-130.0, -42.0],
+      [-100.0, -42.0],
+      [-100.0, 44.0],
+      [-130.0, 44.0],
+      [-130.0, 55.878777875488026],
+      [-299.58516985178125, 55.878777875488026]
+    ],
+    "front_side_recesses": {
+      "shoulder_x_mm": -130.0,
+      "front_x_mm": -100.0,
+      "longitudinal_length_mm": 30.0,
+      "left_inner_y_mm": 44.0,
+      "right_inner_y_mm": -42.0,
+      "left_recess_depth_mm": 11.878777875488026,
+      "right_recess_depth_mm": 10.739342748056195,
+      "corner_radii_status": "simplified"
+    },
+    "measurement_uncertainty_mm": {
+      "front_edge": 4.0,
+      "length": 5.0,
+      "width": 4.0,
+      "height": 2.0
+    },
+    "expanded_proxy_bounds_mm": {
+      "x": [-305.0, -96.0],
+      "y": [-57.0, 60.0],
+      "z": [0.0, 54.0]
+    },
+    "feet": [],
+    "ventilation_keepouts": [],
+    "connector_keepouts": [],
+    "cable_keepouts": [],
+    "cover_service_clearance_mm": null,
+    "status": "scan-registered two-recess nominal exterior plus separate rectangular conservative keep-out; feet, vents, connectors, cables, and cover-service sweep remain open"
+  },
+  "upper_sensor_module": {
+    "geometry_reference": "../current-lite3-pro-source-upper-assembly-rev-b/cad/current-lite3-pro-source-upper-assembly-rev-b.FCStd",
+    "validation_reference": "../current-lite3-pro-source-upper-assembly-rev-b/validation.json",
+    "d435i_support_reference": "../current-lite3-pro-d435i-support-study-rev-b/cad/current-lite3-pro-d435i-support-candidate-rev-b.step",
+    "reuse_scope": "source-backed J20A/MID-360/S410 transforms and separately validated D435i support study only",
+    "robot_side_interface_reuse": false,
+    "lower_adapter_attachment_axes": [],
+    "attachment_axis_status": "select from accessible upper-module features after current-Pro measurements"
+  },
+  "lower_adapter_architecture": {
+    "separate_part": true,
+    "position": "ahead of compute enclosure",
+    "open_compute_enclosure_keepout": true,
+    "top_accessible_robot_fasteners": true,
+    "upper_module_forward_offset_mm": null,
+    "adapter_elevation_mm": null,
+    "minimum_enclosure_clearance_mm": null,
+    "minimum_wall_mm": null,
+    "rail_or_web_dimensions_mm": null,
+    "status": "measured proxy and axis scaffold allowed; printable adapter geometry remains prohibited"
+  },
+  "rejected_comparison_inputs": {
+    "legacy_pro_v1_0_7_pattern_mm": [74.0, 94.0],
+    "legacy_pattern_status": "old revision only",
+    "venture_j17a_robot_interface_status": "Venture-only related source",
+    "v1_experience_style_axes_mm": {
+      "front_lateral_pitch": 65.0,
+      "rear_lateral_pitch": 105.00444223978232,
+      "row_separation": 133.99867564632996,
+      "plane_difference": 5.0
+    }
+  },
+  "release_gate": {
+    "printable_geometry_allowed": false,
+    "required_before_generation": [
+      "accepted load-bearing receiver inventory",
+      "thread and usable depth",
+      "receiver material, threaded-insert presence, and onward load path",
+      "seating plane/recess geometry",
+      "compute enclosure, feet, vent, connector, cable, and tool keepouts",
+      "human review of selected receiver set and assembly order"
+    ]
+  }
+}

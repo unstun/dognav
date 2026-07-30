@@ -1,0 +1,125 @@
+topic: lite3_dimensioned_design_drawings
+surveyed_at: "2026-07-24"
+claim_boundary: >-
+  These manuals provide dimensioned external geometry and payload mounting-hole
+  layouts. They are sufficient to seed a reference model or adapter-plate
+  drawing, but they are not manufacturing drawings: tolerances, thread depth,
+  material, wall thickness, surface finish, and a complete datum scheme are not
+  specified.
+
+sources:
+  - id: official_ai_user_manual_v1_0_3
+    url: "https://www.deeprobotics.us/wp-content/uploads/2025/08/Jueying-Lite3-AI-User-Manual-V1.0.3-0.pdf"
+    local_file: "source/original/Jueying-Lite3-AI-User-Manual-V1.0.3-0.pdf"
+    sha256: "1fe3db740617e91c203a59ca66504a9af49c492537262eeb5c7f8ca24e251858"
+    inspected_pdf_page: 22
+    evidence:
+      - "dimensioned top-view payload interface"
+      - "6 x M3 and 2 x M4 threaded-hole callouts"
+      - "205, 145, 105, 65, 28.5, 46, 88, 134, and 170 mm dimensions"
+    derived_image: "derived/lite3-ai-mounting-interface-page22.png"
+    derived_sha256: "92541cc1ce8d2529ac3d37454e78802b20a896b8b45d2a681da26d57acd0b349"
+
+  - id: official_pro_user_manual_v1_0_7
+    url: "https://www.deeprobotics.us/wp-content/uploads/2025/08/Jueying-Lite3-Pro-User-Manual-V1.0.7-0.pdf"
+    local_file: "source/original/Jueying-Lite3-Pro-User-Manual-V1.0.7-0.pdf"
+    sha256: "98a98329d2a0136b3072693ec43b820c5085eb13d0c817f686b9e7bcf0b60251"
+    inspected_pdf_page: 23
+    evidence:
+      - "dimensioned top-view payload interface"
+      - "4 x M3 threaded-hole callout"
+      - "74 x 94 mm rectangular hole-centre pattern"
+    derived_image: "derived/lite3-pro-mounting-interface-page23.png"
+    derived_sha256: "f6e742ddc1fcbd4e8544825a0d70eeefa5c329fad78de3420a9d76eba5c7f202"
+
+  - id: official_lidar_user_manual_v1_0_7
+    url: "https://www.deeprobotics.us/wp-content/uploads/2025/08/Jueying-Lite3-LiDAR-User-Manual-CE-V1.0.7-0.pdf"
+    local_file: "source/original/Jueying-Lite3-LiDAR-User-Manual-CE-V1.0.7-0.pdf"
+    sha256: "25ef3cc19e9ebc8211a8504bd55dbd7cf4dcf511e60d5c59a90c29ed0ffb698f"
+    inspected_pdf_pages: [6, 7]
+    evidence:
+      - "current factory LiDAR configuration with guarded upper laser-radar module"
+      - "front depth camera retained"
+      - "long rectangular upper interface enclosure"
+      - "standing size 610 x 370 x 496 mm"
+      - "robot mass 13.5 kg"
+    derived_images:
+      - "derived/lite3-lidar-manual-06.png"
+      - "derived/lite3-lidar-manual-07.png"
+      - "derived/lite3-lidar-v107-front-render-original.png"
+      - "derived/lite3-lidar-v107-side-render-original.png"
+      - "derived/lite3-lidar-v107-rear-line-art-original.png"
+      - "derived/lite3-lidar-v107-front-line-art-original.png"
+    derived_sha256:
+      - "d66100b0b70d509fc309b988b7640ee5e186ae48875d4189b8328ab5776774b0"
+      - "83c1bc6b867961ab9264d00c9600b2acfd2e45404329972fd9d1fcf0bd6d5c94"
+      - "09f53dc9a4480b9c4b50756fd2cc52d825d000f822a78ead386e814b5101d74c"
+      - "67a978321cc250db21709c0e570d7e8a46cf8551c6aa040916ed74029d3c05f3"
+      - "3a2f69fd80087ec97547c188a73598308119b5d4838bf762af496e94bebf33f9"
+      - "7eb88baff516a2c726b135cfe21ff40b7c172417ee82401824bf5590dd1eff80"
+    extraction_note: >-
+      The four high-resolution PNG files are lossless extractions of the
+      embedded raster/line-art assets on PDF pages 6 and 7. They are the
+      primary visual references for the factory LiDAR upper assembly; the
+      manual does not provide nominal dimensions or factory CAD for that
+      assembly.
+
+  - id: official_motion_development_manual_v2_0_1
+    url: "https://www.deeprobotics.us/wp-content/uploads/2025/10/Jueying-Lite3-Motion-Development-Manual-beta-V2.0.1-0.pdf"
+    local_file: "source/original/Jueying-Lite3-Motion-Development-Manual-beta-V2.0.1-0.pdf"
+    sha256: "e055762eb5eea753940efa954c98823dded2085ad8edf5f47ef65458feae051a"
+    inspected_pdf_pages: [7, 8]
+    evidence:
+      - "body length 548 mm and width 370 mm"
+      - "top and bottom body offsets 74 mm and 44 mm from the body origin"
+      - "left-right hip-centre spacing 124 mm"
+      - "front-rear hip-centre spacing 349 mm"
+      - "leg-plane spacing 328 mm"
+      - "hip-to-leg-plane offset 102 mm"
+      - "upper leg 200 mm, lower leg 210 mm, foot radius 20 mm"
+    derived_images:
+      - "derived/lite3-body-dimensions-07.png"
+      - "derived/lite3-leg-dimensions-08.png"
+    derived_sha256:
+      - "ae20a579f4a3ecc4e7b553904f4543b53f9ff47cd90f7425b5a32cf14b397afb"
+      - "92b64809f445a49d5818f16a923396a442cac76614760db1ff9000290e0e7aea"
+
+  - id: legacy_combined_user_manual_v1_0_3
+    url: "https://marketplace.ednology.co.uk/wp-content/uploads/2024/10/manual-35-9001m_v1.pdf"
+    local_file: "source/original/Jueying-Lite3-User-Manual-V1.0.3-0-legacy-combined.pdf"
+    sha256: "14c46ebe135d234a873dabdc1be6b4a085d2a9d2164847c4a4727445f7be0d58"
+    inspected_pdf_page: 22
+    evidence:
+      - "Venture and Pro/LiDAR mounting layouts appear on one page"
+      - "Venture: 6 x M3 and 2 x M4"
+      - "Pro/LiDAR: 4 x M3 on a 74 x 94 mm hole-centre pattern"
+    source_note: >-
+      This is an official-manual copy hosted by a distributor, retained because
+      it explicitly maps both mounting patterns to the 2023 Venture, Pro, and
+      LiDAR variants on one page.
+    derived_image: "derived/lite3-venture-pro-lidar-mounting-interface-legacy-page22.png"
+    derived_sha256: "557e751b0718a816a1b1515918eeb12c487e12742d463dc4f9631ffef788be86"
+
+excluded_leads:
+  - id: cn219419372u
+    url: "https://patents.google.com/patent/CN219419372U/zh"
+    reason: >-
+      The assignee patent contains detailed line drawings of a quadruped-robot
+      battery locking structure, but it does not identify Lite3 and provides no
+      dimensions suitable for reconstructing the Lite3 payload interface.
+  - id: cn116526110a
+    url: "https://patents.google.com/patent/CN116526110A/zh"
+    reason: >-
+      The assignee patent contains antenna-mount construction drawings but no
+      Lite3 model identification or reusable Lite3 body dimensions.
+  - id: cn116787395a
+    url: "https://patents.google.com/patent/CN116787395A/zh"
+    reason: >-
+      The assignee patent describes a quadruped-compatible arm, but its base is
+      not dimensioned and the document does not establish a Lite3 hole pattern.
+
+open_requirements_before_fabrication:
+  - "Confirm the physical robot variant and revision from its product label."
+  - "Measure thread engagement depth for the selected M3 or M4 holes."
+  - "Confirm hole-centre distances on the physical robot with calipers."
+  - "Establish a physical datum and the payload-clearance envelope."

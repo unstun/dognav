@@ -1,0 +1,34 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "awaiting_collision_validation",
+  "indices": {
+    "failed_preview_preserved_hidden": [
+      36,
+      37,
+      38
+    ],
+    "head_access_candidate": 39,
+    "bottom_up_bolt": 40,
+    "top_nut": 41
+  },
+  "contract": {
+    "selected_position": "S1_TOP_LEFT",
+    "through_hole_diameter_mm": 5.2,
+    "underside_head_access": {
+      "diameter_mm": 9.5,
+      "depth_mm": 6.5,
+      "reason": "8.5 mm socket head collided with irregular underside while the M5 shaft itself was clear"
+    },
+    "bolt": "M5x14 bottom-up visual candidate",
+    "nut": "M5 top hex nut visual candidate",
+    "measured_stack_mm": 7.399625639030631,
+    "modeled_thread_protrusion_above_nut_mm": 2.6003743609693677
+  },
+  "geometry": {
+    "candidate_is_one_solid": true,
+    "bolt_is_solid": true,
+    "nut_is_solid": true
+  },
+  "f3d": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-rev-c-s410-through-bolt-top-nut-print-correction/lite3-rev-c2-s410-single-through-bolt-top-nut-head-access-preview.f3d",
+  "claim_boundary": "This corrects the modeled access collision only. The 9.5 x 6.5 mm head-access bore is not structurally released or physically validated."
+}

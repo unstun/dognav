@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "low_front_d435i_envelope_candidate_selected",
+  "source": {
+    "sweep": {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-d435i-support-study-rev-a/envelope_sweep.json",
+      "sha256": "f28279a54e4e1af7206635607664e08832c3f6416aa6782052f4f7f848f736c9"
+    },
+    "upper_fcstd": {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-source-upper-assembly-rev-a/cad/current-lite3-pro-source-upper-assembly-rev-a.FCStd",
+      "sha256": "27712d62b24a367822d9b30947f0ede5a842173b80cedba744557e5e88fa075d"
+    }
+  },
+  "selection_rule": {
+    "camera_bounds_min_z_at_least_mm": 8.0,
+    "camera_bounds_max_z_at_most_mm": 60.0,
+    "objective": "minimum nose overhang among low-front candidates",
+    "target_minimum_clearance_to_upper_mm": 2.0
+  },
+  "tangent_candidate_from_sweep": {
+    "rear_mount_origin_mm": [
+      5.858653391906429,
+      0.0,
+      30.0
+    ],
+    "bounds_mm": {
+      "min": [
+        1.583402,
+        -45.0,
+        9.703339
+      ],
+      "max": [
+        33.626221,
+        45.0,
+        41.746158
+      ],
+      "size": [
+        32.042819,
+        90.0,
+        32.042819
+      ]
+    },
+    "minimum_front_edge_x_mm": 33.626220703125,
+    "overhang_beyond_measured_nose_mm": 13.626220703125,
+    "intersection_mm3": {
+      "j20a": 0.0,
+      "s410": 3.702076169930947e-07,
+      "mid360": 0.0
+    },
+    "total_intersection_mm3": 3.702076169930947e-07,
+    "compound_intersection_mm3": 3.702076169930947e-07,
+    "minimum_distance_to_upper_mm": 0.0,
+    "above_local_deck": true,
+    "feasible_within_search_range": true
+  },
+  "selected_candidate": {
+    "rear_mount_origin_mm": [
+      7.930186595031429,
+      0.0,
+      30.0
+    ],
+    "front_edge_x_mm": 35.69775390625,
+    "overhang_beyond_measured_nose_mm": 15.69775390625,
+    "bounds_mm": {
+      "min": [
+        3.654934803460571,
+        -45.0,
+        9.703338657034427
+      ],
+      "max": [
+        35.69775390625,
+        45.0,
+        41.74615775982386
+      ],
+      "size": [
+        32.04281910278943,
+        90.0,
+        32.04281910278943
+      ]
+    },
+    "minimum_distance_to_upper_mm": 2.000092849353348,
+    "intersection_mm3": {
+      "j20a": 0.0,
+      "s410": 0.0,
+      "mid360": 0.0
+    },
+    "rotation_local_to_robot": [
+      [
+        0.9396926207859084,
+        0.0,
+        0.3420201433256687
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        -0.3420201433256687,
+        0.0,
+        0.9396926207859084
+      ]
+    ],
+    "optical_axis_robot_frame": [
+      0.9396926207859084,
+      0.0,
+      -0.3420201433256687
+    ]
+  },
+  "checks": {
+    "sweep_pass": true,
+    "selected_from_low_front_subset": true,
+    "minimum_clearance_at_least_2mm": true,
+    "zero_positive_volume_intersection": true,
+    "camera_bottom_at_least_8mm": true,
+    "camera_top_at_most_60mm": true,
+    "no_support_solid_or_print_release": true
+  },
+  "remaining_gates": [
+    "human review of the controlled camera overhang",
+    "front-leg and terrain strike envelope",
+    "USB connector and cable bend sweep",
+    "camera support load path into the future lower adapter",
+    "support strength and print validation"
+  ],
+  "claim_boundary": "This is a conservative envelope placement candidate with 2 mm modeled clearance. It is not a final optical pose, a translated D435i B-rep validation, a support solid, leg-sweep clearance, or print/installation release.",
+  "pass": true
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "capture_date": "2026-07-30",
+  "source": "Dr Sun's purchased current Lite3 Pro; user-provided physical tape-measure photographs",
+  "redistribution_status": "private_project_evidence_only",
+  "measurement_method": {
+    "class": "photo_measured_estimate",
+    "method": "Read the millimetre tape in the same image plane as each visible feature; cross-check repeated views; widen uncertainty for perspective, tape offset, edge ambiguity, and hand occlusion.",
+    "not_proven": [
+      "thread designation",
+      "usable thread depth",
+      "receiver material or onward load path",
+      "recess diameter and depth",
+      "enclosure foot geometry",
+      "connector and cable swept volumes"
+    ]
+  },
+  "files": [
+    {
+      "stored_name": "photo-01.jpg",
+      "original_name": "codex-clipboard-05df1d69-eb9a-4190-9e02-923d623c6bb9.jpg",
+      "sha256": "61c865110b883a6cd9569038f1e05f31a826d65c9f4527f5631d1504155c5ff6",
+      "pixels": [1280, 1707],
+      "role": "enclosure longitudinal-envelope cross-check"
+    },
+    {
+      "stored_name": "photo-02.jpg",
+      "original_name": "codex-clipboard-45443550-87b2-4974-9737-b92415f6820b.jpg",
+      "sha256": "4627c6e5d5e88cb4978548079d7fbf0b085c6b581654a97474ea1b56a9182922",
+      "pixels": [1280, 1707],
+      "role": "enclosure transverse-envelope cross-check"
+    },
+    {
+      "stored_name": "photo-03.jpg",
+      "original_name": "codex-clipboard-a271e0dd-f7b5-44e9-a04e-9e94d6dc2426.jpg",
+      "sha256": "39b95802d29effc19712b71ea74d5845aa9db9a03fa4706a21b9dda1acadcc02",
+      "pixels": [1280, 960],
+      "role": "best enclosure longitudinal-envelope view"
+    },
+    {
+      "stored_name": "photo-04.jpg",
+      "original_name": "codex-clipboard-464d9e6c-60c3-4306-bbf1-757dd2fede1a.jpg",
+      "sha256": "80fde2272aaebd7ca8b787bc0fd36e6e097a7fa361558bc1414a75735df8d5ed",
+      "pixels": [1920, 1440],
+      "role": "enclosure height from local deck plane"
+    },
+    {
+      "stored_name": "photo-05.jpg",
+      "original_name": "codex-clipboard-784b1f9c-4f9a-430b-8d89-1207e74fb4e6.jpg",
+      "sha256": "c4a64a964dc2b0cd96a6b3847c4cf51ad078ba0f8046c8b78a57e4cc126f2386",
+      "pixels": [1280, 1707],
+      "role": "enclosure front width and forward-deck context"
+    },
+    {
+      "stored_name": "photo-06.jpg",
+      "original_name": "codex-clipboard-4e0a0576-328b-4c92-ba09-2b8a24bf3339.jpg",
+      "sha256": "a19d43ca34114c1ae37831b3d32b310808688eb3e78975256f7db29fd4a1d5a1",
+      "pixels": [1280, 1707],
+      "role": "forward-deck longitudinal cross-check"
+    },
+    {
+      "stored_name": "photo-07.jpg",
+      "original_name": "codex-clipboard-2fde4fd6-48e5-49b4-891a-4431522b1afd.jpg",
+      "sha256": "499ebcc6b0b834f64a9bbeb33ea590639e5333378932ddc4aa8adb5496b6571f",
+      "pixels": [1280, 1707],
+      "role": "best nose-edge, front-row, centre-candidate, and enclosure-front longitudinal view"
+    },
+    {
+      "stored_name": "photo-08.jpg",
+      "original_name": "codex-clipboard-5499da90-ac3b-4b46-b0e4-5f4f0ae68a9b.jpg",
+      "sha256": "499ebcc6b0b834f64a9bbeb33ea590639e5333378932ddc4aa8adb5496b6571f",
+      "pixels": [1280, 1707],
+      "role": "byte-identical duplicate of photo-07; retained to preserve the upload set"
+    },
+    {
+      "stored_name": "photo-09.jpg",
+      "original_name": "codex-clipboard-4a7bdd1a-f092-4eda-a47d-eb7e5fd7c14c.jpg",
+      "sha256": "f854e19cc7387ed38833243b3f29e996b55e5632b69aee5206cbfb6a3cff405d",
+      "pixels": [1280, 960],
+      "role": "best front-pair lateral centre-pitch view"
+    },
+    {
+      "stored_name": "photo-10.jpg",
+      "original_name": "codex-clipboard-90a1bee2-1e99-4859-9aba-38ed3f3c83aa.jpg",
+      "sha256": "05ac99141b7e07290954feed11f7acdd314ab08dcb43923af6046b0f115e58d6",
+      "pixels": [1280, 960],
+      "role": "independent front-pair lateral centre-pitch cross-check"
+    }
+  ]
+}

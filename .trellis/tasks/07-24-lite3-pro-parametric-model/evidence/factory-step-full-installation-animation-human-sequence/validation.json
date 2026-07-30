@@ -1,0 +1,48 @@
+{
+  "artifact": "lite3-complete-installation-animation-human-sequence-no-text.mp4",
+  "status": "rejected_d435_late_collision",
+  "rejection_reason": "D435i and its two screws were installed after J20/MID360, so their insertion and driver paths crossed already installed upper geometry.",
+  "claim_boundary": "Visual human-access and assembly-order demonstration only; exact tool envelope, thread engagement, torque, tolerance, structural, vibration, and physical-installation safety are not validated.",
+  "video": {
+    "codec": "h264",
+    "duration_seconds": 25.0,
+    "fps": 24,
+    "frame_count": 600,
+    "height": 720,
+    "pixel_format": "yuv420p",
+    "sha256": "eb8291751d8bbc311e84803f37e326c74ab67fb4942fb7cd74b1d50372b8369c",
+    "size_bytes": 3892986,
+    "width": 1280
+  },
+  "assembly_order": [
+    "MID360 to J20 off-robot subassembly",
+    "four MID360 underside screws with J17 and Lite3 absent",
+    "four J17 through-bolts pre-inserted bottom-up with J20 absent",
+    "J20/MID360 subassembly lowered over protruding bolts",
+    "front top nuts",
+    "rear top washers",
+    "rear top locknuts",
+    "rear locating spacers seated on Lite3",
+    "completed carrier laterally aligned outside the robot envelope",
+    "carrier approached along the mounting-surface normal",
+    "front base screws",
+    "rear base screws",
+    "D435i and its two outward-accessible screws"
+  ],
+  "access_checks": {
+    "bottom_fasteners_completed_off_robot": true,
+    "locating_spacers_precede_carrier": true,
+    "d435i_installed_last_from_outside": true,
+    "lateral_transfer_clearance_fusion_internal_units": 16.8240887028811,
+    "lateral_transfer_clearance_mm": 168.240887028811,
+    "robot_max_y_fusion_internal_units": 53.03690928166603,
+    "carrier_min_y_during_lateral_transfer_fusion_internal_units": 69.86099798454713
+  },
+  "final_state_check": {
+    "root_occurrence_count": 27,
+    "max_transform_difference": 5.684341886080802e-14,
+    "occurrence_mismatches": [],
+    "opacity_mismatches": [],
+    "pending_snapshot": false
+  }
+}

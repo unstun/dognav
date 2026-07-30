@@ -1,0 +1,287 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "sensor_side_interface_contract_pass",
+  "coordinate_contract": {
+    "j20a_mount_plane_normal_source_frame": [
+      0.258819,
+      0.965926,
+      0.0
+    ],
+    "j20a_mount_plane_tangent_source_frame": [
+      0.965926,
+      -0.258819,
+      0.0
+    ],
+    "mount_plane_angle_deg": 15.0
+  },
+  "interfaces": {
+    "mid360_to_j20a": {
+      "fastener_count": 4,
+      "fastener_nominal": "M3",
+      "j20a_clearance_diameter_mm": 3.5,
+      "mid360_pattern": {
+        "points_mm": [
+          [
+            -24.0,
+            -18.0
+          ],
+          [
+            -24.0,
+            18.0
+          ],
+          [
+            24.0,
+            18.0
+          ],
+          [
+            24.0,
+            -18.0
+          ]
+        ],
+        "centred_points_mm": [
+          [
+            -24.0,
+            -18.0
+          ],
+          [
+            -24.0,
+            18.0
+          ],
+          [
+            24.0,
+            -18.0
+          ],
+          [
+            24.0,
+            18.0
+          ]
+        ],
+        "pitch_u_mm": 48.0,
+        "pitch_v_mm": 36.0,
+        "centre_mm": [
+          0.0,
+          0.0
+        ]
+      },
+      "j20a_pattern": {
+        "points_mm": [
+          [
+            65.10938,
+            18.0
+          ],
+          [
+            65.10938,
+            -18.0
+          ],
+          [
+            17.10938,
+            -18.0
+          ],
+          [
+            17.10938,
+            18.0
+          ]
+        ],
+        "centred_points_mm": [
+          [
+            -24.0,
+            -18.0
+          ],
+          [
+            -24.0,
+            18.0
+          ],
+          [
+            24.0,
+            -18.0
+          ],
+          [
+            24.0,
+            18.0
+          ]
+        ],
+        "pitch_u_mm": 48.000001,
+        "pitch_v_mm": 36.0,
+        "centre_mm": [
+          41.10938,
+          0.0
+        ]
+      },
+      "maximum_centred_axis_residual_mm": 2.71e-07,
+      "seating_planes_source_projection_mm": {
+        "j20a_outer_plane_along_normal": 25.05219,
+        "mid360_mount_face_along_source_y": -25.9171,
+        "preserved_modeled_gap_mm": 0.2
+      },
+      "nut_required": false,
+      "screw_length": null,
+      "torque": null,
+      "claim": "pattern and nominal fastener only"
+    },
+    "s410_to_j20a": {
+      "fastener_count": 4,
+      "fastener_nominal": "M5",
+      "s410_clearance_diameter_mm": 5.2,
+      "j20a_modeled_receiver_diameter_mm": 4.2,
+      "s410_pattern": {
+        "points_mm": [
+          [
+            41.799089,
+            24.598499
+          ],
+          [
+            -41.63198,
+            24.880279
+          ],
+          [
+            41.799089,
+            -24.598499
+          ],
+          [
+            -41.63198,
+            -24.880279
+          ]
+        ],
+        "centred_points_mm": [
+          [
+            -41.715535,
+            -24.880279
+          ],
+          [
+            -41.715535,
+            24.880279
+          ],
+          [
+            41.715535,
+            -24.598499
+          ],
+          [
+            41.715535,
+            24.598499
+          ]
+        ],
+        "pitch_u_mm": 83.431069,
+        "pitch_v_mm": 49.760558,
+        "centre_mm": [
+          0.083555,
+          0.0
+        ]
+      },
+      "j20a_pattern": {
+        "points_mm": [
+          [
+            82.90847,
+            24.598499
+          ],
+          [
+            82.90847,
+            -24.598499
+          ],
+          [
+            -0.522599,
+            24.880279
+          ],
+          [
+            -0.522599,
+            -24.880279
+          ]
+        ],
+        "centred_points_mm": [
+          [
+            -41.715534,
+            -24.880279
+          ],
+          [
+            -41.715534,
+            24.880279
+          ],
+          [
+            41.715534,
+            -24.598499
+          ],
+          [
+            41.715534,
+            24.598499
+          ]
+        ],
+        "pitch_u_mm": 83.431069,
+        "pitch_v_mm": 49.760558,
+        "centre_mm": [
+          41.192935,
+          0.0
+        ]
+      },
+      "maximum_centred_axis_residual_mm": 7.6e-08,
+      "seating_planes_source_projection_mm": {
+        "j20a_outer_plane_along_normal": 25.05219,
+        "s410_foot_seat_plane_along_source_y": 0.0
+      },
+      "nut_required": false,
+      "screw_length": null,
+      "torque": null,
+      "claim": "pattern and modeled receiver direction only"
+    },
+    "d435i_to_custom_camera_face": {
+      "fastener_count": 2,
+      "fastener_nominal": "M3",
+      "pitch_mm": 45.0,
+      "maximum_thread_insertion_mm": 3.0,
+      "recommended_combined_torque_nm": 0.4,
+      "nut_required": false,
+      "screw_length": null,
+      "source": "D400 datasheet Figure 10-9, PDF page 140"
+    }
+  },
+  "source_files": {
+    "mid360_step": {
+      "path": "references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02"
+    },
+    "s410_step": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1CA5-S410-Lidar protector.STEP",
+      "sha256": "7fd23a776b45c7d8571ef77ba9e8b05520eced0b97f62487ba03f88bbc9df810"
+    },
+    "s410_drawing": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1CA5-S410-Lidar protector.pdf",
+      "sha256": "e71fa54ee97d9e429c0d3a9c4f7d850e15a132adabf65f7d2a68fc7293517023"
+    },
+    "j20a_step": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J20A-small lidar base.STEP",
+      "sha256": "341b08ca08526e5ee0e9fbeca0bfda9d9970062c6605e979adc52b31955c9bc9"
+    },
+    "j20a_drawing": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J20A-small lidar base.pdf",
+      "sha256": "d0c9b0173b9ed6475da2aed6d1a90efcbdd540ac2b976af0148a2ba48473f695"
+    },
+    "d435i_datasheet": {
+      "path": "references/upstream/2026-07-25_realsense-d435i-cad/source/original/Intel-RealSense-D400-Series-Datasheet.pdf",
+      "sha256": "d0156b43a82da64e809c6ae45a5b5d41f34d8697363534ed81f2e4407f38eaa4",
+      "page": 140
+    }
+  },
+  "checks": {
+    "mid360_four_axis_pattern": true,
+    "mid360_pattern_is_48_by_36_mm": true,
+    "mid360_to_j20a_axis_residual_below_0p01_mm": true,
+    "j20a_mid_outer_plane_matches_drawing_geometry": true,
+    "s410_four_5p2mm_clearances": true,
+    "s410_to_j20a_axis_residual_below_0p01_mm": true,
+    "j20a_s410_outer_plane_matches_mid_outer_plane": true,
+    "s410_foot_seat_plane_is_source_y_zero": true,
+    "d435i_contract_is_2x_m3_45mm_3mm": true,
+    "no_current_pro_receiver_inferred": true,
+    "all_screw_lengths_remain_open": true
+  },
+  "release_gate": {
+    "upper_sensor_pattern_contract_complete": true,
+    "current_pro_lower_adapter_release": false,
+    "blocking_current_pro_inputs": [
+      "front-pair thread designation and usable depth",
+      "centre-axis receiver role, thread, and usable depth",
+      "selected current-Pro load path"
+    ]
+  },
+  "claim_boundary": "This contract validates source-backed sensor-side axes and the D435i manufacturer thread limit. It does not establish screw length, torque for Mid-360/S410, current-Pro receivers, strength, fatigue, or print release.",
+  "pass": true
+}

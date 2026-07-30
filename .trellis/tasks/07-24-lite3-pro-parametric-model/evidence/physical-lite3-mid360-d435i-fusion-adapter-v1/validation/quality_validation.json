@@ -1,0 +1,39 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "historical_targeted_quality_pass_rejected_for_current_pro_interface",
+  "trellis_check_skill_used": true,
+  "checks": {
+    "task_artifacts_reviewed": true,
+    "trellis_task_validate": true,
+    "python_compile": true,
+    "json_parse": true,
+    "yaml_parse": true,
+    "bom_csv_parse": true,
+    "tracked_task_diff_check": true,
+    "package_text_whitespace_check": true,
+    "freecad_generation_runtime": true,
+    "fusion_generation_runtime": true,
+    "fusion_animation_runtime": true,
+    "f3d_generic_archive_test": "15 supported members passed; 267 members use unsupported generic unzip encoding/compression and were skipped",
+    "clean_step_import": true,
+    "stl_manifold_check": true,
+    "slicer_smoke": true,
+    "video_frame_sequence_960_of_960": true,
+    "video_full_decode": true,
+    "checksum_manifest_verification": true
+  },
+  "configured_project_packages": [],
+  "configured_project_lint_or_test_suite": false,
+  "type_check": {
+    "status": "not_applicable_to_host_python",
+    "reason": "The executable scripts target FreeCAD's FreeCAD/Part/Mesh runtime or Fusion's proprietary adsk runtime. Direct successful execution plus generated validation reports provide the runtime evidence; host pyright lacks those application APIs."
+  },
+  "findings_fixed": [
+    "Fusion rear_web_thickness_mm metadata now reads parameters.json instead of a hard-coded 10.0 string.",
+    "The 21-frame keyframe probe report was renamed and marked probe_only so it cannot be confused with the four complete 240-frame render reports."
+  ],
+  "spec_update_required": true,
+  "spec_update_reason": "The hardware evidence guide now requires revision-matched drawings or physical measurement when a newer official product revision conflicts with a dimensioned manual.",
+  "commit_created": false,
+  "commit_boundary": "Human visual review precedes any commit for this task."
+}

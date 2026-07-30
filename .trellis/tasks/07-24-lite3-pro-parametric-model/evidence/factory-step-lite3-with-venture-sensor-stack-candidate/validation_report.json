@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "purpose": "real_lite3_brep_with_venture_sensor_stack_no_external_ipc_preview",
+  "source": {
+    "path": "references/upstream/2026-07-27_lite3-exploration-assembly-cad/source/original/lite3-exploration-assembly.step",
+    "original_name": "6074-Lite3探索版总装.STEP",
+    "size_bytes": 165783662,
+    "sha256": "d0ad78189f8f9154a780796d2deffcc848c094700776d7c9d6f6da092106c6eb",
+    "format": "ISO 10303-21 STEP AP214",
+    "units": "mm",
+    "authoring_system": "SolidWorks 2020 / SwSTEP 2.0",
+    "source_timestamp": "2023-10-21T02:23:11",
+    "license": "unknown",
+    "redistribution": "not authorized"
+  },
+  "source_geometry": {
+    "product_count": 137,
+    "next_assembly_usage_occurrence_count": 319,
+    "advanced_brep_shape_representation_count": 77,
+    "manifold_solid_brep_count": 99,
+    "closed_shell_count": 99,
+    "triangulated_face_set_count": 0,
+    "freecad_object_count": 921,
+    "freecad_shape_object_count": 851,
+    "freecad_solid_count": 1427,
+    "freecad_face_count": 440637,
+    "real_editable_brep": true,
+    "mesh_only": false
+  },
+  "assembly_identity": {
+    "top_level_product": "Lite3探索版总装",
+    "visible_robot_base": "Lite3体验版总装.STEP",
+    "hidden_separate_backload": "探索版背载模块",
+    "hidden_backload_known_children": [
+      "1T21-BZ20-单背载外壳",
+      "1T21-BZ1B-单背载基座",
+      "背载扩展电路板单层"
+    ],
+    "lite3_pro_identity_verified": false
+  },
+  "fusion_import": {
+    "document_name": "Untitled",
+    "document_saved": false,
+    "new_component_count": 137,
+    "total_occurrence_count_after_import": 321,
+    "visible_robot_occurrence_count_scanned": 315,
+    "visible_robot_body_count_scanned": 288,
+    "old_visual_mesh_hidden": true,
+    "real_factory_brep_visible": true,
+    "sensor_stack_component": "VENTURE_SENSOR_STACK_SOURCE_NO_IPC",
+    "adapter_component": "PRO_TO_J17A_OPEN_TRUSS_ADAPTER_0P2MM_CAD_CLEARANCE",
+    "external_industrial_computer_added": false,
+    "native_internal_robot_parts_modified": false
+  },
+  "rigid_alignment": {
+    "scale_applied": false,
+    "fusion_units": "cm",
+    "mapping": [
+      "old_x = -source_z + 240.420683931",
+      "old_y = -source_x - 30.447134399",
+      "old_z = source_y + 21.577652367"
+    ],
+    "homogeneous_matrix": [
+      [0.0, 0.0, -1.0, 240.420683931],
+      [-1.0, 0.0, 0.0, -30.447134399],
+      [0.0, 1.0, 0.0, 21.577652367],
+      [0.0, 0.0, 0.0, 1.0]
+    ],
+    "pose_boundary": "Torso centre and orientation were aligned; source and reference leg poses differ."
+  },
+  "source_alignment_adjustment": {
+    "adapter_and_sensor_stack_global_z_shift_mm": 0.2,
+    "collision_volume_mm3_by_shift": {
+      "0.0": 103.920445,
+      "0.1": 45.976911,
+      "0.2": 0.0
+    },
+    "post_shift_minimum_distance_mm": 0.020620120,
+    "manufacturing_tolerance_claim": false
+  },
+  "top_interface_scan": {
+    "visible_robot_face_count": 70842,
+    "top_vertical_cylindrical_face_count": 870,
+    "unique_axis_center_count": 604,
+    "target_pattern_mm": [74.0, 94.0],
+    "target_pattern_match_count": 0,
+    "lite3_pro_payload_interface_verified": false,
+    "direct_bolt_on_to_downloaded_chassis_verified": false
+  },
+  "screenshots": [
+    "full-assembly-factory-brep-isometric.png",
+    "upper-assembly-factory-brep-closeup.png",
+    "lite3-factory-brep-only-isometric.png",
+    "factory-brep-vs-official-mesh-overlay.png"
+  ],
+  "claim_boundary": "The user-provided source is a real editable Lite3 B-rep assembly, and the reviewed sensor stack can be shown on it without an added external industrial computer. The exact chassis variant and Lite3 Pro 74 x 94 mm payload interface are not verified, so this is not yet a printable or direct-install fit conclusion."
+}

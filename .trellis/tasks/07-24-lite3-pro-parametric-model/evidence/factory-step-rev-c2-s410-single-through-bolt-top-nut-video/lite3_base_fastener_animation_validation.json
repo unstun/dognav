@@ -1,0 +1,458 @@
+{
+  "document": "lite3-j17a-j20a-monolithic-rear-web-print-adaptation-rev-b-review",
+  "context_body_count": 56,
+  "operations": {
+    "front_left_m3x8": [
+      {
+        "frame": 348,
+        "screw_offset_mm": 20.0,
+        "driver_visible": false,
+        "screw_hits": [],
+        "receiver_engagements": [],
+        "driver_hits": []
+      },
+      {
+        "frame": 352,
+        "screw_offset_mm": 11.75,
+        "driver_visible": false,
+        "screw_hits": [],
+        "receiver_engagements": [],
+        "driver_hits": []
+      },
+      {
+        "frame": 356,
+        "screw_offset_mm": 3.500000000000001,
+        "driver_visible": false,
+        "screw_hits": [],
+        "receiver_engagements": [],
+        "driver_hits": []
+      },
+      {
+        "frame": 362,
+        "screw_offset_mm": 3.5,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [],
+        "driver_hits": []
+      },
+      {
+        "frame": 368,
+        "screw_offset_mm": 2.688232421875,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [],
+        "driver_hits": []
+      },
+      {
+        "frame": 374,
+        "screw_offset_mm": 0.811767578125,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#4",
+            "volume_mm3": 3.022384866322319
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 3.0367336070013717
+          }
+        ],
+        "driver_hits": []
+      },
+      {
+        "frame": 379,
+        "screw_offset_mm": 0.0,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#4",
+            "volume_mm3": 4.7756769491615705
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 4.790025606590784
+          }
+        ],
+        "driver_hits": []
+      },
+      {
+        "frame": 383,
+        "screw_offset_mm": 0.0,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#4",
+            "volume_mm3": 4.7756769491615705
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 4.790025606590784
+          }
+        ],
+        "driver_hits": []
+      }
+    ],
+    "front_right_m3x8": [
+      {
+        "frame": 384,
+        "screw_offset_mm": 20.0,
+        "driver_visible": false,
+        "screw_hits": [],
+        "receiver_engagements": [],
+        "driver_hits": []
+      },
+      {
+        "frame": 388,
+        "screw_offset_mm": 11.75,
+        "driver_visible": false,
+        "screw_hits": [],
+        "receiver_engagements": [],
+        "driver_hits": []
+      },
+      {
+        "frame": 392,
+        "screw_offset_mm": 3.500000000000001,
+        "driver_visible": false,
+        "screw_hits": [],
+        "receiver_engagements": [],
+        "driver_hits": []
+      },
+      {
+        "frame": 398,
+        "screw_offset_mm": 3.5,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [],
+        "driver_hits": []
+      },
+      {
+        "frame": 404,
+        "screw_offset_mm": 2.688232421875,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [],
+        "driver_hits": []
+      },
+      {
+        "frame": 410,
+        "screw_offset_mm": 0.811767578125,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#9",
+            "volume_mm3": 3.0223859530031807
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 3.022384825407422
+          }
+        ],
+        "driver_hits": []
+      },
+      {
+        "frame": 415,
+        "screw_offset_mm": 0.0,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#9",
+            "volume_mm3": 4.7756780358437565
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 4.775676824996972
+          }
+        ],
+        "driver_hits": []
+      },
+      {
+        "frame": 419,
+        "screw_offset_mm": 0.0,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#9",
+            "volume_mm3": 4.7756780358437565
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 4.775676824996972
+          }
+        ],
+        "driver_hits": []
+      }
+    ],
+    "rear_left_m3x12": [
+      {
+        "frame": 426,
+        "screw_offset_mm": 20.0,
+        "driver_visible": false,
+        "screw_hits": [],
+        "receiver_engagements": [],
+        "driver_hits": []
+      },
+      {
+        "frame": 430,
+        "screw_offset_mm": 11.75,
+        "driver_visible": false,
+        "screw_hits": [],
+        "receiver_engagements": [],
+        "driver_hits": []
+      },
+      {
+        "frame": 434,
+        "screw_offset_mm": 3.500000000000001,
+        "driver_visible": false,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#10",
+            "volume_mm3": 1.7810513424455685
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 1.7810513424456795
+          }
+        ],
+        "driver_hits": []
+      },
+      {
+        "frame": 440,
+        "screw_offset_mm": 3.5,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#10",
+            "volume_mm3": 1.7810513424455685
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 1.7810513424456795
+          }
+        ],
+        "driver_hits": []
+      },
+      {
+        "frame": 446,
+        "screw_offset_mm": 2.688232421875,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#10",
+            "volume_mm3": 3.534343446099333
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 3.534343446099562
+          }
+        ],
+        "driver_hits": []
+      },
+      {
+        "frame": 452,
+        "screw_offset_mm": 0.811767578125,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#10",
+            "volume_mm3": 7.587216561492867
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 7.587216561493158
+          }
+        ],
+        "driver_hits": []
+      },
+      {
+        "frame": 457,
+        "screw_offset_mm": 0.0,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#10",
+            "volume_mm3": 9.340508665146825
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 9.340508665147178
+          }
+        ],
+        "driver_hits": []
+      },
+      {
+        "frame": 461,
+        "screw_offset_mm": 0.0,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#10",
+            "volume_mm3": 9.340508665146825
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 9.340508665147178
+          }
+        ],
+        "driver_hits": []
+      }
+    ],
+    "rear_right_m3x12": [
+      {
+        "frame": 462,
+        "screw_offset_mm": 20.0,
+        "driver_visible": false,
+        "screw_hits": [],
+        "receiver_engagements": [],
+        "driver_hits": []
+      },
+      {
+        "frame": 466,
+        "screw_offset_mm": 11.75,
+        "driver_visible": false,
+        "screw_hits": [],
+        "receiver_engagements": [],
+        "driver_hits": []
+      },
+      {
+        "frame": 470,
+        "screw_offset_mm": 3.500000000000001,
+        "driver_visible": false,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#5",
+            "volume_mm3": 1.7810513424454706
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 1.7810513424456822
+          }
+        ],
+        "driver_hits": []
+      },
+      {
+        "frame": 476,
+        "screw_offset_mm": 3.5,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#5",
+            "volume_mm3": 1.7810513424454706
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 1.7810513424456822
+          }
+        ],
+        "driver_hits": []
+      },
+      {
+        "frame": 482,
+        "screw_offset_mm": 2.688232421875,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#5",
+            "volume_mm3": 3.5343434460991836
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 3.534343446099607
+          }
+        ],
+        "driver_hits": []
+      },
+      {
+        "frame": 488,
+        "screw_offset_mm": 0.811767578125,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#5",
+            "volume_mm3": 7.58721656149244
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 7.587216561493259
+          }
+        ],
+        "driver_hits": []
+      },
+      {
+        "frame": 493,
+        "screw_offset_mm": 0.0,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#5",
+            "volume_mm3": 9.340508665146476
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 9.34050866514748
+          }
+        ],
+        "driver_hits": []
+      },
+      {
+        "frame": 497,
+        "screw_offset_mm": 0.0,
+        "driver_visible": true,
+        "screw_hits": [],
+        "receiver_engagements": [
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#5",
+            "volume_mm3": 9.340508665146476
+          },
+          {
+            "body": "Lite3Ì½Ë÷°æ×Ü×°:1+Lite3ÌåÑé°æ×Ü×°.STEP:1+lite3________.STEP.STEP:1+1T21-S02G-________.STEP.STEP:1#12",
+            "volume_mm3": 9.34050866514748
+          }
+        ],
+        "driver_hits": []
+      }
+    ]
+  },
+  "rear_spacers": [
+    {
+      "frame": 294,
+      "offset_mm": 30.0,
+      "hits": []
+    },
+    {
+      "frame": 305,
+      "offset_mm": 15.97764444809731,
+      "hits": []
+    },
+    {
+      "frame": 317,
+      "offset_mm": 0.0,
+      "hits": []
+    }
+  ],
+  "tolerance_mm3": 0.01,
+  "receiver_engagement_is_not_a_clearance_claim": true,
+  "maximum_positive_volume_collision_mm3": 9.34050866514748,
+  "checks": {
+    "screw_paths_clear": true,
+    "driver_sweeps_clear": true,
+    "rear_spacer_paths_clear": true
+  },
+  "passed": true
+}

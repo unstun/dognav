@@ -1,0 +1,46 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "passed",
+  "indices": {
+    "candidate": 39,
+    "bolt": 40,
+    "nut": 41,
+    "s410_guard": 3,
+    "failed_preview_hidden": [
+      36,
+      37,
+      38
+    ]
+  },
+  "checks": {
+    "candidate_one_closed_solid": true,
+    "selected_through_hole_is_5_2_mm": true,
+    "selected_head_access_is_9_5_mm": true,
+    "zero_modeled_positive_volume_collision": true,
+    "failed_preview_preserved_hidden": true,
+    "corrected_candidate_visible": true,
+    "official_s410_preserved": true
+  },
+  "through_hole_faces_nearest_first": [
+    {
+      "face_index": 5,
+      "radius_mm": 2.6,
+      "axis_distance_mm": 5.153158987977356e-13
+    }
+  ],
+  "head_access_faces_nearest_first": [
+    {
+      "face_index": 1,
+      "radius_mm": 4.75,
+      "axis_distance_mm": 3.780733248782696e-13
+    }
+  ],
+  "collision_intersection_volumes_mm3": {
+    "bolt_vs_candidate": 0.0,
+    "bolt_vs_s410_guard": 0.0,
+    "nut_vs_candidate": 0.0,
+    "nut_vs_s410_guard": 0.0
+  },
+  "measured_stack_mm": 7.399625639030631,
+  "claim_boundary": "Zero modeled collision validates CAD packaging only. The access-bore effect on print strength, fit, torque, vibration, and real-robot safety remains unvalidated."
+}

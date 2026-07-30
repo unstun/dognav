@@ -1,0 +1,157 @@
+{
+  "artifact": "lite3-restart-step-01-j17a-d435i-direct-thread-no-text.mp4",
+  "status": "accepted_for_sequence_continuation",
+  "visual_acceptance": {
+    "accepted_by": "Dr Sun",
+    "accepted_on": "2026-07-29",
+    "authorized_next_step": "Add MID360 to bare J20A as an independent second-layer subassembly before joining it to J17A."
+  },
+  "stage": "experiment_and_analysis",
+  "scope": "Restart step 01 only: bare J17A, official-manufacturer D435i BRep, and two independent visual M3x5 screws entering the camera's own rear M3 threads.",
+  "excluded_from_every_animation_frame": [
+    "Lite3 robot",
+    "J20A second bracket",
+    "MID360",
+    "S410 guard",
+    "all nuts",
+    "all later fasteners"
+  ],
+  "claim_boundary": "The direct two-axis relationship, J17A clearance holes, D435i rear M3 receivers, 45 mm pitch, direct seating, and maximum camera-thread insertion are source-backed. M3x5 is a visual length candidate; exact supplied screw length, head standard, tool, tightening operation, torque, tolerance, vibration, structural capacity, and physical fit are not validated.",
+  "source_contract": {
+    "j17a_component": "Current accepted J17A BRep; the two short camera faces and their holes remain source geometry.",
+    "j17a_camera_holes": {
+      "count": 2,
+      "type": "clearance through holes",
+      "diameter_mm": 3.199999999999999,
+      "pitch_mm": 45.0
+    },
+    "d435i_component": "Fusion BRep translation of official manufacturer D435i_Solid.SLDPRT",
+    "d435i_camera_receivers": {
+      "count": 2,
+      "type": "rear M3 internal threads",
+      "modeled_minor_diameter_mm": 2.5,
+      "pitch_mm": 45.0,
+      "maximum_insertion_mm": 3.0
+    },
+    "direct_seating": "D435i rear mounting plane seats on the two short J17A camera faces."
+  },
+  "live_fusion_interface_check": {
+    "axis_residuals_mm": [
+      8.857325613537623e-14,
+      8.857325613537623e-14
+    ],
+    "maximum_axis_residual_mm": 8.857325613537623e-14,
+    "j17a_d435i_minimum_distance_mm": 5.8960474636649364e-08,
+    "j17a_d435i_interference_count": 0,
+    "j17a_d435i_interference_volume_cm3": 0.0,
+    "j17a_brep_bodies": 1,
+    "j17a_mesh_bodies": 0,
+    "d435i_brep_bodies": 2,
+    "d435i_mesh_bodies": 0
+  },
+  "fastener_contract": {
+    "count": 2,
+    "nominal_visual_candidate": "M3x5",
+    "j17a_traversal_mm": 2.5,
+    "modeled_camera_thread_engagement_mm": 2.5,
+    "within_d435i_maximum_insertion": true,
+    "entry_side": "J17A side",
+    "receiver": "D435i rear M3 internal thread",
+    "nuts": 0,
+    "tool_modeled": false,
+    "tool_note": "Step 01 proves the direct-thread direction with individual translating and rotating screws. A hand or driver model is intentionally deferred until Dr Sun accepts the connection order."
+  },
+  "animation_sequence": {
+    "bare_j17a": [
+      0,
+      23
+    ],
+    "d435i_approach_and_seating": [
+      24,
+      71
+    ],
+    "first_screw_rotates_from_j17a_side_into_camera_thread": [
+      80,
+      127
+    ],
+    "second_screw_rotates_from_j17a_side_into_camera_thread": [
+      128,
+      175
+    ],
+    "opaque_completed_closeup": [
+      176,
+      215
+    ],
+    "completed_context_view": [
+      216,
+      263
+    ],
+    "initial_screw_axis_offset_mm": -20.0,
+    "final_screw_axis_offset_mm": 0.0,
+    "simultaneous_screw_motion": false
+  },
+  "sampled_visibility": {
+    "frame_0": [
+      1
+    ],
+    "frame_24": [
+      1,
+      15
+    ],
+    "frame_80": [
+      1,
+      15,
+      16
+    ],
+    "frame_128": [
+      1,
+      15,
+      16,
+      17
+    ],
+    "frame_263": [
+      1,
+      15,
+      16,
+      17
+    ]
+  },
+  "video": {
+    "codec": "h264",
+    "duration_seconds": 11.0,
+    "fps": 24,
+    "frame_count": 264,
+    "width": 1280,
+    "height": 720,
+    "pixel_format": "yuv420p",
+    "contains_text_overlay": false,
+    "size_bytes": 457026,
+    "sha256": "42d192d04a1d49f8ca46b4c4894c6cc321bcc58fcdd6e9d4eafba6250c315bc6"
+  },
+  "keyframe_contact_sheet": {
+    "file": "keyframe-contact-sheet.png",
+    "width": 2880,
+    "height": 810,
+    "size_bytes": 588452,
+    "sha256": "f5ff3e643f51f381d06b2dcd45a473deaddcce4fbd0104bafd32cf8a4946e673"
+  },
+  "renderer": {
+    "file": "render_j17a_d435i_direct_thread_step.py",
+    "size_bytes": 13383,
+    "sha256": "b6e2ba382ee6a14770572e6b9b7d35eff4de20e223ef1bbbfb63468fe9419b9e"
+  },
+  "frame_validation": {
+    "first_frame": "frame_0000.png",
+    "last_frame": "frame_0263.png",
+    "missing_frames": [],
+    "extra_frames": [],
+    "zero_byte_frames": 0,
+    "minimum_frame_size_bytes": 64084
+  },
+  "fusion_final_restore": {
+    "root_occurrence_count": 34,
+    "max_transform_difference": 3.552713678800501e-15,
+    "visibility_mismatches": [],
+    "pending_snapshot": false
+  }
+}

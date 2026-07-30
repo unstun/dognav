@@ -1,0 +1,38 @@
+topic: realsense-d435i-cad
+date: 2026-07-25
+status: surveyed
+
+upstream:
+  cad_page: https://dev.realsenseai.com/docs/cad-files/
+  cad_download: https://dev.realsenseai.com/download/41950/
+  datasheet_download: https://dev.realsenseai.com/download/42003/
+  publisher: RealSense, Inc.
+  cad_package_sha256: 31d176bd773f0e25c76c0af2d68c0575fdb550bceb60ffe9da72f92f2a53ca73
+  cad_file_license: "No separate license statement found on the public CAD page"
+
+files:
+  - name: D435i_Solid.SLDPRT
+    local_source_path: source/original/D435i_Solid.SLDPRT
+    size_bytes: 1712243
+    sha256: 9cdbfdc7085ea5430ec9007eb1d895c7ff513c40b77c298a275ded33edf65525
+    format: SolidWorks part
+    source_container: D400 Depth Cameras official CAD download
+  - name: Intel-RealSense-D400-Series-Datasheet.pdf
+    local_source_path: source/original/Intel-RealSense-D400-Series-Datasheet.pdf
+    size_bytes: 5536987
+    sha256: d0156b43a82da64e809c6ae45a5b5d41f34d8697363534ed81f2e4407f38eaa4
+    format: PDF
+
+mechanical_dimensions:
+  product: Intel RealSense Depth Camera D435i
+  nominal_bbox_mm: [90.0, 25.0, 25.0]
+  tolerance_mm: [0.15, 0.15, 0.15]
+  weight_g: 75
+  evidence: "D400 Series datasheet, table 3-52"
+
+claim_boundary: >-
+  The preserved SLDPRT is the official D435i product CAD. The local printable
+  build does not have a licensed SolidWorks-to-STEP translator, so its body
+  envelope uses the official nominal dimensions while optical apertures and
+  mounting registration are separately evidence-scored. The reconstructed
+  printable camera is not relabeled as converted official CAD.

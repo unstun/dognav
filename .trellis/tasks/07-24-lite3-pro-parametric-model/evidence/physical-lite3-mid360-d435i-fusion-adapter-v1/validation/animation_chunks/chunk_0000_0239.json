@@ -1,0 +1,121 @@
+{
+  "status": "historical_v1_animation_chunk_rejected_for_current_pro_robot_sequence",
+  "stage": "experiment_and_analysis",
+  "frame_start": 0,
+  "frame_end_inclusive": 239,
+  "frames_rendered": 240,
+  "total_frame_count": 960,
+  "output_dir": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/physical-lite3-mid360-d435i-fusion-adapter-v1/frames",
+  "contains_text_overlay": false,
+  "sequence": {
+    "carrier_only": [
+      0,
+      47
+    ],
+    "d435i_approach": [
+      48,
+      107
+    ],
+    "d435i_two_direct_screws": {
+      "16": [
+        108,
+        155
+      ],
+      "17": [
+        156,
+        203
+      ]
+    },
+    "mid360_approach": [
+      204,
+      263
+    ],
+    "mid360_four_underside_screws_cross_order": {
+      "11": [
+        264,
+        287
+      ],
+      "13": [
+        288,
+        311
+      ],
+      "12": [
+        312,
+        335
+      ],
+      "14": [
+        336,
+        359
+      ]
+    },
+    "s410_approach": [
+      360,
+      419
+    ],
+    "s410_four_direct_screws_cross_order": {
+      "28": [
+        420,
+        443
+      ],
+      "31": [
+        444,
+        467
+      ],
+      "29": [
+        468,
+        491
+      ],
+      "30": [
+        492,
+        515
+      ]
+    },
+    "rear_spacers": {
+      "0": [
+        576,
+        599
+      ],
+      "1": [
+        600,
+        623
+      ]
+    },
+    "complete_module_to_lite3": [
+      624,
+      695
+    ],
+    "four_robot_side_screws_cross_order": {
+      "('front', 0)": [
+        696,
+        731
+      ],
+      "('rear', 1)": [
+        732,
+        767
+      ],
+      "('front', 1)": [
+        768,
+        803
+      ],
+      "('rear', 0)": [
+        804,
+        839
+      ]
+    },
+    "global_hold": [
+      888,
+      959
+    ],
+    "removed_inter_layer_fasteners": 0,
+    "nuts": 0
+  },
+  "restoration": {
+    "maximum_transform_difference": 2.842170943040401e-14,
+    "visibility_mismatches": [],
+    "custom_graphics_removed": true,
+    "custom_graphics_count_before": 0,
+    "custom_graphics_count_after": 0,
+    "pending_snapshot": false
+  },
+  "pass": true
+}

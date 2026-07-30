@@ -1,0 +1,1822 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "d435i_envelope_sweep_pass_controlled_forward_offset_required",
+  "source": {
+    "upper_fcstd": {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-source-upper-assembly-rev-a/cad/current-lite3-pro-source-upper-assembly-rev-a.FCStd",
+      "sha256": "27712d62b24a367822d9b30947f0ede5a842173b80cedba744557e5e88fa075d"
+    },
+    "upper_validation": {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-source-upper-assembly-rev-a/validation.json",
+      "sha256": "b7601a0dfa27dc89c750c4914c248f24b85304bc12d085fd2e58e4bb7fd6eab3"
+    },
+    "interface_contract": {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-sensor-interface-contract-rev-a/interface_contract.json",
+      "sha256": "b3e27576f6d7deb23d77b60fce41093125898552b8df3e7db7c4a1639d3a1b27"
+    }
+  },
+  "camera_contract": {
+    "official_nominal_envelope_mm": [
+      90.0,
+      25.0,
+      25.0
+    ],
+    "downward_optical_tilt_deg": 20.0,
+    "rotation_local_to_robot": [
+      [
+        0.9396926207859084,
+        0.0,
+        0.3420201433256687
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        -0.3420201433256687,
+        0.0,
+        0.9396926207859084
+      ]
+    ],
+    "rear_mount_origin_x_mm": -9.76756731121857,
+    "front_margin_to_measured_nose_edge_mm": 2.0,
+    "two_m3_pitch_mm": 45.0,
+    "maximum_thread_insertion_mm": 3.0
+  },
+  "fixed_nose_sweep": {
+    "rear_origin_z_range_mm": [
+      20.0,
+      100.0
+    ],
+    "increment_mm": 2.5,
+    "rows": [
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          20.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            -0.296661
+          ],
+          "max": [
+            18.0,
+            45.0,
+            31.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 3717.9387347238676,
+          "s410": 1740.0416897450227,
+          "mid360": 759.5124168840762
+        },
+        "total_intersection_mm3": 6217.492841352967,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": false
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          22.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            2.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            34.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 3916.171559622396,
+          "s410": 1923.8413206486741,
+          "mid360": 1741.3083030865348
+        },
+        "total_intersection_mm3": 7581.321183357605,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          25.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            4.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            36.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 2942.8449378171013,
+          "s410": 2107.640990402108,
+          "mid360": 3263.805483372043
+        },
+        "total_intersection_mm3": 8314.291411591252,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          27.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            7.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            39.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 702.158581440401,
+          "s410": 2291.44148770616,
+          "mid360": 4238.731042395484
+        },
+        "total_intersection_mm3": 7232.331111542046,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          30.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            9.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            41.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 2210.263809807779,
+          "mid360": 5135.668262898696
+        },
+        "total_intersection_mm3": 7345.932072706475,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          32.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            12.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            44.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 1983.514919404257,
+          "mid360": 3896.8295015465733
+        },
+        "total_intersection_mm3": 5880.344420950831,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          35.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            14.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            46.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 1962.0488293719889,
+          "mid360": 4031.0745437780242
+        },
+        "total_intersection_mm3": 5993.123373150013,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          37.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            17.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            49.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 2234.076183178257,
+          "mid360": 3710.6807964860163
+        },
+        "total_intersection_mm3": 5944.756979664273,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          40.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            19.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            51.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3005.5323438957143,
+          "mid360": 1637.7530858399577
+        },
+        "total_intersection_mm3": 4643.285429735672,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          42.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            22.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            54.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3505.4270832208144,
+          "mid360": 1360.535696075763
+        },
+        "total_intersection_mm3": 4865.9627792965775,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          45.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            24.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            56.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3522.9522097607887,
+          "mid360": 1541.7313896180817
+        },
+        "total_intersection_mm3": 5064.68359937887,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          47.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            27.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            59.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3545.9610292581137,
+          "mid360": 1771.8512044059764
+        },
+        "total_intersection_mm3": 5317.81223366409,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          50.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            29.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            61.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 0.0,
+          "mid360": 2142.8308019871647
+        },
+        "total_intersection_mm3": 2142.8308019871647,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          52.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            32.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            64.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3615.7332792765046,
+          "mid360": 1325.8696991161182
+        },
+        "total_intersection_mm3": 4941.602978392622,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          55.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            34.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            66.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3664.6549298352857,
+          "mid360": 796.7838512806848
+        },
+        "total_intersection_mm3": 4461.43878111597,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          57.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            37.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            69.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3727.8550392044217,
+          "mid360": 520.5987354524452
+        },
+        "total_intersection_mm3": 4248.453774656867,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          60.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            39.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            71.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3806.772445195048,
+          "mid360": 287.2798534962733
+        },
+        "total_intersection_mm3": 4094.052298691321,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          62.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            42.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            74.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3903.118353924512,
+          "mid360": 131.9518008920304
+        },
+        "total_intersection_mm3": 4035.0701548165425,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          65.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            44.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            76.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3456.596679116409,
+          "mid360": 9.660343292038926
+        },
+        "total_intersection_mm3": 3466.257022408448,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          67.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            47.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            79.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 2766.4172551353927,
+          "mid360": 750.66179047901
+        },
+        "total_intersection_mm3": 3517.0790456144027,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          70.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            49.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            81.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 2573.8397120764625,
+          "mid360": 637.0322130346779
+        },
+        "total_intersection_mm3": 3210.8719251111406,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          72.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            52.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            84.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 2536.2956273354675,
+          "mid360": 573.6047687128892
+        },
+        "total_intersection_mm3": 3109.900396048357,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          75.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            54.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            86.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 2428.7547272151987,
+          "mid360": 467.0288912882137
+        },
+        "total_intersection_mm3": 2895.7836185034125,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          77.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            57.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            89.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 1151.1864009049027,
+          "mid360": 335.60110111060544
+        },
+        "total_intersection_mm3": 1486.7875020155082,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          80.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            59.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            91.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 2166.1123777434095,
+          "mid360": 201.04553682643706
+        },
+        "total_intersection_mm3": 2367.1579145698465,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          82.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            62.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            94.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 2017.3958866838382,
+          "mid360": 87.04923466237508
+        },
+        "total_intersection_mm3": 2104.4451213462135,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          85.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            64.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            96.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 1852.5981628669997,
+          "mid360": 16.388550370482164
+        },
+        "total_intersection_mm3": 1868.9867132374818,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          87.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            67.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            99.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 1667.2143389777648,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 1667.2143389777648,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          90.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            69.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            101.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 1453.080111798352,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 1453.080111798352,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          92.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            72.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            104.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 1219.74908545821,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 1219.74908545821,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          95.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            74.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            106.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 941.734220301569,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 941.734220301569,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          97.5
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            77.203339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            109.246158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 605.2513616910612,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 605.2513616910612,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -9.76756731121857,
+          0.0,
+          100.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -14.042819,
+            -45.0,
+            79.703339
+          ],
+          "max": [
+            18.0,
+            45.0,
+            111.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 282.8516502198871,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 282.8516502198871,
+        "minimum_distance_to_upper_mm": 0.0,
+        "collision_free": false,
+        "above_local_deck": true
+      }
+    ],
+    "collision_free_count": 0,
+    "conclusion": "no conservative-envelope placement stays behind the measured nose edge"
+  },
+  "forward_clearance_search": {
+    "rear_origin_z_range_mm": [
+      20.0,
+      100.0
+    ],
+    "increment_mm": 5.0,
+    "searched_front_edge_range_mm": [
+      18.0,
+      52.0
+    ],
+    "rows": [
+      {
+        "rear_mount_origin_mm": [
+          8.97352155596893,
+          0.0,
+          20.0
+        ],
+        "bounds_mm": {
+          "min": [
+            4.69827,
+            -45.0,
+            -0.296661
+          ],
+          "max": [
+            36.741089,
+            45.0,
+            31.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 36.7410888671875,
+        "overhang_beyond_measured_nose_mm": 16.7410888671875,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 0.0,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 0.0,
+        "compound_intersection_mm3": 0.0,
+        "minimum_distance_to_upper_mm": 0.0014367377554973405,
+        "above_local_deck": false,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          9.35743268878143,
+          0.0,
+          25.0
+        ],
+        "bounds_mm": {
+          "min": [
+            5.082181,
+            -45.0,
+            4.703339
+          ],
+          "max": [
+            37.125,
+            45.0,
+            36.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 37.125,
+        "overhang_beyond_measured_nose_mm": 17.125,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 0.0,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 0.0,
+        "compound_intersection_mm3": 0.0,
+        "minimum_distance_to_upper_mm": 0.000734103821165243,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          5.858653391906429,
+          0.0,
+          30.0
+        ],
+        "bounds_mm": {
+          "min": [
+            1.583402,
+            -45.0,
+            9.703339
+          ],
+          "max": [
+            33.626221,
+            45.0,
+            41.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 33.626220703125,
+        "overhang_beyond_measured_nose_mm": 13.626220703125,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3.702076169930947e-07,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 3.702076169930947e-07,
+        "compound_intersection_mm3": 3.702076169930947e-07,
+        "minimum_distance_to_upper_mm": 0.0,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          7.199229563781429,
+          0.0,
+          35.0
+        ],
+        "bounds_mm": {
+          "min": [
+            2.923978,
+            -45.0,
+            14.703339
+          ],
+          "max": [
+            34.966797,
+            45.0,
+            46.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 34.966796875,
+        "overhang_beyond_measured_nose_mm": 14.966796875,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3.51070930787889e-10,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 3.51070930787889e-10,
+        "compound_intersection_mm3": 3.51070930787889e-10,
+        "minimum_distance_to_upper_mm": 0.0,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          8.53773054034393,
+          0.0,
+          40.0
+        ],
+        "bounds_mm": {
+          "min": [
+            4.262479,
+            -45.0,
+            19.703339
+          ],
+          "max": [
+            36.305298,
+            45.0,
+            51.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 36.3052978515625,
+        "overhang_beyond_measured_nose_mm": 16.3052978515625,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 9.693339341441051e-07,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 9.693339341441051e-07,
+        "compound_intersection_mm3": 9.693339341441051e-07,
+        "minimum_distance_to_upper_mm": 3.66205343881779e-15,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          9.87830671221893,
+          0.0,
+          45.0
+        ],
+        "bounds_mm": {
+          "min": [
+            5.603055,
+            -45.0,
+            24.703339
+          ],
+          "max": [
+            37.645874,
+            45.0,
+            56.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 37.6458740234375,
+        "overhang_beyond_measured_nose_mm": 17.6458740234375,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 7.663134980975385e-08,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 7.663134980975385e-08,
+        "compound_intersection_mm3": 7.663134980975385e-08,
+        "minimum_distance_to_upper_mm": 2.6598208058443936e-11,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          11.12342389971893,
+          0.0,
+          50.0
+        ],
+        "bounds_mm": {
+          "min": [
+            6.848172,
+            -45.0,
+            29.703339
+          ],
+          "max": [
+            38.890991,
+            45.0,
+            61.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 38.8909912109375,
+        "overhang_beyond_measured_nose_mm": 18.8909912109375,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3.3411450735054597e-07,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 3.3411450735054597e-07,
+        "compound_intersection_mm3": 3.3411450735054597e-07,
+        "minimum_distance_to_upper_mm": 3.552713678800501e-15,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          11.97425397784393,
+          0.0,
+          55.0
+        ],
+        "bounds_mm": {
+          "min": [
+            7.699002,
+            -45.0,
+            34.703339
+          ],
+          "max": [
+            39.741821,
+            45.0,
+            66.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 39.7418212890625,
+        "overhang_beyond_measured_nose_mm": 19.7418212890625,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 2.3943396846490125e-07,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 2.3943396846490125e-07,
+        "compound_intersection_mm3": 2.3943396846490125e-07,
+        "minimum_distance_to_upper_mm": 3.552713678800501e-15,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          12.42457136065643,
+          0.0,
+          60.0
+        ],
+        "bounds_mm": {
+          "min": [
+            8.14932,
+            -45.0,
+            39.703339
+          ],
+          "max": [
+            40.192139,
+            45.0,
+            71.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 40.192138671875,
+        "overhang_beyond_measured_nose_mm": 20.192138671875,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 2.991165144600092e-07,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 2.991165144600092e-07,
+        "compound_intersection_mm3": 2.991165144600092e-07,
+        "minimum_distance_to_upper_mm": 3.972054645195637e-15,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          12.44947370440643,
+          0.0,
+          65.0
+        ],
+        "bounds_mm": {
+          "min": [
+            8.174222,
+            -45.0,
+            44.703339
+          ],
+          "max": [
+            40.217041,
+            45.0,
+            76.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 40.217041015625,
+        "overhang_beyond_measured_nose_mm": 20.217041015625,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 1.2555668235950654e-07,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 1.2555668235950654e-07,
+        "compound_intersection_mm3": 1.2555668235950654e-07,
+        "minimum_distance_to_upper_mm": 7.944109290391274e-15,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          12.05518659503143,
+          0.0,
+          70.0
+        ],
+        "bounds_mm": {
+          "min": [
+            7.779935,
+            -45.0,
+            49.703339
+          ],
+          "max": [
+            39.822754,
+            45.0,
+            81.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 39.82275390625,
+        "overhang_beyond_measured_nose_mm": 19.82275390625,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 9.912785115720846e-07,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 9.912785115720846e-07,
+        "compound_intersection_mm3": 9.912785115720846e-07,
+        "minimum_distance_to_upper_mm": 8.140289677804162e-15,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          11.20643171221893,
+          0.0,
+          75.0
+        ],
+        "bounds_mm": {
+          "min": [
+            6.93118,
+            -45.0,
+            54.703339
+          ],
+          "max": [
+            38.973999,
+            45.0,
+            86.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 38.9739990234375,
+        "overhang_beyond_measured_nose_mm": 18.9739990234375,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3.3129558759651505e-07,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 3.3129558759651505e-07,
+        "compound_intersection_mm3": 3.3129558759651505e-07,
+        "minimum_distance_to_upper_mm": 3.66205343881779e-15,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          9.84717878253143,
+          0.0,
+          80.0
+        ],
+        "bounds_mm": {
+          "min": [
+            5.571927,
+            -45.0,
+            59.703339
+          ],
+          "max": [
+            37.614746,
+            45.0,
+            91.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 37.61474609375,
+        "overhang_beyond_measured_nose_mm": 17.61474609375,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3.372544673164794e-07,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 3.372544673164794e-07,
+        "compound_intersection_mm3": 3.372544673164794e-07,
+        "minimum_distance_to_upper_mm": 3.972054645195637e-15,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          7.890269602843929,
+          0.0,
+          85.0
+        ],
+        "bounds_mm": {
+          "min": [
+            3.615018,
+            -45.0,
+            64.703339
+          ],
+          "max": [
+            35.657837,
+            45.0,
+            96.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 35.6578369140625,
+        "overhang_beyond_measured_nose_mm": 15.6578369140625,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 5.336184743783072e-07,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 5.336184743783072e-07,
+        "compound_intersection_mm3": 5.336184743783072e-07,
+        "minimum_distance_to_upper_mm": 7.32410687763558e-15,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          5.186290110656429,
+          0.0,
+          90.0
+        ],
+        "bounds_mm": {
+          "min": [
+            0.911038,
+            -45.0,
+            69.703339
+          ],
+          "max": [
+            32.953857,
+            45.0,
+            101.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 32.953857421875,
+        "overhang_beyond_measured_nose_mm": 12.953857421875,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 4.3579572221497957e-07,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 4.3579572221497957e-07,
+        "compound_intersection_mm3": 4.3579572221497957e-07,
+        "minimum_distance_to_upper_mm": 1.465872828765228e-14,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          1.4488633528439294,
+          0.0,
+          95.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -2.826388,
+            -45.0,
+            74.703339
+          ],
+          "max": [
+            29.216431,
+            45.0,
+            106.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 29.2164306640625,
+        "overhang_beyond_measured_nose_mm": 9.2164306640625,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 4.646320978284603e-07,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 4.646320978284603e-07,
+        "compound_intersection_mm3": 4.646320978284603e-07,
+        "minimum_distance_to_upper_mm": 1.3322676295501878e-15,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      },
+      {
+        "rear_mount_origin_mm": [
+          -3.9964491471560706,
+          0.0,
+          100.0
+        ],
+        "bounds_mm": {
+          "min": [
+            -8.271701,
+            -45.0,
+            79.703339
+          ],
+          "max": [
+            23.771118,
+            45.0,
+            111.746158
+          ],
+          "size": [
+            32.042819,
+            90.0,
+            32.042819
+          ]
+        },
+        "minimum_front_edge_x_mm": 23.7711181640625,
+        "overhang_beyond_measured_nose_mm": 3.7711181640625,
+        "intersection_mm3": {
+          "j20a": 0.0,
+          "s410": 3.8389023323118904e-07,
+          "mid360": 0.0
+        },
+        "total_intersection_mm3": 3.8389023323118904e-07,
+        "compound_intersection_mm3": 3.8389023323118904e-07,
+        "minimum_distance_to_upper_mm": 2.864289338439558e-14,
+        "above_local_deck": true,
+        "feasible_within_search_range": true
+      }
+    ],
+    "feasible_count": 16,
+    "preferred_minimum_overhang": {
+      "rear_mount_origin_mm": [
+        -3.9964491471560706,
+        0.0,
+        100.0
+      ],
+      "bounds_mm": {
+        "min": [
+          -8.271701,
+          -45.0,
+          79.703339
+        ],
+        "max": [
+          23.771118,
+          45.0,
+          111.746158
+        ],
+        "size": [
+          32.042819,
+          90.0,
+          32.042819
+        ]
+      },
+      "minimum_front_edge_x_mm": 23.7711181640625,
+      "overhang_beyond_measured_nose_mm": 3.7711181640625,
+      "intersection_mm3": {
+        "j20a": 0.0,
+        "s410": 3.8389023323118904e-07,
+        "mid360": 0.0
+      },
+      "total_intersection_mm3": 3.8389023323118904e-07,
+      "compound_intersection_mm3": 3.8389023323118904e-07,
+      "minimum_distance_to_upper_mm": 2.864289338439558e-14,
+      "above_local_deck": true,
+      "feasible_within_search_range": true
+    }
+  },
+  "checks": {
+    "upper_inputs_pass": true,
+    "front_margin_is_exactly_2mm": true,
+    "fixed_nose_sweep_completed": true,
+    "forward_clearance_search_completed": true,
+    "at_least_one_forward_collision_free_height_exists": true,
+    "preferred_height_is_above_deck": true,
+    "no_camera_support_solid_created": true,
+    "no_print_release": true
+  },
+  "claim_boundary": "The sweep uses the official nominal D435i envelope and a selected 20-degree downward optical direction. It determines whether the camera can remain behind the measured nose and quantifies the minimum conservative forward offset when it cannot. It does not validate the translated manufacturer B-rep, a support structure, FOV, cable bend, screw length, strength, or print release.",
+  "pass": true
+}

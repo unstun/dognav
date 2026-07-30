@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "scan_registered_planar_interface_receiver_contract_open",
+  "classification": "collision_and_layout_proxy_not_printable",
+  "coordinate_frame": {
+    "origin": "midpoint of the photo-measured and scan-corroborated front small-hole pair",
+    "x_axis": "+front toward rounded nose",
+    "y_axis": "+left",
+    "z_axis": "+up from future verified seating plane",
+    "unit": "millimetre",
+    "z_registration_mm": null
+  },
+  "sources": {
+    "scan_registration": "../current-lite3-pro-physical-scan-rev-a/inspection/scan-photo-scaffold-registration.json",
+    "photo_measurements": "../current-lite3-pro-lower-adapter-measurement-gate/measurement_results.json"
+  },
+  "planar_interface": {
+    "front_pair_axes_mm": [
+      [0.0, 32.5, 0.0],
+      [0.0, -32.5, 0.0]
+    ],
+    "front_pair_pitch_mm": 65.0,
+    "front_pair_pitch_uncertainty_mm": 1.0,
+    "centre_candidate_axis_mm": [-75.0, 0.0, 0.0],
+    "usable_nose_edge_x_mm": 20.0,
+    "axis_corroboration": "Photo axes visually coincide with scan features after enclosure-edge registration",
+    "accepted_structural_receiver_count": 0,
+    "front_pair_thread": null,
+    "front_pair_usable_depth_mm": null,
+    "centre_candidate_receiver_role": null
+  },
+  "compute_enclosure": {
+    "scan_registered_nominal_bounds_mm": {
+      "x": [-299.58516985178125, -100.0],
+      "y": [-52.739342748056195, 55.878777875488026],
+      "z": [0.0, 50.0]
+    },
+    "scan_registered_nominal_footprint_polygon_mm": [
+      [-299.58516985178125, -52.739342748056195],
+      [-130.0, -52.739342748056195],
+      [-130.0, -42.0],
+      [-100.0, -42.0],
+      [-100.0, 44.0],
+      [-130.0, 44.0],
+      [-130.0, 55.878777875488026],
+      [-299.58516985178125, 55.878777875488026]
+    ],
+    "front_side_recesses": {
+      "shoulder_x_mm": -130.0,
+      "front_x_mm": -100.0,
+      "longitudinal_length_mm": 30.0,
+      "left_outer_y_mm": 55.878777875488026,
+      "left_inner_y_mm": 44.0,
+      "left_recess_depth_mm": 11.878777875488026,
+      "right_outer_y_mm": -52.739342748056195,
+      "right_inner_y_mm": -42.0,
+      "right_recess_depth_mm": 10.739342748056195,
+      "source": "oriented scan top-surface band; nominal values rounded to the 1 mm level at the two step faces",
+      "status": "scan-derived exterior footprint; corner radii remain simplified"
+    },
+    "expanded_collision_keepout_bounds_mm": {
+      "x": [-305.0, -96.0],
+      "y": [-57.0, 60.0],
+      "z": [0.0, 54.0]
+    },
+    "height_source": "photo-measured 50 +/- 2 mm because scan-to-seating Z is not yet registered",
+    "planar_scan_span_mm": [199.58516985178125, 108.61812062354422],
+    "status": "scan-registered notched X/Y exterior and separate rectangular uncertainty-expanded keepout; feet, vents, cables, connectors, corner radii, and service sweep remain open"
+  },
+  "release_gate": {
+    "printable_geometry_allowed": false,
+    "blocking_inputs": [
+      "front-pair thread and usable depth",
+      "seating/recess Z geometry",
+      "centre candidate structural role and load path",
+      "remaining cable, connector, vent, foot, and service sweeps",
+      "human review of final receiver set"
+    ]
+  }
+}

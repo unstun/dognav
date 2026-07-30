@@ -1,0 +1,36 @@
+schema_version: 1
+topic: NVIDIA Jetson AGX Orin developer-kit geometry
+acquired_at: 2026-07-25
+sources:
+  p3701_module_step:
+    title: Jetson AGX Orin Series Module 3D CAD STEP model (P3701)
+    url: https://developer.nvidia.com/downloads/jetson-agx-orin-module-3d-step-modelzip
+    local_path: source/original/p3701_module/p3701-sku0-simplified.stp
+    sha256: eda6573c8bf8d5ee32414e16eee6e923c0a20848174a1fa7307e52e2aaf756ba
+    evidence_class: source_model
+  p3730_devkit_step_listing:
+    title: Jetson AGX Orin Series Developer Kit 3D CAD STEP model (P3730)
+    url: https://developer.nvidia.com/jetson-agx-orin-developer-kit-p3730-3d-cad-step-model
+    evidence_class: official_nominal
+    access_note: NVIDIA account login was required during the 2026-07-25 acquisition attempt, so the complete P3730 STEP is not stored in this source snapshot.
+  hardware_layout:
+    title: Jetson AGX Orin Developer Kit Hardware Layout
+    url: https://docs.nvidia.com/jetson/agx-orin-devkit/user-guide/latest/hardware_layout.html
+    evidence_class: official_nominal
+    local_images:
+      - source/original/jaodk_labeled_01.png
+      - source/original/jaodk_labeled_02.png
+      - source/original/jaodk_carrier_board_bottom_wire-in-black.png
+      - source/original/jaodk_carrier_board_top_wire-in-black.png
+  mechanical_envelope:
+    title: Jetson AGX Orin product specification
+    url: https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/
+    evidence_class: official_nominal
+    envelope_mm: [110.0, 110.0, 71.65]
+    note: Height includes feet, carrier board, module, and thermal solution.
+third_party_mirror_check:
+  url: https://grabcad.com/library/nvidia-jetson-agx-orion-developer-kit-1/files
+  observed_filename: 00_top_lvl_p3737_01142022.stp
+  evidence_class: search_lead
+  note: File identity was inspected but download required a GrabCAD login; it is not used as source geometry.
+claim_boundary: The preserved P3701 STEP is official module geometry. The complete P3730 developer-kit body remains a source-backed reconstruction using the official 110 x 110 x 71.65 mm envelope and official connector layout until the login-gated P3730 STEP can be acquired.

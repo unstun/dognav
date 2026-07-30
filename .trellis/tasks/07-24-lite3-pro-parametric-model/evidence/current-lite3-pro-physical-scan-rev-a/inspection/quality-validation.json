@@ -1,0 +1,111 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "label": "source ZIP SHA-256",
+      "passed": true
+    },
+    {
+      "label": "source GLB SHA-256",
+      "passed": true
+    },
+    {
+      "label": "GLB 2.0 header",
+      "passed": true
+    },
+    {
+      "label": "GLB declared length",
+      "passed": true
+    },
+    {
+      "label": "raw vertex count",
+      "passed": true
+    },
+    {
+      "label": "raw triangle count",
+      "passed": true
+    },
+    {
+      "label": "embedded texture count",
+      "passed": true
+    },
+    {
+      "label": "scan scale from enclosure length",
+      "passed": true
+    },
+    {
+      "label": "scan scale from enclosure width",
+      "passed": true
+    },
+    {
+      "label": "front-axis label",
+      "passed": true
+    },
+    {
+      "label": "right-handed lateral-axis label",
+      "passed": true
+    },
+    {
+      "label": "render exists: scan-photo-orientation-comparison.png",
+      "passed": true
+    },
+    {
+      "label": "render exists: 00-corrected-four-view-contact-sheet.png",
+      "passed": true
+    },
+    {
+      "label": "render exists: 01-upper-body-metric-top.png",
+      "passed": true
+    },
+    {
+      "label": "render exists: 02-front-deck-metric-top.png",
+      "passed": true
+    },
+    {
+      "label": "render exists: 06-scan-photo-scaffold-registration.png",
+      "passed": true
+    },
+    {
+      "label": "render exists: 07-compute-enclosure-top-footprint-mount-frame.png",
+      "passed": true
+    },
+    {
+      "label": "two-recess footprint status",
+      "passed": true
+    },
+    {
+      "label": "recess shoulder X",
+      "passed": true
+    },
+    {
+      "label": "recess inner Y edges",
+      "passed": true
+    },
+    {
+      "label": "notched footprint vertex count",
+      "passed": true
+    },
+    {
+      "label": "OBJ vertex count",
+      "passed": true
+    },
+    {
+      "label": "OBJ triangle count",
+      "passed": true
+    },
+    {
+      "label": "binary STL byte count",
+      "passed": true
+    },
+    {
+      "label": "lightweight STL triangle count",
+      "passed": true
+    },
+    {
+      "label": "STL manufacturing prohibition",
+      "passed": true
+    }
+  ],
+  "claim": "Oriented scan accepted for visual, envelope, and collision reference only.",
+  "manufacturing_release": false
+}

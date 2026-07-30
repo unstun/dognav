@@ -1,0 +1,293 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "awaiting_visual_review",
+  "document": "lite3-j17a-j20a-monolithic-rear-web-print-adaptation-rev-b-review",
+  "root_occurrence_count": 36,
+  "candidate": {
+    "index": 35,
+    "component": "J17A_J20A_MONOLITHIC_REAR_WEB_PRINT_ADAPTATION_REV_B_NOT_OFFICIAL_CAD",
+    "body": "J17A_J20A_MONOLITHIC_REAR_WEB_ONE_SOLID_REV_B",
+    "brep_body_count": 1,
+    "mesh_body_count": 0,
+    "is_solid": true,
+    "lump_count": 1,
+    "shell_count": 1,
+    "face_count": 201,
+    "volume_mm3": 68183.35244781975
+  },
+  "rear_web": {
+    "x_span_mm": 67.88225149390843,
+    "depth_mm": 27.5,
+    "thickness_mm": 6.0,
+    "top_z_cm": 251.75,
+    "bottom_z_cm": 251.15,
+    "engagement": {
+      "manufacturer_j17a_region_mm3": 1308.2779543668023,
+      "manufacturer_j20a_region_mm3": 1377.9706675949087,
+      "rev_a_mm3": 2913.633642437251
+    },
+    "s410_minimum_clearance_mm": 1.0989443282908253
+  },
+  "interface_cylinders": {
+    "d435i_2x_m3_clearance": [
+      {
+        "origin_cm": [
+          -28.197009644681465,
+          22.177372631523244,
+          261.11343973827854
+        ],
+        "radius_mm": 1.5999999999999994,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -32.697009644681465,
+          22.177372631523244,
+          261.11343973827854
+        ],
+        "radius_mm": 1.5999999999999994,
+        "axis_alignment": 1.0
+      }
+    ],
+    "mid360_4x_m3_clearance": [
+      {
+        "origin_cm": [
+          -32.24700964468146,
+          15.077732354412397,
+          256.964165951486
+        ],
+        "radius_mm": 1.7500000000000193,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -28.647009644681464,
+          15.077732354412397,
+          256.964165951486
+        ],
+        "radius_mm": 1.7500000000000193,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -28.647009644681464,
+          16.320063770904483,
+          252.32772198529844
+        ],
+        "radius_mm": 1.7500000000000018,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -32.24700964468146,
+          16.320063770904483,
+          252.32772198529844
+        ],
+        "radius_mm": 1.7500000000000018,
+        "axis_alignment": 1.0
+      }
+    ],
+    "s410_4x_m5_receivers": [
+      {
+        "origin_cm": [
+          -32.906859573287356,
+          20.99216848863984,
+          260.3916316144593
+        ],
+        "radius_mm": 2.0999999999999934,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -27.987159716075574,
+          20.99216848863984,
+          260.3916316144593
+        ],
+        "radius_mm": 2.0999999999999934,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -32.935037516961955,
+          23.1515234383815,
+          252.33280923044802
+        ],
+        "radius_mm": 2.0999999999999903,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -27.958981772400975,
+          23.1515234383815,
+          252.33280923044802
+        ],
+        "radius_mm": 2.0999999999999903,
+        "axis_alignment": 1.0
+      }
+    ]
+  },
+  "sensor_interference": {
+    "d435i": {
+      "result_count": 0,
+      "volume_mm3": 0.0
+    },
+    "mid360": {
+      "result_count": 0,
+      "volume_mm3": 0.0
+    },
+    "s410_guard": {
+      "result_count": 0,
+      "volume_mm3": 0.0
+    }
+  },
+  "robot_interference": {
+    "checked_body_count": 291,
+    "hits": []
+  },
+  "retained_fastener_interference_with_new_web": {
+    "11": {
+      "name": "LITE3_FULLSTACK_MID360_M3x8_UNDERSIDE_SCREW_1_J20F11_TO_MIDB2_VISUAL_CANDIDATE:1",
+      "volume_mm3": 0.0
+    },
+    "12": {
+      "name": "LITE3_FULLSTACK_MID360_M3x8_UNDERSIDE_SCREW_2_J20F12_TO_MIDB0_VISUAL_CANDIDATE:1",
+      "volume_mm3": 0.0
+    },
+    "13": {
+      "name": "LITE3_FULLSTACK_MID360_M3x8_UNDERSIDE_SCREW_3_J20F13_TO_MIDB1_VISUAL_CANDIDATE:1",
+      "volume_mm3": 0.0
+    },
+    "14": {
+      "name": "LITE3_FULLSTACK_MID360_M3x8_UNDERSIDE_SCREW_4_J20F14_TO_MIDB3_VISUAL_CANDIDATE:1",
+      "volume_mm3": 0.0
+    },
+    "16": {
+      "name": "LITE3_FULLSTACK_D435I_M3x5_DIRECT_SCREW_1_J17A_TO_CAMERA_THREAD_VISUAL_CANDIDATE:1",
+      "volume_mm3": 0.0
+    },
+    "17": {
+      "name": "LITE3_FULLSTACK_D435I_M3x5_DIRECT_SCREW_2_J17A_TO_CAMERA_THREAD_VISUAL_CANDIDATE:1",
+      "volume_mm3": 0.0
+    },
+    "24": {
+      "name": "BASE_TO_LITE3_FRONT_2X_M3X8_SOCKET_HEAD_SCREWS_REAL_BREP:1",
+      "volume_mm3": 0.0
+    },
+    "25": {
+      "name": "BASE_TO_LITE3_REAR_2X_OD8_ID3P5_LOCATING_SPACERS_REAL_BREP:1",
+      "volume_mm3": 0.0
+    },
+    "26": {
+      "name": "BASE_TO_LITE3_REAR_2X_M3X12_SOCKET_HEAD_SCREWS_REAL_BREP:1",
+      "volume_mm3": 0.0
+    },
+    "28": {
+      "name": "S410_TO_J20_M5X8_INDIVIDUAL_SCREW_VISUAL_CANDIDATE:1",
+      "volume_mm3": 0.0
+    },
+    "29": {
+      "name": "S410_TO_J20_M5X8_INDIVIDUAL_SCREW_VISUAL_CANDIDATE:2",
+      "volume_mm3": 0.0
+    },
+    "30": {
+      "name": "S410_TO_J20_M5X8_INDIVIDUAL_SCREW_VISUAL_CANDIDATE:3",
+      "volume_mm3": 0.0
+    },
+    "31": {
+      "name": "S410_TO_J20_M5X8_INDIVIDUAL_SCREW_VISUAL_CANDIDATE:4",
+      "volume_mm3": 0.0
+    }
+  },
+  "tool_corridors_against_new_web": {
+    "mid360_underside": [
+      {
+        "axis": 1,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "rear_web_intersection_mm3": 0.0,
+        "rear_web_minimum_distance_mm": 61.31638195607108
+      },
+      {
+        "axis": 2,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "rear_web_intersection_mm3": 0.0,
+        "rear_web_minimum_distance_mm": 61.31638195607108
+      },
+      {
+        "axis": 3,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "rear_web_intersection_mm3": 0.0,
+        "rear_web_minimum_distance_mm": 13.316381956070764
+      },
+      {
+        "axis": 4,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "rear_web_intersection_mm3": 0.0,
+        "rear_web_minimum_distance_mm": 13.316381956070764
+      }
+    ],
+    "d435i_camera_side": [
+      {
+        "axis": 1,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "rear_web_intersection_mm3": 0.0,
+        "rear_web_minimum_distance_mm": 107.17357257498975
+      },
+      {
+        "axis": 2,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "rear_web_intersection_mm3": 0.0,
+        "rear_web_minimum_distance_mm": 107.17357257498975
+      }
+    ],
+    "s410_external": [
+      {
+        "axis": 1,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "rear_web_intersection_mm3": 0.0,
+        "rear_web_minimum_distance_mm": 85.97731956912526
+      },
+      {
+        "axis": 2,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "rear_web_intersection_mm3": 0.0,
+        "rear_web_minimum_distance_mm": 85.97731956912412
+      },
+      {
+        "axis": 3,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "rear_web_intersection_mm3": 0.0,
+        "rear_web_minimum_distance_mm": 10.736978232491891
+      },
+      {
+        "axis": 4,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "rear_web_intersection_mm3": 0.0,
+        "rear_web_minimum_distance_mm": 10.73697823249346
+      }
+    ]
+  },
+  "checks": {
+    "topology_pass": true,
+    "classification_pass": true,
+    "source_visibility_pass": true,
+    "interface_pass": true,
+    "sensor_clearance_pass": true,
+    "robot_clearance_pass": true,
+    "engagement_pass": true,
+    "retained_fastener_pass": true,
+    "guard_clearance_pass": true,
+    "tool_access_pass": true
+  },
+  "pass": true,
+  "claim_boundary": "Geometry, modeled packaging, and tested tool access only; FDM material, print orientation, layer adhesion, strength, fatigue, vibration, cable routing, and real-hardware safety are unvalidated."
+}

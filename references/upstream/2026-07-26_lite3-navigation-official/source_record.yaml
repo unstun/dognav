@@ -1,0 +1,26 @@
+schema_version: 1
+topic: lite3-navigation-official-repository
+acquired_at: 2026-07-26
+status: surveyed
+
+upstream:
+  publisher: DEEPRoboticsLab
+  repository: https://gitcode.com/DEEPRoboticsLab/Lite3_Navigation.git
+  pinned_commit: b091cee10a11ea8b43459f906a91ff07f5dbb417
+
+local_snapshot:
+  path: source/repo
+  acquisition: git clone --filter=blob:none
+
+inspected_evidence:
+  - >-
+    Navigation configuration consumes /rslidar_points in the rslidar frame and
+    uses base_link as the robot base frame.
+  - >-
+    No URDF, Xacro, STL, STEP, DAE, OBJ, LiDAR mount model, camera mount model,
+    static transform, or factory sensor extrinsic was found in the snapshot.
+
+claim_boundary: >-
+  The repository is primary evidence for the published navigation software
+  interface only. It cannot establish the geometry or assembly of the Lite3
+  LiDAR edition.

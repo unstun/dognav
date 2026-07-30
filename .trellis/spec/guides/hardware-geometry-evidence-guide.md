@@ -17,6 +17,14 @@ similar geometry for visualization, collision review, or printing.
   product name alone. Record the relevant assembly hierarchy and reconcile
   conflicting parent/child names before assigning Pro, Venture, Exploration,
   or Experience identity.
+- [ ] Treat a dimensioned manual interface as revision-specific when a newer
+  official brochure, product page, or delivered unit has conflicting mass,
+  envelope, enclosure, or part geometry. Require a revision-matched drawing or
+  physical measurement before transferring the old hole pattern to the current
+  product.
+- [ ] Use a current product photograph to establish visible revision identity,
+  occupied regions, and relative layout only. It does not recover hidden
+  receiver axes, thread depth, seating planes, or manufacturing scale.
 - [ ] If a CAD source is user-provided without a public URL or license, record
   that provenance explicitly, preserve the original hash locally, and prohibit
   redistribution until permission is established.
@@ -72,6 +80,21 @@ or collision-proxy mesh must not silently replace it.
 - [ ] Use a separately declared watertight proxy for exact intersection volume.
 - [ ] Report the source-to-proxy reconstruction resolution and bidirectional
   surface deviation.
+
+### Physical Scan And Conservative Keep-Out Boundary
+
+- [ ] Orient a room-scale or object-plus-room scan from a stable local product
+  datum, such as a dense enclosure plane and a photographed front landmark.
+  Do not use whole-scene PCA when floor, furniture, people, or unrelated
+  objects dominate the scan bounds.
+- [ ] Keep the scan-derived nominal exterior and the uncertainty-expanded
+  collision keep-out as separately named geometry. Preserve real visible
+  recesses in the nominal model, but do not credit those recesses as free
+  sensor, cable, tool, or service volume until their complete three-dimensional
+  boundary and uncertainty are physically verified.
+- [ ] Treat a rotated photograph as direction-normalized, not perspective-
+  rectified. A clearer orientation does not upgrade pixel distances into
+  manufacturing dimensions or receiver axes.
 
 ## Transform And Assembly Checks
 
@@ -158,11 +181,54 @@ or collision-proxy mesh must not silently replace it.
 - [ ] Use a surface/datum check for an open official visual and an exact
   Boolean or signed-clearance check only with a declared closed proxy. Do not
   infer contact from one camera view.
+- [ ] Do not collapse a small source-model clearance from the minimum-distance
+  vector alone. First apply the proposed seating translation reversibly and
+  re-run cross-part interference. If closing the measured gap creates
+  undeclared solid overlap, preserve the source transform and record both the
+  original clearance and forced-contact interference instead of making the
+  render look flush.
 - [ ] Treat zero-gap seating as appearance/contact evidence only. Without an
   explicit fastener axis, receiver material, engagement, and onward load path,
   do not call the contact a mechanically complete or load-bearing assembly.
 - [ ] If the hidden receiver is unpublished, preserve the visible contact but
   label thread, receiver, material, and load path as unresolved.
+
+### Assembly Review Animation Gate
+
+- [ ] Prove a human-executable assembly order before storyboarding camera
+  motion. Bottom-up or underside fasteners whose driver path would be blocked
+  on the robot must be pre-inserted or completed in an off-robot subassembly;
+  never animate them through an already seated bracket or robot shell.
+- [ ] Build an occlusion dependency for every screw and tool corridor. If a
+  later component would cover that corridor, install and secure the blocked
+  component on the bare carrier first. At its installation frame, assert that
+  every later occluding component is still absent; for example, a direct-mount
+  camera must be fixed to its bare carrier before a radar/base subassembly that
+  crosses the camera screw path appears.
+- [ ] Install locating spacers, captive hardware, and other features that will
+  be covered by the next part before that part descends. A transparent view can
+  explain a valid hidden path, but it cannot repair an impossible order.
+- [ ] Treat transport of a preassembled carrier as a swept-envelope problem.
+  Perform lateral alignment outside the robot bounding envelope, record the
+  clearance, then approach along the source-backed mounting normal instead of
+  taking a diagonal shortcut through legs, motors, or bodywork.
+- [ ] Drive the camera from the active assembly interface. A fixed overview or
+  one fixed close-up is insufficient when the operation changes between base
+  holes, bracket joints, sensor screws, and camera screws.
+- [ ] For each installation step, frame the moving part, the receiving hole or
+  axis, and the fastener entry direction in the same shot. If a bolt and nut
+  occupy opposite faces, use separate entry-side and receiver-side shots when
+  one view cannot show both clearly.
+- [ ] When real geometry hides the fastener path, use a temporary section or
+  ghosted-opacity diagnostic on only the occluding source body. Do not move,
+  delete, or replace geometry merely to make the animation readable.
+- [ ] End with an opaque completed close-up and a full-robot context view.
+  After rendering, verify that every occurrence transform, visibility state,
+  diagnostic opacity, and Fusion snapshot state has returned to the reviewed
+  final assembly.
+- [ ] Validate frame continuity, non-empty rendered frames, final video decode,
+  and the final-state comparison. A playable video alone does not prove that
+  the Fusion scene was left unchanged.
 
 ### Replica Identity Gate
 
@@ -208,6 +274,11 @@ or collision-proxy mesh must not silently replace it.
   counterbore/head seat -> shaft clearance -> receiving pilot/thread. Compare
   the screw shaft to the receiver contract, not the two surrounding hole
   diameters to each other.
+- [ ] If the receiving drawing or B-rep explicitly identifies a threaded hole,
+  do not infer that an additional far-side nut is required. A nut added to a
+  bolt that already traverses a threaded receiver is a separate locking
+  hypothesis; require independent evidence or label it as a user-requested
+  visual candidate rather than factory hardware.
 - [ ] Trace every fastener axis into actual receiver material and onward into
   the supported structure. A rendered screw that terminates in open space is
   not an assembly path.

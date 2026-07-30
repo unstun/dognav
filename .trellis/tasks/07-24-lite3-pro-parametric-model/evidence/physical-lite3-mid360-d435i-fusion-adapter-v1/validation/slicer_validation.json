@@ -1,0 +1,37 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "historical_slicer_smoke_pass_rejected_for_current_pro_part",
+  "input": "cad/lite3-mid360-d435i-monolithic-carrier-v1.stl",
+  "output": "validation/carrier-v1-pa-cf-slicer-smoke.gcode",
+  "slicer": {
+    "name": "PrusaSlicer",
+    "version": "2.9.6",
+    "orientation": "rotate_x_90_degrees",
+    "bed_mm": [300, 300],
+    "part_max_z_mm": 33.5
+  },
+  "settings": {
+    "nozzle_mm": 0.6,
+    "layer_height_mm": 0.25,
+    "perimeters": 6,
+    "top_layers": 8,
+    "bottom_layers": 8,
+    "infill_percent": 45,
+    "infill_pattern": "gyroid",
+    "support_material": true,
+    "brim_width_mm": 8
+  },
+  "gcode": {
+    "bytes": 9376126,
+    "lines": 344139,
+    "sha256": "ba797b0c505c0bd4c77b5d8e018dc288e22a688060304dac91e8af4531db2684",
+    "layer_change_markers": 237,
+    "extrusion_moves": 278749,
+    "filament_length_mm_including_support": 49624.24,
+    "filament_volume_cm3_including_support": 119.36,
+    "estimated_mass_g_at_1_15_g_cm3": 137.264,
+    "estimated_time": "6h31m32s"
+  },
+  "material_boundary": "The generated file inherits PrusaSlicer's default PLA label and lacks a configured filament-density field, so its header reports 0.00 g. The 137.264 g value is a transparent volume-times-density estimate for the declared 1.15 g/cm3 candidate material, not a calibrated print prediction.",
+  "claim_boundary": "This historical toolpath proves only that the rejected V1 mesh sliced. Do not print it for the purchased current Lite3 Pro. A replacement lower adapter requires measured current-Pro geometry and a new slicer review."
+}

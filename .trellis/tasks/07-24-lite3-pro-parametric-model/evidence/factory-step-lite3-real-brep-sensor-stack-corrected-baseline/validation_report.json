@@ -1,0 +1,149 @@
+{
+  "status": "rejected_by_visual_review",
+  "date": "2026-07-27",
+  "review_rejection": {
+    "reason": "complete sensor stack appeared too far rearward compared with the official laser version",
+    "superseded_by": "../factory-step-lite3-real-brep-sensor-stack-forward-30mm-candidate/"
+  },
+  "fusion_document": {
+    "name": "Untitled",
+    "saved": false,
+    "modified": true,
+    "root_occurrences": 5
+  },
+  "source_files": {
+    "lite3": {
+      "path": "references/upstream/2026-07-27_lite3-exploration-assembly-cad/source/original/lite3-exploration-assembly.step",
+      "sha256": "d0ad78189f8f9154a780796d2deffcc848c094700776d7c9d6f6da092106c6eb",
+      "visible_child": "Lite3体验版总装.STEP",
+      "backload_visible": false
+    },
+    "j17a": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J17A-lidar base.STEP",
+      "sha256": "52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490"
+    },
+    "j20a": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J20A-small lidar base.STEP",
+      "sha256": "341b08ca08526e5ee0e9fbeca0bfda9d9970062c6605e979adc52b31955c9bc9"
+    },
+    "s410": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1CA5-S410-Lidar protector.STEP",
+      "sha256": "7fd23a776b45c7d8571ef77ba9e8b05520eced0b97f62487ba03f88bbc9df810"
+    },
+    "mid360": {
+      "path": "references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02"
+    }
+  },
+  "geometry_counts": {
+    "robot": {
+      "brep_proxy_bodies": 288,
+      "mesh_bodies": 0
+    },
+    "j17a": {
+      "brep_bodies": 1,
+      "mesh_bodies": 0
+    },
+    "j20a": {
+      "brep_bodies": 1,
+      "mesh_bodies": 0
+    },
+    "s410": {
+      "brep_bodies": 1,
+      "mesh_bodies": 0
+    },
+    "mid360": {
+      "brep_proxy_bodies": 22,
+      "solid_child_bodies": 7,
+      "mesh_bodies": 0
+    }
+  },
+  "frame_contract": {
+    "robot_front_axis": "+Z",
+    "j17a_rotation_rows": [
+      [0, 1, 0],
+      [0, 0, 1],
+      [1, 0, 0]
+    ],
+    "j20a_rotation_rows": [
+      [0, 0, -1],
+      [0, 1, 0],
+      [1, 0, 0]
+    ],
+    "rotation_determinant": 1,
+    "reflection_allowed": false,
+    "mid360_optical_window": "faces robot head",
+    "mid360_connector": "faces rear"
+  },
+  "occurrence_translations_cm": {
+    "j17a": [-30.431820154, 21.008978858, 249.073426277],
+    "j20a": [-30.431820154, 21.258978858, 246.648426277],
+    "s410": [-30.431820154, 22.619267417, 251.251183088],
+    "mid360": [-30.431820154, 25.118208536, 251.938612816]
+  },
+  "seating_corrections_mm": [
+    {
+      "parts": ["j20a", "s410", "mid360"],
+      "direction": "up",
+      "distance": 11.625,
+      "reason": "J17A/J20A source datum seating"
+    },
+    {
+      "parts": ["s410"],
+      "direction": "outward along J20A 15-degree mount normal",
+      "distance": 0.106515,
+      "pre_intersection_mm3": 31.973958178,
+      "post_intersection_mm3": 0
+    },
+    {
+      "parts": ["mid360"],
+      "direction": "outward along J20A 15-degree mount normal",
+      "distance": 2.0015,
+      "pre_intersection_mm3": 7982.495210795,
+      "post_intersection_mm3": 0
+    },
+    {
+      "parts": ["j17a", "j20a", "s410", "mid360"],
+      "direction": "up",
+      "distance": 0.58375,
+      "pre_intersection_mm3": 102.660286934,
+      "post_intersection_mm3": 0
+    }
+  ],
+  "final_collision_checks_mm3": {
+    "robot_j17a": 0,
+    "j17a_j20a": 0,
+    "j20a_s410": 0,
+    "j20a_mid360": 0,
+    "s410_mid360": 0
+  },
+  "final_minimum_distances_mm": {
+    "j17a_j20a": 0,
+    "j20a_s410": 0.000000097
+  },
+  "excluded": [
+    "exploration_backload",
+    "custom_adapter",
+    "custom_base",
+    "hidden_bridge",
+    "d435",
+    "bz20",
+    "agx",
+    "industrial_pc",
+    "factory_interface_reconstruction",
+    "mesh_substitutes"
+  ],
+  "screenshots": [
+    "final-real-brep-lite3-mid360-no-ipc-iso.png",
+    "final-real-brep-lite3-mid360-no-ipc-side.png",
+    "final-real-brep-lite3-mid360-no-ipc-top.png"
+  ],
+  "claim_boundary": [
+    "appearance and packaging baseline only",
+    "not a verified robot-side mount",
+    "not fastener or receiver validated",
+    "not cable or service-access validated",
+    "not load-path validated",
+    "not fabrication ready"
+  ]
+}

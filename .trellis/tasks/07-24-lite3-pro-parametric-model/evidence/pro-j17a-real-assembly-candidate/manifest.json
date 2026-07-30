@@ -1,0 +1,579 @@
+{
+  "schema_version": 1,
+  "purpose": "lite3_pro_to_j17a_real_assembly_candidate",
+  "coordinate_system": {
+    "unit": "millimetre",
+    "axes": "X forward, Y left, Z up"
+  },
+  "source_candidate_manifest": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/manifest.json",
+  "pro_interface": {
+    "pattern_center_mm": [
+      20.0,
+      0.0
+    ],
+    "pattern_x_by_y_mm": [
+      74.0,
+      94.0
+    ],
+    "axis_centers_mm": [
+      [
+        -17.0,
+        -47.0,
+        420.158569
+      ],
+      [
+        -17.0,
+        47.0,
+        420.158569
+      ],
+      [
+        57.0,
+        -47.0,
+        420.158569
+      ],
+      [
+        57.0,
+        47.0,
+        420.158569
+      ]
+    ],
+    "thread": "4 x M3; official nominal",
+    "thread_depth_state": "not_published",
+    "candidate_receiver_depth_mm": 5.0
+  },
+  "j17a_interface": {
+    "source_transform_translation_mm": [
+      134.601997,
+      0.0,
+      446.0
+    ],
+    "source_transform_rotation": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "pattern_x_by_y_mm": [
+      110.0,
+      86.0
+    ],
+    "axis_centers_mm": [
+      [
+        82.851997,
+        -43.0,
+        446.0
+      ],
+      [
+        82.851997,
+        43.0,
+        446.0
+      ],
+      [
+        192.851997,
+        -43.0,
+        446.0
+      ],
+      [
+        192.851997,
+        43.0,
+        446.0
+      ]
+    ],
+    "source_thread_depth_mm": 2.5,
+    "stale_rejected_x_axes_mm": [
+      72.676,
+      182.676
+    ],
+    "stale_axis_error_mm": 10.175997
+  },
+  "adapter_contract": {
+    "adapter_identity": "print_adaptation",
+    "architecture": "two fixed side trusses plus one narrow boundary cross-tie, four Pro pads, and four J17A columns; no centre deck",
+    "side_truss_center_y_mm": [
+      -55.0,
+      55.0
+    ],
+    "side_truss_z_mm": [
+      423.0,
+      427.25
+    ],
+    "cross_tie_center_x_mm": 65.0,
+    "pro_pad_seating_z_mm": 420.158569,
+    "j17a_column_seating_z_mm": 446.0,
+    "pro_clearance_diameter_mm": 3.4,
+    "pro_counterbore_diameter_mm": 6.2,
+    "j17a_clearance_diameter_mm": 3.4,
+    "j17a_counterbore_diameter_mm": 6.2,
+    "bounds_mm": [
+      [
+        -23.999251,
+        -59.0,
+        420.158569
+      ],
+      [
+        197.851997,
+        59.0,
+        446.0
+      ]
+    ],
+    "extent_mm": [
+      221.851248,
+      118.0,
+      25.841431
+    ],
+    "volume_mm3": 28170.126933,
+    "solid_count": 1,
+    "shell_count": 1,
+    "is_valid_brep": true
+  },
+  "fastener_contract": {
+    "pro_to_robot": {
+      "count": 4,
+      "standard": "ISO 4762 candidate",
+      "nominal": "M3x8",
+      "direction": "installed downward from adapter top",
+      "bearing_z_mm": 423.658569,
+      "adapter_traversal_mm": 3.5,
+      "modeled_receiver_engagement_mm": 4.5,
+      "modeled_bottom_clearance_mm": 0.5,
+      "physical_gate": "confirm actual Lite3 Pro thread depth before hardware use",
+      "installation_step": 3
+    },
+    "adapter_to_j17a": {
+      "count": 4,
+      "standard": "ISO 4762 candidate",
+      "nominal": "M3x20",
+      "direction": "installed upward from recessed adapter underside",
+      "bearing_z_mm": 428.5,
+      "adapter_traversal_mm": 17.5,
+      "modeled_receiver_engagement_mm": 2.5,
+      "source_receiver_depth_mm": 2.5,
+      "modeled_bottom_clearance_mm": 0.0,
+      "installation_step": 1
+    }
+  },
+  "assembly_order": [
+    "Invert J17A and adapter; install four recessed M3x20 screws upward into J17A.",
+    "Place the J17A and adapter subassembly on the Lite3 Pro payload surface.",
+    "Install four M3x8 screws downward through the adapter into the robot M3 receivers.",
+    "Install BZ20 or the measured user industrial PC last, after the robot-side screw heads are no longer needed."
+  ],
+  "torso_collision_proxy": {
+    "source_path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/master_1_1/torso_master_1_1.stl",
+    "source_sha256": "c5640acf5f59d30cdf4dee23d022944fee287322380b0ad9035e193382d0922e",
+    "translation_mm": [
+      0.0,
+      0.0,
+      351.658569
+    ],
+    "registration": "payload-plane registered collision proxy; not appearance CAD"
+  },
+  "editable_outputs": {
+    "assembly_fcstd": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-j17a-real-assembly-candidate/models/lite3_pro_j17a_real_assembly.FCStd",
+    "assembly_fcstd_sha256": "753ed2040b5078c01e3be91d9983859f59c8ba306e30876fe2086a7d9c83f0f5",
+    "adapter_fcstd": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-j17a-real-assembly-candidate/models/pro_to_j17a_open_truss_adapter.FCStd",
+    "adapter_fcstd_sha256": "9ca64f8d27ba82fc557ef8853876d2c59599f182bed7d3f6782ba96c3793a61f",
+    "adapter_step": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-j17a-real-assembly-candidate/models/pro_to_j17a_open_truss_adapter.step",
+    "adapter_step_sha256": "b0a6c3eb4853620b699dbc87acd330bf1f84abadffe0bda6b7cb6ad9b9ce30ce",
+    "adapter_stl": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-j17a-real-assembly-candidate/meshes/PRO_TO_J17A_OPEN_TRUSS_ADAPTER.stl",
+    "adapter_stl_sha256": "712ebfecd98cccbdcefc388b83e1aff1fa945709540a62341be3ef066ccdd82c"
+  },
+  "industrial_pc_state": "not_modelled; final adapter outline remains pending the user's measured IPC envelope, holes, connectors, and cable keep-outs",
+  "claim_boundary": "This candidate closes the modeled Lite3 Pro to J17A fastener path. It is not factory CAD, load-rated hardware, or proof of fit around the user's unmeasured industrial PC.",
+  "entries": [
+    {
+      "node_name": "TORSO",
+      "role": "official_lite3_exterior_context",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/TORSO.stl",
+      "sha256": "fc38b60ce51524b2f50ea14348b699d8f7a4a996f4eefbabdcb27c91e2ad0a58",
+      "bounds_mm": [
+        [
+          -269.589996,
+          -108.387001,
+          298.60257
+        ],
+        [
+          278.800018,
+          108.386002,
+          425.462555
+        ]
+      ],
+      "extent_mm": [
+        548.390015,
+        216.773003,
+        126.859985
+      ],
+      "watertight": false,
+      "connected_components": 55
+    },
+    {
+      "node_name": "J17A_SENSOR_CARRIER_SOURCE",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/J17A_SENSOR_CARRIER_SOURCE.stl",
+      "sha256": "82ccfe05a3620ea4c98059363313816ed68a0fd397b6a8e3c3f9f93fca6aba40",
+      "bounds_mm": [
+        [
+          61.851997,
+          -57.5,
+          439.938568
+        ],
+        [
+          215.586548,
+          57.5,
+          467.0
+        ]
+      ],
+      "extent_mm": [
+        153.73455,
+        115.0,
+        27.061432
+      ],
+      "watertight": true,
+      "connected_components": 1
+    },
+    {
+      "node_name": "MID360_ADAPTER",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/MID360_ADAPTER.stl",
+      "sha256": "d96b3e9d0ebea367ee390bcd2da72e58bddbb0ebdb231a32b55067d8035187c0",
+      "bounds_mm": [
+        [
+          96.175995,
+          -40.0,
+          436.875
+        ],
+        [
+          192.175995,
+          40.0,
+          461.875
+        ]
+      ],
+      "extent_mm": [
+        96.0,
+        80.0,
+        25.0
+      ],
+      "watertight": true,
+      "connected_components": 1
+    },
+    {
+      "node_name": "MID360_GUARD",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/MID360_GUARD.stl",
+      "sha256": "6b6fd949c8e1479a977ef1c68260a05bcfd674a31f5dbec2cf3244c3192fc125",
+      "bounds_mm": [
+        [
+          101.044792,
+          -34.729622,
+          438.389709
+        ],
+        [
+          195.223663,
+          34.729626,
+          524.132935
+        ]
+      ],
+      "extent_mm": [
+        94.178871,
+        69.459248,
+        85.743225
+      ],
+      "watertight": true,
+      "connected_components": 1
+    },
+    {
+      "node_name": "MID360_BODY",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/MID360_BODY.stl",
+      "sha256": "9e42390c34241d352e2b64adc2c1b659e9647f20b20db9f04eafb7a66a80297d",
+      "bounds_mm": [
+        [
+          115.548927,
+          -32.393021,
+          443.149445
+        ],
+        [
+          178.836548,
+          32.393021,
+          466.002808
+        ]
+      ],
+      "extent_mm": [
+        63.287621,
+        64.786041,
+        22.853363
+      ],
+      "watertight": true,
+      "connected_components": 2
+    },
+    {
+      "node_name": "MID360_HOUSING_EXTERIOR",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/MID360_HOUSING_EXTERIOR.stl",
+      "sha256": "00297f9e69686c68e3d989f67682d16a19e7b6f1f1d89e485e432212a3fbf5f5",
+      "bounds_mm": [
+        [
+          116.345016,
+          -32.43692,
+          446.703705
+        ],
+        [
+          183.462158,
+          32.43692,
+          492.693726
+        ]
+      ],
+      "extent_mm": [
+        67.117142,
+        64.87384,
+        45.990021
+      ],
+      "watertight": false,
+      "connected_components": 1
+    },
+    {
+      "node_name": "MID360_OPTICAL_WINDOW",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/MID360_OPTICAL_WINDOW.stl",
+      "sha256": "1aa17147217559931221aa2419c9e098ccc56397a667bd5853e093f7e5ffac35",
+      "bounds_mm": [
+        [
+          130.808228,
+          -25.493156,
+          476.790192
+        ],
+        [
+          181.217255,
+          25.493156,
+          511.357117
+        ]
+      ],
+      "extent_mm": [
+        50.409027,
+        50.986313,
+        34.566925
+      ],
+      "watertight": true,
+      "connected_components": 1
+    },
+    {
+      "node_name": "MID360_CONNECTOR",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/MID360_CONNECTOR.stl",
+      "sha256": "04bc046c6b09dc20dcf743586c7d2a63af1baaa1864e9493cf6d8a6db9809cbf",
+      "bounds_mm": [
+        [
+          110.092361,
+          -11.0,
+          464.397034
+        ],
+        [
+          126.686615,
+          11.0,
+          480.974091
+        ]
+      ],
+      "extent_mm": [
+        16.594254,
+        22.0,
+        16.577057
+      ],
+      "watertight": true,
+      "connected_components": 1
+    },
+    {
+      "node_name": "D435I_CAMERA_DIRECT",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/D435I_CAMERA_DIRECT.stl",
+      "sha256": "78f3df58da0d7f85a901606690e803e1bff23b9d255931adc7212caf4ea51a1a",
+      "bounds_mm": [
+        [
+          191.128677,
+          -44.9142,
+          433.755829
+        ],
+        [
+          220.760422,
+          45.000099,
+          461.615662
+        ]
+      ],
+      "extent_mm": [
+        29.631744,
+        89.914299,
+        27.859833
+      ],
+      "watertight": false,
+      "connected_components": 133
+    },
+    {
+      "node_name": "D435_DIRECT_FASTENER_REFERENCES",
+      "role": "unchanged_source_sensor_assembly",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/D435_DIRECT_FASTENER_REFERENCES.stl",
+      "sha256": "3d69e552b1f74bfacaf4f7a1fa2f5080c893d0a08975c05f84e4f4f3d2582486",
+      "bounds_mm": [
+        [
+          188.322479,
+          -25.25,
+          448.564667
+        ],
+        [
+          198.233307,
+          25.25,
+          455.636566
+        ]
+      ],
+      "extent_mm": [
+        9.910828,
+        50.5,
+        7.071899
+      ],
+      "watertight": true,
+      "connected_components": 4
+    },
+    {
+      "node_name": "BZ20_BACKLOAD_SHELL_SOURCE",
+      "role": "official_source_geometry_with_image_estimated_rigid_transform",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-bz20-layout-candidate/meshes/BZ20_BACKLOAD_SHELL_SOURCE.stl",
+      "sha256": "2f5b10e48310400157e3838ff9b834e493a7355e887b713d08cdc90520716c94",
+      "bounds_mm": [
+        [
+          -49.148003,
+          -48.0,
+          427.962555
+        ],
+        [
+          58.851997,
+          48.0,
+          457.962555
+        ]
+      ],
+      "extent_mm": [
+        108.0,
+        96.0,
+        30.0
+      ],
+      "watertight": true,
+      "connected_components": 1
+    },
+    {
+      "node_name": "PRO_TO_J17A_OPEN_TRUSS_ADAPTER",
+      "role": "print_adaptation",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-j17a-real-assembly-candidate/meshes/PRO_TO_J17A_OPEN_TRUSS_ADAPTER.stl",
+      "sha256": "712ebfecd98cccbdcefc388b83e1aff1fa945709540a62341be3ef066ccdd82c",
+      "bounds_mm": [
+        [
+          -23.999251,
+          -59.0,
+          420.158569
+        ],
+        [
+          197.851997,
+          59.0,
+          446.0
+        ]
+      ],
+      "extent_mm": [
+        221.851248,
+        118.0,
+        25.841431
+      ],
+      "volume_mm3": 28170.126933,
+      "solid_count": 1,
+      "shell_count": 1,
+      "is_valid_brep": true
+    },
+    {
+      "node_name": "PRO_M3X8_FASTENERS",
+      "role": "four_top_installed_robot_fasteners",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-j17a-real-assembly-candidate/meshes/PRO_M3X8_FASTENERS.stl",
+      "sha256": "c1d133058b983b8360f12ae539eacc628737003a9f1bce72d8afd719617069ed",
+      "bounds_mm": [
+        [
+          -19.746582,
+          -49.749145,
+          415.658569
+        ],
+        [
+          59.75,
+          49.749145,
+          426.658569
+        ]
+      ],
+      "extent_mm": [
+        79.496582,
+        99.498291,
+        11.0
+      ],
+      "volume_mm3": 478.818252,
+      "solid_count": 4,
+      "shell_count": 4,
+      "is_valid_brep": true
+    },
+    {
+      "node_name": "J17A_M3X20_FASTENERS",
+      "role": "four_underside_installed_j17a_fasteners",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-j17a-real-assembly-candidate/meshes/J17A_M3X20_FASTENERS.stl",
+      "sha256": "5a412161da10c673dc2a76c7653820f497575920605321918bfda8bbe44a8a72",
+      "bounds_mm": [
+        [
+          80.105415,
+          -45.749145,
+          425.5
+        ],
+        [
+          195.601997,
+          45.749145,
+          448.5
+        ]
+      ],
+      "extent_mm": [
+        115.496582,
+        91.498291,
+        23.0
+      ],
+      "volume_mm3": 817.027727,
+      "solid_count": 4,
+      "shell_count": 4,
+      "is_valid_brep": true
+    },
+    {
+      "node_name": "LITE3_PRO_M3_RECEIVER_PROXIES",
+      "role": "four_nominal_thread_envelope_proxies",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-j17a-real-assembly-candidate/meshes/LITE3_PRO_M3_RECEIVER_PROXIES.stl",
+      "sha256": "1d900c27024b8a209568d8d6d9a6d83db9e83a5004c30c9c5ba3172f69b82051",
+      "bounds_mm": [
+        [
+          -21.993785,
+          -51.998446,
+          415.158569
+        ],
+        [
+          62.0,
+          51.998446,
+          420.158569
+        ]
+      ],
+      "extent_mm": [
+        83.993785,
+        103.996892,
+        5.0
+      ],
+      "volume_mm3": 1472.621556,
+      "solid_count": 4,
+      "shell_count": 4,
+      "is_valid_brep": true
+    }
+  ]
+}

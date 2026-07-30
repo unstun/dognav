@@ -1,0 +1,423 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "awaiting_visual_review",
+  "document": "Untitled",
+  "root_occurrence_count": 35,
+  "candidate": {
+    "index": 34,
+    "component": "J17A_J20A_MONOLITHIC_PRINT_ADAPTATION_REV_A_NOT_OFFICIAL_CAD",
+    "body": "J17A_J20A_MONOLITHIC_ONE_SOLID_REV_A",
+    "brep_body_count": 1,
+    "mesh_body_count": 0,
+    "is_solid": true,
+    "lump_count": 1,
+    "shell_count": 1,
+    "face_count": 192,
+    "volume_mm3": 59896.41459376361
+  },
+  "source_preservation": {
+    "j17a_name": "J17A_ORIGINAL_MANUFACTURER_BREP_CORRECT_UPPER_65MM_PAIR",
+    "j20a_name": "1T21-J20A-小激光安装板",
+    "sources_hidden": true,
+    "candidate_visible": true,
+    "former_layer_hardware_hidden": true
+  },
+  "interface_cylinders": {
+    "d435i_2x_m3_clearance": [
+      {
+        "origin_cm": [
+          -28.197009644681465,
+          22.177372631523244,
+          261.11343973827854
+        ],
+        "radius_mm": 1.5999999999999994,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -32.697009644681465,
+          22.177372631523244,
+          261.11343973827854
+        ],
+        "radius_mm": 1.5999999999999994,
+        "axis_alignment": 1.0
+      }
+    ],
+    "mid360_4x_m3_clearance": [
+      {
+        "origin_cm": [
+          -32.24700964468146,
+          15.077732354412397,
+          256.964165951486
+        ],
+        "radius_mm": 1.7500000000000193,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -28.647009644681464,
+          15.077732354412397,
+          256.964165951486
+        ],
+        "radius_mm": 1.7500000000000193,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -28.647009644681464,
+          16.320063770904483,
+          252.32772198529844
+        ],
+        "radius_mm": 1.7500000000000018,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -32.24700964468146,
+          16.320063770904483,
+          252.32772198529844
+        ],
+        "radius_mm": 1.7500000000000018,
+        "axis_alignment": 1.0
+      }
+    ],
+    "s410_4x_m5_receivers": [
+      {
+        "origin_cm": [
+          -32.906859573287356,
+          20.99216848863984,
+          260.3916316144593
+        ],
+        "radius_mm": 2.0999999999999934,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -27.987159716075574,
+          20.99216848863984,
+          260.3916316144593
+        ],
+        "radius_mm": 2.0999999999999934,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -32.935037516961955,
+          23.1515234383815,
+          252.33280923044802
+        ],
+        "radius_mm": 2.0999999999999903,
+        "axis_alignment": 1.0
+      },
+      {
+        "origin_cm": [
+          -27.958981772400975,
+          23.1515234383815,
+          252.33280923044802
+        ],
+        "radius_mm": 2.0999999999999903,
+        "axis_alignment": 1.0
+      }
+    ]
+  },
+  "sensor_interference": {
+    "d435i": {
+      "result_count": 0,
+      "volume_mm3": 0.0
+    },
+    "mid360": {
+      "result_count": 0,
+      "volume_mm3": 0.0
+    },
+    "s410_guard": {
+      "result_count": 0,
+      "volume_mm3": 0.0
+    }
+  },
+  "tool_access_corridors": {
+    "mid360_underside": [
+      {
+        "axis": 1,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "start_cm": [
+          -32.24700964468146,
+          20.921583603461258,
+          258.5300211743562
+        ],
+        "end_cm": [
+          -32.24700964468146,
+          18.023806124594053,
+          257.7535640390486
+        ],
+        "blockers": [
+          {
+            "occurrence": "J17A_ORIGINAL_MANUFACTURER_BREP_CORRECT_UPPER_65MM_PAIR:1",
+            "minimum_distance_mm": 0.7652666306963279
+          },
+          {
+            "occurrence": "LITE3_FULLSTACK_D435I_REAL_BREP_OFFICIAL_MANUFACTURER_CAD:1",
+            "minimum_distance_mm": 29.520110108991602
+          }
+        ],
+        "clear": true
+      },
+      {
+        "axis": 2,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "start_cm": [
+          -28.647009644681464,
+          20.921583603461258,
+          258.5300211743562
+        ],
+        "end_cm": [
+          -28.647009644681464,
+          18.023806124594053,
+          257.7535640390486
+        ],
+        "blockers": [
+          {
+            "occurrence": "J17A_ORIGINAL_MANUFACTURER_BREP_CORRECT_UPPER_65MM_PAIR:1",
+            "minimum_distance_mm": 0.765266630696311
+          },
+          {
+            "occurrence": "LITE3_FULLSTACK_D435I_REAL_BREP_OFFICIAL_MANUFACTURER_CAD:1",
+            "minimum_distance_mm": 29.520109945124116
+          }
+        ],
+        "clear": true
+      },
+      {
+        "axis": 3,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "start_cm": [
+          -28.647009644681464,
+          22.163915019953354,
+          253.89357720816867
+        ],
+        "end_cm": [
+          -28.647009644681464,
+          19.26613754108615,
+          253.1171200728611
+        ],
+        "blockers": [
+          {
+            "occurrence": "J17A_ORIGINAL_MANUFACTURER_BREP_CORRECT_UPPER_65MM_PAIR:1",
+            "minimum_distance_mm": 11.450532409035176
+          },
+          {
+            "occurrence": "LITE3_FULLSTACK_D435I_REAL_BREP_OFFICIAL_MANUFACTURER_CAD:1",
+            "minimum_distance_mm": 76.63037519602386
+          }
+        ],
+        "clear": true
+      },
+      {
+        "axis": 4,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "start_cm": [
+          -32.24700964468146,
+          22.163915019953354,
+          253.89357720816867
+        ],
+        "end_cm": [
+          -32.24700964468146,
+          19.26613754108615,
+          253.1171200728611
+        ],
+        "blockers": [
+          {
+            "occurrence": "J17A_ORIGINAL_MANUFACTURER_BREP_CORRECT_UPPER_65MM_PAIR:1",
+            "minimum_distance_mm": 11.450532409035151
+          },
+          {
+            "occurrence": "LITE3_FULLSTACK_D435I_REAL_BREP_OFFICIAL_MANUFACTURER_CAD:1",
+            "minimum_distance_mm": 76.63037537826837
+          }
+        ],
+        "clear": true
+      }
+    ],
+    "d435i_camera_side": [
+      {
+        "axis": 1,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "start_cm": [
+          -32.697009644681465,
+          21.64724140936847,
+          262.5699633004967
+        ],
+        "end_cm": [
+          -32.697009644681465,
+          20.62118097939147,
+          265.3890411628544
+        ],
+        "blockers": [
+          {
+            "occurrence": "1T21-J20A-小激光安装板:1",
+            "minimum_distance_mm": 16.178805134326332
+          },
+          {
+            "occurrence": "MID-360_4_ASM:1",
+            "minimum_distance_mm": 28.599456787074185
+          },
+          {
+            "occurrence": "1CA5-S410- 激光雷达防护架:1",
+            "minimum_distance_mm": 15.00148028616885
+          }
+        ],
+        "clear": true
+      },
+      {
+        "axis": 2,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "start_cm": [
+          -28.197009644681465,
+          21.64724140936847,
+          262.5699633004967
+        ],
+        "end_cm": [
+          -28.197009644681465,
+          20.62118097939147,
+          265.3890411628544
+        ],
+        "blockers": [
+          {
+            "occurrence": "1T21-J20A-小激光安装板:1",
+            "minimum_distance_mm": 16.178805134326332
+          },
+          {
+            "occurrence": "MID-360_4_ASM:1",
+            "minimum_distance_mm": 28.599456787074185
+          },
+          {
+            "occurrence": "1CA5-S410- 激光雷达防护架:1",
+            "minimum_distance_mm": 15.001480286168846
+          }
+        ],
+        "clear": true
+      }
+    ],
+    "s410_external": [
+      {
+        "axis": 1,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "start_cm": [
+          -32.90685957328738,
+          21.909798014256104,
+          260.63750970479924
+        ],
+        "end_cm": [
+          -32.90685957328738,
+          24.80757549312331,
+          261.4139668401068
+        ],
+        "blockers": [
+          {
+            "occurrence": "J17A_ORIGINAL_MANUFACTURER_BREP_CORRECT_UPPER_65MM_PAIR:1",
+            "minimum_distance_mm": 8.068536220953273
+          },
+          {
+            "occurrence": "MID-360_4_ASM:1",
+            "minimum_distance_mm": 6.547019132945865
+          }
+        ],
+        "clear": true
+      },
+      {
+        "axis": 2,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "start_cm": [
+          -27.98715971607558,
+          21.909798014256072,
+          260.63750970479913
+        ],
+        "end_cm": [
+          -27.98715971607558,
+          24.807575493123277,
+          261.4139668401067
+        ],
+        "blockers": [
+          {
+            "occurrence": "J17A_ORIGINAL_MANUFACTURER_BREP_CORRECT_UPPER_65MM_PAIR:1",
+            "minimum_distance_mm": 8.068536220954453
+          },
+          {
+            "occurrence": "MID-360_4_ASM:1",
+            "minimum_distance_mm": 6.547019132945255
+          }
+        ],
+        "clear": true
+      },
+      {
+        "axis": 3,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "start_cm": [
+          -32.935037516962154,
+          24.069152963997706,
+          252.5786873207878
+        ],
+        "end_cm": [
+          -32.935037516962154,
+          26.96693044286491,
+          253.35514445609536
+        ],
+        "blockers": [
+          {
+            "occurrence": "J17A_ORIGINAL_MANUFACTURER_BREP_CORRECT_UPPER_65MM_PAIR:1",
+            "minimum_distance_mm": 17.354726026014088
+          },
+          {
+            "occurrence": "MID-360_4_ASM:1",
+            "minimum_distance_mm": 6.382962380136212
+          }
+        ],
+        "clear": true
+      },
+      {
+        "axis": 4,
+        "diameter_mm": 6.0,
+        "length_mm": 30.0,
+        "start_cm": [
+          -27.95898177240097,
+          24.069152963997887,
+          252.5786873207878
+        ],
+        "end_cm": [
+          -27.95898177240097,
+          26.966930442865092,
+          253.35514445609536
+        ],
+        "blockers": [
+          {
+            "occurrence": "J17A_ORIGINAL_MANUFACTURER_BREP_CORRECT_UPPER_65MM_PAIR:1",
+            "minimum_distance_mm": 17.354726026016138
+          },
+          {
+            "occurrence": "MID-360_4_ASM:1",
+            "minimum_distance_mm": 6.382962380136798
+          }
+        ],
+        "clear": true
+      }
+    ]
+  },
+  "checks": {
+    "topology_pass": true,
+    "classification_pass": true,
+    "source_visibility_pass": true,
+    "interface_pass": true,
+    "sensor_clearance_pass": true,
+    "access_pass": true
+  },
+  "pass": true,
+  "claim_boundary": "Geometry and modeled tool access only; material, print orientation, strength, fatigue, torque, vibration, and real-hardware safety are unvalidated."
+}

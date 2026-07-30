@@ -1,0 +1,22 @@
+{
+  "stage": "experiment_and_analysis",
+  "status": "awaiting_visual_review",
+  "renders": [
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-j17a-j20a-monolithic-rear-web-print-adaptation-rev-b/rev-a-rear-two-posts-bottom-oblique.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-j17a-j20a-monolithic-rear-web-print-adaptation-rev-b/rev-b-rear-continuous-web-bottom-oblique.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-j17a-j20a-monolithic-rear-web-print-adaptation-rev-b/rev-b-rear-web-highlight-xray.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/factory-step-j17a-j20a-monolithic-rear-web-print-adaptation-rev-b/rev-b-with-sensors-rear-bottom-oblique.png"
+  ],
+  "contains_text_overlay": false,
+  "transient_rear_web_color": "orange",
+  "rear_web_xray_opacity": 0.28,
+  "restoration": {
+    "visibility_mismatches": [],
+    "rev_a_opacity_restored": true,
+    "rev_b_opacity_restored": true,
+    "custom_graphics_removed": true,
+    "custom_graphics_count_before": 0,
+    "custom_graphics_count_after": 0
+  },
+  "pass": true
+}

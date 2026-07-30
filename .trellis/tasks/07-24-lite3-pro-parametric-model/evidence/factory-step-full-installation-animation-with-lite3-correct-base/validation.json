@@ -1,0 +1,58 @@
+{
+  "artifact": "lite3-complete-installation-animation-no-text.mp4",
+  "claim_boundary": "Visual installation demonstration only; no structural, vibration, tolerance, or physical fastener validation is claimed.",
+  "video": {
+    "codec": "h264",
+    "duration_seconds": 15.0,
+    "fps": 24,
+    "frame_count": 360,
+    "height": 720,
+    "pixel_format": "yuv420p",
+    "sha256": "4025b3e4d61e975af7c59ce4ba704d7951cee14a09a97f459b411284f610ae50",
+    "size_bytes": 2391854,
+    "width": 1280
+  },
+  "fusion_source": {
+    "artifact": "lite3-correct-base-full-sensor-assembly-animation-source.f3d",
+    "root_occurrence_count": 27,
+    "sha256": "64592c7f7304cffc1fb2032151f99ed474993f9bdfa12ef5d2876e92377f2505",
+    "size_bytes": 127966045
+  },
+  "final_state_check": {
+    "j17_transform": [
+      0.0,
+      1.0,
+      0.0,
+      -30.447009644681465,
+      0.0,
+      0.0,
+      1.0,
+      20.468141858307483,
+      1.0,
+      0.0,
+      0.0,
+      254.15989005808058,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "max_transform_difference": 1.4210854715202004e-14,
+    "occurrence_mismatches": [],
+    "pending_snapshot": false
+  },
+  "sequence": [
+    "Lite3 full-body reference",
+    "J17A base alignment and placement",
+    "rear locating spacers",
+    "four base-to-Lite3 screws",
+    "J20A second bracket",
+    "front and rear bracket bolts",
+    "washers, nuts, and locknuts",
+    "MID360",
+    "four MID360 screws",
+    "D435i depth camera",
+    "two D435i screws",
+    "completed Lite3 full-body view"
+  ]
+}

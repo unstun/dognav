@@ -1,0 +1,46 @@
+{
+  "artifact": "lite3-complete-installation-animation-guided-closeups-no-text.mp4",
+  "status": "rejected_sequence_conflict",
+  "rejection_reason": "The camera cuts were clear, but the order blocked human and tool access for locating spacers, J17/J20 bottom-up bolts, and MID360 underside screws.",
+  "claim_boundary": "Visual installation demonstration only; no structural, vibration, tolerance, thread, torque, or physical-installation validation is claimed.",
+  "video": {
+    "codec": "h264",
+    "duration_seconds": 22.0,
+    "fps": 24,
+    "frame_count": 528,
+    "height": 720,
+    "pixel_format": "yuv420p",
+    "sha256": "21ac16458b0300e1cad568d97b51c757de71e8a3bc0ae54a1a81bee936725752",
+    "size_bytes": 3838909,
+    "width": 1280
+  },
+  "fusion_source": {
+    "artifact": "../factory-step-full-installation-animation-with-lite3-correct-base/lite3-correct-base-full-sensor-assembly-animation-source.f3d",
+    "root_occurrence_count": 27,
+    "sha256": "64592c7f7304cffc1fb2032151f99ed474993f9bdfa12ef5d2876e92377f2505",
+    "size_bytes": 127966045
+  },
+  "final_state_check": {
+    "max_transform_difference": 5.684341886080802e-14,
+    "occurrence_mismatches": [],
+    "opacity_mismatches": [],
+    "pending_snapshot": false
+  },
+  "guided_shots": [
+    "Lite3 full-body opening",
+    "J17A base placement medium shot",
+    "rear locating-spacer close-up with ghosted J17A",
+    "front base-screw close-up with ghosted J17A",
+    "rear base-screw close-up with ghosted J17A",
+    "J20A placement medium shot",
+    "front through-bolt and top-nut close-up with ghosted J20A",
+    "rear bolt, washer, and locknut close-up with ghosted J20A",
+    "MID360 placement medium shot",
+    "front MID360 screw-pair close-up with ghosted MID360",
+    "rear MID360 screw-pair close-up with ghosted MID360",
+    "D435i placement medium shot",
+    "D435i two-screw close-up with ghosted D435i",
+    "opaque completed-assembly close-up",
+    "completed Lite3 full-body pullback"
+  ]
+}

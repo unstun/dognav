@@ -1,0 +1,336 @@
+{
+  "artifact_labels": {
+    "forbidden_label": "fit_validated",
+    "full_assembly": "visual_only",
+    "upper_module": "appearance_reconstruction"
+  },
+  "assembly_bbox": {
+    "max_mm": [
+      292.0,
+      186.32896423339844,
+      496.0
+    ],
+    "min_mm": [
+      -318.03668212890625,
+      -186.32896423339844,
+      0.0
+    ],
+    "size_mm": [
+      610.0366821289062,
+      372.6579284667969,
+      496.0
+    ]
+  },
+  "base_mesh": {
+    "facet_count": 1179234,
+    "point_count": 587531,
+    "rotation_x_deg": 90.0,
+    "scale": 1.0,
+    "source_bbox_y_up": {
+      "max_mm": [
+        278.8000183105469,
+        422.9610290527344,
+        186.32896423339844
+      ],
+      "min_mm": [
+        -318.03668212890625,
+        -2.5015251636505127,
+        -186.32896423339844
+      ],
+      "size_mm": [
+        596.8367004394531,
+        425.4625542163849,
+        372.6579284667969
+      ]
+    },
+    "transformed_bbox_z_up": {
+      "max_mm": [
+        278.8000183105469,
+        186.32896423339844,
+        425.4625549316406
+      ],
+      "min_mm": [
+        -318.03668212890625,
+        -186.32896423339844,
+        0.0
+      ],
+      "size_mm": [
+        596.8367004394531,
+        372.6579284667969,
+        425.4625549316406
+      ]
+    }
+  },
+  "claim_boundary": "Appearance reconstruction only. Exact sensor identity, brackets, internal details, mounting tolerance, material, strength, and physical fit are unknown.",
+  "components": {
+    "Cooling_Fins": {
+      "bbox": {
+        "max_mm": [
+          139.0,
+          29.0,
+          464.5
+        ],
+        "min_mm": [
+          97.0,
+          -29.0,
+          430.0
+        ],
+        "size_mm": [
+          42.0,
+          58.0,
+          34.5
+        ]
+      },
+      "closed": true,
+      "solid_count": 1,
+      "valid": true,
+      "volume_mm3": 33207.60000000003
+    },
+    "Front_Sensor_Bar": {
+      "bbox": {
+        "max_mm": [
+          292.0,
+          50.0,
+          432.0
+        ],
+        "min_mm": [
+          278.79999999999995,
+          -50.0,
+          414.0
+        ],
+        "size_mm": [
+          13.200000000000045,
+          100.0,
+          18.0
+        ]
+      },
+      "closed": true,
+      "solid_count": 1,
+      "valid": true,
+      "volume_mm3": 21630.424904567066
+    },
+    "Laser_Radar_Core": {
+      "bbox": {
+        "max_mm": [
+          170.0,
+          20.0,
+          473.0
+        ],
+        "min_mm": [
+          130.0,
+          -20.0,
+          431.0
+        ],
+        "size_mm": [
+          40.0,
+          40.0,
+          42.0
+        ]
+      },
+      "closed": true,
+      "solid_count": 1,
+      "valid": true,
+      "volume_mm3": 44401.17617073574
+    },
+    "Protective_Hoop": {
+      "bbox": {
+        "max_mm": [
+          154.0,
+          38.0,
+          496.0
+        ],
+        "min_mm": [
+          146.0,
+          -38.0,
+          423.0
+        ],
+        "size_mm": [
+          8.0,
+          76.0,
+          73.0
+        ]
+      },
+      "closed": true,
+      "solid_count": 1,
+      "valid": true,
+      "volume_mm3": 8878.616022625227
+    },
+    "Upper_Interface_Enclosure": {
+      "bbox": {
+        "max_mm": [
+          90.0,
+          37.0,
+          462.0
+        ],
+        "min_mm": [
+          -120.0,
+          -37.0,
+          425.0
+        ],
+        "size_mm": [
+          210.0,
+          74.0,
+          37.0
+        ]
+      },
+      "closed": true,
+      "solid_count": 1,
+      "valid": true,
+      "volume_mm3": 573499.8228509247
+    },
+    "Upper_Mounting_References": {
+      "bbox": {
+        "max_mm": [
+          170.0,
+          65.0,
+          425.5
+        ],
+        "min_mm": [
+          -130.0,
+          -65.0,
+          421.5
+        ],
+        "size_mm": [
+          300.0,
+          130.0,
+          4.0
+        ]
+      },
+      "closed": true,
+      "solid_count": 1,
+      "valid": true,
+      "volume_mm3": 155667.15038378903
+    }
+  },
+  "freecad_version": "1.1.2",
+  "height_error_mm": 0.0,
+  "model_id": "lite3_lidar_v107_visual_reconstruction",
+  "object_count": 7,
+  "official_target_bbox_mm": {
+    "height": 496.0,
+    "length": 610.0,
+    "width": 370.0
+  },
+  "outputs": {
+    "lite3_lidar_v107_reconstruction.FCStd": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-v107-reconstruction/models/lite3_lidar_v107_reconstruction.FCStd",
+      "sha256": "7382a15e032d3926aea70896742dd464715e6ff9a8fb08f524049774707cb71a",
+      "size_bytes": 15310509
+    },
+    "lite3_lidar_v107_standing_visual.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-v107-reconstruction/models/lite3_lidar_v107_standing_visual.stl",
+      "sha256": "1644c7714bdda7152438ad9da85d7573702459e024ad98b8b4106107b8b85000",
+      "size_bytes": 60010084
+    },
+    "lite3_lidar_v107_upper_module.step": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-v107-reconstruction/models/lite3_lidar_v107_upper_module.step",
+      "sha256": "be7694ea589f4c9c2382ce29f7bea9ac7027c766429bbd04346f3e08b1d03e66",
+      "size_bytes": 177745
+    },
+    "lite3_lidar_v107_upper_module.stl": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-v107-reconstruction/models/lite3_lidar_v107_upper_module.stl",
+      "sha256": "392142448a279bf8569fd7ea5d89f5e72e20fb7b626471be722d3b6fd402643f",
+      "size_bytes": 1048384
+    }
+  },
+  "parameters_path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-v107-reconstruction/model_parameters.json",
+  "preserved_width_difference_mm": 2.657928466796875,
+  "reimport": {
+    "standing_visual_stl": {
+      "bbox": {
+        "max_mm": [
+          292.0,
+          186.32896423339844,
+          496.0
+        ],
+        "min_mm": [
+          -318.03668212890625,
+          -186.32896423339844,
+          0.0
+        ],
+        "size_mm": [
+          610.0366821289062,
+          372.6579284667969,
+          496.0
+        ]
+      },
+      "facet_count": 1200200
+    },
+    "step": {
+      "bbox": {
+        "max_mm": [
+          292.0,
+          65.0,
+          496.0
+        ],
+        "min_mm": [
+          -130.0,
+          -65.0,
+          414.0
+        ],
+        "size_mm": [
+          422.0,
+          130.0,
+          82.0
+        ]
+      },
+      "solid_count": 6,
+      "valid": true
+    },
+    "upper_stl": {
+      "bbox": {
+        "max_mm": [
+          292.0,
+          65.0,
+          496.0
+        ],
+        "min_mm": [
+          -130.0,
+          -65.0,
+          414.0
+        ],
+        "size_mm": [
+          422.0,
+          130.0,
+          82.0
+        ]
+      },
+      "facet_count": 20966
+    }
+  },
+  "required_component_names": [
+    "Upper_Mounting_References",
+    "Upper_Interface_Enclosure",
+    "Laser_Radar_Core",
+    "Cooling_Fins",
+    "Protective_Hoop",
+    "Front_Sensor_Bar"
+  ],
+  "schema_version": 1,
+  "sources": {
+    "lidar_manual_pdf": {
+      "evidence_class": "official_nominal",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-design-drawings/source/original/Jueying-Lite3-LiDAR-User-Manual-CE-V1.0.7-0.pdf",
+      "sha256": "25ef3cc19e9ebc8211a8504bd55dbd7cf4dcf511e60d5c59a90c29ed0ffb698f",
+      "size_bytes": 6250520
+    },
+    "manual_overview_page": {
+      "evidence_class": "official_nominal",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-design-drawings/derived/lite3-lidar-manual-06.png",
+      "sha256": "d66100b0b70d509fc309b988b7640ee5e186ae48875d4189b8328ab5776774b0",
+      "size_bytes": 316021
+    },
+    "manual_parts_page": {
+      "evidence_class": "official_nominal",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-design-drawings/derived/lite3-lidar-manual-07.png",
+      "sha256": "83c1bc6b867961ab9264d00c9600b2acfd2e45404329972fd9d1fcf0bd6d5c94",
+      "size_bytes": 304659
+    },
+    "standing_stl": {
+      "evidence_class": "source_model",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_deep-robotics-model/source/Lite3-official-high-res-factory-stand-fusion-y-up.stl",
+      "sha256": "b2a4d7a1551ebac211d7450f8f57c3a2a198d5d36e70b9c75dccea24f9c55e0c",
+      "size_bytes": 58961784
+    }
+  }
+}

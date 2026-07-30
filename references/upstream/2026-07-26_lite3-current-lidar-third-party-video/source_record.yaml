@@ -1,0 +1,30 @@
+schema_version: 1
+topic: lite3-current-lidar-third-party-video
+acquired_at: 2026-07-26
+status: excluded
+
+upstream:
+  publisher: third_party_bilibili_account
+  bilibili_owner: 韭菜何苦为难韭菜
+  bilibili_owner_mid: 366841502
+  url: https://www.bilibili.com/video/BV1FVWXzZE9b/
+  bvid: BV1FVWXzZE9b
+  aid: 115410385044175
+  cid: 33261946964
+  title: YUNSHENCHU杭州云深处科技绝影Lite3激光版教育科研智能四足机器人
+
+files:
+  - name: lite3-current-lidar-BV1FVWXzZE9b-q16.mp4
+    local_source_path: source/original/lite3-current-lidar-BV1FVWXzZE9b-q16.mp4
+    size_bytes: 4689047
+    sha256: 072f83008989128a881572f17776b3e7b2457e298b06d60b7a1a62ba1ef545d8
+    duration_seconds: 39.98458
+    video_codec: h264
+    audio_codec: aac
+    dimensions_px: [480, 854]
+
+exclusion_reason: >-
+  The title claims a Lite3 LiDAR product, but the inspected frames reuse a
+  standard Lite3 exterior and older launch footage. They provide no verified
+  Mid-360/J17A close-up, dimension, or installation relationship. The video is
+  retained only as a rejected lead and cannot authorize modeled geometry.

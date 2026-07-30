@@ -1,0 +1,1235 @@
+{
+  "schema_version": 1,
+  "purpose": "official_lite3_lidar_v107_appearance_baseline_review",
+  "target_identity": "Lite3 LiDAR assembly shown in official V1.0.7 manual",
+  "primary_evidence": [
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-26_lite3-current-lidar-official-us-media/source/original/lite3-lidar-current-front-left-800x600.jpg",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-design-drawings/derived/lite3-lidar-v107-front-render-original.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-design-drawings/derived/lite3-lidar-v107-side-render-original.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-design-drawings/derived/lite3-lidar-v107-rear-line-art-original.png",
+    "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-design-drawings/derived/lite3-lidar-v107-front-line-art-original.png"
+  ],
+  "source_files": {
+    "current_reference_glb": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/models/reference/lite3_lidar_1_1_reference.glb",
+      "sha256": "c0a0708cdd9b82d197258c54fc095e188c9868ea73bd9a26396559d9d6616fc1"
+    },
+    "related_source_history_glb": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/derived/2026-07-24_lite3-lidar-printable-replica/rebuild-check-j17a-ipc-base/models/reference/lite3_lidar_1_1_reference.glb",
+      "sha256": "8091a77a024ccb32eed225a5fbebe9ad5036bba9eb375344424650130fb33c01"
+    },
+    "official_full_body_visual": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/models/lite3_official_manual_pose.stl",
+      "sha256": "fff454ac3c3944ba34296c7b772ef58469f350463691445da2e615d08dcbd1d3",
+      "source_urdf": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_deep-robotics-model/source/high_res_official/Lite3/urdf/Lite3_high_res.urdf",
+      "hip_y_rad": -0.68,
+      "knee_rad": 1.48
+    },
+    "related_source_sensor_meshes": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-direct-camera-candidate/meshes",
+      "manifest": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-direct-camera-candidate/manifest.json"
+    },
+    "official_d435_visual_mesh": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-direct-camera-candidate/meshes/D435I_CAMERA_DIRECT.stl",
+      "sha256": "0a2538acbf7199274874465af4b1f700616da234538e14c8232f1069abc3370d"
+    },
+    "d435_fastener_reference_mesh": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/j17a-direct-camera-candidate/meshes/D435_DIRECT_FASTENER_REFERENCES.stl",
+      "sha256": "8efeac4133ad022ab215742cb9896491dbf7d9d7bc775691704300860aed5ba1"
+    },
+    "official_current_lidar_front_left_image": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-26_lite3-current-lidar-official-us-media/source/original/lite3-lidar-current-front-left-800x600.jpg",
+      "sha256": "b9a8e83c9761d0f556d9c498b7c201b08c25eef5cfc32fff75608ed0deaaedd1",
+      "source_record": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-26_lite3-current-lidar-official-us-media/source_record.yaml"
+    },
+    "related_source_j17a_step": {
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J17A-lidar base.STEP",
+      "sha256": "52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490",
+      "drawing": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/derived/j17a-drawing.png",
+      "drawing_sha256": "2b4bd82c5a6940a531004ef44370617794dae52cf8d09bf50bf412aed035860d",
+      "claim": "The related-source drawing proves four M3 J17A robot-side receivers; current-LiDAR identity remains a silhouette candidate."
+    }
+  },
+  "image_estimated_parameters": {
+    "sensor_translation_mm_from_related_source_assembly": [
+      55.0,
+      0.0,
+      -28.132935
+    ],
+    "camera_translation_mm_from_current_official_mesh_transform": [
+      55.0,
+      0.0,
+      -28.132935
+    ],
+    "interface_envelope_mm": [
+      233.0,
+      92.0,
+      46.0
+    ],
+    "interface_center_x_mm": -0.5,
+    "interface_bottom_z_mm": 399.867065,
+    "interface_corner_radius_mm": 0.8,
+    "interface_deck_contact_z_mm": 391.9675705432892,
+    "interface_mounting_pad_height_mm": 7.899495,
+    "interface_contact_samples_mm": [
+      391.967571,
+      391.967571,
+      391.967571,
+      391.967571
+    ],
+    "interface_mounting_chain": {
+      "foot_axes_mm": [
+        [
+          -86.0,
+          -36.0
+        ],
+        [
+          -86.0,
+          36.0
+        ],
+        [
+          82.0,
+          -36.0
+        ],
+        [
+          82.0,
+          36.0
+        ]
+      ],
+      "clearance_hole_diameter_mm": 3.4,
+      "receiver_minor_diameter_mm": 2.5,
+      "receiver_depth_mm": 5.0,
+      "classification": "image_inferred_mechanical_proxy"
+    },
+    "j17a_mounting_chain": {
+      "source_thread_callout": "4 x M3",
+      "source_pattern_mm": [
+        110.0,
+        86.0
+      ],
+      "current_axes_mm": [
+        [
+          137.85199699999998,
+          -43.0
+        ],
+        [
+          137.85199699999998,
+          43.0
+        ],
+        [
+          247.851997,
+          -43.0
+        ],
+        [
+          247.851997,
+          43.0
+        ]
+      ],
+      "source_thread_depth_geometry_mm": 2.5,
+      "seating_z_mm": 417.867065,
+      "support_records": [
+        {
+          "j17a_axis_mm": [
+            137.85199699999998,
+            -43.0
+          ],
+          "body_fastener_axis_mm": [
+            137.85199699999998,
+            -49.0
+          ],
+          "j17a_seating_z_mm": 417.867065,
+          "main_body_surface_z_mm": 388.966545,
+          "body_fastener_surface_z_mm": 391.966646,
+          "low_mount_top_z_mm": 397.967042,
+          "profiled_bottom_z_range_mm": [
+            392.083395,
+            392.217293
+          ],
+          "bottom_clearance_mm": 0.25
+        },
+        {
+          "j17a_axis_mm": [
+            137.85199699999998,
+            43.0
+          ],
+          "body_fastener_axis_mm": [
+            137.85199699999998,
+            49.0
+          ],
+          "j17a_seating_z_mm": 417.867065,
+          "main_body_surface_z_mm": 391.953026,
+          "body_fastener_surface_z_mm": 391.95482,
+          "low_mount_top_z_mm": 397.966906,
+          "profiled_bottom_z_range_mm": [
+            392.007212,
+            392.217208
+          ],
+          "bottom_clearance_mm": 0.25
+        },
+        {
+          "j17a_axis_mm": [
+            247.851997,
+            -43.0
+          ],
+          "body_fastener_axis_mm": [
+            247.851997,
+            -49.0
+          ],
+          "j17a_seating_z_mm": 417.867065,
+          "main_body_surface_z_mm": 375.346982,
+          "body_fastener_surface_z_mm": 371.100817,
+          "low_mount_top_z_mm": 386.404246,
+          "profiled_bottom_z_range_mm": [
+            360.047355,
+            382.469175
+          ],
+          "bottom_clearance_mm": 0.25
+        },
+        {
+          "j17a_axis_mm": [
+            247.851997,
+            43.0
+          ],
+          "body_fastener_axis_mm": [
+            247.851997,
+            49.0
+          ],
+          "j17a_seating_z_mm": 417.867065,
+          "main_body_surface_z_mm": 375.304741,
+          "body_fastener_surface_z_mm": 371.19519,
+          "low_mount_top_z_mm": 386.418792,
+          "profiled_bottom_z_range_mm": [
+            360.637129,
+            382.257685
+          ],
+          "bottom_clearance_mm": 0.25
+        }
+      ],
+      "classification": "source_axis_plus_image_inferred_local_support"
+    },
+    "full_body_ground_normalization_mm": 2.502025,
+    "manual_pose": {
+      "hip_y_rad": -0.68,
+      "knee_rad": 1.48,
+      "classification": "image_estimate_from_manual_side_view"
+    },
+    "interface_relief": {
+      "size_mm": [
+        30.0,
+        74.0,
+        7.0
+      ],
+      "classification": "image_estimate",
+      "carrier_clearance_mm": 0.8
+    }
+  },
+  "validation": {
+    "guard_top_mm": 496.0,
+    "official_standing_height_target_mm": 496.0,
+    "interface_to_j17a_intersection_mm3": 0.0,
+    "interface_to_local_support_intersection_mm3": 0.0,
+    "sampled_local_support_to_body_minimum_clearance_mm": 0.250008,
+    "sampled_local_support_to_body_sample_count": 2036,
+    "unintended_mount_overlap_mm3": 0.0,
+    "unintended_mount_overlap_breakdown_mm3": {
+      "local_support_to_d435": 0.0,
+      "body_fastener_to_j17a": 0.0,
+      "interface_feet_to_local_support": 0.0
+    },
+    "d435_to_j17a_sampled_minimum_distance_mm": 0.0002,
+    "d435_contact_metric_note": "Inherited unchanged from the direct-mount evidence candidate because D435 and J17A receive the same rigid transform.",
+    "assembled_reference_bounds_mm": [
+      [
+        -325.984955,
+        -186.328964,
+        0.0
+      ],
+      [
+        278.800018,
+        186.328964,
+        496.0
+      ]
+    ],
+    "assembled_reference_extents_mm": [
+      604.784973,
+      372.657928,
+      496.0
+    ]
+  },
+  "excluded_rejected_tracks": [
+    "BZ20_BACKLOAD_SHELL_SOURCE",
+    "AGX_ORIN_BASE_SOURCE",
+    "PRO_J17A_TRUSS_ADAPTER",
+    "UPPER_DECK_INTERFACE",
+    "PAYLOAD_BASE",
+    "CAMERA_MOUNT_BRACKET",
+    "CAMERA_CARRIER_PLATE",
+    "CAMERA_RECEIVER_YOKE",
+    "CAMERA_FASTENERS",
+    "FACTORY_LIDAR_MOUNTS"
+  ],
+  "claim_boundary": "This is an evidence-only visible-assembly candidate. Mid-360, D435, and the Lite3 exterior use source geometry. J17A/J20A/S410 remain related-source candidates. The J17A four-M3 axes come from its source STEP and drawing; the visible local supports, Interface feet, body-side fasteners, and hidden receiver proxies are explicitly image-inferred mechanical proxies. They close two inspectable load paths without claiming the unpublished factory receiver geometry. Physical Lite3 hole positions, thread engagement, material, and the user's final industrial-PC base remain measurement gates. This is not factory CAD or fit-validated hardware.",
+  "models": {
+    "assembled_fcstd": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/models/lite3_lidar_v107_baseline_candidate.FCStd",
+    "interface_stl": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/models/interface_baseline_candidate.stl"
+  },
+  "entries": [
+    {
+      "node_name": "FULL_LITE3_OFFICIAL_VISUAL",
+      "evidence_class": "official_visual",
+      "color_rgba": [
+        210,
+        214,
+        220,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/FULL_LITE3_OFFICIAL_VISUAL.stl",
+      "bounds_mm": [
+        [
+          -325.984955,
+          -186.328964,
+          0.0
+        ],
+        [
+          278.800018,
+          186.328964,
+          397.271556
+        ]
+      ],
+      "extent_mm": [
+        604.784973,
+        372.657928,
+        397.271556
+      ],
+      "vertex_count": 3537702,
+      "face_count": 1179234,
+      "watertight": false,
+      "connected_components": null,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "LITE3_TOP_CONTACT_SURFACE",
+      "evidence_class": "source_derived_visual_surface",
+      "color_rgba": [
+        205,
+        209,
+        214,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/LITE3_TOP_CONTACT_SURFACE.stl",
+      "bounds_mm": [
+        [
+          -125.0,
+          -54.0,
+          377.814555
+        ],
+        [
+          225.0,
+          54.0,
+          391.997571
+        ]
+      ],
+      "extent_mm": [
+        350.0,
+        108.0,
+        14.183016
+      ],
+      "vertex_count": 1633,
+      "face_count": 3080,
+      "watertight": false,
+      "connected_components": 1,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "J17A_SENSOR_CARRIER_CANDIDATE",
+      "evidence_class": "related_source_candidate",
+      "color_rgba": [
+        102,
+        106,
+        112,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/J17A_SENSOR_CARRIER_CANDIDATE.stl",
+      "bounds_mm": [
+        [
+          116.851997,
+          -57.5,
+          411.805634
+        ],
+        [
+          270.586548,
+          57.5,
+          438.867065
+        ]
+      ],
+      "extent_mm": [
+        153.73455,
+        115.0,
+        27.061432
+      ],
+      "vertex_count": 6042,
+      "face_count": 12156,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 31824.554291
+    },
+    {
+      "node_name": "MID360_ADAPTER",
+      "evidence_class": "related_source_candidate",
+      "color_rgba": [
+        148,
+        153,
+        158,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/MID360_ADAPTER.stl",
+      "bounds_mm": [
+        [
+          151.175995,
+          -40.0,
+          408.742065
+        ],
+        [
+          247.175995,
+          40.0,
+          433.742065
+        ]
+      ],
+      "extent_mm": [
+        96.0,
+        80.0,
+        25.0
+      ],
+      "vertex_count": 16662,
+      "face_count": 5554,
+      "watertight": false,
+      "connected_components": 5554,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "MID360_GUARD",
+      "evidence_class": "related_source_candidate",
+      "color_rgba": [
+        24,
+        26,
+        30,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/MID360_GUARD.stl",
+      "bounds_mm": [
+        [
+          156.044792,
+          -34.729622,
+          410.256775
+        ],
+        [
+          250.223663,
+          34.729626,
+          496.0
+        ]
+      ],
+      "extent_mm": [
+        94.178871,
+        69.459248,
+        85.743225
+      ],
+      "vertex_count": 110994,
+      "face_count": 36998,
+      "watertight": false,
+      "connected_components": 36998,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "MID360_BODY",
+      "evidence_class": "official_visual",
+      "color_rgba": [
+        145,
+        150,
+        156,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/MID360_BODY.stl",
+      "bounds_mm": [
+        [
+          170.548927,
+          -32.393021,
+          415.01651
+        ],
+        [
+          233.836548,
+          32.393021,
+          437.869873
+        ]
+      ],
+      "extent_mm": [
+        63.287621,
+        64.786041,
+        22.853363
+      ],
+      "vertex_count": 57114,
+      "face_count": 19038,
+      "watertight": false,
+      "connected_components": 19038,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "MID360_HOUSING_EXTERIOR",
+      "evidence_class": "official_visual",
+      "color_rgba": [
+        160,
+        165,
+        171,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/MID360_HOUSING_EXTERIOR.stl",
+      "bounds_mm": [
+        [
+          171.345016,
+          -32.43692,
+          418.57077
+        ],
+        [
+          238.462158,
+          32.43692,
+          464.560791
+        ]
+      ],
+      "extent_mm": [
+        67.117142,
+        64.87384,
+        45.990021
+      ],
+      "vertex_count": 468051,
+      "face_count": 156017,
+      "watertight": false,
+      "connected_components": 156017,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "MID360_OPTICAL_WINDOW",
+      "evidence_class": "official_visual",
+      "color_rgba": [
+        14,
+        71,
+        148,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/MID360_OPTICAL_WINDOW.stl",
+      "bounds_mm": [
+        [
+          185.808228,
+          -25.493156,
+          448.657257
+        ],
+        [
+          236.217255,
+          25.493156,
+          483.224182
+        ]
+      ],
+      "extent_mm": [
+        50.409027,
+        50.986313,
+        34.566925
+      ],
+      "vertex_count": 28164,
+      "face_count": 9388,
+      "watertight": false,
+      "connected_components": 9388,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "MID360_CONNECTOR",
+      "evidence_class": "official_visual",
+      "color_rgba": [
+        25,
+        27,
+        31,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/MID360_CONNECTOR.stl",
+      "bounds_mm": [
+        [
+          165.092361,
+          -11.0,
+          436.264099
+        ],
+        [
+          181.686615,
+          11.0,
+          452.841156
+        ]
+      ],
+      "extent_mm": [
+        16.594254,
+        22.0,
+        16.577057
+      ],
+      "vertex_count": 96906,
+      "face_count": 32302,
+      "watertight": false,
+      "connected_components": 32302,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "D435I_CAMERA",
+      "evidence_class": "official_visual",
+      "color_rgba": [
+        184,
+        189,
+        196,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/D435I_CAMERA.stl",
+      "bounds_mm": [
+        [
+          246.128677,
+          -44.9142,
+          405.622894
+        ],
+        [
+          275.760422,
+          45.000099,
+          433.482727
+        ]
+      ],
+      "extent_mm": [
+        29.631744,
+        89.914299,
+        27.859833
+      ],
+      "vertex_count": 693381,
+      "face_count": 231127,
+      "watertight": false,
+      "connected_components": 231127,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "D435_FRONT_FACE_DERIVED",
+      "evidence_class": "source_derived_visual_material_layer",
+      "color_rgba": [
+        22,
+        24,
+        28,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/D435_FRONT_FACE_DERIVED.stl",
+      "bounds_mm": [
+        [
+          268.734581,
+          -42.229702,
+          405.612634
+        ],
+        [
+          275.788613,
+          42.229702,
+          423.955285
+        ]
+      ],
+      "extent_mm": [
+        7.054031,
+        84.459404,
+        18.342651
+      ],
+      "vertex_count": 7077,
+      "face_count": 2359,
+      "watertight": false,
+      "connected_components": 2359,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "D435_DIRECT_FASTENER_REFERENCES",
+      "evidence_class": "source_backed_axis_reference",
+      "color_rgba": [
+        38,
+        40,
+        44,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/D435_DIRECT_FASTENER_REFERENCES.stl",
+      "bounds_mm": [
+        [
+          243.322479,
+          -25.25,
+          420.431732
+        ],
+        [
+          253.233307,
+          25.25,
+          427.503632
+        ]
+      ],
+      "extent_mm": [
+        9.910828,
+        50.5,
+        7.071899
+      ],
+      "vertex_count": 2304,
+      "face_count": 768,
+      "watertight": false,
+      "connected_components": 768,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "INTERFACE_BODY",
+      "evidence_class": "image_estimate",
+      "color_rgba": [
+        218,
+        220,
+        222,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/INTERFACE_BODY.stl",
+      "bounds_mm": [
+        [
+          -116.999999,
+          -46.0,
+          399.867058
+        ],
+        [
+          115.999997,
+          46.0,
+          444.167078
+        ]
+      ],
+      "extent_mm": [
+        232.999995,
+        92.0,
+        44.30002
+      ],
+      "vertex_count": 82,
+      "face_count": 160,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 935086.300281
+    },
+    {
+      "node_name": "INTERFACE_LID",
+      "evidence_class": "image_estimate",
+      "color_rgba": [
+        232,
+        233,
+        234,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/INTERFACE_LID.stl",
+      "bounds_mm": [
+        [
+          -118.0,
+          -47.0,
+          444.167065
+        ],
+        [
+          117.0,
+          47.0,
+          445.867065
+        ]
+      ],
+      "extent_mm": [
+        235.0,
+        94.0,
+        1.7
+      ],
+      "vertex_count": 74,
+      "face_count": 144,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 37539.558111
+    },
+    {
+      "node_name": "INTERFACE_PORT_POWER",
+      "evidence_class": "image_estimate",
+      "color_rgba": [
+        213,
+        143,
+        37,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/INTERFACE_PORT_POWER.stl",
+      "bounds_mm": [
+        [
+          48.8,
+          -46.8,
+          419.117065
+        ],
+        [
+          65.2,
+          -46.0,
+          427.617065
+        ]
+      ],
+      "extent_mm": [
+        16.4,
+        0.8,
+        8.5
+      ],
+      "vertex_count": 24,
+      "face_count": 36,
+      "watertight": true,
+      "connected_components": 3,
+      "volume_mm3": 89.76
+    },
+    {
+      "node_name": "INTERFACE_PORT_DATA",
+      "evidence_class": "image_estimate",
+      "color_rgba": [
+        28,
+        31,
+        35,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/INTERFACE_PORT_DATA.stl",
+      "bounds_mm": [
+        [
+          -94.5,
+          -46.8,
+          416.367065
+        ],
+        [
+          36.5,
+          -46.0,
+          430.367065
+        ]
+      ],
+      "extent_mm": [
+        131.0,
+        0.8,
+        14.0
+      ],
+      "vertex_count": 24,
+      "face_count": 36,
+      "watertight": true,
+      "connected_components": 3,
+      "volume_mm3": 360.8
+    },
+    {
+      "node_name": "INTERFACE_PORT_USB3",
+      "evidence_class": "image_estimate",
+      "color_rgba": [
+        35,
+        100,
+        179,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/INTERFACE_PORT_USB3.stl",
+      "bounds_mm": [
+        [
+          -79.0,
+          -46.8,
+          416.367065
+        ],
+        [
+          -71.0,
+          -46.0,
+          430.367065
+        ]
+      ],
+      "extent_mm": [
+        8.0,
+        0.8,
+        14.0
+      ],
+      "vertex_count": 8,
+      "face_count": 12,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 89.6
+    },
+    {
+      "node_name": "INTERFACE_VENTS",
+      "evidence_class": "image_estimate",
+      "color_rgba": [
+        35,
+        38,
+        42,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/INTERFACE_VENTS.stl",
+      "bounds_mm": [
+        [
+          -117.8,
+          -30.0,
+          406.267065
+        ],
+        [
+          -117.0,
+          14.0,
+          423.467065
+        ]
+      ],
+      "extent_mm": [
+        0.8,
+        44.0,
+        17.2
+      ],
+      "vertex_count": 96,
+      "face_count": 144,
+      "watertight": true,
+      "connected_components": 12,
+      "volume_mm3": 253.44
+    },
+    {
+      "node_name": "INTERFACE_SERVICE_PANEL",
+      "evidence_class": "image_estimate",
+      "color_rgba": [
+        104,
+        108,
+        113,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/INTERFACE_SERVICE_PANEL.stl",
+      "bounds_mm": [
+        [
+          -71.0,
+          46.0,
+          411.867065
+        ],
+        [
+          -51.0,
+          46.8,
+          430.867065
+        ]
+      ],
+      "extent_mm": [
+        20.0,
+        0.8,
+        19.0
+      ],
+      "vertex_count": 8,
+      "face_count": 12,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 304.0
+    },
+    {
+      "node_name": "INTERFACE_FEET",
+      "evidence_class": "image_estimate",
+      "color_rgba": [
+        83,
+        87,
+        92,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/INTERFACE_FEET.stl",
+      "bounds_mm": [
+        [
+          -93.500003,
+          -43.499999,
+          391.967565
+        ],
+        [
+          89.500003,
+          43.499999,
+          399.867058
+        ]
+      ],
+      "extent_mm": [
+        183.000006,
+        86.999997,
+        7.899493
+      ],
+      "vertex_count": 768,
+      "face_count": 1536,
+      "watertight": true,
+      "connected_components": 4,
+      "volume_mm3": 5281.823589
+    },
+    {
+      "node_name": "INTERFACE_M3_FASTENERS",
+      "evidence_class": "image_inferred_mechanical_proxy",
+      "color_rgba": [
+        43,
+        46,
+        51,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/INTERFACE_M3_FASTENERS.stl",
+      "bounds_mm": [
+        [
+          -88.75,
+          -38.75,
+          387.967571
+        ],
+        [
+          84.75,
+          38.75,
+          404.367065
+        ]
+      ],
+      "extent_mm": [
+        173.5,
+        77.5,
+        16.399495
+      ],
+      "vertex_count": 784,
+      "face_count": 1536,
+      "watertight": true,
+      "connected_components": 8,
+      "volume_mm3": 662.066816
+    },
+    {
+      "node_name": "INTERFACE_RECEIVER_PROXIES",
+      "evidence_class": "image_inferred_mechanical_proxy",
+      "color_rgba": [
+        174,
+        111,
+        42,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/INTERFACE_RECEIVER_PROXIES.stl",
+      "bounds_mm": [
+        [
+          -90.999998,
+          -41.000001,
+          386.96757
+        ],
+        [
+          86.999997,
+          41.000001,
+          391.967565
+        ]
+      ],
+      "extent_mm": [
+        177.999996,
+        82.000002,
+        4.999995
+      ],
+      "vertex_count": 768,
+      "face_count": 1536,
+      "watertight": true,
+      "connected_components": 4,
+      "volume_mm3": 1468.418214
+    },
+    {
+      "node_name": "INTERFACE_TOP_FASTENER",
+      "evidence_class": "image_estimate",
+      "color_rgba": [
+        72,
+        75,
+        80,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/INTERFACE_TOP_FASTENER.stl",
+      "bounds_mm": [
+        [
+          -18.6,
+          -2.6,
+          445.867065
+        ],
+        [
+          -13.4,
+          2.6,
+          446.567065
+        ]
+      ],
+      "extent_mm": [
+        5.2,
+        5.2,
+        0.7
+      ],
+      "vertex_count": 98,
+      "face_count": 192,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 14.823599
+    },
+    {
+      "node_name": "INTERFACE_SIDE_FASTENER",
+      "evidence_class": "image_estimate",
+      "color_rgba": [
+        72,
+        75,
+        80,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/INTERFACE_SIDE_FASTENER.stl",
+      "bounds_mm": [
+        [
+          86.8,
+          46.0,
+          410.667065
+        ],
+        [
+          91.2,
+          46.8,
+          415.067065
+        ]
+      ],
+      "extent_mm": [
+        4.4,
+        0.8,
+        4.4
+      ],
+      "vertex_count": 98,
+      "face_count": 192,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 12.129538
+    },
+    {
+      "node_name": "INTERFACE_END_FASTENERS",
+      "evidence_class": "image_estimate",
+      "color_rgba": [
+        72,
+        75,
+        80,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/INTERFACE_END_FASTENERS.stl",
+      "bounds_mm": [
+        [
+          -117.8,
+          -37.2,
+          407.667065
+        ],
+        [
+          -117.0,
+          37.2,
+          412.067065
+        ]
+      ],
+      "extent_mm": [
+        0.8,
+        74.4,
+        4.4
+      ],
+      "vertex_count": 196,
+      "face_count": 384,
+      "watertight": true,
+      "connected_components": 2,
+      "volume_mm3": 24.259076
+    },
+    {
+      "node_name": "J17A_LOCAL_SUPPORTS",
+      "evidence_class": "image_inferred_support_geometry",
+      "color_rgba": [
+        92,
+        96,
+        102,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/J17A_LOCAL_SUPPORTS.stl",
+      "bounds_mm": [
+        [
+          130.851999,
+          -52.999999,
+          360.04734
+        ],
+        [
+          254.851997,
+          52.999999,
+          417.867064
+        ]
+      ],
+      "extent_mm": [
+        123.999998,
+        105.999999,
+        57.819724
+      ],
+      "vertex_count": 6613,
+      "face_count": 13246,
+      "watertight": true,
+      "connected_components": 4,
+      "volume_mm3": 25432.573152
+    },
+    {
+      "node_name": "J17A_UPWARD_M3_FASTENERS",
+      "evidence_class": "source_axis_mechanical_proxy",
+      "color_rgba": [
+        43,
+        46,
+        51,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/J17A_UPWARD_M3_FASTENERS.stl",
+      "bounds_mm": [
+        [
+          135.101997,
+          -45.75,
+          375.554741
+        ],
+        [
+          250.601997,
+          45.75,
+          420.367065
+        ]
+      ],
+      "extent_mm": [
+        115.5,
+        91.5,
+        44.812324
+      ],
+      "vertex_count": 784,
+      "face_count": 1536,
+      "watertight": true,
+      "connected_components": 8,
+      "volume_mm3": 1249.192596
+    },
+    {
+      "node_name": "J17A_BODY_M3_FASTENERS",
+      "evidence_class": "image_inferred_mechanical_proxy",
+      "color_rgba": [
+        43,
+        46,
+        51,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/J17A_BODY_M3_FASTENERS.stl",
+      "bounds_mm": [
+        [
+          135.101997,
+          -51.75,
+          367.100817
+        ],
+        [
+          250.601997,
+          51.75,
+          397.967042
+        ]
+      ],
+      "extent_mm": [
+        115.5,
+        103.5,
+        30.866225
+      ],
+      "vertex_count": 784,
+      "face_count": 1536,
+      "watertight": true,
+      "connected_components": 8,
+      "volume_mm3": 612.315813
+    },
+    {
+      "node_name": "J17A_BODY_RECEIVER_PROXIES",
+      "evidence_class": "image_inferred_mechanical_proxy",
+      "color_rgba": [
+        174,
+        111,
+        42,
+        255
+      ],
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/official-lidar-v107-baseline-candidate/meshes/J17A_BODY_RECEIVER_PROXIES.stl",
+      "bounds_mm": [
+        [
+          132.852003,
+          -54.000001,
+          366.100818
+        ],
+        [
+          252.851993,
+          54.000001,
+          391.966641
+        ]
+      ],
+      "extent_mm": [
+        119.99999,
+        108.000003,
+        25.865823
+      ],
+      "vertex_count": 768,
+      "face_count": 1536,
+      "watertight": true,
+      "connected_components": 4,
+      "volume_mm3": 1468.41793
+    }
+  ]
+}

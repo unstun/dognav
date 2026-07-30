@@ -1,0 +1,61 @@
+{
+  "artifact": "lite3-complete-installation-animation-d435-first-no-text.mp4",
+  "status": "rejected_incomplete_missing_s410",
+  "rejection_reason": "Official S410 external LiDAR guard and its four J20 fasteners were omitted.",
+  "claim_boundary": "Visual order and gross access demonstration only; exact wrench envelope, thread engagement, torque, tolerance, structural, vibration, and physical-installation safety are not validated.",
+  "video": {
+    "codec": "h264",
+    "duration_seconds": 27.0,
+    "fps": 24,
+    "frame_count": 648,
+    "height": 720,
+    "pixel_format": "yuv420p",
+    "sha256": "abe200aed89fc3530d6ec0c84b0f6a238642b3d9f7f243c158c52b94a1d3b831",
+    "size_bytes": 3821799,
+    "width": 1280
+  },
+  "d435i_first_access_check": {
+    "inspection_frame": 84,
+    "j17_visible": true,
+    "d435i_visible": true,
+    "d435i_screws_visible": [
+      true,
+      true
+    ],
+    "j20_visible": false,
+    "mid360_visible": false,
+    "mid360_screws_visible": [
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "assembly_order": [
+    "D435i to bare J17",
+    "two D435i screws before J20 and MID360",
+    "four J17/J20 through-bolts pre-inserted bottom-up",
+    "MID360 to J20 off-robot subassembly",
+    "four MID360 underside screws",
+    "J20/MID360 lowered over protruding J17 bolts",
+    "front top nuts",
+    "rear top washers and locknuts",
+    "rear locating spacers on Lite3",
+    "lateral carrier alignment outside robot envelope",
+    "normal approach to Lite3",
+    "front and rear exposed base screws"
+  ],
+  "access_checks": {
+    "d435i_precedes_occluding_upper_parts": true,
+    "bottom_fasteners_completed_off_robot": true,
+    "locating_spacers_precede_carrier": true,
+    "lateral_transfer_clearance_mm": 168.240887028811
+  },
+  "final_state_check": {
+    "root_occurrence_count": 27,
+    "max_transform_difference": 5.684341886080802e-14,
+    "occurrence_mismatches": [],
+    "opacity_mismatches": [],
+    "pending_snapshot": false
+  }
+}

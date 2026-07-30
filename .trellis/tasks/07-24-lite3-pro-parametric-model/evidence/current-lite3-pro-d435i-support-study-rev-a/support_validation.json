@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "d435i_support_geometry_pass_future_lower_union_open",
+  "classification": "print_adaptation_candidate_not_print_release",
+  "sources": {
+    "parameters": {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-d435i-support-study-rev-a/parameters.json",
+      "sha256": "51ce1e18002ffc227aca2d6acd5dda69a1cb1548e52244e10255531c55dad376"
+    },
+    "placement_selection": {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-d435i-support-study-rev-a/placement_selection.json",
+      "sha256": "8be845fda7f19db806b9210201f4de2be4b36e0b42c73f23ebcb0b96ec9da5f2"
+    },
+    "upper_fcstd": {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-source-upper-assembly-rev-a/cad/current-lite3-pro-source-upper-assembly-rev-a.FCStd",
+      "sha256": "27712d62b24a367822d9b30947f0ede5a842173b80cedba744557e5e88fa075d"
+    },
+    "interface_contract": {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-sensor-interface-contract-rev-a/interface_contract.json",
+      "sha256": "b3e27576f6d7deb23d77b60fce41093125898552b8df3e7db7c4a1639d3a1b27"
+    }
+  },
+  "placement": {
+    "camera_rear_mount_origin_mm": [
+      16.43018659503143,
+      0.0,
+      30.0
+    ],
+    "camera_forward_shift_for_support_mm": 8.5,
+    "camera_front_overhang_beyond_measured_nose_mm": 24.19775390625,
+    "camera_optical_axis_robot_frame": [
+      0.9396926207859084,
+      0.0,
+      -0.3420201433256687
+    ],
+    "assembly_sequence": "Attach D435i to this support before installing J20A, MID-360 and S410; final in-situ rear driver access is not assumed."
+  },
+  "geometry": {
+    "support": {
+      "shape_type": "Compound",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "shell_count": 1,
+      "face_count": 22,
+      "volume_mm3": 5655.74880871797,
+      "bounds_mm": {
+        "min": [
+          6.0,
+          -32.0,
+          4.0
+        ],
+        "max": [
+          19.16634774163678,
+          32.0,
+          38.88562153958994
+        ],
+        "size": [
+          13.16634774163678,
+          64.0,
+          34.88562153958994
+        ]
+      }
+    },
+    "camera_envelope": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "shell_count": 1,
+      "face_count": 6,
+      "volume_mm3": 56250.000000000015,
+      "bounds_mm": {
+        "min": [
+          12.15493480346057,
+          -45.0,
+          9.703338657034427
+        ],
+        "max": [
+          44.19775390625,
+          45.0,
+          41.74615775982386
+        ],
+        "size": [
+          32.04281910278943,
+          90.0,
+          32.04281910278943
+        ]
+      }
+    },
+    "support_step_clean_import": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "shell_count": 1,
+      "face_count": 22,
+      "volume_mm3": 5655.748808718475,
+      "bounds_mm": {
+        "min": [
+          6.0,
+          -32.0,
+          4.0
+        ],
+        "max": [
+          19.166347741640774,
+          32.0,
+          38.88562153959
+        ],
+        "size": [
+          13.166347741640774,
+          64.0,
+          34.88562153959
+        ]
+      }
+    }
+  },
+  "interface": {
+    "d435i_axis_points_mm": [
+      [
+        16.43018659503143,
+        -22.5,
+        30.0
+      ],
+      [
+        16.43018659503143,
+        22.5,
+        30.0
+      ]
+    ],
+    "axis_pitch_mm": 45.0,
+    "m3_clearance_diameter_mm": 3.4,
+    "bridge_thickness_mm": 4.0,
+    "maximum_camera_thread_insertion_mm": 3.0,
+    "screw_length": null
+  },
+  "clearance_mm": {
+    "camera_envelope_to_upper": 7.781061650494937,
+    "support_to_upper": 1.4142135623731051
+  },
+  "intersection_mm3": {
+    "support_to_upper": {
+      "j20a": 0.0,
+      "s410": 0.0,
+      "mid360": 0.0
+    },
+    "camera_to_upper": {
+      "j20a": 0.0,
+      "s410": 0.0,
+      "mid360": 0.0
+    },
+    "camera_to_support": 0.0,
+    "support_to_compute_keepout": 0.0
+  },
+  "checks": {
+    "support_is_one_valid_closed_solid": true,
+    "support_step_clean_import_valid": true,
+    "d435i_axis_pitch_is_45mm": true,
+    "bridge_has_two_3p4mm_clearances": true,
+    "zero_support_to_upper_intersection": true,
+    "zero_camera_to_upper_intersection": true,
+    "camera_seats_without_positive_volume_support_overlap": true,
+    "support_avoids_compute_keepout": true,
+    "support_stays_behind_measured_nose_edge": true,
+    "minimum_bridge_and_pad_thickness_at_least_4mm": true,
+    "screw_length_and_current_pro_receivers_remain_open": true,
+    "no_stl_or_print_release": true
+  },
+  "outputs": {
+    "fcstd": {
+      "path": "cad/current-lite3-pro-d435i-support-candidate-rev-a.FCStd",
+      "bytes": 4210920,
+      "sha256": "903c49b57e4e3d693f4cba53eeb66b83202d7a815ca1a760f74c7b27aaf8ac58"
+    },
+    "support_step": {
+      "path": "cad/current-lite3-pro-d435i-support-candidate-rev-a.step",
+      "bytes": 28710,
+      "sha256": "08bfdc665713544cb6e591c2299d0ea16c263653939f47cc041b866b68de7b92"
+    },
+    "review_step": {
+      "path": "cad/current-lite3-pro-upper-plus-d435i-review-rev-a.step",
+      "bytes": 8765603,
+      "sha256": "424cd1e483b499a3af0ffe1978a7b786d949bd2e2594888ce2d0b12cc571f24b"
+    }
+  },
+  "remaining_gates": [
+    "human review of camera overhang and low-front pose",
+    "front leg sweep and terrain strike envelope",
+    "USB connector and cable bend envelope",
+    "current-Pro receiver threads and lower structural load path",
+    "material, strength, fatigue and slicer validation"
+  ],
+  "claim_boundary": "This validates a one-solid D435i support candidate, official 45 mm camera axes, and modeled upper-stack clearance. The lower union pads are intentionally unfinished; no chassis receiver, screw length, leg-sweep clearance, strength, slicing, or print release is claimed.",
+  "pass": true
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "photo_and_scan_registered_geometry_receiver_contract_open",
+  "coordinate_frame": {
+    "origin": "midpoint of the two measured front small-hole axes on the local deck seating plane",
+    "x_axis": "robot forward toward the nose",
+    "y_axis": "robot left",
+    "z_axis": "up",
+    "unit": "millimetre"
+  },
+  "measurements": {
+    "front_pair_lateral_pitch_mm": {
+      "value": 65.0,
+      "uncertainty_mm": 1.0,
+      "evidence": ["source/2026-07-30-user-physical-measurements/photo-09.jpg", "source/2026-07-30-user-physical-measurements/photo-10.jpg"],
+      "status": "two-view photo-measured axis pitch"
+    },
+    "nose_edge_x_mm": {
+      "value": 20.0,
+      "uncertainty_mm": 2.0,
+      "evidence": ["source/2026-07-30-user-physical-measurements/photo-07.jpg"],
+      "status": "photo-measured edge datum"
+    },
+    "centre_candidate_axis_x_mm": {
+      "value": -75.0,
+      "uncertainty_mm": 3.0,
+      "evidence": ["source/2026-07-30-user-physical-measurements/photo-07.jpg"],
+      "status": "visible axis only; receiver role and thread unverified"
+    },
+    "compute_enclosure_front_x_mm": {
+      "value": -100.0,
+      "uncertainty_mm": 4.0,
+      "evidence": ["source/2026-07-30-user-physical-measurements/photo-05.jpg", "source/2026-07-30-user-physical-measurements/photo-07.jpg"],
+      "status": "photo-measured external edge"
+    },
+    "compute_enclosure_length_mm": {
+      "value": 200.0,
+      "uncertainty_mm": 5.0,
+      "evidence": ["source/2026-07-30-user-physical-measurements/photo-01.jpg", "source/2026-07-30-user-physical-measurements/photo-03.jpg"],
+      "status": "photo-measured external envelope"
+    },
+    "compute_enclosure_width_mm": {
+      "value": 100.0,
+      "uncertainty_mm": 4.0,
+      "evidence": ["source/2026-07-30-user-physical-measurements/photo-02.jpg", "source/2026-07-30-user-physical-measurements/photo-05.jpg"],
+      "status": "photo-measured external envelope"
+    },
+    "compute_enclosure_height_mm": {
+      "value": 50.0,
+      "uncertainty_mm": 2.0,
+      "evidence": ["source/2026-07-30-user-physical-measurements/photo-04.jpg"],
+      "status": "photo-measured from the visible local deck plane"
+    }
+  },
+  "derived_geometry": {
+    "front_pair_axes_mm": [[0.0, 32.5, 0.0], [0.0, -32.5, 0.0]],
+    "centre_candidate_axis_mm": [-75.0, 0.0, 0.0],
+    "nose_edge_x_mm": 20.0,
+    "photo_only_previous_compute_enclosure_keepout_bounds_mm": {
+      "x": [-305.0, -96.0],
+      "y": [-54.0, 54.0],
+      "z": [0.0, 54.0]
+    },
+    "scan_registered_compute_enclosure_keepout_bounds_mm": {
+      "x": [-305.0, -96.0],
+      "y": [-57.0, 60.0],
+      "z": [0.0, 54.0]
+    },
+    "scan_registered_nominal_footprint_polygon_mm": [
+      [-299.58516985178125, -52.739342748056195],
+      [-130.0, -52.739342748056195],
+      [-130.0, -42.0],
+      [-100.0, -42.0],
+      [-100.0, 44.0],
+      [-130.0, 44.0],
+      [-130.0, 55.878777875488026],
+      [-299.58516985178125, 55.878777875488026]
+    ],
+    "keepout_policy": "The nominal exterior follows the scan-registered two-recess footprint. Collision screening uses the larger rectangular Rev B bounds and does not credit either recess as usable volume. Feet, cables, connectors, vents, and cover-service sweep remain open."
+  },
+  "receiver_contract": {
+    "front_pair_axis_count": 2,
+    "front_pair_thread": null,
+    "front_pair_usable_depth_mm": null,
+    "centre_candidate_receiver_role": null,
+    "centre_candidate_thread": null,
+    "centre_candidate_usable_depth_mm": null,
+    "status": "open; no printable lower-adapter bore or screw length may be selected"
+  },
+  "claim_boundary": "The photo and scan values support a lightweight current-Pro proxy, two-recess nominal enclosure, hole-axis scaffold, and conservative collision layout. They do not prove a load-bearing attachment, receiver thread/depth, or authorize fabrication."
+}

@@ -1,0 +1,14 @@
+{
+  "last_run": "2026-07-26",
+  "thresholds": {
+    "warm_to_cold_days": 31,
+    "cold_to_archive_days": 91,
+    "archive_to_delete_days": 365
+  },
+  "last_check_result": {
+    "date": "2026-07-26",
+    "files_checked": 5,
+    "degradations_triggered": 0,
+    "note": "2026-07-26 检查冷区五类目录；当前仅有 2026-07-23 创建的 README 文件，没有日记录跨越 31、91 或 365 天阈值，处理 0 个文件。"
+  }
+}

@@ -1,0 +1,86 @@
+schema_version: 1
+topic: lite3-official-fast-livo2-install-video
+acquired_at: 2026-07-26
+status: surveyed
+
+upstream:
+  publisher: DEEP Robotics
+  bilibili_owner: 云深处科技
+  bilibili_owner_mid: 22477177
+  url: https://www.bilibili.com/video/BV1ZqFAz9EdE/
+  bvid: BV1ZqFAz9EdE
+  aid: 115999382706357
+  cid: 35763914266
+  title: "具身智能第二期 | [Lite3] [Perception] [Hardware Extension] lite3算力传感器扩展，以复现FAST-LIVO2为"
+  declared_robot_variant: Lite3 Venture
+  declared_extension: FAST-LIVO2
+
+files:
+  - name: lite3-fast-livo2-BV1ZqFAz9EdE-q32.m4s
+    local_source_path: source/original/lite3-fast-livo2-BV1ZqFAz9EdE-q32.m4s
+    size_bytes: 61485841
+    sha256: e1a77b3755b7072953a31749812012325056766255f768e92f26bfc3bfc385a1
+    duration_seconds: 1389.685
+    video_codec: h264
+    dimensions_px: [852, 480]
+    frame_rate_fps: 25
+    note: >-
+      Public unauthenticated video stream retained as source evidence. The
+      Bilibili metadata advertises a higher nominal source resolution.
+
+key_frames:
+  - file: derived/sensor-install/frame-280s.jpg
+    establishes:
+      - assembled Mid-360, S410, J20A, J17A, and D435 sensor unit before installation
+  - file: derived/sensor-install/frame-284s.jpg
+    establishes:
+      - underside of the one-piece J17A carrier
+      - four robot-side mounting holes
+      - D435 attached directly to the two short angled J17A faces
+      - absence of separate longitudinal rails, carrier plate, or receiver yoke
+  - file: derived/sensor-install-closeup/frame-07.jpg
+    establishes:
+      - close-up confirmation of the four J17A robot-side mounting holes
+      - presenter explicitly counts the four mounting positions
+  - file: derived/sensor-install/frame-292s.jpg
+    establishes:
+      - complete sensor unit seated on a Lite3 Venture
+      - D435 immediately in front of and below the Mid-360
+      - white BZ20 backload shell immediately behind the sensor carrier
+  - file: derived/sensor-install/frame-296s.jpg
+    establishes:
+      - BZ20 shell and J17A are separate adjacent components on the robot top
+      - J17A remains in its original official installation position
+  - file: derived/sensor-install/frame-320s.jpg
+    establishes:
+      - installed relation among J17A, BZ20, and the separate rear AGX Orin device
+
+cross_reference:
+  hardware_source_record: ../2026-07-24_lite3-venture-fast-livo2-hardware/source_record.yaml
+  j17a_camera_pattern:
+    hole_count: 2
+    hole_diameter_mm: 3.2
+    hole_spacing_mm: 45.0
+    face_angle_deg: 20.0
+  bz20_source_geometry:
+    nominal_extent_mm: [108.0, 96.0, 30.0]
+    source_file: >-
+      ../2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-BZ20-backload shell.STEP
+  agx_orin_base_source_geometry:
+    source_file: >-
+      ../2026-07-24_lite3-venture-fast-livo2-hardware/source/original/AGX-orin-base.STEP
+    note: >-
+      The source is an upright rear AGX support. It is not a longitudinal
+      rail under J17A and it is not interchangeable with the user's different
+      industrial PC.
+
+claim_boundary: >-
+  This official installation video proves the assembly relationship of the
+  published Lite3 Venture FAST-LIVO2 Mid-360 extension. It proves direct D435
+  attachment to J17A, identifies the adjacent BZ20/rear-AGX relationship, and
+  rejects the previously invented rail/yoke mechanism. The exact BZ20 rigid
+  transform must still be estimated from the video because no complete
+  assembly STEP is public. The video does not prove that J17A is the
+  regulatory factory cylindrical-LiDAR bracket, that its original robot-side
+  hole pattern fits Lite3 Pro without adaptation, or that the user's different
+  industrial PC shares the AGX geometry.

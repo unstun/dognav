@@ -1,0 +1,533 @@
+{
+  "schema_version": 1,
+  "purpose": "printable_static_replica_hidden_pro_to_j17a_adapter_candidate",
+  "rigid_sensor_translation_mm": [
+    36.148003,
+    0.0,
+    4.0
+  ],
+  "interface_translation_mm": [
+    0.0,
+    0.0,
+    4.0
+  ],
+  "interface_to_j17a_gap_x_mm": 3.0,
+  "adapter_contract": {
+    "frame_bottom_z_mm": 425.662555,
+    "frame_top_z_mm": 431.662555,
+    "j17a_seating_z_mm": 449.95,
+    "j17a_spacer_height_mm": 18.487445,
+    "j17a_x_mm": [
+      108.824003,
+      218.824003
+    ],
+    "pro_axis_centers_mm": [
+      [
+        -17.0,
+        -47.0,
+        428.662555
+      ],
+      [
+        -17.0,
+        47.0,
+        428.662555
+      ],
+      [
+        57.0,
+        -47.0,
+        428.662555
+      ],
+      [
+        57.0,
+        47.0,
+        428.662555
+      ]
+    ],
+    "j17a_axis_centers_mm": [
+      [
+        108.82400262451172,
+        -43.0,
+        449.95
+      ],
+      [
+        108.82400262451172,
+        43.0,
+        449.95
+      ],
+      [
+        218.8240026245117,
+        -43.0,
+        449.95
+      ],
+      [
+        218.8240026245117,
+        43.0,
+        449.95
+      ]
+    ],
+    "frame_thickness_mm": 6.0,
+    "frame_spine_width_mm": 14.0,
+    "frame_crossbar_width_mm": 14.0,
+    "pro_hole_pattern_mm": [
+      74.0,
+      94.0
+    ],
+    "pro_hole_diameter_mm": 3.5,
+    "j17a_hole_pattern_mm": [
+      110.0,
+      86.0
+    ],
+    "j17a_hole_diameter_mm": 4.5,
+    "spacer_outer_diameter_mm": 12.0
+  },
+  "collision_checks": {
+    "interface_to_adapter_intersection_mm3": 0.0,
+    "j17a_to_adapter_intersection_mm3": 0.0,
+    "adapter_bottom_to_torso_top_gap_mm": 0.2
+  },
+  "scale_1_4_print_metrics_mm": {
+    "frame_thickness": 1.5,
+    "spine_width": 3.5,
+    "crossbar_width": 3.5,
+    "spacer_outer_diameter": 3.0,
+    "pro_hole_diameter": 0.875,
+    "j17a_hole_diameter": 1.125
+  },
+  "visible_source_geometry_change": "none",
+  "adapter_claim_boundary": "The skeletal frame is a disclosed printable-static-replica adaptation. It uses the official Pro and J17A hole-axis patterns but is not factory CAD, a load-rated real-robot bracket, or a fit claim for Dr Sun's unmeasured industrial computer.",
+  "fastener_claim_boundary": "Four Pro M3 axes, four J17A installation locations, and two D435 M3 axes are represented. The visual shafts do not establish screw length, thread engagement, torque, or vibration safety.",
+  "entries": [
+    {
+      "node_name": "TORSO",
+      "role": "source_body_context",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/TORSO.stl",
+      "bounds_mm": [
+        [
+          -269.589996,
+          -108.387001,
+          298.60257
+        ],
+        [
+          278.800018,
+          108.386002,
+          425.462555
+        ]
+      ],
+      "extent_mm": [
+        548.390015,
+        216.773003,
+        126.859985
+      ],
+      "vertex_count": 148899,
+      "face_count": 299349,
+      "watertight": false,
+      "connected_components": 55,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "FACTORY_INTERFACE",
+      "role": "image_estimated_interface_on_candidate_adapter",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/FACTORY_INTERFACE.stl",
+      "bounds_mm": [
+        [
+          -65.0,
+          -46.0,
+          432.0
+        ],
+        [
+          95.0,
+          46.0,
+          478.799988
+        ]
+      ],
+      "extent_mm": [
+        160.0,
+        92.0,
+        46.799988
+      ],
+      "vertex_count": 754,
+      "face_count": 1504,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 674752.614328
+    },
+    {
+      "node_name": "FACTORY_INTERFACE_CONNECTORS",
+      "role": "image_estimated_interface_on_candidate_adapter",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/FACTORY_INTERFACE_CONNECTORS.stl",
+      "bounds_mm": [
+        [
+          -57.0,
+          -45.699997,
+          443.299988
+        ],
+        [
+          82.0,
+          -44.900002,
+          458.299988
+        ]
+      ],
+      "extent_mm": [
+        139.0,
+        0.799995,
+        15.0
+      ],
+      "vertex_count": 56,
+      "face_count": 84,
+      "watertight": true,
+      "connected_components": 7,
+      "volume_mm3": 639.196342
+    },
+    {
+      "node_name": "FACTORY_INTERFACE_VENTS",
+      "role": "image_estimated_interface_on_candidate_adapter",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/FACTORY_INTERFACE_VENTS.stl",
+      "bounds_mm": [
+        [
+          -48.0,
+          45.200001,
+          460.700012
+        ],
+        [
+          78.0,
+          46.0,
+          462.899994
+        ]
+      ],
+      "extent_mm": [
+        126.0,
+        0.799999,
+        2.199982
+      ],
+      "vertex_count": 64,
+      "face_count": 96,
+      "watertight": true,
+      "connected_components": 8,
+      "volume_mm3": 140.798702
+    },
+    {
+      "node_name": "J17A_SENSOR_CARRIER_SOURCE",
+      "role": "unchanged_source_sensor_rigidly_repositioned",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/J17A_SENSOR_CARRIER_SOURCE.stl",
+      "bounds_mm": [
+        [
+          98.0,
+          -57.5,
+          443.938568
+        ],
+        [
+          251.73455,
+          57.5,
+          471.0
+        ]
+      ],
+      "extent_mm": [
+        153.73455,
+        115.0,
+        27.061432
+      ],
+      "vertex_count": 6042,
+      "face_count": 12156,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 31824.554291
+    },
+    {
+      "node_name": "MID360_ADAPTER",
+      "role": "unchanged_source_sensor_rigidly_repositioned",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/MID360_ADAPTER.stl",
+      "bounds_mm": [
+        [
+          132.323997,
+          -40.0,
+          440.875
+        ],
+        [
+          228.323997,
+          40.0,
+          465.875
+        ]
+      ],
+      "extent_mm": [
+        96.0,
+        80.0,
+        25.0
+      ],
+      "vertex_count": 2749,
+      "face_count": 5554,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 26174.778835
+    },
+    {
+      "node_name": "MID360_GUARD",
+      "role": "unchanged_source_sensor_rigidly_repositioned",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/MID360_GUARD.stl",
+      "bounds_mm": [
+        [
+          137.192795,
+          -34.729622,
+          442.389709
+        ],
+        [
+          231.371666,
+          34.729626,
+          528.132935
+        ]
+      ],
+      "extent_mm": [
+        94.178871,
+        69.459248,
+        85.743225
+      ],
+      "vertex_count": 18487,
+      "face_count": 36998,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 20703.585347
+    },
+    {
+      "node_name": "MID360_BODY",
+      "role": "unchanged_source_sensor_rigidly_repositioned",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/MID360_BODY.stl",
+      "bounds_mm": [
+        [
+          151.69693,
+          -32.393021,
+          447.149445
+        ],
+        [
+          214.98455,
+          32.393021,
+          470.002808
+        ]
+      ],
+      "extent_mm": [
+        63.287621,
+        64.786041,
+        22.853363
+      ],
+      "vertex_count": 9515,
+      "face_count": 19038,
+      "watertight": true,
+      "connected_components": 2,
+      "volume_mm3": 15329.536023
+    },
+    {
+      "node_name": "MID360_HOUSING_EXTERIOR",
+      "role": "unchanged_source_sensor_rigidly_repositioned",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/MID360_HOUSING_EXTERIOR.stl",
+      "bounds_mm": [
+        [
+          152.493019,
+          -32.43692,
+          450.703705
+        ],
+        [
+          219.610161,
+          32.43692,
+          496.693726
+        ]
+      ],
+      "extent_mm": [
+        67.117142,
+        64.87384,
+        45.990021
+      ],
+      "vertex_count": 78120,
+      "face_count": 156015,
+      "watertight": false,
+      "connected_components": 1,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "MID360_OPTICAL_WINDOW",
+      "role": "unchanged_source_sensor_rigidly_repositioned",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/MID360_OPTICAL_WINDOW.stl",
+      "bounds_mm": [
+        [
+          166.95623,
+          -25.493156,
+          480.790192
+        ],
+        [
+          217.365257,
+          25.493156,
+          515.357117
+        ]
+      ],
+      "extent_mm": [
+        50.409027,
+        50.986313,
+        34.566925
+      ],
+      "vertex_count": 4696,
+      "face_count": 9388,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 35091.731462
+    },
+    {
+      "node_name": "MID360_CONNECTOR",
+      "role": "unchanged_source_sensor_rigidly_repositioned",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/MID360_CONNECTOR.stl",
+      "bounds_mm": [
+        [
+          146.240364,
+          -11.0,
+          468.397034
+        ],
+        [
+          162.834618,
+          11.0,
+          484.974091
+        ]
+      ],
+      "extent_mm": [
+        16.594254,
+        22.0,
+        16.577057
+      ],
+      "vertex_count": 16145,
+      "face_count": 32302,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 1904.90656
+    },
+    {
+      "node_name": "D435I_CAMERA_DIRECT",
+      "role": "unchanged_source_sensor_rigidly_repositioned",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/D435I_CAMERA_DIRECT.stl",
+      "bounds_mm": [
+        [
+          227.27668,
+          -44.9142,
+          437.755829
+        ],
+        [
+          256.908424,
+          45.000099,
+          465.615662
+        ]
+      ],
+      "extent_mm": [
+        29.631744,
+        89.914299,
+        27.859833
+      ],
+      "vertex_count": 154145,
+      "face_count": 231127,
+      "watertight": false,
+      "connected_components": 133,
+      "volume_mm3": null
+    },
+    {
+      "node_name": "D435_DIRECT_FASTENER_REFERENCES",
+      "role": "unchanged_source_sensor_rigidly_repositioned",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/D435_DIRECT_FASTENER_REFERENCES.stl",
+      "bounds_mm": [
+        [
+          224.470482,
+          -25.25,
+          452.564667
+        ],
+        [
+          234.38131,
+          25.25,
+          459.636566
+        ]
+      ],
+      "extent_mm": [
+        9.910828,
+        50.5,
+        7.071899
+      ],
+      "vertex_count": 390,
+      "face_count": 768,
+      "watertight": true,
+      "connected_components": 4,
+      "volume_mm3": 193.44005
+    },
+    {
+      "node_name": "PRO_TO_J17A_HIDDEN_PRINT_ADAPTER",
+      "role": "print_adaptation",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/PRO_TO_J17A_HIDDEN_PRINT_ADAPTER.stl",
+      "bounds_mm": [
+        [
+          -24.0,
+          -54.0,
+          425.662567
+        ],
+        [
+          225.824005,
+          54.0,
+          449.950012
+        ]
+      ],
+      "extent_mm": [
+        249.824005,
+        108.0,
+        24.287445
+      ],
+      "vertex_count": 1224,
+      "face_count": 2476,
+      "watertight": true,
+      "connected_components": 1,
+      "volume_mm3": 57367.715978
+    },
+    {
+      "node_name": "J17A_FOUR_MOUNT_FASTENER_REFERENCES",
+      "role": "official_video_axis_with_unresolved_length",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/J17A_FOUR_MOUNT_FASTENER_REFERENCES.stl",
+      "bounds_mm": [
+        [
+          106.074003,
+          -45.75,
+          430.662555
+        ],
+        [
+          221.574003,
+          45.75,
+          452.95
+        ]
+      ],
+      "extent_mm": [
+        115.5,
+        91.5,
+        22.287445
+      ],
+      "vertex_count": 784,
+      "face_count": 1536,
+      "watertight": true,
+      "connected_components": 8,
+      "volume_mm3": 865.26963
+    },
+    {
+      "node_name": "LITE3_PRO_FOUR_M3_FASTENER_REFERENCES",
+      "role": "official_74x94_axis_with_unresolved_length",
+      "path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/.trellis/tasks/07-24-lite3-pro-parametric-model/evidence/pro-hidden-adapter-candidate/meshes/LITE3_PRO_FOUR_M3_FASTENER_REFERENCES.stl",
+      "bounds_mm": [
+        [
+          -19.75,
+          -49.75,
+          420.662555
+        ],
+        [
+          59.75,
+          49.75,
+          434.162555
+        ]
+      ],
+      "extent_mm": [
+        79.5,
+        99.5,
+        13.5
+      ],
+      "vertex_count": 784,
+      "face_count": 1536,
+      "watertight": true,
+      "connected_components": 8,
+      "volume_mm3": 617.519415
+    }
+  ]
+}

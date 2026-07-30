@@ -1,0 +1,335 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "source_upper_assembly_scan_registered_geometry_pass_lower_interface_open",
+  "classification": "source_backed_upper_assembly_scan_review_not_print_release",
+  "sources": {
+    "interface_contract": {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-sensor-interface-contract-rev-a/interface_contract.json",
+      "sha256": "b3e27576f6d7deb23d77b60fce41093125898552b8df3e7db7c4a1639d3a1b27"
+    },
+    "j20a": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1T21-J20A-small lidar base.STEP",
+      "sha256": "341b08ca08526e5ee0e9fbeca0bfda9d9970062c6605e979adc52b31955c9bc9"
+    },
+    "s410": {
+      "path": "references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/source/original/1CA5-S410-Lidar protector.STEP",
+      "sha256": "7fd23a776b45c7d8571ef77ba9e8b05520eced0b97f62487ba03f88bbc9df810"
+    },
+    "mid360": {
+      "path": "references/upstream/2026-07-24_livox-mid360-cad/source/original/mid-360-asm.stp",
+      "sha256": "b93e9b51282ed319b6aa755e76a132c0eb03306da5f3b9676bcabf2e2ae25f02"
+    },
+    "current_pro_keepout": {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-scan-registered-interface-rev-b/cad/current-lite3-pro-scan-expanded-enclosure-keepout-rev-b.step",
+      "sha256": "2fc956a2d68a327aeff0a2d8752e9c56378887e9a314e4d869c31b225d66ce60"
+    },
+    "scan_registered_interface": {
+      "path": ".trellis/tasks/07-24-lite3-pro-parametric-model/evidence/current-lite3-pro-scan-registered-interface-rev-b/cad/current-lite3-pro-scan-registered-interface-rev-b.FCStd",
+      "sha256": "9262b8a98391c188bb0bde7edd747e178fea4ea378b706d0e9b669cc695c16fe"
+    }
+  },
+  "transform_contract": {
+    "j20a_rotation": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ]
+    ],
+    "j20a_translation_mm": [
+      -87.0,
+      3.552713678800501e-15,
+      9.087039989430572
+    ],
+    "sensor_rotation": [
+      [
+        0.9659258262890683,
+        0.25881904510252074,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      [
+        -0.25881904510252074,
+        0.9659258262890683,
+        0.0
+      ]
+    ],
+    "mid360_translation_mm": [
+      -34.04780137889473,
+      3.552713678800501e-15,
+      47.87288823694887
+    ],
+    "s410_translation_mm": [
+      -40.80740426174179,
+      3.552713678800501e-15,
+      22.64570683917464
+    ],
+    "rotation_determinants": {
+      "j20a": 1.0,
+      "mid360_and_s410": 1.0
+    },
+    "mount_normal_robot_frame": [
+      0.25881904510252074,
+      0.0,
+      0.9659258262890683
+    ]
+  },
+  "axis_registration": {
+    "mid360_to_j20a_maximum_residual_mm": 2.8749471211367107e-15,
+    "s410_to_j20a_maximum_residual_mm": 1.0000000080832938e-06,
+    "mid360_modeled_seating_gap_mm": 0.2
+  },
+  "geometry": {
+    "j20a": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "shell_count": 1,
+      "face_count": 62,
+      "volume_mm3": 26174.317076437655,
+      "bounds_mm": {
+        "min": [
+          -91.0,
+          -40.0,
+          8.0
+        ],
+        "max": [
+          5.0000000000000036,
+          40.0,
+          34.08703998943057
+        ],
+        "size": [
+          96.0,
+          80.0,
+          26.087039989430572
+        ]
+      }
+    },
+    "s410": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "shell_count": 1,
+      "face_count": 218,
+      "volume_mm3": 20687.876274588925,
+      "bounds_mm": {
+        "min": [
+          -85.97022715951859,
+          -52.49999999999999,
+          10.544364915805527
+        ],
+        "max": [
+          17.904252820718703,
+          52.5,
+          96.48823557555268
+        ],
+        "size": [
+          103.87447998023728,
+          105.0,
+          85.94387065974715
+        ]
+      }
+    },
+    "mid360": {
+      "shape_type": "Compound",
+      "is_valid": true,
+      "is_closed": false,
+      "solid_count": 7,
+      "shell_count": 23,
+      "face_count": 1715,
+      "volume_mm3": 141854.33730740077,
+      "bounds_mm": {
+        "min": [
+          -71.83516602853778,
+          -33.39833012650332,
+          14.590575661935205
+        ],
+        "max": [
+          3.2599011541859353,
+          33.39676347906886,
+          82.90069359550263
+        ],
+        "size": [
+          75.09506718272372,
+          66.79509360557218,
+          68.31011793356743
+        ]
+      }
+    },
+    "combined_upper_assembly": {
+      "shape_type": "Compound",
+      "is_valid": true,
+      "is_closed": false,
+      "solid_count": 9,
+      "shell_count": 25,
+      "face_count": 1995,
+      "volume_mm3": 188709.591525084,
+      "bounds_mm": {
+        "min": [
+          -91.0,
+          -52.49999999999999,
+          8.0
+        ],
+        "max": [
+          17.904252820718703,
+          52.5,
+          96.48823557555268
+        ],
+        "size": [
+          108.90425282071871,
+          105.0,
+          88.48823557555268
+        ]
+      }
+    },
+    "step_clean_import": {
+      "shape_type": "Compound",
+      "is_valid": true,
+      "is_closed": false,
+      "solid_count": 9,
+      "shell_count": 25,
+      "face_count": 1995,
+      "volume_mm3": 188700.76640269975,
+      "bounds_mm": {
+        "min": [
+          -91.0,
+          -52.5,
+          7.999999999998833
+        ],
+        "max": [
+          17.809573423765357,
+          52.500000000000036,
+          96.4882355755585
+        ],
+        "size": [
+          108.80957342376536,
+          105.00000000000003,
+          88.48823557555967
+        ]
+      }
+    },
+    "compute_enclosure_scan_nominal": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "shell_count": 1,
+      "face_count": 10,
+      "volume_mm3": 1050001.1217462507,
+      "bounds_mm": {
+        "min": [
+          -299.58516985178125,
+          -52.7393427480562,
+          0.0
+        ],
+        "max": [
+          -100.0,
+          55.878777875488026,
+          50.0
+        ],
+        "size": [
+          199.58516985178125,
+          108.61812062354423,
+          50.0
+        ]
+      }
+    },
+    "deck_planar_proxy": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "shell_count": 1,
+      "face_count": 8,
+      "volume_mm3": 59940.0,
+      "bounds_mm": {
+        "min": [
+          -100.0,
+          -70.0,
+          -4.0
+        ],
+        "max": [
+          20.0,
+          70.0,
+          0.0
+        ],
+        "size": [
+          120.0,
+          140.0,
+          4.0
+        ]
+      }
+    }
+  },
+  "intersection_mm3": {
+    "between_upper_components": {
+      "j20a_mid360": 0.0,
+      "j20a_s410": 0.0,
+      "mid360_s410": 0.0
+    },
+    "to_current_pro_expanded_compute_keepout": {
+      "j20a": 0.0,
+      "mid360": 0.0,
+      "s410": 0.0
+    }
+  },
+  "clearance_mm": {
+    "combined_upper_to_expanded_compute_keepout_x": 5.0,
+    "combined_front_to_measured_nose_edge": 2.0957471792812967
+  },
+  "checks": {
+    "source_hashes_match_interface_contract": true,
+    "proper_rotations": true,
+    "all_source_shapes_valid": true,
+    "mid360_axes_registered_below_0p01mm": true,
+    "s410_axes_registered_below_0p01mm": true,
+    "no_positive_volume_upper_component_collision": true,
+    "no_upper_component_hits_compute_keepout": true,
+    "upper_assembly_stays_behind_measured_nose_edge": true,
+    "upper_assembly_stays_ahead_of_expanded_compute_keepout": true,
+    "upper_assembly_stays_inside_compact_width": true,
+    "step_clean_import_valid": true,
+    "no_stl_or_screw_length_released": true,
+    "scan_registered_rev_b_keepout_used": true,
+    "nominal_compute_enclosure_has_two_front_recesses": true,
+    "notched_nominal_body_is_visual_reference_only": true
+  },
+  "outputs": {
+    "fcstd": {
+      "path": "cad/current-lite3-pro-source-upper-assembly-rev-b.FCStd",
+      "bytes": 4212036,
+      "sha256": "1f688e08c12baf0793c2396a9fa4fe6c05f6d8f459bc3dc4651d9fde0172a827"
+    },
+    "step": {
+      "path": "cad/current-lite3-pro-source-upper-assembly-rev-b.step",
+      "bytes": 8741764,
+      "sha256": "51a9d2964d3e265b932aa6f5b4204b5af61edaaed140c94bff7fee3643e9e4fd"
+    }
+  },
+  "remaining_gates": [
+    "design a separate compact D435i support around its 2 x M3 contract",
+    "confirm current-Pro receiver threads and usable depths",
+    "select and validate the lower structural load path",
+    "validate driver and cable service corridors",
+    "validate print adaptation strength and slicing before release"
+  ],
+  "claim_boundary": "This validates the unchanged source-backed J20A/MID-360/S410 transforms against the scan Rev B conservative keep-out and shows the nominal two-recess compute enclosure. It does not establish a lower adapter, receiver thread/depth, screw length, strength, or printable release.",
+  "pass": true
+}

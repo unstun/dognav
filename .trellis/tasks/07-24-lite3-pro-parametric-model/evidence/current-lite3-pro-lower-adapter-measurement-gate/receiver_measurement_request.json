@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "measurement_required_receiver_contract_open",
+  "target": "Dr Sun's purchased current Lite3 Pro",
+  "coordinate_frame": {
+    "origin": "midpoint of the front left/right visible hole axes",
+    "x_axis": "+X points toward the robot nose",
+    "y_axis": "+Y points toward the robot left side",
+    "z_axis": "+Z points upward from the local seating plane",
+    "unit": "millimetre"
+  },
+  "receiver_points": [
+    {
+      "callout": "A",
+      "label": "front_left_axis",
+      "axis_mm": [
+        0.0,
+        32.5,
+        0.0
+      ],
+      "role_candidate": "primary front receiver",
+      "requested_measurements": [
+        "thread designation verified with a thread gauge or known loose screw used only by hand",
+        "usable threaded depth measured without forcing a probe",
+        "top recess/counterbore diameter",
+        "top recess/counterbore depth",
+        "receiver material",
+        "whether a metal threaded insert is present",
+        "where the receiver transfers load below the cover"
+      ],
+      "status": "open"
+    },
+    {
+      "callout": "B",
+      "label": "front_right_axis",
+      "axis_mm": [
+        0.0,
+        -32.5,
+        0.0
+      ],
+      "role_candidate": "primary front receiver",
+      "requested_measurements": [
+        "thread designation verified independently from point A",
+        "usable threaded depth measured without forcing a probe",
+        "top recess/counterbore diameter",
+        "top recess/counterbore depth",
+        "receiver material",
+        "whether a metal threaded insert is present",
+        "where the receiver transfers load below the cover"
+      ],
+      "status": "open"
+    },
+    {
+      "callout": "C",
+      "label": "centre_rear_candidate_axis",
+      "axis_mm": [
+        -75.0,
+        0.0,
+        0.0
+      ],
+      "role_candidate": "unknown; may be a cover screw rather than a structural receiver",
+      "requested_measurements": [
+        "confirm whether the visible feature is a removable screw, threaded receiver, or unthreaded hole",
+        "thread designation if it is a receiver",
+        "usable threaded depth if it is a receiver",
+        "top recess/counterbore diameter and depth",
+        "receiver material and any metal insert",
+        "where the feature transfers load below the cover"
+      ],
+      "status": "open"
+    }
+  ],
+  "clearance_sweep": {
+    "callout": "D",
+    "requested_evidence": [
+      "enclosure feet and the actual seating gap",
+      "ventilation openings and required free-air region",
+      "all connector bodies plus inserted plug envelopes",
+      "cable bend radius and strain-relief sweep",
+      "cover removal/service direction",
+      "tool-access cylinders above every selected fastener"
+    ],
+    "status": "open"
+  },
+  "measurement_safety": [
+    "Power the robot off before measuring around connectors or covers.",
+    "Do not use a powered driver and do not force a screw or gauge into an unknown thread.",
+    "Do not remove a structural or sealed cover screw merely to identify its thread.",
+    "Record a perpendicular close-up with a ruler or caliper for each accepted dimension."
+  ],
+  "release_gate": {
+    "printable_geometry_allowed": false,
+    "accepted_receiver_count": 0,
+    "required_before_release": [
+      "A and B thread/depth/recess/material/load-path records",
+      "C structural role decision",
+      "D service and cable keep-out record",
+      "human review of the selected receiver set"
+    ]
+  },
+  "claim_boundary": "This request records what must be measured. It does not identify a screw, approve a receiver, or authorize fabrication."
+}

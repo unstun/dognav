@@ -1,0 +1,45 @@
+{
+  "document": "lite3-j17a-j20a-monolithic-rear-web-print-adaptation-rev-b-review",
+  "root_occurrence_count": 44,
+  "custom_graphics_group_count": 0,
+  "required_visible": {
+    "BASE_TO_LITE3_FRONT_2X_M3X8_SOCKET_HEAD_SCREWS_REAL_BREP": {
+      "index": 24,
+      "visible": true
+    },
+    "BASE_TO_LITE3_REAR_2X_M3X12_SOCKET_HEAD_SCREWS_REAL_BREP": {
+      "index": 26,
+      "visible": true
+    },
+    "BASE_TO_LITE3_REAR_2X_OD8_ID3P5_LOCATING_SPACERS_REAL_BREP": {
+      "index": 25,
+      "visible": true
+    },
+    "J17A_J20A_REV_C2_S410_SINGLE_THROUGH_HOLE_HEAD_ACCESS_PREVIEW_NOT_OFFICIAL_CAD": {
+      "index": 39,
+      "visible": true
+    },
+    "S410_GUARD_FRONT_BASE_2X_M3_FULL_DEPTH_ACCESS_HOLES_7MM_VISUAL_PRINT_CANDIDATE_NOT_OFFICIAL_CAD": {
+      "index": 43,
+      "visible": true
+    },
+    "S410_S1_M5X14_BOTTOM_UP_BOLT_HEAD_ACCESS_PREVIEW": {
+      "index": 40,
+      "visible": true
+    },
+    "S410_S1_M5_TOP_HEX_NUT_HEAD_ACCESS_PREVIEW": {
+      "index": 41,
+      "visible": true
+    }
+  },
+  "checks": {
+    "no_custom_graphics_groups": true,
+    "required_final_roots_visible": true,
+    "official_guard_preserved_hidden": true,
+    "preliminary_guard_candidate_hidden": true,
+    "full_depth_guard_candidate_visible": true,
+    "d435i_restored_visible": true
+  },
+  "passed": true,
+  "document_modified_unsaved": true
+}

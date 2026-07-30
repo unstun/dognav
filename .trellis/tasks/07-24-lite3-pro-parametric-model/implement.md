@@ -1,5 +1,174 @@
 # Implementation Plan: Lite3 LiDAR High-Fidelity Printable Replica
 
+## Current-Pro Revision Correction Implementation (2026-07-29)
+
+1. Preserve and hash Dr Sun's physical current-Pro photograph.
+2. Pin the legacy Pro manual and its `74 x 94 mm` pattern as old-revision
+   evidence; do not transfer it to the current robot.
+3. Acquire and hash the official 2025 brochure plus current Pro/LiDAR product
+   images.  Record the changed Pro specifications and the missing mechanical
+   interface data.
+4. Pin the official FAST-LIVO2 README at commit `624b45c`; record that its
+   printable hardware is Venture-only and supplies no current-Pro lower
+   bracket.
+5. Generate a visual comparison in the order current official Pro, Dr Sun's
+   physical Pro, current official LiDAR.  Use it only for revision and layout
+   review.
+6. Mark physical fusion-adapter V1 rejected for the current-Pro robot
+   interface.  Record its real animated axes and the mislabeled rear-pitch
+   parameter while retaining internal upper-module checks as historical
+   evidence.
+7. Define the future lower adapter as a separate parameterized part.  After
+   the 2026-07-30 photos arrive, build only a non-printable measured proxy and
+   axis scaffold; keep thread/depth and receiver role null.
+8. Compare the retained `153.7 mm` upper carrier against the measured front
+   zone.  Build a compact zero-thickness layout with source Mid-360/S410 B-reps
+   and the official D435i envelope, then validate compute-box/nose clearances.
+9. Present the measured axis map and compact placement for human review.  Only
+   after thread/depth and the centre receiver role are physically confirmed,
+   generate the lower-adapter solid and validate clean STEP/STL, screw/tool
+   access, enclosure clearance, and fit-card dimensions.
+10. Do not print, buy final screw lengths, drill, actuate, or claim physical fit
+   under the current unmeasured state.
+11. Archive and hash the 2026-07-30 GLB scan without modifying its bytes.
+    Inspect GLB structure, embedded textures, scene bounds, and scan scale.
+12. Isolate the robot from the room scene.  Fit yaw from the compute-enclosure
+    top, use corrected photos to select the front sign, and emit a right-handed
+    millimetre reference frame.
+13. Generate corrected orthographic views, fixed-grid mount-area views, and a
+    scan/photo direction comparison before using scan geometry for placement.
+14. Export a cropped textured upper-body OBJ and a lightweight 3 mm clustered
+    STL only as visual/collision references.  Keep them separate from every
+    printable adapter body and validate their counts and file structure.
+15. Continue upper-module placement against the corrected scan envelope, but
+    retain null robot receiver thread/depth fields and zero accepted structural
+    receivers until physical confirmation.
+16. Replace the nominal rectangular compute body with a scan-derived
+    eight-vertex footprint containing both front-side recesses.  Preserve a
+    separate larger rectangular collision keep-out and do not credit the
+    recesses as free volume.
+17. Rebuild the source-backed J20A/MID-360/S410 assembly against the scan Rev B
+    keep-out, copy the notched enclosure only as a review reference, and
+    validate source axes, component intersections, keep-out clearance, and
+    clean STEP import.
+18. Rebuild the D435i camera-first support against that Rev B upper assembly.
+    Remove the former post/camera penetration, retain the official 45 mm rear
+    M3 axes, export a full review STEP containing the notched enclosure, and
+    keep its lower union pads explicitly disconnected from any receiver claim.
+19. Upgrade the lower-adapter measurement gate to consume the scan Rev B
+    eight-vertex enclosure and conservative keep-out.  Emit a machine-readable
+    A/B/C/D receiver request plus a Chinese visual card; validate the point
+    axes, open-state contract, image hash, and continued print prohibition.
+
+Current findings:
+
+- legacy Pro manual: `610 x 370 x 445 mm`, `12.7 kg`, `4 x M3` on
+  `74 x 94 mm`;
+- current 2025 brochure Pro: `610 x 370 x 450 mm`, `12.9 kg`, `4 kg` walking
+  load;
+- current 2025 brochure LiDAR: `610 x 370 x 496 mm`, `13.5 kg`, `2.5 kg`
+  walking load;
+- current Pro/LiDAR official visuals share the long compute enclosure seen on
+  the physical robot and place the sensor module in front of it;
+- no current official mounting-hole drawing or Pro lower-bracket CAD was found;
+- ten current-Pro measurement photos are archived with matching hashes;
+- photo scaffold: front pair `65.0 +/- 1.0 mm`, centre candidate about
+  `75 +/- 3 mm` rearward, compute front about `100 +/- 4 mm` rearward, and
+  enclosure about `200 x 100 x 50 mm`;
+- the measured proxy and expanded keep-out export and cleanly reimport as
+  B-reps; no current-Pro STL exists;
+- the retained carrier is about `37.7 mm` too long for the front zone;
+- the compact source-geometry layout clears the expanded compute enclosure by
+  `6.0 mm` and the D435i envelope stays `2.5 mm` behind the measured nose edge;
+- the physical GLB scan parses as two textured mesh primitives with `353508`
+  vertices and `617023` triangles; it also contains floor and room geometry;
+- enclosure-top fitting corrects scan yaw by `-160.777014948 deg`, and its
+  approximately `199.585 x 108.618 mm` scan span corroborates the metre scale;
+- corrected scan/photo views now share `+X/front` at the rounded nose, with
+  `+Y/left` and `+Z/up`; the scan origin remains temporary at the enclosure
+  centroid until front receiver axes are confirmed;
+- a `195954`-triangle textured upper-body OBJ and a `66320`-triangle 3 mm
+  clustered STL exist as reference-only derivatives and pass validation;
+- the enclosure top uses `10025` scan samples to recover two approximately
+  `30 mm` front recesses, with nominal inner edges at `Y=-42/+44 mm`; a clean
+  notched B-rep now passes round-trip validation while its collision keep-out
+  remains rectangular;
+- the scan-registered source upper Rev B preserves the J20A/MID-360/S410
+  transforms, has zero positive-volume component/keep-out intersection, and
+  leaves `5.0 mm` X clearance to the conservative compute keep-out;
+- the D435i support study now uses rear posts ending at `X=11.5 mm`, is one
+  valid solid, preserves the official `45.0 mm` camera pitch, and reports zero
+  modeled penetration against the D435i envelope, upper stack, and Rev B
+  keep-out; its approximately `24.198 mm` nose overhang is not yet accepted;
+- the lower-adapter gate now consumes the same scan Rev B two-recess polygon
+  and `Y=[-57,+60] mm` conservative keep-out; its A/B/C/D visual card and
+  machine-readable request pass all targeted checks while all receiver thread,
+  depth, material, insert, and load-path fields remain open;
+- current-Pro printable-fit status:
+  `scan_envelope_oriented_receiver_contract_open_no_printable_geometry`.
+
+## Superseded Physical-Lite3 Fusion Adapter V1 Implementation (2026-07-29)
+
+The measured results below remain internal V1 evidence. They do not pass the
+current-Pro robot-side requirements introduced above.
+
+1. Preserve the supplied physical-Lite3 photograph, checksum it, and record the
+   visible robot front, occupied Interface region, and free front deck without
+   extracting dimensions from perspective.
+2. Freeze the rejected remodeled-hole and reconstructed-Interface tracks.
+   Start from the original J17A/J20A manufacturer B-reps and the current full
+   Lite3 B-rep context.
+3. Generate a separately named monolithic FDM carrier with parameterized front
+   fusion regions and continuous rear web.  Preserve every robot, camera,
+   Mid-360, and S410 interface cylinder.
+4. Export editable source, candidate-only STEP, and candidate-only STL.  Verify
+   one connected closed solid through a clean importer and run a slicer smoke
+   test with explicitly provisional material/process settings.
+5. Build a review assembly containing opaque Lite3, a separately named physical
+   Interface keep-out, the printed carrier, official D435i/Mid-360 B-reps,
+   S410, candidate screws/spacers, cable envelopes, and driver corridors.
+6. Validate the `2/4/4` sensor interface axes, rigid transforms, all declared
+   collision pairs, seating distances, field-of-view/scan keep-outs, and every
+   operation in the human-executable assembly order.
+7. Produce isolated, underside, top-deck, transparent-diagnostic, and opaque
+   global renders.  Render a slow no-text installation MP4 with close-up camera
+   cuts at each active mounting point and a final full-Lite3 hold.
+8. Generate a BOM, parameter ledger, preliminary load screen, measurement card,
+   checksum manifest, and status file.  Mark robot thread/depth, Interface
+   envelope, cable bend radius, and final torque as pending physical checks.
+9. Run Trellis consistency/quality checks and stop at human review.  Do not
+   print, drill, actuate, or claim real-robot fit.
+
+Measured V1 results:
+
+- The supplied `1280 x 1707` JPEG is preserved with SHA-256
+  `b471b3af11a649630c19e1fd7b6989600ccdb58034217b8e6c464d527e66664c`.
+- The regenerated carrier is one valid closed solid with `195` faces and
+  `74958.516410 mm3` clean-import volume.  The STL is one solid component with
+  `26428` facets and `0.00033134` relative volume error.
+- Fusion finds `2/4/4` D435i/Mid-360/S410 interface axes, determinant-`+1`
+  transforms, no positive-volume collision with those bodies or 291 checked
+  robot bodies, and `10.0 mm` clearance from the nominal Interface keep-out.
+- All modeled sensor and guard driver corridors are clear.  Camera and LiDAR
+  cable volumes remain conservative assumptions pending actual plugs/cables.
+- The preliminary `5g x 2` screen for `0.668602 kg` reports `6.954 MPa`
+  nominal rear-web bending stress and `2.588` nominal margin for the 10 mm web.
+  This is not fatigue, impact, fastener, or printed-material certification.
+- The real slicer smoke produced a `9376126`-byte G-code with 237 layers,
+  `119.36 cm3` including support, and a `6h31m32s` estimate.  Its inherited PLA
+  label and `0.00 g` header are invalid for the candidate PA-CF material; the
+  transparent volume-times-density estimate is `137.264 g`.
+- The no-text installation video is `40.0 s`, `960` frames, `1280 x 720`,
+  H.264/yuv420p at 24 fps, has no audio stream, and fully decodes without
+  error.  It ends on the complete standing Lite3 global view.
+- FCStd, STEP, STL, full Fusion F3D, BOM, measurement card, source record,
+  renders, contact sheets, video, and machine-readable validation reports are
+  collected under
+  `evidence/physical-lite3-mid360-d435i-fusion-adapter-v1/`.
+- Completion remains the R115 engineering-review boundary.  Physical hole,
+  thread/depth, deck-height, Interface, cable, tolerance, torque, proof-load,
+  vibration, and moving-robot validation are not claimed.
+
 ## Current J17A Front-Pair Adaptation Implementation (2026-07-27)
 
 1. Measure the two front shallow chassis features directly from the source

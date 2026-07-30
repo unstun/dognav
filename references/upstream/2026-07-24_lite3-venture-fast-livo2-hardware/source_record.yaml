@@ -1,0 +1,126 @@
+topic: lite3-venture-fast-livo2-hardware
+date: 2026-07-24
+status: surveyed
+
+upstream:
+  repository: https://github.com/DeepRoboticsLab/fast-livo2-deep-robotics
+  hardware_download_page: https://drive.google.com/drive/folders/1KmWNuOF0Qg5XM6EQKRiWrkJJhoBknjIZ
+  declared_robot_variant: "Lite3 Venture only"
+  repository_license: GPL-2.0
+  hardware_file_license: "No separate license statement found in the public Drive folder"
+
+files:
+  - name: "1CA5-S410-Lidar protector.STEP"
+    google_drive_file_id: 1ov6GfgDKWtpTXwwhhs-EfhYApyuVgWQ8
+    local_source_path: "source/original/1CA5-S410-Lidar protector.STEP"
+    size_bytes: 1860818
+    sha256: 7fd23a776b45c7d8571ef77ba9e8b05520eced0b97f62487ba03f88bbc9df810
+    format: "ISO 10303-21 STEP"
+  - name: "1CA5-S410-Lidar protector.pdf"
+    google_drive_file_id: 187ANm_3rbG94BE-XVvdjrCZVpv1Qmf4S
+    local_source_path: "source/original/1CA5-S410-Lidar protector.pdf"
+    size_bytes: 215195
+    sha256: e71fa54ee97d9e429c0d3a9c4f7d850e15a132adabf65f7d2a68fc7293517023
+    format: "PDF"
+  - name: "1T21-J17A-lidar base.STEP"
+    google_drive_file_id: 1hF56Dydl4pGnCfekPj0JOZe9vqeVn_az
+    local_source_path: "source/original/1T21-J17A-lidar base.STEP"
+    size_bytes: 479443
+    sha256: 52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490
+    format: "ISO 10303-21 STEP AP203"
+  - name: "1T21-J17A-lidar base.pdf"
+    google_drive_file_id: 1ST2xcN-BhmjJm3IEOpyIfsMHMcow44NB
+    local_source_path: "source/original/1T21-J17A-lidar base.pdf"
+    size_bytes: 209889
+    sha256: 1c75b39b62e1360dcd99c1fae0ece61ce45348479ae56ded1c7ac968c4076604
+    format: "PDF"
+  - name: "1T21-BZ20-backload shell.STEP"
+    google_drive_file_id: 1Jk-eExrcuWeAibsWM2Atlx9XsKEYiB-p
+    local_source_path: "source/original/1T21-BZ20-backload shell.STEP"
+    size_bytes: 299752
+    sha256: 04fa5cc1a4c9fb133e0cb66e8c3fb4de6a2c65d191ce75f7446b30a44324ce99
+    format: "ISO 10303-21 STEP AP214"
+  - name: "1T21-J20A-small lidar base.STEP"
+    google_drive_file_id: 1ABWw_DqwNSxYqd7UPO4xXUY43OdXG9l5
+    local_source_path: "source/original/1T21-J20A-small lidar base.STEP"
+    size_bytes: 172298
+    sha256: 341b08ca08526e5ee0e9fbeca0bfda9d9970062c6605e979adc52b31955c9bc9
+    format: "ISO 10303-21 STEP"
+  - name: "1T21-J20A-small lidar base.pdf"
+    google_drive_file_id: 1Ft1fGnNOKxGFRiDICa-08qiSLvnU6Byk
+    local_source_path: "source/original/1T21-J20A-small lidar base.pdf"
+    size_bytes: 169366
+    sha256: d0c9b0173b9ed6475da2aed6d1a90efcbdd540ac2b976af0148a2ba48473f695
+    format: "PDF"
+  - name: "AGX-orin-base.STEP"
+    google_drive_file_id: 1ksdvI1zkGVMrUQH-tLnD6jNTp4dic-UI
+    local_source_path: "source/original/AGX-orin-base.STEP"
+    size_bytes: 970612
+    sha256: 268e30265af60a6daef80bf4949fd04d003122176e04bf8e87be3cf006420a61
+    format: "ISO 10303-21 STEP"
+
+sensor_assembly_geometry:
+  j17a:
+    freecad_solid_count: 1
+    freecad_bbox_mm: [153.734544, 115.000000, 27.061439]
+    camera_mount_axis_source_frame: [0.939693, 0.000000, -0.342020]
+    camera_mount_axis_angle_deg: 20.0
+    note: >-
+      The J17A is the larger sensor carrier visible in the official hardware
+      installation video. It surrounds the J20A/Mid-360 subassembly and
+      provides the two-hole angled D435i mounting face.
+  j20a:
+    freecad_solid_count: 1
+    freecad_bbox_mm: [96.000000, 26.087040, 80.000000]
+    drawing_angle_deg: 15.0
+    mounting_plane_normal_source_frame: [0.258819, 0.965926, 0.0]
+    note: >-
+      The large Mid-360 mounting plane therefore tilts its normal 15 degrees
+      from source +Y toward source +X.
+  s410:
+    freecad_solid_count: 1
+    freecad_brep_bbox_mm: [105.000000, 74.332019, 105.000000]
+    tessellated_exterior_bbox_mm: [93.510849, 73.989998, 69.459248]
+    note: >-
+      The raw BRep bound includes internal construction/reference geometry.
+      The tessellated closed solid exterior and the official drawing give the
+      smaller physical guard envelope used by the printable assembly.
+  claim_boundary: >-
+    These files are officially linked Lite3 Venture FAST-LIVO2 extension
+    components. J17A, J20A and S410 constrain the printable replica's real
+    sensor carrier, 15-degree Mid-360 orientation and 20-degree D435i mounting
+    face, but are not relabeled as the factory Lite3 LiDAR V1.0.7 assembly.
+
+fusion_mcp_inspection:
+  date: 2026-07-24
+  source_modified: false
+  imported_document_saved: false
+  body_count: 1
+  solid_body_count: 1
+  bounding_box_mm: [153.735, 115.000, 27.061]
+  evidence:
+    - ".trellis/tasks/07-23-scan-planner-reproduction/evidence/j17a-fusion-mcp-import-2026-07-24.png"
+  claim_boundary: >-
+    This inspection proves that the unchanged J17A STEP can be imported through
+    the official local Fusion MCP and recognized as one closed BRep solid. It
+    does not prove Lite3 Pro fit, load capacity, printability, or a safe
+    real-robot installation.
+
+bz20_fusion_mcp_inspection:
+  date: 2026-07-24
+  source_modified: false
+  imported_document_saved: false
+  body_count: 1
+  solid_body_count: 1
+  face_count: 74
+  cylindrical_face_count: 32
+  bounding_box_mm: [108.000, 96.000, 30.000]
+  evidence:
+    - ".trellis/tasks/07-23-scan-planner-reproduction/evidence/lite3-venture-bz20-real-holes-fusion-2026-07-24.png"
+  claim_boundary: >-
+    This inspection proves that the unchanged BZ20 STEP contains a closed BRep
+    solid with modeled cylindrical surfaces rather than painted-on fastener
+    details. It is a partial Lite3 Venture backload-shell component, not a
+    complete Lite3 chassis or a validated Lite3 Pro payload interface. The
+    inspection does not establish helical thread geometry, fit, load capacity,
+    manufacturability, or safe real-robot installation.

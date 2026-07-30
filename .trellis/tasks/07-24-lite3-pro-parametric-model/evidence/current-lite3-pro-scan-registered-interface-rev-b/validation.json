@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "stage": "experiment_and_analysis",
+  "status": "scan_registered_interface_pass_receiver_contract_open",
+  "classification": "collision_and_layout_proxy_not_printable",
+  "sources": {
+    "parameters_sha256": "1a1ae2a997861e9bd1c5d03ff0e580404b7adb37d3a84ae8133008a967bca278",
+    "scan_registration_sha256": "190e927218f1f629354a2c0f475ad9f2d415c05e142cc3e4b183c4fe26ec1381",
+    "photo_measurements_sha256": "6875c13fba384aee5fa7ab9efa0b72df0915f04f7ba1631085bf30a0f2e0a064"
+  },
+  "objects": {
+    "DeckPlanarProxy": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "face_count": 8,
+      "volume_mm3": 59940.0,
+      "bounds_mm": {
+        "min": [
+          -100.0,
+          -70.0,
+          -4.0
+        ],
+        "max": [
+          20.0,
+          70.0,
+          0.0
+        ],
+        "size": [
+          120.0,
+          140.0,
+          4.0
+        ]
+      }
+    },
+    "ComputeEnclosureScanNominal": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "face_count": 10,
+      "volume_mm3": 1050001.1217462507,
+      "bounds_mm": {
+        "min": [
+          -299.58516985178125,
+          -52.7393427480562,
+          0.0
+        ],
+        "max": [
+          -100.0,
+          55.878777875488026,
+          50.0
+        ],
+        "size": [
+          199.58516985178125,
+          108.61812062354423,
+          50.0
+        ]
+      }
+    },
+    "ComputeEnclosureExpandedKeepout": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "face_count": 6,
+      "volume_mm3": 1320462.0,
+      "bounds_mm": {
+        "min": [
+          -305.0,
+          -57.0,
+          0.0
+        ],
+        "max": [
+          -96.0,
+          60.0,
+          54.0
+        ],
+        "size": [
+          209.0,
+          117.0,
+          54.0
+        ]
+      }
+    },
+    "FrontLeftAxis": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "face_count": 3,
+      "volume_mm3": 339.2920065876976,
+      "bounds_mm": {
+        "min": [
+          -3.0,
+          29.5,
+          -6.0
+        ],
+        "max": [
+          3.0,
+          35.5,
+          6.0
+        ],
+        "size": [
+          6.0,
+          6.0,
+          12.0
+        ]
+      }
+    },
+    "FrontRightAxis": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "face_count": 3,
+      "volume_mm3": 339.2920065876976,
+      "bounds_mm": {
+        "min": [
+          -3.0,
+          -35.5,
+          -6.0
+        ],
+        "max": [
+          3.0,
+          -29.5,
+          6.0
+        ],
+        "size": [
+          6.0,
+          6.0,
+          12.0
+        ]
+      }
+    },
+    "CentreCandidateAxis": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "face_count": 3,
+      "volume_mm3": 339.2920065876976,
+      "bounds_mm": {
+        "min": [
+          -78.0,
+          -3.0,
+          -6.0
+        ],
+        "max": [
+          -72.0,
+          3.0,
+          6.0
+        ],
+        "size": [
+          6.0,
+          6.0,
+          12.0
+        ]
+      }
+    },
+    "UsableNoseEdge": {
+      "shape_type": "Solid",
+      "is_valid": true,
+      "is_closed": true,
+      "solid_count": 1,
+      "face_count": 6,
+      "volume_mm3": 80.00000000000007,
+      "bounds_mm": {
+        "min": [
+          19.6,
+          -50.0,
+          0.2
+        ],
+        "max": [
+          20.400000000000002,
+          50.0,
+          1.2
+        ],
+        "size": [
+          0.8000000000000007,
+          100.0,
+          1.0
+        ]
+      }
+    }
+  },
+  "outputs": {
+    "fcstd": {
+      "path": "cad/current-lite3-pro-scan-registered-interface-rev-b.FCStd",
+      "bytes": 9462,
+      "sha256": "9262b8a98391c188bb0bde7edd747e178fea4ea378b706d0e9b669cc695c16fe"
+    },
+    "step": {
+      "path": "cad/current-lite3-pro-scan-registered-interface-rev-b.step",
+      "bytes": 41950,
+      "sha256": "e1d54d894991501b9483adec4684acb0379635c13d186a6755cd806277c5dc99",
+      "clean_import": {
+        "shape_type": "Compound",
+        "is_valid": true,
+        "is_closed": true,
+        "solid_count": 6,
+        "face_count": 33,
+        "volume_mm3": 1111038.9977655252,
+        "bounds_mm": {
+          "min": [
+            -299.5851698517,
+            -70.0,
+            -6.0
+          ],
+          "max": [
+            20.4,
+            70.00000000003278,
+            50.0
+          ],
+          "size": [
+            319.9851698517,
+            140.0000000000328,
+            56.0
+          ]
+        }
+      }
+    },
+    "keepout_step": {
+      "path": "cad/current-lite3-pro-scan-expanded-enclosure-keepout-rev-b.step",
+      "bytes": 6964,
+      "sha256": "2fc956a2d68a327aeff0a2d8752e9c56378887e9a314e4d869c31b225d66ce60",
+      "clean_import": {
+        "shape_type": "Solid",
+        "is_valid": true,
+        "is_closed": true,
+        "solid_count": 1,
+        "face_count": 6,
+        "volume_mm3": 1320462.0,
+        "bounds_mm": {
+          "min": [
+            -305.0,
+            -57.0,
+            0.0
+          ],
+          "max": [
+            -96.0,
+            60.0,
+            54.0
+          ],
+          "size": [
+            209.0,
+            117.0,
+            54.0
+          ]
+        }
+      }
+    }
+  },
+  "checks": {
+    "all_objects_valid": true,
+    "front_pair_pitch_mm": 65.0,
+    "front_pair_pitch_is_65mm": true,
+    "expanded_keepout_contains_scan_nominal": true,
+    "nominal_footprint_has_two_front_recesses": true,
+    "scan_registration_is_planar_candidate": true,
+    "accepted_structural_receiver_count": 0,
+    "printable_adapter_present": false,
+    "thread_or_depth_inferred": false
+  },
+  "claim_boundary": "The scan corroborates planar axis placement and updates the compute keepout. It does not establish receiver threads, usable depth, seating Z, or structural fit.",
+  "pass": true
+}
