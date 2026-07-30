@@ -96,3 +96,67 @@ __pycache__/
 # Keep generated caches ignored after the project-skill unignore rules above.
 **/__pycache__/
 **/*.pyc
+
+# --- Large binary CAD, mesh and render artifacts -----------------------------
+# These stay on local disk (this repository is still their source of truth) but
+# are not pushed. GitHub rejects any single file over 100 MB, and the CAD work
+# under .trellis/tasks/ holds >10 GB of Fusion archives, mesh exports and
+# animation frames. Every evidence package records the SHA-256 of its own
+# binaries, so provenance survives without the bytes being in git history.
+
+# Fusion and FreeCAD working archives - regenerable from the cloud document.
+*.f3d
+*.fcstd
+*.fcstd1
+*.fcbak
+
+# Bulk mesh, package and video formats.
+*.3mf
+*.glb
+*.zip
+*.mp4
+*.m4s
+
+# Animation frame sequences.
+**/frames/
+**/*-frames/
+
+# Mesh exports are large; small task deliverables are re-included below.
+*.stl
+!.trellis/tasks/**/cad/*.stl
+
+# Whole-scene STEP exports are regenerable from the Fusion document.
+*-scene-*.step
+
+# Scratch directory - working files only, never a deliverable.
+/tmp/
+
+# --- Binary artifacts: local only, never pushed ------------------------------
+# Only text and code go to the remote. Renders, photographs, CAD, mesh and PDF
+# sources stay on local disk, which remains their source of truth; each
+# evidence package records their SHA-256 so provenance is preserved.
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tif
+*.tiff
+*.pdf
+*.step
+*.stp
+*.igs
+*.iges
+*.obj
+*.dae
+*.mtl
+*.ply
+*.sldprt
+*.sldasm
+*.dwg
+*.gcode
+*.backup
+
+# The current printable deliverable is small enough to keep in the repository.
+!.trellis/tasks/**/cad/carrier-rev-*.step
+!.trellis/tasks/**/cad/carrier-rev-*.stl
