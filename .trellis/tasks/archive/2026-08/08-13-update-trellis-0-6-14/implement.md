@@ -39,5 +39,5 @@
   the task.
 - [x] Run the Trellis quality gate and update project specs only if the upgrade
   reveals a durable project-specific contract not already documented.
-- [ ] Stage only Trellis maintenance paths, review the staged diff, commit the
+- [x] Stage only Trellis maintenance paths, review the staged diff, commit the
   verified upgrade, and archive the task according to the project workflow.
