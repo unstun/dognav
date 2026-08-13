@@ -47,3 +47,40 @@ Migrated the reusable research harness into machine-dog-nav, added navigation-sp
 
 - Start a separate task to survey and shortlist open-source repositories for the
   geometric-waypoint-to-motion-control minimum closed loop.
+
+
+## Session 2: Upgrade Trellis to 0.6.14
+
+**Date**: 2026-08-13
+**Task**: Upgrade Trellis to 0.6.14
+**Branch**: `main`
+
+### Summary
+
+Upgraded the project Trellis harness from 0.6.7 to 0.6.14, preserved local safety hooks and inline Codex behavior, validated the result, and archived the maintenance task.
+
+### Main Changes
+
+- Updated Trellis runtime scripts, workflow templates, bundled skills, platform hooks, and Codex agent definitions to 0.6.14.
+- Merged five locally customized files conservatively while preserving session_auto_commit: false, Codex inline mode, Git/hot-zone hooks, and project Git identity.
+- Recorded validation and preservation hashes in the archived maintenance task.
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `dc50ab2` | (see git log) |
+
+### Testing
+
+- [OK] Python, shell, JSON, TOML, and YAML validation passed across the harness.
+- [OK] Codex workflow, SessionStart, and SubagentStart hooks passed live payload smoke tests.
+- [OK] Final trellis update --dry-run reported project, CLI, and latest version 0.6.14; unrelated research hashes were unchanged.
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- Resume planning for 07-23-scan-planner-reproduction and prepare the 5070 Ti execution gate.
