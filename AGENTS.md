@@ -22,8 +22,7 @@ The two repositories have different responsibilities:
 
 ## Identity And Protocol
 
-This is a long-horizon PhD research project. Each session handles one task:
-read state -> plan -> do one bounded task -> verify -> write state -> commit.
+This is a long-horizon PhD research project.
 
 1. Every reply to Dr Sun starts with `Dr Sun,`.
 2. Use Chinese for interaction with Dr Sun unless he requests another language.
