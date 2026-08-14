@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "status": "reproduced_visual_composition_defect",
+  "source_run": "../2026-08-14_scan_forest_v5/runs/results/forest_v5_review_candidate01",
+  "contact_sheet": {
+    "path": "v5_geometry_diagnosis_contact_sheet.png",
+    "sha256": "d70fae298a1c2032d07ab17139e3dcaba66baa2bdf5b556ef25f45e43536dd4d"
+  },
+  "v5_behavior": {
+    "rock_origin_placement": "converted USD origin placed at centre terrain height",
+    "rock_proxy_size_m": [0.72, 0.72, 0.46],
+    "rock_proxy_render_visible": true,
+    "symptom": "source rock is partly below terrain and the grey cuboid proxy visibly intersects the irregular source visual"
+  },
+  "converted_runtime_usd_probe": {
+    "environment": "5070 Ti Isaac Sim 5.1 / Isaac Lab environment after AppLauncher initialization",
+    "scale_source": "forest_gen PlantModelFactory base scale 0.1 multiplied by V5 rock scale 1.5",
+    "bounds_m": {
+      "Rock_1": {
+        "min": [-0.6364288330, -0.7979796410, -0.5558314919],
+        "max": [0.8980943441, 0.4651584148, 0.5492867231]
+      },
+      "Rock_2": {
+        "min": [-0.2943283975, -0.3018833756, -0.3264400721],
+        "max": [0.2397395074, 0.3024779320, 0.3288979411]
+      },
+      "Rock_3": {
+        "min": [-0.5432699919, -0.5172291756, -0.5145996809],
+        "max": [0.4938300133, 0.5292954326, 0.5050849199]
+      }
+    }
+  },
+  "confirmed_causes": [
+    "all three converted rock assets have negative local minimum z, so centre-height placement embeds part of the source visual",
+    "the fixed visible V5 cuboid does not match the per-variant source visual bounds and is rendered simultaneously with the rock"
+  ],
+  "v6_fix_contract": "derive seating and proxy bounds from each converted runtime USD, sample terrain over the visual footprint, retain collision/raycast proxy participation, and hide simplified proxy appearance in the review viewport"
+}

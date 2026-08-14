@@ -441,3 +441,70 @@ loss. If the newest frame is stale, malformed, non-increasing, or future
 skewed, the unchanged fail-closed path rejects the whole batch. Acceptance
 records and bounds the number of coalesced frames in addition to requiring zero
 sequence gaps, watchdog events, protocol errors, and reconnects.
+
+## 15. V6 One-Metre-Per-Second Geometry and Review Overlay
+
+V6 branches from the immutable V5 inputs and changes three reviewed surfaces:
+the forward command ceiling, forest visual/proxy seating evidence, and review
+visualization. The V12 weights, 450-D observation, 12-action ordering, robot
+assets, actuator/control timing, sensors, forest seed, start/goal, and SCAN
+planning algorithm remain unchanged.
+
+### 15.1 Speed boundary
+
+The V12 source contract reaches 1.0 m/s on obstacle terrain, so V6 treats that
+value as an in-distribution boundary requiring fresh qualification rather than
+as an extrapolation or an already-safe result. Separate V6 parameter files set
+the SCAN manager/optimizer and closed-loop follower to 1.0 m/s. Explicit launch
+and runner inputs set both transport clamps to the same value. The existing
+0.5 m/s2 acceleration limit stays fixed, implying a 1.0 m ideal braking
+distance from 1.0 m/s before delay and terrain effects. The planner remains
+free to command lower speed near curves and obstacles; acceptance evaluates
+both the peak request and the measured low-yaw response.
+
+### 15.2 Source visual, proxy, and terrain seating
+
+V5 rendered the simplified collision/sensor proxy together with the upstream
+rock mesh, so a cuboid could visibly protrude through the irregular source
+visual. V6 separates appearance from proxy debug rendering without deleting
+the physical or perceptual obstacle. A runtime audit reads each source visual's
+world bound and actual converted-USD mesh vertices. The first full-AABB
+seating preflight was conservatively collision-free but visibly floated on a
+steep footprint because its highest supporting box corner contained no source
+geometry. The final method selects the real vertices in the lowest 20 mm mesh
+band, samples terrain only beneath those points, and records the contact
+vertex, clearance, pre/post transform, source bounds, and proxy bounds. The
+paired proxy retains its PhysX collision API and inclusion in both ray-cast
+targets. The final viewport hides simplified proxy appearance while retaining
+an explicit identity record for the registered source-derived proxy.
+
+### 15.3 Planned and physical trajectory overlay
+
+The Foxy monitor records every B-spline's ID, start time, order, knot vector,
+and XYZ control points. A deterministic postprocessor samples the actual
+B-spline curve, associates each plan publication with the nearest synchronized
+simulator pose timestamp, and aligns video frames with the corresponding
+Isaac metrics step. It draws a fixed top-down inset containing obstacle
+footprints, goal, active SCAN path, accumulated PhysX root path, current root,
+and an explicit colour legend. The raw simulator MP4 remains preserved beside
+the derived review MP4, and a sidecar records input/output hashes and timing
+mapping so the overlay cannot replace or obscure the raw evidence.
+
+### 15.4 V6 gate order
+
+Run a geometry-only stage audit first, then a short 1.0 m/s locomotion response
+preflight, then two same-input full forest dry runs. Freeze numerical acceptance
+thresholds only after those dry runs and before the final candidate. Failures
+remain immutable and return to geometry, speed, planning, transport, or
+visualization ownership without altering the checkpoint or V5 evidence.
+
+### 15.5 Terminal stop latch
+
+The first full 1.0 m/s run reached the goal but exposed an endpoint-control
+limit cycle: once the final point was reached, small physical drift repeatedly
+moved the robot outside `finish_dist`, causing correction pulses near
+0.12 m/s. The controller now latches the finished state the first time
+trajectory time reaches its duration and planar error is within the frozen
+finish tolerance. It publishes zero until a newly identified B-spline arrives;
+the next trajectory callback explicitly resets the latch. A unit regression
+proves that later drift cannot reopen the completed trajectory.

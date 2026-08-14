@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "status": "automated_frozen_gate_pass_human_review_pending",
+  "experiment": "SCAN forest V6 1.0 m/s geometry and trajectory review",
+  "local_source_of_truth": "/Users/sun/tongbu/study/phdproject/machine-dog-nav",
+  "remote_execution_copy": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6",
+  "labels": {
+    "project_integrated": true,
+    "frozen_automated_gate_passed": true,
+    "human_accepted": false,
+    "real_robot_validated": false
+  },
+  "pinned_inputs": {
+    "locomotion_source_commit": "8c3fdffa84b85be0704a10ea5b2533817d543822",
+    "checkpoint": "model_149999.pt",
+    "checkpoint_sha256": "a9d31dce90e6e8c564d955e473d6d3502f893d7ef5a5c1efaf5bb50d6b3d5450",
+    "canonical_urdf_sha256": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80",
+    "isaac_urdf_sha256": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d",
+    "forest_gen_commit": "a75fb28c7b896e2a67e2d889b804732d33c56e0c",
+    "stripe_kit_commit": "ce97eed40d9fc4927c4856eda6a17204d01087db",
+    "foxy_container_image_id": "e4aa715467b93f20a9d9cdbb6a1dbd0d3c8c1e033e7792f2d889cba03db227d8",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti",
+    "acceptance_config_sha256": "5b74630b320cee5b606028aade73769cd2a76f86657d85eb794b10d7fdb95948"
+  },
+  "v6_contract": {
+    "course": "forest_gen_nav_v6",
+    "forest_seed": 14,
+    "goal_world_m": [0.5, 3.0, 0.85],
+    "forward_limit_mps": 1.0,
+    "planner_acceleration_limit_mps2": 0.5,
+    "ideal_zero_delay_braking_distance_m": 1.0,
+    "rock_support_method": "lowest_mesh_vertex_band",
+    "rock_support_band_m": 0.02,
+    "rock_seating_clearance_m": 0.015,
+    "rock_support_vertex_counts": [19, 9, 6],
+    "proxy_render_mode": "hidden_registered_collision_and_sensor_geometry",
+    "endpoint_behavior": "first in-tolerance terminal state latches zero until a new trajectory",
+    "trajectory_overlay": "sampled SCAN Bspline plus Isaac PhysX root path"
+  },
+  "preserved_runs": [
+    {
+      "run_id": "forest_v6_geometry_preflight01",
+      "status": "SHORT_PREFLIGHT_FULL_GATE_NOT_APPLICABLE",
+      "purpose": "full-AABB seating removed penetration but human frame inspection rejected the visibly floating main rock"
+    },
+    {
+      "run_id": "forest_v6_geometry_preflight02",
+      "status": "SHORT_PREFLIGHT_FULL_GATE_NOT_APPLICABLE",
+      "purpose": "real low-surface mesh support, hidden proxies, 1.0 m/s response, and overlay instrumentation passed"
+    },
+    {
+      "run_id": "forest_v6_candidate_dryrun01",
+      "status": "FAIL",
+      "purpose": "first full run exposed insufficient wall-time margin and post-goal controller hunting"
+    },
+    {
+      "run_id": "forest_v6_candidate_dryrun02",
+      "status": "PASS",
+      "purpose": "first same-input 36-second candidate dry run after endpoint latch"
+    },
+    {
+      "run_id": "forest_v6_candidate_dryrun03",
+      "status": "PASS",
+      "purpose": "second same-input 36-second candidate dry run"
+    },
+    {
+      "run_id": "forest_v6_review_candidate01",
+      "status": "PASS_SUPERSEDED_BY_METADATA_CORRECTION",
+      "purpose": "frozen-threshold pass preserved unchanged after an obsolete human-readable geometry-method string was found in its run identity"
+    },
+    {
+      "run_id": "forest_v6_review_candidate02",
+      "status": "PASS",
+      "purpose": "metadata-corrected uninterrupted frozen-threshold human-review candidate"
+    }
+  ],
+  "repeatability": {
+    "dry_runs": [
+      "forest_v6_candidate_dryrun02",
+      "forest_v6_candidate_dryrun03"
+    ],
+    "input_digest_sequence_equal": true,
+    "effective_input_equal": true,
+    "upstream_git_state_equal": true,
+    "terrain_geometry_sha256": "02a062e08fc870fa425672606ad21efdc19a12534dd2733b4d7a00426de18328",
+    "candidate_threshold_sha256": "974300faaa906c828e2df8065e9cb33531f3363f4afe2df0ecd3038c8228a904",
+    "numerical_contract_unchanged_at_freeze": true
+  },
+  "review_candidate": {
+    "run_id": "forest_v6_review_candidate02",
+    "acceptance_status": "PASS",
+    "acceptance_checks": 100,
+    "acceptance_report_sha256": "702835e347a6639b75a4218901d65972445fa4537734971ef65acc78e9d42640",
+    "isaac_runtime_status": "PASS",
+    "raw_video": "runs/results/forest_v6_review_candidate02/closed_loop.mp4",
+    "raw_video_sha256": "1ec64abffd5ef75200bd0f664bee8a33a6274ff2d54a52f8020621ebcf853858",
+    "overlay_video": "runs/results/forest_v6_review_candidate02/closed_loop_review_overlay.mp4",
+    "overlay_video_sha256": "3da16c44c258fed8209495d22b080071587387dfc389220844f8591b4d1ec8da",
+    "overlay_metadata_sha256": "ded69d21aa5ff634433e4651fd2a77d6bf675a83035ca33370a30ec4e2f4aa8c",
+    "video_codec": "h264",
+    "video_resolution": [1280, 720],
+    "video_frames": 495,
+    "video_duration_seconds": 29.117647,
+    "physics_duration_seconds": 29.65999933704734,
+    "maximum_forward_command_mps": 0.9999991059303284,
+    "measured_planar_speed_p75_mps": 0.9656674297406284,
+    "high_command_measured_speed_p75_mps": 0.9667641407957821,
+    "goal_xy_error_m": 0.03930556378230619,
+    "goal_z_error_m": 0.018278336524963357,
+    "unique_trajectory_count": 2,
+    "minimum_root_to_tree_center_m": 0.8307024726833273,
+    "maximum_planned_lateral_detour_m": 0.8364849090576172,
+    "path_length_excess_m": 0.6926840513316908,
+    "maximum_nonfoot_contact_n": 0.0,
+    "supported_contact_fraction": 0.9966307277628033,
+    "stopped_command_max_abs": 0.0,
+    "stopped_motion_max_mps": 0.015585859619363117,
+    "rock_support_clearance_m": 0.014999999999999902,
+    "proxy_bounds_max_error_m": 2.2447766490074628e-7,
+    "visible_simplified_proxy_count": 0,
+    "maximum_plan_pose_alignment_error_ms": 15.970922,
+    "watchdog_events": 0,
+    "sequence_gaps": 0,
+    "transport_protocol_errors": 0,
+    "command_reconnects": 0
+  },
+  "local_remote_sync": {
+    "remote_file_count": 217,
+    "scope": [
+      "seven selected results directories",
+      "seven selected logs directories"
+    ],
+    "aggregate_sha256": "c10ecad5190a3b52c1c4d4e7958975f008f27d2c1d82e42ea64bc64e67d92b94",
+    "aggregate_rule": "SHA-256 of sorted relative-path sha256sum lines from the remote execution copy",
+    "parity": true,
+    "json_files_parsed": 51,
+    "jsonl_files_parsed": 28,
+    "jsonl_records_parsed": 36165,
+    "yaml_files_parsed": 7,
+    "rosbag_sqlite_files_checked": 7,
+    "depth_arrays_checked": 7,
+    "png_files_decoded": 26,
+    "videos_fully_decoded": 14
+  },
+  "local_acceptance_recheck": {
+    "status": "PASS",
+    "path": "runs/results/forest_v6_review_candidate02/acceptance_report_local_recheck.json",
+    "sha256": "8f31f640edb085207be5dc829b9841deee4bcfe858c738ffeccb5fa3365c48b0",
+    "byte_identical_to_remote_report": false,
+    "difference": "one path-length float differs by 1.15e-14 between remote Python 3.11 and local Python 3.12; all checks are identical"
+  },
+  "verification_record": "VERIFICATION.md",
+  "human_review_record": "HUMAN_REVIEW.md",
+  "claim_boundary": [
+    "The frozen automated simulation gate passed; Dr Sun has not yet accepted the videos.",
+    "The planner uses simulator-truth pose and rendered geometry, not Elevator-LIO or calibrated Livox/D435i sensor models.",
+    "The result is one deterministic seed and one forest route, not a multi-scene benchmark or real-robot safety result.",
+    "No training, weight change, scripted detour waypoint, real-robot actuation, or hardware deployment occurred."
+  ]
+}

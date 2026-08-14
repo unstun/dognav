@@ -47,14 +47,19 @@ FSM_SOURCE=$FOXY_WORKSPACE/src/plan_manage/src/scan_replan_fsm.cpp
 FSM_HEADER=$FOXY_WORKSPACE/src/plan_manage/include/plan_manage/scan_replan_fsm.h
 GRID_MAP_SOURCE=$FOXY_WORKSPACE/src/plan_env/src/grid_map.cpp
 OCCLUSION_SHADOW_SOURCE=$FOXY_WORKSPACE/src/plan_env/include/plan_env/occlusion_shadow.h
+FOXY_LAUNCH_SOURCE=$FOXY_WORKSPACE/src/plan_manage/launch/foxy_isaac_closed_loop.launch.py
 FOXY_BRIDGE_SOURCE=$FOXY_WORKSPACE/src/lite3_sim_bridge/lite3_sim_bridge/foxy_bridge_node.py
 FOXY_TRANSPORT_SOURCE=$FOXY_WORKSPACE/src/lite3_sim_bridge/lite3_sim_bridge/transport.py
 FOXY_PROTOCOL_SOURCE=$FOXY_WORKSPACE/src/lite3_sim_bridge/lite3_sim_bridge/protocol.py
 FOXY_COMMAND_STATE_SOURCE=$FOXY_WORKSPACE/src/lite3_sim_bridge/lite3_sim_bridge/command_state.py
+FOXY_MONITOR_SOURCE=$FOXY_WORKSPACE/src/lite3_sim_bridge/lite3_sim_bridge/acceptance_monitor_node.py
+TRAJECTORY_REVIEW_SOURCE=$BRIDGE/lite3_sim_bridge/trajectory_review.py
+ISAAC_ADAPTER_CORE_SOURCE=$BRIDGE/lite3_sim_bridge/isaac_adapter_core.py
 CONTAINER_NAME=scan-foxy-$RUN_ID
 ROS_RUNTIME_SECONDS=$((DURATION_SECONDS + 3))
 VIDEO_FPS=${SCAN_VIDEO_FPS:-25}
 VIDEO_FRAME_STRIDE=${SCAN_VIDEO_FRAME_STRIDE:-2}
+MAX_VX=${SCAN_MAX_VX:-0.75}
 PLANNER_FLOOR_FILTER_MAX_Z=${SCAN_PLANNER_FLOOR_FILTER_MAX_Z:-0.05}
 ROBOT_ARGS=()
 ROBOT_INPUTS=()
@@ -64,6 +69,11 @@ TERRAIN_FILTER_CELL_SIZE=
 TERRAIN_FILTER_HEIGHT_THRESHOLD=
 TERRAIN_FILTER_NEIGHBOR_CELLS=
 TERRAIN_FILTER_MINIMUM_NEIGHBOR_CELLS=
+if [[ ! $MAX_VX =~ ^([0-9]+([.][0-9]*)?|[.][0-9]+)$ ]] \
+  || ! awk -v value="$MAX_VX" 'BEGIN { exit !(value > 0.0) }'; then
+  echo "SCAN_MAX_VX must be a positive decimal" >&2
+  exit 64
+fi
 if [[ -n ${SCAN_ROBOT_ASSET:-} || -n ${SCAN_CANONICAL_ROBOT_ASSET:-} ]]; then
   if [[ -z ${SCAN_ROBOT_ASSET:-} || -z ${SCAN_CANONICAL_ROBOT_ASSET:-} ]]; then
     echo "both SCAN_ROBOT_ASSET and SCAN_CANONICAL_ROBOT_ASSET are required" >&2
@@ -79,7 +89,7 @@ fi
 case "$COURSE" in
   flat|single_box)
     ;;
-  forest_gen|forest_gen_nav)
+  forest_gen|forest_gen_nav|forest_gen_nav_v6)
     FOREST_GEN_ROOT=${SCAN_FOREST_GEN_ROOT:-}
     STRIPE_KIT_ROOT=${SCAN_STRIPE_KIT_ROOT:-}
     FOREST_ASSET_PATH=${SCAN_FOREST_ASSET_PATH:-}
@@ -95,7 +105,7 @@ case "$COURSE" in
       --forest-asset-path "$FOREST_ASSET_PATH"
     )
     FOREST_PYTHONPATH=$FOREST_GEN_ROOT:$STRIPE_KIT_ROOT
-    if [[ $COURSE == forest_gen_nav ]]; then
+    if [[ $COURSE == forest_gen_nav || $COURSE == forest_gen_nav_v6 ]]; then
       TERRAIN_FILTER_CELL_SIZE=${SCAN_TERRAIN_FILTER_CELL_SIZE:-0.30}
       TERRAIN_FILTER_HEIGHT_THRESHOLD=${SCAN_TERRAIN_FILTER_HEIGHT_THRESHOLD:-0.22}
       TERRAIN_FILTER_NEIGHBOR_CELLS=${SCAN_TERRAIN_FILTER_NEIGHBOR_CELLS:-1}
@@ -129,10 +139,14 @@ for required in \
   "$FSM_HEADER" \
   "$GRID_MAP_SOURCE" \
   "$OCCLUSION_SHADOW_SOURCE" \
+  "$FOXY_LAUNCH_SOURCE" \
   "$FOXY_BRIDGE_SOURCE" \
   "$FOXY_TRANSPORT_SOURCE" \
   "$FOXY_PROTOCOL_SOURCE" \
   "$FOXY_COMMAND_STATE_SOURCE" \
+  "$FOXY_MONITOR_SOURCE" \
+  "$TRAJECTORY_REVIEW_SOURCE" \
+  "$ISAAC_ADAPTER_CORE_SOURCE" \
   "${ROBOT_INPUTS[@]}" \
   "$FOXY_WORKSPACE/build/plan_env/libplan_env.a" \
   "$FOXY_WORKSPACE/build/scan_planner/scan_planner_node" \
@@ -162,6 +176,7 @@ mkdir -p "$LOG_DIR" "$OUTPUT_DIR"
   printf 'terrain_filter_minimum_neighbor_cells=%s\n' "$TERRAIN_FILTER_MINIMUM_NEIGHBOR_CELLS"
   printf 'video_fps=%s\n' "$VIDEO_FPS"
   printf 'video_frame_stride=%s\n' "$VIDEO_FRAME_STRIDE"
+  printf 'max_vx=%s\n' "$MAX_VX"
 } >"$OUTPUT_DIR/effective_input.txt"
 
 sha256sum \
@@ -177,16 +192,21 @@ sha256sum \
   "$FSM_HEADER" \
   "$GRID_MAP_SOURCE" \
   "$OCCLUSION_SHADOW_SOURCE" \
+  "$FOXY_LAUNCH_SOURCE" \
   "$BRIDGE/lite3_sim_bridge/run_isaac_v12_fallback.py" \
+  "$ISAAC_ADAPTER_CORE_SOURCE" \
   "$BRIDGE/lite3_sim_bridge/acceptance.py" \
   "$BRIDGE/lite3_sim_bridge/command_state.py" \
   "$BRIDGE/lite3_sim_bridge/transport.py" \
   "$BRIDGE/lite3_sim_bridge/protocol.py" \
   "$BRIDGE/lite3_sim_bridge/foxy_bridge_node.py" \
+  "$BRIDGE/lite3_sim_bridge/acceptance_monitor_node.py" \
+  "$TRAJECTORY_REVIEW_SOURCE" \
   "$FOXY_BRIDGE_SOURCE" \
   "$FOXY_TRANSPORT_SOURCE" \
   "$FOXY_PROTOCOL_SOURCE" \
   "$FOXY_COMMAND_STATE_SOURCE" \
+  "$FOXY_MONITOR_SOURCE" \
   "${ROBOT_INPUTS[@]}" \
   "$FOXY_WORKSPACE/build/scan_planner/scan_planner_node" \
   "$FOXY_WORKSPACE/build/scan_planner/closed_loop_controller" \
@@ -244,6 +264,7 @@ python -u -m lite3_sim_bridge.run_isaac_v12_fallback \
   --telemetry-port "$TELEMETRY_PORT" \
   --command-port "$COMMAND_PORT" \
   --planner-floor-filter-max-z "$PLANNER_FLOOR_FILTER_MAX_Z" \
+  --max-vx "$MAX_VX" \
   --acceptance-config "$ACCEPTANCE_CONFIG" \
   --video-path "$OUTPUT_DIR/closed_loop.mp4" \
   --video-fps "$VIDEO_FPS" \
@@ -278,6 +299,7 @@ podman run --rm --name "$CONTAINER_NAME" \
   -e ROS_RUNTIME_SECONDS="$ROS_RUNTIME_SECONDS" \
   -e PLANNER_CONFIG_CONTAINER="/workspace/$PLANNER_CONFIG_REL" \
   -e CONTROLLER_CONFIG_CONTAINER="/workspace/$CONTROLLER_CONFIG_REL" \
+  -e BRIDGE_MAX_VX="$MAX_VX" \
   -v "$FOXY_WORKSPACE:/workspace" \
   -v "$OUTPUT_DIR:/evidence" \
   localhost/machine-dog-nav/foxy-scan:20260813 \
@@ -325,6 +347,7 @@ podman run --rm --name "$CONTAINER_NAME" \
         command_port:="$COMMAND_PORT" \
         planner_config:="$PLANNER_CONFIG_CONTAINER" \
         controller_config:="$CONTROLLER_CONFIG_CONTAINER" \
+        bridge_max_vx:="$BRIDGE_MAX_VX" \
         enable_monitor:=true \
         monitor_event_log:=/evidence/ros_events.jsonl \
         monitor_summary:=/evidence/ros_summary.json

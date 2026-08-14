@@ -1,0 +1,12 @@
+duration_seconds=30
+course=forest_gen_nav_v6
+planner_config_rel=src/plan_manage/config/foxy_isaac_forest_v6_planner.yaml
+controller_config_rel=src/plan_manage/config/foxy_isaac_forest_v6_controller.yaml
+planner_floor_filter_max_z=0.05
+terrain_filter_cell_size=0.30
+terrain_filter_height_threshold=0.22
+terrain_filter_neighbor_cells=1
+terrain_filter_minimum_neighbor_cells=2
+video_fps=17
+video_frame_stride=3
+max_vx=1.0

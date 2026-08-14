@@ -122,6 +122,10 @@ assumptions do not transfer automatically to a locomotion policy.
 - Stop live command and telemetry transport at the simulation-time boundary
   before video encoding or slow simulator teardown. Post-run packaging must
   not consume queued commands or alter live transport statistics.
+- Once trajectory time reaches its duration and measured pose first enters the
+  declared finish tolerance, latch zero command until a new trajectory arrives.
+  Do not let post-goal physical drift reopen a completed trajectory and create
+  low-speed endpoint hunting.
 - A formal run records hashes for the acceptance file, scenario configs,
   relevant source, executed binaries/libraries, container image, checkpoint,
   and policy source. Preserve every failed frozen run.
@@ -154,6 +158,9 @@ assumptions do not transfer automatically to a locomotion policy.
 - Unit-test the exact captured corner-cut positions: a candidate more than the
   tracking bound away must freeze, while a near candidate advances and clamps
   at duration.
+- Unit-test the terminal latch: it remains false before trajectory duration or
+  outside tolerance, becomes true at the first in-tolerance endpoint sample,
+  and remains true after later pose drift until a new trajectory resets it.
 - Unit-test shadow sample count, first/last sample position, disabled values,
   and degenerate rays.
 - Run the full fixed-course loop at least twice with identical input hashes
@@ -392,10 +399,18 @@ planner-integration gate.
   importer. Preserve the source vertices and faces, and record the resulting
   mesh hash so a rendering compatibility conversion cannot silently change the
   terrain.
-- Every route-relevant tree or rock proxy must be visible, collision-enabled,
-  and targeted by both the MID-360-like and D435i-like sensor queries at the
-  same prim root. A decorative asset beside an unrelated invisible collider
-  does not satisfy this contract.
+- Every route-relevant tree or rock needs a visible source asset plus a
+  registered collision/sensor proxy targeted by both the MID-360-like and
+  D435i-like sensor queries. The simplified proxy may be hidden in the final
+  review render only when runtime evidence records the visual/proxy pairing,
+  bounds, transform, collision API, sensor targets, and hidden render state. A
+  decorative asset beside an unrelated invisible collider does not satisfy
+  this contract.
+- Seat irregular source meshes from an actual low-surface datum or real mesh
+  support vertices. A full axis-aligned box corner may contain no geometry and
+  can make a non-penetrating asset visibly float on sloped terrain. Preserve
+  the failed placement, record the chosen support points and clearance, and
+  keep human appearance review separate from the numerical contact audit.
 - Bind the policy command terrain key to the declared course without changing
   the pinned observation/action contract. The recorded command tensor, not
   only the requested schedule, is the evidence that zero/forward/yaw/stop
@@ -419,7 +434,8 @@ planner-integration gate.
 | Identical seed produces a different terrain geometry hash | Fail reproducibility; seed all hidden RNGs or freeze the generated asset |
 | Upstream visual mesh types cannot be concatenated by the importer | Preserve failure; normalize visuals without changing vertices/faces |
 | Forest course is absent from the policy command-terrain mapping | Fail before policy inference; add an explicit unchanged-contract binding |
-| Tree/rock proxy lacks visibility, collision, or either sensor target | Fail static geometry qualification |
+| Source visual is absent, or paired proxy lacks collision or either sensor target | Fail static geometry qualification |
+| Full-box seating passes numerically but the source mesh visibly floats | Preserve the preflight; switch to a recorded real-surface support datum and repeat human review |
 | Qualification report is missing after simulator exit | Launcher exits 90 even if the simulator process returned zero |
 | Qualification report status is not `PASS` | Launcher exits 91 and preserves the report and logs |
 | Video cannot be decoded or the robot is materially occluded | Keep automated result; mark video superseded and leave human review pending |
@@ -427,10 +443,11 @@ planner-integration gate.
 
 ### 5. Good / Base / Bad Cases
 
-- **Good:** pinned identities, repeated identical terrain hash, terrain and
-  route proxies visible/collidable/dual-sensor-targeted, recorded policy
-  response on uneven ground, launcher report enforcement, complete local hash
-  parity, decoded unobstructed video, and a separate pending human decision.
+- **Good:** pinned identities, repeated identical terrain hash, visible source
+  assets with registered collidable/dual-sensor-targeted proxies, real-surface
+  seating evidence, recorded policy response on uneven ground, launcher report
+  enforcement, complete local hash parity, decoded unobstructed video, and a
+  separate pending human decision.
 - **Base:** a deterministic flat or obstacle course can validate the policy and
   sensors, but it cannot be promoted as forest-terrain evidence.
 - **Bad:** launch a photorealistic forest backdrop with a flat invisible floor,
@@ -444,8 +461,8 @@ planner-integration gate.
 - Run at least two identical-input terrain generations and assert the complete
   mesh hash is identical. Record the seed and all upstream commit hashes.
 - Inspect the instantiated stage and assert terrain plus every route-relevant
-  proxy is visible, collision-enabled where declared, and included in both
-  sensor target sets.
+  source visual is visible; assert its paired proxy has the declared render
+  state, collision API, transform/bounds agreement, and both sensor targets.
 - Execute the pinned policy on the terrain and assert finite state/action,
   scheduled command visibility, nontrivial displacement, terrain-height
   variation, support/contact bounds, and no hidden reset or termination.
@@ -483,7 +500,7 @@ pin policy + URDFs + forest commits
 ```
 
 ```text
-one declared proxy prim root -> visible + PhysX collision + LiDAR target + depth target
+visible source asset + registered proxy -> PhysX collision + LiDAR target + depth target
 ```
 
 ## Scenario: Coalesce a Buffered Command Backlog Without Relaxing Freshness

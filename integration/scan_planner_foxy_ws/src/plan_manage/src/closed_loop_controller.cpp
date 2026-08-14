@@ -106,6 +106,7 @@ private:
     traj_duration_ = traj_[0].getTimeSum();
     traj_id_ = msg->traj_id;
     exec_time_ = 0.0;
+    trajectory_finished_ = false;
     last_update_time_ = now();
     receive_traj_ = true;
     RCLCPP_INFO(get_logger(), "Received trajectory %lld, duration %.3fs",
@@ -128,6 +129,13 @@ private:
       return;
     }
     const auto current_time = now();
+    if (trajectory_finished_)
+    {
+      publishExecutionFrozen(false);
+      publishStop();
+      last_update_time_ = current_time;
+      return;
+    }
     double dt = (current_time - last_update_time_).seconds();
     if (dt < 0.0 || dt > 0.2) dt = 0.0;
     const double t_eval = std::min(exec_time_, traj_duration_);
@@ -162,7 +170,9 @@ private:
     command.linear.x = std::clamp(c * vel_world.x() + s * vel_world.y(), -max_vx_, max_vx_);
     command.linear.y = std::clamp(-s * vel_world.x() + c * vel_world.y(), -max_vy_, max_vy_);
     command.angular.z = yaw_command;
-    if (exec_time_ >= traj_duration_ && pos_error.norm() < finish_dist_)
+    trajectory_finished_ = shouldLatchTrajectoryFinished(
+        trajectory_finished_, exec_time_, traj_duration_, pos_error.norm(), finish_dist_);
+    if (trajectory_finished_)
       command = geometry_msgs::msg::Twist();
     cmd_vel_pub_->publish(command);
   }
@@ -174,6 +184,7 @@ private:
   rclcpp::TimerBase::SharedPtr cmd_timer_;
   bool receive_traj_{false};
   bool have_odom_{false};
+  bool trajectory_finished_{false};
   std::vector<UniformBspline> traj_;
   double traj_duration_{0.0};
   std::int64_t traj_id_{0};

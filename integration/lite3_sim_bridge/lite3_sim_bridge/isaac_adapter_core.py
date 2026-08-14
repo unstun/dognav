@@ -4,7 +4,7 @@ from dataclasses import dataclass
 import hashlib
 import json
 import math
-from typing import Dict, Iterable, Mapping, Optional, Sequence, Tuple
+from typing import Callable, Dict, Iterable, Mapping, Optional, Sequence, Tuple
 
 
 @dataclass(frozen=True)
@@ -229,6 +229,140 @@ def local_minimum_obstacle_hits(
         "sparse_retained_hit_count": sparse_retained_count,
     }
     return tuple(obstacle_hits), stats
+
+
+def terrain_seating_for_bounds(
+    origin_xy: Sequence[float],
+    local_bounds_min: Sequence[float],
+    local_bounds_max: Sequence[float],
+    terrain_height: Callable[[float, float], float],
+    samples_per_axis: int = 5,
+    clearance_m: float = 0.01,
+) -> Mapping[str, object]:
+    """Return a conservative AABB z placement for diagnostic use.
+
+    The visual is axis-aligned in the current forest adapter. Sampling the
+    complete XY bound avoids the V5 failure mode where a centre-height origin
+    placed roughly half of a centre-origin rock below the surrounding terrain.
+    It can visibly float an irregular mesh when a high box corner contains no
+    source geometry; final source visuals should use real mesh support points.
+    """
+
+    if len(origin_xy) != 2 or len(local_bounds_min) != 3 or len(local_bounds_max) != 3:
+        raise ValueError("origin and bounds dimensions are invalid")
+    origin = tuple(float(value) for value in origin_xy)
+    lower = tuple(float(value) for value in local_bounds_min)
+    upper = tuple(float(value) for value in local_bounds_max)
+    if not all(math.isfinite(value) for value in origin + lower + upper):
+        raise ValueError("origin and bounds must be finite")
+    if any(left >= right for left, right in zip(lower, upper)):
+        raise ValueError("local bounds must have strictly increasing extents")
+    if samples_per_axis < 2:
+        raise ValueError("terrain seating needs at least two samples per axis")
+    if not math.isfinite(clearance_m) or clearance_m < 0.0:
+        raise ValueError("terrain seating clearance must be finite and non-negative")
+
+    samples = []
+    for x_index in range(samples_per_axis):
+        x_fraction = x_index / (samples_per_axis - 1)
+        x = origin[0] + lower[0] + (upper[0] - lower[0]) * x_fraction
+        for y_index in range(samples_per_axis):
+            y_fraction = y_index / (samples_per_axis - 1)
+            y = origin[1] + lower[1] + (upper[1] - lower[1]) * y_fraction
+            height = float(terrain_height(x, y))
+            if not math.isfinite(height):
+                raise ValueError("terrain height sample must be finite")
+            samples.append((x, y, height))
+
+    maximum_height = max(point[2] for point in samples)
+    required_origin_z = maximum_height - lower[2] + clearance_m
+    return {
+        "sample_count": len(samples),
+        "samples_world_xyz_m": tuple(samples),
+        "maximum_terrain_height_m": maximum_height,
+        "required_origin_z_m": required_origin_z,
+        "seated_bounds_min_z_m": required_origin_z + lower[2],
+        "clearance_m": clearance_m,
+    }
+
+
+def terrain_seating_for_mesh_support(
+    origin_xy: Sequence[float],
+    local_support_points: Iterable[Sequence[float]],
+    terrain_height: Callable[[float, float], float],
+    clearance_m: float = 0.01,
+) -> Mapping[str, object]:
+    """Seat a static mesh from real low-surface vertices instead of its box.
+
+    A conservative full-AABB terrain sample can place an irregular mesh far
+    above a steep surface: the AABB corner that touches the highest terrain may
+    contain no geometry.  Each supplied support point is an actual mesh vertex
+    from a narrow band above the mesh minimum.  The returned origin keeps every
+    selected support point above terrain and makes at least one of them attain
+    exactly ``clearance_m``.
+    """
+
+    if len(origin_xy) != 2:
+        raise ValueError("origin must be two-dimensional")
+    origin = tuple(float(value) for value in origin_xy)
+    if not all(math.isfinite(value) for value in origin):
+        raise ValueError("origin must be finite")
+    if not math.isfinite(clearance_m) or clearance_m < 0.0:
+        raise ValueError("terrain seating clearance must be finite and non-negative")
+
+    samples = []
+    for point in local_support_points:
+        if len(point) != 3:
+            raise ValueError("each mesh support point must be three-dimensional")
+        local = tuple(float(value) for value in point)
+        if not all(math.isfinite(value) for value in local):
+            raise ValueError("mesh support points must be finite")
+        world_x = origin[0] + local[0]
+        world_y = origin[1] + local[1]
+        height = float(terrain_height(world_x, world_y))
+        if not math.isfinite(height):
+            raise ValueError("terrain height sample must be finite")
+        required_origin_z = height - local[2] + clearance_m
+        samples.append(
+            {
+                "local_point_xyz_m": local,
+                "world_xy_m": (world_x, world_y),
+                "terrain_height_m": height,
+                "required_origin_z_m": required_origin_z,
+            }
+        )
+    if not samples:
+        raise ValueError("mesh support points must not be empty")
+
+    contact = max(samples, key=lambda row: float(row["required_origin_z_m"]))
+    required_origin_z = float(contact["required_origin_z_m"])
+    clearances = tuple(
+        required_origin_z
+        + float(row["local_point_xyz_m"][2])
+        - float(row["terrain_height_m"])
+        for row in samples
+    )
+    contact_local = tuple(float(value) for value in contact["local_point_xyz_m"])
+    contact_world = (
+        origin[0] + contact_local[0],
+        origin[1] + contact_local[1],
+        required_origin_z + contact_local[2],
+    )
+    return {
+        "method": "lowest_mesh_vertex_band",
+        "sample_count": len(samples),
+        "support_samples": tuple(samples),
+        "maximum_terrain_height_m": max(
+            float(row["terrain_height_m"]) for row in samples
+        ),
+        "required_origin_z_m": required_origin_z,
+        "minimum_support_clearance_m": min(clearances),
+        "maximum_support_clearance_m": max(clearances),
+        "contact_support_point_local_xyz_m": contact_local,
+        "contact_support_point_world_xyz_m": contact_world,
+        "contact_terrain_height_m": float(contact["terrain_height_m"]),
+        "clearance_m": clearance_m,
+    }
 
 
 def point_to_segment_distance_2d(

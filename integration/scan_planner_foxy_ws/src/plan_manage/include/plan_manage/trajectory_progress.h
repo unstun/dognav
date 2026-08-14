@@ -24,4 +24,12 @@ inline TrajectoryProgressDecision decideTrajectoryProgress(
   const bool frozen = tracking_error > max_tracking_error;
   return {frozen ? current_time : candidate_time, tracking_error, frozen};
 }
+
+inline bool shouldLatchTrajectoryFinished(
+    bool already_finished, double execution_time, double duration,
+    double position_error, double finish_distance)
+{
+  return already_finished ||
+         (execution_time >= duration && position_error < finish_distance);
+}
 }  // namespace scan_planner

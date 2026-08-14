@@ -433,6 +433,181 @@ class AcceptanceTest(unittest.TestCase):
             )
             self.assertFalse(failed["checks"]["forest_planner_detour"]["passed"])
 
+    def test_v6_requires_four_layer_speed_geometry_and_trace_overlay(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            video = root / "run.mp4"
+            overlay = root / "overlay.mp4"
+            video.write_bytes(b"v" * 120000)
+            overlay.write_bytes(b"o" * 130000)
+            video_sha = hashlib.sha256(video.read_bytes()).hexdigest()
+            overlay_sha = hashlib.sha256(overlay.read_bytes()).hexdigest()
+            bag = root / "rosbag"
+            bag.mkdir()
+            (bag / "metadata.yaml").write_text(
+                "rosbag2_bagfile_information: {}\n"
+            )
+            (bag / "run_0.db3").write_bytes(b"b" * 12000)
+
+            thresholds = self._thresholds()
+            thresholds["thresholds"]["command_component_max_abs"] = [
+                1.0,
+                0.35,
+                1.0,
+            ]
+            thresholds["v6_review"] = {
+                "expected_course": "forest_gen_nav_v6",
+                "expected_forward_limit_mps": 1.0,
+                "planner_acceleration_limit_mps2": 0.5,
+                "high_command_minimum_vx_mps": 0.90,
+                "high_command_maximum_abs_yaw_rps": 0.15,
+                "minimum_high_command_sample_count": 20,
+                "minimum_high_command_measured_speed_p75_mps": 0.70,
+                "minimum_rock_terrain_clearance_m": 0.01,
+                "maximum_proxy_bounds_error_m": 0.005,
+                "expected_proxy_render_visible": False,
+                "minimum_complete_bspline_records": 2,
+                "minimum_overlay_video_bytes": 100000,
+                "minimum_overlay_video_frames": 250,
+                "maximum_plan_pose_alignment_error_ms": 150.0,
+            }
+            metrics = self._metrics()
+            for row in metrics[:-110]:
+                row["applied_command"] = [0.95, 0.0, 0.05]
+                row["root_lin_vel_w"] = [0.80, 0.0, 0.0]
+            identity = {
+                "acceptance_config_sha256": "frozen",
+                "course": {"name": "forest_gen_nav_v6"},
+                "command_limits": [1.0, 0.35, 1.0],
+            }
+            geometry = {
+                "passed": True,
+                "proxy_records": [
+                    {
+                        "name": "rock_proxy",
+                        "kind": "Rock",
+                        "source_visual_terrain_clearance_m": 0.015,
+                        "proxy_bounds_max_error_m": 0.0,
+                        "expected_render_visible": False,
+                        "visible_geometry_prim_paths": [],
+                        "render_visibility_matches": True,
+                    }
+                ],
+            }
+            trajectory_events = [
+                {
+                    "kind": "bspline",
+                    "trajectory_id": identifier,
+                    "start_time_ns": identifier,
+                    "order": 1,
+                    "knots": [0.0, 0.0, 1.0, 1.0],
+                    "control_points": [[0.0, 0.0, 0.3], [1.0, 0.2, 0.3]],
+                }
+                for identifier in (1, 2)
+            ]
+            input_hashes = {
+                "raw_video": "raw",
+                "ros_events": "events",
+                "metrics": "metrics",
+                "run_identity": "identity",
+            }
+            review_metadata = {
+                "input_sha256": dict(input_hashes),
+                "output": {
+                    "sha256": overlay_sha,
+                    "bytes": overlay.stat().st_size,
+                    "frame_count": 310,
+                },
+                "mapping": {"maximum_plan_pose_alignment_error_ms": 20.0},
+            }
+            report = evaluate_acceptance(
+                thresholds,
+                metrics,
+                self._sensor_metrics(),
+                {
+                    "status": "PASS",
+                    "runtime_error": None,
+                    "command_transport": {"protocol_errors": 0},
+                    "telemetry_transport": {"protocol_errors": 0, "reconnects": 1},
+                    "video": {
+                        "frame_count": 310,
+                        "encoded_duration_seconds": 12.4,
+                        "sha256": video_sha,
+                    },
+                },
+                identity,
+                self._ros_summary(),
+                video,
+                bag,
+                "final_plan_success=1\nfinal_plan_success=1\n"
+                "[FSM]: from EXEC_TRAJ to WAIT_TARGET\n",
+                "frozen",
+                runtime_composition={
+                    "forest_scene": {"static_geometry_checks": geometry}
+                },
+                overlay_video_path=overlay,
+                trajectory_events=trajectory_events,
+                trajectory_review_metadata=review_metadata,
+                trajectory_review_input_sha256=input_hashes,
+                effective_input_text="max_vx=1.0\n",
+                planner_config_text=(
+                    "    manager.max_vel: 1.00\n"
+                    "    manager.max_acc: 0.5\n"
+                    "    optimization.max_vel: 1.00\n"
+                ),
+                controller_config_text="    max_vx: 1.00\n",
+            )
+            self.assertEqual(report["status"], "PASS")
+            self.assertTrue(
+                report["checks"]["v6_synchronized_forward_limits"]["passed"]
+            )
+            self.assertTrue(report["checks"]["v6_overlay_input_hashes"]["passed"])
+
+            geometry["proxy_records"][0]["visible_geometry_prim_paths"] = [
+                "/World/visible_proxy"
+            ]
+            failed = evaluate_acceptance(
+                thresholds,
+                metrics,
+                self._sensor_metrics(),
+                {
+                    "status": "PASS",
+                    "runtime_error": None,
+                    "command_transport": {"protocol_errors": 0},
+                    "telemetry_transport": {"protocol_errors": 0, "reconnects": 1},
+                    "video": {
+                        "frame_count": 310,
+                        "encoded_duration_seconds": 12.4,
+                        "sha256": video_sha,
+                    },
+                },
+                identity,
+                self._ros_summary(),
+                video,
+                bag,
+                "final_plan_success=1\nfinal_plan_success=1\n"
+                "[FSM]: from EXEC_TRAJ to WAIT_TARGET\n",
+                "frozen",
+                runtime_composition={
+                    "forest_scene": {"static_geometry_checks": geometry}
+                },
+                overlay_video_path=overlay,
+                trajectory_events=trajectory_events,
+                trajectory_review_metadata=review_metadata,
+                trajectory_review_input_sha256=input_hashes,
+                effective_input_text="max_vx=1.0\n",
+                planner_config_text=(
+                    "    manager.max_vel: 1.00\n"
+                    "    manager.max_acc: 0.5\n"
+                    "    optimization.max_vel: 1.00\n"
+                ),
+                controller_config_text="    max_vx: 1.00\n",
+            )
+            self.assertEqual(failed["status"], "FAIL")
+            self.assertFalse(
+                failed["checks"]["v6_proxy_review_visibility"]["passed"]
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

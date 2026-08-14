@@ -1,6 +1,7 @@
 # V5 Verification Record
 
-Status: automated checks passed; human video review is still pending.
+Status: automated checks passed; human review requested a separate V6 and V5
+is retained as superseded evidence.
 
 ## Source checks
 
@@ -42,6 +43,7 @@ Status: automated checks passed; human video review is still pending.
 - Video: five H.264 MP4 files fully decoded. The frozen candidate is 1280 x
   720, 438 frames, 25.764706 s, and 11,143,074 bytes.
 
-These checks establish an automated simulation review candidate, not Dr Sun's
-visual acceptance, calibrated sensor parity, localization performance, or
-real-robot safety.
+These checks establish immutable V5 automated simulation evidence, not Dr
+Sun's acceptance. His visual review requested V6 speed, geometry, and
+trajectory-display changes. V5 also does not establish calibrated sensor
+parity, localization performance, or real-robot safety.

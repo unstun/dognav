@@ -1,6 +1,12 @@
 # Human Review
 
-Status: ready for Dr Sun; automated frozen gate PASS, all human boxes pending.
+Status: Dr Sun reviewed V5 and requested changes; V5 is preserved and no
+longer awaiting acceptance.
+
+Disposition: replace V5 with a V6 candidate using a 1.0 m/s target, corrected
+rock/proxy and rock/terrain appearance, and visible planned-versus-actual
+trajectories. The unchecked boxes below are retained as the original review
+form; they are not retroactively marked accepted.
 
 Review file: `runs/results/forest_v5_review_candidate01/closed_loop.mp4`
 

@@ -1,0 +1,56 @@
+{
+  "claim_boundary": "Derived human-review overlay from the hashed raw SCAN Bspline, Isaac PhysX metrics, run identity, and untouched raw simulator MP4.",
+  "colours_bgr": {
+    "isaac_actual": [
+      255,
+      220,
+      40
+    ],
+    "primary_obstacle": [
+      40,
+      70,
+      245
+    ],
+    "scan_planned": [
+      80,
+      220,
+      80
+    ]
+  },
+  "input_sha256": {
+    "metrics": "9c68dfb0e19ef940cc1747c980ff4fafa498fadf9c247acd04fb1fa43ab0345a",
+    "raw_video": "50f54f7c6fbd7fedb4ad4241ee286b5c200c81ded03ba82a8ae4c5ff255c73d9",
+    "ros_events": "4c4e69118e94989ecfac9523f1eca4aa572f6b8aec9c3d96dc931e645040c44e",
+    "run_identity": "32c3772b5b5cef2f305b560285c6d184c5be8fd08c9c194a0ff86e8b2e79a163"
+  },
+  "mapping": {
+    "frame_stride": 3,
+    "frame_to_sim_time": "metrics rows where step modulo video frame_stride equals zero",
+    "maximum_plan_pose_alignment_error_ms": 33.168889,
+    "plan_to_sim_time": "nearest simulator-stamped body_pose receipt"
+  },
+  "output": {
+    "bytes": 576347,
+    "encoder": "ffmpeg libx264 yuv420p",
+    "fps": 17.0,
+    "frame_count": 60,
+    "path": "closed_loop_review_overlay.mp4",
+    "resolution": [
+      1280,
+      720
+    ],
+    "sha256": "613450bd7ee8939c78e3ff07433fd5b71f6547a5422e0b962e007bfcaf443be4"
+  },
+  "plot_bounds_world_xy_m": [
+    -5.929606857299804,
+    1.4121007347106933,
+    2.084942636489868,
+    3.9612574005126953
+  ],
+  "sample_count_per_trajectory": 160,
+  "schema_version": 1,
+  "trajectory_count": 1,
+  "trajectory_ids": [
+    1
+  ]
+}

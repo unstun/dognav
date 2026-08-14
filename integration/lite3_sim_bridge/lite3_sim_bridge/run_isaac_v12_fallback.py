@@ -22,6 +22,7 @@ from .isaac_adapter_core import (
     quaternion_wxyz_to_xyzw,
     schedule_duration,
     schedule_state,
+    terrain_seating_for_mesh_support,
     world_hits_to_sensor_points,
 )
 from .protocol import (
@@ -78,6 +79,8 @@ FOREST_SEED = 14
 FOREST_TREE_PROXY_RADIUS_M = 0.24
 FOREST_TREE_PROXY_HEIGHT_M = 4.0
 FOREST_ROCK_PROXY_SIZE_M = (0.72, 0.72, 0.46)
+FOREST_ROCK_SEATING_CLEARANCE_M = 0.015
+FOREST_ROCK_SUPPORT_BAND_M = 0.020
 FOREST_NAVIGATION_GOAL_WORLD_M = (0.5, 3.0, 0.85)
 FOREST_NAVIGATION_PLANNING_RADIUS_M = 0.40
 FOREST_PREVIEW_SCHEDULE = (
@@ -176,11 +179,15 @@ def _sensor_rig_enabled(args) -> bool:
 
 
 def _forest_enabled(args) -> bool:
-    return args.course in ("forest_gen", "forest_gen_nav")
+    return args.course in ("forest_gen", "forest_gen_nav", "forest_gen_nav_v6")
 
 
 def _forest_navigation_enabled(args) -> bool:
-    return args.course == "forest_gen_nav"
+    return args.course in ("forest_gen_nav", "forest_gen_nav_v6")
+
+
+def _forest_v6_enabled(args) -> bool:
+    return args.course == "forest_gen_nav_v6"
 
 
 def _forest_preview_enabled(args) -> bool:
@@ -220,6 +227,79 @@ def _forest_asset_source_path(asset) -> Path:
     if not path.is_file():
         raise AdapterFailure(f"forest visual source asset is missing: {path}")
     return path
+
+
+def _forest_runtime_asset_path(asset) -> Path:
+    converter = getattr(asset.mesh, "converter", None)
+    runtime_path = getattr(converter, "usd_path", None)
+    if not runtime_path:
+        raise AdapterFailure(
+            f"forest visual {asset.name} has no converted runtime USD"
+        )
+    path = Path(runtime_path).resolve()
+    if not path.is_file():
+        raise AdapterFailure(f"forest visual runtime USD is missing: {path}")
+    return path
+
+
+def _usd_default_prim_bounds(path: Path):
+    from pxr import Usd, UsdGeom
+
+    stage = Usd.Stage.Open(str(path))
+    if stage is None:
+        raise AdapterFailure(f"cannot open forest runtime USD: {path}")
+    root = stage.GetDefaultPrim()
+    if not root.IsValid():
+        raise AdapterFailure(f"forest runtime USD has no default prim: {path}")
+    bbox = UsdGeom.BBoxCache(
+        Usd.TimeCode.Default(),
+        [UsdGeom.Tokens.default_, UsdGeom.Tokens.render, UsdGeom.Tokens.proxy],
+    ).ComputeWorldBound(root).ComputeAlignedRange()
+    lower = tuple(float(value) for value in bbox.GetMin())
+    upper = tuple(float(value) for value in bbox.GetMax())
+    if (
+        not all(math.isfinite(value) for value in lower + upper)
+        or any(left >= right for left, right in zip(lower, upper))
+    ):
+        raise AdapterFailure(f"forest runtime USD has invalid bounds: {path}")
+    return lower, upper
+
+
+def _usd_default_prim_geometry(path: Path):
+    """Return runtime bounds and real low-surface support vertices."""
+
+    from pxr import Usd, UsdGeom
+
+    stage = Usd.Stage.Open(str(path), load=Usd.Stage.LoadAll)
+    if stage is None:
+        raise AdapterFailure(f"cannot open forest runtime USD: {path}")
+    root = stage.GetDefaultPrim()
+    if not root.IsValid():
+        raise AdapterFailure(f"forest runtime USD has no default prim: {path}")
+    lower, upper = _usd_default_prim_bounds(path)
+    xform_cache = UsdGeom.XformCache(Usd.TimeCode.Default())
+    points = []
+    for prim in Usd.PrimRange(root, Usd.TraverseInstanceProxies()):
+        if not prim.IsA(UsdGeom.Mesh):
+            continue
+        transform = xform_cache.GetLocalToWorldTransform(prim)
+        local_points = UsdGeom.Mesh(prim).GetPointsAttr().Get() or ()
+        for point in local_points:
+            transformed = transform.Transform(point)
+            values = tuple(float(value) for value in transformed)
+            if all(math.isfinite(value) for value in values):
+                points.append(values)
+    if not points:
+        raise AdapterFailure(f"forest runtime USD has no finite mesh vertices: {path}")
+    minimum_z = min(point[2] for point in points)
+    support_points = tuple(
+        point
+        for point in points
+        if point[2] <= minimum_z + FOREST_ROCK_SUPPORT_BAND_M
+    )
+    if not support_points:
+        raise AdapterFailure(f"forest runtime USD has no low support vertices: {path}")
+    return lower, upper, support_points, len(points)
 
 
 def _forest_kind(asset) -> str:
@@ -382,12 +462,54 @@ def _build_forest_layout(args):
     def add_visual(asset, source_position, placement):
         index = len(visual_specs)
         source_path = _forest_asset_source_path(asset)
+        runtime_path = _forest_runtime_asset_path(asset)
         source_position = tuple(float(value) for value in source_position)
+        unseated_source_position = source_position
         world_position = (
             source_position[0] - 0.5 * args.forest_size,
             source_position[1] - 0.5 * args.forest_size,
             source_position[2],
         )
+        local_bounds = None
+        mesh_support = None
+        seating = None
+        if _forest_kind(asset) == "Rock":
+            if _forest_v6_enabled(args):
+                (
+                    local_lower,
+                    local_upper,
+                    support_points,
+                    mesh_vertex_count,
+                ) = _usd_default_prim_geometry(runtime_path)
+                mesh_support = {
+                    "vertex_count": mesh_vertex_count,
+                    "support_vertex_count": len(support_points),
+                    "support_band_m": FOREST_ROCK_SUPPORT_BAND_M,
+                    "support_points_local_xyz_m": support_points,
+                }
+            else:
+                local_lower, local_upper = _usd_default_prim_bounds(runtime_path)
+            local_bounds = {"min_m": local_lower, "max_m": local_upper}
+            if _forest_v6_enabled(args):
+                seating = dict(
+                    terrain_seating_for_mesh_support(
+                        world_position[:2],
+                        support_points,
+                        lambda x, y: float(
+                            terrain.raw(
+                                x + 0.5 * args.forest_size,
+                                y + 0.5 * args.forest_size,
+                            )
+                        ),
+                        clearance_m=FOREST_ROCK_SEATING_CLEARANCE_M,
+                    )
+                )
+                final_z = float(seating["required_origin_z_m"])
+                seating["seated_bounds_min_z_m"] = final_z + local_lower[2]
+                seating["unseated_origin_z_m"] = world_position[2]
+                seating["vertical_correction_m"] = final_z - world_position[2]
+                world_position = (world_position[0], world_position[1], final_z)
+                source_position = (source_position[0], source_position[1], final_z)
         visual_specs.append(
             {
                 "name": f"forest_visual_{index:03d}",
@@ -396,6 +518,12 @@ def _build_forest_layout(args):
                 "source_asset_instance_name": asset.name,
                 "source_asset_path": source_path,
                 "source_asset_sha256": _sha256(source_path),
+                "runtime_asset_path": runtime_path,
+                "runtime_asset_sha256": _sha256(runtime_path),
+                "runtime_local_bounds_m": local_bounds,
+                "runtime_mesh_support": mesh_support,
+                "terrain_seating": seating,
+                "unseated_source_position_m": unseated_source_position,
                 "source_position_m": source_position,
                 "world_position_m": world_position,
                 "placement": placement,
@@ -427,10 +555,24 @@ def _build_forest_layout(args):
                 FOREST_TREE_PROXY_HEIGHT_M,
             )
             shape = "cylinder"
+            center = (x, y, ground_z + 0.5 * size[2])
+        elif _forest_v6_enabled(args):
+            local_bounds = visual["runtime_local_bounds_m"]
+            local_lower = tuple(local_bounds["min_m"])
+            local_upper = tuple(local_bounds["max_m"])
+            size = tuple(
+                local_upper[index] - local_lower[index] for index in range(3)
+            )
+            center = tuple(
+                visual["world_position_m"][index]
+                + 0.5 * (local_lower[index] + local_upper[index])
+                for index in range(3)
+            )
+            shape = "cuboid"
         else:
             size = FOREST_ROCK_PROXY_SIZE_M
             shape = "cuboid"
-        center = (x, y, ground_z + 0.5 * size[2])
+            center = (x, y, ground_z + 0.5 * size[2])
         half = tuple(0.5 * value for value in size)
         index = len(proxies)
         proxies.append(
@@ -442,6 +584,7 @@ def _build_forest_layout(args):
                 "shape": shape,
                 "center_m": center,
                 "size_m": size,
+                "render_visible": not _forest_v6_enabled(args),
                 "bounds_min_m": tuple(center[i] - half[i] for i in range(3)),
                 "bounds_max_m": tuple(center[i] + half[i] for i in range(3)),
             }
@@ -533,6 +676,16 @@ def _build_forest_layout(args):
         "bounded_adapter": {
             "visual_count": len(visual_specs),
             "physics_sensor_proxy_count": len(proxies),
+            "proxy_render_mode": (
+                "hidden_registered_collision_and_sensor_geometry"
+                if _forest_v6_enabled(args)
+                else "visible_debug_geometry"
+            ),
+            "rock_seating": (
+                "runtime_USD_lowest_20mm_mesh_vertex_band_terrain_support"
+                if _forest_v6_enabled(args)
+                else "upstream_origin_at_centre_terrain_height"
+            ),
             "full_grass_field_instantiated": False,
             "upstream_population_generator_used": False,
             "terrain_seed_injection": (
@@ -547,13 +700,18 @@ def _build_forest_layout(args):
                 "instantiating thousands of independent grass prims"
             ),
             "placement_reason": (
-                "guarantee visible and sensor-observable obstacles beside, not in, "
-                "the short open-loop route"
+                "place one registered tree across the fixed SCAN start-to-goal corridor"
+                if _forest_navigation_enabled(args)
+                else "guarantee visible and sensor-observable obstacles beside, not in, the short open-loop route"
             ),
             "v12_command_terrain_binding": {
                 "terrain_name": "main",
                 "maximum_range_source": "unchanged V12 flat-terrain range",
-                "live_commands": "overwritten by the recorded preview schedule",
+                "live_commands": (
+                    "external Foxy SCAN closed-loop command stream"
+                    if _forest_navigation_enabled(args)
+                    else "overwritten by the recorded preview schedule"
+                ),
             },
         },
         "visuals": identity_visuals,
@@ -627,6 +785,8 @@ def _urdf_contract(path: Path):
 
 
 def _candidate_name(args) -> str:
+    if _forest_v6_enabled(args):
+        return "V12 model_149999 on Lite3 Pro sensor rig v6 1mps SCAN forest navigation"
     if _forest_navigation_enabled(args):
         return "V12 model_149999 on Lite3 Pro sensor rig v5 SCAN forest navigation"
     if _forest_preview_enabled(args):
@@ -1004,6 +1164,7 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
                         diffuse_color=(0.24, 0.25, 0.22), roughness=0.95
                     ),
                 )
+            spawn_cfg.visible = bool(proxy["render_visible"])
             proxy_cfg = AssetBaseCfg(
                 prim_path=proxy["prim_path"],
                 spawn=spawn_cfg,
@@ -1195,45 +1356,119 @@ def _inspect_forest_geometry(stage, forest_layout, lidar, depth_camera):
 
     lidar_paths = direct_paths(lidar)
     depth_paths = direct_paths(depth_camera)
+    bbox_cache = UsdGeom.BBoxCache(
+        Usd.TimeCode.Default(),
+        [UsdGeom.Tokens.default_, UsdGeom.Tokens.render, UsdGeom.Tokens.proxy],
+        True,
+        True,
+    )
+
+    def world_bounds(prim):
+        if not prim.IsValid():
+            return None
+        aligned = bbox_cache.ComputeWorldBound(prim).ComputeAlignedRange()
+        lower = tuple(float(value) for value in aligned.GetMin())
+        upper = tuple(float(value) for value in aligned.GetMax())
+        if not all(math.isfinite(value) for value in lower + upper):
+            return None
+        return {"min_m": lower, "max_m": upper}
+
+    def visible_geometry(prim):
+        result = []
+        if not prim.IsValid():
+            return result
+        for descendant in Usd.PrimRange(prim, Usd.TraverseInstanceProxies()):
+            if descendant.GetTypeName() not in (
+                "Capsule",
+                "Cone",
+                "Cube",
+                "Cylinder",
+                "Mesh",
+                "Sphere",
+            ):
+                continue
+            imageable = UsdGeom.Imageable(descendant)
+            if imageable and str(imageable.ComputeVisibility()) != "invisible":
+                result.append(str(descendant.GetPath()))
+        return result
+
     records = []
     for proxy in forest_layout["proxies"]:
         root = stage.GetPrimAtPath(proxy["prim_path"])
         collision_paths = []
-        visible_geometry_paths = []
         if root.IsValid():
             for prim in Usd.PrimRange(root, Usd.TraverseInstanceProxies()):
                 if prim.HasAPI(UsdPhysics.CollisionAPI):
                     collision_paths.append(str(prim.GetPath()))
-                if prim.GetTypeName() in (
-                    "Capsule",
-                    "Cone",
-                    "Cube",
-                    "Cylinder",
-                    "Mesh",
-                    "Sphere",
-                ):
-                    imageable = UsdGeom.Imageable(prim)
-                    if imageable and str(imageable.ComputeVisibility()) != "invisible":
-                        visible_geometry_paths.append(str(prim.GetPath()))
+        visible_geometry_paths = visible_geometry(root)
         visual = next(
             item
             for item in forest_layout["visuals"]
             if item["name"] == proxy["visual_name"]
         )
         visual_prim = stage.GetPrimAtPath(visual["prim_path"])
+        proxy_world_bounds = world_bounds(root)
+        source_visual_world_bounds = world_bounds(visual_prim)
+        declared_values = tuple(proxy["bounds_min_m"]) + tuple(
+            proxy["bounds_max_m"]
+        )
+        actual_values = (
+            ()
+            if proxy_world_bounds is None
+            else tuple(proxy_world_bounds["min_m"])
+            + tuple(proxy_world_bounds["max_m"])
+        )
+        proxy_bounds_error = (
+            math.inf
+            if len(actual_values) != len(declared_values)
+            else max(
+                abs(float(actual) - float(declared))
+                for actual, declared in zip(actual_values, declared_values)
+            )
+        )
+        seating = visual.get("terrain_seating")
+        source_visual_clearance = None
+        source_visual_seated = True
+        if visual["kind"] == "Rock" and seating is not None:
+            source_visual_clearance = float(
+                seating["minimum_support_clearance_m"]
+            )
+            source_visual_seated = (
+                source_visual_world_bounds is not None
+                and seating.get("method") == "lowest_mesh_vertex_band"
+                and int(seating.get("sample_count", 0)) > 0
+                and source_visual_clearance
+                >= FOREST_ROCK_SEATING_CLEARANCE_M - 0.005
+            )
         records.append(
             {
                 "name": proxy["name"],
+                "kind": proxy["kind"],
                 "prim_path": proxy["prim_path"],
                 "root_prim_valid": root.IsValid(),
                 "collision_prim_paths": collision_paths,
+                "expected_render_visible": bool(proxy["render_visible"]),
                 "visible_geometry_prim_paths": visible_geometry_paths,
+                "render_visibility_matches": bool(visible_geometry_paths)
+                == bool(proxy["render_visible"]),
                 "lidar_targeted": proxy["prim_path"] in lidar_paths,
                 "depth_targeted": proxy["prim_path"] in depth_paths,
                 "source_visual_prim_path": visual["prim_path"],
                 "source_visual_prim_valid": visual_prim.IsValid(),
+                "source_visual_visible_geometry_prim_paths": visible_geometry(
+                    visual_prim
+                ),
+                "source_visual_world_bounds_m": source_visual_world_bounds,
+                "source_visual_terrain_clearance_m": source_visual_clearance,
+                "source_visual_support_method": (
+                    None if seating is None else seating.get("method")
+                ),
+                "source_visual_seated": source_visual_seated,
+                "terrain_seating": seating,
                 "declared_bounds_min_m": proxy["bounds_min_m"],
                 "declared_bounds_max_m": proxy["bounds_max_m"],
+                "runtime_proxy_bounds_m": proxy_world_bounds,
+                "proxy_bounds_max_error_m": proxy_bounds_error,
             }
         )
     checks = {
@@ -1243,22 +1478,33 @@ def _inspect_forest_geometry(stage, forest_layout, lidar, depth_camera):
         and all(row["root_prim_valid"] for row in records),
         "all_proxies_have_collision": bool(records)
         and all(bool(row["collision_prim_paths"]) for row in records),
-        "all_proxies_are_visible": bool(records)
-        and all(bool(row["visible_geometry_prim_paths"]) for row in records),
+        "all_proxy_render_modes_match": bool(records)
+        and all(row["render_visibility_matches"] for row in records),
+        "all_proxy_bounds_match": bool(records)
+        and all(row["proxy_bounds_max_error_m"] <= 0.005 for row in records),
         "all_proxies_targeted_by_lidar": bool(records)
         and all(row["lidar_targeted"] for row in records),
         "all_proxies_targeted_by_depth": bool(records)
         and all(row["depth_targeted"] for row in records),
         "all_source_visuals_exist": bool(records)
         and all(row["source_visual_prim_valid"] for row in records),
+        "all_source_visuals_visible": bool(records)
+        and all(
+            bool(row["source_visual_visible_geometry_prim_paths"])
+            for row in records
+        ),
+        "all_review_rocks_seated": bool(records)
+        and all(row["source_visual_seated"] for row in records),
     }
     return {
         "passed": all(checks.values()),
         "checks": checks,
         "proxy_records": records,
         "agreement_definition": (
-            "each declared proxy root is visible, has a CollisionAPI descendant, "
-            "and is the same root targeted by both ray sensors"
+            "each source visual is runtime-bounded and registered to one declared "
+            "proxy root; the proxy has collision, matches its declared bounds and "
+            "render mode, and is targeted by both ray sensors; each V6 rock is "
+            "seated from real low-surface mesh vertices rather than an empty AABB corner"
         ),
     }
 
@@ -1449,7 +1695,15 @@ def _run(args) -> int:
         camera_eye = (spawn_x - 6.0, spawn_y, spawn_z + 2.8)
         camera_lookat = (spawn_x + 1.5, spawn_y, spawn_z + 0.5)
     identity = {
-        "schema_version": 3 if forest_layout is not None else (2 if sensor_rig else 1),
+        "schema_version": (
+            4
+            if _forest_v6_enabled(args)
+            else 3
+            if forest_layout is not None
+            else 2
+            if sensor_rig
+            else 1
+        ),
         "candidate": _candidate_name(args),
         "source_commit": args.source_commit,
         "checkpoint_sha256": checkpoint_sha256,
@@ -2505,7 +2759,13 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--task", default=DEFAULT_TASK)
     parser.add_argument(
         "--course",
-        choices=("flat", "single_box", "forest_gen", "forest_gen_nav"),
+        choices=(
+            "flat",
+            "single_box",
+            "forest_gen",
+            "forest_gen_nav",
+            "forest_gen_nav_v6",
+        ),
         default="flat",
     )
     parser.add_argument("--forest-gen-root", type=Path)
@@ -2625,7 +2885,7 @@ def main(argv=None) -> int:
             or args.forest_seed != FOREST_SEED
         ):
             raise SystemExit(
-                "forest preview requires the pinned size=32, margin=10, seed=14"
+                "forest courses require the pinned size=32, margin=10, seed=14"
             )
         for name in ("forest_gen_root", "stripe_kit_root", "forest_asset_path"):
             value = getattr(args, name)
@@ -2646,6 +2906,8 @@ def main(argv=None) -> int:
             or args.terrain_filter_minimum_neighbor_cells <= 0
         ):
             raise SystemExit("forest navigation terrain-filter parameters are invalid")
+    if _forest_v6_enabled(args) and abs(float(args.max_vx) - 1.0) > 1.0e-9:
+        raise SystemExit("V6 requires the Isaac forward command limit to equal 1.0 m/s")
     from isaaclab.app import AppLauncher
 
     simulation_app = AppLauncher(

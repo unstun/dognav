@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "automated_frozen_gate_pass_human_review_pending",
+  "status": "automated_frozen_gate_pass_human_change_requested",
   "experiment": "SCAN forest V5 closed-loop review candidate",
   "local_source_of_truth": "/Users/sun/tongbu/study/phdproject/machine-dog-nav",
   "remote_execution_copy": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v5",
@@ -9,6 +9,15 @@
     "frozen_automated_gate_passed": true,
     "human_accepted": false,
     "real_robot_validated": false
+  },
+  "human_review_disposition": {
+    "status": "change_requested",
+    "requested_successor": "V6",
+    "requested_changes": [
+      "raise the clear-path target to 1.0 m/s",
+      "correct visible rock/proxy or rock/terrain interpenetration",
+      "show SCAN planned and Isaac physical trajectories together"
+    ]
   },
   "pinned_inputs": {
     "locomotion_source_commit": "8c3fdffa84b85be0704a10ea5b2533817d543822",
@@ -103,7 +112,7 @@
   },
   "verification_record": "VERIFICATION.md",
   "claim_boundary": [
-    "The frozen automated simulation gate passed; Dr Sun has not yet accepted the video.",
+    "The frozen automated simulation gate passed; Dr Sun reviewed the video and requested V6 changes rather than accepting V5.",
     "The planner uses simulator-truth pose and rendered geometry, not Elevator-LIO or calibrated Livox/D435i sensor models.",
     "The result is one deterministic seed and one forest route, not a multi-scene benchmark or real-robot safety result.",
     "No training, weight change, scripted detour waypoint, real-robot actuation, or hardware deployment occurred."

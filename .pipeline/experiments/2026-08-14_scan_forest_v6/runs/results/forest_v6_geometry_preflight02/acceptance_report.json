@@ -1,0 +1,675 @@
+{
+  "checks": {
+    "clean_process_exit": {
+      "expected": false,
+      "passed": true,
+      "value": {
+        "keyboard_interrupt": false,
+        "process_has_died": false
+      }
+    },
+    "cloud_nonempty": {
+      "expected": 0.99,
+      "passed": true,
+      "value": 1.0
+    },
+    "cloud_points": {
+      "expected": 10,
+      "passed": true,
+      "value": 217
+    },
+    "coalesced_command_frames": {
+      "expected": 50,
+      "passed": true,
+      "value": 2
+    },
+    "command_age_p95": {
+      "expected": 100.0,
+      "passed": true,
+      "value": 36.7250838
+    },
+    "command_bounds": {
+      "expected": [
+        1.0,
+        0.35,
+        1.0
+      ],
+      "passed": true,
+      "value": [
+        0.99998539686203,
+        0.04069792479276657,
+        0.054298680275678635
+      ]
+    },
+    "contact_support": {
+      "expected": 0.95,
+      "passed": false,
+      "value": 0.9325842696629213
+    },
+    "finite_policy": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "forest_base_clearance": {
+      "expected": 0.15,
+      "passed": true,
+      "value": 0.22821503137172539
+    },
+    "forest_direct_path_blocked": {
+      "expected": "center_to_segment < required_center_clearance",
+      "passed": true,
+      "value": {
+        "center_to_segment_m": 0.0,
+        "required_center_clearance_m": 0.64
+      }
+    },
+    "forest_filter_enabled": {
+      "expected": 1.0,
+      "passed": true,
+      "value": 1.0
+    },
+    "forest_filter_keeps_obstacles": {
+      "expected": 10,
+      "passed": true,
+      "value": 217
+    },
+    "forest_filter_removes_terrain": {
+      "expected": 50,
+      "passed": true,
+      "value": 386
+    },
+    "forest_filter_sparse_fraction": {
+      "expected": 0.75,
+      "passed": true,
+      "value": 0.12260536398467432
+    },
+    "forest_forward_command_speed": {
+      "expected": 0.9,
+      "passed": true,
+      "value": 0.99998539686203
+    },
+    "forest_geometry_only_planner_input": {
+      "expected": "rendered XYZ geometry filter with all scene-truth inputs forbidden",
+      "passed": true,
+      "value": {
+        "cell_size_m": 0.3,
+        "enabled": true,
+        "forbidden_inputs": [
+          "terrain_height_function",
+          "scene_prim_id",
+          "proxy_bounds",
+          "obstacle_label"
+        ],
+        "height_threshold_m": 0.22,
+        "inputs": [
+          "rendered_hit_xyz_world",
+          "sensor_position_world"
+        ],
+        "minimum_neighbor_cells": 2,
+        "neighbor_cells": 1
+      }
+    },
+    "forest_goal_identity": {
+      "expected": [
+        0.5,
+        3.0,
+        0.85
+      ],
+      "passed": true,
+      "value": [
+        0.5,
+        3.0,
+        0.85
+      ]
+    },
+    "forest_measured_speed_p75": {
+      "expected": 0.55,
+      "passed": true,
+      "value": 0.9665529603496276
+    },
+    "forest_nonflat_terrain": {
+      "expected": 0.03,
+      "passed": true,
+      "value": 0.4510454071544173
+    },
+    "forest_path_length_excess": {
+      "expected": 0.2,
+      "passed": false,
+      "value": -2.758968328644166
+    },
+    "forest_planner_detour": {
+      "expected": 0.55,
+      "passed": false,
+      "value": 0.04915666580200195
+    },
+    "forest_primary_blocker_clearance": {
+      "expected": 0.55,
+      "passed": false,
+      "value": 0.4998392000919993
+    },
+    "goal_xy": {
+      "expected": 0.25,
+      "passed": false,
+      "value": 2.7980965745734676
+    },
+    "goal_z": {
+      "expected": 0.18,
+      "passed": false,
+      "value": 0.33557883501052854
+    },
+    "isaac_runtime_error": {
+      "expected": null,
+      "passed": false,
+      "value": {
+        "message": "V12 live command drifted: [[0.0, 0.0, 0.0]]",
+        "type": "AdapterFailure"
+      }
+    },
+    "isaac_runtime_pass": {
+      "expected": "PASS",
+      "passed": false,
+      "value": "INSTRUMENTATION_ERROR"
+    },
+    "no_base_teleport": {
+      "expected": 0.06,
+      "passed": true,
+      "value": 0.0229287450039207
+    },
+    "no_collision": {
+      "expected": 75.0,
+      "passed": true,
+      "value": 0.0
+    },
+    "no_termination": {
+      "expected": false,
+      "passed": true,
+      "value": false
+    },
+    "nonzero_commands": {
+      "expected": 300,
+      "passed": false,
+      "value": 176
+    },
+    "obstacle_detour": {
+      "expected": 0.0,
+      "passed": true,
+      "value": 3.0447967052459717
+    },
+    "obstacle_returns": {
+      "expected": 20,
+      "passed": true,
+      "value": 881
+    },
+    "origin_occupancy_errors": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "planner_failures": {
+      "expected": 5,
+      "passed": true,
+      "value": 0
+    },
+    "planner_successes": {
+      "expected": 2,
+      "passed": false,
+      "value": 1
+    },
+    "planner_wait_target": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "policy_rate": {
+      "expected": [
+        45.0,
+        55.0
+      ],
+      "passed": true,
+      "value": 50.00000111758712
+    },
+    "pose_dependent_sensor": {
+      "expected": 4.0,
+      "passed": false,
+      "value": 2.6631401588400996
+    },
+    "record_count": {
+      "expected": 1250,
+      "passed": false,
+      "value": 178
+    },
+    "root_height": {
+      "expected": [
+        0.3,
+        1.3
+      ],
+      "passed": true,
+      "value": [
+        0.391776442527771,
+        0.924266517162323
+      ]
+    },
+    "ros_body_pose_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": false,
+      "value": 7.901035281885909
+    },
+    "ros_body_pose_timestamps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "ros_cloud_points": {
+      "expected": 10,
+      "passed": true,
+      "value": 217
+    },
+    "ros_cloud_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": false,
+      "value": 7.900978492143941
+    },
+    "ros_cloud_timestamps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "ros_sensor_pose_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": false,
+      "value": 7.901107941484589
+    },
+    "ros_sensor_pose_timestamps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "ros_sensor_sync": {
+      "expected": 0.95,
+      "passed": true,
+      "value": 1.0
+    },
+    "ros_trajectories": {
+      "expected": 2,
+      "passed": false,
+      "value": 1
+    },
+    "rosbag_bytes": {
+      "expected": 10000,
+      "passed": true,
+      "value": 118784
+    },
+    "rosbag_metadata": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "sensor_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 10.000000223517423
+    },
+    "sequence_gaps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "sim_duration": {
+      "expected": 25.0,
+      "passed": false,
+      "value": 3.539999920874834
+    },
+    "stopped_command": {
+      "expected": 0.05,
+      "passed": false,
+      "value": 0.99998539686203
+    },
+    "stopped_motion": {
+      "expected": 0.15,
+      "passed": false,
+      "value": 1.0761701557967107
+    },
+    "telemetry_reconnects": {
+      "expected": 1,
+      "passed": true,
+      "value": 0
+    },
+    "threshold_identity": {
+      "expected": "974300faaa906c828e2df8065e9cb33531f3363f4afe2df0ecd3038c8228a904",
+      "passed": true,
+      "value": "974300faaa906c828e2df8065e9cb33531f3363f4afe2df0ecd3038c8228a904"
+    },
+    "transport_protocol_errors": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "unexpected_returns": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "v3_canonical_urdf_hash": {
+      "expected": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80",
+      "passed": true,
+      "value": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80"
+    },
+    "v3_depth_artifacts": {
+      "expected": 3,
+      "passed": true,
+      "value": {
+        "d435i_depth_frame_m.npy": true,
+        "d435i_depth_frame_mm.png": true,
+        "d435i_depth_preview.png": true
+      }
+    },
+    "v3_depth_dimensions": {
+      "expected": [
+        87,
+        58
+      ],
+      "passed": true,
+      "value": [
+        87,
+        58
+      ]
+    },
+    "v3_depth_finite": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "v3_depth_frame": {
+      "expected": "d435i_depth_optical_frame",
+      "passed": true,
+      "value": "d435i_depth_optical_frame"
+    },
+    "v3_depth_nonempty": {
+      "expected": 0.99,
+      "passed": true,
+      "value": 1.0
+    },
+    "v3_depth_obstacle": {
+      "expected": 20,
+      "passed": true,
+      "value": 4042
+    },
+    "v3_depth_pose_dependent": {
+      "expected": 4.0,
+      "passed": false,
+      "value": 2.668391403223493
+    },
+    "v3_depth_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 10.000000223517423
+    },
+    "v3_depth_records": {
+      "expected": 250,
+      "passed": false,
+      "value": 36
+    },
+    "v3_isaac_urdf_hash": {
+      "expected": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d",
+      "passed": true,
+      "value": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d"
+    },
+    "v3_lidar_frame": {
+      "expected": "mid360_scan_frame",
+      "passed": true,
+      "value": "mid360_scan_frame"
+    },
+    "v3_lidar_self_occlusion": {
+      "expected": 1,
+      "passed": true,
+      "value": 467
+    },
+    "v3_no_silent_default_mass": {
+      "expected": "pass",
+      "passed": true,
+      "value": {
+        "d435i_depth_optical_frame_mass_kg": 9.999999974752427e-07,
+        "expected_frame_mass_kg": 1e-06,
+        "mid360_scan_frame_mass_kg": 9.999999974752427e-07,
+        "status": "pass"
+      }
+    },
+    "v3_runtime_body_count": {
+      "expected": 24,
+      "passed": true,
+      "value": 24
+    },
+    "v3_runtime_collision_count": {
+      "expected": 29,
+      "passed": true,
+      "value": 29
+    },
+    "v3_runtime_fixed_joint_count": {
+      "expected": 11,
+      "passed": true,
+      "value": 11
+    },
+    "v3_runtime_joint_count": {
+      "expected": 23,
+      "passed": true,
+      "value": 23
+    },
+    "v3_runtime_mass": {
+      "expected": [
+        13.2817,
+        13.2819
+      ],
+      "passed": true,
+      "value": 13.281788810606713
+    },
+    "v3_runtime_movable_joint_count": {
+      "expected": 12,
+      "passed": true,
+      "value": 12
+    },
+    "v6_acceleration_limit": {
+      "expected": 0.5,
+      "passed": true,
+      "value": 0.5
+    },
+    "v6_complete_bspline_records": {
+      "expected": 2,
+      "passed": false,
+      "value": 1
+    },
+    "v6_course_identity": {
+      "expected": "forest_gen_nav_v6",
+      "passed": true,
+      "value": "forest_gen_nav_v6"
+    },
+    "v6_high_command_measured_speed_p75": {
+      "expected": 0.7,
+      "passed": true,
+      "value": 0.9878101831947919
+    },
+    "v6_high_command_samples": {
+      "expected": 20,
+      "passed": true,
+      "value": 105
+    },
+    "v6_overlay_hash": {
+      "expected": "613450bd7ee8939c78e3ff07433fd5b71f6547a5422e0b962e007bfcaf443be4",
+      "passed": true,
+      "value": "613450bd7ee8939c78e3ff07433fd5b71f6547a5422e0b962e007bfcaf443be4"
+    },
+    "v6_overlay_input_hashes": {
+      "expected": {
+        "metrics": "9c68dfb0e19ef940cc1747c980ff4fafa498fadf9c247acd04fb1fa43ab0345a",
+        "raw_video": "50f54f7c6fbd7fedb4ad4241ee286b5c200c81ded03ba82a8ae4c5ff255c73d9",
+        "ros_events": "4c4e69118e94989ecfac9523f1eca4aa572f6b8aec9c3d96dc931e645040c44e",
+        "run_identity": "32c3772b5b5cef2f305b560285c6d184c5be8fd08c9c194a0ff86e8b2e79a163"
+      },
+      "passed": true,
+      "value": {
+        "metrics": "9c68dfb0e19ef940cc1747c980ff4fafa498fadf9c247acd04fb1fa43ab0345a",
+        "raw_video": "50f54f7c6fbd7fedb4ad4241ee286b5c200c81ded03ba82a8ae4c5ff255c73d9",
+        "ros_events": "4c4e69118e94989ecfac9523f1eca4aa572f6b8aec9c3d96dc931e645040c44e",
+        "run_identity": "32c3772b5b5cef2f305b560285c6d184c5be8fd08c9c194a0ff86e8b2e79a163"
+      }
+    },
+    "v6_overlay_time_alignment": {
+      "expected": 150.0,
+      "passed": true,
+      "value": 33.168889
+    },
+    "v6_overlay_video": {
+      "expected": {
+        "minimum_bytes": 100000,
+        "minimum_frames": 425
+      },
+      "passed": false,
+      "value": {
+        "bytes": 576347,
+        "frame_count": 60,
+        "regular_file": true
+      }
+    },
+    "v6_proxy_bounds": {
+      "expected": 0.005,
+      "passed": true,
+      "value": 2.2447766490074628e-07
+    },
+    "v6_proxy_review_visibility": {
+      "expected": false,
+      "passed": true,
+      "value": {
+        "forest_proxy_000": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_001": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_002": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_003": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_004": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_005": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_006": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_007": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_008": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_009": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_010": {
+          "expected": false,
+          "visible_geometry_count": 0
+        }
+      }
+    },
+    "v6_rock_terrain_clearance": {
+      "expected": 0.01,
+      "passed": true,
+      "value": 0.014999999999999902
+    },
+    "v6_static_geometry_gate": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "v6_synchronized_forward_limits": {
+      "expected": 1.0,
+      "passed": true,
+      "value": {
+        "controller_max_vx_mps": 1.0,
+        "foxy_bridge_effective_max_vx_mps": 1.0,
+        "isaac_receiver_max_vx_mps": 1.0,
+        "scan_manager_max_acc_mps2": 0.5,
+        "scan_manager_max_vel_mps": 1.0,
+        "scan_optimizer_max_vel_mps": 1.0
+      }
+    },
+    "video_bytes": {
+      "expected": 100000,
+      "passed": true,
+      "value": 2176593
+    },
+    "video_duration": {
+      "expected": 25.0,
+      "passed": false,
+      "value": 3.5294117647058822
+    },
+    "video_frames": {
+      "expected": 425,
+      "passed": false,
+      "value": 60
+    },
+    "video_hash": {
+      "expected": "50f54f7c6fbd7fedb4ad4241ee286b5c200c81ded03ba82a8ae4c5ff255c73d9",
+      "passed": true,
+      "value": "50f54f7c6fbd7fedb4ad4241ee286b5c200c81ded03ba82a8ae4c5ff255c73d9"
+    },
+    "video_regular_file": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "watchdog_events": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    }
+  },
+  "claim": "single-seed Foxy-SCAN to V12-policy Lite3-Pro-sensor-rig 1.0 m/s forest simulation with audited geometry and planned-versus-actual trajectory review overlay",
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "command_age_p95_ms": 36.7250838,
+    "detour_min_abs_y_m": 3.0447967052459717,
+    "final_position_world_m": [
+      -2.2977185249328613,
+      3.045994520187378,
+      0.5144211649894714
+    ],
+    "forest_navigation_enabled": true,
+    "goal_xy_error_m": 2.7980965745734676,
+    "max_nonfoot_contact_n": 0.0,
+    "policy_rate_hz": 50.00000111758712,
+    "rosbag_bytes": 118784,
+    "sensor_rate_hz": 10.000000223517423,
+    "video_sha256": "50f54f7c6fbd7fedb4ad4241ee286b5c200c81ded03ba82a8ae4c5ff255c73d9"
+  }
+}

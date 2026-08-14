@@ -1,6 +1,7 @@
 # SCAN Forest V5 Closed-Loop Candidate
 
-Status: frozen automated gate PASS; human review pending.
+Status: frozen automated gate PASS; human review change-requested and
+superseded by V6.
 
 This bundle responds to the V4 human change request with one deliberately
 harder run: the V12 `model_149999` policy carries the current Lite3 Pro URDF,
@@ -47,9 +48,12 @@ depth arrays are finite `58 x 87` data, and all 50 JSON/JSONL files parse.
 The frozen acceptance evaluator was rerun locally and produced a byte-identical
 PASS report (`30e9e042e...`).
 
-The directly reviewable raw candidate is
-`runs/results/forest_v5_review_candidate01/closed_loop.mp4`. Human-review boxes
-remain deliberately unchecked.
+Dr Sun reviewed this candidate and requested a 1.0 m/s target, correction of
+the visible rock/proxy or rock/terrain defect, and simultaneous planned-versus-
+actual trajectory display. V5 therefore remains immutable automated evidence
+but is not the current review candidate. Those changes are implemented only in
+the separate V6 bundle; no V5 video, report, threshold, or run identity was
+rewritten.
 
 The wrapper defaults to the candidate dry-run threshold. Reproducing the
 frozen review run therefore requires the explicit environment override

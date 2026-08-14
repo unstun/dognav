@@ -124,6 +124,13 @@ class AcceptanceMonitorNode(Node):
 
     def _bspline(self, message: Bspline) -> None:
         receipt = time.monotonic_ns()
+        start_time_ns = int(message.start_time.sec) * 1_000_000_000 + int(
+            message.start_time.nanosec
+        )
+        control_points = [
+            [float(point.x), float(point.y), float(point.z)]
+            for point in message.pos_pts
+        ]
         with self._lock:
             self._accumulator.observe_bspline(receipt, message.traj_id)
             self._write(
@@ -131,7 +138,13 @@ class AcceptanceMonitorNode(Node):
                     "kind": "bspline",
                     "receipt_monotonic_ns": receipt,
                     "trajectory_id": int(message.traj_id),
-                    "control_point_count": len(message.pos_pts),
+                    "start_time_ns": start_time_ns,
+                    "order": int(message.order),
+                    "knots": [float(value) for value in message.knots],
+                    "control_points": control_points,
+                    "control_point_count": len(control_points),
+                    "yaw_points": [float(value) for value in message.yaw_pts],
+                    "yaw_dt": float(message.yaw_dt),
                 }
             )
 

@@ -11,6 +11,8 @@ from lite3_sim_bridge.isaac_adapter_core import (
     rotation_matrix_from_wxyz,
     schedule_duration,
     schedule_state,
+    terrain_seating_for_bounds,
+    terrain_seating_for_mesh_support,
     world_hits_to_sensor_points,
 )
 
@@ -149,6 +151,65 @@ class IsaacAdapterCoreTest(unittest.TestCase):
             point_to_segment_distance_2d((1.0, 1.0), (0.0, 0.0), (0.0, 0.0)),
             math.sqrt(2.0),
         )
+
+    def test_terrain_seating_uses_highest_sample_and_local_minimum(self):
+        result = terrain_seating_for_bounds(
+            origin_xy=(2.0, 3.0),
+            local_bounds_min=(-1.0, -0.5, -0.40),
+            local_bounds_max=(1.0, 0.5, 0.60),
+            terrain_height=lambda x, y: 0.20 + 0.10 * x + 0.05 * y,
+            samples_per_axis=3,
+            clearance_m=0.02,
+        )
+        self.assertEqual(result["sample_count"], 9)
+        self.assertAlmostEqual(result["maximum_terrain_height_m"], 0.675)
+        self.assertAlmostEqual(result["required_origin_z_m"], 1.095)
+        self.assertAlmostEqual(result["seated_bounds_min_z_m"], 0.695)
+
+    def test_terrain_seating_rejects_invalid_bounds_or_height(self):
+        with self.assertRaisesRegex(ValueError, "bounds"):
+            terrain_seating_for_bounds(
+                (0.0, 0.0),
+                (1.0, 0.0, 0.0),
+                (0.0, 1.0, 1.0),
+                lambda _x, _y: 0.0,
+            )
+        with self.assertRaisesRegex(ValueError, "terrain height"):
+            terrain_seating_for_bounds(
+                (0.0, 0.0),
+                (-1.0, -1.0, -1.0),
+                (1.0, 1.0, 1.0),
+                lambda _x, _y: float("nan"),
+            )
+
+    def test_mesh_support_seating_uses_real_low_surface_points(self):
+        result = terrain_seating_for_mesh_support(
+            origin_xy=(2.0, 3.0),
+            local_support_points=(
+                (-0.2, -0.1, -0.40),
+                (0.3, 0.2, -0.39),
+            ),
+            terrain_height=lambda x, y: 0.10 * x + 0.05 * y,
+            clearance_m=0.02,
+        )
+        self.assertEqual(result["method"], "lowest_mesh_vertex_band")
+        self.assertEqual(result["sample_count"], 2)
+        self.assertAlmostEqual(result["required_origin_z_m"], 0.80)
+        self.assertAlmostEqual(result["minimum_support_clearance_m"], 0.02)
+        self.assertAlmostEqual(
+            result["contact_support_point_world_xyz_m"][2],
+            result["contact_terrain_height_m"] + 0.02,
+        )
+
+    def test_mesh_support_seating_rejects_missing_or_nonfinite_points(self):
+        with self.assertRaisesRegex(ValueError, "must not be empty"):
+            terrain_seating_for_mesh_support(
+                (0.0, 0.0), (), lambda _x, _y: 0.0
+            )
+        with self.assertRaisesRegex(ValueError, "finite"):
+            terrain_seating_for_mesh_support(
+                (0.0, 0.0), ((0.0, 0.0, float("nan")),), lambda _x, _y: 0.0
+            )
 
     def test_command_visibility(self):
         observation = [0.0] * 20

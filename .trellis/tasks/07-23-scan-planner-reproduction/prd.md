@@ -86,6 +86,26 @@ start-to-goal line. Avoidance must be caused by SCAN trajectory generation and
 replanning from MID-360-like point data; a pre-scripted yaw sequence cannot
 satisfy V5.
 
+## V6 One-Metre-Per-Second Review Decision
+
+On 2026-08-14, Dr Sun reviewed the V5 candidate and requested a new V6 rather
+than accepting V5: raise the clear-path target to 1.0 m/s, correct the apparent
+rock/terrain or rock/proxy interpenetration visible in the video, and show the
+SCAN planned trajectory together with the physical Lite3 root trajectory. V5
+remains immutable evidence and is recorded as human change-requested. V6 keeps
+the pinned V12 `model_149999`, sensor-rig URDFs, forest seed, Foxy boundary,
+SCAN algorithm, and physical-policy loop; it is a new simulation candidate,
+not a relabeling or overwrite of V5.
+
+The V6 automated result was frozen on 2026-08-14 after two same-input passing
+dry runs. `forest_v6_review_candidate01` passed 100/100 but was preserved and
+superseded because its run identity retained an obsolete geometry-method
+description. The metadata-corrected `forest_v6_review_candidate02` rerun also
+passed 100/100 with a 0.967 m/s high-command physical-speed P75, 0.831 m
+blocker-centre clearance, 0.039 m goal error, real-mesh rock support evidence,
+hidden registered proxies, and a hashed planned-versus-actual overlay.
+AC30--AC33 are satisfied; AC34 remains entirely human-owned.
+
 ## Requirements
 
 - **R1 — Source provenance.** Preserve the selected SCAN revision as an
@@ -206,6 +226,33 @@ satisfy V5.
   configs, hashes, binaries, logs, ROS bag, raw metrics, depth evidence, and a
   directly viewable MP4 locally. The strongest claim remains a single-seed
   project-integrated forest simulation pending human review.
+- **R29 — V5 review disposition.** Preserve every V5 artifact and record Dr
+  Sun's visual change request. Do not edit the V5 video, thresholds, reports,
+  or run identity to make it appear to satisfy V6.
+- **R30 — V6 speed contract.** Use a 1.0 m/s clear-path forward ceiling at the
+  SCAN optimizer, trajectory follower, Foxy bridge, and Isaac receiver while
+  preserving the checkpoint, observation/action ordering, policy gains,
+  control rate, and 0.5 m/s2 acceleration bound. Record that 1.0 m/s is the
+  declared V12 obstacle-terrain training boundary, not a previously validated
+  navigation speed. Commands may and should slow for turns, braking, and
+  obstacle clearance.
+- **R31 — Forest geometry seating.** Diagnose the V5 visual defect from the
+  runtime stage before changing placement. V6 must record source-visual world
+  bounds, paired collision/sensor-proxy bounds, sampled terrain support
+  heights, and clearance. Final review rendering must not expose a simplified
+  proxy through the source rock or leave a source visual visibly below the
+  terrain, while the registered proxy remains active for PhysX and both
+  simulated sensors.
+- **R32 — Trajectory provenance and display.** Record complete SCAN B-spline
+  order, knots, control points, trajectory ID, and timing plus the Isaac PhysX
+  root positions used by each video frame. Produce a review MP4 that displays
+  the sampled active SCAN path and accumulated physical root path in distinct,
+  labeled colours. A hand-drawn or goal-to-start interpolation is forbidden.
+- **R33 — V6 evidence and claim.** Preserve diagnosis/preflight failures,
+  obtain at least two identical-input passing dry runs before freezing V6
+  thresholds, then run one uninterrupted review candidate. Sync the raw video,
+  trajectory-overlay video, trace data, geometry audit, ROS bag, metrics,
+  configs, and hashes locally. Automated PASS never satisfies human review.
 
 ## Acceptance Criteria
 
@@ -314,9 +361,30 @@ satisfy V5.
   candidate have complete local/remote hash parity, decoded MP4, ROS bag,
   planner log, command/action/contact trace, terrain/filter identity, and
   machine-readable acceptance report.
-- [ ] **AC29 — V5 human review:** Dr Sun watches the complete V5 MP4 and
-  explicitly accepts or rejects its speed, avoidance path, robot appearance,
-  and physical motion. Automated checks do not satisfy this criterion.
+- [x] **AC29 — V5 human review:** Dr Sun reviewed V5 and requested a V6 with a
+  1.0 m/s target, corrected rock/proxy or rock/terrain appearance, and visible
+  planned-versus-actual trajectories. V5 is retained as change-requested, not
+  accepted.
+- [x] **AC30 — V6 speed:** all four forward-command boundaries equal 1.0 m/s;
+  the trace contains a planner command of at least 0.90 m/s and the physical
+  response during low-yaw high-command samples satisfies the threshold frozen
+  before the final candidate, with no policy, collision, support, watchdog, or
+  finite-state failure.
+- [x] **AC31 — V6 geometry:** a runtime geometry report proves every reviewed
+  rock's source visual is seated against sampled terrain without visible
+  penetration, its collision/sensor proxy is registered and active, and no
+  simplified proxy is visible through the final source visual.
+- [x] **AC32 — V6 trajectory display:** the review video simultaneously shows
+  a labeled sampled SCAN B-spline and labeled accumulated Isaac PhysX root
+  path; both are reproducible from hashed raw records and synchronized to the
+  displayed run.
+- [x] **AC33 — V6 evidence:** two identical-input passing dry runs and one
+  frozen candidate have complete local/remote hash parity, decoded raw and
+  overlay MP4s, ROS bag, complete B-spline records, root trace, geometry audit,
+  speed evidence, collision/goal outcome, and machine-readable acceptance.
+- [ ] **AC34 — V6 human review:** Dr Sun watches the complete V6 overlay MP4
+  and explicitly accepts or rejects its speed, obstacle avoidance, terrain and
+  obstacle appearance, trajectory agreement, and physical motion.
 
 ## Stop Conditions
 

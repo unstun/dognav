@@ -34,4 +34,12 @@ TEST(TrajectoryProgress, AdvancesWhileRobotTracksAndClampsAtDuration)
   EXPECT_FALSE(ending.frozen);
   EXPECT_DOUBLE_EQ(ending.next_time, 4.8);
 }
+
+TEST(TrajectoryProgress, FinishedStateLatchesAfterEnteringGoalTolerance)
+{
+  EXPECT_FALSE(shouldLatchTrajectoryFinished(false, 6.9, 7.0, 0.05, 0.15));
+  EXPECT_FALSE(shouldLatchTrajectoryFinished(false, 7.0, 7.0, 0.16, 0.15));
+  EXPECT_TRUE(shouldLatchTrajectoryFinished(false, 7.0, 7.0, 0.14, 0.15));
+  EXPECT_TRUE(shouldLatchTrajectoryFinished(true, 7.0, 7.0, 0.30, 0.15));
+}
 }  // namespace scan_planner

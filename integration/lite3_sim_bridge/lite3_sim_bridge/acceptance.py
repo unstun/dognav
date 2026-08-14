@@ -5,6 +5,7 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import re
 from typing import Dict, Iterable, List, Mapping, Sequence
 
 from .isaac_adapter_core import point_to_segment_distance_2d
@@ -43,6 +44,27 @@ def _rate(rows: Sequence[Mapping[str, object]]) -> float:
     return 0.0 if len(rows) < 2 or duration <= 0.0 else (len(rows) - 1) / duration
 
 
+def _key_value_lines(text: str) -> Mapping[str, str]:
+    values = {}
+    for line in text.splitlines():
+        if "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        values[key.strip()] = value.strip()
+    return values
+
+
+def _yaml_numeric_value(text: str, key: str) -> float:
+    pattern = re.compile(
+        rf"^\s*{re.escape(key)}:\s*([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?)\s*(?:#.*)?$"
+    )
+    matches = [pattern.match(line) for line in text.splitlines()]
+    values = [float(match.group(1)) for match in matches if match is not None]
+    if len(values) != 1 or not math.isfinite(values[0]):
+        raise ValueError(f"expected one finite YAML value for {key}, got {values}")
+    return values[0]
+
+
 def evaluate_acceptance(
     thresholds: Mapping[str, object],
     metrics: Sequence[Mapping[str, object]],
@@ -57,6 +79,13 @@ def evaluate_acceptance(
     depth_metrics: Sequence[Mapping[str, object]] = None,
     runtime_composition: Mapping[str, object] = None,
     depth_artifact_root: Path = None,
+    overlay_video_path: Path = None,
+    trajectory_events: Sequence[Mapping[str, object]] = None,
+    trajectory_review_metadata: Mapping[str, object] = None,
+    trajectory_review_input_sha256: Mapping[str, str] = None,
+    effective_input_text: str = None,
+    planner_config_text: str = None,
+    controller_config_text: str = None,
 ) -> Dict[str, object]:
     limits = thresholds["thresholds"]
     goal = thresholds["goal_world_m"]
@@ -630,6 +659,262 @@ def evaluate_acceptance(
             forest["minimum_terrain_height_range_m"],
         )
 
+    v6 = thresholds.get("v6_review")
+    if v6 is not None:
+        expected_limit = float(v6["expected_forward_limit_mps"])
+        effective_values = _key_value_lines(effective_input_text or "")
+
+        def numeric_or_none(text, key):
+            if text is None:
+                return None
+            try:
+                return _yaml_numeric_value(text, key)
+            except ValueError:
+                return None
+
+        planner_manager_limit = numeric_or_none(
+            planner_config_text, "manager.max_vel"
+        )
+        planner_optimizer_limit = numeric_or_none(
+            planner_config_text, "optimization.max_vel"
+        )
+        planner_acceleration_limit = numeric_or_none(
+            planner_config_text, "manager.max_acc"
+        )
+        controller_limit = numeric_or_none(controller_config_text, "max_vx")
+        try:
+            transport_limit = float(effective_values.get("max_vx", "nan"))
+        except ValueError:
+            transport_limit = math.nan
+        isaac_limits = [
+            float(value) for value in run_identity.get("command_limits", [])
+        ]
+        isaac_limit = isaac_limits[0] if len(isaac_limits) == 3 else None
+        speed_contract = {
+            "scan_manager_max_vel_mps": planner_manager_limit,
+            "scan_optimizer_max_vel_mps": planner_optimizer_limit,
+            "controller_max_vx_mps": controller_limit,
+            "foxy_bridge_effective_max_vx_mps": transport_limit,
+            "isaac_receiver_max_vx_mps": isaac_limit,
+            "scan_manager_max_acc_mps2": planner_acceleration_limit,
+        }
+        speed_limits = (
+            planner_manager_limit,
+            planner_optimizer_limit,
+            controller_limit,
+            transport_limit,
+            isaac_limit,
+        )
+        add(
+            "v6_course_identity",
+            run_identity.get("course", {}).get("name") == v6["expected_course"],
+            run_identity.get("course", {}).get("name"),
+            v6["expected_course"],
+        )
+        add(
+            "v6_synchronized_forward_limits",
+            all(
+                value is not None
+                and math.isfinite(float(value))
+                and abs(float(value) - expected_limit) <= 1.0e-9
+                for value in speed_limits
+            ),
+            speed_contract,
+            expected_limit,
+        )
+        add(
+            "v6_acceleration_limit",
+            planner_acceleration_limit is not None
+            and abs(
+                planner_acceleration_limit
+                - float(v6["planner_acceleration_limit_mps2"])
+            )
+            <= 1.0e-9,
+            planner_acceleration_limit,
+            v6["planner_acceleration_limit_mps2"],
+        )
+
+        high_command_rows = [
+            row
+            for row in metrics
+            if float(row["applied_command"][0])
+            >= float(v6["high_command_minimum_vx_mps"])
+            and abs(float(row["applied_command"][2]))
+            <= float(v6["high_command_maximum_abs_yaw_rps"])
+        ]
+        high_command_speeds = [
+            math.hypot(
+                float(row["root_lin_vel_w"][0]),
+                float(row["root_lin_vel_w"][1]),
+            )
+            for row in high_command_rows
+        ]
+        high_speed_p75 = (
+            _percentile(high_command_speeds, 0.75) if high_command_speeds else 0.0
+        )
+        add(
+            "v6_high_command_samples",
+            len(high_command_rows)
+            >= int(v6["minimum_high_command_sample_count"]),
+            len(high_command_rows),
+            v6["minimum_high_command_sample_count"],
+        )
+        add(
+            "v6_high_command_measured_speed_p75",
+            high_speed_p75
+            >= float(v6["minimum_high_command_measured_speed_p75_mps"]),
+            high_speed_p75,
+            v6["minimum_high_command_measured_speed_p75_mps"],
+        )
+
+        composition = runtime_composition or {}
+        geometry = composition.get("forest_scene", {}).get(
+            "static_geometry_checks"
+        ) or {}
+        proxy_records = list(geometry.get("proxy_records", []))
+        rock_records = [row for row in proxy_records if row.get("kind") == "Rock"]
+        minimum_rock_clearance = min(
+            (
+                float(row["source_visual_terrain_clearance_m"])
+                for row in rock_records
+                if row.get("source_visual_terrain_clearance_m") is not None
+            ),
+            default=-math.inf,
+        )
+        maximum_proxy_bounds_error = max(
+            (
+                float(row.get("proxy_bounds_max_error_m", math.inf))
+                for row in proxy_records
+            ),
+            default=math.inf,
+        )
+        expected_proxy_visibility = bool(v6["expected_proxy_render_visible"])
+        proxy_render_modes_match = bool(proxy_records) and all(
+            bool(row.get("expected_render_visible")) == expected_proxy_visibility
+            and bool(row.get("visible_geometry_prim_paths"))
+            == expected_proxy_visibility
+            and bool(row.get("render_visibility_matches"))
+            for row in proxy_records
+        )
+        add(
+            "v6_static_geometry_gate",
+            bool(geometry.get("passed")),
+            geometry.get("passed"),
+            True,
+        )
+        add(
+            "v6_rock_terrain_clearance",
+            bool(rock_records)
+            and minimum_rock_clearance
+            >= float(v6["minimum_rock_terrain_clearance_m"]),
+            minimum_rock_clearance,
+            v6["minimum_rock_terrain_clearance_m"],
+        )
+        add(
+            "v6_proxy_bounds",
+            bool(proxy_records)
+            and maximum_proxy_bounds_error
+            <= float(v6["maximum_proxy_bounds_error_m"]),
+            maximum_proxy_bounds_error,
+            v6["maximum_proxy_bounds_error_m"],
+        )
+        add(
+            "v6_proxy_review_visibility",
+            proxy_render_modes_match,
+            {
+                row.get("name"): {
+                    "expected": row.get("expected_render_visible"),
+                    "visible_geometry_count": len(
+                        row.get("visible_geometry_prim_paths", [])
+                    ),
+                }
+                for row in proxy_records
+            },
+            expected_proxy_visibility,
+        )
+
+        complete_bspline_events = []
+        for event in trajectory_events or []:
+            if event.get("kind") != "bspline":
+                continue
+            try:
+                order = int(event["order"])
+                knots = [float(value) for value in event["knots"]]
+                points = [
+                    [float(value) for value in point]
+                    for point in event["control_points"]
+                ]
+                complete = (
+                    order >= 1
+                    and len(points) >= order + 1
+                    and len(knots) == len(points) + order + 1
+                    and all(len(point) == 3 for point in points)
+                    and all(
+                        math.isfinite(value)
+                        for value in knots
+                        + [coordinate for point in points for coordinate in point]
+                    )
+                    and int(event["start_time_ns"]) >= 0
+                )
+            except (KeyError, TypeError, ValueError):
+                complete = False
+            if complete:
+                complete_bspline_events.append(event)
+        add(
+            "v6_complete_bspline_records",
+            len(complete_bspline_events)
+            >= int(v6["minimum_complete_bspline_records"]),
+            len(complete_bspline_events),
+            v6["minimum_complete_bspline_records"],
+        )
+
+        review_metadata = trajectory_review_metadata or {}
+        review_output = review_metadata.get("output", {})
+        review_mapping = review_metadata.get("mapping", {})
+        overlay_regular = overlay_video_path is not None and overlay_video_path.is_file()
+        overlay_bytes = overlay_video_path.stat().st_size if overlay_regular else 0
+        overlay_hash = _sha256(overlay_video_path) if overlay_regular else None
+        add(
+            "v6_overlay_video",
+            overlay_regular
+            and overlay_bytes >= int(v6["minimum_overlay_video_bytes"])
+            and int(review_output.get("frame_count", 0))
+            >= int(v6["minimum_overlay_video_frames"]),
+            {
+                "regular_file": overlay_regular,
+                "bytes": overlay_bytes,
+                "frame_count": review_output.get("frame_count"),
+            },
+            {
+                "minimum_bytes": v6["minimum_overlay_video_bytes"],
+                "minimum_frames": v6["minimum_overlay_video_frames"],
+            },
+        )
+        add(
+            "v6_overlay_hash",
+            overlay_hash is not None and overlay_hash == review_output.get("sha256"),
+            overlay_hash,
+            review_output.get("sha256"),
+        )
+        add(
+            "v6_overlay_input_hashes",
+            bool(trajectory_review_input_sha256)
+            and review_metadata.get("input_sha256")
+            == dict(trajectory_review_input_sha256),
+            review_metadata.get("input_sha256"),
+            trajectory_review_input_sha256,
+        )
+        alignment_error = float(
+            review_mapping.get("maximum_plan_pose_alignment_error_ms", math.inf)
+        )
+        add(
+            "v6_overlay_time_alignment",
+            alignment_error
+            <= float(v6["maximum_plan_pose_alignment_error_ms"]),
+            alignment_error,
+            v6["maximum_plan_pose_alignment_error_ms"],
+        )
+
     passed = all(value["passed"] for value in checks.values())
     return {
         "schema_version": 1,
@@ -665,9 +950,31 @@ def main(argv=None) -> int:
     parser.add_argument("--depth-metrics", type=Path)
     parser.add_argument("--runtime-composition", type=Path)
     parser.add_argument("--depth-artifact-root", type=Path)
+    parser.add_argument("--overlay-video", type=Path)
+    parser.add_argument("--trajectory-events", type=Path)
+    parser.add_argument("--trajectory-review-metadata", type=Path)
+    parser.add_argument("--effective-input", type=Path)
+    parser.add_argument("--planner-config", type=Path)
+    parser.add_argument("--controller-config", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args(argv)
     thresholds = json.loads(args.thresholds.read_text(encoding="utf-8"))
+    trajectory_input_hashes = None
+    if args.trajectory_review_metadata is not None:
+        required_review_inputs = (
+            args.trajectory_events,
+            args.metrics,
+            args.run_identity,
+            args.video,
+        )
+        if any(path is None or not path.is_file() for path in required_review_inputs):
+            raise SystemExit("trajectory review metadata requires all raw input files")
+        trajectory_input_hashes = {
+            "raw_video": _sha256(args.video),
+            "ros_events": _sha256(args.trajectory_events),
+            "metrics": _sha256(args.metrics),
+            "run_identity": _sha256(args.run_identity),
+        }
     report = evaluate_acceptance(
         thresholds,
         _load_jsonl(args.metrics),
@@ -686,6 +993,35 @@ def main(argv=None) -> int:
             else json.loads(args.runtime_composition.read_text(encoding="utf-8"))
         ),
         args.depth_artifact_root,
+        args.overlay_video,
+        (
+            None
+            if args.trajectory_events is None
+            else _load_jsonl(args.trajectory_events)
+        ),
+        (
+            None
+            if args.trajectory_review_metadata is None
+            else json.loads(
+                args.trajectory_review_metadata.read_text(encoding="utf-8")
+            )
+        ),
+        trajectory_input_hashes,
+        (
+            None
+            if args.effective_input is None
+            else args.effective_input.read_text(encoding="utf-8")
+        ),
+        (
+            None
+            if args.planner_config is None
+            else args.planner_config.read_text(encoding="utf-8")
+        ),
+        (
+            None
+            if args.controller_config is None
+            else args.controller_config.read_text(encoding="utf-8")
+        ),
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")

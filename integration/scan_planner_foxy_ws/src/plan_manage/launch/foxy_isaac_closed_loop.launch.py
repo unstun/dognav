@@ -26,6 +26,7 @@ def generate_launch_description():
     telemetry_port = LaunchConfiguration("telemetry_port")
     command_host = LaunchConfiguration("command_host")
     command_port = LaunchConfiguration("command_port")
+    bridge_max_vx = LaunchConfiguration("bridge_max_vx")
     planner_config = LaunchConfiguration("planner_config")
     controller_config = LaunchConfiguration("controller_config")
     enable_monitor = LaunchConfiguration("enable_monitor")
@@ -38,6 +39,7 @@ def generate_launch_description():
             DeclareLaunchArgument("telemetry_port", default_value="46000"),
             DeclareLaunchArgument("command_host", default_value="127.0.0.1"),
             DeclareLaunchArgument("command_port", default_value="46001"),
+            DeclareLaunchArgument("bridge_max_vx", default_value="0.75"),
             DeclareLaunchArgument(
                 "planner_config", default_value=planner_config_default
             ),
@@ -67,6 +69,7 @@ def generate_launch_description():
                         ),
                         "command_host": command_host,
                         "command_port": ParameterValue(command_port, value_type=int),
+                        "max_vx": ParameterValue(bridge_max_vx, value_type=float),
                     },
                 ],
             ),

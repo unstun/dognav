@@ -344,6 +344,60 @@ remains unchecked until Dr Sun reviews the video.
 **Gate 19:** AC24--AC28 pass before V5 is a review candidate; AC29 remains a
 human-only decision.
 
+## Phase 20 — Reopen From V5 Human Feedback
+
+- [x] Record V5 as human change-requested and preserve every V5 artifact.
+- [x] Create a new dated V6 local/remote evidence boundary and return the task
+  to `in_progress`, excluding all unrelated dirty paths.
+- [x] Reproduce the visible rock defect from V5 frames and add a runtime stage
+  probe for source-visual bounds, proxy bounds, sampled support heights, and
+  visibility before selecting the fix.
+- [x] Freeze the V6 invariant set: V12 weights/contracts, sensor-rig URDFs,
+  forest commits/seed, start/goal, and SCAN algorithm remain unchanged.
+
+## Phase 21 — Implement V6 Speed, Geometry, and Trace Display
+
+- [x] Add separate V6 planner/controller configs and explicit bridge/Isaac
+  limits so all four forward ceilings are 1.0 m/s while acceleration stays
+  0.5 m/s2; retain V5 defaults and files unchanged.
+- [x] Implement and test terrain-support sampling plus source-visual/proxy
+  registration. Remove simplified proxy geometry from final viewport
+  rendering without removing collision or ray-cast participation.
+- [x] Extend the Foxy monitor to persist complete B-spline values and timing;
+  preserve the compact V5 summary contract.
+- [x] Add a deterministic trajectory-overlay renderer and tests for B-spline
+  sampling, time alignment, actual-root accumulation, colour/legend identity,
+  video decode, and provenance sidecar hashes.
+- [x] Extend acceptance for synchronized four-layer speed limits, high-command
+  physical response, geometry seating, trajectory-record completeness, and
+  raw/overlay video presence.
+- [x] Run targeted Python, C++, launch, shell, and evidence tests locally.
+
+## Phase 22 — Remote V6 Qualification and Candidate
+
+- [x] Sync only task-owned V6 source/configuration to a new 5070 Ti execution
+  copy and rebuild the changed Foxy workspace in the pinned container.
+- [x] Run and preserve a geometry/overlay instrumentation preflight, followed
+  by a short 1.0 m/s physical policy response preflight.
+- [x] Run at least two identical-input forest dry runs; compare input and
+  generated-geometry hashes and inspect raw plus overlay frames.
+- [x] Freeze V6 thresholds before the final run, then execute one uninterrupted
+  candidate with SCAN, ROS bag, dual sensors, policy/PhysX, raw video, complete
+  path traces, and derived overlay video.
+
+## Phase 23 — Sync, Check, Commit, and Human Review
+
+- [x] Copy every V6 artifact locally and verify remote/local hashes, structured
+  records, raw/overlay video decode, overlay provenance, geometry audit, and
+  local acceptance re-evaluation.
+- [x] Run `trellis-check`, update durable specs only for verified contracts,
+  review the owned diff, and commit without staging unrelated research paths.
+- [x] Set the task back to `review` and deliver the actual V6 overlay MP4 plus
+  raw MP4 and human checklist. Do not archive or call V6 accepted before AC34.
+
+**Gate 23:** AC30--AC33 pass before V6 is a review candidate; AC34 remains a
+human-only decision.
+
 ## Planned Validation Matrix
 
 | Layer | Required evidence | Failure response |

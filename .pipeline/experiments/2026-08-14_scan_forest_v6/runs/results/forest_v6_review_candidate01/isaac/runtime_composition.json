@@ -1,0 +1,5394 @@
+{
+  "candidate": "V12 model_149999 on Lite3 Pro sensor rig v6 1mps SCAN forest navigation",
+  "configured_robot_asset": {
+    "asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/sensor_rig/urdf/lite3_pro_sensor_rig_real_with_interface_isaac.urdf",
+    "asset_sha256": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d",
+    "canonical_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/sensor_rig/urdf/lite3_pro_sensor_rig_real_with_interface.urdf",
+    "canonical_asset_sha256": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80",
+    "canonical_urdf_contract": {
+      "collision_count": 29,
+      "collision_count_by_link": {
+        "FL_FOOT": 1,
+        "FL_HIP": 1,
+        "FL_SHANK": 2,
+        "FL_THIGH": 1,
+        "FR_FOOT": 1,
+        "FR_HIP": 1,
+        "FR_SHANK": 2,
+        "FR_THIGH": 1,
+        "HL_FOOT": 1,
+        "HL_HIP": 1,
+        "HL_SHANK": 2,
+        "HL_THIGH": 1,
+        "HR_FOOT": 1,
+        "HR_HIP": 1,
+        "HR_SHANK": 2,
+        "HR_THIGH": 1,
+        "TORSO": 2,
+        "d435i_body_link": 1,
+        "d435i_depth_optical_frame": 0,
+        "mid360_body_link": 1,
+        "mid360_scan_frame": 0,
+        "pro_interface_link": 2,
+        "s410_guard_link": 2,
+        "sensor_carrier_link": 1
+      },
+      "fixed_joint_count": 11,
+      "inertia_by_link_kg_m2": {
+        "FL_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "FL_HIP": {
+          "ixx": 0.0003949,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0004472
+        },
+        "FL_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "FL_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "FR_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "FR_HIP": {
+          "ixx": 0.0004472,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0003949
+        },
+        "FR_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "FR_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "HL_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "HL_HIP": {
+          "ixx": 0.0003949,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0004472
+        },
+        "HL_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "HL_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "HR_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "HR_HIP": {
+          "ixx": 0.0004472,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0003949
+        },
+        "HR_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "HR_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "TORSO": {
+          "ixx": 0.02456,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.05518,
+          "iyz": 0.0,
+          "izz": 0.07016
+        },
+        "d435i_body_link": {
+          "ixx": 5.453125e-05,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 7.8125e-06,
+          "iyz": 0.0,
+          "izz": 5.453125e-05
+        },
+        "mid360_body_link": {
+          "ixx": 0.000171031883333,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.000171031883333,
+          "iyz": 0.0,
+          "izz": 0.0001755572
+        },
+        "pro_interface_link": {
+          "ixx": 0.00101736627509,
+          "ixy": 5.43953197243e-06,
+          "ixz": 0.0,
+          "iyy": 0.00301082812111,
+          "iyz": 0.0,
+          "izz": 0.0036584443962
+        },
+        "s410_guard_link": {
+          "ixx": 2.51961100563e-05,
+          "ixy": -6.6007420766e-10,
+          "ixz": 2.00507891254e-09,
+          "iyy": 3.6203511268e-05,
+          "iyz": -2.4761591556e-10,
+          "izz": 3.64025360506e-05
+        },
+        "sensor_carrier_link": {
+          "ixx": 7.79273597954e-05,
+          "ixy": -2.17571306983e-08,
+          "ixz": 1.06363512756e-05,
+          "iyy": 0.000147850910354,
+          "iyz": 1.03899494504e-08,
+          "izz": 0.000213643326172
+        }
+      },
+      "joint_count": 23,
+      "link_count": 24,
+      "links_without_inertial": [
+        "mid360_scan_frame",
+        "d435i_depth_optical_frame"
+      ],
+      "mass_by_link_kg": {
+        "FL_FOOT": 0.02,
+        "FL_HIP": 0.55,
+        "FL_SHANK": 0.153,
+        "FL_THIGH": 0.86,
+        "FR_FOOT": 0.02,
+        "FR_HIP": 0.55,
+        "FR_SHANK": 0.153,
+        "FR_THIGH": 0.86,
+        "HL_FOOT": 0.02,
+        "HL_HIP": 0.55,
+        "HL_SHANK": 0.153,
+        "HL_THIGH": 0.86,
+        "HR_FOOT": 0.02,
+        "HR_HIP": 0.55,
+        "HR_SHANK": 0.153,
+        "HR_THIGH": 0.86,
+        "TORSO": 5.6056,
+        "d435i_body_link": 0.075,
+        "mid360_body_link": 0.265,
+        "pro_interface_link": 0.8874,
+        "s410_guard_link": 0.0255077059569,
+        "sensor_carrier_link": 0.0912791703219
+      },
+      "movable_joint_count": 12,
+      "referenced_meshes": {
+        "./meshes/carrier-rev-j-print-ready-side.stl": {
+          "bytes": 411384,
+          "sha256": "7dcb46fcf52602d84d21bc08c06161993644c70d0930f96bc8346724116f7e58"
+        },
+        "./meshes/d435i-body-runtime.stl": {
+          "bytes": 1095984,
+          "sha256": "944961e4eb4c60caac4da8d1a7784401e59c9289b96be72537518ce3b870140a"
+        },
+        "./meshes/d435i-optical-runtime.stl": {
+          "bytes": 324284,
+          "sha256": "71c7e43a18c8950d62c9d709a969a94df6d3520cee936c1f69665755ed1c289a"
+        },
+        "./meshes/hip.STL": {
+          "bytes": 326084,
+          "sha256": "3386fa94992dbfc4d3e06c6d9fb110e2c4abd87f94c3ac766fdcce85c43341f3"
+        },
+        "./meshes/mid360-body-runtime.stl": {
+          "bytes": 1340984,
+          "sha256": "883a99cb9c2eee18212257dbd60f51d187e07f31d4f2b4393ff215822a73b5d1"
+        },
+        "./meshes/mid360-optical-runtime.stl": {
+          "bytes": 90184,
+          "sha256": "4a14a259764204a2fc77e3ad6e1cd1b61a8cf5107c09b805b52bd58d72853848"
+        },
+        "./meshes/pro-interface-envelope.stl": {
+          "bytes": 1484,
+          "sha256": "39758a1a3766bcdf7c75aa6056d94678d6589aff12477836f87162196e963604"
+        },
+        "./meshes/s410-guard-access-print-ready-flange-down.stl": {
+          "bytes": 1102484,
+          "sha256": "fdbdc58d4b25a82ce685873764760a932fc276716c46b93b77c59c68077a591e"
+        },
+        "./meshes/shank.STL": {
+          "bytes": 1352184,
+          "sha256": "5410bae3b9b1e9fbc30343041450a80fc609806c2a83418bd2288b0720aec098"
+        },
+        "./meshes/thigh.STL": {
+          "bytes": 499284,
+          "sha256": "f29ea97407a9a30cb4549206d080848350d8b455bf4b9a63441241cdacab1719"
+        },
+        "./meshes/torso.STL": {
+          "bytes": 1318334,
+          "sha256": "6f3f5fc4b9985db56d741ac1b6b93e11d9fb283eb128f8800ad9603772bbcda2"
+        }
+      },
+      "robot_name": "Lite3ProSensorRigRealWithInterfaceV1",
+      "total_declared_mass_kg": 13.2817868762788
+    },
+    "composition_boundary": "Only the V12 robot spawn asset and fixed-joint preservation are changed; checkpoint, policy loader, observations, actions, actuators, default pose, command schedule, and controller remain V12.",
+    "isaac_urdf_contract": {
+      "collision_count": 29,
+      "collision_count_by_link": {
+        "FL_FOOT": 1,
+        "FL_HIP": 1,
+        "FL_SHANK": 2,
+        "FL_THIGH": 1,
+        "FR_FOOT": 1,
+        "FR_HIP": 1,
+        "FR_SHANK": 2,
+        "FR_THIGH": 1,
+        "HL_FOOT": 1,
+        "HL_HIP": 1,
+        "HL_SHANK": 2,
+        "HL_THIGH": 1,
+        "HR_FOOT": 1,
+        "HR_HIP": 1,
+        "HR_SHANK": 2,
+        "HR_THIGH": 1,
+        "TORSO": 2,
+        "d435i_body_link": 1,
+        "d435i_depth_optical_frame": 0,
+        "mid360_body_link": 1,
+        "mid360_scan_frame": 0,
+        "pro_interface_link": 2,
+        "s410_guard_link": 2,
+        "sensor_carrier_link": 1
+      },
+      "fixed_joint_count": 11,
+      "inertia_by_link_kg_m2": {
+        "FL_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "FL_HIP": {
+          "ixx": 0.0003949,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0004472
+        },
+        "FL_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "FL_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "FR_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "FR_HIP": {
+          "ixx": 0.0004472,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0003949
+        },
+        "FR_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "FR_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "HL_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "HL_HIP": {
+          "ixx": 0.0003949,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0004472
+        },
+        "HL_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "HL_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "HR_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "HR_HIP": {
+          "ixx": 0.0004472,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0003949
+        },
+        "HR_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "HR_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "TORSO": {
+          "ixx": 0.02456,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.05518,
+          "iyz": 0.0,
+          "izz": 0.07016
+        },
+        "d435i_body_link": {
+          "ixx": 5.453125e-05,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 7.8125e-06,
+          "iyz": 0.0,
+          "izz": 5.453125e-05
+        },
+        "d435i_depth_optical_frame": {
+          "ixx": 1e-12,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 1e-12,
+          "iyz": 0.0,
+          "izz": 1e-12
+        },
+        "mid360_body_link": {
+          "ixx": 0.000171031883333,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.000171031883333,
+          "iyz": 0.0,
+          "izz": 0.0001755572
+        },
+        "mid360_scan_frame": {
+          "ixx": 1e-12,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 1e-12,
+          "iyz": 0.0,
+          "izz": 1e-12
+        },
+        "pro_interface_link": {
+          "ixx": 0.00101736627509,
+          "ixy": 5.43953197243e-06,
+          "ixz": 0.0,
+          "iyy": 0.00301082812111,
+          "iyz": 0.0,
+          "izz": 0.0036584443962
+        },
+        "s410_guard_link": {
+          "ixx": 2.51961100563e-05,
+          "ixy": -6.6007420766e-10,
+          "ixz": 2.00507891254e-09,
+          "iyy": 3.6203511268e-05,
+          "iyz": -2.4761591556e-10,
+          "izz": 3.64025360506e-05
+        },
+        "sensor_carrier_link": {
+          "ixx": 7.79273597954e-05,
+          "ixy": -2.17571306983e-08,
+          "ixz": 1.06363512756e-05,
+          "iyy": 0.000147850910354,
+          "iyz": 1.03899494504e-08,
+          "izz": 0.000213643326172
+        }
+      },
+      "joint_count": 23,
+      "link_count": 24,
+      "links_without_inertial": [],
+      "mass_by_link_kg": {
+        "FL_FOOT": 0.02,
+        "FL_HIP": 0.55,
+        "FL_SHANK": 0.153,
+        "FL_THIGH": 0.86,
+        "FR_FOOT": 0.02,
+        "FR_HIP": 0.55,
+        "FR_SHANK": 0.153,
+        "FR_THIGH": 0.86,
+        "HL_FOOT": 0.02,
+        "HL_HIP": 0.55,
+        "HL_SHANK": 0.153,
+        "HL_THIGH": 0.86,
+        "HR_FOOT": 0.02,
+        "HR_HIP": 0.55,
+        "HR_SHANK": 0.153,
+        "HR_THIGH": 0.86,
+        "TORSO": 5.6056,
+        "d435i_body_link": 0.075,
+        "d435i_depth_optical_frame": 1e-06,
+        "mid360_body_link": 0.265,
+        "mid360_scan_frame": 1e-06,
+        "pro_interface_link": 0.8874,
+        "s410_guard_link": 0.0255077059569,
+        "sensor_carrier_link": 0.0912791703219
+      },
+      "movable_joint_count": 12,
+      "referenced_meshes": {
+        "./meshes/carrier-rev-j-print-ready-side.stl": {
+          "bytes": 411384,
+          "sha256": "7dcb46fcf52602d84d21bc08c06161993644c70d0930f96bc8346724116f7e58"
+        },
+        "./meshes/d435i-body-runtime.stl": {
+          "bytes": 1095984,
+          "sha256": "944961e4eb4c60caac4da8d1a7784401e59c9289b96be72537518ce3b870140a"
+        },
+        "./meshes/d435i-optical-runtime.stl": {
+          "bytes": 324284,
+          "sha256": "71c7e43a18c8950d62c9d709a969a94df6d3520cee936c1f69665755ed1c289a"
+        },
+        "./meshes/hip.STL": {
+          "bytes": 326084,
+          "sha256": "3386fa94992dbfc4d3e06c6d9fb110e2c4abd87f94c3ac766fdcce85c43341f3"
+        },
+        "./meshes/mid360-body-runtime.stl": {
+          "bytes": 1340984,
+          "sha256": "883a99cb9c2eee18212257dbd60f51d187e07f31d4f2b4393ff215822a73b5d1"
+        },
+        "./meshes/mid360-optical-runtime.stl": {
+          "bytes": 90184,
+          "sha256": "4a14a259764204a2fc77e3ad6e1cd1b61a8cf5107c09b805b52bd58d72853848"
+        },
+        "./meshes/pro-interface-envelope.stl": {
+          "bytes": 1484,
+          "sha256": "39758a1a3766bcdf7c75aa6056d94678d6589aff12477836f87162196e963604"
+        },
+        "./meshes/s410-guard-access-print-ready-flange-down.stl": {
+          "bytes": 1102484,
+          "sha256": "fdbdc58d4b25a82ce685873764760a932fc276716c46b93b77c59c68077a591e"
+        },
+        "./meshes/shank.STL": {
+          "bytes": 1352184,
+          "sha256": "5410bae3b9b1e9fbc30343041450a80fc609806c2a83418bd2288b0720aec098"
+        },
+        "./meshes/thigh.STL": {
+          "bytes": 499284,
+          "sha256": "f29ea97407a9a30cb4549206d080848350d8b455bf4b9a63441241cdacab1719"
+        },
+        "./meshes/torso.STL": {
+          "bytes": 1318334,
+          "sha256": "6f3f5fc4b9985db56d741ac1b6b93e11d9fb283eb128f8800ad9603772bbcda2"
+        }
+      },
+      "robot_name": "Lite3ProSensorRigRealWithInterfaceV1",
+      "total_declared_mass_kg": 13.281788876278798
+    },
+    "merge_fixed_joints": false,
+    "mode": "v12_policy_on_pinned_sensor_rig",
+    "required_links": [
+      "TORSO",
+      "pro_interface_link",
+      "sensor_carrier_link",
+      "s410_guard_link",
+      "mid360_body_link",
+      "mid360_scan_frame",
+      "d435i_body_link",
+      "d435i_depth_optical_frame"
+    ]
+  },
+  "forest_scene": {
+    "identity": {
+      "asset_root": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models",
+      "bounded_adapter": {
+        "full_grass_field_instantiated": false,
+        "physics_sensor_proxy_count": 11,
+        "placement_reason": "place one registered tree across the fixed SCAN start-to-goal corridor",
+        "proxy_render_mode": "hidden_registered_collision_and_sensor_geometry",
+        "rock_seating": "runtime_USD_bounds_plus_7x7_terrain_support_samples",
+        "selection_reason": "retain the upstream terrain algorithm and source visual assets without invoking its nondeterministic full population generator or instantiating thousands of independent grass prims",
+        "terrain_seed_injection": "FractalNoise(seed=14) plus numpy seed 14 for BasicMicrorelief; forest_gen v0.3.8 otherwise constructs unseeded RandomState and random.Random(None) instances",
+        "upstream_population_generator_used": false,
+        "v12_command_terrain_binding": {
+          "live_commands": "external Foxy SCAN closed-loop command stream",
+          "maximum_range_source": "unchanged V12 flat-terrain range",
+          "terrain_name": "main"
+        },
+        "vegetation_placement": "task-owned deterministic bounded layout",
+        "visual_count": 47
+      },
+      "forest_gen_commit": "a75fb28c7b896e2a67e2d889b804732d33c56e0c",
+      "forest_gen_root": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen",
+      "margin_m": 10,
+      "navigation": {
+        "direct_path_intersects_inflated_blocker": true,
+        "goal_world_m": [
+          0.5,
+          3.0,
+          0.85
+        ],
+        "planner_body_radius_m": 0.4,
+        "planner_input_boundary": "rendered XYZ plus sensor pose only; proxy bounds and terrain height are retained for evaluation and never enter SCAN input",
+        "primary_blocker": {
+          "bounds_max_m": [
+            -1.5600000000000007,
+            3.24,
+            4.277655718203352
+          ],
+          "bounds_min_m": [
+            -2.040000000000001,
+            2.76,
+            0.27765571820335255
+          ],
+          "center_m": [
+            -1.8000000000000007,
+            3.0,
+            2.2776557182033526
+          ],
+          "kind": "Pine",
+          "name": "forest_proxy_000",
+          "prim_path": "/World/forest_collision/proxy_000",
+          "render_visible": false,
+          "shape": "cylinder",
+          "size_m": [
+            0.48,
+            0.48,
+            4.0
+          ],
+          "visual_name": "forest_visual_000"
+        },
+        "primary_center_to_direct_segment_m": 0.0,
+        "required_center_clearance_m": 0.64,
+        "start_world_m": [
+          -5.0,
+          3.0,
+          0.5635006053705359
+        ]
+      },
+      "proxies": [
+        {
+          "bounds_max_m": [
+            -1.5600000000000007,
+            3.24,
+            4.277655718203352
+          ],
+          "bounds_min_m": [
+            -2.040000000000001,
+            2.76,
+            0.27765571820335255
+          ],
+          "center_m": [
+            -1.8000000000000007,
+            3.0,
+            2.2776557182033526
+          ],
+          "kind": "Pine",
+          "name": "forest_proxy_000",
+          "prim_path": "/World/forest_collision/proxy_000",
+          "render_visible": false,
+          "shape": "cylinder",
+          "size_m": [
+            0.48,
+            0.48,
+            4.0
+          ],
+          "visual_name": "forest_visual_000"
+        },
+        {
+          "bounds_max_m": [
+            0.0400000000000007,
+            1.0400000000000007,
+            5.356230494843151
+          ],
+          "bounds_min_m": [
+            -0.4399999999999993,
+            0.5600000000000007,
+            1.356230494843151
+          ],
+          "center_m": [
+            -0.1999999999999993,
+            0.8000000000000007,
+            3.356230494843151
+          ],
+          "kind": "Birch",
+          "name": "forest_proxy_001",
+          "prim_path": "/World/forest_collision/proxy_001",
+          "render_visible": false,
+          "shape": "cylinder",
+          "size_m": [
+            0.48,
+            0.48,
+            4.0
+          ],
+          "visual_name": "forest_visual_001"
+        },
+        {
+          "bounds_max_m": [
+            -7.76,
+            -0.76,
+            5.01141656565145
+          ],
+          "bounds_min_m": [
+            -8.24,
+            -1.24,
+            1.0114165656514502
+          ],
+          "center_m": [
+            -8.0,
+            -1.0,
+            3.01141656565145
+          ],
+          "kind": "Pine",
+          "name": "forest_proxy_002",
+          "prim_path": "/World/forest_collision/proxy_002",
+          "render_visible": false,
+          "shape": "cylinder",
+          "size_m": [
+            0.48,
+            0.48,
+            4.0
+          ],
+          "visual_name": "forest_visual_002"
+        },
+        {
+          "bounds_max_m": [
+            -9.76,
+            5.74,
+            5.302561320405121
+          ],
+          "bounds_min_m": [
+            -10.24,
+            5.26,
+            1.302561320405121
+          ],
+          "center_m": [
+            -10.0,
+            5.5,
+            3.302561320405121
+          ],
+          "kind": "Birch",
+          "name": "forest_proxy_003",
+          "prim_path": "/World/forest_collision/proxy_003",
+          "render_visible": false,
+          "shape": "cylinder",
+          "size_m": [
+            0.48,
+            0.48,
+            4.0
+          ],
+          "visual_name": "forest_visual_003"
+        },
+        {
+          "bounds_max_m": [
+            2.24,
+            7.24,
+            4.4337398797614105
+          ],
+          "bounds_min_m": [
+            1.76,
+            6.76,
+            0.4337398797614105
+          ],
+          "center_m": [
+            2.0,
+            7.0,
+            2.4337398797614105
+          ],
+          "kind": "Pine",
+          "name": "forest_proxy_004",
+          "prim_path": "/World/forest_collision/proxy_004",
+          "render_visible": false,
+          "shape": "cylinder",
+          "size_m": [
+            0.48,
+            0.48,
+            4.0
+          ],
+          "visual_name": "forest_visual_004"
+        },
+        {
+          "bounds_max_m": [
+            4.24,
+            -0.76,
+            5.049588574502087
+          ],
+          "bounds_min_m": [
+            3.76,
+            -1.24,
+            1.0495885745020868
+          ],
+          "center_m": [
+            4.0,
+            -1.0,
+            3.0495885745020868
+          ],
+          "kind": "Birch",
+          "name": "forest_proxy_005",
+          "prim_path": "/World/forest_collision/proxy_005",
+          "render_visible": false,
+          "shape": "cylinder",
+          "size_m": [
+            0.48,
+            0.48,
+            4.0
+          ],
+          "visual_name": "forest_visual_005"
+        },
+        {
+          "bounds_max_m": [
+            -11.76,
+            1.24,
+            5.560326918491188
+          ],
+          "bounds_min_m": [
+            -12.24,
+            0.76,
+            1.5603269184911879
+          ],
+          "center_m": [
+            -12.0,
+            1.0,
+            3.560326918491188
+          ],
+          "kind": "Pine",
+          "name": "forest_proxy_006",
+          "prim_path": "/World/forest_collision/proxy_006",
+          "render_visible": false,
+          "shape": "cylinder",
+          "size_m": [
+            0.48,
+            0.48,
+            4.0
+          ],
+          "visual_name": "forest_visual_006"
+        },
+        {
+          "bounds_max_m": [
+            -2.76,
+            10.24,
+            5.341064209141567
+          ],
+          "bounds_min_m": [
+            -3.24,
+            9.76,
+            1.3410642091415674
+          ],
+          "center_m": [
+            -3.0,
+            10.0,
+            3.3410642091415674
+          ],
+          "kind": "Birch",
+          "name": "forest_proxy_007",
+          "prim_path": "/World/forest_collision/proxy_007",
+          "render_visible": false,
+          "shape": "cylinder",
+          "size_m": [
+            0.48,
+            0.48,
+            4.0
+          ],
+          "visual_name": "forest_visual_007"
+        },
+        {
+          "bounds_max_m": [
+            -1.4019056558609015,
+            1.9151584148406977,
+            1.9957548657306572
+          ],
+          "bounds_min_m": [
+            -2.936428833007813,
+            0.6520203590393058,
+            0.8906366506465809
+          ],
+          "center_m": [
+            -2.1691672444343575,
+            1.2835893869400017,
+            1.443195758188619
+          ],
+          "kind": "Rock",
+          "name": "forest_proxy_008",
+          "prim_path": "/World/forest_collision/proxy_008",
+          "render_visible": false,
+          "shape": "cuboid",
+          "size_m": [
+            1.5345231771469119,
+            1.2631380558013918,
+            1.1051182150840761
+          ],
+          "visual_name": "forest_visual_008"
+        },
+        {
+          "bounds_max_m": [
+            -6.760260492563248,
+            5.302477931976318,
+            1.8280176877517125
+          ],
+          "bounds_min_m": [
+            -7.294328397512436,
+            4.6981166243553165,
+            1.1726796745795625
+          ],
+          "center_m": [
+            -7.027294445037842,
+            5.000297278165817,
+            1.5003486811656375
+          ],
+          "kind": "Rock",
+          "name": "forest_proxy_009",
+          "prim_path": "/World/forest_collision/proxy_009",
+          "render_visible": false,
+          "shape": "cuboid",
+          "size_m": [
+            0.5340679049491883,
+            0.6043613076210023,
+            0.6553380131721498
+          ],
+          "visual_name": "forest_visual_009"
+        },
+        {
+          "bounds_max_m": [
+            1.4938300132751468,
+            6.529295432567596,
+            1.5713988780491632
+          ],
+          "bounds_min_m": [
+            0.45673000812530506,
+            5.4827708244323725,
+            0.5517142772190848
+          ],
+          "center_m": [
+            0.9752800107002259,
+            6.006033128499984,
+            1.061556577634124
+          ],
+          "kind": "Rock",
+          "name": "forest_proxy_010",
+          "prim_path": "/World/forest_collision/proxy_010",
+          "render_visible": false,
+          "shape": "cuboid",
+          "size_m": [
+            1.0371000051498416,
+            1.0465246081352235,
+            1.0196846008300784
+          ],
+          "visual_name": "forest_visual_010"
+        }
+      ],
+      "seed": 14,
+      "size_m": 32,
+      "source_asset_instantiated_counts": {
+        "Birch": 4,
+        "Bush": 6,
+        "Grass": 30,
+        "Pine": 4,
+        "Rock": 3
+      },
+      "source_origin_xy_m": [
+        11.0,
+        19.0
+      ],
+      "spawn_world_xyz_m": [
+        -5.0,
+        3.0,
+        0.5635006053705359
+      ],
+      "spot_specific_upstream_spawn_offset_removed_m": 1.0,
+      "stripe_kit_commit": "ce97eed40d9fc4927c4856eda6a17204d01087db",
+      "stripe_kit_root": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/STRIPE-kit",
+      "terrain": {
+        "face_count": 32258,
+        "geometry_sha256": "02a062e08fc870fa425672606ad21efdc19a12534dd2733b4d7a00426de18328",
+        "mesh_count": 2,
+        "vertex_count": 32768,
+        "visual_normalization": "TextureVisuals converted to ColorVisuals before TerrainImporter concatenation; vertices and faces are unchanged",
+        "z_max_m": 1.9719206000513183,
+        "z_min_m": 0.05331773557113058
+      },
+      "visuals": [
+        {
+          "kind": "Pine",
+          "name": "forest_visual_000",
+          "placement": "v5_navigation_blocker_placement",
+          "prim_path": "/World/forest_visual/asset_000",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093812_6244/Pine_1.usd",
+          "runtime_asset_sha256": "a6a816159894a2a0ec80adb3e85e06d56463e069913f5e572c0b4e312af88a92",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Pine_0",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Pine_1.usdz",
+          "source_asset_sha256": "382c0d524da78720455cc4747c54d6d130845eaf589099bb85cfe0b532129535",
+          "source_position_m": [
+            14.2,
+            19.0,
+            0.27765571820335266
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            14.2,
+            19.0,
+            0.27765571820335266
+          ],
+          "world_position_m": [
+            -1.8000000000000007,
+            3.0,
+            0.27765571820335266
+          ]
+        },
+        {
+          "kind": "Birch",
+          "name": "forest_visual_001",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_001",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093813_5132/Birch_1.usd",
+          "runtime_asset_sha256": "1951a0b47eeabcb1806b96bf4a311dd7cbc3334dd53c18b37492d2cd52d3db16",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Birch_0",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Birch_1.usdz",
+          "source_asset_sha256": "688aa40d2fd5007b182d8e16437a5c6baf3c4d0819f9f550485169fad33f30ec",
+          "source_position_m": [
+            15.8,
+            16.8,
+            1.356230494843151
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            15.8,
+            16.8,
+            1.356230494843151
+          ],
+          "world_position_m": [
+            -0.1999999999999993,
+            0.8000000000000007,
+            1.356230494843151
+          ]
+        },
+        {
+          "kind": "Pine",
+          "name": "forest_visual_002",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_002",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093813_7112/Pine_2.usd",
+          "runtime_asset_sha256": "ef7f587eafd6a0f52b58ea96530c3f407088601e13f3aa324811e9091c7fefba",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Pine_1",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Pine_2.usdz",
+          "source_asset_sha256": "6b864233f0abc51e8a4342b4fde0ebc6fa6dd5465010d0e7c75e6ee159b43dec",
+          "source_position_m": [
+            8.0,
+            15.0,
+            1.0114165656514502
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            8.0,
+            15.0,
+            1.0114165656514502
+          ],
+          "world_position_m": [
+            -8.0,
+            -1.0,
+            1.0114165656514502
+          ]
+        },
+        {
+          "kind": "Birch",
+          "name": "forest_visual_003",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_003",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093814_946/Birch_2.usd",
+          "runtime_asset_sha256": "37ca59d253bfaa14a70110d160fc0073f3b4270a221d60f21e4b7edf5a16e352",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Birch_1",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Birch_2.usdz",
+          "source_asset_sha256": "5e41355eb2442049cabe2b0f211b55a3f6e1f980187b27cb37673c82a9dc784d",
+          "source_position_m": [
+            6.0,
+            21.5,
+            1.302561320405121
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            6.0,
+            21.5,
+            1.302561320405121
+          ],
+          "world_position_m": [
+            -10.0,
+            5.5,
+            1.302561320405121
+          ]
+        },
+        {
+          "kind": "Pine",
+          "name": "forest_visual_004",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_004",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093815_2337/Pine_3.usd",
+          "runtime_asset_sha256": "70a265de17f98a4336aaa6c8894a2773df32bfd60249f9de68ef734acd95846e",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Pine_2",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Pine_3.usdz",
+          "source_asset_sha256": "24fae31b9a9bae1ea6da7508fa942a68ce1885d6c77542440c1cd81d3b8cff47",
+          "source_position_m": [
+            18.0,
+            23.0,
+            0.4337398797614104
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            18.0,
+            23.0,
+            0.4337398797614104
+          ],
+          "world_position_m": [
+            2.0,
+            7.0,
+            0.4337398797614104
+          ]
+        },
+        {
+          "kind": "Birch",
+          "name": "forest_visual_005",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_005",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093815_5838/Birch_3.usd",
+          "runtime_asset_sha256": "8c0c70f300b04ce5e397119d81889ef0b2ec6663c56372eb1190475ebb9aee14",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Birch_2",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Birch_3.usdz",
+          "source_asset_sha256": "0d9cf9a30361e844149d16b3bb3d245748ebdeaf07b4690b21cab60a8f0c9ad3",
+          "source_position_m": [
+            20.0,
+            15.0,
+            1.0495885745020868
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            20.0,
+            15.0,
+            1.0495885745020868
+          ],
+          "world_position_m": [
+            4.0,
+            -1.0,
+            1.0495885745020868
+          ]
+        },
+        {
+          "kind": "Pine",
+          "name": "forest_visual_006",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_006",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093812_6244/Pine_1.usd",
+          "runtime_asset_sha256": "a6a816159894a2a0ec80adb3e85e06d56463e069913f5e572c0b4e312af88a92",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Pine_3",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Pine_1.usdz",
+          "source_asset_sha256": "382c0d524da78720455cc4747c54d6d130845eaf589099bb85cfe0b532129535",
+          "source_position_m": [
+            4.0,
+            17.0,
+            1.560326918491188
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            4.0,
+            17.0,
+            1.560326918491188
+          ],
+          "world_position_m": [
+            -12.0,
+            1.0,
+            1.560326918491188
+          ]
+        },
+        {
+          "kind": "Birch",
+          "name": "forest_visual_007",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_007",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093813_5132/Birch_1.usd",
+          "runtime_asset_sha256": "1951a0b47eeabcb1806b96bf4a311dd7cbc3334dd53c18b37492d2cd52d3db16",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Birch_3",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Birch_1.usdz",
+          "source_asset_sha256": "688aa40d2fd5007b182d8e16437a5c6baf3c4d0819f9f550485169fad33f30ec",
+          "source_position_m": [
+            13.0,
+            26.0,
+            1.3410642091415674
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            13.0,
+            26.0,
+            1.3410642091415674
+          ],
+          "world_position_m": [
+            -3.0,
+            10.0,
+            1.3410642091415674
+          ]
+        },
+        {
+          "kind": "Rock",
+          "name": "forest_visual_008",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_008",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093815_5206/Rock_1.usd",
+          "runtime_asset_sha256": "44c542b845c0c95b57b5fbd06ebbd61f29a1f24e948b838d6adba6c0a37a5a96",
+          "runtime_local_bounds_m": {
+            "max_m": [
+              0.8980943441390993,
+              0.4651584148406983,
+              0.549286723136902
+            ],
+            "min_m": [
+              -0.6364288330078126,
+              -0.7979796409606935,
+              -0.5558314919471742
+            ]
+          },
+          "runtime_mesh_support": {
+            "support_band_m": 0.02,
+            "support_points_local_xyz_m": [
+              [
+                -0.09298481792211533,
+                -0.19363217055797577,
+                -0.5489580631256104
+              ],
+              [
+                -0.046440206468105316,
+                -0.19825515151023865,
+                -0.552330732345581
+              ],
+              [
+                -0.08587263524532318,
+                -0.22852857410907745,
+                -0.5512763857841492
+              ],
+              [
+                -0.04264317452907562,
+                -0.25640273094177246,
+                -0.5364344120025635
+              ],
+              [
+                -0.04220963642001152,
+                -0.23253032565116882,
+                -0.5555735230445862
+              ],
+              [
+                -0.026364173740148544,
+                -0.2011501044034958,
+                -0.5421456098556519
+              ],
+              [
+                -0.08929134905338287,
+                -0.2117147296667099,
+                -0.5522055625915527
+              ],
+              [
+                -0.06943868845701218,
+                -0.1959766447544098,
+                -0.5523738861083984
+              ],
+              [
+                -0.08415546268224716,
+                -0.24140006303787231,
+                -0.5401601791381836
+              ],
+              [
+                -0.04413875937461853,
+                -0.21611244976520538,
+                -0.5557696223258972
+              ],
+              [
+                -0.0421907864511013,
+                -0.24495860934257507,
+                -0.5468629598617554
+              ],
+              [
+                -0.02396833524107933,
+                -0.23455123603343964,
+                -0.5442922115325928
+              ],
+              [
+                -0.06369934976100922,
+                -0.23066893219947815,
+                -0.5553834438323975
+              ],
+              [
+                -0.04896325618028641,
+                -0.17591778934001923,
+                -0.5359077453613281
+              ],
+              [
+                -0.1127326563000679,
+                -0.20809027552604675,
+                -0.5374142527580261
+              ],
+              [
+                -0.06286721676588058,
+                -0.243290513753891,
+                -0.5453778505325317
+              ],
+              [
+                -0.024633992463350296,
+                -0.24686536192893982,
+                -0.5367662906646729
+              ],
+              [
+                -0.025006752461194992,
+                -0.21852970123291016,
+                -0.5447455644607544
+              ],
+              [
+                -0.0664072334766388,
+                -0.21399980783462524,
+                -0.5558314919471741
+              ]
+            ],
+            "support_vertex_count": 19,
+            "vertex_count": 8797
+          },
+          "source_asset_instance_name": "Rock_0",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Rock_1.usdz",
+          "source_asset_sha256": "8c5ac23827456993f1d782e11634954f77ebadb7bd374db4e9f595fb7ec57e07",
+          "source_position_m": [
+            13.7,
+            17.45,
+            1.4464681425937551
+          ],
+          "terrain_seating": {
+            "clearance_m": 0.015,
+            "contact_support_point_local_xyz_m": [
+              -0.0664072334766388,
+              -0.21399980783462524,
+              -0.5558314919471741
+            ],
+            "contact_support_point_world_xyz_m": [
+              -2.3664072334766395,
+              1.236000192165374,
+              0.890636650646581
+            ],
+            "contact_terrain_height_m": 0.8756366506465811,
+            "maximum_support_clearance_m": 0.1184340097086447,
+            "maximum_terrain_height_m": 0.8756366506465811,
+            "method": "lowest_mesh_vertex_band",
+            "minimum_support_clearance_m": 0.014999999999999902,
+            "required_origin_z_m": 1.4464681425937551,
+            "sample_count": 19,
+            "seated_bounds_min_z_m": 0.8906366506465809,
+            "support_samples": [
+              {
+                "local_point_xyz_m": [
+                  -0.09298481792211533,
+                  -0.19363217055797577,
+                  -0.5489580631256104
+                ],
+                "required_origin_z_m": 1.3545779432526945,
+                "terrain_height_m": 0.7906198801270843,
+                "world_xy_m": [
+                  -2.392984817922116,
+                  1.2563678294420235
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.046440206468105316,
+                  -0.19825515151023865,
+                  -0.552330732345581
+                ],
+                "required_origin_z_m": 1.442967382992162,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.346440206468106,
+                  1.2517448484897606
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.08587263524532318,
+                  -0.22852857410907745,
+                  -0.5512763857841492
+                ],
+                "required_origin_z_m": 1.3568962659112334,
+                "terrain_height_m": 0.7906198801270843,
+                "world_xy_m": [
+                  -2.385872635245324,
+                  1.2214714258909218
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.04264317452907562,
+                  -0.25640273094177246,
+                  -0.5364344120025635
+                ],
+                "required_origin_z_m": 1.4270710626491445,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.3426431745290763,
+                  1.1935972690582268
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.04220963642001152,
+                  -0.23253032565116882,
+                  -0.5555735230445862
+                ],
+                "required_origin_z_m": 1.4462101736911672,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.3422096364200122,
+                  1.2174696743488305
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.026364173740148544,
+                  -0.2011501044034958,
+                  -0.5421456098556519
+                ],
+                "required_origin_z_m": 1.432782260502233,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.3263641737401493,
+                  1.2488498955965035
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.08929134905338287,
+                  -0.2117147296667099,
+                  -0.5522055625915527
+                ],
+                "required_origin_z_m": 1.357825442718637,
+                "terrain_height_m": 0.7906198801270843,
+                "world_xy_m": [
+                  -2.3892913490533836,
+                  1.2382852703332894
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.06943868845701218,
+                  -0.1959766447544098,
+                  -0.5523738861083984
+                ],
+                "required_origin_z_m": 1.4430105367549795,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.369438688457013,
+                  1.2540233552455895
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.08415546268224716,
+                  -0.24140006303787231,
+                  -0.5401601791381836
+                ],
+                "required_origin_z_m": 1.3457800592652678,
+                "terrain_height_m": 0.7906198801270843,
+                "world_xy_m": [
+                  -2.384155462682248,
+                  1.208599936962127
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.04413875937461853,
+                  -0.21611244976520538,
+                  -0.5557696223258972
+                ],
+                "required_origin_z_m": 1.4464062729724783,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.3441387593746192,
+                  1.233887550234794
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.0421907864511013,
+                  -0.24495860934257507,
+                  -0.5468629598617554
+                ],
+                "required_origin_z_m": 1.4374996105083364,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.342190786451102,
+                  1.2050413906574242
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.02396833524107933,
+                  -0.23455123603343964,
+                  -0.5442922115325928
+                ],
+                "required_origin_z_m": 1.4349288621791738,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.32396833524108,
+                  1.2154487639665597
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.06369934976100922,
+                  -0.23066893219947815,
+                  -0.5553834438323975
+                ],
+                "required_origin_z_m": 1.4460200944789785,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.36369934976101,
+                  1.2193310678005211
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.04896325618028641,
+                  -0.17591778934001923,
+                  -0.5359077453613281
+                ],
+                "required_origin_z_m": 1.4265443960079092,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.348963256180287,
+                  1.27408221065998
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.1127326563000679,
+                  -0.20809027552604675,
+                  -0.5374142527580261
+                ],
+                "required_origin_z_m": 1.3430341328851103,
+                "terrain_height_m": 0.7906198801270843,
+                "world_xy_m": [
+                  -2.4127326563000686,
+                  1.2419097244739525
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.06286721676588058,
+                  -0.243290513753891,
+                  -0.5453778505325317
+                ],
+                "required_origin_z_m": 1.4360145011791128,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.3628672167658813,
+                  1.2067094862461083
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.024633992463350296,
+                  -0.24686536192893982,
+                  -0.5367662906646729
+                ],
+                "required_origin_z_m": 1.427402941311254,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.324633992463351,
+                  1.2031346380710595
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.025006752461194992,
+                  -0.21852970123291016,
+                  -0.5447455644607544
+                ],
+                "required_origin_z_m": 1.4353822151073354,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.3250067524611957,
+                  1.2314702987670891
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.0664072334766388,
+                  -0.21399980783462524,
+                  -0.5558314919471741
+                ],
+                "required_origin_z_m": 1.4464681425937551,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.3664072334766395,
+                  1.236000192165374
+                ]
+              }
+            ],
+            "unseated_origin_z_m": 0.7960758281756106,
+            "vertical_correction_m": 0.6503923144181445
+          },
+          "unseated_source_position_m": [
+            13.7,
+            17.45,
+            0.7960758281756106
+          ],
+          "world_position_m": [
+            -2.3000000000000007,
+            1.4499999999999993,
+            1.4464681425937551
+          ]
+        },
+        {
+          "kind": "Rock",
+          "name": "forest_visual_009",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_009",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093815_7065/Rock_2.usd",
+          "runtime_asset_sha256": "e6dd1bfdad53bb234897f3342624e0fa29f23f36541cd5025fc59ddb23422f56",
+          "runtime_local_bounds_m": {
+            "max_m": [
+              0.23973950743675235,
+              0.3024779319763184,
+              0.32889794111251835
+            ],
+            "min_m": [
+              -0.29432839751243595,
+              -0.30188337564468387,
+              -0.3264400720596314
+            ]
+          },
+          "runtime_mesh_support": {
+            "support_band_m": 0.02,
+            "support_points_local_xyz_m": [
+              [
+                -0.03501047194004059,
+                -0.022688496857881546,
+                -0.3210214674472809
+              ],
+              [
+                -0.13909491896629333,
+                0.14387954771518707,
+                -0.32644006609916687
+              ],
+              [
+                -0.033705733716487885,
+                0.014624510891735554,
+                -0.3070143759250641
+              ],
+              [
+                0.07501876354217529,
+                -0.08877245336771011,
+                -0.3089474141597748
+              ],
+              [
+                0.10644806921482086,
+                -0.22228072583675385,
+                -0.32133379578590393
+              ],
+              [
+                0.13299904763698578,
+                -0.2226487696170807,
+                -0.32028627395629883
+              ],
+              [
+                -0.10086521506309509,
+                0.09283183515071869,
+                -0.31841301918029785
+              ],
+              [
+                -0.11793627589941025,
+                0.16389663517475128,
+                -0.31354421377182007
+              ],
+              [
+                -0.09349202364683151,
+                0.18595941364765167,
+                -0.30807623267173767
+              ]
+            ],
+            "support_vertex_count": 9,
+            "vertex_count": 147
+          },
+          "source_asset_instance_name": "Rock_1",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Rock_2.usdz",
+          "source_asset_sha256": "36881d692aaee9dd50aa15e224036a44a6a68e12c3b13036299a3431c8d89cc6",
+          "source_position_m": [
+            9.0,
+            21.0,
+            1.499119746639194
+          ],
+          "terrain_seating": {
+            "clearance_m": 0.015,
+            "contact_support_point_local_xyz_m": [
+              -0.13909491896629333,
+              0.14387954771518707,
+              -0.32644006609916687
+            ],
+            "contact_support_point_world_xyz_m": [
+              -7.139094918966293,
+              5.143879547715187,
+              1.172679680540027
+            ],
+            "contact_terrain_height_m": 1.1576796805400271,
+            "maximum_support_clearance_m": 0.10486857275373973,
+            "maximum_terrain_height_m": 1.1576796805400271,
+            "method": "lowest_mesh_vertex_band",
+            "minimum_support_clearance_m": 0.014999999999999902,
+            "required_origin_z_m": 1.499119746639194,
+            "sample_count": 9,
+            "seated_bounds_min_z_m": 1.1726796745795625,
+            "support_samples": [
+              {
+                "local_point_xyz_m": [
+                  -0.03501047194004059,
+                  -0.022688496857881546,
+                  -0.3210214674472809
+                ],
+                "required_origin_z_m": 1.446346173807102,
+                "terrain_height_m": 1.1103247063598212,
+                "world_xy_m": [
+                  -7.035010471940041,
+                  4.9773115031421185
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.13909491896629333,
+                  0.14387954771518707,
+                  -0.32644006609916687
+                ],
+                "required_origin_z_m": 1.499119746639194,
+                "terrain_height_m": 1.1576796805400271,
+                "world_xy_m": [
+                  -7.139094918966293,
+                  5.143879547715187
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.033705733716487885,
+                  0.014624510891735554,
+                  -0.3070143759250641
+                ],
+                "required_origin_z_m": 1.4323390822848852,
+                "terrain_height_m": 1.1103247063598212,
+                "world_xy_m": [
+                  -7.033705733716488,
+                  5.0146245108917356
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  0.07501876354217529,
+                  -0.08877245336771011,
+                  -0.3089474141597748
+                ],
+                "required_origin_z_m": 1.4342721205195959,
+                "terrain_height_m": 1.1103247063598212,
+                "world_xy_m": [
+                  -6.924981236457825,
+                  4.91122754663229
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  0.10644806921482086,
+                  -0.22228072583675385,
+                  -0.32133379578590393
+                ],
+                "required_origin_z_m": 1.4331625761937257,
+                "terrain_height_m": 1.0968287804078218,
+                "world_xy_m": [
+                  -6.893551930785179,
+                  4.777719274163246
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  0.13299904763698578,
+                  -0.2226487696170807,
+                  -0.32028627395629883
+                ],
+                "required_origin_z_m": 1.409251173885454,
+                "terrain_height_m": 1.0739648999291553,
+                "world_xy_m": [
+                  -6.867000952363014,
+                  4.777351230382919
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.10086521506309509,
+                  0.09283183515071869,
+                  -0.31841301918029785
+                ],
+                "required_origin_z_m": 1.443737725540119,
+                "terrain_height_m": 1.1103247063598212,
+                "world_xy_m": [
+                  -7.100865215063095,
+                  5.092831835150719
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.11793627589941025,
+                  0.16389663517475128,
+                  -0.31354421377182007
+                ],
+                "required_origin_z_m": 1.4604745583847045,
+                "terrain_height_m": 1.1319303446128846,
+                "world_xy_m": [
+                  -7.11793627589941,
+                  5.163896635174751
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.09349202364683151,
+                  0.18595941364765167,
+                  -0.30807623267173767
+                ],
+                "required_origin_z_m": 1.4550065772846221,
+                "terrain_height_m": 1.1319303446128846,
+                "world_xy_m": [
+                  -7.0934920236468315,
+                  5.185959413647652
+                ]
+              }
+            ],
+            "unseated_origin_z_m": 1.1103247063598212,
+            "vertical_correction_m": 0.38879504027937273
+          },
+          "unseated_source_position_m": [
+            9.0,
+            21.0,
+            1.1103247063598212
+          ],
+          "world_position_m": [
+            -7.0,
+            5.0,
+            1.499119746639194
+          ]
+        },
+        {
+          "kind": "Rock",
+          "name": "forest_visual_010",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_010",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7442/Rock_3.usd",
+          "runtime_asset_sha256": "a455e6d441d0c8590d3c5d18919ffbe81605dd5f6140fb0a62f11dafc10c62cf",
+          "runtime_local_bounds_m": {
+            "max_m": [
+              0.4938300132751466,
+              0.5292954325675965,
+              0.5050849199295044
+            ],
+            "min_m": [
+              -0.5432699918746949,
+              -0.517229175567627,
+              -0.5145996809005738
+            ]
+          },
+          "runtime_mesh_support": {
+            "support_band_m": 0.02,
+            "support_points_local_xyz_m": [
+              [
+                -0.24246713519096375,
+                0.2699297368526459,
+                -0.5010710954666138
+              ],
+              [
+                0.10292749851942062,
+                -0.32554304599761963,
+                -0.4954998791217804
+              ],
+              [
+                -0.20548485219478607,
+                0.19103334844112396,
+                -0.4955025911331177
+              ],
+              [
+                -0.25470247864723206,
+                0.10236109793186188,
+                -0.5145996809005737
+              ],
+              [
+                0.029359422624111176,
+                -0.18683786690235138,
+                -0.49824976921081543
+              ],
+              [
+                -0.19195407629013062,
+                0.04390150308609009,
+                -0.49924802780151367
+              ]
+            ],
+            "support_vertex_count": 6,
+            "vertex_count": 444
+          },
+          "source_asset_instance_name": "Rock_2",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Rock_3.usdz",
+          "source_asset_sha256": "37cb036f7fadd6c381ad8d0a85083c08ec582175d87852ff23541fc4fc63391c",
+          "source_position_m": [
+            17.0,
+            22.0,
+            1.0663139581196588
+          ],
+          "terrain_seating": {
+            "clearance_m": 0.015,
+            "contact_support_point_local_xyz_m": [
+              -0.25470247864723206,
+              0.10236109793186188,
+              -0.5145996809005737
+            ],
+            "contact_support_point_world_xyz_m": [
+              0.7452975213527679,
+              6.102361097931862,
+              0.5517142772190851
+            ],
+            "contact_terrain_height_m": 0.5367142772190852,
+            "maximum_support_clearance_m": 0.039900449940917015,
+            "maximum_terrain_height_m": 0.5512613131511119,
+            "method": "lowest_mesh_vertex_band",
+            "minimum_support_clearance_m": 0.014999999999999902,
+            "required_origin_z_m": 1.0663139581196588,
+            "sample_count": 6,
+            "seated_bounds_min_z_m": 0.551714277219085,
+            "support_samples": [
+              {
+                "local_point_xyz_m": [
+                  -0.24246713519096375,
+                  0.2699297368526459,
+                  -0.5010710954666138
+                ],
+                "required_origin_z_m": 1.0469820125122378,
+                "terrain_height_m": 0.5309109170456241,
+                "world_xy_m": [
+                  0.7575328648090363,
+                  6.269929736852646
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  0.10292749851942062,
+                  -0.32554304599761963,
+                  -0.4954998791217804
+                ],
+                "required_origin_z_m": 1.0617611922728922,
+                "terrain_height_m": 0.5512613131511119,
+                "world_xy_m": [
+                  1.1029274985194206,
+                  5.67445695400238
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.20548485219478607,
+                  0.19103334844112396,
+                  -0.4955025911331177
+                ],
+                "required_origin_z_m": 1.0414135081787417,
+                "terrain_height_m": 0.5309109170456241,
+                "world_xy_m": [
+                  0.7945151478052139,
+                  6.191033348441124
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.25470247864723206,
+                  0.10236109793186188,
+                  -0.5145996809005737
+                ],
+                "required_origin_z_m": 1.0663139581196588,
+                "terrain_height_m": 0.5367142772190852,
+                "world_xy_m": [
+                  0.7452975213527679,
+                  6.102361097931862
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  0.029359422624111176,
+                  -0.18683786690235138,
+                  -0.49824976921081543
+                ],
+                "required_origin_z_m": 1.0645110823619273,
+                "terrain_height_m": 0.5512613131511119,
+                "world_xy_m": [
+                  1.0293594226241112,
+                  5.813162133097649
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.19195407629013062,
+                  0.04390150308609009,
+                  -0.49924802780151367
+                ],
+                "required_origin_z_m": 1.0509623050205987,
+                "terrain_height_m": 0.5367142772190852,
+                "world_xy_m": [
+                  0.8080459237098694,
+                  6.04390150308609
+                ]
+              }
+            ],
+            "unseated_origin_z_m": 0.5359445015014638,
+            "vertical_correction_m": 0.530369456618195
+          },
+          "unseated_source_position_m": [
+            17.0,
+            22.0,
+            0.5359445015014638
+          ],
+          "world_position_m": [
+            1.0,
+            6.0,
+            1.0663139581196588
+          ]
+        },
+        {
+          "kind": "Bush",
+          "name": "forest_visual_011",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_011",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_9179/Bush_1.usd",
+          "runtime_asset_sha256": "5fa07f71855cef994233adf39c44818c24031f6e9a11fc726b3e56a0efb69606",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Bush_0",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Bush_1.usdz",
+          "source_asset_sha256": "bffadc18eba1bd61ceee8d404ddc2b1e7e48925015f6573d3f8b547f72805b2a",
+          "source_position_m": [
+            12.8,
+            22.0,
+            0.7907937970705201
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            12.8,
+            22.0,
+            0.7907937970705201
+          ],
+          "world_position_m": [
+            -3.1999999999999993,
+            6.0,
+            0.7907937970705201
+          ]
+        },
+        {
+          "kind": "Bush",
+          "name": "forest_visual_012",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_012",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_9179/Bush_1.usd",
+          "runtime_asset_sha256": "5fa07f71855cef994233adf39c44818c24031f6e9a11fc726b3e56a0efb69606",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Bush_1",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Bush_1.usdz",
+          "source_asset_sha256": "bffadc18eba1bd61ceee8d404ddc2b1e7e48925015f6573d3f8b547f72805b2a",
+          "source_position_m": [
+            9.5,
+            16.2,
+            1.0399428311246508
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            9.5,
+            16.2,
+            1.0399428311246508
+          ],
+          "world_position_m": [
+            -6.5,
+            0.1999999999999993,
+            1.0399428311246508
+          ]
+        },
+        {
+          "kind": "Bush",
+          "name": "forest_visual_013",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_013",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_9179/Bush_1.usd",
+          "runtime_asset_sha256": "5fa07f71855cef994233adf39c44818c24031f6e9a11fc726b3e56a0efb69606",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Bush_2",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Bush_1.usdz",
+          "source_asset_sha256": "bffadc18eba1bd61ceee8d404ddc2b1e7e48925015f6573d3f8b547f72805b2a",
+          "source_position_m": [
+            16.5,
+            21.4,
+            0.5187076462801177
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            16.5,
+            21.4,
+            0.5187076462801177
+          ],
+          "world_position_m": [
+            0.5,
+            5.399999999999999,
+            0.5187076462801177
+          ]
+        },
+        {
+          "kind": "Bush",
+          "name": "forest_visual_014",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_014",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_9179/Bush_1.usd",
+          "runtime_asset_sha256": "5fa07f71855cef994233adf39c44818c24031f6e9a11fc726b3e56a0efb69606",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Bush_3",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Bush_1.usdz",
+          "source_asset_sha256": "bffadc18eba1bd61ceee8d404ddc2b1e7e48925015f6573d3f8b547f72805b2a",
+          "source_position_m": [
+            17.5,
+            16.0,
+            1.4153645186210773
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            17.5,
+            16.0,
+            1.4153645186210773
+          ],
+          "world_position_m": [
+            1.5,
+            0.0,
+            1.4153645186210773
+          ]
+        },
+        {
+          "kind": "Bush",
+          "name": "forest_visual_015",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_015",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_9179/Bush_1.usd",
+          "runtime_asset_sha256": "5fa07f71855cef994233adf39c44818c24031f6e9a11fc726b3e56a0efb69606",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Bush_4",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Bush_1.usdz",
+          "source_asset_sha256": "bffadc18eba1bd61ceee8d404ddc2b1e7e48925015f6573d3f8b547f72805b2a",
+          "source_position_m": [
+            7.0,
+            23.0,
+            1.1092231568485837
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            7.0,
+            23.0,
+            1.1092231568485837
+          ],
+          "world_position_m": [
+            -9.0,
+            7.0,
+            1.1092231568485837
+          ]
+        },
+        {
+          "kind": "Bush",
+          "name": "forest_visual_016",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_016",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_9179/Bush_1.usd",
+          "runtime_asset_sha256": "5fa07f71855cef994233adf39c44818c24031f6e9a11fc726b3e56a0efb69606",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Bush_5",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Bush_1.usdz",
+          "source_asset_sha256": "bffadc18eba1bd61ceee8d404ddc2b1e7e48925015f6573d3f8b547f72805b2a",
+          "source_position_m": [
+            11.0,
+            24.5,
+            1.593084239833137
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            11.0,
+            24.5,
+            1.593084239833137
+          ],
+          "world_position_m": [
+            -5.0,
+            8.5,
+            1.593084239833137
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_017",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_017",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_0",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            13.827005195132783,
+            19.007029449267673,
+            0.13075361757833406
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            13.827005195132783,
+            19.007029449267673,
+            0.13075361757833406
+          ],
+          "world_position_m": [
+            -2.1729948048672174,
+            3.007029449267673,
+            0.13075361757833406
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_018",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_018",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_1",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            15.082867370407072,
+            19.554651289700622,
+            0.11821822596151144
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            15.082867370407072,
+            19.554651289700622,
+            0.11821822596151144
+          ],
+          "world_position_m": [
+            -0.9171326295929276,
+            3.5546512897006224,
+            0.11821822596151144
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_019",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_019",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_2",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            15.778534696289004,
+            21.57741005309268,
+            0.3582827299926128
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            15.778534696289004,
+            21.57741005309268,
+            0.3582827299926128
+          ],
+          "world_position_m": [
+            -0.22146530371099615,
+            5.577410053092681,
+            0.3582827299926128
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_020",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_020",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_3",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            14.807032263705663,
+            21.73516231633915,
+            0.49255091925018335
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            14.807032263705663,
+            21.73516231633915,
+            0.49255091925018335
+          ],
+          "world_position_m": [
+            -1.192967736294337,
+            5.735162316339149,
+            0.49255091925018335
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_021",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_021",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_4",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            15.164165929170885,
+            23.269411396265,
+            0.8589990391364594
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            15.164165929170885,
+            23.269411396265,
+            0.8589990391364594
+          ],
+          "world_position_m": [
+            -0.8358340708291152,
+            7.269411396264999,
+            0.8589990391364594
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_022",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_022",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_5",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            11.925871556740336,
+            20.656645498170626,
+            0.34773224463479324
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            11.925871556740336,
+            20.656645498170626,
+            0.34773224463479324
+          ],
+          "world_position_m": [
+            -4.074128443259664,
+            4.656645498170626,
+            0.34773224463479324
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_023",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_023",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_6",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            12.601437699988704,
+            25.108046447152795,
+            1.4435133151008863
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            12.601437699988704,
+            25.108046447152795,
+            1.4435133151008863
+          ],
+          "world_position_m": [
+            -3.398562300011296,
+            9.108046447152795,
+            1.4435133151008863
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_024",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_024",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_7",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            11.198626225385928,
+            21.881464196467046,
+            0.8031435925154725
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            11.198626225385928,
+            21.881464196467046,
+            0.8031435925154725
+          ],
+          "world_position_m": [
+            -4.801373774614072,
+            5.881464196467046,
+            0.8031435925154725
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_025",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_025",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_8",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            10.384830555314473,
+            22.66012342576466,
+            0.9229440592836443
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            10.384830555314473,
+            22.66012342576466,
+            0.9229440592836443
+          ],
+          "world_position_m": [
+            -5.615169444685527,
+            6.6601234257646595,
+            0.9229440592836443
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_026",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_026",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_9",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            9.164804415924824,
+            25.214728001194956,
+            1.1553451134471557
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            9.164804415924824,
+            25.214728001194956,
+            1.1553451134471557
+          ],
+          "world_position_m": [
+            -6.835195584075176,
+            9.214728001194956,
+            1.1553451134471557
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_027",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_027",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_10",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            7.536511740545328,
+            25.606145827908524,
+            0.9886870829557209
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            7.536511740545328,
+            25.606145827908524,
+            0.9886870829557209
+          ],
+          "world_position_m": [
+            -8.463488259454671,
+            9.606145827908524,
+            0.9886870829557209
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_028",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_028",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_11",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            9.102210336625092,
+            21.43620991481167,
+            1.0573427103281723
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            9.102210336625092,
+            21.43620991481167,
+            1.0573427103281723
+          ],
+          "world_position_m": [
+            -6.897789663374908,
+            5.43620991481167,
+            1.0573427103281723
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_029",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_029",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_12",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            8.024682227312997,
+            21.06407188893285,
+            1.1368405626120783
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            8.024682227312997,
+            21.06407188893285,
+            1.1368405626120783
+          ],
+          "world_position_m": [
+            -7.975317772687003,
+            5.064071888932851,
+            1.1368405626120783
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_030",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_030",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_13",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            9.699731962347899,
+            19.598337428875933,
+            0.9113893896417492
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            9.699731962347899,
+            19.598337428875933,
+            0.9113893896417492
+          ],
+          "world_position_m": [
+            -6.300268037652101,
+            3.598337428875933,
+            0.9113893896417492
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_031",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_031",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_14",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            4.410743274698392,
+            19.885249493263107,
+            1.261056102544194
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            4.410743274698392,
+            19.885249493263107,
+            1.261056102544194
+          ],
+          "world_position_m": [
+            -11.589256725301608,
+            3.8852494932631068,
+            1.261056102544194
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_032",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_032",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_15",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            8.606383195770087,
+            18.858866119781826,
+            1.0899225792596505
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            8.606383195770087,
+            18.858866119781826,
+            1.0899225792596505
+          ],
+          "world_position_m": [
+            -7.393616804229913,
+            2.858866119781826,
+            1.0899225792596505
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_033",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_033",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_16",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            6.795069306500085,
+            18.04595289840573,
+            0.8639074121385347
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            6.795069306500085,
+            18.04595289840573,
+            0.8639074121385347
+          ],
+          "world_position_m": [
+            -9.204930693499914,
+            2.04595289840573,
+            0.8639074121385347
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_034",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_034",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_17",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            8.568380236653331,
+            18.09422390922226,
+            1.0801768350161596
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            8.568380236653331,
+            18.09422390922226,
+            1.0801768350161596
+          ],
+          "world_position_m": [
+            -7.431619763346669,
+            2.0942239092222614,
+            1.0801768350161596
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_035",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_035",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_18",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            9.68068750146802,
+            18.035028132758278,
+            0.9622898854069911
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            9.68068750146802,
+            18.035028132758278,
+            0.9622898854069911
+          ],
+          "world_position_m": [
+            -6.31931249853198,
+            2.0350281327582778,
+            0.9622898854069911
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_036",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_036",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_19",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            6.601512474180563,
+            14.744668678298877,
+            1.273415502079085
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            6.601512474180563,
+            14.744668678298877,
+            1.273415502079085
+          ],
+          "world_position_m": [
+            -9.398487525819437,
+            -1.2553313217011226,
+            1.273415502079085
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_037",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_037",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_20",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            7.70302248800942,
+            12.729231770927655,
+            0.9526278675647949
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            7.70302248800942,
+            12.729231770927655,
+            0.9526278675647949
+          ],
+          "world_position_m": [
+            -8.29697751199058,
+            -3.2707682290723454,
+            0.9526278675647949
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_038",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_038",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_21",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            10.490981414601452,
+            17.0301974021942,
+            0.6822379770951982
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            10.490981414601452,
+            17.0301974021942,
+            0.6822379770951982
+          ],
+          "world_position_m": [
+            -5.5090185853985485,
+            1.0301974021942009,
+            0.6822379770951982
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_039",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_039",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_22",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            9.87248652018297,
+            11.563074229739993,
+            0.8640517627365459
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            9.87248652018297,
+            11.563074229739993,
+            0.8640517627365459
+          ],
+          "world_position_m": [
+            -6.127513479817029,
+            -4.436925770260007,
+            0.8640517627365459
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_040",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_040",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_23",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            11.503629581843324,
+            14.81117100118977,
+            0.7659472782643745
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            11.503629581843324,
+            14.81117100118977,
+            0.7659472782643745
+          ],
+          "world_position_m": [
+            -4.496370418156676,
+            -1.18882899881023,
+            0.7659472782643745
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_041",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_041",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_24",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            13.274012585148114,
+            12.623802410119243,
+            0.64806263248175
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            13.274012585148114,
+            12.623802410119243,
+            0.64806263248175
+          ],
+          "world_position_m": [
+            -2.725987414851886,
+            -3.376197589880757,
+            0.64806263248175
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_042",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_042",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_25",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            14.098004736153312,
+            14.489121364152805,
+            0.4780902510402233
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            14.098004736153312,
+            14.489121364152805,
+            0.4780902510402233
+          ],
+          "world_position_m": [
+            -1.901995263846688,
+            -1.5108786358471953,
+            0.4780902510402233
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_043",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_043",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_26",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            11.92846066320166,
+            18.022334976301558,
+            0.2393921719614668
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            11.92846066320166,
+            18.022334976301558,
+            0.2393921719614668
+          ],
+          "world_position_m": [
+            -4.07153933679834,
+            2.0223349763015577,
+            0.2393921719614668
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_044",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_044",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_27",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            13.624021638339054,
+            17.234900833422934,
+            0.6906198801270843
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            13.624021638339054,
+            17.234900833422934,
+            0.6906198801270843
+          ],
+          "world_position_m": [
+            -2.3759783616609464,
+            1.2349008334229339,
+            0.6906198801270843
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_045",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_045",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_28",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            15.615187091491737,
+            16.55551438941607,
+            1.3118061674574717
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            15.615187091491737,
+            16.55551438941607,
+            1.3118061674574717
+          ],
+          "world_position_m": [
+            -0.38481290850826255,
+            0.5555143894160715,
+            1.3118061674574717
+          ]
+        },
+        {
+          "kind": "Grass",
+          "name": "forest_visual_046",
+          "placement": "v4_deterministic_adapter_placement",
+          "prim_path": "/World/forest_visual/asset_046",
+          "runtime_asset_path": "/tmp/IsaacLab/usd_20260814_093816_7874/Grass_1.usd",
+          "runtime_asset_sha256": "3ead2509abcfb0163c734e9eb195dd39c1d9453f4d04ba26890141aae8461b00",
+          "runtime_local_bounds_m": null,
+          "runtime_mesh_support": null,
+          "source_asset_instance_name": "Grass_29",
+          "source_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/forest_gen/models/Grass_1.usdz",
+          "source_asset_sha256": "a95feaaee9652835cde86d2b43618f4052ce12c453c6086f4a2016993c735fc7",
+          "source_position_m": [
+            16.44587323224162,
+            17.713031737384505,
+            0.8338054352260552
+          ],
+          "terrain_seating": null,
+          "unseated_source_position_m": [
+            16.44587323224162,
+            17.713031737384505,
+            0.8338054352260552
+          ],
+          "world_position_m": [
+            0.44587323224162034,
+            1.7130317373845045,
+            0.8338054352260552
+          ]
+        }
+      ]
+    },
+    "static_geometry_checks": {
+      "agreement_definition": "each source visual is runtime-bounded and registered to one declared proxy root; the proxy has collision, matches its declared bounds and render mode, and is targeted by both ray sensors; each V6 rock is seated from real low-surface mesh vertices rather than an empty AABB corner",
+      "checks": {
+        "all_proxies_have_collision": true,
+        "all_proxies_targeted_by_depth": true,
+        "all_proxies_targeted_by_lidar": true,
+        "all_proxy_bounds_match": true,
+        "all_proxy_render_modes_match": true,
+        "all_proxy_roots_exist": true,
+        "all_review_rocks_seated": true,
+        "all_source_visuals_exist": true,
+        "all_source_visuals_visible": true,
+        "terrain_targeted_by_depth": true,
+        "terrain_targeted_by_lidar": true
+      },
+      "passed": true,
+      "proxy_records": [
+        {
+          "collision_prim_paths": [
+            "/World/forest_collision/proxy_000/geometry/mesh"
+          ],
+          "declared_bounds_max_m": [
+            -1.5600000000000007,
+            3.24,
+            4.277655718203352
+          ],
+          "declared_bounds_min_m": [
+            -2.040000000000001,
+            2.76,
+            0.27765571820335255
+          ],
+          "depth_targeted": true,
+          "expected_render_visible": false,
+          "kind": "Pine",
+          "lidar_targeted": true,
+          "name": "forest_proxy_000",
+          "prim_path": "/World/forest_collision/proxy_000",
+          "proxy_bounds_max_error_m": 1.1670188770906975e-07,
+          "render_visibility_matches": true,
+          "root_prim_valid": true,
+          "runtime_proxy_bounds_m": {
+            "max_m": [
+              -1.5599999576807022,
+              3.239999994635582,
+              4.277655601501465
+            ],
+            "min_m": [
+              -2.039999946951866,
+              2.760000005364418,
+              0.27765560150146484
+            ]
+          },
+          "source_visual_prim_path": "/World/forest_visual/asset_000",
+          "source_visual_prim_valid": true,
+          "source_visual_seated": true,
+          "source_visual_support_method": null,
+          "source_visual_terrain_clearance_m": null,
+          "source_visual_visible_geometry_prim_paths": [
+            "/World/forest_visual/asset_000/geometry/mesh"
+          ],
+          "source_visual_world_bounds_m": {
+            "max_m": [
+              -0.361365270614624,
+              4.1327861785888675,
+              9.280858540534973
+            ],
+            "min_m": [
+              -3.0448984622955324,
+              1.761521816253662,
+              0.14268873929977416
+            ]
+          },
+          "terrain_seating": null,
+          "visible_geometry_prim_paths": []
+        },
+        {
+          "collision_prim_paths": [
+            "/World/forest_collision/proxy_001/geometry/mesh"
+          ],
+          "declared_bounds_max_m": [
+            0.0400000000000007,
+            1.0400000000000007,
+            5.356230494843151
+          ],
+          "declared_bounds_min_m": [
+            -0.4399999999999993,
+            0.5600000000000007,
+            1.356230494843151
+          ],
+          "depth_targeted": true,
+          "expected_render_visible": false,
+          "kind": "Birch",
+          "lidar_targeted": true,
+          "name": "forest_proxy_001",
+          "prim_path": "/World/forest_collision/proxy_001",
+          "proxy_bounds_max_error_m": 1.728534626543876e-08,
+          "render_visibility_matches": true,
+          "root_prim_valid": true,
+          "runtime_proxy_bounds_m": {
+            "max_m": [
+              0.03999999165534973,
+              1.040000006556511,
+              5.3562304973602295
+            ],
+            "min_m": [
+              -0.4399999976158142,
+              0.560000017285347,
+              1.3562304973602295
+            ]
+          },
+          "source_visual_prim_path": "/World/forest_visual/asset_001",
+          "source_visual_prim_valid": true,
+          "source_visual_seated": true,
+          "source_visual_support_method": null,
+          "source_visual_terrain_clearance_m": null,
+          "source_visual_visible_geometry_prim_paths": [
+            "/World/forest_visual/asset_001/geometry/mesh"
+          ],
+          "source_visual_world_bounds_m": {
+            "max_m": [
+              1.411737248301506,
+              2.564592945575714,
+              8.777019834518432
+            ],
+            "min_m": [
+              -1.8890302687883378,
+              -1.2348756670951848,
+              1.1766931056976317
+            ]
+          },
+          "terrain_seating": null,
+          "visible_geometry_prim_paths": []
+        },
+        {
+          "collision_prim_paths": [
+            "/World/forest_collision/proxy_002/geometry/mesh"
+          ],
+          "declared_bounds_max_m": [
+            -7.76,
+            -0.76,
+            5.01141656565145
+          ],
+          "declared_bounds_min_m": [
+            -8.24,
+            -1.24,
+            1.0114165656514502
+          ],
+          "depth_targeted": true,
+          "expected_render_visible": false,
+          "kind": "Pine",
+          "lidar_targeted": true,
+          "name": "forest_proxy_002",
+          "prim_path": "/World/forest_collision/proxy_002",
+          "proxy_bounds_max_error_m": 1.0800882854766769e-07,
+          "render_visibility_matches": true,
+          "root_prim_valid": true,
+          "runtime_proxy_bounds_m": {
+            "max_m": [
+              -7.760000005364418,
+              -0.760000005364418,
+              5.011416673660278
+            ],
+            "min_m": [
+              -8.239999994635582,
+              -1.239999994635582,
+              1.0114166736602783
+            ]
+          },
+          "source_visual_prim_path": "/World/forest_visual/asset_002",
+          "source_visual_prim_valid": true,
+          "source_visual_seated": true,
+          "source_visual_support_method": null,
+          "source_visual_terrain_clearance_m": null,
+          "source_visual_visible_geometry_prim_paths": [
+            "/World/forest_visual/asset_002/geometry/mesh"
+          ],
+          "source_visual_world_bounds_m": {
+            "max_m": [
+              -6.607699584960938,
+              0.8155702590942384,
+              12.337631154060364
+            ],
+            "min_m": [
+              -9.73563461303711,
+              -3.02047119140625,
+              0.6976815462112427
+            ]
+          },
+          "terrain_seating": null,
+          "visible_geometry_prim_paths": []
+        },
+        {
+          "collision_prim_paths": [
+            "/World/forest_collision/proxy_003/geometry/mesh"
+          ],
+          "declared_bounds_max_m": [
+            -9.76,
+            5.74,
+            5.302561320405121
+          ],
+          "declared_bounds_min_m": [
+            -10.24,
+            5.26,
+            1.302561320405121
+          ],
+          "depth_targeted": true,
+          "expected_render_visible": false,
+          "kind": "Birch",
+          "lidar_targeted": true,
+          "name": "forest_proxy_003",
+          "prim_path": "/World/forest_collision/proxy_003",
+          "proxy_bounds_max_error_m": 3.729354869363988e-08,
+          "render_visibility_matches": true,
+          "root_prim_valid": true,
+          "runtime_proxy_bounds_m": {
+            "max_m": [
+              -9.760000005364418,
+              5.739999994635582,
+              5.302561283111572
+            ],
+            "min_m": [
+              -10.239999994635582,
+              5.260000005364418,
+              1.3025612831115723
+            ]
+          },
+          "source_visual_prim_path": "/World/forest_visual/asset_003",
+          "source_visual_prim_valid": true,
+          "source_visual_seated": true,
+          "source_visual_support_method": null,
+          "source_visual_terrain_clearance_m": null,
+          "source_visual_visible_geometry_prim_paths": [
+            "/World/forest_visual/asset_003/geometry/mesh"
+          ],
+          "source_visual_world_bounds_m": {
+            "max_m": [
+              -7.660151863098144,
+              7.153730773925782,
+              8.247246646881104
+            ],
+            "min_m": [
+              -11.964813995361329,
+              3.7244699478149412,
+              1.1537401676177979
+            ]
+          },
+          "terrain_seating": null,
+          "visible_geometry_prim_paths": []
+        },
+        {
+          "collision_prim_paths": [
+            "/World/forest_collision/proxy_004/geometry/mesh"
+          ],
+          "declared_bounds_max_m": [
+            2.24,
+            7.24,
+            4.4337398797614105
+          ],
+          "declared_bounds_min_m": [
+            1.76,
+            6.76,
+            0.4337398797614105
+          ],
+          "depth_targeted": true,
+          "expected_render_visible": false,
+          "kind": "Pine",
+          "lidar_targeted": true,
+          "name": "forest_proxy_004",
+          "prim_path": "/World/forest_collision/proxy_004",
+          "proxy_bounds_max_error_m": 2.0827578772752986e-08,
+          "render_visibility_matches": true,
+          "root_prim_valid": true,
+          "runtime_proxy_bounds_m": {
+            "max_m": [
+              2.239999994635582,
+              7.239999994635582,
+              4.433739900588989
+            ],
+            "min_m": [
+              1.760000005364418,
+              6.760000005364418,
+              0.43373990058898926
+            ]
+          },
+          "source_visual_prim_path": "/World/forest_visual/asset_004",
+          "source_visual_prim_valid": true,
+          "source_visual_seated": true,
+          "source_visual_support_method": null,
+          "source_visual_terrain_clearance_m": null,
+          "source_visual_visible_geometry_prim_paths": [
+            "/World/forest_visual/asset_004/geometry/mesh"
+          ],
+          "source_visual_world_bounds_m": {
+            "max_m": [
+              3.4905468940734865,
+              8.606219673156739,
+              9.835371798276901
+            ],
+            "min_m": [
+              0.6153950691223145,
+              5.786655712127685,
+              0.12240821719169614
+            ]
+          },
+          "terrain_seating": null,
+          "visible_geometry_prim_paths": []
+        },
+        {
+          "collision_prim_paths": [
+            "/World/forest_collision/proxy_005/geometry/mesh"
+          ],
+          "declared_bounds_max_m": [
+            4.24,
+            -0.76,
+            5.049588574502087
+          ],
+          "declared_bounds_min_m": [
+            3.76,
+            -1.24,
+            1.0495885745020868
+          ],
+          "depth_targeted": true,
+          "expected_render_visible": false,
+          "kind": "Birch",
+          "lidar_targeted": true,
+          "name": "forest_proxy_005",
+          "prim_path": "/World/forest_collision/proxy_005",
+          "proxy_bounds_max_error_m": 1.0576524722694103e-07,
+          "render_visibility_matches": true,
+          "root_prim_valid": true,
+          "runtime_proxy_bounds_m": {
+            "max_m": [
+              4.239999994635582,
+              -0.760000005364418,
+              5.049588680267334
+            ],
+            "min_m": [
+              3.760000005364418,
+              -1.239999994635582,
+              1.049588680267334
+            ]
+          },
+          "source_visual_prim_path": "/World/forest_visual/asset_005",
+          "source_visual_prim_valid": true,
+          "source_visual_seated": true,
+          "source_visual_support_method": null,
+          "source_visual_terrain_clearance_m": null,
+          "source_visual_visible_geometry_prim_paths": [
+            "/World/forest_visual/asset_005/geometry/mesh"
+          ],
+          "source_visual_world_bounds_m": {
+            "max_m": [
+              4.7613578796386715,
+              -0.1422942161560058,
+              6.243135237693787
+            ],
+            "min_m": [
+              2.940468692779541,
+              -1.8435829162597657,
+              0.9373506784439086
+            ]
+          },
+          "terrain_seating": null,
+          "visible_geometry_prim_paths": []
+        },
+        {
+          "collision_prim_paths": [
+            "/World/forest_collision/proxy_006/geometry/mesh"
+          ],
+          "declared_bounds_max_m": [
+            -11.76,
+            1.24,
+            5.560326918491188
+          ],
+          "declared_bounds_min_m": [
+            -12.24,
+            0.76,
+            1.5603269184911879
+          ],
+          "depth_targeted": true,
+          "expected_render_visible": false,
+          "kind": "Pine",
+          "lidar_targeted": true,
+          "name": "forest_proxy_006",
+          "prim_path": "/World/forest_collision/proxy_006",
+          "proxy_bounds_max_error_m": 1.0383969861749165e-07,
+          "render_visibility_matches": true,
+          "root_prim_valid": true,
+          "runtime_proxy_bounds_m": {
+            "max_m": [
+              -11.760000005364418,
+              1.239999994635582,
+              5.560326814651489
+            ],
+            "min_m": [
+              -12.239999994635582,
+              0.760000005364418,
+              1.5603268146514893
+            ]
+          },
+          "source_visual_prim_path": "/World/forest_visual/asset_006",
+          "source_visual_prim_valid": true,
+          "source_visual_seated": true,
+          "source_visual_support_method": null,
+          "source_visual_terrain_clearance_m": null,
+          "source_visual_visible_geometry_prim_paths": [
+            "/World/forest_visual/asset_006/geometry/mesh"
+          ],
+          "source_visual_world_bounds_m": {
+            "max_m": [
+              -10.56136531829834,
+              2.1327861785888675,
+              10.563529753684998
+            ],
+            "min_m": [
+              -13.244898509979247,
+              -0.2384781837463379,
+              1.4253599524497986
+            ]
+          },
+          "terrain_seating": null,
+          "visible_geometry_prim_paths": []
+        },
+        {
+          "collision_prim_paths": [
+            "/World/forest_collision/proxy_007/geometry/mesh"
+          ],
+          "declared_bounds_max_m": [
+            -2.76,
+            10.24,
+            5.341064209141567
+          ],
+          "declared_bounds_min_m": [
+            -3.24,
+            9.76,
+            1.3410642091415674
+          ],
+          "depth_targeted": true,
+          "expected_render_visible": false,
+          "kind": "Birch",
+          "lidar_targeted": true,
+          "name": "forest_proxy_007",
+          "prim_path": "/World/forest_collision/proxy_007",
+          "proxy_bounds_max_error_m": 5.564853466921704e-09,
+          "render_visibility_matches": true,
+          "root_prim_valid": true,
+          "runtime_proxy_bounds_m": {
+            "max_m": [
+              -2.760000005364418,
+              10.239999994635582,
+              5.341064214706421
+            ],
+            "min_m": [
+              -3.239999994635582,
+              9.760000005364418,
+              1.341064214706421
+            ]
+          },
+          "source_visual_prim_path": "/World/forest_visual/asset_007",
+          "source_visual_prim_valid": true,
+          "source_visual_seated": true,
+          "source_visual_support_method": null,
+          "source_visual_terrain_clearance_m": null,
+          "source_visual_visible_geometry_prim_paths": [
+            "/World/forest_visual/asset_007/geometry/mesh"
+          ],
+          "source_visual_world_bounds_m": {
+            "max_m": [
+              -1.3882627487182617,
+              11.764592933654786,
+              8.761853551864625
+            ],
+            "min_m": [
+              -4.689030265808105,
+              7.965124320983886,
+              1.1615268230438232
+            ]
+          },
+          "terrain_seating": null,
+          "visible_geometry_prim_paths": []
+        },
+        {
+          "collision_prim_paths": [
+            "/World/forest_collision/proxy_008/geometry/mesh"
+          ],
+          "declared_bounds_max_m": [
+            -1.4019056558609015,
+            1.9151584148406977,
+            1.9957548657306572
+          ],
+          "declared_bounds_min_m": [
+            -2.936428833007813,
+            0.6520203590393058,
+            0.8906366506465809
+          ],
+          "depth_targeted": true,
+          "expected_render_visible": false,
+          "kind": "Rock",
+          "lidar_targeted": true,
+          "name": "forest_proxy_008",
+          "prim_path": "/World/forest_collision/proxy_008",
+          "proxy_bounds_max_error_m": 8.734549450384321e-08,
+          "render_visibility_matches": true,
+          "root_prim_valid": true,
+          "runtime_proxy_bounds_m": {
+            "max_m": [
+              -1.4019056672534873,
+              1.9151584007147164,
+              1.9957548379898071
+            ],
+            "min_m": [
+              -2.9364288931408,
+              0.6520203254815726,
+              0.8906365633010864
+            ]
+          },
+          "source_visual_prim_path": "/World/forest_visual/asset_008",
+          "source_visual_prim_valid": true,
+          "source_visual_seated": true,
+          "source_visual_support_method": "lowest_mesh_vertex_band",
+          "source_visual_terrain_clearance_m": 0.014999999999999902,
+          "source_visual_visible_geometry_prim_paths": [
+            "/World/forest_visual/asset_008/geometry/mesh"
+          ],
+          "source_visual_world_bounds_m": {
+            "max_m": [
+              -1.4019056081771848,
+              1.9151584625244142,
+              1.9957548379898071
+            ],
+            "min_m": [
+              -2.9364287853240967,
+              0.6520204067230223,
+              0.8906366229057311
+            ]
+          },
+          "terrain_seating": {
+            "clearance_m": 0.015,
+            "contact_support_point_local_xyz_m": [
+              -0.0664072334766388,
+              -0.21399980783462524,
+              -0.5558314919471741
+            ],
+            "contact_support_point_world_xyz_m": [
+              -2.3664072334766395,
+              1.236000192165374,
+              0.890636650646581
+            ],
+            "contact_terrain_height_m": 0.8756366506465811,
+            "maximum_support_clearance_m": 0.1184340097086447,
+            "maximum_terrain_height_m": 0.8756366506465811,
+            "method": "lowest_mesh_vertex_band",
+            "minimum_support_clearance_m": 0.014999999999999902,
+            "required_origin_z_m": 1.4464681425937551,
+            "sample_count": 19,
+            "seated_bounds_min_z_m": 0.8906366506465809,
+            "support_samples": [
+              {
+                "local_point_xyz_m": [
+                  -0.09298481792211533,
+                  -0.19363217055797577,
+                  -0.5489580631256104
+                ],
+                "required_origin_z_m": 1.3545779432526945,
+                "terrain_height_m": 0.7906198801270843,
+                "world_xy_m": [
+                  -2.392984817922116,
+                  1.2563678294420235
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.046440206468105316,
+                  -0.19825515151023865,
+                  -0.552330732345581
+                ],
+                "required_origin_z_m": 1.442967382992162,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.346440206468106,
+                  1.2517448484897606
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.08587263524532318,
+                  -0.22852857410907745,
+                  -0.5512763857841492
+                ],
+                "required_origin_z_m": 1.3568962659112334,
+                "terrain_height_m": 0.7906198801270843,
+                "world_xy_m": [
+                  -2.385872635245324,
+                  1.2214714258909218
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.04264317452907562,
+                  -0.25640273094177246,
+                  -0.5364344120025635
+                ],
+                "required_origin_z_m": 1.4270710626491445,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.3426431745290763,
+                  1.1935972690582268
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.04220963642001152,
+                  -0.23253032565116882,
+                  -0.5555735230445862
+                ],
+                "required_origin_z_m": 1.4462101736911672,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.3422096364200122,
+                  1.2174696743488305
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.026364173740148544,
+                  -0.2011501044034958,
+                  -0.5421456098556519
+                ],
+                "required_origin_z_m": 1.432782260502233,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.3263641737401493,
+                  1.2488498955965035
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.08929134905338287,
+                  -0.2117147296667099,
+                  -0.5522055625915527
+                ],
+                "required_origin_z_m": 1.357825442718637,
+                "terrain_height_m": 0.7906198801270843,
+                "world_xy_m": [
+                  -2.3892913490533836,
+                  1.2382852703332894
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.06943868845701218,
+                  -0.1959766447544098,
+                  -0.5523738861083984
+                ],
+                "required_origin_z_m": 1.4430105367549795,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.369438688457013,
+                  1.2540233552455895
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.08415546268224716,
+                  -0.24140006303787231,
+                  -0.5401601791381836
+                ],
+                "required_origin_z_m": 1.3457800592652678,
+                "terrain_height_m": 0.7906198801270843,
+                "world_xy_m": [
+                  -2.384155462682248,
+                  1.208599936962127
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.04413875937461853,
+                  -0.21611244976520538,
+                  -0.5557696223258972
+                ],
+                "required_origin_z_m": 1.4464062729724783,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.3441387593746192,
+                  1.233887550234794
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.0421907864511013,
+                  -0.24495860934257507,
+                  -0.5468629598617554
+                ],
+                "required_origin_z_m": 1.4374996105083364,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.342190786451102,
+                  1.2050413906574242
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.02396833524107933,
+                  -0.23455123603343964,
+                  -0.5442922115325928
+                ],
+                "required_origin_z_m": 1.4349288621791738,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.32396833524108,
+                  1.2154487639665597
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.06369934976100922,
+                  -0.23066893219947815,
+                  -0.5553834438323975
+                ],
+                "required_origin_z_m": 1.4460200944789785,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.36369934976101,
+                  1.2193310678005211
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.04896325618028641,
+                  -0.17591778934001923,
+                  -0.5359077453613281
+                ],
+                "required_origin_z_m": 1.4265443960079092,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.348963256180287,
+                  1.27408221065998
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.1127326563000679,
+                  -0.20809027552604675,
+                  -0.5374142527580261
+                ],
+                "required_origin_z_m": 1.3430341328851103,
+                "terrain_height_m": 0.7906198801270843,
+                "world_xy_m": [
+                  -2.4127326563000686,
+                  1.2419097244739525
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.06286721676588058,
+                  -0.243290513753891,
+                  -0.5453778505325317
+                ],
+                "required_origin_z_m": 1.4360145011791128,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.3628672167658813,
+                  1.2067094862461083
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.024633992463350296,
+                  -0.24686536192893982,
+                  -0.5367662906646729
+                ],
+                "required_origin_z_m": 1.427402941311254,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.324633992463351,
+                  1.2031346380710595
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.025006752461194992,
+                  -0.21852970123291016,
+                  -0.5447455644607544
+                ],
+                "required_origin_z_m": 1.4353822151073354,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.3250067524611957,
+                  1.2314702987670891
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.0664072334766388,
+                  -0.21399980783462524,
+                  -0.5558314919471741
+                ],
+                "required_origin_z_m": 1.4464681425937551,
+                "terrain_height_m": 0.8756366506465811,
+                "world_xy_m": [
+                  -2.3664072334766395,
+                  1.236000192165374
+                ]
+              }
+            ],
+            "unseated_origin_z_m": 0.7960758281756106,
+            "vertical_correction_m": 0.6503923144181445
+          },
+          "visible_geometry_prim_paths": []
+        },
+        {
+          "collision_prim_paths": [
+            "/World/forest_collision/proxy_009/geometry/mesh"
+          ],
+          "declared_bounds_max_m": [
+            -6.760260492563248,
+            5.302477931976318,
+            1.8280176877517125
+          ],
+          "declared_bounds_min_m": [
+            -7.294328397512436,
+            4.6981166243553165,
+            1.1726796745795625
+          ],
+          "depth_targeted": true,
+          "expected_render_visible": false,
+          "kind": "Rock",
+          "lidar_targeted": true,
+          "name": "forest_proxy_009",
+          "prim_path": "/World/forest_collision/proxy_009",
+          "proxy_bounds_max_error_m": 2.2447766490074628e-07,
+          "render_visibility_matches": true,
+          "root_prim_valid": true,
+          "runtime_proxy_bounds_m": {
+            "max_m": [
+              -6.760260671377182,
+              5.3024777392214695,
+              1.8280176967431245
+            ],
+            "min_m": [
+              -7.294328600168228,
+              4.698116399877652,
+              1.1726796776007475
+            ]
+          },
+          "source_visual_prim_path": "/World/forest_visual/asset_009",
+          "source_visual_prim_valid": true,
+          "source_visual_seated": true,
+          "source_visual_support_method": "lowest_mesh_vertex_band",
+          "source_visual_terrain_clearance_m": 0.014999999999999902,
+          "source_visual_visible_geometry_prim_paths": [
+            "/World/forest_visual/asset_009/geometry/mesh"
+          ],
+          "source_visual_world_bounds_m": {
+            "max_m": [
+              -6.760260492563248,
+              5.302477931976318,
+              1.8280176997184754
+            ],
+            "min_m": [
+              -7.294328397512436,
+              4.6981166243553165,
+              1.1726796865463256
+            ]
+          },
+          "terrain_seating": {
+            "clearance_m": 0.015,
+            "contact_support_point_local_xyz_m": [
+              -0.13909491896629333,
+              0.14387954771518707,
+              -0.32644006609916687
+            ],
+            "contact_support_point_world_xyz_m": [
+              -7.139094918966293,
+              5.143879547715187,
+              1.172679680540027
+            ],
+            "contact_terrain_height_m": 1.1576796805400271,
+            "maximum_support_clearance_m": 0.10486857275373973,
+            "maximum_terrain_height_m": 1.1576796805400271,
+            "method": "lowest_mesh_vertex_band",
+            "minimum_support_clearance_m": 0.014999999999999902,
+            "required_origin_z_m": 1.499119746639194,
+            "sample_count": 9,
+            "seated_bounds_min_z_m": 1.1726796745795625,
+            "support_samples": [
+              {
+                "local_point_xyz_m": [
+                  -0.03501047194004059,
+                  -0.022688496857881546,
+                  -0.3210214674472809
+                ],
+                "required_origin_z_m": 1.446346173807102,
+                "terrain_height_m": 1.1103247063598212,
+                "world_xy_m": [
+                  -7.035010471940041,
+                  4.9773115031421185
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.13909491896629333,
+                  0.14387954771518707,
+                  -0.32644006609916687
+                ],
+                "required_origin_z_m": 1.499119746639194,
+                "terrain_height_m": 1.1576796805400271,
+                "world_xy_m": [
+                  -7.139094918966293,
+                  5.143879547715187
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.033705733716487885,
+                  0.014624510891735554,
+                  -0.3070143759250641
+                ],
+                "required_origin_z_m": 1.4323390822848852,
+                "terrain_height_m": 1.1103247063598212,
+                "world_xy_m": [
+                  -7.033705733716488,
+                  5.0146245108917356
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  0.07501876354217529,
+                  -0.08877245336771011,
+                  -0.3089474141597748
+                ],
+                "required_origin_z_m": 1.4342721205195959,
+                "terrain_height_m": 1.1103247063598212,
+                "world_xy_m": [
+                  -6.924981236457825,
+                  4.91122754663229
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  0.10644806921482086,
+                  -0.22228072583675385,
+                  -0.32133379578590393
+                ],
+                "required_origin_z_m": 1.4331625761937257,
+                "terrain_height_m": 1.0968287804078218,
+                "world_xy_m": [
+                  -6.893551930785179,
+                  4.777719274163246
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  0.13299904763698578,
+                  -0.2226487696170807,
+                  -0.32028627395629883
+                ],
+                "required_origin_z_m": 1.409251173885454,
+                "terrain_height_m": 1.0739648999291553,
+                "world_xy_m": [
+                  -6.867000952363014,
+                  4.777351230382919
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.10086521506309509,
+                  0.09283183515071869,
+                  -0.31841301918029785
+                ],
+                "required_origin_z_m": 1.443737725540119,
+                "terrain_height_m": 1.1103247063598212,
+                "world_xy_m": [
+                  -7.100865215063095,
+                  5.092831835150719
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.11793627589941025,
+                  0.16389663517475128,
+                  -0.31354421377182007
+                ],
+                "required_origin_z_m": 1.4604745583847045,
+                "terrain_height_m": 1.1319303446128846,
+                "world_xy_m": [
+                  -7.11793627589941,
+                  5.163896635174751
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.09349202364683151,
+                  0.18595941364765167,
+                  -0.30807623267173767
+                ],
+                "required_origin_z_m": 1.4550065772846221,
+                "terrain_height_m": 1.1319303446128846,
+                "world_xy_m": [
+                  -7.0934920236468315,
+                  5.185959413647652
+                ]
+              }
+            ],
+            "unseated_origin_z_m": 1.1103247063598212,
+            "vertical_correction_m": 0.38879504027937273
+          },
+          "visible_geometry_prim_paths": []
+        },
+        {
+          "collision_prim_paths": [
+            "/World/forest_collision/proxy_010/geometry/mesh"
+          ],
+          "declared_bounds_max_m": [
+            1.4938300132751468,
+            6.529295432567596,
+            1.5713988780491632
+          ],
+          "declared_bounds_min_m": [
+            0.45673000812530506,
+            5.4827708244323725,
+            0.5517142772190848
+          ],
+          "depth_targeted": true,
+          "expected_render_visible": false,
+          "kind": "Rock",
+          "lidar_targeted": true,
+          "name": "forest_proxy_010",
+          "prim_path": "/World/forest_collision/proxy_010",
+          "proxy_bounds_max_error_m": 2.0098251507505438e-07,
+          "render_visibility_matches": true,
+          "root_prim_valid": true,
+          "runtime_proxy_bounds_m": {
+            "max_m": [
+              1.493829979039063,
+              6.529295231585081,
+              1.5713988542556763
+            ],
+            "min_m": [
+              0.45672999467767283,
+              5.482770655866091,
+              0.551714301109314
+            ]
+          },
+          "source_visual_prim_path": "/World/forest_visual/asset_010",
+          "source_visual_prim_valid": true,
+          "source_visual_seated": true,
+          "source_visual_support_method": "lowest_mesh_vertex_band",
+          "source_visual_terrain_clearance_m": 0.014999999999999902,
+          "source_visual_visible_geometry_prim_paths": [
+            "/World/forest_visual/asset_010/geometry/mesh"
+          ],
+          "source_visual_world_bounds_m": {
+            "max_m": [
+              1.4938300132751465,
+              6.529295432567596,
+              1.5713989019393921
+            ],
+            "min_m": [
+              0.45673000812530506,
+              5.482770824432373,
+              0.5517143011093139
+            ]
+          },
+          "terrain_seating": {
+            "clearance_m": 0.015,
+            "contact_support_point_local_xyz_m": [
+              -0.25470247864723206,
+              0.10236109793186188,
+              -0.5145996809005737
+            ],
+            "contact_support_point_world_xyz_m": [
+              0.7452975213527679,
+              6.102361097931862,
+              0.5517142772190851
+            ],
+            "contact_terrain_height_m": 0.5367142772190852,
+            "maximum_support_clearance_m": 0.039900449940917015,
+            "maximum_terrain_height_m": 0.5512613131511119,
+            "method": "lowest_mesh_vertex_band",
+            "minimum_support_clearance_m": 0.014999999999999902,
+            "required_origin_z_m": 1.0663139581196588,
+            "sample_count": 6,
+            "seated_bounds_min_z_m": 0.551714277219085,
+            "support_samples": [
+              {
+                "local_point_xyz_m": [
+                  -0.24246713519096375,
+                  0.2699297368526459,
+                  -0.5010710954666138
+                ],
+                "required_origin_z_m": 1.0469820125122378,
+                "terrain_height_m": 0.5309109170456241,
+                "world_xy_m": [
+                  0.7575328648090363,
+                  6.269929736852646
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  0.10292749851942062,
+                  -0.32554304599761963,
+                  -0.4954998791217804
+                ],
+                "required_origin_z_m": 1.0617611922728922,
+                "terrain_height_m": 0.5512613131511119,
+                "world_xy_m": [
+                  1.1029274985194206,
+                  5.67445695400238
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.20548485219478607,
+                  0.19103334844112396,
+                  -0.4955025911331177
+                ],
+                "required_origin_z_m": 1.0414135081787417,
+                "terrain_height_m": 0.5309109170456241,
+                "world_xy_m": [
+                  0.7945151478052139,
+                  6.191033348441124
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.25470247864723206,
+                  0.10236109793186188,
+                  -0.5145996809005737
+                ],
+                "required_origin_z_m": 1.0663139581196588,
+                "terrain_height_m": 0.5367142772190852,
+                "world_xy_m": [
+                  0.7452975213527679,
+                  6.102361097931862
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  0.029359422624111176,
+                  -0.18683786690235138,
+                  -0.49824976921081543
+                ],
+                "required_origin_z_m": 1.0645110823619273,
+                "terrain_height_m": 0.5512613131511119,
+                "world_xy_m": [
+                  1.0293594226241112,
+                  5.813162133097649
+                ]
+              },
+              {
+                "local_point_xyz_m": [
+                  -0.19195407629013062,
+                  0.04390150308609009,
+                  -0.49924802780151367
+                ],
+                "required_origin_z_m": 1.0509623050205987,
+                "terrain_height_m": 0.5367142772190852,
+                "world_xy_m": [
+                  0.8080459237098694,
+                  6.04390150308609
+                ]
+              }
+            ],
+            "unseated_origin_z_m": 0.5359445015014638,
+            "vertical_correction_m": 0.530369456618195
+          },
+          "visible_geometry_prim_paths": []
+        }
+      ]
+    }
+  },
+  "imported_collision_prim_paths": [
+    "/World/envs/env_0/Robot/TORSO/collisions/mesh_0/box",
+    "/World/envs/env_0/Robot/TORSO/collisions/mesh_1/box",
+    "/World/envs/env_0/Robot/FL_HIP/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/FL_THIGH/collisions/mesh_0/box",
+    "/World/envs/env_0/Robot/FL_SHANK/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/FL_SHANK/collisions/mesh_1/capsule",
+    "/World/envs/env_0/Robot/FL_FOOT/collisions/mesh_0/sphere",
+    "/World/envs/env_0/Robot/FR_HIP/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/FR_THIGH/collisions/mesh_0/box",
+    "/World/envs/env_0/Robot/FR_SHANK/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/FR_SHANK/collisions/mesh_1/capsule",
+    "/World/envs/env_0/Robot/FR_FOOT/collisions/mesh_0/sphere",
+    "/World/envs/env_0/Robot/HL_HIP/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/HL_THIGH/collisions/mesh_0/box",
+    "/World/envs/env_0/Robot/HL_SHANK/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/HL_SHANK/collisions/mesh_1/capsule",
+    "/World/envs/env_0/Robot/HL_FOOT/collisions/mesh_0/sphere",
+    "/World/envs/env_0/Robot/HR_HIP/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/HR_THIGH/collisions/mesh_0/box",
+    "/World/envs/env_0/Robot/HR_SHANK/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/HR_SHANK/collisions/mesh_1/capsule",
+    "/World/envs/env_0/Robot/HR_FOOT/collisions/mesh_0/sphere",
+    "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_rear_body_collision/box",
+    "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_front_nose_collision/box",
+    "/World/envs/env_0/Robot/sensor_carrier_link/collisions/mesh_0/box",
+    "/World/envs/env_0/Robot/d435i_body_link/collisions/mesh_0/box",
+    "/World/envs/env_0/Robot/mid360_body_link/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_rear_rail_collision/box",
+    "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_front_rail_collision/box"
+  ],
+  "imported_fixed_joint_prim_paths": [
+    "/World/envs/env_0/Robot/joints/FL_Ankle",
+    "/World/envs/env_0/Robot/joints/FR_Ankle",
+    "/World/envs/env_0/Robot/joints/HL_Ankle",
+    "/World/envs/env_0/Robot/joints/HR_Ankle",
+    "/World/envs/env_0/Robot/joints/pro_interface_joint",
+    "/World/envs/env_0/Robot/joints/sensor_carrier_joint",
+    "/World/envs/env_0/Robot/joints/d435i_body_joint",
+    "/World/envs/env_0/Robot/joints/d435i_depth_optical_joint",
+    "/World/envs/env_0/Robot/joints/mid360_body_joint",
+    "/World/envs/env_0/Robot/joints/mid360_scan_joint",
+    "/World/envs/env_0/Robot/joints/s410_guard_joint"
+  ],
+  "imported_geometry_prim_records": [
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/TORSO/visuals/torso/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/TORSO/collisions/mesh_0/box",
+      "type": "Cube"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/TORSO/collisions/mesh_1/box",
+      "type": "Cube"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FL_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FL_HIP/collisions/mesh_0/capsule",
+      "type": "Capsule"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FL_THIGH/collisions/mesh_0/box",
+      "type": "Cube"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FL_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FL_SHANK/collisions/mesh_0/capsule",
+      "type": "Capsule"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FL_SHANK/collisions/mesh_1/capsule",
+      "type": "Capsule"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FL_FOOT/collisions/mesh_0/sphere",
+      "type": "Sphere"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FR_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FR_HIP/collisions/mesh_0/capsule",
+      "type": "Capsule"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FR_THIGH/collisions/mesh_0/box",
+      "type": "Cube"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FR_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FR_SHANK/collisions/mesh_0/capsule",
+      "type": "Capsule"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FR_SHANK/collisions/mesh_1/capsule",
+      "type": "Capsule"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/FR_FOOT/collisions/mesh_0/sphere",
+      "type": "Sphere"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HL_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HL_HIP/collisions/mesh_0/capsule",
+      "type": "Capsule"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HL_THIGH/collisions/mesh_0/box",
+      "type": "Cube"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HL_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HL_SHANK/collisions/mesh_0/capsule",
+      "type": "Capsule"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HL_SHANK/collisions/mesh_1/capsule",
+      "type": "Capsule"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HL_FOOT/collisions/mesh_0/sphere",
+      "type": "Sphere"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HR_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HR_HIP/collisions/mesh_0/capsule",
+      "type": "Capsule"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HR_THIGH/collisions/mesh_0/box",
+      "type": "Cube"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HR_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HR_SHANK/collisions/mesh_0/capsule",
+      "type": "Capsule"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HR_SHANK/collisions/mesh_1/capsule",
+      "type": "Capsule"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/HR_FOOT/collisions/mesh_0/sphere",
+      "type": "Sphere"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_rear_body_collision/box",
+      "type": "Cube"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_front_nose_collision/box",
+      "type": "Cube"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/sensor_carrier_link/collisions/mesh_0/box",
+      "type": "Cube"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/d435i_body_link/collisions/mesh_0/box",
+      "type": "Cube"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/mid360_body_link/collisions/mesh_0/capsule",
+      "type": "Capsule"
+    },
+    {
+      "applied_schemas": [
+        "MaterialBindingAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/mesh",
+      "type": "Mesh"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_rear_rail_collision/box",
+      "type": "Cube"
+    },
+    {
+      "applied_schemas": [
+        "PhysicsCollisionAPI"
+      ],
+      "path": "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_front_rail_collision/box",
+      "type": "Cube"
+    }
+  ],
+  "imported_joint_prim_paths": [
+    "/World/envs/env_0/Robot/joints/FL_HipX_joint",
+    "/World/envs/env_0/Robot/joints/FL_HipY_joint",
+    "/World/envs/env_0/Robot/joints/FL_Knee_joint",
+    "/World/envs/env_0/Robot/joints/FL_Ankle",
+    "/World/envs/env_0/Robot/joints/FR_HipX_joint",
+    "/World/envs/env_0/Robot/joints/FR_HipY_joint",
+    "/World/envs/env_0/Robot/joints/FR_Knee_joint",
+    "/World/envs/env_0/Robot/joints/FR_Ankle",
+    "/World/envs/env_0/Robot/joints/HL_HipX_joint",
+    "/World/envs/env_0/Robot/joints/HL_HipY_joint",
+    "/World/envs/env_0/Robot/joints/HL_Knee_joint",
+    "/World/envs/env_0/Robot/joints/HL_Ankle",
+    "/World/envs/env_0/Robot/joints/HR_HipX_joint",
+    "/World/envs/env_0/Robot/joints/HR_HipY_joint",
+    "/World/envs/env_0/Robot/joints/HR_Knee_joint",
+    "/World/envs/env_0/Robot/joints/HR_Ankle",
+    "/World/envs/env_0/Robot/joints/pro_interface_joint",
+    "/World/envs/env_0/Robot/joints/sensor_carrier_joint",
+    "/World/envs/env_0/Robot/joints/d435i_body_joint",
+    "/World/envs/env_0/Robot/joints/d435i_depth_optical_joint",
+    "/World/envs/env_0/Robot/joints/mid360_body_joint",
+    "/World/envs/env_0/Robot/joints/mid360_scan_joint",
+    "/World/envs/env_0/Robot/joints/s410_guard_joint"
+  ],
+  "imported_movable_joint_prim_paths": [
+    "/World/envs/env_0/Robot/joints/FL_HipX_joint",
+    "/World/envs/env_0/Robot/joints/FL_HipY_joint",
+    "/World/envs/env_0/Robot/joints/FL_Knee_joint",
+    "/World/envs/env_0/Robot/joints/FR_HipX_joint",
+    "/World/envs/env_0/Robot/joints/FR_HipY_joint",
+    "/World/envs/env_0/Robot/joints/FR_Knee_joint",
+    "/World/envs/env_0/Robot/joints/HL_HipX_joint",
+    "/World/envs/env_0/Robot/joints/HL_HipY_joint",
+    "/World/envs/env_0/Robot/joints/HL_Knee_joint",
+    "/World/envs/env_0/Robot/joints/HR_HipX_joint",
+    "/World/envs/env_0/Robot/joints/HR_HipY_joint",
+    "/World/envs/env_0/Robot/joints/HR_Knee_joint"
+  ],
+  "imported_prim_paths": [
+    "/World/envs/env_0/Robot",
+    "/World/envs/env_0/Robot/TORSO",
+    "/World/envs/env_0/Robot/TORSO/visuals",
+    "/World/envs/env_0/Robot/TORSO/visuals/torso",
+    "/World/envs/env_0/Robot/TORSO/visuals/torso/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/TORSO/visuals/torso/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/TORSO/visuals/torso/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/TORSO/visuals/torso/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/TORSO/visuals/torso/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/TORSO/collisions",
+    "/World/envs/env_0/Robot/TORSO/collisions/mesh_0",
+    "/World/envs/env_0/Robot/TORSO/collisions/mesh_0/box",
+    "/World/envs/env_0/Robot/TORSO/collisions/mesh_1",
+    "/World/envs/env_0/Robot/TORSO/collisions/mesh_1/box",
+    "/World/envs/env_0/Robot/FL_HIP",
+    "/World/envs/env_0/Robot/FL_HIP/visuals",
+    "/World/envs/env_0/Robot/FL_HIP/visuals/hip",
+    "/World/envs/env_0/Robot/FL_HIP/visuals/hip/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/FL_HIP/visuals/hip/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/FL_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/FL_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/FL_HIP/visuals/hip/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/FL_HIP/collisions",
+    "/World/envs/env_0/Robot/FL_HIP/collisions/mesh_0",
+    "/World/envs/env_0/Robot/FL_HIP/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/joints",
+    "/World/envs/env_0/Robot/joints/FL_HipX_joint",
+    "/World/envs/env_0/Robot/joints/FL_HipY_joint",
+    "/World/envs/env_0/Robot/joints/FL_Knee_joint",
+    "/World/envs/env_0/Robot/joints/FL_Ankle",
+    "/World/envs/env_0/Robot/joints/FR_HipX_joint",
+    "/World/envs/env_0/Robot/joints/FR_HipY_joint",
+    "/World/envs/env_0/Robot/joints/FR_Knee_joint",
+    "/World/envs/env_0/Robot/joints/FR_Ankle",
+    "/World/envs/env_0/Robot/joints/HL_HipX_joint",
+    "/World/envs/env_0/Robot/joints/HL_HipY_joint",
+    "/World/envs/env_0/Robot/joints/HL_Knee_joint",
+    "/World/envs/env_0/Robot/joints/HL_Ankle",
+    "/World/envs/env_0/Robot/joints/HR_HipX_joint",
+    "/World/envs/env_0/Robot/joints/HR_HipY_joint",
+    "/World/envs/env_0/Robot/joints/HR_Knee_joint",
+    "/World/envs/env_0/Robot/joints/HR_Ankle",
+    "/World/envs/env_0/Robot/joints/pro_interface_joint",
+    "/World/envs/env_0/Robot/joints/sensor_carrier_joint",
+    "/World/envs/env_0/Robot/joints/d435i_body_joint",
+    "/World/envs/env_0/Robot/joints/d435i_depth_optical_joint",
+    "/World/envs/env_0/Robot/joints/mid360_body_joint",
+    "/World/envs/env_0/Robot/joints/mid360_scan_joint",
+    "/World/envs/env_0/Robot/joints/s410_guard_joint",
+    "/World/envs/env_0/Robot/FL_THIGH",
+    "/World/envs/env_0/Robot/FL_THIGH/visuals",
+    "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh",
+    "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/FL_THIGH/collisions",
+    "/World/envs/env_0/Robot/FL_THIGH/collisions/mesh_0",
+    "/World/envs/env_0/Robot/FL_THIGH/collisions/mesh_0/box",
+    "/World/envs/env_0/Robot/FL_SHANK",
+    "/World/envs/env_0/Robot/FL_SHANK/visuals",
+    "/World/envs/env_0/Robot/FL_SHANK/visuals/shank",
+    "/World/envs/env_0/Robot/FL_SHANK/visuals/shank/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/FL_SHANK/visuals/shank/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/FL_SHANK/visuals/shank/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/FL_SHANK/visuals/shank/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/FL_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/FL_SHANK/collisions",
+    "/World/envs/env_0/Robot/FL_SHANK/collisions/mesh_0",
+    "/World/envs/env_0/Robot/FL_SHANK/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/FL_SHANK/collisions/mesh_1",
+    "/World/envs/env_0/Robot/FL_SHANK/collisions/mesh_1/capsule",
+    "/World/envs/env_0/Robot/FL_FOOT",
+    "/World/envs/env_0/Robot/FL_FOOT/visuals",
+    "/World/envs/env_0/Robot/FL_FOOT/collisions",
+    "/World/envs/env_0/Robot/FL_FOOT/collisions/mesh_0",
+    "/World/envs/env_0/Robot/FL_FOOT/collisions/mesh_0/sphere",
+    "/World/envs/env_0/Robot/FR_HIP",
+    "/World/envs/env_0/Robot/FR_HIP/visuals",
+    "/World/envs/env_0/Robot/FR_HIP/visuals/hip",
+    "/World/envs/env_0/Robot/FR_HIP/visuals/hip/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/FR_HIP/visuals/hip/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/FR_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/FR_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/FR_HIP/visuals/hip/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/FR_HIP/collisions",
+    "/World/envs/env_0/Robot/FR_HIP/collisions/mesh_0",
+    "/World/envs/env_0/Robot/FR_HIP/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/FR_THIGH",
+    "/World/envs/env_0/Robot/FR_THIGH/visuals",
+    "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh",
+    "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/FR_THIGH/collisions",
+    "/World/envs/env_0/Robot/FR_THIGH/collisions/mesh_0",
+    "/World/envs/env_0/Robot/FR_THIGH/collisions/mesh_0/box",
+    "/World/envs/env_0/Robot/FR_SHANK",
+    "/World/envs/env_0/Robot/FR_SHANK/visuals",
+    "/World/envs/env_0/Robot/FR_SHANK/visuals/shank",
+    "/World/envs/env_0/Robot/FR_SHANK/visuals/shank/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/FR_SHANK/visuals/shank/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/FR_SHANK/visuals/shank/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/FR_SHANK/visuals/shank/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/FR_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/FR_SHANK/collisions",
+    "/World/envs/env_0/Robot/FR_SHANK/collisions/mesh_0",
+    "/World/envs/env_0/Robot/FR_SHANK/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/FR_SHANK/collisions/mesh_1",
+    "/World/envs/env_0/Robot/FR_SHANK/collisions/mesh_1/capsule",
+    "/World/envs/env_0/Robot/FR_FOOT",
+    "/World/envs/env_0/Robot/FR_FOOT/visuals",
+    "/World/envs/env_0/Robot/FR_FOOT/collisions",
+    "/World/envs/env_0/Robot/FR_FOOT/collisions/mesh_0",
+    "/World/envs/env_0/Robot/FR_FOOT/collisions/mesh_0/sphere",
+    "/World/envs/env_0/Robot/HL_HIP",
+    "/World/envs/env_0/Robot/HL_HIP/visuals",
+    "/World/envs/env_0/Robot/HL_HIP/visuals/hip",
+    "/World/envs/env_0/Robot/HL_HIP/visuals/hip/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/HL_HIP/visuals/hip/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/HL_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/HL_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/HL_HIP/visuals/hip/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/HL_HIP/collisions",
+    "/World/envs/env_0/Robot/HL_HIP/collisions/mesh_0",
+    "/World/envs/env_0/Robot/HL_HIP/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/HL_THIGH",
+    "/World/envs/env_0/Robot/HL_THIGH/visuals",
+    "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh",
+    "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/HL_THIGH/collisions",
+    "/World/envs/env_0/Robot/HL_THIGH/collisions/mesh_0",
+    "/World/envs/env_0/Robot/HL_THIGH/collisions/mesh_0/box",
+    "/World/envs/env_0/Robot/HL_SHANK",
+    "/World/envs/env_0/Robot/HL_SHANK/visuals",
+    "/World/envs/env_0/Robot/HL_SHANK/visuals/shank",
+    "/World/envs/env_0/Robot/HL_SHANK/visuals/shank/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/HL_SHANK/visuals/shank/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/HL_SHANK/visuals/shank/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/HL_SHANK/visuals/shank/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/HL_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/HL_SHANK/collisions",
+    "/World/envs/env_0/Robot/HL_SHANK/collisions/mesh_0",
+    "/World/envs/env_0/Robot/HL_SHANK/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/HL_SHANK/collisions/mesh_1",
+    "/World/envs/env_0/Robot/HL_SHANK/collisions/mesh_1/capsule",
+    "/World/envs/env_0/Robot/HL_FOOT",
+    "/World/envs/env_0/Robot/HL_FOOT/visuals",
+    "/World/envs/env_0/Robot/HL_FOOT/collisions",
+    "/World/envs/env_0/Robot/HL_FOOT/collisions/mesh_0",
+    "/World/envs/env_0/Robot/HL_FOOT/collisions/mesh_0/sphere",
+    "/World/envs/env_0/Robot/HR_HIP",
+    "/World/envs/env_0/Robot/HR_HIP/visuals",
+    "/World/envs/env_0/Robot/HR_HIP/visuals/hip",
+    "/World/envs/env_0/Robot/HR_HIP/visuals/hip/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/HR_HIP/visuals/hip/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/HR_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/HR_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/HR_HIP/visuals/hip/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/HR_HIP/collisions",
+    "/World/envs/env_0/Robot/HR_HIP/collisions/mesh_0",
+    "/World/envs/env_0/Robot/HR_HIP/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/HR_THIGH",
+    "/World/envs/env_0/Robot/HR_THIGH/visuals",
+    "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh",
+    "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/HR_THIGH/collisions",
+    "/World/envs/env_0/Robot/HR_THIGH/collisions/mesh_0",
+    "/World/envs/env_0/Robot/HR_THIGH/collisions/mesh_0/box",
+    "/World/envs/env_0/Robot/HR_SHANK",
+    "/World/envs/env_0/Robot/HR_SHANK/visuals",
+    "/World/envs/env_0/Robot/HR_SHANK/visuals/shank",
+    "/World/envs/env_0/Robot/HR_SHANK/visuals/shank/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/HR_SHANK/visuals/shank/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/HR_SHANK/visuals/shank/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/HR_SHANK/visuals/shank/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/HR_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/HR_SHANK/collisions",
+    "/World/envs/env_0/Robot/HR_SHANK/collisions/mesh_0",
+    "/World/envs/env_0/Robot/HR_SHANK/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/HR_SHANK/collisions/mesh_1",
+    "/World/envs/env_0/Robot/HR_SHANK/collisions/mesh_1/capsule",
+    "/World/envs/env_0/Robot/HR_FOOT",
+    "/World/envs/env_0/Robot/HR_FOOT/visuals",
+    "/World/envs/env_0/Robot/HR_FOOT/collisions",
+    "/World/envs/env_0/Robot/HR_FOOT/collisions/mesh_0",
+    "/World/envs/env_0/Robot/HR_FOOT/collisions/mesh_0/sphere",
+    "/World/envs/env_0/Robot/pro_interface_link",
+    "/World/envs/env_0/Robot/pro_interface_link/visuals",
+    "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material",
+    "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/pro_interface_link/collisions",
+    "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_rear_body_collision",
+    "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_rear_body_collision/box",
+    "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_front_nose_collision",
+    "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_front_nose_collision/box",
+    "/World/envs/env_0/Robot/sensor_carrier_link",
+    "/World/envs/env_0/Robot/sensor_carrier_link/visuals",
+    "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material",
+    "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/sensor_carrier_link/collisions",
+    "/World/envs/env_0/Robot/sensor_carrier_link/collisions/mesh_0",
+    "/World/envs/env_0/Robot/sensor_carrier_link/collisions/mesh_0/box",
+    "/World/envs/env_0/Robot/d435i_body_link",
+    "/World/envs/env_0/Robot/d435i_body_link/visuals",
+    "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material",
+    "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material",
+    "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/d435i_body_link/collisions",
+    "/World/envs/env_0/Robot/d435i_body_link/collisions/mesh_0",
+    "/World/envs/env_0/Robot/d435i_body_link/collisions/mesh_0/box",
+    "/World/envs/env_0/Robot/d435i_depth_optical_frame",
+    "/World/envs/env_0/Robot/d435i_depth_optical_frame/visuals",
+    "/World/envs/env_0/Robot/d435i_depth_optical_frame/collisions",
+    "/World/envs/env_0/Robot/mid360_body_link",
+    "/World/envs/env_0/Robot/mid360_body_link/visuals",
+    "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material",
+    "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material",
+    "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/mid360_body_link/collisions",
+    "/World/envs/env_0/Robot/mid360_body_link/collisions/mesh_0",
+    "/World/envs/env_0/Robot/mid360_body_link/collisions/mesh_0/capsule",
+    "/World/envs/env_0/Robot/mid360_scan_frame",
+    "/World/envs/env_0/Robot/mid360_scan_frame/visuals",
+    "/World/envs/env_0/Robot/mid360_scan_frame/collisions",
+    "/World/envs/env_0/Robot/s410_guard_link",
+    "/World/envs/env_0/Robot/s410_guard_link/visuals",
+    "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material",
+    "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_",
+    "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/Looks",
+    "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/Looks/DefaultMaterial",
+    "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+    "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/mesh",
+    "/World/envs/env_0/Robot/s410_guard_link/collisions",
+    "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_rear_rail_collision",
+    "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_rear_rail_collision/box",
+    "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_front_rail_collision",
+    "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_front_rail_collision/box",
+    "/World/envs/env_0/Robot/Looks",
+    "/World/envs/env_0/Robot/Looks/material_100100100",
+    "/World/envs/env_0/Robot/Looks/material_100100100/Shader"
+  ],
+  "missing_required_sensor_rig_links": [],
+  "navigation_depth_camera_prim_path": "/World/envs/env_.*/Robot/d435i_depth_optical_frame",
+  "navigation_lidar_prim_path": "/World/envs/env_.*/Robot/mid360_scan_frame",
+  "runtime_body_names": [
+    "TORSO",
+    "FL_HIP",
+    "FR_HIP",
+    "HL_HIP",
+    "HR_HIP",
+    "pro_interface_link",
+    "sensor_carrier_link",
+    "FL_THIGH",
+    "FR_THIGH",
+    "HL_THIGH",
+    "HR_THIGH",
+    "d435i_body_link",
+    "mid360_body_link",
+    "s410_guard_link",
+    "FL_SHANK",
+    "FR_SHANK",
+    "HL_SHANK",
+    "HR_SHANK",
+    "d435i_depth_optical_frame",
+    "mid360_scan_frame",
+    "FL_FOOT",
+    "FR_FOOT",
+    "HL_FOOT",
+    "HR_FOOT"
+  ],
+  "runtime_default_joint_position": {
+    "FL_HipX_joint": 0.0,
+    "FL_HipY_joint": -0.800000011920929,
+    "FL_Knee_joint": 1.600000023841858,
+    "FR_HipX_joint": 0.0,
+    "FR_HipY_joint": -0.800000011920929,
+    "FR_Knee_joint": 1.600000023841858,
+    "HL_HipX_joint": 0.0,
+    "HL_HipY_joint": -0.800000011920929,
+    "HL_Knee_joint": 1.600000023841858,
+    "HR_HipX_joint": 0.0,
+    "HR_HipY_joint": -0.800000011920929,
+    "HR_Knee_joint": 1.600000023841858
+  },
+  "runtime_inertia_by_link_kg_m2_row_major": {
+    "FL_FOOT": [
+      3.8719995245628525e-06,
+      0.0,
+      0.0,
+      0.0,
+      3.8719990698155016e-06,
+      0.0,
+      0.0,
+      0.0,
+      3.8719990698155016e-06
+    ],
+    "FL_HIP": [
+      0.0003949000092688948,
+      0.0,
+      0.0,
+      0.0,
+      0.0004028000112157315,
+      0.0,
+      0.0,
+      0.0,
+      0.00044720000005327165
+    ],
+    "FL_SHANK": [
+      0.0008903899579308927,
+      0.0,
+      0.0,
+      0.0,
+      0.0009067199425771832,
+      0.0,
+      0.0,
+      0.0,
+      3.126600131508894e-05
+    ],
+    "FL_THIGH": [
+      0.005735999904572964,
+      0.0,
+      0.0,
+      0.0,
+      0.0049600000493228436,
+      0.0,
+      0.0,
+      0.0,
+      0.0014359999913722277
+    ],
+    "FR_FOOT": [
+      3.8719995245628525e-06,
+      0.0,
+      0.0,
+      0.0,
+      3.8719990698155016e-06,
+      0.0,
+      0.0,
+      0.0,
+      3.8719990698155016e-06
+    ],
+    "FR_HIP": [
+      0.00044720000005327165,
+      0.0,
+      0.0,
+      0.0,
+      0.0004028000112157315,
+      0.0,
+      0.0,
+      0.0,
+      0.0003949000092688948
+    ],
+    "FR_SHANK": [
+      0.0008903899579308927,
+      0.0,
+      0.0,
+      0.0,
+      0.0009067199425771832,
+      0.0,
+      0.0,
+      0.0,
+      3.126600131508894e-05
+    ],
+    "FR_THIGH": [
+      0.005735999904572964,
+      0.0,
+      0.0,
+      0.0,
+      0.0049600000493228436,
+      0.0,
+      0.0,
+      0.0,
+      0.0014359999913722277
+    ],
+    "HL_FOOT": [
+      3.8719995245628525e-06,
+      0.0,
+      0.0,
+      0.0,
+      3.8719990698155016e-06,
+      0.0,
+      0.0,
+      0.0,
+      3.8719990698155016e-06
+    ],
+    "HL_HIP": [
+      0.0003949000092688948,
+      0.0,
+      0.0,
+      0.0,
+      0.0004028000112157315,
+      0.0,
+      0.0,
+      0.0,
+      0.00044720000005327165
+    ],
+    "HL_SHANK": [
+      0.0008903899579308927,
+      0.0,
+      0.0,
+      0.0,
+      0.0009067199425771832,
+      0.0,
+      0.0,
+      0.0,
+      3.126600131508894e-05
+    ],
+    "HL_THIGH": [
+      0.005735999904572964,
+      0.0,
+      0.0,
+      0.0,
+      0.0049600000493228436,
+      0.0,
+      0.0,
+      0.0,
+      0.0014359999913722277
+    ],
+    "HR_FOOT": [
+      3.8719995245628525e-06,
+      0.0,
+      0.0,
+      0.0,
+      3.8719990698155016e-06,
+      0.0,
+      0.0,
+      0.0,
+      3.8719990698155016e-06
+    ],
+    "HR_HIP": [
+      0.00044720000005327165,
+      0.0,
+      0.0,
+      0.0,
+      0.0004028000112157315,
+      0.0,
+      0.0,
+      0.0,
+      0.0003949000092688948
+    ],
+    "HR_SHANK": [
+      0.0008903899579308927,
+      0.0,
+      0.0,
+      0.0,
+      0.0009067199425771832,
+      0.0,
+      0.0,
+      0.0,
+      3.126600131508894e-05
+    ],
+    "HR_THIGH": [
+      0.005735999904572964,
+      0.0,
+      0.0,
+      0.0,
+      0.0049600000493228436,
+      0.0,
+      0.0,
+      0.0,
+      0.0014359999913722277
+    ],
+    "TORSO": [
+      0.024560000747442245,
+      0.0,
+      0.0,
+      0.0,
+      0.05517999827861786,
+      0.0,
+      0.0,
+      0.0,
+      0.07016000151634216
+    ],
+    "d435i_body_link": [
+      5.453124686027877e-05,
+      0.0,
+      0.0,
+      0.0,
+      7.812500371073838e-06,
+      0.0,
+      0.0,
+      0.0,
+      5.453124686027877e-05
+    ],
+    "d435i_depth_optical_frame": [
+      9.999999960041972e-13,
+      0.0,
+      0.0,
+      0.0,
+      9.999999960041972e-13,
+      0.0,
+      0.0,
+      0.0,
+      9.999999960041972e-13
+    ],
+    "mid360_body_link": [
+      0.0001710318902041763,
+      0.0,
+      0.0,
+      0.0,
+      0.0001710318902041763,
+      0.0,
+      0.0,
+      0.0,
+      0.00017555720114614815
+    ],
+    "mid360_scan_frame": [
+      9.999999960041972e-13,
+      0.0,
+      0.0,
+      0.0,
+      9.999999960041972e-13,
+      0.0,
+      0.0,
+      0.0,
+      9.999999960041972e-13
+    ],
+    "pro_interface_link": [
+      0.0010173666523769498,
+      5.439532287709881e-06,
+      0.0,
+      5.439533197204582e-06,
+      0.0030108282808214426,
+      0.0,
+      0.0,
+      0.0,
+      0.003658444620668888
+    ],
+    "s410_guard_link": [
+      2.519611007301137e-05,
+      -6.600739954620849e-10,
+      2.005094312806932e-09,
+      -6.600739954620849e-10,
+      3.6203506169840693e-05,
+      -2.476170379850373e-10,
+      2.005094756896142e-09,
+      -2.476205906987161e-10,
+      3.6402536352397874e-05
+    ],
+    "sensor_carrier_link": [
+      7.792736869305372e-05,
+      -2.1757129431421163e-08,
+      1.0636345905368216e-05,
+      -2.1757129431421163e-08,
+      0.00014785087842028588,
+      1.0389950233502532e-08,
+      1.0636345905368216e-05,
+      1.0389950233502532e-08,
+      0.00021364331769291312
+    ]
+  },
+  "runtime_joint_names": [
+    "FL_HipX_joint",
+    "FR_HipX_joint",
+    "HL_HipX_joint",
+    "HR_HipX_joint",
+    "FL_HipY_joint",
+    "FR_HipY_joint",
+    "HL_HipY_joint",
+    "HR_HipY_joint",
+    "FL_Knee_joint",
+    "FR_Knee_joint",
+    "HL_Knee_joint",
+    "HR_Knee_joint"
+  ],
+  "runtime_mass_by_link_kg": {
+    "FL_FOOT": 0.019999999552965164,
+    "FL_HIP": 0.550000011920929,
+    "FL_SHANK": 0.15299999713897705,
+    "FL_THIGH": 0.8600000143051147,
+    "FR_FOOT": 0.019999999552965164,
+    "FR_HIP": 0.550000011920929,
+    "FR_SHANK": 0.15299999713897705,
+    "FR_THIGH": 0.8600000143051147,
+    "HL_FOOT": 0.019999999552965164,
+    "HL_HIP": 0.550000011920929,
+    "HL_SHANK": 0.15299999713897705,
+    "HL_THIGH": 0.8600000143051147,
+    "HR_FOOT": 0.019999999552965164,
+    "HR_HIP": 0.550000011920929,
+    "HR_SHANK": 0.15299999713897705,
+    "HR_THIGH": 0.8600000143051147,
+    "TORSO": 5.605599880218506,
+    "d435i_body_link": 0.07500000298023224,
+    "d435i_depth_optical_frame": 9.999999974752427e-07,
+    "mid360_body_link": 0.26499998569488525,
+    "mid360_scan_frame": 9.999999974752427e-07,
+    "pro_interface_link": 0.8873999714851379,
+    "s410_guard_link": 0.02550770714879036,
+    "sensor_carrier_link": 0.09127917140722275
+  },
+  "runtime_total_mass_kg": 13.281788810606713,
+  "schema_version": 1,
+  "silent_default_mass_check": {
+    "d435i_depth_optical_frame_mass_kg": 9.999999974752427e-07,
+    "expected_frame_mass_kg": 1e-06,
+    "mid360_scan_frame_mass_kg": 9.999999974752427e-07,
+    "status": "pass"
+  },
+  "v12_task_contract": {
+    "action_dimension": 12,
+    "actuators": {
+      "Hip": {
+        "class": "Lite3ActuatorCfg",
+        "damping": 0.5,
+        "effort_limit": 24.0,
+        "max_delay": 4,
+        "min_delay": 0,
+        "stiffness": 20.0,
+        "velocity_limit": 26.2
+      },
+      "Knee": {
+        "class": "Lite3ActuatorCfg",
+        "damping": 0.5,
+        "effort_limit": 36.0,
+        "max_delay": 4,
+        "min_delay": 0,
+        "stiffness": 20.0,
+        "velocity_limit": 17.3
+      }
+    },
+    "default_base_position_m": [
+      0.0,
+      0.0,
+      0.35
+    ],
+    "default_joint_position_by_regex": {
+      ".*HipX_joint": 0.0,
+      ".*HipY_joint": -0.8,
+      ".*Knee_joint": 1.6
+    },
+    "original_robot_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v6/source/locomotion_v12/runtime_20260718_recovered/resources/lite3/urdf/lite3.urdf",
+    "original_robot_asset_sha256": "178428b97e7d0820e93c200b333f39f0b3b60a81f97d99cd06559d8957c58865",
+    "policy_observation_dimension": 450,
+    "registry_task": "Wave-C-Stairs-V12-Lite3-v0"
+  }
+}
