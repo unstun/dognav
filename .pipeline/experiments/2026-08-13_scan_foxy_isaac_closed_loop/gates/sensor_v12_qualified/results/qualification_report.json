@@ -1,0 +1,57 @@
+{
+  "candidate": "V12 model_149999 fallback",
+  "checks": {
+    "command_visible": true,
+    "finite_policy": true,
+    "forward_mean": 0.24071666016243398,
+    "forward_response": true,
+    "lateral_mean": 0.09600898304155894,
+    "lateral_response": true,
+    "minimum_root_height_m_value": 0.29729634523391724,
+    "no_termination": true,
+    "records_present": true,
+    "support": true,
+    "supported_sample_fraction_value": 0.9888888888888889,
+    "telemetry_nonempty": true,
+    "watchdog_zero": true,
+    "yaw_mean": 0.3766471913882664,
+    "yaw_response": true
+  },
+  "claim": "locomotion qualification only; not SCAN closed-loop validation",
+  "command_transport": {
+    "accepted_connections": 1,
+    "frames_received": 397,
+    "frames_sent": 0,
+    "io_errors": 0,
+    "protocol_errors": 0,
+    "reconnects": 0
+  },
+  "record_count": 450,
+  "runtime_error": null,
+  "schema_version": 1,
+  "sensor_checks": {
+    "cloud_centroid_displacement_m_value": 0.28435980589932525,
+    "finite": true,
+    "frames_present": true,
+    "ground_returns": true,
+    "nonempty": true,
+    "obstacle_returns": true,
+    "pose_dependent_geometry": true,
+    "pose_displacement_m_value": 0.6013024411197935,
+    "timestamps_advance": true
+  },
+  "status": "PASS",
+  "telemetry_sink": {
+    "nonempty_sensor_frames": 90,
+    "sensor_frames": 90,
+    "status_frames": 90
+  },
+  "telemetry_transport": {
+    "accepted_connections": 1,
+    "frames_received": 0,
+    "frames_sent": 180,
+    "io_errors": 0,
+    "protocol_errors": 0,
+    "reconnects": 0
+  }
+}

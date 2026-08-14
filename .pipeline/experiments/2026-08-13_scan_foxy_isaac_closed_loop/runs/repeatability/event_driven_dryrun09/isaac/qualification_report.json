@@ -1,0 +1,59 @@
+{
+  "candidate": "V12 model_149999 fallback",
+  "checks": {
+    "command_connected": true,
+    "commands_received": true,
+    "finite_policy": true,
+    "no_termination": true,
+    "records_present": true,
+    "telemetry_connected": true,
+    "telemetry_sent": true
+  },
+  "claim": "external bridge runtime only; closed-loop goal result evaluated separately",
+  "command_transport": {
+    "accepted_connections": 1,
+    "frames_received": 998,
+    "frames_sent": 0,
+    "io_errors": 0,
+    "last_protocol_error": null,
+    "protocol_errors": 0,
+    "reconnects": 0
+  },
+  "record_count": 866,
+  "runtime_error": null,
+  "runtime_rates": {
+    "physics_hz": 200.0,
+    "policy_hz": 50.0,
+    "sensor_hz": 10.0
+  },
+  "schema_version": 1,
+  "sensor_checks": {
+    "cloud_centroid_displacement_m_value": 2.951861061696721,
+    "finite": true,
+    "frames_present": true,
+    "ground_returns": true,
+    "nonempty": true,
+    "obstacle_returns": true,
+    "pose_dependent_geometry": true,
+    "pose_displacement_m_value": 3.9323875173393175,
+    "timestamps_advance": true
+  },
+  "status": "PASS",
+  "telemetry_transport": {
+    "accepted_connections": 1,
+    "frames_received": 0,
+    "frames_sent": 348,
+    "io_errors": 0,
+    "last_protocol_error": null,
+    "protocol_errors": 0,
+    "reconnects": 0
+  },
+  "video": {
+    "bytes": 9990636,
+    "encoded_duration_seconds": 17.32,
+    "fps": 25,
+    "frame_count": 433,
+    "path": "/home/sun/machine-dog-nav-runs/2026-08-13_scan_foxy_isaac/results/event_driven_dryrun09/closed_loop.mp4",
+    "sha256": "33bb5b85b4e0890ae72134e4e2456e35a87d19f4fdf944efdc70e6ca1620797a"
+  }
+}

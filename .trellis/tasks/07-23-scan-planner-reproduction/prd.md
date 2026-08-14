@@ -1,320 +1,178 @@
-# Reproduce SCAN-Planner Upstream
+# Integrate SCAN-Planner Foxy with Lite3 Physics Simulation
 
 ## Goal
 
-Determine whether the selected SCAN-Planner revision can produce a traceable
-closed-loop navigation result in its original upstream environment, and record
-which parts of a complete quadruped navigation stack are present or absent.
+Build a traceable simulation-only closed loop in which a ROS 2 Foxy-compatible
+port of the SCAN planner drives a policy-controlled Lite3 in Isaac Sim on the
+5070 Ti. The result must exercise planning, simulated 3D perception,
+policy-driven joint motion, PhysX contacts, and feedback to the planner without
+changing the Lite3 onboard Ubuntu 20.04 / ROS 2 Foxy boundary.
 
-The result should support a later human decision about whether SCAN-Planner is
-worth adapting to ROS 2 and Lite3. It must not prematurely integrate upstream
-source into project implementation paths.
+The immediate user value is to decide whether the selected planning and
+locomotion components can form a credible geometric navigation baseline before
+any real-robot work, model training, or LIO integration.
 
-## Background
+## Confirmed Facts at Planning Freeze
 
-- The selected canonical repository is
-  `https://github.com/wuyi2121/SCAN-Planner`.
-- The selected upstream revision is the default `main` commit
-  `529f0ba43b7e79e6fff85a5777c786237f0f8f33` from 2026-07-16.
-- The root repository is Apache-2.0 licensed. Individual ROS package manifests
-  still contain incomplete metadata such as `<license>TODO</license>`.
-- The upstream documented environment is Ubuntu 20.04 with ROS Noetic and a
-  Catkin build. The documented quick start uses `rviz.launch` and `run.launch`.
-- The current local host is Apple Silicon macOS 26.5.2. ROS Noetic is not
-  installed. Docker CLI exists, but no Docker daemon was running when checked.
-- The current physical Lite3 configuration has only a depth camera. Dr Sun
-  wants to determine whether a public, printable Lite3-to-MID360 mounting model
-  exists before considering a 3D LiDAR addition.
-- The official Lite3 comparison manual identifies the depth-camera-only
-  configuration as Lite3 Pro. Its payload interface is shared with the LiDAR
-  version: four M3 threaded holes on a 74 mm by 94 mm rectangular pattern. The
-  Pro payload allowance is 4 kg.
-- Public DEEP Robotics user manuals contain actual dimensioned top-view
-  interface drawings. The current Pro manual shows `4 x M3` threaded holes on
-  a 74 mm by 94 mm rectangular centre pattern. The AI manual shows `6 x M3`
-  plus `2 x M4` and provides the associated chain dimensions; the earlier
-  combined manual explicitly maps that pattern to Venture and the 74 mm by
-  94 mm pattern to Pro/LiDAR. The inspected PDFs and high-resolution page
-  renders are archived under
-  `references/upstream/2026-07-24_lite3-design-drawings/`.
-- The official Motion Development Manual adds dimensioned body and leg
-  drawings: 548 mm body length, 370 mm body width, 74/44 mm top/bottom offsets
-  from the body origin, 124 mm left-right hip-centre spacing, 349 mm
-  front-rear hip-centre spacing, 328 mm leg-plane spacing, 102 mm lateral leg
-  offset, 200 mm upper leg, 210 mm lower leg, and 20 mm foot radius.
-- These manual figures are design-reference drawings, not release-ready
-  manufacturing drawings. They do not specify thread engagement depth,
-  tolerances, materials, wall thickness, surface finish, or a complete datum
-  scheme. Physical hole spacing and usable thread depth must therefore be
-  measured before an adapter is fabricated.
-- Livox publishes an official Mid-360 STEP model and FOV STEP model. The sensor
-  is approximately 65 mm by 65 mm by 60 mm and 265 g, with four bottom M3
-  mounting holes 5 mm deep.
-- Mid-360 does not accept a normal RJ-45 cable at the sensor. It uses a
-  12-pin M12 A-coded aviation connector carrying power, Ethernet, and optional
-  synchronization signals. Livox's separately sold 1-to-3 splitter breaks this
-  out into bare DC power leads, RJ-45 Ethernet, and a function lead; Livox
-  classifies that splitter as suitable for testing/debugging and recommends a
-  customized cable and connectors for higher-reliability deployments.
-- Deep Robotics' Lite3 FAST-LIVO2 example shows the same breakout topology with
-  its power branch terminated as XT30 and explicitly connects that XT30 to the
-  Lite3 24 V XT30 port. Therefore a bench setup can start from the official
-  Livox splitter plus a correctly wired robot-side power termination, while a
-  moving outdoor Lite3 installation should use a reviewed, strain-relieved
-  harness. The actual Lite3 port polarity and available power must be verified
-  on the physical robot before energizing the LiDAR.
-- A verified printable D435i-plus-Mid-360 sensor bracket is publicly available
-  at `https://makerworld.com/en/models/1838891` under CC BY 4.0. The listing
-  includes a tested print profile, a real assembled photograph, and the
-  editable `D435i和MID360支架.sldprt` source. Its robot-side pattern is four M3
-  holes on 45 mm by 80 mm centres, so it does not bolt directly to Lite3 Pro's
-  74 mm by 94 mm interface.
-- Deep Robotics Lab publishes five downloadable STEP solids for its
-  Lite3-Venture FAST-LIVO2 hardware extension at
-  `https://github.com/DeepRoboticsLab/fast-livo2-deep-robotics`. This is the
-  closest Lite3-specific real-robot reference inspected, but the files are
-  explicitly named for Lite3 Venture, not Lite3 Pro, and the external Drive
-  folder does not state a separate hardware license.
-- A current official-organization tree scan plus targeted searches of GitHub,
-  GrabCAD, Sketchfab, Printables, Thingiverse, MakerWorld, Cults, CGTrader,
-  3D ContentCentral, 3Dfindit, TraceParts, Onshape, and Zenodo found no public
-  complete Lite3 engineering solid with the physical payload screw holes
-  modeled. Direct searches on GrabCAD, 3D ContentCentral, 3Dfindit, and
-  TraceParts explicitly returned no result; fuzzy MakerWorld and Thingiverse
-  results were unrelated robots. This is a surveyed search result, not proof
-  that no private or unindexed manufacturing CAD exists.
-- The official Lite3 support-page download resolves to a product brochure, not
-  CAD. The official product page states that a model is included in the
-  developer package, but no public STEP, Parasolid, or native mechanical-CAD
-  download was exposed on the inspected support and download pages.
-- A third-party ROS 2 repository,
-  `https://github.com/legubiao/quadruped_ros2_control`, commit
-  `5434c5810d1a7fe223bcfd04550e9d3bfdd4b458`, contains a complete Lite3 visual
-  model as a Blender-authored DAE. Direct geometry inspection and rendering
-  showed a smooth top shell without the payload-interface holes. The mesh is
-  non-watertight and split into many visual components, so it is not usable as
-  manufacturing CAD even though it depicts a standing, complete robot.
-- Tecmer advertises a Lite3-compatible docking product with M3/M4 top threads
-  and claims openly provided STEP drawings at `https://tecmer.cn/`. The
-  inspected public site and client bundle exposed no actual STEP file or
-  download route, so this remains an unverified supplier lead rather than a
-  found model.
-- Two official Venture accessory files do contain real solid hole geometry.
-  Fusion imported `1T21-J17A-lidar base.STEP` as one closed BRep solid and
-  imported `1T21-BZ20-backload shell.STEP` as one closed BRep solid with 74
-  faces, including 32 cylindrical faces. These are partial accessories rather
-  than a complete robot body, and the inspection does not establish modeled
-  helical threads or compatibility with the Lite3 Pro 74 mm by 94 mm interface.
-- Deep Robotics Lab also publishes a BSD-3-Clause robot-model repository at
-  `https://github.com/DeepRoboticsLab/deep_robotics_model`. Commit
-  `18192847e16ab85c056440072fcc5844cef43856` contains a complete low-resolution
-  Lite3 simulation model in URDF, MJCF, and USD forms with STL meshes. The
-  repository README links a separate official high-resolution Lite3 URDF with
-  DAE meshes. Both official variants contain the torso and four articulated
-  legs but no LiDAR or depth-camera link. No official public full manufacturing
-  CAD assembly of the commercial Lite3 LIDAR configuration was found.
-- The high-resolution torso mesh visibly includes four body-shell fastener
-  heads at approximately `(x, y)=(+/-102.5, +/-72.5)` mm, a 205 mm by 145 mm
-  pattern. They are visual surface details in a non-watertight DAE mesh, not
-  open or parametric threaded holes. The model does not contain the verified
-  Lite3 Pro four-M3 74 mm by 94 mm payload-interface pattern or URDF mounting
-  metadata, so these visible fasteners must not be used as payload-bracket
-  dimensions.
-- Dr Sun clarified on 2026-07-24 that the required baseline artifact is the
-  complete Lite3 robot model, not the J17A LiDAR base. The pinned low- and
-  high-resolution official model sets are stored under
-  `references/upstream/2026-07-24_deep-robotics-model/` and packaged as
-  `Lite3-official-models-18192847.zip`. This model is suitable for visualization
-  and simulation reference, but its mesh geometry is not evidence of mounting
-  tolerances, thread specifications, or Lite3 Pro physical fit.
-- For direct consumption outside a URDF-aware viewer, the official
-  high-resolution URDF and DAE assets were reproducibly assembled into
-  fixed-pose `Lite3-official-high-res-factory-stand-fusion-y-up.glb` and
-  `Lite3-official-high-res-factory-stand-fusion-y-up.stl` files. The pose uses
-  the sibling locomotion repository's registered factory stand-up handoff
-  target, `(HipX=0, HipY=-0.653535, Knee=1.27109)` radians on each leg. The
-  assembly was ground-aligned from the URDF foot collision spheres and rotated
-  from the source URDF's Z-up frame into Fusion's Y-up modeling frame. All four
-  foot-contact heights are 0 with zero spread. Fusion imported the STL as one
-  mesh body and visually confirmed a horizontal body with four downward legs
-  on the modeling ground. This is a reproducible fixed pose, not a live-robot
-  standing test, articulated replacement URDF, or official manufacturing CAD
-  release.
-- The complete derivative can be edited, but it should not be used as the
-  mechanical-authoring source: its STL is a single 1,179,234-triangle mesh, and
-  the separate high-resolution `torso.dae` is a non-watertight visualization
-  mesh. The proposed modification path is therefore to preserve all official
-  assets unchanged, create a separate parametric Lite3 Pro top-interface or
-  adapter solid using the nominal four-M3 74 mm by 94 mm pattern, register that
-  solid to the torso reference, and export both a full-robot visual derivative
-  and an editable STEP/Fusion mechanical derivative. Until the physical robot
-  is measured, this would be a nominal design-reference model rather than a
-  fit-validated printable part.
-- The Drive package is not a five-part printable assembly kit. It contains five
-  separate STEP parts and only three component drawings, with no assembly STEP,
-  exploded view, bill of materials, or complete fastener list. The drawings
-  specify machined and anodized 6061-T6 aluminium for both LiDAR base plates
-  (`1T21-J17A` and `1T21-J20A`) and welded, powder-coated 45 steel for the LiDAR
-  protector (`1CA5-S410`). The official video explicitly identifies the
-  `AGX-orin-base` as a 3D-printed part; the `1T21-BZ20` backload-shell material
-  remains undocumented.
-- The confirmed mechanical hierarchy is two independent assemblies around the
-  Venture backload shell: the `AGX-orin-base` attaches under the AGX Orin and
-  then to the robot, while the sensor assembly uses `1T21-J17A` as the
-  robot-side base, `1T21-J20A` as the 15-degree Mid-360 adapter, and
-  `1CA5-S410` as the four-foot protective cage. The `1T21-J20A` drawing matches
-  the Mid-360's official 48 mm by 36 mm four-M3 mounting pattern and also
-  provides four M5 attachment positions matching the protector. The official
-  video demonstrates mounting the already-assembled sensor unit to the Venture
-  with four robot-side screws, but it does not demonstrate assembling those
-  three sensor parts or publish all screw lengths.
-- No public, license-complete, direct-fit Lite3 Pro 74 mm by 94 mm printable
-  mount was found. The evidence-backed reuse path is therefore the CC BY
-  sensor bracket plus a measured Pro-to-45-by-80 adapter, or a reviewed
-  derivative of the Deep Robotics Venture STEP parts. A public Go2 mount is not
-  a substitute because its robot-side geometry is incompatible and its
-  `LICENSE` file is only a TODO placeholder.
-- The earlier J17A direct-edit investigation remains a sensor-mount reference,
-  not the required Lite3 robot model. No J17A modification should proceed until
-  the intended use of the complete Lite3 model and the required dimensional
-  accuracy are confirmed. If STEP editing is later approved, the downloaded
-  upstream STEP must remain byte-for-byte preserved and all edits must operate
-  on a clearly named working copy with a reproducible script.
-- Relevant Reddit workflows and vendor documentation converge on treating an
-  imported STEP as a base or direct-modeling solid: preserve the source, heal
-  or fill obsolete holes, add new sketches/cuts/bosses, visually compare the
-  derivative, and export a new STEP. Fusion 360 and Shapr3D offer a more
-  approachable manual GUI on macOS; FreeCAD offers the stronger local,
-  open-source, Python-automation path; Onshape offers browser-based direct
-  editing but requires uploading the model. FreeCAD 1.1.2 and Autodesk Fusion
-  with an Education license are now installed on the local Apple Silicon Mac.
-  FreeCAD's command-line CAD kernel successfully validates and tessellates all
-  three Venture sensor-assembly STEP solids. Accessibility-driven GUI
-  interaction caused FreeCAD measurement crashes, and Fusion closed
-  unexpectedly while importing the J20A STEP through GUI automation.
-- On 2026-07-24, Autodesk Fusion's official local MCP imported the unchanged
-  J17A STEP without GUI automation or a crash. Fusion recognized one closed
-  BRep solid with a 153.735 mm by 115.000 mm by 27.061 mm bounding box. The
-  unsaved Fusion document was used only for inspection; the source remained at
-  SHA-256
-  `52f7f991e904d815d78265a6f695124f2f4bb24131b3500e07f44355ebe39490`.
-  The source record and screenshot are under
-  `references/upstream/2026-07-24_lite3-venture-fast-livo2-hardware/` and
-  `.trellis/tasks/07-23-scan-planner-reproduction/evidence/`, respectively.
-  This validates the Mac visualization and API-inspection path, not Lite3 Pro
-  fit, printable strength, or real-robot safety.
-- Livox recommends a flat metal mounting plate at least 3 mm thick with at
-  least 10,000 square millimetres exposed to air, plus at least 10 mm airflow
-  clearance around the sensor. Therefore an all-plastic direct-contact print is
-  not an evidence-backed final mount; a printed Lite3 adapter plus metal
-  heat-spreading plate is the safer starting architecture.
-- The repository contains the local occupancy map, dynamic A* search, B-spline
-  optimization, replanning FSM, CPU/GPU local sensing, procedural/PCD maps,
-  Go2 visualization assets, a closed-loop path follower, and a planar
-  kinematic simulator.
-- The closed-loop follower publishes `geometry_msgs/Twist` on `cmd_vel`, which
-  is structurally compatible with the public Lite3 ROS bridge.
-- The planner supports exactly two obstacle-sensing modes:
-  - `lidar`: `sensor_msgs/PointCloud2` plus a time-consistent
-    `nav_msgs/Odometry` sensor pose;
-  - `depth`: `sensor_msgs/Image` depth (`16UC1` or `32FC1`) approximately
-    synchronized with a `nav_msgs/Odometry` sensor pose, plus calibrated
-    `fx`, `fy`, `cx`, and `cy`.
-- Both sensing modes also require a continuous
-  `nav_msgs/Odometry` body pose for the sliding map and trajectory follower.
-  Raw IMU alone is insufficient.
-- The documented real-world defaults use a MID360-like 3D LiDAR or RealSense
-  D435, `/LIO/clouds_lidar`, `/LIO/odom_imu`, and `/LIO/odom_vehicle`.
-  The depth defaults filter observations to approximately 0.3--3.0 m.
-- A raw 2D `sensor_msgs/LaserScan` and an RGB-only camera are not accepted by
-  the current mapper without an additional conversion or perception layer.
-- The included Go2 simulation is not a physics-based locomotion reproduction:
-  `go2_kinematic_sim` integrates commanded planar velocity, while
-  `go2_gait_publisher` animates joint states for visualization.
-- Real-world operation requires external LIO, sensor drivers, calibration, and
-  a robot driver. Reference-path mode also expects an external upper-level
-  route source. The repository contains no automated tests, release, CI
-  workflow, or pretrained model requirement.
+- The target Lite3 onboard software boundary is Ubuntu 20.04 with ROS 2 Foxy.
+  Moving the robot to ROS 2 Humble is not part of this task.
+- The selected SCAN source is the unofficial `ros2-community` branch of
+  `https://github.com/wuyi2121/SCAN-Planner`, pinned at
+  `d0b921c9b05a6d291d144d60882b2e0e88d2c0e0`. It targets Ubuntu 22.04,
+  ROS 2 Humble, Gazebo Fortress, C++17, and `colcon`; it is not an upstream
+  Foxy release.
+- That branch contains a contact-capable Go2 Gazebo description, but the
+  default planner launch still uses a planar kinematic simulator. The Gazebo
+  package does not provide a simulated 3D LiDAR or a complete
+  `cmd_vel -> gait -> 12 joints` locomotion path.
+- The SCAN planner consumes a 3D point cloud plus time-consistent body and
+  sensor pose feedback, and its follower emits body-frame velocity commands.
+- The 5070 Ti host currently runs Ubuntu 24.04 with Isaac Sim 5.1 and Isaac Lab
+  available in an existing Conda environment. ROS is not installed on the
+  host, and no container runtime was present at the latest live inspection.
+- Dr Sun permits a one-time privileged environment setup on the 5070 Ti after
+  implementation is explicitly approved. Credentials must never be stored in
+  the repository, task artifacts, shell history, logs, or scripts.
+- The sibling `machine-dog` repository contains Isaac policy runtimes that can
+  overwrite the three-component velocity command before policy inference.
+  Existing checkpoints and reports are candidates, not proof that a particular
+  policy is qualified for this navigation loop.
+- SCAN remains `surveyed`; no original Humble run, Foxy port, Lite3 integration,
+  or physical closed-loop result has yet been recorded by this project.
+- The existing `07-24-lite3-pro-parametric-model` child is an independent CAD
+  track. This task neither changes nor depends on its deliverables.
+
+## Automated Gate Record — Human Review Pending
+
+On 2026-08-13, `acceptance_v2_frozen` passed all 51 checks after the preserved
+`acceptance_v1_frozen` failure was diagnosed and corrected. The local evidence
+is summarized in
+`.pipeline/experiments/2026-08-13_scan_foxy_isaac_closed_loop/REPORT.md`.
+The evidence label is project `integrated` and fixed-course simulation
+`validated` by the frozen automated gate; SCAN upstream remains `surveyed`,
+not reproduced on Humble or Noetic. Dr Sun has not yet accepted the video and
+evidence bundle. The task therefore remains in `review`, not `completed`.
 
 ## Requirements
 
-- The independently verifiable current Lite3 LiDAR V1.0.7 visual reconstruction
-  is planned in child task `07-24-lite3-pro-parametric-model`. That child
-  consumes the official model and drawing evidence archived here but does not
-  wait for the ROS Noetic planner reproduction.
-- R1. Keep the upstream repository as a read-only reference under the dated
-  `references/upstream/` layout; do not copy unreviewed source into project
-  implementation paths.
-- R2. Record canonical URL, license, pinned commit, default branch, upstream
-  commands, dependencies, assumptions, and status in a tracked repository
-  manifest.
-- R3. Prefer the original `main` ROS Noetic path for the first reproduction.
-  Do not mix the unofficial `ros2-community` port into the same evidence run.
-- R4. Use the CPU LiDAR sensing backend and navigation mode 1 for the minimum
-  first run unless evidence found during setup requires a narrower smoke test.
-- R5. Preserve raw build and runtime output locally. Record exact environment
-  versions and every local workaround.
-- R6. A closed-loop run must include a start state, a reachable goal, generated
-  planning output, bounded `cmd_vel`, pose progress, and a final outcome.
-- R7. Visual evidence should show the actual upstream runtime state, not only
-  a README animation or static repository asset.
-- R8. Keep evidence labels exact: inspection is `surveyed`; only a successful
-  upstream run with saved evidence is `reproduced`.
-- R9. Do not start model training, real-robot actuation, or Lite3 integration.
-- R10. Preserve all unrelated user-owned untracked research files.
-- R11. Record whether a trustworthy printable Lite3-to-MID360 mount exists,
-  including source, license, file format, robot/sensor compatibility, and any
-  unresolved mechanical or field-of-view constraints. Do not treat an
-  unverified decorative model as a safe hardware mount.
-- R12. Use the pinned official complete Lite3 model as the visualization and
-  spatial-reference baseline. If later mechanical adaptation proceeds, preserve
-  the original robot-model and Venture STEP files unchanged, apply only
-  approved changes to working copies through a reproducible CAD script, and
-  verify mounting dimensions against physical measurements or an official
-  engineering drawing.
+- **R1 — Source provenance.** Preserve the selected SCAN revision as an
+  unchanged dated upstream snapshot. Record canonical URL, branch, commit,
+  license evidence, dependencies, original run instructions, selected package
+  inventory, and every Foxy-specific patch.
+- **R2 — Foxy boundary.** Build and run the planner side in an isolated Ubuntu
+  20.04 / ROS 2 Foxy environment on the 5070 Ti. Do not install Foxy natively
+  on Ubuntu 24.04 and do not rely on cross-distribution DDS compatibility.
+- **R3 — Minimal port.** Port only the SCAN planner, map, controller, message,
+  and launch/config packages required by the closed loop. Exclude the Humble /
+  Fortress Go2 physics package and unrelated simulator assets from the Foxy
+  runtime.
+- **R4 — Explicit transport.** Connect Foxy and Isaac through a versioned,
+  bounded, testable TCP protocol rather than shared ROS middleware. The
+  boundary must define frames, units, timestamps, sequence handling, payload
+  limits, integrity checks, reconnection behavior, and stale-command shutdown.
+- **R5 — Immutable locomotion dependency.** Select and pin one committed
+  `machine-dog` source revision and one checkpoint with hashes. Prove that an
+  external `[vx, vy, wz]` command reaches the policy observation and changes
+  physical motion before connecting the planner. Do not modify or depend on a
+  dirty sibling checkout.
+- **R6 — Physical simulation.** The Lite3 must move through policy output,
+  articulated joints, and PhysX contacts. Base teleportation, direct pose
+  integration, or the SCAN kinematic simulator cannot satisfy the physical
+  closed-loop gate.
+- **R7 — Simulated perception.** Feed SCAN a timestamped 3D point cloud rendered
+  from the Isaac scene and synchronized simulator-truth body/sensor poses.
+  Scene occlusion and robot motion must affect observations. Static map truth
+  cannot be published directly as if it were a sensor.
+- **R8 — Safety and boundedness.** Enforce velocity bounds at both sides of the
+  bridge, apply latest-command semantics, zero commands after a configurable
+  watchdog timeout, and fail closed on malformed, oversized, stale, or
+  disconnected input.
+- **R9 — Observable closed loop.** Use one deterministic, fixed-seed obstacle
+  course and one reachable goal. Record planner output, commanded and measured
+  velocity, pose progress, point-cloud health, contact/support evidence,
+  collision/termination state, bridge timing, and final goal outcome.
+- **R10 — Local evidence.** Treat the local `machine-dog-nav` repository as the
+  source of truth. Remote workspaces are execution copies only. Copy manifests,
+  configs, patches, hashes, raw logs, metrics, ROS-side recordings, and a
+  directly viewable runtime video back into dated project paths before making
+  a result claim.
+- **R11 — Claim discipline.** Label the Foxy work as a project port, not an
+  upstream Foxy release or upstream reproduction. Simulator-truth pose and the
+  selected LiDAR model must be named explicitly; neither may be presented as
+  Elevator-LIO, real MID-360 parity, or real-robot validation.
+- **R12 — Scope control.** Do not start formal training, operate the real robot,
+  modify the sibling repository, or alter unrelated dirty worktree paths.
 
 ## Acceptance Criteria
 
-- [ ] AC1. A dated upstream reference directory contains the pinned source,
-  completed manifest, comparison/assessment, and raw log paths.
-- [ ] AC2. The environment record names OS, architecture, ROS distribution,
-  compiler/CMake/Catkin versions, and whether execution was local, container,
-  or remote.
-- [ ] AC3. The pinned source either builds successfully with the original
-  Catkin command, or the report contains the exact terminal failure and a
-  source-backed blocker classification.
-- [ ] AC4. If build succeeds, the original upstream simulation launches using
-  CPU LiDAR sensing without modifying project implementation code.
-- [ ] AC5. If runtime launches, one reachable navigation goal is issued and
-  the evidence records planner output, nonzero bounded `cmd_vel`, pose
-  progression, and stop/final state.
-- [ ] AC6. The final assessment explicitly separates planner completeness from
-  missing SLAM, physical locomotion, hardware driver, and Lite3 integration.
-- [ ] AC7. Any upstream modification is captured as a minimal patch inside the
-  reference record and is not silently applied to project code.
-- [ ] AC8. No claim exceeds the strongest saved evidence state.
-- [ ] AC9. Any generated mechanical derivative is traceable to an unchanged
-  upstream STEP, a reproducible edit script, and a dimension-change record; a
-  successful CAD export alone is not claimed as physical fit or load
-  validation.
+- [x] **AC1 — Provenance:** a dated immutable SCAN snapshot and manifest record
+  the pinned URL, branch, commit, license evidence, dependencies, original
+  commands, selected packages, and SHA-256 hashes.
+- [x] **AC2 — Exact environment:** a reproducible Ubuntu 20.04 / ROS 2 Foxy
+  runtime on the 5070 Ti is pinned by image digest or equivalent environment
+  lock, and its OS, architecture, ROS, compiler, CMake, Python, PCL, and Eigen
+  versions are captured without recording credentials.
+- [x] **AC3 — Foxy port:** the selected SCAN packages build from a clean Foxy
+  workspace, all added unit/integration tests pass, and the Foxy nodes launch
+  without Humble, Fortress, or the SCAN kinematic simulator.
+- [x] **AC4 — Transport:** automated loopback tests cover complete and partial
+  reads, message framing, payload limits, integrity failure, sequence gaps,
+  timestamp propagation, reconnects, command saturation, and watchdog stop.
+- [x] **AC5 — Locomotion takeover:** a fixed external command schedule visibly
+  changes the pinned policy command tensor, policy observation, measured base
+  velocity, joint motion, and contact/support signals; command timeout returns
+  the simulated robot to zero-command behavior.
+- [x] **AC6 — Sensor and frame gate:** the simulated LiDAR produces nonempty,
+  finite, advancing point clouds whose geometry changes with scene occlusion
+  and robot pose. The Foxy bridge publishes synchronized, frame-consistent
+  point cloud and simulator-truth odometry accepted by SCAN.
+- [x] **AC7 — Closed-loop result:** from a fixed start and reachable goal, SCAN
+  produces a trajectory and bounded nonzero commands; the Lite3 advances via
+  policy-driven joint dynamics and valid contacts, avoids the declared
+  obstacles, stops at the goal tolerance, and triggers no stale-command,
+  collision, NaN, or base-teleport condition.
+- [x] **AC8 — Performance record:** the result reports planner rate, policy /
+  physics rate, sensor rate, bridge latency, point count, drops or sequence
+  gaps, watchdog events, command bounds, path/goal progress, and termination
+  reason. Thresholds used for the final gate are frozen before the acceptance
+  run.
+- [x] **AC9 — Evidence sync:** the complete acceptance configuration, hashes,
+  patches, raw stdout/stderr, machine-readable metrics, ROS-side recording, and
+  directly viewable MP4 are copied from the 5070 Ti into the local repository
+  and verified against remote hashes.
+- [x] **AC10 — Honest status:** the final report distinguishes `surveyed`,
+  project `integrated`, and simulation `validated` evidence. It explicitly
+  states that no upstream Foxy reproduction, real MID-360 parity, LIO result,
+  trained navigation policy, or real-robot safety result was established.
+- [ ] **AC11 — Human acceptance:** Dr Sun reviews the complete MP4 and the
+  evidence bundle, then explicitly records acceptance or rejection. Automated
+  checks and agent visual inspection do not satisfy this criterion.
+
+## Stop Conditions
+
+Implementation stops without promoting the evidence label if any of these
+conditions remains after the documented fallback is exhausted:
+
+- an isolated Foxy runtime cannot be established without an unapproved host
+  change;
+- no immutable existing policy/checkpoint can track external velocity commands
+  with stable support and no training;
+- the simulated LiDAR cannot provide frame-consistent scene observations;
+- bridge timing cannot keep commands and sensor feedback within the frozen
+  watchdog and latency limits.
+
+The exact blocker, attempted fallback, logs, and next user-owned decision must
+be recorded. A blocker report does not satisfy AC7 and must not be called a
+validated closed loop.
 
 ## Out of Scope
 
-- ROS 2 porting or repair of the community ROS 2 branch.
-- Lite3 navigation-to-locomotion integration.
-- Real Go2 or Lite3 actuation.
-- Formal benchmark comparison, model training, or algorithm redesign.
-- Treating the visualization gait animation as a physics or locomotion result.
-
-## Open Question
-
-- Should the required first outcome be the full original ROS Noetic visual
-  closed loop (recommended), or is a headless build-and-launch smoke sufficient
-  for this task?
-- Confirm whether the immediate use of the complete Lite3 model is
-  a nominal full-robot visualization/simulation derivative or a physically
-  printable payload-interface part. The recommended direction is a two-layer
-  result: a separate parametric mechanical interface placed on the unchanged
-  full-robot visual model.
-- Measure the physical Lite3 Pro four-thread positions before treating a
-  generated STEP or print as fit-validated.
+- ROS 2 Humble deployment on the Lite3 onboard computer.
+- Cross-distribution ROS 2 DDS as the Foxy–Isaac integration mechanism.
+- Original SCAN Humble or ROS 1 Noetic reproduction.
+- Elevator-LIO, SLAM/LIO accuracy evaluation, or realistic localization noise.
+- Formal policy training, fine-tuning, distillation, or checkpoint selection by
+  new training.
+- Real-robot actuation, hardware power/cabling, payload CAD, or sensor mounting.
+- Calibrated MID-360 noise, coverage, timing, intensity, or weather parity.
+- Multi-map, multi-seed, dynamic-obstacle, or comparative benchmark claims.

@@ -1,0 +1,84 @@
+schema_version: 1
+topic: scan-planner-ros2-community
+acquired_at: "2026-08-13"
+canonical_url: https://github.com/wuyi2121/SCAN-Planner
+branch: ros2-community
+commit: d0b921c9b05a6d291d144d60882b2e0e88d2c0e0
+archive_url: https://codeload.github.com/wuyi2121/SCAN-Planner/tar.gz/d0b921c9b05a6d291d144d60882b2e0e88d2c0e0
+archive:
+  path: source/SCAN-Planner-d0b921c.tar.gz
+  size_bytes: 66295219
+  sha256: 1fdbc05de026f01b5978e4f3867122c9d9ca3fac7c075555f58511ce28e8ebf4
+source_tree:
+  path: source/SCAN-Planner
+  file_count: 135
+  normalized_digest_method: "find . -type f -print0 | sort -z | xargs -0 shasum -a 256 | shasum -a 256"
+  normalized_sha256: 25b8db1b9905dd4b06c97da27689becd59551ce9ff0d590b552b376975ac4fe2
+acquisition_route:
+  download_host: gpu5070ti
+  remote_path: /home/sun/machine-dog-nav-runs/2026-08-13_scan_foxy_isaac/source/SCAN-Planner-d0b921c.tar.gz
+  sync_method: scp
+  remote_local_sha256_match: true
+license:
+  repository_spdx: Apache-2.0
+  license_path: source/SCAN-Planner/LICENSE
+  license_sha256: c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4
+  notice_path: source/SCAN-Planner/NOTICE
+  notice_sha256: 2c94da707e9520cf05ecccab75b2715a9c8a3148741a1785660dfd2bfc933cd3
+  package_metadata_note: "The six selected planner packages declare Apache-2.0. Excluded simulator packages declare their own licenses and are not copied into the Foxy overlay."
+upstream_environment:
+  os: Ubuntu 22.04
+  ros_distribution: Humble
+  build_system: colcon + ament_cmake
+  cpp_standard: C++17
+original_commands:
+  build: "colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release"
+  launch: "ros2 launch scan_planner run.launch.py is_real_world:=false navi_mode:=1 sensor_type:=lidar controller_mode:=closed_loop use_gpu:=false"
+selected_packages:
+  - bspline_opt
+  - path_searching
+  - plan_env
+  - scan_planner
+  - scan_planner_msgs
+  - traj_utils
+excluded_runtime_packages:
+  - go2_description
+  - local_sensing_node
+  - map_generator
+  - mockamap
+  - odom_visualization
+  - pose_utils
+  - waypoint_generator
+selection_reason: "The selected packages contain the planner, map, messages, trajectory utilities, replanning FSM, and closed-loop Twist controller. Isaac supplies physics, point cloud, and odometry; the upstream simulator packages are therefore outside the accepted boundary."
+direct_dependencies:
+  ros:
+    - ament_index_cpp
+    - ament_index_python
+    - builtin_interfaces
+    - cv_bridge
+    - geometry_msgs
+    - launch
+    - launch_ros
+    - message_filters
+    - nav_msgs
+    - pcl_conversions
+    - rclcpp
+    - rclpy
+    - rosidl_default_generators
+    - rosidl_default_runtime
+    - sensor_msgs
+    - std_msgs
+    - tf2
+    - tf2_geometry_msgs
+    - tf2_ros
+    - visualization_msgs
+  system:
+    - Eigen3
+    - PCL
+port_diff:
+  generator: generate_foxy_port_patch.sh
+  artifact: foxy_port.patch
+  sha256: 6b3a36c8a9726e8034aa7b497478f80a3f6fbe6a7feb119255846d90fd65283d
+  boundary: "The patch covers the six selected upstream package directories. The task-owned lite3_sim_bridge package has no upstream counterpart."
+evidence_status: surveyed
+claim_boundary: "This is an immutable source acquisition and dependency inspection. It is not a Humble reproduction, Foxy build, integration, or runtime validation."

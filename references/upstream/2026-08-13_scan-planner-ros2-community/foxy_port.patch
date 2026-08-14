@@ -1,0 +1,763 @@
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_env/CMakeLists.txt integration/scan_planner_foxy_ws/src/plan_env/CMakeLists.txt
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_env/CMakeLists.txt	2026-07-13 00:45:30
++++ integration/scan_planner_foxy_ws/src/plan_env/CMakeLists.txt	2026-08-13 10:53:07
+@@ -37,8 +37,16 @@
+ install(TARGETS plan_env EXPORT export_plan_env
+   ARCHIVE DESTINATION lib LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
+ install(DIRECTORY include/ DESTINATION include)
++
++if(BUILD_TESTING)
++  find_package(ament_cmake_gtest REQUIRED)
++  ament_add_gtest(test_occlusion_shadow test/test_occlusion_shadow.cpp)
++  target_include_directories(test_occlusion_shadow PRIVATE include)
++  target_link_libraries(test_occlusion_shadow Eigen3::Eigen)
++endif()
++
+ ament_export_targets(export_plan_env HAS_LIBRARY_TARGET)
+ ament_export_dependencies(
+-  cv_bridge Eigen3 geometry_msgs message_filters nav_msgs pcl_conversions
+-  rclcpp sensor_msgs tf2 tf2_ros visualization_msgs)
++  cv_bridge Eigen3 geometry_msgs message_filters nav_msgs OpenCV PCL
++  pcl_conversions rclcpp sensor_msgs tf2 tf2_ros visualization_msgs)
+ ament_package()
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_env/include/plan_env/grid_map.h integration/scan_planner_foxy_ws/src/plan_env/include/plan_env/grid_map.h
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_env/include/plan_env/grid_map.h	2026-07-13 00:45:30
++++ integration/scan_planner_foxy_ws/src/plan_env/include/plan_env/grid_map.h	2026-08-13 10:53:07
+@@ -79,7 +79,8 @@
+   double p_hit_, p_miss_, p_min_, p_max_, p_occ_;  // occupancy probability
+   double prob_hit_log_, prob_miss_log_, clamp_min_log_, clamp_max_log_,
+       min_occupancy_log_;                   // logit of occupancy probability
+-  double min_ray_length_, max_ray_length_;  // range of doing raycasting
++  double min_ray_length_, max_ray_length_;  // range of doing raycasting
++  double occlusion_shadow_length_;
+ 
+   /* visualization and computation time display */
+   double vis_height_, ground_height_;
+@@ -204,11 +205,11 @@
+   MappingData md_;
+ 
+   // get depth image and sensor pose
+-  void depthPoseCallback(const sensor_msgs::msg::Image::ConstSharedPtr& img,
+-                         const nav_msgs::msg::Odometry::ConstSharedPtr& pose);
+-  void sensorPoseCallback(const nav_msgs::msg::Odometry::ConstSharedPtr& pose);
+-  void slidingMapFrameCallback(const nav_msgs::msg::Odometry::ConstSharedPtr& pose);
+-  void cloudCallback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& img);
++  void depthPoseCallback(sensor_msgs::msg::Image::ConstSharedPtr img,
++                         nav_msgs::msg::Odometry::ConstSharedPtr pose);
++  void sensorPoseCallback(nav_msgs::msg::Odometry::ConstSharedPtr pose);
++  void slidingMapFrameCallback(nav_msgs::msg::Odometry::ConstSharedPtr pose);
++  void cloudCallback(sensor_msgs::msg::PointCloud2::ConstSharedPtr img);
+ 
+   // update occupancy by raycasting
+   void updateOccupancyCallback();
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_env/include/plan_env/occlusion_shadow.h integration/scan_planner_foxy_ws/src/plan_env/include/plan_env/occlusion_shadow.h
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_env/include/plan_env/occlusion_shadow.h	1969-12-31 16:00:00
++++ integration/scan_planner_foxy_ws/src/plan_env/include/plan_env/occlusion_shadow.h	2026-08-13 10:54:01
+@@ -0,0 +1,34 @@
++#pragma once
++
++#include <cmath>
++#include <vector>
++
++#include <Eigen/Core>
++
++namespace plan_env
++{
++inline std::vector<Eigen::Vector3d> occlusionShadowPoints(
++    const Eigen::Vector3d &sensor_position,
++    const Eigen::Vector3d &hit_position,
++    double shadow_length,
++    double resolution)
++{
++  const Eigen::Vector3d ray = hit_position - sensor_position;
++  const double ray_length = ray.norm();
++  if (!std::isfinite(shadow_length) || !std::isfinite(resolution) ||
++      !std::isfinite(ray_length) || shadow_length <= 0.0 ||
++      resolution <= 0.0 || ray_length <= 1.0e-9)
++  {
++    return {};
++  }
++
++  const Eigen::Vector3d direction = ray / ray_length;
++  const auto sample_count = static_cast<std::size_t>(
++      std::floor(shadow_length / resolution + 1.0e-9));
++  std::vector<Eigen::Vector3d> points;
++  points.reserve(sample_count);
++  for (std::size_t index = 1; index <= sample_count; ++index)
++    points.push_back(hit_position + direction * (resolution * index));
++  return points;
++}
++}  // namespace plan_env
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_env/package.xml integration/scan_planner_foxy_ws/src/plan_env/package.xml
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_env/package.xml	2026-07-13 00:45:30
++++ integration/scan_planner_foxy_ws/src/plan_env/package.xml	2026-08-13 10:53:07
+@@ -17,5 +17,7 @@
+   <depend>tf2</depend>
+   <depend>tf2_ros</depend>
+   <depend>visualization_msgs</depend>
++
++  <test_depend>ament_cmake_gtest</test_depend>
+   <export><build_type>ament_cmake</build_type></export>
+ </package>
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_env/src/grid_map.cpp integration/scan_planner_foxy_ws/src/plan_env/src/grid_map.cpp
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_env/src/grid_map.cpp	2026-07-13 00:45:30
++++ integration/scan_planner_foxy_ws/src/plan_env/src/grid_map.cpp	2026-08-13 10:53:07
+@@ -4,6 +4,8 @@
+ #include <string>
+ #include <geometry_msgs/msg/transform_stamped.hpp>
+ 
++#include "plan_env/occlusion_shadow.h"
++
+ namespace
+ {
+ template <typename T>
+@@ -53,6 +55,7 @@
+   load_parameter(node_, "grid_map.p_max", mp_.p_max_, -1.0);
+   load_parameter(node_, "grid_map.p_occ", mp_.p_occ_, -1.0);
+   load_parameter(node_, "grid_map.max_ray_length", mp_.max_ray_length_, -0.1);
++  load_parameter(node_, "grid_map.occlusion_shadow_length", mp_.occlusion_shadow_length_, 0.0);
+ 
+   load_parameter(node_, "grid_map.vis_height", mp_.vis_height_, 0.3);
+   load_parameter(node_, "grid_map.show_occ_time", mp_.show_occ_time_, false);
+@@ -565,9 +568,10 @@
+   Eigen::Vector3d half = Eigen::Vector3d(0.5, 0.5, 0.5);
+   Eigen::Vector3d ray_pt, pt_w;
+ 
+-  for (int i = 0; i < md_.proj_points_cnt; ++i)
+-  {
+-    pt_w = md_.proj_points_[i];
++  for (int i = 0; i < md_.proj_points_cnt; ++i)
++  {
++    pt_w = md_.proj_points_[i];
++    bool is_obstacle_hit = false;
+ 
+     // set flag for projected point
+ 
+@@ -591,11 +595,29 @@
+         pt_w = (pt_w - md_.ray_pos_) / length * mp_.max_ray_length_ + md_.ray_pos_;
+         vox_idx = setCacheOccupancy(pt_w, 0);
+       }
+-      else
+-      {
+-        vox_idx = setCacheOccupancy(pt_w, 1);
+-      }
+-    }
++      else
++      {
++        vox_idx = setCacheOccupancy(pt_w, 1);
++        is_obstacle_hit = true;
++      }
++    }
++
++    if (is_obstacle_hit)
++    {
++      for (const Eigen::Vector3d &shadow_pt : plan_env::occlusionShadowPoints(
++               md_.ray_pos_, pt_w, mp_.occlusion_shadow_length_, mp_.resolution_))
++      {
++        if (!isInMap(shadow_pt))
++          break;
++        setCacheOccupancy(shadow_pt, 1);
++        max_x = max(max_x, shadow_pt(0));
++        max_y = max(max_y, shadow_pt(1));
++        max_z = max(max_z, shadow_pt(2));
++        min_x = min(min_x, shadow_pt(0));
++        min_y = min(min_y, shadow_pt(1));
++        min_z = min(min_z, shadow_pt(2));
++      }
++    }
+ 
+     max_x = max(max_x, pt_w(0));
+     max_y = max(max_y, pt_w(1));
+@@ -771,8 +793,8 @@
+   md_.use_cloud_update_ = false;
+ }
+ 
+-void GridMap::depthPoseCallback(const sensor_msgs::msg::Image::ConstSharedPtr &img,
+-                                const nav_msgs::msg::Odometry::ConstSharedPtr &pose)
++void GridMap::depthPoseCallback(sensor_msgs::msg::Image::ConstSharedPtr img,
++                                nav_msgs::msg::Odometry::ConstSharedPtr pose)
+ {
+   if (mp_.sensor_type_ != "depth")
+     return;
+@@ -834,7 +856,7 @@
+   }
+ }
+ 
+-void GridMap::sensorPoseCallback(const nav_msgs::msg::Odometry::ConstSharedPtr &pose_msg)
++void GridMap::sensorPoseCallback(nav_msgs::msg::Odometry::ConstSharedPtr pose_msg)
+ {
+   if (mp_.sensor_type_ != "lidar")
+     return;
+@@ -863,13 +885,13 @@
+   updateSlidingMap(md_.ray_pos_);
+ }
+ 
+-void GridMap::slidingMapFrameCallback(const nav_msgs::msg::Odometry::ConstSharedPtr &pose)
++void GridMap::slidingMapFrameCallback(nav_msgs::msg::Odometry::ConstSharedPtr pose)
+ {
+   const geometry_msgs::msg::Point &pos = pose->pose.pose.position;
+   md_.sliding_map_frame_pos_ = Eigen::Vector3d(pos.x, pos.y, pos.z);
+ }
+ 
+-void GridMap::cloudCallback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &img)
++void GridMap::cloudCallback(sensor_msgs::msg::PointCloud2::ConstSharedPtr img)
+ {
+   if (mp_.sensor_type_ != "lidar")
+     return;
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_env/test/test_occlusion_shadow.cpp integration/scan_planner_foxy_ws/src/plan_env/test/test_occlusion_shadow.cpp
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_env/test/test_occlusion_shadow.cpp	1969-12-31 16:00:00
++++ integration/scan_planner_foxy_ws/src/plan_env/test/test_occlusion_shadow.cpp	2026-08-13 10:53:07
+@@ -0,0 +1,30 @@
++#include <gtest/gtest.h>
++
++#include <Eigen/Core>
++
++#include "plan_env/occlusion_shadow.h"
++
++namespace plan_env
++{
++TEST(OcclusionShadow, ExtendsBehindARealLidarHitAtVoxelResolution)
++{
++  const Eigen::Vector3d sensor(0.0, 0.0, 0.4);
++  const Eigen::Vector3d hit(1.7, 0.0, 0.4);
++
++  const auto points = occlusionShadowPoints(sensor, hit, 0.70, 0.05);
++
++  ASSERT_EQ(points.size(), 14U);
++  EXPECT_NEAR(points.front().x(), 1.75, 1.0e-9);
++  EXPECT_NEAR(points.back().x(), 2.40, 1.0e-9);
++  EXPECT_NEAR(points.back().y(), 0.0, 1.0e-9);
++  EXPECT_NEAR(points.back().z(), 0.4, 1.0e-9);
++}
++
++TEST(OcclusionShadow, RejectsDegenerateOrDisabledInputs)
++{
++  const Eigen::Vector3d point(1.0, 2.0, 3.0);
++  EXPECT_TRUE(occlusionShadowPoints(point, point, 0.70, 0.05).empty());
++  EXPECT_TRUE(occlusionShadowPoints(Eigen::Vector3d::Zero(), point, 0.0, 0.05).empty());
++  EXPECT_TRUE(occlusionShadowPoints(Eigen::Vector3d::Zero(), point, 0.70, 0.0).empty());
++}
++}  // namespace plan_env
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/CMakeLists.txt integration/scan_planner_foxy_ws/src/plan_manage/CMakeLists.txt
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/CMakeLists.txt	2026-07-13 00:45:30
++++ integration/scan_planner_foxy_ws/src/plan_manage/CMakeLists.txt	2026-08-13 10:33:03
+@@ -37,27 +37,31 @@
+ ament_target_dependencies(scan_planner_node ${scan_planner_dependencies})
+ target_link_libraries(scan_planner_node Eigen3::Eigen)
+ 
+-foreach(target open_loop_controller closed_loop_controller go2_kinematic_sim go2_gait_publisher)
+-  add_executable(${target} src/${target}.cpp)
+-  target_include_directories(${target} PRIVATE include)
+-  ament_target_dependencies(${target}
+-    bspline_opt geometry_msgs nav_msgs rclcpp scan_planner_msgs sensor_msgs
+-    std_msgs tf2 tf2_geometry_msgs tf2_ros)
+-  target_link_libraries(${target} Eigen3::Eigen)
+-endforeach()
++add_executable(closed_loop_controller src/closed_loop_controller.cpp)
++target_include_directories(closed_loop_controller PRIVATE include)
++ament_target_dependencies(closed_loop_controller
++  bspline_opt geometry_msgs nav_msgs rclcpp scan_planner_msgs std_msgs
++  tf2 tf2_geometry_msgs)
++target_link_libraries(closed_loop_controller Eigen3::Eigen)
+ 
+ install(TARGETS
+-  scan_planner_node open_loop_controller closed_loop_controller
+-  go2_kinematic_sim go2_gait_publisher
++  scan_planner_node closed_loop_controller
+   DESTINATION lib/${PROJECT_NAME})
+ install(DIRECTORY include/ DESTINATION include)
+-install(DIRECTORY launch config DESTINATION share/${PROJECT_NAME} OPTIONAL)
+-install(FILES launch/default.rviz DESTINATION share/${PROJECT_NAME}/rviz OPTIONAL)
+-install(PROGRAMS scripts/keypoint_recorder.py
+-  DESTINATION lib/${PROJECT_NAME} OPTIONAL)
++install(FILES
++  launch/foxy_isaac_closed_loop.launch.py
++  DESTINATION share/${PROJECT_NAME}/launch)
++install(FILES
++  config/foxy_isaac_planner.yaml
++  config/foxy_isaac_controller.yaml
++  DESTINATION share/${PROJECT_NAME}/config)
+ 
+ if(BUILD_TESTING)
++  find_package(ament_cmake_gtest REQUIRED)
+   find_package(launch_testing_ament_cmake REQUIRED)
++  ament_add_gtest(test_trajectory_progress test/test_trajectory_progress.cpp)
++  target_include_directories(test_trajectory_progress PRIVATE include)
++  target_link_libraries(test_trajectory_progress Eigen3::Eigen)
+   add_launch_test(test/test_planner_startup.py TIMEOUT 30)
+   add_launch_test(test/test_waypoint_parameters.py TIMEOUT 30)
+ endif()
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/config/foxy_isaac_controller.yaml integration/scan_planner_foxy_ws/src/plan_manage/config/foxy_isaac_controller.yaml
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/config/foxy_isaac_controller.yaml	1969-12-31 16:00:00
++++ integration/scan_planner_foxy_ws/src/plan_manage/config/foxy_isaac_controller.yaml	2026-08-13 10:46:41
+@@ -0,0 +1,12 @@
++closed_loop_controller:
++  ros__parameters:
++    use_sim_time: false
++    time_forward: 0.8
++    heading_error_threshold: 0.8
++    kp_pos: 0.8
++    kp_yaw: 1.5
++    max_vx: 0.50
++    max_vy: 0.35
++    max_vyaw: 1.0
++    finish_dist: 0.15
++    max_tracking_error: 0.10
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/config/foxy_isaac_planner.yaml integration/scan_planner_foxy_ws/src/plan_manage/config/foxy_isaac_planner.yaml
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/config/foxy_isaac_planner.yaml	1969-12-31 16:00:00
++++ integration/scan_planner_foxy_ws/src/plan_manage/config/foxy_isaac_planner.yaml	2026-08-13 10:58:16
+@@ -0,0 +1,83 @@
++scan_planner_node:
++  ros__parameters:
++    use_sim_time: false
++
++    # The acceptance launch defaults to one fixed preset waypoint. Override
++    # this list only through a versioned run configuration.
++    fsm.navi_mode: 2
++    fsm.waypoints: [4.0, 0.0, 0.35]
++    fsm.thresh_replan: 1.0
++    fsm.thresh_no_replan: 0.1
++    # The 20 Hz safety callback owns replanning when new LiDAR occupancy
++    # invalidates the active trajectory. Avoid replacing a still-safe path on
++    # distance alone in the slower physical locomotion loop.
++    fsm.periodic_replan_enabled: false
++    fsm.planning_horizon: 7.5
++    fsm.emergency_time: 1.0
++    fsm.fail_safe: true
++    fsm.max_replan_fail_count: 1000
++
++    grid_map.resolution: 0.05
++    grid_map.sliding_map_size_x: 10.0
++    grid_map.sliding_map_size_y: 10.0
++    grid_map.sliding_map_size_z: 5.0
++    grid_map.local_update_range_x: 5.0
++    grid_map.local_update_range_y: 5.0
++    grid_map.local_update_range_z: 2.5
++    grid_map.map_sliding_en: true
++    grid_map.map_sliding_thresh: 0.2
++    # Conservative Lite3 planning envelope for the frozen 5 cm grid. The
++    # upstream Go2 value is 0.25 m; 0.40 m includes the articulated collision
++    # proxy, the 0.10 m tracking bound, and one voxel of discretization margin.
++    grid_map.double_cylinder_radius: 0.40
++    grid_map.double_cylinder_offset: 0.18
++    grid_map.body_height: 0.4
++    grid_map.obstacles_inflation_z_up: 0.1
++    grid_map.obstacles_inflation_z_down: 0.4
++    grid_map.frame_id: world
++    grid_map.sliding_map_frame_id: sliding_map
++    grid_map.ground_height: 0.0
++    grid_map.sensor_type: lidar
++    # The bridge publishes packed XYZ points in the named LiDAR frame and the
++    # corresponding simulator-truth world pose on sensor_pose.
++    grid_map.cloud_is_world: false
++    grid_map.need_extrinsic: false
++
++    grid_map.cx: 321.04638671875
++    grid_map.cy: 243.44969177246094
++    grid_map.fx: 387.229248046875
++    grid_map.fy: 387.229248046875
++    grid_map.depth_filter_maxdist: 3.0
++    grid_map.depth_filter_mindist: 0.3
++    grid_map.depth_filter_margin: 1
++    grid_map.k_depth_scaling_factor: 1000.0
++    grid_map.skip_pixel: 2
++
++    grid_map.p_hit: 0.85
++    grid_map.p_miss: 0.30
++    grid_map.p_min: 0.12
++    grid_map.p_max: 0.98
++    grid_map.p_occ: 0.80
++    grid_map.max_ray_length: 5.0
++    # Treat the immediately occluded volume behind each physical LiDAR hit as
++    # occupied until later views reveal it. This prevents surface-only maps
++    # from cutting through an obstacle whose far face is initially hidden.
++    grid_map.occlusion_shadow_length: 0.70
++    grid_map.vis_height: 0.3
++    grid_map.show_occ_time: false
++
++    manager.max_vel: 0.50
++    manager.max_acc: 0.5
++    manager.max_jerk: 4.0
++    manager.control_points_distance: 0.2
++    manager.feasibility_tolerance: 0.5
++    manager.planning_horizon: 7.5
++
++    optimization.lambda_smooth: 1.0
++    optimization.lambda_collision: 1.0
++    optimization.lambda_feasibility: 0.1
++    optimization.lambda_fitness: 1.0
++    optimization.dist0: 0.2
++    optimization.max_vel: 0.50
++    optimization.max_acc: 0.5
++    optimization.order: 3
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/include/plan_manage/scan_replan_fsm.h integration/scan_planner_foxy_ws/src/plan_manage/include/plan_manage/scan_replan_fsm.h
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/include/plan_manage/scan_replan_fsm.h	2026-07-13 00:45:30
++++ integration/scan_planner_foxy_ws/src/plan_manage/include/plan_manage/scan_replan_fsm.h	2026-08-13 10:58:16
+@@ -52,7 +52,8 @@
+ 
+     /* parameters */
+     int navi_mode_; // 1 manual select, 2 hard code
+-    double no_replan_thresh_, replan_thresh_;
++    double no_replan_thresh_, replan_thresh_;
++    bool periodic_replan_enabled_;
+     std::vector<Eigen::Vector3d> preset_waypoints_;
+     int waypoint_num_;
+     double planning_horizon_;
+@@ -123,11 +124,11 @@
+     /* ROS functions */
+     void execFSMCallback();
+     void checkCollisionCallback();
+-    void rvizGoalCallback(const geometry_msgs::msg::PoseStamped::ConstSharedPtr &msg);
+-    void waypointCallback(const nav_msgs::msg::Path::ConstSharedPtr &msg);
+-    void pathCallback(const nav_msgs::msg::Path::ConstSharedPtr &msg);
+-    void odometryCallback(const nav_msgs::msg::Odometry::ConstSharedPtr &msg);
+-    void go2ExecutionFrozenCallback(const std_msgs::msg::Bool::ConstSharedPtr &msg);
++    void rvizGoalCallback(geometry_msgs::msg::PoseStamped::ConstSharedPtr msg);
++    void waypointCallback(nav_msgs::msg::Path::ConstSharedPtr msg);
++    void pathCallback(nav_msgs::msg::Path::ConstSharedPtr msg);
++    void odometryCallback(nav_msgs::msg::Odometry::ConstSharedPtr msg);
++    void go2ExecutionFrozenCallback(std_msgs::msg::Bool::ConstSharedPtr msg);
+ 
+     bool checkCollision();
+ 
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/include/plan_manage/trajectory_progress.h integration/scan_planner_foxy_ws/src/plan_manage/include/plan_manage/trajectory_progress.h
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/include/plan_manage/trajectory_progress.h	1969-12-31 16:00:00
++++ integration/scan_planner_foxy_ws/src/plan_manage/include/plan_manage/trajectory_progress.h	2026-08-13 10:34:01
+@@ -0,0 +1,27 @@
++#pragma once
++
++#include <algorithm>
++
++#include <Eigen/Core>
++
++namespace scan_planner
++{
++struct TrajectoryProgressDecision
++{
++  double next_time;
++  double tracking_error;
++  bool frozen;
++};
++
++inline TrajectoryProgressDecision decideTrajectoryProgress(
++    double current_time, double dt, double duration,
++    const Eigen::Vector2d &current_position,
++    const Eigen::Vector2d &candidate_position,
++    double max_tracking_error)
++{
++  const double candidate_time = std::min(duration, current_time + std::max(0.0, dt));
++  const double tracking_error = (candidate_position - current_position).norm();
++  const bool frozen = tracking_error > max_tracking_error;
++  return {frozen ? current_time : candidate_time, tracking_error, frozen};
++}
++}  // namespace scan_planner
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/launch/foxy_isaac_closed_loop.launch.py integration/scan_planner_foxy_ws/src/plan_manage/launch/foxy_isaac_closed_loop.launch.py
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/launch/foxy_isaac_closed_loop.launch.py	1969-12-31 16:00:00
++++ integration/scan_planner_foxy_ws/src/plan_manage/launch/foxy_isaac_closed_loop.launch.py	2026-08-13 10:01:47
+@@ -0,0 +1,100 @@
++"""SCAN planner and TCP bridge only; Isaac owns sensors and physical motion."""
++
++import os
++
++from ament_index_python.packages import get_package_share_directory
++from launch import LaunchDescription
++from launch.actions import DeclareLaunchArgument
++from launch.conditions import IfCondition
++from launch.substitutions import LaunchConfiguration
++from launch_ros.actions import Node
++from launch_ros.parameter_descriptions import ParameterValue
++
++
++def generate_launch_description():
++    scan_share = get_package_share_directory("scan_planner")
++    bridge_share = get_package_share_directory("lite3_sim_bridge")
++    planner_config = os.path.join(scan_share, "config", "foxy_isaac_planner.yaml")
++    controller_config = os.path.join(
++        scan_share, "config", "foxy_isaac_controller.yaml"
++    )
++    bridge_config = os.path.join(bridge_share, "config", "foxy_bridge.yaml")
++
++    telemetry_host = LaunchConfiguration("telemetry_host")
++    telemetry_port = LaunchConfiguration("telemetry_port")
++    command_host = LaunchConfiguration("command_host")
++    command_port = LaunchConfiguration("command_port")
++    enable_monitor = LaunchConfiguration("enable_monitor")
++    monitor_event_log = LaunchConfiguration("monitor_event_log")
++    monitor_summary = LaunchConfiguration("monitor_summary")
++
++    return LaunchDescription(
++        [
++            DeclareLaunchArgument("telemetry_host", default_value="127.0.0.1"),
++            DeclareLaunchArgument("telemetry_port", default_value="46000"),
++            DeclareLaunchArgument("command_host", default_value="127.0.0.1"),
++            DeclareLaunchArgument("command_port", default_value="46001"),
++            DeclareLaunchArgument("enable_monitor", default_value="false"),
++            DeclareLaunchArgument(
++                "monitor_event_log",
++                default_value="/tmp/lite3_acceptance_ros.jsonl",
++            ),
++            DeclareLaunchArgument(
++                "monitor_summary",
++                default_value="/tmp/lite3_acceptance_ros_summary.json",
++            ),
++            Node(
++                package="lite3_sim_bridge",
++                executable="foxy_bridge_node",
++                name="lite3_sim_bridge",
++                output="screen",
++                parameters=[
++                    bridge_config,
++                    {
++                        "telemetry_host": telemetry_host,
++                        "telemetry_port": ParameterValue(
++                            telemetry_port, value_type=int
++                        ),
++                        "command_host": command_host,
++                        "command_port": ParameterValue(command_port, value_type=int),
++                    },
++                ],
++            ),
++            Node(
++                package="scan_planner",
++                executable="scan_planner_node",
++                name="scan_planner_node",
++                output="screen",
++                parameters=[planner_config],
++                remappings=[
++                    ("body_pose", "/quad_0/body_pose"),
++                    ("sensor_pose", "/quad_0/lidar_pose"),
++                    ("cloud", "/quad_0/cloud"),
++                ],
++            ),
++            Node(
++                package="scan_planner",
++                executable="closed_loop_controller",
++                name="closed_loop_controller",
++                output="screen",
++                parameters=[controller_config],
++                remappings=[
++                    ("body_pose", "/quad_0/body_pose"),
++                    ("cmd_vel", "/quad_0/cmd_vel"),
++                ],
++            ),
++            Node(
++                package="lite3_sim_bridge",
++                executable="acceptance_monitor_node",
++                name="lite3_acceptance_monitor",
++                output="screen",
++                condition=IfCondition(enable_monitor),
++                parameters=[
++                    {
++                        "event_log_path": monitor_event_log,
++                        "summary_path": monitor_summary,
++                    }
++                ],
++            ),
++        ]
++    )
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/package.xml integration/scan_planner_foxy_ws/src/plan_manage/package.xml
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/package.xml	2026-07-13 00:45:30
++++ integration/scan_planner_foxy_ws/src/plan_manage/package.xml	2026-08-13 10:33:03
+@@ -16,7 +16,6 @@
+   <depend>path_searching</depend>
+   <depend>plan_env</depend>
+   <depend>rclcpp</depend>
+-  <depend>rclpy</depend>
+   <depend>scan_planner_msgs</depend>
+   <depend>sensor_msgs</depend>
+   <depend>std_msgs</depend>
+@@ -26,16 +25,10 @@
+   <depend>traj_utils</depend>
+   <depend>visualization_msgs</depend>
+ 
+-  <exec_depend>go2_description</exec_depend>
+   <exec_depend>launch</exec_depend>
+   <exec_depend>launch_ros</exec_depend>
+-  <exec_depend>local_sensing_node</exec_depend>
+-  <exec_depend>map_generator</exec_depend>
+-  <exec_depend>mockamap</exec_depend>
+-  <exec_depend>odom_visualization</exec_depend>
+-  <exec_depend>robot_state_publisher</exec_depend>
+-  <exec_depend>rviz2</exec_depend>
+-  <exec_depend>xacro</exec_depend>
++  <exec_depend>lite3_sim_bridge</exec_depend>
++  <test_depend>ament_cmake_gtest</test_depend>
+   <test_depend>launch_testing_ament_cmake</test_depend>
+   <test_depend>python3-pytest</test_depend>
+ 
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/src/closed_loop_controller.cpp integration/scan_planner_foxy_ws/src/plan_manage/src/closed_loop_controller.cpp
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/src/closed_loop_controller.cpp	2026-07-13 00:45:30
++++ integration/scan_planner_foxy_ws/src/plan_manage/src/closed_loop_controller.cpp	2026-08-13 10:46:41
+@@ -10,10 +10,11 @@
+ #include <rclcpp/rclcpp.hpp>
+ #include <scan_planner_msgs/msg/bspline.hpp>
+ #include <std_msgs/msg/bool.hpp>
+-#include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
+-#include <tf2/utils.hpp>
++#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
++#include <tf2/utils.h>
+ 
+ #include "bspline_opt/uniform_bspline.h"
++#include "plan_manage/trajectory_progress.h"
+ 
+ namespace scan_planner
+ {
+@@ -26,10 +27,11 @@
+     heading_error_threshold_ = declare_parameter<double>("heading_error_threshold", 0.8);
+     kp_pos_ = declare_parameter<double>("kp_pos", 0.8);
+     kp_yaw_ = declare_parameter<double>("kp_yaw", 1.5);
+-    max_vx_ = declare_parameter<double>("max_vx", 0.75);
++    max_vx_ = declare_parameter<double>("max_vx", 0.50);
+     max_vy_ = declare_parameter<double>("max_vy", 0.35);
+     max_vyaw_ = std::min(declare_parameter<double>("max_vyaw", 1.0), kMaxVYawLimit);
+     finish_dist_ = declare_parameter<double>("finish_dist", 0.15);
++    max_tracking_error_ = declare_parameter<double>("max_tracking_error", 0.10);
+ 
+     bspline_sub_ = create_subscription<scan_planner_msgs::msg::Bspline>(
+         "planning/bspline", 10,
+@@ -140,8 +142,13 @@
+       return;
+     }
+ 
+-    publishExecutionFrozen(false);
+-    exec_time_ = std::min(traj_duration_, exec_time_ + dt);
++    const double candidate_time = std::min(traj_duration_, exec_time_ + dt);
++    const Eigen::Vector3d candidate_pos = traj_[0].evaluateDeBoorT(candidate_time);
++    const auto progress = decideTrajectoryProgress(
++        exec_time_, dt, traj_duration_, odom_pos_.head<2>(),
++        candidate_pos.head<2>(), max_tracking_error_);
++    publishExecutionFrozen(progress.frozen);
++    exec_time_ = progress.next_time;
+     last_update_time_ = current_time;
+     pos_des = traj_[0].evaluateDeBoorT(exec_time_);
+     const Eigen::Vector3d vel_des = traj_[1].evaluateDeBoorT(exec_time_);
+@@ -175,7 +182,7 @@
+   double exec_time_{0.0};
+   rclcpp::Time last_update_time_{0, 0, RCL_ROS_TIME};
+   double time_forward_, heading_error_threshold_, kp_pos_, kp_yaw_;
+-  double max_vx_, max_vy_, max_vyaw_, finish_dist_;
++  double max_vx_, max_vy_, max_vyaw_, finish_dist_, max_tracking_error_;
+ };
+ }  // namespace scan_planner
+ 
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/src/scan_replan_fsm.cpp integration/scan_planner_foxy_ws/src/plan_manage/src/scan_replan_fsm.cpp
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/src/scan_replan_fsm.cpp	2026-07-13 00:45:30
++++ integration/scan_planner_foxy_ws/src/plan_manage/src/scan_replan_fsm.cpp	2026-08-13 10:58:16
+@@ -36,6 +36,7 @@
+     navi_mode_ = load_parameter<int>(node_, "fsm.navi_mode", -1);
+     replan_thresh_ = load_parameter<double>(node_, "fsm.thresh_replan", -1.0);
+     no_replan_thresh_ = load_parameter<double>(node_, "fsm.thresh_no_replan", -1.0);
++    periodic_replan_enabled_ = load_parameter<bool>(node_, "fsm.periodic_replan_enabled", true);
+     planning_horizon_ = load_parameter<double>(node_, "fsm.planning_horizon", -1.0);
+     emergency_time_ = load_parameter<double>(node_, "fsm.emergency_time", 1.0);
+     enable_fail_safe_ = load_parameter<bool>(node_, "fsm.fail_safe", true);
+@@ -120,7 +121,7 @@
+     }
+   }
+ 
+-  void SCANReplanFSM::rvizGoalCallback(const geometry_msgs::msg::PoseStamped::ConstSharedPtr &msg)
++  void SCANReplanFSM::rvizGoalCallback(geometry_msgs::msg::PoseStamped::ConstSharedPtr msg)
+   {
+     if (!msg)
+       return;
+@@ -137,7 +138,7 @@
+     waypointCallback(path);
+   }
+ 
+-  void SCANReplanFSM::waypointCallback(const nav_msgs::msg::Path::ConstSharedPtr &msg)
++  void SCANReplanFSM::waypointCallback(nav_msgs::msg::Path::ConstSharedPtr msg)
+   {
+     if (!msg || msg->poses.empty())
+     {
+@@ -336,7 +337,7 @@
+     return false;
+   }
+ 
+-  void SCANReplanFSM::pathCallback(const nav_msgs::msg::Path::ConstSharedPtr &msg)
++  void SCANReplanFSM::pathCallback(nav_msgs::msg::Path::ConstSharedPtr msg)
+   {
+     if (!msg || msg->poses.empty())
+     {
+@@ -380,7 +381,7 @@
+     }
+   }
+ 
+-  void SCANReplanFSM::odometryCallback(const nav_msgs::msg::Odometry::ConstSharedPtr &msg)
++  void SCANReplanFSM::odometryCallback(nav_msgs::msg::Odometry::ConstSharedPtr msg)
+   {
+     odom_pos_(0) = msg->pose.pose.position.x;
+     odom_pos_(1) = msg->pose.pose.position.y;
+@@ -413,7 +414,7 @@
+     }
+   }
+ 
+-  void SCANReplanFSM::go2ExecutionFrozenCallback(const std_msgs::msg::Bool::ConstSharedPtr &msg)
++  void SCANReplanFSM::go2ExecutionFrozenCallback(std_msgs::msg::Bool::ConstSharedPtr msg)
+   {
+     go2_execution_frozen_ = msg->data;
+   }
+@@ -659,12 +660,17 @@
+         changeFSMExecState(WAIT_TARGET, "FSM");
+         return;
+       }
+-      else if ((end_pt_ - pos).norm() < no_replan_thresh_)
+-      {
+-        // cout << "near end" << endl;
+-        return;
+-      }
+-      else if ((info->start_pos_ - pos).norm() < replan_thresh_)
++      else if ((end_pt_ - pos).norm() < no_replan_thresh_)
++      {
++        // cout << "near end" << endl;
++        return;
++      }
++      else if (!periodic_replan_enabled_)
++      {
++        // The safety timer remains responsible for collision-triggered replans.
++        return;
++      }
++      else if ((info->start_pos_ - pos).norm() < replan_thresh_)
+       {
+         // cout << "near start" << endl;
+         return;
+diff -ruN --exclude=__pycache__ --exclude=*.pyc references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/test/test_trajectory_progress.cpp integration/scan_planner_foxy_ws/src/plan_manage/test/test_trajectory_progress.cpp
+--- references/upstream/2026-08-13_scan-planner-ros2-community/source/SCAN-Planner/src/planner/plan_manage/test/test_trajectory_progress.cpp	1969-12-31 16:00:00
++++ integration/scan_planner_foxy_ws/src/plan_manage/test/test_trajectory_progress.cpp	2026-08-13 10:33:03
+@@ -0,0 +1,37 @@
++#include <gtest/gtest.h>
++
++#include <Eigen/Core>
++
++#include "plan_manage/trajectory_progress.h"
++
++namespace scan_planner
++{
++TEST(TrajectoryProgress, FreezesTheFormalRunCornerCut)
++{
++  const Eigen::Vector2d robot_position(2.5130047798, 0.6514075994);
++  const Eigen::Vector2d candidate_position(2.8653264647, 0.4866866648);
++
++  const auto decision = decideTrajectoryProgress(
++      1.94, 0.01, 4.8, robot_position, candidate_position, 0.10);
++
++  EXPECT_TRUE(decision.frozen);
++  EXPECT_DOUBLE_EQ(decision.next_time, 1.94);
++  EXPECT_GT(decision.tracking_error, 0.35);
++}
++
++TEST(TrajectoryProgress, AdvancesWhileRobotTracksAndClampsAtDuration)
++{
++  const Eigen::Vector2d robot_position(1.0, 0.5);
++  const Eigen::Vector2d candidate_position(1.04, 0.53);
++
++  const auto tracking = decideTrajectoryProgress(
++      1.0, 0.01, 4.8, robot_position, candidate_position, 0.10);
++  EXPECT_FALSE(tracking.frozen);
++  EXPECT_DOUBLE_EQ(tracking.next_time, 1.01);
++
++  const auto ending = decideTrajectoryProgress(
++      4.795, 0.01, 4.8, robot_position, candidate_position, 0.10);
++  EXPECT_FALSE(ending.frozen);
++  EXPECT_DOUBLE_EQ(ending.next_time, 4.8);
++}
++}  // namespace scan_planner

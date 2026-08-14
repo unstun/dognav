@@ -1,0 +1,4 @@
+a233d0766c68b9f78bd0b58715ea596692ca7ccf0c768777b05e35de7517bc3c  /home/sun/machine-dog-nav-runs/2026-08-13_scan_foxy_isaac/environment/final_image_inspect.json
+a956eaa31587e285f1d47023eea4fbf5d2749860419d2b022d80b2293c9b124d  /home/sun/machine-dog-nav-runs/2026-08-13_scan_foxy_isaac/environment/runtime_inventory.txt
+a471fbfea69a26c2cf6a56c48b6419b14ce47f3c602f1c61e899a6d6c10846cf  /home/sun/machine-dog-nav-runs/2026-08-13_scan_foxy_isaac/environment/dpkg_packages.tsv
+b8d7f572d71ee873efaf14e737aa6316678fa79d17464eff2b8856fc69a9ad67  /home/sun/machine-dog-nav-runs/2026-08-13_scan_foxy_isaac/environment/podman_info.json

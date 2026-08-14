@@ -1,0 +1,144 @@
+[
+     {
+          "Id": "e4aa715467b93f20a9d9cdbb6a1dbd0d3c8c1e033e7792f2d889cba03db227d8",
+          "Digest": "sha256:290cc0390d022775a549b7b98b7abbfcaf62546965718e22fc6e50eeb92b2282",
+          "RepoTags": [
+               "localhost/machine-dog-nav/foxy-scan:20260813"
+          ],
+          "RepoDigests": [
+               "localhost/machine-dog-nav/foxy-scan@sha256:290cc0390d022775a549b7b98b7abbfcaf62546965718e22fc6e50eeb92b2282"
+          ],
+          "Parent": "2ae39c4c16816036249dc2723b03f593070c3c11080733dc3b441989cc5bb550",
+          "Comment": "imported from tarball",
+          "Created": "2026-08-13T14:22:05.801936067Z",
+          "Config": {
+               "Env": [
+                    "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                    "LANG=C.UTF-8",
+                    "LC_ALL=C.UTF-8",
+                    "ROS_DISTRO=foxy"
+               ],
+               "Entrypoint": [
+                    "/ros_entrypoint.sh"
+               ],
+               "Cmd": [
+                    "bash"
+               ],
+               "WorkingDir": "/workspace",
+               "Labels": {
+                    "io.buildah.version": "1.33.7"
+               }
+          },
+          "Version": "",
+          "Author": "",
+          "Architecture": "amd64",
+          "Os": "linux",
+          "Size": 5077586340,
+          "VirtualSize": 5077586340,
+          "GraphDriver": {
+               "Name": "overlay",
+               "Data": {
+                    "LowerDir": "/home/sun/.local/share/containers/storage/overlay/7640125a8215b17f106e96eb225df61a88cce561f3fc6d9b2929a32947870aba/diff:/home/sun/.local/share/containers/storage/overlay/bcddde571d0a43e6b70df4526e57c24e2b1cce8d9f64fd9d4a88f707d5f3a341/diff:/home/sun/.local/share/containers/storage/overlay/478ab6a91f54654d8cedfb5e57414303c7da9e69e568db50efed2453cd56c4e6/diff:/home/sun/.local/share/containers/storage/overlay/5e9d73244d34f8aabd1f7f3fcce18df94876d03f1551dced5886158c2faff4ad/diff:/home/sun/.local/share/containers/storage/overlay/a476a13c50e0e684f31cffdaccf060312f349fcce91b147a247dfc7a3a79945b/diff",
+                    "UpperDir": "/home/sun/.local/share/containers/storage/overlay/8181ea37fad6a1bb0855cd0a11c5341f21640cd98f306a3af8e043e7a026f574/diff",
+                    "WorkDir": "/home/sun/.local/share/containers/storage/overlay/8181ea37fad6a1bb0855cd0a11c5341f21640cd98f306a3af8e043e7a026f574/work"
+               }
+          },
+          "RootFS": {
+               "Type": "layers",
+               "Layers": [
+                    "sha256:a476a13c50e0e684f31cffdaccf060312f349fcce91b147a247dfc7a3a79945b",
+                    "sha256:6f87ff8f33c403fea0f327709c2ddd0b7b617404f897b20569b0ab643fa9a639",
+                    "sha256:94237063337b18b280081d6ea0bd3b1e59de51e696a48eb8ae88f1b848f3d604",
+                    "sha256:a8c24c5c540a09fdbffa305485a18006a6f4a28615be044b302ba62f58adde29",
+                    "sha256:7ae44493bd14a609d559e0022d6a2243ba512a2c0f402a61e9379187425a04b6",
+                    "sha256:2a8acbc59e810393970bf3f0483f0553407b9add8923e7d0c42c599744bc31d8"
+               ]
+          },
+          "Labels": {
+               "io.buildah.version": "1.33.7"
+          },
+          "Annotations": {
+               "org.opencontainers.image.base.digest": "sha256:be57841484c0b1635751e517c2470683949260cc43e05c7a936d4329150b0105",
+               "org.opencontainers.image.base.name": "localhost/ubuntu:focal-minimal-20250625"
+          },
+          "ManifestType": "application/vnd.oci.image.manifest.v1+json",
+          "User": "",
+          "History": [
+               {
+                    "created": "2026-08-13T09:50:31.600809118-04:00",
+                    "created_by": "/bin/sh -c #(nop) ADD file:36fa27807168a1f34150cc93fac82595a2e92c4a1e3ed659ed736e30955bbd7b in /",
+                    "comment": "imported from tarball"
+               },
+               {
+                    "created": "2026-08-13T13:52:21.205029024Z",
+                    "created_by": "/bin/sh -c #(nop) ARG DEBIAN_FRONTEND",
+                    "comment": "FROM localhost/ubuntu:focal-minimal-20250625",
+                    "empty_layer": true
+               },
+               {
+                    "created": "2026-08-13T13:52:21.220116004Z",
+                    "created_by": "/bin/sh -c #(nop) ENV LANG=C.UTF-8",
+                    "comment": "FROM d96b551d42ef",
+                    "empty_layer": true
+               },
+               {
+                    "created": "2026-08-13T13:52:21.23230751Z",
+                    "created_by": "/bin/sh -c #(nop) ENV LC_ALL=C.UTF-8",
+                    "comment": "FROM 05da3e4e1ea3",
+                    "empty_layer": true
+               },
+               {
+                    "created": "2026-08-13T13:52:21.245172348Z",
+                    "created_by": "/bin/sh -c #(nop) ENV ROS_DISTRO=foxy",
+                    "comment": "FROM ea080272136a",
+                    "empty_layer": true
+               },
+               {
+                    "created": "2026-08-13T13:53:37.383350109Z",
+                    "created_by": "|1 DEBIAN_FRONTEND=noninteractive /bin/sh -c set -eux;     echo 'Etc/UTC' > /etc/timezone;     ln -sf /usr/share/zoneinfo/Etc/UTC /etc/localtime;     apt-get update;     apt-get install -q -y --no-install-recommends       ca-certificates       curl       dirmngr       gnupg2       tzdata;     rm -rf /var/lib/apt/lists/*",
+                    "comment": "FROM 6d0a07ba2d5a"
+               },
+               {
+                    "created": "2026-08-13T13:53:40.081038223Z",
+                    "created_by": "|1 DEBIAN_FRONTEND=noninteractive /bin/sh -c set -eux;     key='4B63CF8FDE49746E98FA01DDAD19BAB3CBF125EA';     export GNUPGHOME=\"$(mktemp -d)\";     gpg --batch --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys \"$key\";     mkdir -p /usr/share/keyrings;     gpg --batch --export \"$key\" > /usr/share/keyrings/ros2-snapshots-archive-keyring.gpg;     gpgconf --kill all;     rm -rf \"$GNUPGHOME\";     echo 'deb [ signed-by=/usr/share/keyrings/ros2-snapshots-archive-keyring.gpg ] http://snapshots.ros.org/foxy/final/ubuntu focal main' > /etc/apt/sources.list.d/ros2-snapshots.list",
+                    "comment": "FROM 7f6588251a9a"
+               },
+               {
+                    "created": "2026-08-13T14:21:57.976486274Z",
+                    "created_by": "|1 DEBIAN_FRONTEND=noninteractive /bin/sh -c set -eux;     apt-get update;     apt-get install -y --no-install-recommends       ros-foxy-ros-core=0.9.2-1*       ros-foxy-ros-base=0.9.2-1*       build-essential       cmake       git       iproute2       libeigen3-dev       libpcl-dev       netcat-openbsd       python3-colcon-common-extensions       python3-pip       python3-pytest       python3-rosdep       python3-vcstool       ros-foxy-ament-cmake-gtest       ros-foxy-cv-bridge       ros-foxy-launch-testing-ament-cmake       ros-foxy-message-filters       ros-foxy-pcl-conversions       ros-foxy-tf2-geometry-msgs       ros-foxy-tf2-ros;     rm -rf /var/lib/apt/lists/*",
+                    "comment": "FROM 9067d1dbc549"
+               },
+               {
+                    "created": "2026-08-13T14:22:05.567784083Z",
+                    "created_by": "/bin/sh -c #(nop) COPY file:2414a710bcf3e8fceb675e87a0ee8225801238b9d6bb2895783dbe927413a2db in /ros_entrypoint.sh ",
+                    "comment": "FROM 4cd375a2f099"
+               },
+               {
+                    "created": "2026-08-13T14:22:05.693339962Z",
+                    "created_by": "|1 DEBIAN_FRONTEND=noninteractive /bin/sh -c chmod 0755 /ros_entrypoint.sh",
+                    "comment": "FROM 32c17fe034e8"
+               },
+               {
+                    "created": "2026-08-13T14:22:05.777323751Z",
+                    "created_by": "/bin/sh -c #(nop) WORKDIR /workspace",
+                    "comment": "FROM 85d3baeb9aa7",
+                    "empty_layer": true
+               },
+               {
+                    "created": "2026-08-13T14:22:05.790005805Z",
+                    "created_by": "/bin/sh -c #(nop) ENTRYPOINT [\"/ros_entrypoint.sh\"]",
+                    "comment": "FROM bb11858583c8",
+                    "empty_layer": true
+               },
+               {
+                    "created": "2026-08-13T14:22:05.802034214Z",
+                    "created_by": "/bin/sh -c #(nop) CMD [\"bash\"]",
+                    "comment": "FROM 2ae39c4c1681",
+                    "empty_layer": true
+               }
+          ],
+          "NamesHistory": [
+               "localhost/machine-dog-nav/foxy-scan:20260813"
+          ]
+     }
+]

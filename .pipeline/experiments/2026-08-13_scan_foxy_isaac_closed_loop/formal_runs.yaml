@@ -1,0 +1,28 @@
+schema_version: 1
+recorded_at: "2026-08-13"
+record_type: "post-run durable invocation record"
+remote_task_root: /home/sun/machine-dog-nav-runs/2026-08-13_scan_foxy_isaac
+runner: remote/run_remote_closed_loop.sh
+runner_sha256_at_v2: 48bb653ae834929314b2859ee850deff3c992904882e6c7ca9b7869264919267
+acceptance_config: acceptance_thresholds.json
+acceptance_config_sha256: 3f08fb8f01573ba97e3f2b4e6a6cd06a3debd4c76def47149d08cfe707f4545d
+runs:
+  - run_id: acceptance_v1_frozen
+    requested_wall_duration_seconds: 18
+    telemetry_port: 48000
+    command_port: 48001
+    result: FAIL
+    preserved_local_path: runs/acceptance_v1_frozen
+    failure_checks:
+      planner_failures: 304
+      minimum_detour_abs_y_m: 0.6102585196495056
+      maximum_nonfoot_contact_n: 119.47332763671875
+  - run_id: acceptance_v2_frozen
+    requested_wall_duration_seconds: 20
+    telemetry_port: 49100
+    command_port: 49101
+    result: PASS
+    passed_checks: 51
+    observed_sim_duration_seconds: 17.19999961555004
+    preserved_local_path: runs/acceptance_v2_frozen/results/acceptance_v2_frozen
+claim_boundary: "Invocation fields are a durable record of the executed command. Runtime metrics, input hashes, exit codes, logs, bag, and video remain the primary evidence."

@@ -1,0 +1,54 @@
+{
+  "candidate": "V12 model_149999 fallback",
+  "checkpoint_sha256": "a9d31dce90e6e8c564d955e473d6d3502f893d7ef5a5c1efaf5bb50d6b3d5450",
+  "command_limits": [
+    0.75,
+    0.35,
+    1.0
+  ],
+  "config_sha256": "f2d4a6e2a854c0780a669a7e11a5aab4df2764376bf69693477f9d71ecda5bf4",
+  "device": "cuda:0",
+  "inference_policy": {
+    "class": "ActorCriticMoECTS",
+    "loader": "direct policy-only strict state_dict load",
+    "source": "modules/actor_critic_moe_cts.py",
+    "source_sha256": "dfad453ef494a82dde1bb3b65d4ad6f9628f4069308371b2b6e393311afb81b0",
+    "vendored_package": "source/rsl_rl/rsl_rl"
+  },
+  "policy_observation_contract": {
+    "command_history_length": 10,
+    "command_history_offset": 60,
+    "dimension": 450
+  },
+  "schema_version": 1,
+  "seed": 42,
+  "sensor": {
+    "backend": "IsaacLab MultiMeshRayCaster LidarPatternCfg",
+    "channels": 16,
+    "horizontal_resolution_degrees": 2.0,
+    "maximum_range_m": 12.0,
+    "minimum_range_m": 0.1,
+    "parent_frame": "TORSO",
+    "period_seconds": 0.1,
+    "rotation_wxyz": [
+      0.9914448613738104,
+      0.0,
+      0.13052619222005157,
+      0.0
+    ],
+    "translation_m": [
+      0.182399336,
+      0.0,
+      0.108541081
+    ],
+    "truth_pose": true,
+    "vertical_fov_degrees": [
+      -7.0,
+      52.0
+    ]
+  },
+  "source_commit": "8c3fdffa84b85be0704a10ea5b2533817d543822",
+  "task": "Wave-C-Stairs-V12-Lite3-v0",
+  "terrain": "flat at difficulty 0.0",
+  "watchdog_seconds": 0.25
+}

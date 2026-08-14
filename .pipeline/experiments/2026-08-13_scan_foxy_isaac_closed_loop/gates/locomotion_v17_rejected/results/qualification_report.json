@@ -1,0 +1,45 @@
+{
+  "checks": {
+    "command_visible": true,
+    "finite_policy": true,
+    "forward_mean": 0.18894930907349655,
+    "forward_response": true,
+    "lateral_mean": -0.006584542104974389,
+    "lateral_response": false,
+    "minimum_root_height_m_value": 0.13237938284873962,
+    "no_termination": true,
+    "records_present": true,
+    "support": false,
+    "supported_sample_fraction_value": 0.9888888888888889,
+    "telemetry_nonempty": true,
+    "watchdog_zero": true,
+    "yaw_mean": 0.0044860829032600915,
+    "yaw_response": false
+  },
+  "claim": "locomotion qualification only; not SCAN closed-loop validation",
+  "command_transport": {
+    "accepted_connections": 1,
+    "frames_received": 390,
+    "frames_sent": 0,
+    "io_errors": 0,
+    "protocol_errors": 0,
+    "reconnects": 0
+  },
+  "record_count": 450,
+  "runtime_error": null,
+  "schema_version": 1,
+  "status": "FAIL",
+  "telemetry_sink": {
+    "nonempty_sensor_frames": 90,
+    "sensor_frames": 90,
+    "status_frames": 90
+  },
+  "telemetry_transport": {
+    "accepted_connections": 1,
+    "frames_received": 0,
+    "frames_sent": 180,
+    "io_errors": 0,
+    "protocol_errors": 0,
+    "reconnects": 0
+  }
+}

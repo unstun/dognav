@@ -1,0 +1,16 @@
+Starting >>> plan_env
+Starting >>> scan_planner_msgs
+Finished <<< plan_env [0.09s]
+Starting >>> path_searching
+Finished <<< path_searching [0.07s]
+Starting >>> bspline_opt
+Finished <<< scan_planner_msgs [0.17s]
+Starting >>> lite3_sim_bridge
+Finished <<< bspline_opt [0.13s]
+Starting >>> traj_utils
+Finished <<< traj_utils [0.07s]
+Finished <<< lite3_sim_bridge [0.35s]
+Starting >>> scan_planner
+Finished <<< scan_planner [0.09s]
+
+Summary: 7 packages finished [0.66s]

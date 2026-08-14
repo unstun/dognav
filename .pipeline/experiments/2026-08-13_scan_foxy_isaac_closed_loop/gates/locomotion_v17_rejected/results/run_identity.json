@@ -1,0 +1,36 @@
+{
+  "checkpoint_sha256": "366aa0579a1a35e70595ab816dab0a8970e797e6175e858071ec968f31453050",
+  "command_limits": [
+    0.75,
+    0.35,
+    1.0
+  ],
+  "config_sha256": "770a7d976213636e502aaa942d37ed286928daed0bc20488a294d086e520bd3b",
+  "device": "cuda:0",
+  "expert_index": 3,
+  "policy_sha256": "0141c49a3eb981e4d717008ac41e2d869b5ffb6cc07e9e11ba07a5b670bdd412",
+  "schema_version": 1,
+  "seed": 47,
+  "sensor": {
+    "backend": "IsaacLab MultiMeshRayCaster LidarPatternCfg",
+    "channels": 16,
+    "frame": "mid360_scan_frame",
+    "horizontal_fov_degrees": [
+      -180.0,
+      180.0
+    ],
+    "horizontal_resolution_degrees": 2.0,
+    "maximum_range_m": 12.0,
+    "minimum_range_m": 0.1,
+    "period_seconds": 0.1,
+    "truth_pose": true,
+    "vertical_fov_degrees": [
+      -7.0,
+      52.0
+    ]
+  },
+  "sensor_template_task": "Wave-C-Stairs-V17a4-MED-Lite3-v0",
+  "source_commit": "2cd9211830becc7a76a7d2182cb46d18dea44a1c",
+  "task": "Wave-C-Stairs-V17a4-Expert-Lite3-v0",
+  "watchdog_seconds": 0.25
+}

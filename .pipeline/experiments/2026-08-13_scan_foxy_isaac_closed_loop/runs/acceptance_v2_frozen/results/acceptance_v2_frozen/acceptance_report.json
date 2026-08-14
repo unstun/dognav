@@ -1,0 +1,309 @@
+{
+  "checks": {
+    "clean_process_exit": {
+      "expected": false,
+      "passed": true,
+      "value": {
+        "keyboard_interrupt": false,
+        "process_has_died": false
+      }
+    },
+    "cloud_nonempty": {
+      "expected": 0.99,
+      "passed": true,
+      "value": 1.0
+    },
+    "cloud_points": {
+      "expected": 10,
+      "passed": true,
+      "value": 58
+    },
+    "command_age_p95": {
+      "expected": 100.0,
+      "passed": true,
+      "value": 35.229293
+    },
+    "command_bounds": {
+      "expected": [
+        0.75,
+        0.35,
+        1.0
+      ],
+      "passed": true,
+      "value": [
+        0.5,
+        0.12058737874031067,
+        0.809898853302002
+      ]
+    },
+    "contact_support": {
+      "expected": 0.97,
+      "passed": true,
+      "value": 0.9976771196283392
+    },
+    "finite_policy": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "goal_xy": {
+      "expected": 0.12,
+      "passed": true,
+      "value": 0.03268739923877477
+    },
+    "goal_z": {
+      "expected": 0.08,
+      "passed": true,
+      "value": 0.04092103838920591
+    },
+    "isaac_runtime_error": {
+      "expected": null,
+      "passed": true,
+      "value": null
+    },
+    "isaac_runtime_pass": {
+      "expected": "PASS",
+      "passed": true,
+      "value": "PASS"
+    },
+    "no_base_teleport": {
+      "expected": 0.05,
+      "passed": true,
+      "value": 0.012504770782809134
+    },
+    "no_collision": {
+      "expected": 75.0,
+      "passed": true,
+      "value": 0.0
+    },
+    "no_termination": {
+      "expected": false,
+      "passed": true,
+      "value": false
+    },
+    "nonzero_commands": {
+      "expected": 250,
+      "passed": true,
+      "value": 611
+    },
+    "obstacle_detour": {
+      "expected": 0.8,
+      "passed": true,
+      "value": 1.3211857080459595
+    },
+    "obstacle_returns": {
+      "expected": 20,
+      "passed": true,
+      "value": 221
+    },
+    "origin_occupancy_errors": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "planner_failures": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "planner_successes": {
+      "expected": 2,
+      "passed": true,
+      "value": 2
+    },
+    "planner_wait_target": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "policy_rate": {
+      "expected": [
+        45.0,
+        55.0
+      ],
+      "passed": true,
+      "value": 50.00000111758712
+    },
+    "pose_dependent_sensor": {
+      "expected": 3.5,
+      "passed": true,
+      "value": 3.929317549292567
+    },
+    "record_count": {
+      "expected": 600,
+      "passed": true,
+      "value": 861
+    },
+    "root_height": {
+      "expected": [
+        0.25,
+        0.42
+      ],
+      "passed": true,
+      "value": [
+        0.29827073216438293,
+        0.35053181648254395
+      ]
+    },
+    "ros_body_pose_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 8.704563439929846
+    },
+    "ros_body_pose_timestamps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "ros_cloud_points": {
+      "expected": 10,
+      "passed": true,
+      "value": 58
+    },
+    "ros_cloud_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 8.7045954601184
+    },
+    "ros_cloud_timestamps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "ros_sensor_pose_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 8.704570448607273
+    },
+    "ros_sensor_pose_timestamps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "ros_sensor_sync": {
+      "expected": 0.95,
+      "passed": true,
+      "value": 1.0
+    },
+    "ros_trajectories": {
+      "expected": 2,
+      "passed": true,
+      "value": 2
+    },
+    "rosbag_bytes": {
+      "expected": 10000,
+      "passed": true,
+      "value": 225280
+    },
+    "rosbag_metadata": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "sensor_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 10.000000223517423
+    },
+    "sequence_gaps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "sim_duration": {
+      "expected": 12.0,
+      "passed": true,
+      "value": 17.19999961555004
+    },
+    "stopped_command": {
+      "expected": 0.05,
+      "passed": true,
+      "value": 0.0
+    },
+    "stopped_motion": {
+      "expected": 0.12,
+      "passed": true,
+      "value": 0.016274268303960795
+    },
+    "telemetry_reconnects": {
+      "expected": 1,
+      "passed": true,
+      "value": 0
+    },
+    "threshold_identity": {
+      "expected": "3f08fb8f01573ba97e3f2b4e6a6cd06a3debd4c76def47149d08cfe707f4545d",
+      "passed": true,
+      "value": "3f08fb8f01573ba97e3f2b4e6a6cd06a3debd4c76def47149d08cfe707f4545d"
+    },
+    "transport_protocol_errors": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "unexpected_returns": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "video_bytes": {
+      "expected": 100000,
+      "passed": true,
+      "value": 9928439
+    },
+    "video_duration": {
+      "expected": 10.0,
+      "passed": true,
+      "value": 17.24
+    },
+    "video_frames": {
+      "expected": 250,
+      "passed": true,
+      "value": 431
+    },
+    "video_hash": {
+      "expected": "7d954023cc16a5a16d530da5a8250cd68bc27fc2770bdc742bc5ddd12aacf07c",
+      "passed": true,
+      "value": "7d954023cc16a5a16d530da5a8250cd68bc27fc2770bdc742bc5ddd12aacf07c"
+    },
+    "video_regular_file": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "watchdog_events": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    }
+  },
+  "claim": "single-seed deterministic Foxy-SCAN to Lite3 Isaac ray-cast-LiDAR simulation gate",
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "command_age_p95_ms": 35.229293,
+    "detour_min_abs_y_m": 1.3211857080459595,
+    "final_position_world_m": [
+      4.016635417938232,
+      0.028137678280472755,
+      0.30907896161079407
+    ],
+    "goal_xy_error_m": 0.03268739923877477,
+    "max_nonfoot_contact_n": 0.0,
+    "policy_rate_hz": 50.00000111758712,
+    "rosbag_bytes": 225280,
+    "sensor_rate_hz": 10.000000223517423,
+    "video_sha256": "7d954023cc16a5a16d530da5a8250cd68bc27fc2770bdc742bc5ddd12aacf07c"
+  }
+}

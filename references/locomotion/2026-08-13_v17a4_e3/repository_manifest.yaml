@@ -1,0 +1,67 @@
+schema_version: 1
+captured_at: "2026-08-13"
+status: rejected_for_task
+purpose: "Immutable Lite3 locomotion candidate for no-training Isaac qualification"
+
+source_repository:
+  local_relative_path: "../machine-dog"
+  implementation_commit: "2cd9211830becc7a76a7d2182cb46d18dea44a1c"
+  implementation_subtree: "2_experiment/baseline_rebuild/go2_rl_robotlab_lite3_v17a4"
+  prior_artifact_source_tree_sha256: "b8f1483066c04aac05cf3e474d891394fba67949aded4d87f160f515200fd1ab"
+  worktree_boundary: "Export with git archive from the pinned commit; do not read runtime source from the dirty sibling checkout."
+
+grounded_artifact:
+  artifact_commit: "e671a4a7c122c7db3e032475dbbcbe06405eb793"
+  artifact_subtree: "artifacts/2026-08-11_v17a4_mid360_policy_grounded_visual_isaaclab/tracked_remote"
+  source_commit_recorded_by_artifact: "2cd9211830becc7a76a7d2182cb46d18dea44a1c"
+  runtime_payload_sha256: "e71f053643ef8e9a9dd645805c2c836b8ebbbd09ec0ca421a072c6c0293fd681"
+  checkpoint:
+    runtime_path: "teacher/E3/model_4000.pt"
+    size_bytes: 7374901
+    sha256: "366aa0579a1a35e70595ab816dab0a8970e797e6175e858071ec968f31453050"
+  exported_policy:
+    runtime_path: "teacher/E3/policy.pt"
+    size_bytes: 1240530
+    sha256: "0141c49a3eb981e4d717008ac41e2d869b5ffb6cc07e9e11ba07a5b670bdd412"
+
+local_runtime_export:
+  ignored_root: "references/locomotion/2026-08-13_v17a4_e3/source"
+  source_directory: "source/v17a4"
+  artifact_directory: "source/grounded"
+  method:
+    - "git archive 2cd9211830becc7a76a7d2182cb46d18dea44a1c:2_experiment/baseline_rebuild/go2_rl_robotlab_lite3_v17a4"
+    - "git archive e671a4a7c122c7db3e032475dbbcbe06405eb793:artifacts/2026-08-11_v17a4_mid360_policy_grounded_visual_isaaclab/tracked_remote"
+    - "Replace the two archived Git LFS pointer files only from their local content-addressed LFS objects; verify each object SHA-256 before sync."
+  verified_source_entries_against_prior_manifest: 354
+  verified_source_subset_sha256: "d127ff997f1060dd05047a174f8e9b68b0afce6666b241becd2b78ac4a9a8d3c"
+  prior_manifest_entries_not_present_at_pinned_source_commit:
+    - "v17a4/deploy/pre_train/go2/go2_moe_cts_176k_0.6984.onnx"
+    - "v17a4/deploy/pre_train/go2/go2_moe_cts_176k_0.6984.pt"
+    - "v17a4/source/rsl_rl/rsl_rl_lib.egg-info/PKG-INFO"
+    - "v17a4/source/rsl_rl/rsl_rl_lib.egg-info/SOURCES.txt"
+    - "v17a4/source/rsl_rl/rsl_rl_lib.egg-info/dependency_links.txt"
+    - "v17a4/source/rsl_rl/rsl_rl_lib.egg-info/requires.txt"
+    - "v17a4/source/rsl_rl/rsl_rl_lib.egg-info/top_level.txt"
+  omission_boundary: "The two unrelated Go2 deployment models and five generated egg-info files are not used by the direct JIT E3 Lite3 inference adapter. They are deliberately not copied from the current dirty worktree."
+
+claim_boundary:
+  - "The prior artifact is evidence of real policy inference and PhysX contact support, not navigation or velocity tracking."
+  - "This candidate becomes reproduced for this task only after the new qualification run passes."
+  - "No training, checkpoint modification, or dependency on the current sibling worktree is permitted."
+  - "The prior full runtime payload cannot be reconstructed byte-for-byte from its recorded source commit because seven prior-manifest files were absent at that commit; this task pins and verifies only the required runtime subset."
+
+task_qualification:
+  evidence: ".pipeline/experiments/2026-08-13_scan_foxy_isaac_closed_loop/gates/locomotion_v17_rejected"
+  status: FAIL
+  passed_checks:
+    - command_visible
+    - forward_response
+    - finite_policy
+    - no_termination
+    - telemetry_nonempty
+    - watchdog_zero
+  failed_checks:
+    - lateral_response
+    - yaw_response
+    - support
+  evidence_label: "surveyed candidate with a recorded task-specific rejection; not a qualified locomotion dependency"

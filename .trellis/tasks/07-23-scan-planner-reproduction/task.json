@@ -1,18 +1,18 @@
 {
   "id": "scan-planner-reproduction",
   "name": "scan-planner-reproduction",
-  "title": "Reproduce SCAN-Planner Upstream",
-  "description": "Pin, inspect, and reproduce the original SCAN-Planner upstream simulation before any ROS 2 or Lite3 adaptation.",
-  "status": "planning",
+  "title": "Integrate SCAN-Planner Foxy with Lite3 Physics Simulation",
+  "description": "Port the pinned SCAN ROS 2 planner core to Foxy and validate a versioned TCP closed loop against a pinned Lite3 Isaac policy simulation on the 5070 Ti.",
+  "status": "review",
   "dev_type": "research",
-  "scope": "upstream-reproduction",
+  "scope": "foxy-isaac-closed-loop",
   "package": null,
   "priority": "P2",
   "creator": "sun",
   "assignee": "sun",
   "createdAt": "2026-07-23",
   "completedAt": null,
-  "branch": null,
+  "branch": "codex/scan-foxy-isaac",
   "base_branch": "main",
   "worktree_path": null,
   "commit": null,
@@ -23,6 +23,9 @@
   ],
   "parent": null,
   "relatedFiles": [],
-  "notes": "",
-  "meta": {}
+  "notes": "Automated acceptance passed; Dr Sun human review is pending.",
+  "meta": {
+    "automated_acceptance": "pass",
+    "human_review": "pending"
+  }
 }

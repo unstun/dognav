@@ -1,0 +1,72 @@
+schema_version: 1
+task: .trellis/tasks/07-23-scan-planner-reproduction
+stage: experiment_and_analysis
+local_source_of_truth:
+  repository: machine-dog-nav
+  path: /Users/sun/tongbu/study/phdproject/machine-dog-nav
+  branch: codex/scan-foxy-isaac
+  base_commit: 6b1eec5
+remote_execution_copy:
+  ssh_alias: gpu5070ti
+  host: 177.3.34.125
+  port: 60023
+  user: sun
+  task_root: /home/sun/machine-dog-nav-runs/2026-08-13_scan_foxy_isaac
+  host_os: Ubuntu 24.04.3 LTS
+  gpu: NVIDIA GeForce RTX 5070 Ti
+  driver: 580.126.09
+  isaac_sim: "5.1"
+  container_runtime_at_preflight: absent
+  container_runtime_after_approved_setup:
+    name: podman
+    version: 4.9.3
+    mode: rootless
+foxy_boundary:
+  os: Ubuntu 20.04
+  ros_distribution: Foxy
+  deployment_shape: isolated OCI container on the 5070 Ti
+  prohibited:
+    - native Foxy installation on Ubuntu 24.04
+    - Foxy/Humble cross-distribution DDS
+    - public network exposure of bridge ports
+  canonical_rootfs:
+    release: Ubuntu Minimal 20.04.6 release 20250625
+    sha256: 36fa27807168a1f34150cc93fac82595a2e92c4a1e3ed659ed736e30955bbd7b
+    imported_image_id: 1c1d5483b8b43a862b1256bad052199679e3b1ff8170531934b9cc8e3adf9892
+    imported_manifest_digest: sha256:be57841484c0b1635751e517c2470683949260cc43e05c7a936d4329150b0105
+  ros_apt_snapshot: http://snapshots.ros.org/foxy/final/ubuntu
+  container_runtime:
+    name: podman
+    version: 4.9.3
+    mode: rootless
+    oci_runtime: crun
+    network_backend: netavark
+    graph_driver: overlay
+  final_task_image:
+    tag: localhost/machine-dog-nav/foxy-scan:20260813
+    image_id: e4aa715467b93f20a9d9cdbb6a1dbd0d3c8c1e033e7792f2d889cba03db227d8
+    manifest_digest: sha256:290cc0390d022775a549b7b98b7abbfcaf62546965718e22fc6e50eeb92b2282
+sync_gate:
+  direction: "local implementation -> remote execution; remote evidence -> local repository"
+  method: rsync_or_scp_plus_sha256_manifest
+  remote_only_success_is_valid: false
+expected_artifacts:
+  - immutable SCAN provenance manifest and source hash
+  - Foxy environment/image identity and package inventory
+  - Foxy port source and patch record
+  - TCP protocol tests and loopback logs
+  - locomotion command-takeover evidence
+  - simulated LiDAR and truth-pose evidence
+  - frozen closed-loop configuration
+  - raw stdout and stderr
+  - machine-readable metrics
+  - ROS-side recording
+  - directly viewable MP4
+final_evidence_label: "project integrated; single-seed fixed-course simulation validated"
+claim_boundary: "The accepted result validates only the declared Foxy-SCAN to pinned V12 Lite3 Isaac ray-cast-LiDAR simulation gate. No real-robot, real MID-360, LIO, training, multi-seed benchmark, or upstream Foxy reproduction claim is permitted."
+protected_local_paths:
+  - .pipeline/literature/index.md
+  - .pipeline/survey/2026-08-12_quadruped_dual_layer_planner_upstream_survey.md
+  - docs/research/2026-08-04-quadruped-path-planning-intro/
+protected_external_repository: /Users/sun/tongbu/study/phdproject/machine-dog
+credential_handling: "Privilege credentials are interactive-only and must not be echoed, scripted, logged, or persisted."

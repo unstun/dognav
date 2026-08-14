@@ -1,0 +1,61 @@
+schema_version: 1
+captured_at: "2026-08-13"
+status: task_qualified
+purpose: "Single allowed fallback Lite3 velocity-policy candidate for no-training qualification"
+
+source_repository:
+  local_relative_path: "../machine-dog"
+  source_commit: "8c3fdffa84b85be0704a10ea5b2533817d543822"
+  artifact_closeout_commit: "e96ca3cc0af6f632269e342cc94ca31b9dbfa6cf"
+  implementation_subtree: "2_experiment/baseline_rebuild/go2_rl_robotlab_lite3_v12"
+  source_manifest: "artifacts/2026-07-18_v12_model149999_flat_standstill_diagnosis/manifests/source.sha256"
+  export_boundary: "Use git archive at the pinned commit; the current dirty sibling worktree is not a runtime source."
+  source_manifest_verification:
+    entries: 171
+    failures: 0
+    boundary: "The archived manifest is an allow-list, not a complete runtime tree; it omits inherited Go2 environment and base RSL-RL modules."
+
+checkpoint:
+  commit_path: "artifacts/2026-07-18_v12_model149999_flat_standstill_diagnosis/tracked_checkpoints/model_149999.pt"
+  size_bytes: 26367345
+  sha256: "a9d31dce90e6e8c564d955e473d6d3502f893d7ef5a5c1efaf5bb50d6b3d5450"
+  lfs_materialization: "Use only the matching local content-addressed Git LFS object and verify SHA-256 after export."
+
+prior_evidence:
+  artifact: "artifacts/2026-07-18_v12_model149999_flat_standstill_diagnosis"
+  scope: "Deterministic flat-ground standing, forward, backward, and both yaw directions; lateral motion was explicitly untested."
+  claim_boundary: "Prior evidence is a lead for candidate selection, not this task's qualification result."
+
+local_runtime_export:
+  ignored_root: "references/locomotion/2026-08-13_v12_model149999/source"
+  source_directory: "source/v12_runtime_20260718_recovered"
+  checkpoint_path: "source/checkpoint/model_149999.pt"
+  recovery_source: "/home/sun/gpufree-data/2026-07-18_v12_model149999_flat_standstill_diagnosis/runtime/go2_rl_robotlab_lite3_v12"
+  recovery_boundary: "Recovered from the original 2026-07-18 gpu5070ti execution copy because the Git snapshot and 171-entry allow-list do not contain the complete runtime dependency tree."
+  excluded_generated_files: ["__pycache__/", "*.pyc"]
+  recovered_tree_verification:
+    files: 217
+    bytes: 89780745
+    canonical_sha256_manifest_sha256: "677a97d1de38c25489901a8bc3f2109fe2472fe6a3f094bb4bdf62c12d85573b"
+    local_remote_match: true
+
+selection_boundary:
+  - "This is the one and only fallback allowed after the E3 candidate failed."
+  - "No training, checkpoint repair, or additional candidate search is authorized in this task."
+  - "Failure of the new lateral-inclusive bridge qualification stops the locomotion gate."
+
+task_qualification:
+  evidence: ".pipeline/experiments/2026-08-13_scan_foxy_isaac_closed_loop/gates/locomotion_v12_qualified"
+  status: PASS
+  checks:
+    command_visible: true
+    forward_response: true
+    lateral_response: true
+    yaw_response: true
+    watchdog_zero: true
+    finite_policy: true
+    no_termination: true
+    support: true
+  supported_sample_fraction: 0.9911111111111112
+  minimum_root_height_m: 0.3010728061199188
+  evidence_label: "reproduced for the fixed command-takeover qualification and integrated in the accepted closed loop"

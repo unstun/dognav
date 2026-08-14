@@ -58,3 +58,135 @@ must be checked at runtime.
 - Does a physical obstacle appear to both sensing and collision systems?
 - Are source, checkpoint, config, logs, metrics, ROS recording, and video
   synchronized locally and hash-verified?
+
+## Scenario: Articulated Locomotion Follows a Perception-Replanned Trajectory
+
+### 1. Scope / Trigger
+
+Use this contract when a local planner advances a time-parameterized trajectory
+for a policy-controlled articulated robot, especially when the occupancy map
+is built from surface-only LiDAR returns. A kinematic follower's wall-clock
+assumptions do not transfer automatically to a locomotion policy.
+
+### 2. Signatures
+
+- Trajectory progress decision:
+
+  ```cpp
+  TrajectoryProgressDecision decideTrajectoryProgress(
+      double current_time,
+      double dt,
+      double duration,
+      const Eigen::Vector2d &current_position,
+      const Eigen::Vector2d &candidate_position,
+      double max_tracking_error);
+  ```
+
+- Occlusion shadow projection:
+
+  ```cpp
+  std::vector<Eigen::Vector3d> occlusionShadowPoints(
+      const Eigen::Vector3d &sensor_position,
+      const Eigen::Vector3d &hit_position,
+      double shadow_length,
+      double resolution);
+  ```
+
+- Scenario parameters:
+
+  ```yaml
+  grid_map.double_cylinder_radius: <metres>
+  grid_map.double_cylinder_offset: <metres>
+  grid_map.occlusion_shadow_length: <metres, 0 disables>
+  fsm.periodic_replan_enabled: <boolean>
+  closed_loop_controller.max_tracking_error: <metres>
+  ```
+
+### 3. Contracts
+
+- Evaluate trajectory progress against the candidate point at `current_time +
+  dt`. If its planar distance from measured body pose exceeds
+  `max_tracking_error`, keep the current trajectory time and publish the frozen
+  state to the planner; continue commanding toward the current trajectory
+  point rather than jumping ahead.
+- Match planner and controller speed limits to the velocity-policy response
+  demonstrated by the qualification gate. Transport saturation may be wider,
+  but the trajectory generator and follower must share the accepted limit.
+- Inflate physical obstacle hits by the declared robot proxy. When a sensor
+  initially exposes only a surface, optionally mark points behind the hit along
+  the same physical ray at voxel resolution; do not manufacture points in
+  front of the hit or use scene-truth obstacle bounds as planner input.
+- If distance-only periodic replanning is disabled, a separately timed safety
+  callback must continue checking the active trajectory and must replan or
+  fail closed when new occupancy invalidates it.
+- Stop live command and telemetry transport at the simulation-time boundary
+  before video encoding or slow simulator teardown. Post-run packaging must
+  not consume queued commands or alter live transport statistics.
+- A formal run records hashes for the acceptance file, scenario configs,
+  relevant source, executed binaries/libraries, container image, checkpoint,
+  and policy source. Preserve every failed frozen run.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required behavior |
+|---|---|
+| Candidate trajectory point exceeds tracking-error bound | Freeze trajectory time; do not skip ahead |
+| Non-finite or non-positive shadow length/resolution | Disable shadow projection or reject configuration before runtime |
+| Sensor origin equals hit point | Return no shadow points |
+| Active trajectory intersects new inflated occupancy | Safety callback replans; imminent failure triggers emergency stop |
+| Replacement candidate fails while active trajectory is still safe | Keep the active trajectory; never promote the failed candidate |
+| Command frame is stale during live simulation | Reject it and fail closed |
+| Simulation stepping has ended | Close transport before packaging; shutdown backlog is not a live protocol error |
+| Frozen run fails collision, planning, transport, or goal gate | Preserve it unchanged and return to the owning phase |
+
+### 5. Good / Base / Bad Cases
+
+- **Good:** policy-qualified speed, measured-pose time freeze, conservative
+  surface occlusion, event-driven safety replanning, zero collision, and an
+  input hash manifest.
+- **Base:** kinematic simulation may advance by trajectory time directly, but
+  it cannot be promoted into the articulated physical-simulation claim.
+- **Bad:** the desired trajectory is collision-free while the slower robot cuts
+  the corner; the evaluator is then weakened to hide the contact.
+
+### 6. Tests Required
+
+- Unit-test the exact captured corner-cut positions: a candidate more than the
+  tracking bound away must freeze, while a near candidate advances and clamps
+  at duration.
+- Unit-test shadow sample count, first/last sample position, disabled values,
+  and degenerate rays.
+- Run the full fixed-course loop at least twice with identical input hashes
+  before a new formal acceptance run after a non-deterministic planning fix.
+- Assert zero planner failures, zero origin-occupancy errors, zero protocol
+  errors, zero watchdog events, physical detour, no non-foot collision, stopped
+  command, and goal tolerance.
+- Compare local and remote hashes for raw metrics, ROS bag, logs, MP4, configs,
+  source, binaries/libraries, and image identity.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```cpp
+trajectory_time += wall_clock_dt;
+```
+
+```text
+LiDAR surface hit -> mark one surface voxel -> treat all occluded volume free
+```
+
+#### Correct
+
+```cpp
+const auto progress = decideTrajectoryProgress(
+    trajectory_time, dt, duration, measured_xy, candidate_xy,
+    max_tracking_error);
+trajectory_time = progress.next_time;
+```
+
+```text
+physical LiDAR hit -> optional bounded shadow at voxel resolution
+                   -> physical robot-envelope inflation
+                   -> independently timed trajectory safety check
+```

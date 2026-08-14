@@ -1,0 +1,12 @@
+os_pretty_name=Ubuntu 20.04.6 LTS
+architecture=x86_64
+ros_distribution=foxy
+rmw_implementation=default
+gcc=gcc (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
+cmake=cmake version 3.16.3
+python=Python 3.8.10
+pcl=1.10.0+dfsg-5ubuntu1
+eigen=3.3.7-2
+ros_base=0.9.2-1focal.20230606.035837
+rclcpp=2.4.3-1focal.20230527.051415
+pcl_conversions=2.2.1-1focal.20230606.034434
