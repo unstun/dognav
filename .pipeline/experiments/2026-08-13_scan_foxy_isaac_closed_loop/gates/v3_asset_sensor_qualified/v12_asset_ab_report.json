@@ -1,0 +1,234 @@
+{
+  "asset_identity": {
+    "canonical_sensor_rig_sha256": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80",
+    "isaac_sensor_rig_sha256": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d",
+    "legacy_asset_path": "/Users/sun/tongbu/study/phdproject/machine-dog-nav/references/locomotion/2026-08-13_v12_model149999/source/v12_runtime_20260718_recovered/resources/lite3/urdf/lite3.urdf",
+    "legacy_asset_sha256": "178428b97e7d0820e93c200b333f39f0b3b60a81f97d99cd06559d8957c58865"
+  },
+  "attribution_boundary": "The report records one fixed-seed composition comparison. It does not attribute a numerical delta to any individual payload mass, collision primitive, sensor housing, contact event, or policy mode.",
+  "checks": {
+    "identity_invariants_match": true,
+    "legacy_asset_matches_v12_registry": true,
+    "legacy_qualification_passed": true,
+    "schedule_commands_match": true,
+    "schedule_order_matches": true,
+    "sensor_rig_qualification_passed": true,
+    "sensor_rig_runtime_has_no_missing_links": true,
+    "sensor_rig_runtime_mass_check_passed": true
+  },
+  "claim": "same-input V12 legacy-asset versus sensor-rig qualification",
+  "identity_invariant_checks": {
+    "checkpoint_sha256": true,
+    "command_limits": true,
+    "inference_policy": true,
+    "policy_observation_contract": true,
+    "seed": true,
+    "source_commit": true,
+    "task": true,
+    "watchdog_seconds": true
+  },
+  "legacy_summary": {
+    "action_rms": 0.7830204902391406,
+    "finite": true,
+    "maximum_abs_action": 2.5738844871520996,
+    "maximum_abs_pitch_rad": 0.08601113115180903,
+    "maximum_abs_roll_rad": 0.08396684215346739,
+    "maximum_command_observation_error": 0.0,
+    "maximum_joint_position_rad": 1.9264085292816162,
+    "maximum_nonfoot_contact_n": 0.0,
+    "minimum_joint_position_rad": -1.294897198677063,
+    "minimum_root_height_m": 0.3010728061199188,
+    "record_count": 450,
+    "response_means": {
+      "forward": 0.2654259280419686,
+      "lateral": 0.11372131665074636,
+      "yaw": 0.3897586701408265
+    },
+    "segment_commands": {
+      "forward": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.30000001192092896,
+          0.0,
+          0.0
+        ]
+      ],
+      "lateral": [
+        [
+          0.0,
+          0.18000000715255737,
+          0.0
+        ],
+        [
+          0.30000001192092896,
+          0.0,
+          0.0
+        ]
+      ],
+      "settle_zero": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "stop_zero": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.4000000059604645
+        ]
+      ],
+      "watchdog_disconnect": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "yaw": [
+        [
+          0.0,
+          0.0,
+          0.4000000059604645
+        ],
+        [
+          0.0,
+          0.18000000715255737,
+          0.0
+        ]
+      ]
+    },
+    "segment_order": [
+      "settle_zero",
+      "forward",
+      "lateral",
+      "yaw",
+      "stop_zero",
+      "watchdog_disconnect"
+    ],
+    "sim_duration_seconds": 8.979999799281359,
+    "supported_contact_fraction": 0.9911111111111112,
+    "terminated": false,
+    "watchdog_zero_observed": true
+  },
+  "schema_version": 1,
+  "sensor_rig_minus_legacy": {
+    "action_rms": 0.008881687697081864,
+    "maximum_abs_action": 0.6677365303039551,
+    "maximum_abs_pitch_rad": -0.003372525155727238,
+    "maximum_abs_roll_rad": -0.006748621813326874,
+    "maximum_nonfoot_contact_n": 0.0,
+    "minimum_root_height_m": -0.013273298740386963,
+    "response_means": {
+      "forward": 0.04791390753868896,
+      "lateral": 0.0029248106165709747,
+      "yaw": -0.0028151483957618018
+    },
+    "supported_contact_fraction": -0.02444444444444449
+  },
+  "sensor_rig_summary": {
+    "action_rms": 0.7919021779362224,
+    "finite": true,
+    "maximum_abs_action": 3.2416210174560547,
+    "maximum_abs_pitch_rad": 0.08263860599608179,
+    "maximum_abs_roll_rad": 0.07721822034014052,
+    "maximum_command_observation_error": 0.0,
+    "maximum_joint_position_rad": 1.9146876335144043,
+    "maximum_nonfoot_contact_n": 0.0,
+    "minimum_joint_position_rad": -1.2856169939041138,
+    "minimum_root_height_m": 0.28779950737953186,
+    "record_count": 450,
+    "response_means": {
+      "forward": 0.31333983558065753,
+      "lateral": 0.11664612726731734,
+      "yaw": 0.3869435217450647
+    },
+    "segment_commands": {
+      "forward": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.30000001192092896,
+          0.0,
+          0.0
+        ]
+      ],
+      "lateral": [
+        [
+          0.0,
+          0.18000000715255737,
+          0.0
+        ],
+        [
+          0.30000001192092896,
+          0.0,
+          0.0
+        ]
+      ],
+      "settle_zero": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "stop_zero": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.4000000059604645
+        ]
+      ],
+      "watchdog_disconnect": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "yaw": [
+        [
+          0.0,
+          0.0,
+          0.4000000059604645
+        ],
+        [
+          0.0,
+          0.18000000715255737,
+          0.0
+        ]
+      ]
+    },
+    "segment_order": [
+      "settle_zero",
+      "forward",
+      "lateral",
+      "yaw",
+      "stop_zero",
+      "watchdog_disconnect"
+    ],
+    "sim_duration_seconds": 8.979999799281359,
+    "supported_contact_fraction": 0.9666666666666667,
+    "terminated": false,
+    "watchdog_zero_observed": true
+  },
+  "status": "PASS"
+}

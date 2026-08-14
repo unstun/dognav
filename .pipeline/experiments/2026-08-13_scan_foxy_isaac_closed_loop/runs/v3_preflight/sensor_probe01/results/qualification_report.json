@@ -1,0 +1,138 @@
+{
+  "candidate": "V12 model_149999 on Lite3 Pro sensor rig v3",
+  "checks": {
+    "command_visible": true,
+    "finite_policy": true,
+    "forward_mean": 0.3172617037506664,
+    "forward_response": true,
+    "lateral_mean": 0.11377165608984582,
+    "lateral_response": true,
+    "minimum_root_height_m_value": 0.28175753355026245,
+    "no_termination": true,
+    "records_present": true,
+    "support": true,
+    "supported_sample_fraction_value": 0.9665178571428571,
+    "telemetry_nonempty": false,
+    "watchdog_zero": true,
+    "yaw_mean": 0.3938295581826457,
+    "yaw_response": true
+  },
+  "claim": "locomotion qualification only; not SCAN closed-loop validation",
+  "command_transport": {
+    "accepted_connections": 1,
+    "frames_received": 382,
+    "frames_sent": 0,
+    "io_errors": 0,
+    "last_protocol_error": null,
+    "protocol_errors": 0,
+    "reconnects": 0
+  },
+  "depth_artifact": {
+    "artifacts": {
+      "depth_metres_npy": {
+        "bytes": 20312,
+        "path": "d435i_depth_frame_m.npy",
+        "sha256": "78705fd1e8eb1236f7ee8cbf592c3fb8ae310c305af53eceb0e3a637318c5bc8"
+      },
+      "depth_millimetres_png": {
+        "bytes": 724,
+        "invalid_or_clipped_value_mm": 5000,
+        "path": "d435i_depth_frame_mm.png",
+        "sha256": "b749ba56ec4aa4d3376dca3f13ffbb8c4bf30062c9a4ec54b9f6b46853ffb311"
+      },
+      "human_preview_png": {
+        "bytes": 385,
+        "display_rule": "nearer valid depth is brighter; invalid is black",
+        "path": "d435i_depth_preview.png",
+        "sha256": "f2d3686646be58534d476b3cda7c86d118f3df2e6082da4034f5eed42c123907"
+      }
+    },
+    "height": 58,
+    "intrinsic_matrix": [
+      [
+        45.83973693847656,
+        0.0,
+        43.5
+      ],
+      [
+        0.0,
+        45.83973693847656,
+        29.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "maximum_valid_depth_m": 4.064974784851074,
+    "mean_valid_depth_m": 0.7041189670562744,
+    "minimum_valid_depth_m": 0.4334213137626648,
+    "nonfinite_depth_count": 0,
+    "obstacle_surface_pixel_count": 2825,
+    "pixel_count": 5046,
+    "self_occluded_pixel_count": 0,
+    "sensor_position_w": [
+      1.0028473138809204,
+      0.18542441725730896,
+      0.3870649039745331
+    ],
+    "sensor_quaternion_wxyz_ros": [
+      -0.41741451621055603,
+      0.5674099922180176,
+      -0.5667389631271362,
+      0.4273381531238556
+    ],
+    "sim_time_seconds": 4.029999909922481,
+    "step": 200,
+    "valid_depth_pixel_count": 4777,
+    "width": 87
+  },
+  "depth_checks": {
+    "finite_depth": true,
+    "frames_present": true,
+    "intrinsics_present": true,
+    "obstacle_returns": true,
+    "pose_dependent_frame": true,
+    "pose_displacement_m_value": 0.8366962923930887,
+    "timestamps_advance": true,
+    "valid_depth_returns": true
+  },
+  "record_count": 448,
+  "runtime_error": {
+    "message": "telemetry stream ended unexpectedly",
+    "type": "AdapterFailure"
+  },
+  "runtime_rates": {
+    "physics_hz": 200.0,
+    "policy_hz": 50.0,
+    "sensor_hz": 10.0
+  },
+  "schema_version": 1,
+  "sensor_checks": {
+    "cloud_centroid_displacement_m_value": 0.8769472209519446,
+    "finite": true,
+    "frames_present": true,
+    "ground_returns": true,
+    "nonempty": false,
+    "obstacle_returns": true,
+    "pose_dependent_geometry": true,
+    "pose_displacement_m_value": 0.8289990969064758,
+    "timestamps_advance": true
+  },
+  "status": "INSTRUMENTATION_ERROR",
+  "telemetry_sink": {
+    "nonempty_sensor_frames": 59,
+    "sensor_frames": 90,
+    "status_frames": 90
+  },
+  "telemetry_transport": {
+    "accepted_connections": 1,
+    "frames_received": 0,
+    "frames_sent": 180,
+    "io_errors": 0,
+    "last_protocol_error": null,
+    "protocol_errors": 0,
+    "reconnects": 0
+  }
+}

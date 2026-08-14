@@ -1,10 +1,11 @@
 # Implementation Plan: Foxy SCAN to Lite3 Isaac Closed Loop
 
-> Implementation and automated verification completed on 2026-08-13. The
+> V2 implementation and automated verification completed on 2026-08-13. The
 > first frozen run was preserved as a failure; after returning to the owning
 > integration gates, two identical-input dry runs and
-> `acceptance_v2_frozen` passed. Human acceptance remains pending. See the
-> experiment `REPORT.md` for evidence and claim boundaries.
+> `acceptance_v2_frozen` passed. Human review then reopened the task for V3:
+> new sensor-rig URDF plus the V12 checkpoint, simulated MID-360, and simulated
+> D435i. V1/V2 remain immutable evidence.
 
 ## Preconditions Before `task.py start`
 
@@ -190,6 +191,76 @@ gate; never fall back to kinematic motion or map-truth sensing.
   and all success acceptance
   criteria pass. A stop-condition report leaves the integration claim
   incomplete and requests the next user-owned decision.
+
+## Phase 10 — Freeze and Import the V3 Sensor Rig
+
+- [x] Copy only the pinned canonical and Isaac-safe URDF bundle from the
+  committed `machine-dog` source into a dated ignored runtime reference; record
+  source commits, licences, all mesh hashes, topology, and mass/collision
+  expectations without reading the dirty sibling worktree as runtime input.
+- [x] Add a V3 asset override that changes only the V12 robot spawn path and
+  fixed-joint setting; assert the checkpoint, observation, action, pose,
+  actuator, timing, seed, and command contracts remain byte/value identical.
+- [x] On the 5070 Ti, import one environment and record prim/link/joint/body,
+  mass, collision, sensor-frame, and default-mass readback.
+
+**Gate 10:** AC11 passes. Preserve any importer failure without falling back to
+the legacy asset.
+
+## Phase 11 — Bind and Qualify MID-360 and D435i
+
+- [x] Probe the installed Isaac runtime for RTX LiDAR compatibility. Use it
+  only if creation, attachment, output, teardown, and evidence capture pass;
+  otherwise freeze the multi-mesh ray-cast backend and geometry-derived rig
+  occlusion mask.
+- [x] Bind the LiDAR to `mid360_scan_frame`; record FOV/range/rate/sampling,
+  raw/finite/floor/obstacle/self-occlusion counts, timestamps, and pose change.
+- [x] Bind the depth sensor to `d435i_depth_optical_frame`; record provisional
+  intrinsics, resolution/range/rate, finite ratio, obstacle pixels, timestamp,
+  pose change, and representative raw/visualized depth frames.
+- [x] Add deterministic local tests for asset/config hashes, frame bindings,
+  mask logic, depth metrics, invalid sensor data, and identity serialization.
+
+**Gate 11:** AC13 and AC14 pass together. A visual sensor mesh without live
+data, a TORSO-relative substitute, or a static-map image is a failure.
+
+## Phase 12 — Qualify V12 on the New Physical Asset
+
+- [x] Run the same fixed-seed zero/forward/lateral/yaw/zero schedule on the
+  legacy V12 asset and the new rig asset with identical policy/control inputs.
+- [x] Compare command visibility, observation, action, response direction,
+  support, root height/attitude, contacts, non-foot collision, finite state,
+  termination, and watchdog behavior without changing thresholds after either
+  result.
+- [x] Stop if the new rig fails; do not train, tune the controller, delete
+  payload collision, or reuse the legacy-asset PASS as V3 evidence.
+
+**Gate 12:** AC12 passes.
+
+## Phase 13 — V3 Closed Loop and Frozen Acceptance
+
+- [x] Run at least two identical-input dry runs with the new asset and both
+  sensors active. SCAN consumes only the MID-360 point stream; D435i data is
+  recorded concurrently.
+- [x] Freeze a V3 acceptance config and run identity only after both dry runs
+  pass without threshold changes.
+- [x] Execute one uninterrupted formal V3 run with raw logs, ROS recording,
+  dual-sensor metrics/depth samples, full causal telemetry, and a video that
+  visibly shows the imported sensor rig.
+- [x] Preserve any failed frozen V3 run and return to its owning gate.
+
+**Gate 13:** AC15 passes.
+
+## Phase 14 — V3 Evidence and Human Review
+
+- [x] Copy expected artifacts back to a new local V3 evidence directory and
+  verify local/remote hashes, structured data, video decode, depth samples,
+  source/config identity, and task-owned diff.
+- [x] Update the report so V2 remains baseline-only and V3 receives no stronger
+  label than its direct evidence.
+- [x] Run full Trellis/code/evidence checks, make a reviewed commit, set the
+  task to `review`, and provide the V3 MP4 plus human-review checklist directly.
+- [ ] Archive only after Dr Sun explicitly accepts V3.
 
 ## Planned Validation Matrix
 

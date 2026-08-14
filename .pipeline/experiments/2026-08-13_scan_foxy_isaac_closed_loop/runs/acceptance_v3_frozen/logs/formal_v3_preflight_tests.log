@@ -1,0 +1,50 @@
+test_accepts_complete_run_and_rejects_collision (test_acceptance.AcceptanceTest.test_accepts_complete_run_and_rejects_collision) ... ok
+test_percentile_interpolates (test_acceptance.AcceptanceTest.test_percentile_interpolates) ... ok
+test_v3_requires_asset_depth_and_runtime_identity (test_acceptance.AcceptanceTest.test_v3_requires_asset_depth_and_runtime_identity) ... ok
+test_clamps_and_tracks_increasing_sequence (test_command_state.CommandStateTest.test_clamps_and_tracks_increasing_sequence) ... ok
+test_counts_sequence_gaps (test_command_state.CommandStateTest.test_counts_sequence_gaps) ... ok
+test_disconnect_fails_closed (test_command_state.CommandStateTest.test_disconnect_fails_closed) ... ok
+test_invalid_limits_and_nonfinite_command (test_command_state.CommandStateTest.test_invalid_limits_and_nonfinite_command) ... ok
+test_rejects_stale_and_future_timestamp (test_command_state.CommandStateTest.test_rejects_stale_and_future_timestamp) ... ok
+test_watchdog_zeroes_once (test_command_state.CommandStateTest.test_watchdog_zeroes_once) ... ok
+test_command_visibility (test_isaac_adapter_core.IsaacAdapterCoreTest.test_command_visibility) ... ok
+test_config_hash_is_canonical (test_isaac_adapter_core.IsaacAdapterCoreTest.test_config_hash_is_canonical) ... ok
+test_quaternion_conversion_and_rotation (test_isaac_adapter_core.IsaacAdapterCoreTest.test_quaternion_conversion_and_rotation) ... ok
+test_schedule_boundaries_and_disconnect (test_isaac_adapter_core.IsaacAdapterCoreTest.test_schedule_boundaries_and_disconnect) ... ok
+test_world_hits_reject_nonfinite_floor_threshold (test_isaac_adapter_core.IsaacAdapterCoreTest.test_world_hits_reject_nonfinite_floor_threshold) ... ok
+test_world_hits_remove_declared_traversable_floor (test_isaac_adapter_core.IsaacAdapterCoreTest.test_world_hits_remove_declared_traversable_floor) ... ok
+test_world_hits_transform_filter_and_range (test_isaac_adapter_core.IsaacAdapterCoreTest.test_world_hits_transform_filter_and_range) ... ok
+test_accumulates_synchronized_closed_loop_topics (test_monitor_core.MonitorCoreTest.test_accumulates_synchronized_closed_loop_topics) ... ok
+test_rejects_nonfinite_or_invalid_samples (test_monitor_core.MonitorCoreTest.test_rejects_nonfinite_or_invalid_samples) ... ok
+test_topic_rate_and_stamp_regression (test_monitor_core.MonitorCoreTest.test_topic_rate_and_stamp_regression) ... ok
+test_finds_livox_or_mid360_profiles_only (test_probe_rtx_lidar.RtxLidarProfileProbeTest.test_finds_livox_or_mid360_profiles_only) ... ok
+test_rejects_unrelated_rtx_profiles (test_probe_rtx_lidar.RtxLidarProfileProbeTest.test_rejects_unrelated_rtx_profiles) ... ok
+test_command_payload_rejects_invalid_values_and_length (test_protocol.ProtocolTest.test_command_payload_rejects_invalid_values_and_length) ... ok
+test_frame_rejects_truncation_trailing_bytes_and_crc_failure (test_protocol.ProtocolTest.test_frame_rejects_truncation_trailing_bytes_and_crc_failure) ... ok
+test_frame_round_trip (test_protocol.ProtocolTest.test_frame_round_trip) ... ok
+test_header_rejects_magic_version_flags_reserved_and_oversize (test_protocol.ProtocolTest.test_header_rejects_magic_version_flags_reserved_and_oversize) ... ok
+test_network_points_convert_to_explicit_little_endian_ros_bytes (test_protocol.ProtocolTest.test_network_points_convert_to_explicit_little_endian_ros_bytes) ... ok
+test_send_frame_validates_before_write (test_protocol.ProtocolTest.test_send_frame_validates_before_write) ... ok
+test_sensor_payload_round_trip (test_protocol.ProtocolTest.test_sensor_payload_round_trip) ... ok
+test_sensor_rejects_bad_quaternion_point_length_and_nonfinite_point (test_protocol.ProtocolTest.test_sensor_rejects_bad_quaternion_point_length_and_nonfinite_point) ... ok
+test_sequence_tracker_rejects_regression_and_counts_gaps (test_protocol.ProtocolTest.test_sequence_tracker_rejects_regression_and_counts_gaps) ... ok
+test_status_payload_round_trip_and_unknown_flag (test_protocol.ProtocolTest.test_status_payload_round_trip_and_unknown_flag) ... ok
+test_stream_handles_partial_and_coalesced_frames (test_protocol.ProtocolTest.test_stream_handles_partial_and_coalesced_frames) ... ok
+test_rejects_empty_metrics (test_qualification_compare.QualificationCompareTest.test_rejects_empty_metrics) ... ok
+test_summarizes_schedule_response_and_support (test_qualification_compare.QualificationCompareTest.test_summarizes_schedule_response_and_support) ... ok
+test_command_protocol_error_fails_closed (test_transport.TransportTest.test_command_protocol_error_fails_closed) ... ok
+test_command_receive_disconnect_and_reconnect (test_transport.TransportTest.test_command_receive_disconnect_and_reconnect) ... ok
+test_telemetry_publish_and_reconnect (test_transport.TransportTest.test_telemetry_publish_and_reconnect) ... ok
+test_extracts_topology_mass_collision_and_mesh_hash (test_v12_sensor_gate.SensorRigUrdfContractTest.test_extracts_topology_mass_collision_and_mesh_hash) ... ok
+test_accepts_advancing_pose_dependent_obstacle_cloud (test_v12_sensor_gate.V12SensorGateTest.test_accepts_advancing_pose_dependent_obstacle_cloud) ... ok
+test_rejects_ground_only_returns (test_v12_sensor_gate.V12SensorGateTest.test_rejects_ground_only_returns) ... ok
+test_rejects_static_or_nonfinite_cloud (test_v12_sensor_gate.V12SensorGateTest.test_rejects_static_or_nonfinite_cloud) ... ok
+test_accepts_advancing_finite_depth_with_obstacle (test_v12_sensor_gate.V3DepthGateTest.test_accepts_advancing_finite_depth_with_obstacle) ... ok
+test_rejects_missing_obstacle_or_nonfinite_depth (test_v12_sensor_gate.V3DepthGateTest.test_rejects_missing_obstacle_or_nonfinite_depth) ... ok
+test_rejects_static_depth_frame (test_v12_sensor_gate.V3DepthGateTest.test_rejects_static_depth_frame) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 0.148s
+
+OK
+b8f42d04b33532191e8ded21fe705aba33b7cd5c4f1311372e1afcb9561cd9ad  /home/sun/machine-dog-nav-runs/2026-08-13_scan_foxy_isaac_v3/acceptance_thresholds_v3.json

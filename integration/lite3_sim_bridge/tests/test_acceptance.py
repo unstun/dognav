@@ -113,6 +113,44 @@ class AcceptanceTest(unittest.TestCase):
             "cloud_points": {"minimum": 30, "maximum": 30, "mean": 30.0},
         }
 
+    def _v3_thresholds(self):
+        thresholds = self._thresholds()
+        thresholds["v3_sensor_rig"] = {
+            "canonical_urdf_sha256": "canonical",
+            "isaac_urdf_sha256": "isaac",
+            "lidar_frame": "mid360_scan_frame",
+            "depth_frame": "d435i_depth_optical_frame",
+            "expected_body_count": 24,
+            "expected_joint_count": 23,
+            "expected_fixed_joint_count": 11,
+            "expected_movable_joint_count": 12,
+            "expected_collision_count": 29,
+            "runtime_mass_range_kg": [13.2817, 13.2819],
+            "minimum_depth_frames": 120,
+            "depth_rate_hz_range": [8.0, 12.0],
+            "minimum_depth_nonempty_fraction": 0.99,
+            "minimum_depth_obstacle_pixels": 20,
+            "minimum_depth_pose_displacement_m": 3.5,
+            "depth_dimensions": [87, 58],
+            "minimum_self_occluded_lidar_hits": 1,
+            "minimum_depth_artifact_count": 3,
+        }
+        return thresholds
+
+    def _depth_metrics(self):
+        return [
+            {
+                "sim_time_seconds": 0.1 * index,
+                "sensor_position_w": [4.0 * index / 124, 0.0, 0.4],
+                "valid_depth_pixel_count": 100,
+                "nonfinite_depth_count": 0,
+                "obstacle_surface_pixel_count": 30,
+                "width": 87,
+                "height": 58,
+            }
+            for index in range(125)
+        ]
+
     def test_percentile_interpolates(self):
         self.assertAlmostEqual(_percentile([0.0, 10.0, 20.0], 0.75), 15.0)
         with self.assertRaises(ValueError):
@@ -180,6 +218,104 @@ class AcceptanceTest(unittest.TestCase):
             )
             self.assertEqual(failed["status"], "FAIL")
             self.assertFalse(failed["checks"]["no_collision"]["passed"])
+
+    def test_v3_requires_asset_depth_and_runtime_identity(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            video = root / "run.mp4"
+            video.write_bytes(b"v" * 120000)
+            video_sha = hashlib.sha256(video.read_bytes()).hexdigest()
+            bag = root / "rosbag"
+            bag.mkdir()
+            (bag / "metadata.yaml").write_text("rosbag2_bagfile_information: {}\n")
+            (bag / "run_0.db3").write_bytes(b"b" * 12000)
+            artifacts = {}
+            for name in ("depth.npy", "depth_mm.png", "depth_preview.png"):
+                path = root / name
+                path.write_bytes(name.encode("ascii"))
+                artifacts[name] = {
+                    "path": name,
+                    "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                }
+            sensor_metrics = self._sensor_metrics()
+            for row in sensor_metrics:
+                row["self_occluded_hit_count"] = 12
+            identity = {
+                "acceptance_config_sha256": "frozen",
+                "robot_asset": {
+                    "canonical_asset_sha256": "canonical",
+                    "asset_sha256": "isaac",
+                },
+                "sensor": {"parent_frame": "mid360_scan_frame"},
+                "depth_camera": {"parent_frame": "d435i_depth_optical_frame"},
+            }
+            composition = {
+                "runtime_body_names": [str(index) for index in range(24)],
+                "imported_joint_prim_paths": [str(index) for index in range(23)],
+                "imported_fixed_joint_prim_paths": [str(index) for index in range(11)],
+                "imported_movable_joint_prim_paths": [str(index) for index in range(12)],
+                "imported_collision_prim_paths": [str(index) for index in range(29)],
+                "runtime_total_mass_kg": 13.281788,
+                "silent_default_mass_check": {"status": "pass"},
+            }
+            report = evaluate_acceptance(
+                self._v3_thresholds(),
+                self._metrics(),
+                sensor_metrics,
+                {
+                    "status": "PASS",
+                    "runtime_error": None,
+                    "command_transport": {"protocol_errors": 0},
+                    "telemetry_transport": {"protocol_errors": 0, "reconnects": 1},
+                    "video": {
+                        "frame_count": 310,
+                        "encoded_duration_seconds": 12.4,
+                        "sha256": video_sha,
+                    },
+                    "depth_artifact": {"artifacts": artifacts},
+                },
+                identity,
+                self._ros_summary(),
+                video,
+                bag,
+                "final_plan_success=1\nfinal_plan_success=1\n"
+                "[FSM]: from EXEC_TRAJ to WAIT_TARGET\n",
+                "frozen",
+                self._depth_metrics(),
+                composition,
+                root,
+            )
+            self.assertEqual(report["status"], "PASS")
+            identity["robot_asset"]["asset_sha256"] = "wrong"
+            failed = evaluate_acceptance(
+                self._v3_thresholds(),
+                self._metrics(),
+                sensor_metrics,
+                {
+                    "status": "PASS",
+                    "runtime_error": None,
+                    "command_transport": {"protocol_errors": 0},
+                    "telemetry_transport": {"protocol_errors": 0, "reconnects": 1},
+                    "video": {
+                        "frame_count": 310,
+                        "encoded_duration_seconds": 12.4,
+                        "sha256": video_sha,
+                    },
+                    "depth_artifact": {"artifacts": artifacts},
+                },
+                identity,
+                self._ros_summary(),
+                video,
+                bag,
+                "final_plan_success=1\nfinal_plan_success=1\n"
+                "[FSM]: from EXEC_TRAJ to WAIT_TARGET\n",
+                "frozen",
+                self._depth_metrics(),
+                composition,
+                root,
+            )
+            self.assertEqual(failed["status"], "FAIL")
+            self.assertFalse(failed["checks"]["v3_isaac_urdf_hash"]["passed"])
 
 
 if __name__ == "__main__":

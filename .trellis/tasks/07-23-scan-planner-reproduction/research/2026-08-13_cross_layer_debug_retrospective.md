@@ -46,7 +46,7 @@
 - [x] Added byte-order and ground-only rejection tests.
 - [x] Preserved failed remote runs as instrumentation or integration evidence.
 - [x] Complete frozen acceptance and local/remote evidence sync.
-- [ ] Complete the final Trellis check.
+- [x] Complete the final Trellis check.
 
 ## 6. Formal V1 Failure and Physical-Loop Fixes
 
@@ -70,3 +70,20 @@ The accepted correction chain was:
 Two identical-input dry runs passed before `acceptance_v2_frozen`. V2 passed
 all 51 frozen checks with zero collision, zero planner failures, and zero
 protocol errors. The original threshold file and V1 evidence were unchanged.
+
+## 7. V3 Sensor-Rig Lessons
+
+The first V3 sensor-rig preflight produced empty environmental scans because
+the optical self-occlusion mask used broad collision proxies. Those proxies are
+valid for contact but too conservative for optical visibility. The failed run
+was preserved, and the final implementation ray-casts self-occlusion against
+the moving visual geometry while retaining collision primitives for physics.
+A second defect was a normal telemetry teardown race: the client could observe
+EOF before its stop event and label shutdown as an error. The final runtime
+signals the sink before closing the server and stops live transport before
+video encoding or simulator teardown.
+
+The durable rule is now in `.trellis/spec/backend/quality-guidelines.md`:
+policy identity, asset identity, runtime USD readback, locomotion A/B,
+dual-sensor output, failed preflight preservation, frozen acceptance, and
+human review are distinct gates.

@@ -52,6 +52,9 @@ def evaluate_acceptance(
     rosbag_dir: Path,
     foxy_log_text: str,
     threshold_sha256: str,
+    depth_metrics: Sequence[Mapping[str, object]] = None,
+    runtime_composition: Mapping[str, object] = None,
+    depth_artifact_root: Path = None,
 ) -> Dict[str, object]:
     limits = thresholds["thresholds"]
     goal = thresholds["goal_world_m"]
@@ -197,6 +200,198 @@ def evaluate_acceptance(
     add("clean_process_exit", "process has died" not in foxy_log_text and "KeyboardInterrupt" not in foxy_log_text, {"process_has_died": "process has died" in foxy_log_text, "keyboard_interrupt": "KeyboardInterrupt" in foxy_log_text}, False)
     add("threshold_identity", run_identity.get("acceptance_config_sha256") == threshold_sha256, run_identity.get("acceptance_config_sha256"), threshold_sha256)
 
+    v3 = thresholds.get("v3_sensor_rig")
+    if v3 is not None:
+        depth_rows = list(depth_metrics or [])
+        composition = runtime_composition or {}
+        robot_asset = run_identity.get("robot_asset", {})
+        add(
+            "v3_canonical_urdf_hash",
+            robot_asset.get("canonical_asset_sha256")
+            == v3["canonical_urdf_sha256"],
+            robot_asset.get("canonical_asset_sha256"),
+            v3["canonical_urdf_sha256"],
+        )
+        add(
+            "v3_isaac_urdf_hash",
+            robot_asset.get("asset_sha256") == v3["isaac_urdf_sha256"],
+            robot_asset.get("asset_sha256"),
+            v3["isaac_urdf_sha256"],
+        )
+        add(
+            "v3_lidar_frame",
+            run_identity.get("sensor", {}).get("parent_frame")
+            == v3["lidar_frame"],
+            run_identity.get("sensor", {}).get("parent_frame"),
+            v3["lidar_frame"],
+        )
+        add(
+            "v3_depth_frame",
+            run_identity.get("depth_camera", {}).get("parent_frame")
+            == v3["depth_frame"],
+            run_identity.get("depth_camera", {}).get("parent_frame"),
+            v3["depth_frame"],
+        )
+        runtime_body_names = composition.get("runtime_body_names", [])
+        runtime_joints = composition.get("imported_joint_prim_paths", [])
+        runtime_fixed_joints = composition.get(
+            "imported_fixed_joint_prim_paths", []
+        )
+        runtime_movable_joints = composition.get(
+            "imported_movable_joint_prim_paths", []
+        )
+        runtime_collisions = composition.get("imported_collision_prim_paths", [])
+        add(
+            "v3_runtime_body_count",
+            len(runtime_body_names) == int(v3["expected_body_count"]),
+            len(runtime_body_names),
+            v3["expected_body_count"],
+        )
+        add(
+            "v3_runtime_joint_count",
+            len(runtime_joints) == int(v3["expected_joint_count"]),
+            len(runtime_joints),
+            v3["expected_joint_count"],
+        )
+        add(
+            "v3_runtime_fixed_joint_count",
+            len(runtime_fixed_joints) == int(v3["expected_fixed_joint_count"]),
+            len(runtime_fixed_joints),
+            v3["expected_fixed_joint_count"],
+        )
+        add(
+            "v3_runtime_movable_joint_count",
+            len(runtime_movable_joints)
+            == int(v3["expected_movable_joint_count"]),
+            len(runtime_movable_joints),
+            v3["expected_movable_joint_count"],
+        )
+        add(
+            "v3_runtime_collision_count",
+            len(runtime_collisions) == int(v3["expected_collision_count"]),
+            len(runtime_collisions),
+            v3["expected_collision_count"],
+        )
+        runtime_mass = composition.get("runtime_total_mass_kg")
+        mass_range = [float(value) for value in v3["runtime_mass_range_kg"]]
+        add(
+            "v3_runtime_mass",
+            runtime_mass is not None
+            and mass_range[0] <= float(runtime_mass) <= mass_range[1],
+            runtime_mass,
+            mass_range,
+        )
+        add(
+            "v3_no_silent_default_mass",
+            composition.get("silent_default_mass_check", {}).get("status")
+            == "pass",
+            composition.get("silent_default_mass_check"),
+            "pass",
+        )
+        add(
+            "v3_depth_records",
+            len(depth_rows) >= int(v3["minimum_depth_frames"]),
+            len(depth_rows),
+            v3["minimum_depth_frames"],
+        )
+        if depth_rows:
+            depth_rate = _rate(depth_rows)
+            depth_rate_range = [float(value) for value in v3["depth_rate_hz_range"]]
+            depth_nonempty_fraction = sum(
+                int(row["valid_depth_pixel_count"]) > 0 for row in depth_rows
+            ) / len(depth_rows)
+            depth_displacement = math.dist(
+                depth_rows[0]["sensor_position_w"],
+                depth_rows[-1]["sensor_position_w"],
+            )
+            add(
+                "v3_depth_rate",
+                depth_rate_range[0] <= depth_rate <= depth_rate_range[1],
+                depth_rate,
+                depth_rate_range,
+            )
+            add(
+                "v3_depth_finite",
+                all(int(row["nonfinite_depth_count"]) == 0 for row in depth_rows),
+                max(int(row["nonfinite_depth_count"]) for row in depth_rows),
+                0,
+            )
+            add(
+                "v3_depth_nonempty",
+                depth_nonempty_fraction
+                >= float(v3["minimum_depth_nonempty_fraction"]),
+                depth_nonempty_fraction,
+                v3["minimum_depth_nonempty_fraction"],
+            )
+            depth_obstacle_pixels = max(
+                int(row["obstacle_surface_pixel_count"]) for row in depth_rows
+            )
+            add(
+                "v3_depth_obstacle",
+                depth_obstacle_pixels
+                >= int(v3["minimum_depth_obstacle_pixels"]),
+                depth_obstacle_pixels,
+                v3["minimum_depth_obstacle_pixels"],
+            )
+            add(
+                "v3_depth_pose_dependent",
+                depth_displacement
+                >= float(v3["minimum_depth_pose_displacement_m"]),
+                depth_displacement,
+                v3["minimum_depth_pose_displacement_m"],
+            )
+            dimensions = [
+                int(depth_rows[0]["width"]),
+                int(depth_rows[0]["height"]),
+            ]
+            add(
+                "v3_depth_dimensions",
+                dimensions == list(v3["depth_dimensions"]),
+                dimensions,
+                v3["depth_dimensions"],
+            )
+        else:
+            for name in (
+                "v3_depth_rate",
+                "v3_depth_finite",
+                "v3_depth_nonempty",
+                "v3_depth_obstacle",
+                "v3_depth_pose_dependent",
+                "v3_depth_dimensions",
+            ):
+                add(name, False, None, "depth metrics required")
+        self_occluded = max(
+            (int(row.get("self_occluded_hit_count", 0)) for row in sensor_metrics),
+            default=0,
+        )
+        add(
+            "v3_lidar_self_occlusion",
+            self_occluded >= int(v3["minimum_self_occluded_lidar_hits"]),
+            self_occluded,
+            v3["minimum_self_occluded_lidar_hits"],
+        )
+        depth_artifact = isaac_report.get("depth_artifact") or {}
+        artifact_records = depth_artifact.get("artifacts", {})
+        artifact_checks = {}
+        for record in artifact_records.values():
+            artifact_path = (
+                None
+                if depth_artifact_root is None
+                else depth_artifact_root / record["path"]
+            )
+            artifact_checks[record["path"]] = (
+                artifact_path is not None
+                and artifact_path.is_file()
+                and _sha256(artifact_path) == record["sha256"]
+            )
+        add(
+            "v3_depth_artifacts",
+            len(artifact_checks) >= int(v3["minimum_depth_artifact_count"])
+            and all(artifact_checks.values()),
+            artifact_checks,
+            v3["minimum_depth_artifact_count"],
+        )
+
     passed = all(value["passed"] for value in checks.values())
     return {
         "schema_version": 1,
@@ -228,6 +423,9 @@ def main(argv=None) -> int:
     parser.add_argument("--video", type=Path, required=True)
     parser.add_argument("--rosbag", type=Path, required=True)
     parser.add_argument("--foxy-log", type=Path, required=True)
+    parser.add_argument("--depth-metrics", type=Path)
+    parser.add_argument("--runtime-composition", type=Path)
+    parser.add_argument("--depth-artifact-root", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args(argv)
     thresholds = json.loads(args.thresholds.read_text(encoding="utf-8"))
@@ -242,6 +440,13 @@ def main(argv=None) -> int:
         args.rosbag,
         args.foxy_log.read_text(encoding="utf-8"),
         _sha256(args.thresholds),
+        None if args.depth_metrics is None else _load_jsonl(args.depth_metrics),
+        (
+            None
+            if args.runtime_composition is None
+            else json.loads(args.runtime_composition.read_text(encoding="utf-8"))
+        ),
+        args.depth_artifact_root,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")

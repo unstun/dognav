@@ -1,0 +1,152 @@
+{
+  "child_last_state": "module_import_started",
+  "child_returncode": 0,
+  "claim_boundary": "The parent probe preserves the child lifecycle marker and parses the installed profile inventory without importing it. This is evidence for backend rejection, not a custom Livox profile or fidelity result.",
+  "creation_output_teardown_gate": "not_run_after_profile_identity_and_module_lifecycle_rejection",
+  "decision": "The installed profile inventory has no MID-360 or Livox entry, and the live RTX module import did not return to the caller after the Isaac application became ready. Do not substitute another vendor's scan model; use the bounded geometric ray-cast backend.",
+  "device": "cuda:0",
+  "mid360_profile_matches": [],
+  "module_import_completed": false,
+  "probe": "installed Isaac RTX LiDAR profile compatibility",
+  "schema_version": 1,
+  "selected_backend": "IsaacLab MultiMeshRayCaster",
+  "status": "PASS",
+  "supported_asset_count": 18,
+  "supported_assets": [
+    {
+      "asset_path": "/Isaac/Sensors/HESAI/XT32_SD10/HESAI_XT32_SD10.usd",
+      "variants": []
+    },
+    {
+      "asset_path": "/Isaac/Sensors/NVIDIA/Example_Rotary.usda",
+      "variants": []
+    },
+    {
+      "asset_path": "/Isaac/Sensors/NVIDIA/Example_Rotary_2D.usda",
+      "variants": []
+    },
+    {
+      "asset_path": "/Isaac/Sensors/NVIDIA/Example_Solid_State.usda",
+      "variants": []
+    },
+    {
+      "asset_path": "/Isaac/Sensors/NVIDIA/Simple_Example_Solid_State.usda",
+      "variants": []
+    },
+    {
+      "asset_path": "/Isaac/Sensors/Ouster/OS0/OS0.usd",
+      "variants": [
+        "OS0_REV6_128ch10hz1024res",
+        "OS0_REV6_128ch10hz2048res",
+        "OS0_REV6_128ch10hz512res",
+        "OS0_REV6_128ch20hz1024res",
+        "OS0_REV6_128ch20hz512res",
+        "OS0_REV7_128ch10hz1024res",
+        "OS0_REV7_128ch10hz2048res",
+        "OS0_REV7_128ch10hz512res",
+        "OS0_REV7_128ch20hz1024res",
+        "OS0_REV7_128ch20hz512res"
+      ]
+    },
+    {
+      "asset_path": "/Isaac/Sensors/Ouster/OS1/OS1.usd",
+      "variants": [
+        "OS1_REV6_128ch10hz1024res",
+        "OS1_REV6_128ch10hz2048res",
+        "OS1_REV6_128ch10hz512res",
+        "OS1_REV6_128ch20hz1024res",
+        "OS1_REV6_128ch20hz512res",
+        "OS1_REV6_32ch10hz1024res",
+        "OS1_REV6_32ch10hz2048res",
+        "OS1_REV6_32ch10hz512res",
+        "OS1_REV6_32ch20hz1024res",
+        "OS1_REV6_32ch20hz512res",
+        "OS1_REV7_128ch10hz1024res",
+        "OS1_REV7_128ch10hz2048res",
+        "OS1_REV7_128ch10hz512res",
+        "OS1_REV7_128ch20hz1024res",
+        "OS1_REV7_128ch20hz512res"
+      ]
+    },
+    {
+      "asset_path": "/Isaac/Sensors/Ouster/OS2/OS2.usd",
+      "variants": [
+        "OS2_REV6_128ch10hz1024res",
+        "OS2_REV6_128ch10hz2048res",
+        "OS2_REV6_128ch10hz512res",
+        "OS2_REV6_128ch20hz1024res",
+        "OS2_REV6_128ch20hz512res",
+        "OS2_REV7_128ch10hz1024res",
+        "OS2_REV7_128ch10hz2048res",
+        "OS2_REV7_128ch10hz512res",
+        "OS2_REV7_128ch20hz1024res",
+        "OS2_REV7_128ch20hz512res"
+      ]
+    },
+    {
+      "asset_path": "/Isaac/Sensors/Ouster/VLS_128/Ouster_VLS_128.usd",
+      "variants": []
+    },
+    {
+      "asset_path": "/Isaac/Sensors/SICK/TIM781/SICK_TIM781.usd",
+      "variants": []
+    },
+    {
+      "asset_path": "/Isaac/Sensors/SICK/microScan3/SICK_microScan3.usd",
+      "variants": [
+        "Profile_1",
+        "Profile_2",
+        "Profile_3",
+        "Profile_4",
+        "Profile_5",
+        "Profile_6"
+      ]
+    },
+    {
+      "asset_path": "/Isaac/Sensors/SICK/multiScan136/SICK_multiScan136.usd",
+      "variants": []
+    },
+    {
+      "asset_path": "/Isaac/Sensors/SICK/multiScan165/SICK_multiScan165.usd",
+      "variants": []
+    },
+    {
+      "asset_path": "/Isaac/Sensors/SICK/nanoScan3/SICK_nanoScan3.usd",
+      "variants": [
+        "CAAZ30AN1"
+      ]
+    },
+    {
+      "asset_path": "/Isaac/Sensors/SICK/picoScan150/SICK_picoScan150.usd",
+      "variants": [
+        "Profile_1",
+        "Profile_10",
+        "Profile_11",
+        "Profile_2",
+        "Profile_3",
+        "Profile_4",
+        "Profile_5",
+        "Profile_6",
+        "Profile_7",
+        "Profile_8",
+        "Profile_9"
+      ]
+    },
+    {
+      "asset_path": "/Isaac/Sensors/Slamtec/RPLIDAR_S2E/Slamtec_RPLIDAR_S2E.usd",
+      "variants": []
+    },
+    {
+      "asset_path": "/Isaac/Sensors/ZVISION/ZVISION_ML30S.usda",
+      "variants": []
+    },
+    {
+      "asset_path": "/Isaac/Sensors/ZVISION/ZVISION_MLXS.usda",
+      "variants": []
+    }
+  ],
+  "supported_config_source": "/home/sun/miniconda3/envs/isaaclab/lib/python3.11/site-packages/isaacsim/exts/isaacsim.sensors.rtx/isaacsim/sensors/rtx/impl/supported_lidar_configs.py",
+  "supported_config_source_sha256": "4a6feaaff799a32f80dc80053f78df8591e4098bf0b1cd83498a9d17544109de",
+  "teardown_completed": false,
+  "usable_for_declared_mid360": false
+}

@@ -1,0 +1,10 @@
+[INFO] [1786680328.787414485] [rosbag2_storage]: Opened database '/evidence/rosbag/rosbag_0.db3' for READ_WRITE.
+[INFO] [1786680328.810170920] [rosbag2_transport]: Listening for topics...
+[INFO] [1786680328.910907917] [rosbag2_transport]: Subscribed to topic '/planning/bspline'
+[INFO] [1786680328.911232354] [rosbag2_transport]: Subscribed to topic '/quad_0/body_pose'
+[INFO] [1786680328.911582749] [rosbag2_transport]: Subscribed to topic '/quad_0/cmd_vel'
+[WARN] [1786680329.212007413] [rosbag2_transport]: A new publisher for subscribed topic /quad_0/body_pose was found offering RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT, but rosbag already subscribed requesting RMW_QOS_POLICY_RELIABILITY_RELIABLE. Messages from this new publisher will not be recorded.
+[INFO] [1786680329.212519691] [rosbag2_transport]: Subscribed to topic '/quad_0/cloud'
+[INFO] [1786680329.212883532] [rosbag2_transport]: Subscribed to topic '/quad_0/lidar_pose'
+[INFO] [1786680329.212893180] [rosbag2_transport]: All requested topics are subscribed. Stopping discovery...
+[INFO] [1786680351.482507019] [rclcpp]: signal_handler(signal_value=2)

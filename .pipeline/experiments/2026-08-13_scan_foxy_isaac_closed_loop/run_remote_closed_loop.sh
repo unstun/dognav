@@ -27,14 +27,14 @@ for port in "$TELEMETRY_PORT" "$COMMAND_PORT"; do
   fi
 done
 
-RUN_ROOT=/home/sun/machine-dog-nav-runs/2026-08-13_scan_foxy_isaac
-FOXY_WORKSPACE=$RUN_ROOT/foxy_ws_clean3
+RUN_ROOT=${SCAN_RUN_ROOT:-/home/sun/machine-dog-nav-runs/2026-08-13_scan_foxy_isaac}
+FOXY_WORKSPACE=${SCAN_FOXY_WORKSPACE:-$RUN_ROOT/foxy_ws_clean3}
 LOG_DIR=$RUN_ROOT/logs/$RUN_ID
 OUTPUT_DIR=$RUN_ROOT/results/$RUN_ID
 RUNTIME=$RUN_ROOT/source/locomotion_v12/runtime_20260718_recovered
 CHECKPOINT=$RUN_ROOT/source/locomotion_v12/checkpoint/model_149999.pt
 BRIDGE=$RUN_ROOT/integration/lite3_sim_bridge
-ACCEPTANCE_CONFIG=$RUN_ROOT/acceptance_thresholds.json
+ACCEPTANCE_CONFIG=${SCAN_ACCEPTANCE_CONFIG:-$RUN_ROOT/acceptance_thresholds.json}
 PLANNER_CONFIG=$FOXY_WORKSPACE/src/plan_manage/config/foxy_isaac_planner.yaml
 CONTROLLER_CONFIG=$FOXY_WORKSPACE/src/plan_manage/config/foxy_isaac_controller.yaml
 CONTROLLER_SOURCE=$FOXY_WORKSPACE/src/plan_manage/src/closed_loop_controller.cpp
@@ -45,11 +45,27 @@ GRID_MAP_SOURCE=$FOXY_WORKSPACE/src/plan_env/src/grid_map.cpp
 OCCLUSION_SHADOW_SOURCE=$FOXY_WORKSPACE/src/plan_env/include/plan_env/occlusion_shadow.h
 CONTAINER_NAME=scan-foxy-$RUN_ID
 ROS_RUNTIME_SECONDS=$((DURATION_SECONDS + 3))
+VIDEO_FPS=${SCAN_VIDEO_FPS:-25}
+VIDEO_FRAME_STRIDE=${SCAN_VIDEO_FRAME_STRIDE:-2}
+ROBOT_ARGS=()
+ROBOT_INPUTS=()
+if [[ -n ${SCAN_ROBOT_ASSET:-} || -n ${SCAN_CANONICAL_ROBOT_ASSET:-} ]]; then
+  if [[ -z ${SCAN_ROBOT_ASSET:-} || -z ${SCAN_CANONICAL_ROBOT_ASSET:-} ]]; then
+    echo "both SCAN_ROBOT_ASSET and SCAN_CANONICAL_ROBOT_ASSET are required" >&2
+    exit 64
+  fi
+  ROBOT_ARGS=(
+    --robot-asset "$SCAN_ROBOT_ASSET"
+    --canonical-robot-asset "$SCAN_CANONICAL_ROBOT_ASSET"
+  )
+  ROBOT_INPUTS=("$SCAN_ROBOT_ASSET" "$SCAN_CANONICAL_ROBOT_ASSET")
+fi
 
 for required in \
   "$FOXY_WORKSPACE/install/setup.bash" \
   "$CHECKPOINT" \
   "$BRIDGE/lite3_sim_bridge/run_isaac_v12_fallback.py" \
+  "$BRIDGE/lite3_sim_bridge/acceptance.py" \
   "$BRIDGE/lite3_sim_bridge/transport.py" \
   "$PLANNER_CONFIG" \
   "$CONTROLLER_CONFIG" \
@@ -59,6 +75,7 @@ for required in \
   "$FSM_HEADER" \
   "$GRID_MAP_SOURCE" \
   "$OCCLUSION_SHADOW_SOURCE" \
+  "${ROBOT_INPUTS[@]}" \
   "$FOXY_WORKSPACE/build/plan_env/libplan_env.a" \
   "$FOXY_WORKSPACE/build/scan_planner/scan_planner_node" \
   "$FOXY_WORKSPACE/build/scan_planner/closed_loop_controller" \
@@ -87,9 +104,11 @@ sha256sum \
   "$GRID_MAP_SOURCE" \
   "$OCCLUSION_SHADOW_SOURCE" \
   "$BRIDGE/lite3_sim_bridge/run_isaac_v12_fallback.py" \
+  "$BRIDGE/lite3_sim_bridge/acceptance.py" \
   "$BRIDGE/lite3_sim_bridge/transport.py" \
   "$BRIDGE/lite3_sim_bridge/protocol.py" \
   "$BRIDGE/lite3_sim_bridge/foxy_bridge_node.py" \
+  "${ROBOT_INPUTS[@]}" \
   "$FOXY_WORKSPACE/build/scan_planner/scan_planner_node" \
   "$FOXY_WORKSPACE/build/scan_planner/closed_loop_controller" \
   "$FOXY_WORKSPACE/build/plan_env/libplan_env.a" \
@@ -125,14 +144,15 @@ python -u -m lite3_sim_bridge.run_isaac_v12_fallback \
   --output-dir "$OUTPUT_DIR/isaac" \
   --checkpoint "$CHECKPOINT" \
   --vendored-rsl-rl "$RUNTIME/source/rsl_rl" \
+  "${ROBOT_ARGS[@]}" \
   --source-commit 8c3fdffa84b85be0704a10ea5b2533817d543822 \
   --telemetry-port "$TELEMETRY_PORT" \
   --command-port "$COMMAND_PORT" \
   --planner-floor-filter-max-z 0.05 \
   --acceptance-config "$ACCEPTANCE_CONFIG" \
   --video-path "$OUTPUT_DIR/closed_loop.mp4" \
-  --video-fps 25 \
-  --video-frame-stride 2 \
+  --video-fps "$VIDEO_FPS" \
+  --video-frame-stride "$VIDEO_FRAME_STRIDE" \
   >"$LOG_DIR/isaac.log" 2>&1 &
 ISAAC_PID=$!
 

@@ -1,0 +1,430 @@
+{
+  "checks": {
+    "clean_process_exit": {
+      "expected": false,
+      "passed": true,
+      "value": {
+        "keyboard_interrupt": false,
+        "process_has_died": false
+      }
+    },
+    "cloud_nonempty": {
+      "expected": 0.99,
+      "passed": true,
+      "value": 1.0
+    },
+    "cloud_points": {
+      "expected": 10,
+      "passed": true,
+      "value": 32
+    },
+    "command_age_p95": {
+      "expected": 100.0,
+      "passed": true,
+      "value": 36.39823429999999
+    },
+    "command_bounds": {
+      "expected": [
+        0.75,
+        0.35,
+        1.0
+      ],
+      "passed": true,
+      "value": [
+        0.5,
+        0.13307537138462067,
+        0.8157745003700256
+      ]
+    },
+    "contact_support": {
+      "expected": 0.97,
+      "passed": true,
+      "value": 0.9976387249114522
+    },
+    "finite_policy": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "goal_xy": {
+      "expected": 0.12,
+      "passed": true,
+      "value": 0.07805577075871228
+    },
+    "goal_z": {
+      "expected": 0.08,
+      "passed": true,
+      "value": 0.0610510468482971
+    },
+    "isaac_runtime_error": {
+      "expected": null,
+      "passed": true,
+      "value": null
+    },
+    "isaac_runtime_pass": {
+      "expected": "PASS",
+      "passed": true,
+      "value": "PASS"
+    },
+    "no_base_teleport": {
+      "expected": 0.05,
+      "passed": true,
+      "value": 0.01256270550271893
+    },
+    "no_collision": {
+      "expected": 75.0,
+      "passed": true,
+      "value": 0.0
+    },
+    "no_termination": {
+      "expected": false,
+      "passed": true,
+      "value": false
+    },
+    "nonzero_commands": {
+      "expected": 250,
+      "passed": true,
+      "value": 599
+    },
+    "obstacle_detour": {
+      "expected": 0.8,
+      "passed": true,
+      "value": 1.3190044164657593
+    },
+    "obstacle_returns": {
+      "expected": 20,
+      "passed": true,
+      "value": 240
+    },
+    "origin_occupancy_errors": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "planner_failures": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "planner_successes": {
+      "expected": 2,
+      "passed": true,
+      "value": 2
+    },
+    "planner_wait_target": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "policy_rate": {
+      "expected": [
+        45.0,
+        55.0
+      ],
+      "passed": true,
+      "value": 50.00000111758712
+    },
+    "pose_dependent_sensor": {
+      "expected": 3.5,
+      "passed": true,
+      "value": 4.012476007958493
+    },
+    "record_count": {
+      "expected": 600,
+      "passed": true,
+      "value": 847
+    },
+    "root_height": {
+      "expected": [
+        0.25,
+        0.42
+      ],
+      "passed": true,
+      "value": [
+        0.28861474990844727,
+        0.35025450587272644
+      ]
+    },
+    "ros_body_pose_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 8.574371330749553
+    },
+    "ros_body_pose_timestamps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "ros_cloud_points": {
+      "expected": 10,
+      "passed": true,
+      "value": 32
+    },
+    "ros_cloud_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 8.574337365151333
+    },
+    "ros_cloud_timestamps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "ros_sensor_pose_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 8.574345345696319
+    },
+    "ros_sensor_pose_timestamps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "ros_sensor_sync": {
+      "expected": 0.95,
+      "passed": true,
+      "value": 1.0
+    },
+    "ros_trajectories": {
+      "expected": 2,
+      "passed": true,
+      "value": 2
+    },
+    "rosbag_bytes": {
+      "expected": 10000,
+      "passed": true,
+      "value": 225280
+    },
+    "rosbag_metadata": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "sensor_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 10.000000223517423
+    },
+    "sequence_gaps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "sim_duration": {
+      "expected": 12.0,
+      "passed": true,
+      "value": 16.91999962180853
+    },
+    "stopped_command": {
+      "expected": 0.05,
+      "passed": true,
+      "value": 0.0
+    },
+    "stopped_motion": {
+      "expected": 0.12,
+      "passed": true,
+      "value": 0.03635794142162869
+    },
+    "telemetry_reconnects": {
+      "expected": 1,
+      "passed": true,
+      "value": 0
+    },
+    "threshold_identity": {
+      "expected": "9cc4641d1f47c3ebcd57241ac7203382c7a34af2ff7d95f27e9d47f9aed75aa6",
+      "passed": true,
+      "value": "9cc4641d1f47c3ebcd57241ac7203382c7a34af2ff7d95f27e9d47f9aed75aa6"
+    },
+    "transport_protocol_errors": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "unexpected_returns": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "v3_canonical_urdf_hash": {
+      "expected": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80",
+      "passed": true,
+      "value": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80"
+    },
+    "v3_depth_artifacts": {
+      "expected": 3,
+      "passed": true,
+      "value": {
+        "d435i_depth_frame_m.npy": true,
+        "d435i_depth_frame_mm.png": true,
+        "d435i_depth_preview.png": true
+      }
+    },
+    "v3_depth_dimensions": {
+      "expected": [
+        87,
+        58
+      ],
+      "passed": true,
+      "value": [
+        87,
+        58
+      ]
+    },
+    "v3_depth_finite": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "v3_depth_frame": {
+      "expected": "d435i_depth_optical_frame",
+      "passed": true,
+      "value": "d435i_depth_optical_frame"
+    },
+    "v3_depth_nonempty": {
+      "expected": 0.99,
+      "passed": true,
+      "value": 1.0
+    },
+    "v3_depth_obstacle": {
+      "expected": 20,
+      "passed": true,
+      "value": 1359
+    },
+    "v3_depth_pose_dependent": {
+      "expected": 3.5,
+      "passed": true,
+      "value": 3.9877466101951087
+    },
+    "v3_depth_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 10.000000223517423
+    },
+    "v3_depth_records": {
+      "expected": 120,
+      "passed": true,
+      "value": 170
+    },
+    "v3_isaac_urdf_hash": {
+      "expected": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d",
+      "passed": true,
+      "value": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d"
+    },
+    "v3_lidar_frame": {
+      "expected": "mid360_scan_frame",
+      "passed": true,
+      "value": "mid360_scan_frame"
+    },
+    "v3_lidar_self_occlusion": {
+      "expected": 1,
+      "passed": true,
+      "value": 467
+    },
+    "v3_no_silent_default_mass": {
+      "expected": "pass",
+      "passed": true,
+      "value": {
+        "d435i_depth_optical_frame_mass_kg": 9.999999974752427e-07,
+        "expected_frame_mass_kg": 1e-06,
+        "mid360_scan_frame_mass_kg": 9.999999974752427e-07,
+        "status": "pass"
+      }
+    },
+    "v3_runtime_body_count": {
+      "expected": 24,
+      "passed": true,
+      "value": 24
+    },
+    "v3_runtime_collision_count": {
+      "expected": 29,
+      "passed": true,
+      "value": 29
+    },
+    "v3_runtime_fixed_joint_count": {
+      "expected": 11,
+      "passed": true,
+      "value": 11
+    },
+    "v3_runtime_joint_count": {
+      "expected": 23,
+      "passed": true,
+      "value": 23
+    },
+    "v3_runtime_mass": {
+      "expected": [
+        13.2817,
+        13.2819
+      ],
+      "passed": true,
+      "value": 13.281788810606713
+    },
+    "v3_runtime_movable_joint_count": {
+      "expected": 12,
+      "passed": true,
+      "value": 12
+    },
+    "video_bytes": {
+      "expected": 100000,
+      "passed": true,
+      "value": 8617200
+    },
+    "video_duration": {
+      "expected": 10.0,
+      "passed": true,
+      "value": 16.647058823529413
+    },
+    "video_frames": {
+      "expected": 250,
+      "passed": true,
+      "value": 283
+    },
+    "video_hash": {
+      "expected": "6cd242027725ed57eb8ec5761aff841272d8006609ae4ef1d70e032254e82215",
+      "passed": true,
+      "value": "6cd242027725ed57eb8ec5761aff841272d8006609ae4ef1d70e032254e82215"
+    },
+    "video_regular_file": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "watchdog_events": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    }
+  },
+  "claim": "single-seed deterministic Foxy-SCAN to V12-policy Lite3-Pro-sensor-rig Isaac dual-sensor simulation gate",
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "command_age_p95_ms": 36.39823429999999,
+    "detour_min_abs_y_m": 1.3190044164657593,
+    "final_position_world_m": [
+      4.078049182891846,
+      0.0010140999220311642,
+      0.2889489531517029
+    ],
+    "goal_xy_error_m": 0.07805577075871228,
+    "max_nonfoot_contact_n": 0.0,
+    "policy_rate_hz": 50.00000111758712,
+    "rosbag_bytes": 225280,
+    "sensor_rate_hz": 10.000000223517423,
+    "video_sha256": "6cd242027725ed57eb8ec5761aff841272d8006609ae4ef1d70e032254e82215"
+  }
+}

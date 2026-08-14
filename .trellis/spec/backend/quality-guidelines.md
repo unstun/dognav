@@ -190,3 +190,142 @@ physical LiDAR hit -> optional bounded shadow at voxel resolution
                    -> physical robot-envelope inflation
                    -> independently timed trajectory safety check
 ```
+
+## Scenario: Compose a Pinned Locomotion Policy with a Sensor-Rig URDF
+
+### 1. Scope / Trigger
+
+Use this contract when an existing policy-qualified robot runtime is moved to a
+new URDF that adds payload, collision geometry, fixed sensor frames, or live
+simulated sensors. A source URDF hash or successful import alone does not prove
+that the policy contract, physical composition, or sensor data path is valid.
+
+### 2. Signatures
+
+- V3 asset override:
+
+  ```text
+  --robot-asset <Isaac-safe URDF>
+  --canonical-robot-asset <canonical URDF>
+  ```
+
+- Required runtime evidence:
+
+  ```text
+  runtime_composition.json
+  run_identity.json
+  sensor_metrics.jsonl
+  depth_metrics.jsonl
+  qualification_report.json
+  ```
+
+- Sensor-frame contract:
+
+  ```text
+  MID-360-like point stream -> mid360_scan_frame -> SCAN
+  D435i-like depth stream   -> d435i_depth_optical_frame -> evidence only
+  ```
+
+### 3. Contracts
+
+- Treat the policy/controller and robot asset as separate immutable identities.
+  Hash the checkpoint, policy source, observation dimension, action ordering,
+  default pose, actuator configuration, timing, seed, command schedule,
+  canonical URDF, Isaac-safe URDF, and referenced meshes.
+- Change only the spawn asset and fixed-joint import setting for the
+  single-variable qualification. Reject accidental changes to the 450-value
+  observation, 12-action contract, command limits, or watchdog.
+- Preserve fixed sensor-frame joints and read back bodies, joints, masses,
+  inertias, collision prims, and named sensor frames from the instantiated USD
+  stage. Explicit tiny inertials used only for fixed frame bodies must be
+  declared; silent importer default mass is forbidden.
+- Bind sensors to the imported named frames. A task-relative transform or a
+  visible sensor mesh without live data does not satisfy the contract.
+- For rig self-occlusion, ray-cast against the moving visual surface that
+  represents the blocker. Broad collision proxies may be used for physics but
+  must not silently replace visual geometry in the optical mask. A self hit
+  blocks the environmental ray; it must not be removed and allowed to pass
+  through the robot.
+- Record sensor backend, FOV, range, rate, sample grid/resolution, transforms,
+  filtering, self-occlusion counts, finite/nonempty counts, timestamps, and
+  pose-dependent change. Declare simulator-truth pose explicitly.
+- When a hardware-specific RTX profile is absent or its creation/output/
+  teardown lifecycle does not complete, preserve the probe and use a named
+  geometric fallback. Do not substitute another vendor profile or claim
+  hardware parity.
+- Run at least two identical-input passing dry runs before freezing a new
+  acceptance configuration. Preserve earlier failures and do not relax a
+  physical or sensor threshold after observing the formal result.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required behavior |
+|---|---|
+| Canonical or Isaac URDF hash differs | Stop before simulator import |
+| Policy/checkpoint/observation/action invariant differs | Reject the comparison as multi-variable |
+| Fixed sensor frame is merged or absent at runtime | Fail asset qualification |
+| Runtime body receives undeclared default mass | Fail asset qualification |
+| Collision-proxy self mask removes all environmental rays | Preserve failed preflight; switch only to declared visual-surface occlusion |
+| Sensor stream is empty, non-finite, static in time, or task-relative | Fail sensor qualification |
+| D435i intrinsics lack depth-camera calibration evidence | Label provisional; do not claim hardware parity |
+| RTX profile or teardown probe is incomplete | Reject RTX backend for the declared run and record the geometric fallback |
+| A/B locomotion candidate terminates, loses support, or hits non-foot geometry | Stop before closed-loop integration; do not train or retune inside the gate |
+| Local/remote artifact hashes differ | Do not promote or report the remote result |
+
+### 5. Good / Base / Bad Cases
+
+- **Good:** pinned policy and two URDF hashes, runtime topology/mass/collision
+  readback, same-input old/new asset qualification, live data at both imported
+  sensor frames, visual-surface self-occlusion, two passing dry runs, frozen
+  gate, and local/remote evidence parity.
+- **Base:** a legacy asset with a task-mounted ray caster can remain a clearly
+  labeled baseline, but it cannot satisfy a sensor-rig acceptance criterion.
+- **Bad:** show a new URDF in a viewer while the closed loop still spawns the
+  old asset, publishes a hard-coded torso-relative scan, or treats a static
+  depth image as a live D435i stream.
+
+### 6. Tests Required
+
+- Unit-test exact checkpoint/URDF/config hashes, required frame names, topology
+  counts, mass tolerance, absence of missing/default-mass bodies, sensor
+  settings, depth artifact hashes, invalid data, and identity serialization.
+- Run the same zero/forward/lateral/yaw/zero/watchdog schedule on old and new
+  assets with identical policy inputs. Assert finite state, response direction,
+  support, no termination, no non-foot collision, and watchdog zeroing.
+- Assert LiDAR and depth timestamps advance, data are finite and nonempty,
+  scene obstacle evidence appears, poses change, and self-occlusion counts are
+  recorded.
+- Re-evaluate the copied formal artifacts locally with the frozen config,
+  decode the MP4, parse JSON/JSONL/YAML, load the depth array, inspect ROS bag
+  payload presence, and compare local/remote hashes.
+- Leave the human acceptance criterion unchecked until the named reviewer
+  records an explicit decision after watching the full video.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```text
+new URDF exists -> reuse old runtime PASS -> call the sensor rig validated
+```
+
+```text
+collision proxy blocks ray -> delete self hit -> ray reaches obstacle behind robot
+```
+
+#### Correct
+
+```text
+pin policy + canonical URDF + Isaac URDF
+  -> runtime readback
+  -> same-input locomotion A/B
+  -> live dual-sensor gate
+  -> two passing dry runs
+  -> frozen formal run
+  -> local parity check
+  -> human review
+```
+
+```text
+visual rig surface blocks ray -> record self-occlusion -> no environmental hit
+```

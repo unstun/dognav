@@ -23,9 +23,12 @@
   ],
   "parent": null,
   "relatedFiles": [],
-  "notes": "Automated acceptance passed; Dr Sun human review is pending.",
+  "notes": "V3 uses the pinned sensor-rig URDF with V12 model_149999 plus live MID-360-like and D435i-like simulated sensors. Asset, locomotion A/B, dual-sensor, two-dry-run, frozen closed-loop, sync, and local re-evaluation gates passed 71/71. Human review remains required; V2 is baseline-only.",
   "meta": {
-    "automated_acceptance": "pass",
-    "human_review": "pending"
+    "automated_acceptance": "v3_pass_71_of_71",
+    "human_review": "pending_human_v3",
+    "v2_status": "baseline_only",
+    "v3_scope": "new_urdf_v12_mid360_d435i",
+    "v3_status": "ready_for_human_review"
   }
 }

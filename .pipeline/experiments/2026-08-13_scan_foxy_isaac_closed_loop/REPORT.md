@@ -2,139 +2,155 @@
 
 ## Outcome
 
-`acceptance_v2_frozen` passed all 51 checks in the unchanged frozen acceptance
-configuration. This is an **automated acceptance result**, not final human
-acceptance. Dr Sun's review of the full video and evidence bundle is pending,
-so the Trellis task remains in `review` and must not be archived as completed.
+`acceptance_v3_frozen` passed all 71 checks in the frozen V3 acceptance
+configuration. A post-sync local re-evaluation also passed all 71 checks, and
+the formal result files copied from the 5070 Ti match their remote SHA-256
+manifest. This is an **automated fixed-course simulation result**. Human review
+is still pending and AC17 is not satisfied.
 
-Within that boundary, the strongest justified evidence labels are:
+The strongest justified evidence labels are:
 
 - SCAN upstream source: **surveyed** at
   `d0b921c9b05a6d291d144d60882b2e0e88d2c0e0`;
-- project Foxy port and TCP/Isaac bridge: **integrated**;
-- fixed-seed, fixed-course, ray-cast-LiDAR Isaac scenario: **validated by the
-  frozen automated gate**.
+- project Foxy port, TCP bridge, V12 policy, sensor-rig asset, and dual-sensor
+  runtime: **integrated**;
+- one fixed-seed, fixed-course V3 Isaac scenario: **validated by the frozen
+  automated gate**, pending human review.
 
-This is not an original SCAN Humble/Noetic reproduction and not a real-robot,
-MID-360, LIO, localization-noise, multi-seed, or navigation-training result.
+V2 remains an immutable baseline because it used the legacy V12 URDF and no
+simulated D435i. V3 corrects those omissions by retaining the V12
+`model_149999` policy/controller and replacing only the spawn asset with the
+pinned sensor-rig URDF, then instantiating live MID-360-like and D435i-like
+scene sensors at the imported frames.
 
-## Accepted System Identity
+This is not an upstream SCAN Foxy release or Humble/Noetic reproduction. It is
+not real MID-360 or D435i parity, LIO, localization-noise, multi-seed, terrain,
+navigation-training, real-robot, or safety validation.
 
-| Component | Accepted identity |
+## V3 System Identity
+
+| Component | V3 identity |
 |---|---|
 | Planner source | SCAN `ros2-community`, commit `d0b921c9b05a6d291d144d60882b2e0e88d2c0e0`, Apache-2.0 |
 | Planner runtime | Ubuntu 20.04.6 / ROS 2 Foxy rootless Podman image `e4aa7154...227d8` |
-| Host simulator | Ubuntu 24.04.3, Isaac Sim 5.1 / Isaac Lab, RTX 5070 Ti |
+| Simulator host | Ubuntu 24.04.3, Isaac Sim 5.1 / Isaac Lab, RTX 5070 Ti |
 | Locomotion source | V12 commit `8c3fdffa84b85be0704a10ea5b2533817d543822` |
 | Checkpoint | `model_149999.pt`, SHA-256 `a9d31dce...3d5450` |
-| Sensor | Isaac Lab `MultiMeshRayCaster`, 16 channels, 2 degree horizontal resolution, 10 Hz |
-| Pose | simulator-truth body and sensor pose |
-| Physical course | flat PhysX terrain, one `0.6 x 1.2 x 0.8 m` collision box centered at `(2, 0, 0.4) m` |
+| Canonical sensor-rig URDF | SHA-256 `d0a1be09...cec80` |
+| Isaac-safe sensor-rig URDF | SHA-256 `803d5527...bb9d`, fixed joints retained |
+| MID-360-like sensor | Isaac Lab `MultiMeshRayCaster`, 16 x 180 rays, -7 to 52 degrees vertical, 2 degree horizontal sampling, 0.1-12 m, 10 Hz, frame `mid360_scan_frame` |
+| D435i-like depth | Isaac Lab ray-cast camera, 87 x 58, focal length 24.0, aperture 45.55, 0.1-5 m, 10 Hz, frame `d435i_depth_optical_frame` |
+| Pose | simulator-truth body and sensor poses |
+| Course | flat PhysX terrain; one `0.6 x 1.2 x 0.8 m` collision box centered at `(2, 0, 0.4) m` |
 | Goal | `(4, 0, 0.35) m` |
-| Acceptance config | SHA-256 `3f08fb8f01573ba97e3f2b4e6a6cd06a3debd4c76def47149d08cfe707f4545d` |
+| Frozen V3 config | SHA-256 `b8f42d04b33532191e8ded21fe705aba33b7cd5c4f1311372e1afcb9561cd9ad` |
 
-The full image inspection, package list, compiler/library versions, source
-hashes, binary hashes, and exact formal invocations are recorded in
-`environment/`, the accepted run's `input_sha256.txt`, and
-`formal_runs.yaml`.
+## Asset and Locomotion Qualification
 
-## Gate Results
+Runtime import readback recorded 24 bodies, 23 joints, 12 movable joints,
+11 fixed joints, 29 collision prims, and total mass
+`13.281788810606713 kg`. Both sensor-frame bodies have explicit `1e-6 kg`
+placeholder inertials in the Isaac-safe derivative; no body received a silent
+default mass. The canonical asset, Isaac derivative, mesh hashes, per-body
+masses/inertias, collision paths, and joint paths are in
+`runtime_composition.json`.
 
-### Foxy build and tests
+The fixed-seed V12 legacy/new-asset A/B qualification passed for both assets
+with the same checkpoint, policy class, 450-value observation, 12-action
+ordering, default pose, actuator contract, command schedule, seed, and
+watchdog. The sensor-rig result had zero non-foot contact, no termination,
+finite state, watchdog zeroing, 0.966667 supported-contact fraction, and
+directionally correct forward/lateral/yaw response. Numerical differences are
+recorded but are not attributed to an individual mass, collision primitive, or
+sensor housing.
 
-The final seven-package Foxy workspace rebuilt cleanly before the formal run.
-The test result was 46 tests, 0 errors, 0 failures, and 0 skipped. The log is
-under `runs/acceptance_v2_frozen/logs/formal_v2_preflight_tests/`.
-After adding the explicit `builtin_interfaces` package dependency during final
-review, the current source candidate rebuilt with the same 46/0/0/0 result;
-those logs are under
-`runs/acceptance_v2_frozen/logs/post_acceptance_current_source_verify/`.
-This metadata-only verification did not modify or reclassify the formal
-runtime.
+## Dual-Sensor Qualification
 
-### Locomotion selection
+The installed RTX profile inventory contained no Livox or MID-360 profile. A
+live RTX module-import probe reached the post-Isaac-app import marker but did
+not complete clean output/teardown. The run therefore uses the declared
+Isaac Lab multi-mesh ray-cast backend; it does not substitute another vendor's
+profile or claim RTX/Livox hardware fidelity.
 
-The first V17 E3 candidate was rejected: it exposed the external command and
-responded forward, but failed the lateral, yaw, and support qualification
-checks. The one allowed V12 fallback passed command visibility, forward,
-lateral, yaw, support, finite-policy, no-termination, and watchdog-zero checks.
-The raw records are under `gates/locomotion_v17_rejected/` and
-`gates/locomotion_v12_qualified/`.
+For LiDAR self-occlusion, rays are checked against the moving rig's visual
+geometry. Using broad collision proxies was preserved as a failed preflight
+because it incorrectly blocked every environmental ray. In the formal run:
 
-### Sensor and frame qualification
+- 173 LiDAR frames advanced at 10 Hz;
+- planner point counts ranged from 27 to 227;
+- every frame recorded 467 blocked self rays;
+- the scan changed with robot motion and retained scene obstacle returns;
+- SCAN consumed only this MID-360-like point stream.
 
-The V12 sensor gate passed finite/nonempty output, advancing timestamps, ground
-and obstacle returns, pose-dependent geometry, and pose displacement. The
-accepted planner cloud removes traversable floor hits at or below world
-`z=0.05 m`; it does not publish static map truth. Raw evidence is under
-`gates/sensor_v12_qualified/`.
+The D435i-like depth camera ran concurrently and was not fused into SCAN:
 
-## Formal Run Metrics
+- 173 depth frames advanced at 10 Hz at 87 x 58 pixels;
+- valid depth pixels ranged from 3,506 to 4,346;
+- the physical obstacle occupied up to 1,346 pixels;
+- representative float-depth, millimetre PNG, preview PNG, metadata, and
+  per-frame metrics were preserved;
+- the intrinsics are provisional because no live D435i depth `CameraInfo` was
+  recorded, and color intrinsics were deliberately not reused.
 
-| Metric | V2 value | Frozen gate |
+## Dry Runs and Threshold Freeze
+
+`v3_dryrun01` reached the goal without collision but failed three ROS
+wall-clock topic-rate checks at approximately 7.986 Hz against the unchanged
+8 Hz lower bound. The cause was V3-only video capture load at 25 fps with a
+two-policy-step stride. Thresholds were not relaxed. V3 video capture was
+changed to 17 fps with a three-step stride; locomotion, planner, sensor, and
+acceptance thresholds stayed unchanged.
+
+`v3_dryrun02` and `v3_dryrun03` then passed all 71 checks with identical input
+hashes and configuration. Only after those passes was
+`acceptance_thresholds_v3.json` frozen on 2026-08-14T04:09:33Z.
+
+## Formal V3 Metrics
+
+| Metric | V3 value | Frozen gate |
 |---|---:|---:|
-| Acceptance checks | 51 / 51 | all pass |
-| Goal XY error | 0.0327 m | <= 0.12 m |
-| Minimum detour within obstacle window | 1.3212 m | >= 0.80 m |
+| Acceptance checks | 71 / 71 | all pass |
+| Goal XY error | 0.07921 m | <= 0.12 m |
+| Minimum detour within obstacle window | 1.38690 m | >= 0.80 m |
 | Maximum non-foot contact | 0 N | <= 75 N |
-| Supported-contact fraction | 0.9977 | >= 0.97 |
-| Maximum step displacement | 0.0125 m | <= 0.05 m |
-| Final stopped planar speed | 0.0163 m/s | <= 0.12 m/s |
-| Final command | `[0, 0, 0]` | <= 0.05 per component |
-| Planner publications | 2 successful, 0 failed | >= 2, 0 failed |
-| Published B-spline event rate | 2.92 Hz over the publication interval | recorded, event-driven |
 | Policy rate | 50.000 Hz | 45-55 Hz |
-| Physics rate | 200 Hz | recorded runtime |
-| Isaac sensor rate | 10.000 Hz | 8-12 Hz |
-| ROS cloud/body/sensor observed rate | 8.705 Hz | 8-12 Hz |
-| ROS sensor triplet synchronization | 1.0 | >= 0.95 |
-| Cloud points | 58-221, mean 121.6 | >= 10 |
-| Command latency P95 | 35.23 ms | <= 100 ms |
+| Isaac LiDAR rate | 10.000 Hz | 8-12 Hz |
+| LiDAR frames / points | 173 / 27-227 | finite, nonempty, advancing |
+| Depth frames / valid pixels | 173 / 3,506-4,346 | finite, nonempty, advancing |
+| Command latency P95 | 35.73 ms | <= 100 ms |
 | Sequence gaps / watchdog / protocol errors | 0 / 0 / 0 | all zero |
-| Telemetry reconnects | 0 | <= 1 |
-| Simulated path length | 5.545 m | recorded |
+| Final position | `(4.07850, 0.01061, 0.29069) m` | recorded |
 | ROS bag bytes | 225,280 | >= 10,000 |
 
-The B-spline figure is an event publication rate, not a periodic planner
-throughput benchmark. The accepted integration keeps the 20 Hz collision
-safety check and uses event-driven safety replanning.
+The formal H.264 video is 1280 x 720, 17 fps, 288 frames, 16.941176 seconds,
+8,770,191 bytes, SHA-256
+`db230a6e5460c8db09a95a1742f435169bf4e32fbdc4f980ba085afc3903d26d`.
+Sampled frames show articulated locomotion around the physical red obstacle
+and make the top sensor rig visible. Agent inspection does not replace review
+of the complete video by Dr Sun.
 
-## Failure-Preserving Run History
+## Evidence Integrity
 
-The original frozen run was not overwritten. `acceptance_v1_frozen` reached
-the goal but failed with a 119.47 N collision, 0.610 m minimum detour, and 304
-failed plan attempts. The frozen threshold SHA matched the later accepted run.
+All 22 formal result-file hashes match the remote manifest. The five formal
+log hashes also match their remote values. The copied video decodes locally,
+the ROS bag metadata and SQLite payload are present, the depth array is finite,
+and JSON/JSONL artifacts parse. Running the acceptance evaluator again against
+the local copies and the frozen V3 config produced 71/71 PASS in
+`runs/acceptance_v3_frozen/local_acceptance_recheck.json`.
 
-Diagnosis established four interacting causes: wall-clock trajectory progress
-outpaced articulated locomotion, the Go2-sized planning envelope was too small
-for the Lite3 loop, initially occluded volume behind surface returns was treated
-as free, and distance-only periodic replanning replaced still-safe paths. The
-accepted implementation adds tracking-error time freeze, a 0.50 m/s matched
-speed, a 0.40 m Lite3 planning envelope, a 0.70 m occlusion shadow, and
-event-driven safety replanning. Two identical-input dry runs passed before V2.
+The complete artifact map is in
+`runs/acceptance_v3_frozen/V3_EVIDENCE_MANIFEST.md`. V1, V2, failed V3
+preflights, and `v3_dryrun01` remain preserved as negative or baseline
+evidence.
 
-## Evidence Integrity and Visual Review
+## Human Gate and Remaining Boundary
 
-The 26 formal result/test/log files copied from the 5070 Ti match the remote
-SHA-256 values. The 14 recorded task-owned source files also match the local
-source of truth. Gate 5 and Gate 6 copied evidence likewise matches remote
-hashes.
+**Human review status: pending.** `HUMAN_REVIEW.md` is the decision record. The
+task may move to `review`, but it must not be archived or called human-accepted
+until Dr Sun records an explicit decision.
 
-The accepted MP4 is a regular H.264 file: 1280 x 720, 25 fps, 431 frames,
-17.24 seconds, 9,928,439 bytes, SHA-256
-`7d954023cc16a5a16d530da5a8250cd68bc27fc2770bdc742bc5ddd12aacf07c`.
-Frames sampled at 2, 6, 10, and 15 seconds show articulated locomotion around
-the physical red box with no contact or pass-through, followed by stable motion
-toward the goal. This agent visual review does not replace Dr Sun's human
-acceptance of the full video.
-
-**Human review status: pending.** A later acceptance or rejection must be
-recorded in `HUMAN_REVIEW.md`; this report and commit do not decide that
-review.
-
-## Remaining Boundary
-
-The result supports proceeding with a geometric navigation baseline in
-simulation. It does not establish real sensor calibration/noise, Elevator-LIO
-performance, onboard timing, terrain/contact robustness beyond the flat course,
-dynamic-obstacle behavior, multi-seed repeatability, or real-robot safety.
+The result supports a geometric navigation baseline in this one simulation
+scenario. It does not establish calibrated sensor noise/timing/intensity,
+non-repetitive Livox scanning, real D435i intrinsics, Elevator-LIO performance,
+onboard timing, terrain/contact robustness, dynamic obstacles, repeatability
+across seeds/maps, or real-robot safety.

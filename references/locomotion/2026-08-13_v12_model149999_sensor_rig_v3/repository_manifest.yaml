@@ -1,0 +1,79 @@
+schema_version: 1
+captured_at: "2026-08-13"
+status: qualified_by_v3_automated_gate_human_review_pending
+purpose: "V3 cross-composition: pinned V12 model_149999 with the pinned Lite3 Pro MID-360 and D435i sensor-rig asset"
+
+locomotion_dependency:
+  manifest: "../2026-08-13_v12_model149999/repository_manifest.yaml"
+  source_commit: "8c3fdffa84b85be0704a10ea5b2533817d543822"
+  checkpoint_sha256: "a9d31dce90e6e8c564d955e473d6d3502f893d7ef5a5c1efaf5bb50d6b3d5450"
+  original_robot_asset_sha256: "178428b97e7d0820e93c200b333f39f0b3b60a81f97d99cd06559d8957c58865"
+  immutable_contract:
+    - "ActorCriticMoECTS policy class and strict checkpoint load"
+    - "450-value policy observation and 12-value action"
+    - "V12 default pose, Lite3ActuatorCfg gains, limits, and delay"
+    - "V12 command schedule and navigation-to-locomotion bridge"
+
+sensor_rig_dependency:
+  source_manifest: "../2026-08-13_v17a4_e3/repository_manifest.yaml"
+  source_repository_relative_path: "../machine-dog"
+  source_commit: "2cd9211830becc7a76a7d2182cb46d18dea44a1c"
+  runtime_source_directory: "../2026-08-13_v17a4_e3/source/v17a4/resources/lite3_sensor_rig"
+  canonical_urdf:
+    path: "urdf/lite3_pro_sensor_rig_real_with_interface.urdf"
+    sha256: "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80"
+  isaac_safe_urdf:
+    path: "urdf/lite3_pro_sensor_rig_real_with_interface_isaac.urdf"
+    sha256: "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d"
+    merge_fixed_joints: false
+  required_frames:
+    - "mid360_scan_frame"
+    - "d435i_depth_optical_frame"
+
+sensor_models:
+  mid360:
+    frame: "mid360_scan_frame"
+    backend: "IsaacLab MultiMeshRayCaster LidarPatternCfg"
+    period_seconds: 0.1
+    vertical_fov_degrees: [-7.0, 52.0]
+    horizontal_fov_degrees: [-180.0, 180.0]
+    horizontal_resolution_degrees: 2.0
+    range_m: [0.1, 12.0]
+  d435i_depth:
+    frame: "d435i_depth_optical_frame"
+    backend: "IsaacLab MultiMeshRayCasterCameraCfg"
+    period_seconds: 0.1
+    image_size: [87, 58]
+    focal_length: 24.0
+    horizontal_aperture: 45.55
+    range_m: [0.1, 5.0]
+    intrinsics_status: "provisional until a live D435i depth CameraInfo is recorded; color CameraInfo is not reused"
+    navigation_use: "generated and logged concurrently, not fused into SCAN in v3"
+
+execution_boundary:
+  local_source_of_truth: "machine-dog-nav"
+  remote_execution_copy: "/home/sun/machine-dog-nav-runs/2026-08-13_scan_foxy_isaac_v3"
+  sync_gate:
+    - "verify both URDF SHA-256 values before Isaac starts"
+    - "record task, checkpoint, policy source, robot asset, bridge, planner, and controller hashes"
+    - "refuse to overwrite an existing run id"
+  expected_artifacts:
+    - "runtime_composition.json"
+    - "sensor_metrics.jsonl"
+    - "depth_metrics.jsonl"
+    - "d435i_depth_frame_m.npy"
+    - "d435i_depth_frame_mm.png"
+    - "d435i_depth_preview.png"
+    - "qualification_report.json"
+
+claim_boundary:
+  - "The asset-import, dual-sensor, V12 locomotion A/B, and frozen closed-loop automated gates passed; human review remains pending."
+  - "The MID-360 model is geometric ray casting, not Livox packet timing, noise, IMU, or LIO."
+  - "The D435i model proves a simulated depth stream from the named optical frame, not calibrated real-camera parity."
+  - "V17 E3 rejection does not decide this cross-composition because this run keeps the V12 policy and controller unchanged."
+
+qualification_evidence:
+  asset_sensor_gate: "../../../.pipeline/experiments/2026-08-13_scan_foxy_isaac_closed_loop/gates/v3_asset_sensor_qualified"
+  formal_run: "../../../.pipeline/experiments/2026-08-13_scan_foxy_isaac_closed_loop/runs/acceptance_v3_frozen"
+  automated_result: "PASS 71/71"
+  human_review: "pending"

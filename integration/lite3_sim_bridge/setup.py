@@ -25,6 +25,8 @@ setup(
             "foxy_bridge_node = lite3_sim_bridge.foxy_bridge_node:main",
             "acceptance_monitor_node = lite3_sim_bridge.acceptance_monitor_node:main",
             "evaluate_acceptance = lite3_sim_bridge.acceptance:main",
+            "compare_v12_asset_qualification = lite3_sim_bridge.qualification_compare:main",
+            "probe_rtx_lidar = lite3_sim_bridge.probe_rtx_lidar:main",
             "run_isaac_lite3 = lite3_sim_bridge.run_isaac_lite3:main",
             "run_isaac_v12_fallback = lite3_sim_bridge.run_isaac_v12_fallback:main",
         ],

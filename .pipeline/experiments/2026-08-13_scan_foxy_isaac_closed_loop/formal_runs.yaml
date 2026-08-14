@@ -26,3 +26,49 @@ runs:
     observed_sim_duration_seconds: 17.19999961555004
     preserved_local_path: runs/acceptance_v2_frozen/results/acceptance_v2_frozen
 claim_boundary: "Invocation fields are a durable record of the executed command. Runtime metrics, input hashes, exit codes, logs, bag, and video remain the primary evidence."
+v3:
+  remote_task_root: /home/sun/machine-dog-nav-runs/2026-08-13_scan_foxy_isaac_v3
+  runner: run_remote_closed_loop_v3.sh
+  runner_sha256: 65bc3e748cf2a4e791daf049b8faf6819610340c1e2f431920928d4afbcdfe5d
+  shared_runner_sha256: bfad8c93b35017c874a0c2f513750e928ad9819f942b712996f86ec84f321b73
+  acceptance_config: acceptance_thresholds_v3.json
+  acceptance_config_sha256: b8f42d04b33532191e8ded21fe705aba33b7cd5c4f1311372e1afcb9561cd9ad
+  frozen_at: "2026-08-14T04:09:33Z"
+  frozen_from_dry_runs:
+    - v3_dryrun02
+    - v3_dryrun03
+  asset_identity:
+    checkpoint_sha256: a9d31dce90e6e8c564d955e473d6d3502f893d7ef5a5c1efaf5bb50d6b3d5450
+    canonical_urdf_sha256: d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80
+    isaac_urdf_sha256: 803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d
+  dry_runs:
+    - run_id: v3_dryrun01
+      result: FAIL
+      passed_checks: 68
+      failed_checks:
+        ros_body_pose_rate_hz: 7.985816550127807
+        ros_cloud_rate_hz: 7.985841736991512
+        ros_sensor_pose_rate_hz: 7.985834818570005
+      disposition: "Preserved. V3-only video sampling changed from 25 fps / stride 2 to 17 fps / stride 3; acceptance thresholds were not relaxed."
+    - run_id: v3_dryrun02
+      result: PASS
+      passed_checks: 71
+      goal_xy_error_m: 0.0789828670379885
+      preserved_local_path: runs/v3_closed_loop_dryruns/v3_dryrun02
+    - run_id: v3_dryrun03
+      result: PASS
+      passed_checks: 71
+      goal_xy_error_m: 0.07805577075871228
+      preserved_local_path: runs/v3_closed_loop_dryruns/v3_dryrun03
+  formal_run:
+    run_id: acceptance_v3_frozen
+    result: PASS
+    passed_checks: 71
+    goal_xy_error_m: 0.0792102434614034
+    video_sha256: db230a6e5460c8db09a95a1742f435169bf4e32fbdc4f980ba085afc3903d26d
+    preserved_local_path: runs/acceptance_v3_frozen/results/acceptance_v3_frozen
+    local_recheck: PASS
+    local_remote_result_hashes_match: true
+    local_remote_log_hashes_match: true
+    human_review: pending
+  claim_boundary: "V3 is project-integrated and validated by one frozen automated simulation gate. Human acceptance, hardware sensor parity, LIO, multi-course robustness, and real-robot safety remain unestablished."

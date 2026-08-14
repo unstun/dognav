@@ -1,0 +1,130 @@
+{
+  "candidate": "V12 model_149999 on Lite3 Pro sensor rig v3",
+  "checks": {
+    "command_connected": true,
+    "commands_received": true,
+    "finite_policy": true,
+    "no_termination": true,
+    "records_present": true,
+    "telemetry_connected": true,
+    "telemetry_sent": true
+  },
+  "claim": "external bridge runtime only; closed-loop goal result evaluated separately",
+  "command_transport": {
+    "accepted_connections": 1,
+    "frames_received": 998,
+    "frames_sent": 0,
+    "io_errors": 0,
+    "last_protocol_error": null,
+    "protocol_errors": 0,
+    "reconnects": 0
+  },
+  "depth_artifact": {
+    "artifacts": {
+      "depth_metres_npy": {
+        "bytes": 20312,
+        "path": "d435i_depth_frame_m.npy",
+        "sha256": "6466b232963f00613c107251fa7578c80cc60cb96d480df4232d3ca9583e27fc"
+      },
+      "depth_millimetres_png": {
+        "bytes": 1191,
+        "invalid_or_clipped_value_mm": 5000,
+        "path": "d435i_depth_frame_mm.png",
+        "sha256": "0cfacf265fa70fc3e6cae800c37d37d311f44f8093b4bd680ea79c48e3e784eb"
+      },
+      "human_preview_png": {
+        "bytes": 583,
+        "display_rule": "nearer valid depth is brighter; invalid is black",
+        "path": "d435i_depth_preview.png",
+        "sha256": "f48cd6ffc326fb41b226b38d55e45b7f1944a9c17d86373849c5baf611f2fd4e"
+      }
+    },
+    "height": 58,
+    "intrinsic_matrix": [
+      [
+        45.83973693847656,
+        0.0,
+        43.5
+      ],
+      [
+        0.0,
+        45.83973693847656,
+        29.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "maximum_valid_depth_m": 4.7899909019470215,
+    "mean_valid_depth_m": 1.0524314641952515,
+    "minimum_valid_depth_m": 0.4474318027496338,
+    "nonfinite_depth_count": 0,
+    "obstacle_surface_pixel_count": 1399,
+    "pixel_count": 5046,
+    "self_occluded_pixel_count": 0,
+    "sensor_position_w": [
+      0.3223974108695984,
+      0.09827373921871185,
+      0.39896297454833984
+    ],
+    "sensor_quaternion_wxyz_ros": [
+      -0.47163501381874084,
+      0.6370575428009033,
+      -0.4841594994068146,
+      0.3705505132675171
+    ],
+    "sim_time_seconds": 0.6299999859184027,
+    "step": 30,
+    "valid_depth_pixel_count": 4268,
+    "width": 87
+  },
+  "depth_checks": {
+    "finite_depth": true,
+    "frames_present": true,
+    "intrinsics_present": true,
+    "obstacle_returns": true,
+    "pose_dependent_frame": true,
+    "pose_displacement_m_value": 3.924125442022504,
+    "timestamps_advance": true,
+    "valid_depth_returns": true
+  },
+  "record_count": 789,
+  "runtime_error": null,
+  "runtime_rates": {
+    "physics_hz": 200.0,
+    "policy_hz": 50.0,
+    "sensor_hz": 10.0
+  },
+  "schema_version": 1,
+  "sensor_checks": {
+    "cloud_centroid_displacement_m_value": 2.9699251921099217,
+    "finite": true,
+    "frames_present": true,
+    "ground_returns": true,
+    "nonempty": true,
+    "obstacle_returns": true,
+    "pose_dependent_geometry": true,
+    "pose_displacement_m_value": 3.9495881533725847,
+    "timestamps_advance": true
+  },
+  "status": "PASS",
+  "telemetry_transport": {
+    "accepted_connections": 1,
+    "frames_received": 0,
+    "frames_sent": 316,
+    "io_errors": 0,
+    "last_protocol_error": null,
+    "protocol_errors": 0,
+    "reconnects": 0
+  },
+  "video": {
+    "bytes": 9227242,
+    "encoded_duration_seconds": 15.8,
+    "fps": 25,
+    "frame_count": 395,
+    "path": "/home/sun/machine-dog-nav-runs/2026-08-13_scan_foxy_isaac_v3/results/v3_dryrun01/closed_loop.mp4",
+    "sha256": "5022b2f83886d359ba86a6f424c7430e6ba627dee09ceadc2f6948556a167a24"
+  }
+}

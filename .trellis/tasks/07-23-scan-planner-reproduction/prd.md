@@ -42,7 +42,7 @@ any real-robot work, model training, or LIO integration.
 - The existing `07-24-lite3-pro-parametric-model` child is an independent CAD
   track. This task neither changes nor depends on its deliverables.
 
-## Automated Gate Record — Human Review Pending
+## V2 Automated Gate Record — Baseline Only
 
 On 2026-08-13, `acceptance_v2_frozen` passed all 51 checks after the preserved
 `acceptance_v1_frozen` failure was diagnosed and corrected. The local evidence
@@ -50,8 +50,20 @@ is summarized in
 `.pipeline/experiments/2026-08-13_scan_foxy_isaac_closed_loop/REPORT.md`.
 The evidence label is project `integrated` and fixed-course simulation
 `validated` by the frozen automated gate; SCAN upstream remains `surveyed`,
-not reproduced on Humble or Noetic. Dr Sun has not yet accepted the video and
-evidence bundle. The task therefore remains in `review`, not `completed`.
+not reproduced on Humble or Noetic. Human review found that V2 used the legacy
+V12 robot URDF, a task-mounted ray-cast LiDAR, and no simulated D435i. V2 is
+therefore preserved as a closed-loop baseline but is no longer the final human
+review candidate.
+
+## V3 Reopening Decision
+
+On 2026-08-13, Dr Sun explicitly approved reopening implementation. V3 keeps
+the V12 `model_149999` policy, observation, action, actuator, default-pose, and
+control contracts unchanged while replacing only the physical robot asset with
+the pinned local Lite3 Pro sensor-rig Isaac URDF. V3 must instantiate both a
+MID-360-like scene sensor at `mid360_scan_frame` and a D435i-like depth sensor
+at `d435i_depth_optical_frame`; visual links without live sensor data do not
+satisfy the requirement.
 
 ## Requirements
 
@@ -102,6 +114,26 @@ evidence bundle. The task therefore remains in `review`, not `completed`.
   Elevator-LIO, real MID-360 parity, or real-robot validation.
 - **R12 — Scope control.** Do not start formal training, operate the real robot,
   modify the sibling repository, or alter unrelated dirty worktree paths.
+- **R13 — Pinned physical sensor rig.** V3 uses the canonical sensor-rig URDF
+  SHA-256 `d0a1be09...cec80` only through its generated Isaac-safe derivative
+  SHA-256 `803d5527...bb9d`. Record imported prim names, topology, mass,
+  inertia, collision bodies, fixed-joint behavior, and runtime asset hash.
+- **R14 — V12 single-variable policy gate.** Keep the V12 checkpoint,
+  450-dimensional observation, 12-action ordering, V12 default joint pose,
+  actuator gains/limits, timing, and command contract unchanged. Compare the
+  legacy and sensor-rig assets with the same seed and command schedule before
+  reconnecting SCAN.
+- **R15 — Dual simulated sensors.** Instantiate a MID-360-like 3D scene sensor
+  at `mid360_scan_frame` and a D435i-like depth sensor at
+  `d435i_depth_optical_frame`. Both must generate finite, nonempty,
+  pose-dependent data with advancing timestamps from the same physical scene.
+- **R16 — Sensor-fidelity boundary.** Record each sensor backend, FOV, sampling
+  grid, resolution, range, rate, frame, transform, and occlusion treatment.
+  Missing live D435i depth calibration and non-repetitive MID-360 beam timing
+  remain explicit limitations; neither sensor may be called hardware parity.
+- **R17 — V2 preservation and V3 review.** Do not overwrite V1 or V2 evidence.
+  V3 receives a new run identity, thresholds, hashes, logs, ROS recording,
+  depth evidence, and MP4. Only V3 may be offered for final human acceptance.
 
 ## Acceptance Criteria
 
@@ -144,7 +176,30 @@ evidence bundle. The task therefore remains in `review`, not `completed`.
   project `integrated`, and simulation `validated` evidence. It explicitly
   states that no upstream Foxy reproduction, real MID-360 parity, LIO result,
   trained navigation policy, or real-robot safety result was established.
-- [ ] **AC11 — Human acceptance:** Dr Sun reviews the complete MP4 and the
+- [x] **AC11 — Sensor-rig asset identity:** the exact Isaac-safe URDF imports
+  with 24 links, 23 joints, 12 movable joints, the expected sensor frames,
+  declared total mass, primitive collisions, and no silent default-mass body.
+- [x] **AC12 — V12-on-rig qualification:** with identical V12 policy/control
+  inputs, the new asset passes zero, forward, lateral, yaw, support, finite,
+  no-termination, and watchdog checks. The A/B report records both old and new
+  asset hashes and does not attribute differences without evidence.
+- [x] **AC13 — MID-360 simulation gate:** the sensor is bound to
+  `mid360_scan_frame`, returns scene-derived 3D points across the declared FOV
+  and range, accounts for the pinned rig's self-occlusion through a declared
+  backend or geometry mask, and passes frame/timestamp/motion checks.
+- [x] **AC14 — D435i simulation gate:** the depth sensor is bound to
+  `d435i_depth_optical_frame`, produces finite depth with declared pinhole
+  parameters and resolution, observes the physical obstacle, changes with
+  pose, and preserves representative raw frames plus metrics.
+- [x] **AC15 — V3 closed loop:** after AC11--AC14 pass, one frozen V3 run uses
+  MID-360 point data for SCAN while D435i runs concurrently, reaches the goal
+  without collision/reset/stale command, and preserves a directly viewable
+  video showing the new sensor rig.
+- [x] **AC16 — V3 evidence identity:** the run record includes source,
+  checkpoint, canonical/Isaac URDF, mesh bundle, sensor configs, transforms,
+  thresholds, binaries, logs, ROS bag, depth samples, metrics, and video hashes
+  with local/remote parity.
+- [ ] **AC17 — Human acceptance:** Dr Sun reviews the complete V3 MP4 and
   evidence bundle, then explicitly records acceptance or rejection. Automated
   checks and agent visual inspection do not satisfy this criterion.
 

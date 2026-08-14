@@ -249,7 +249,7 @@ label.
   stages and preserves evidence. It does not trigger training, a ROS distro
   change, a kinematic fallback, or a false success label.
 
-## 11. Validated Implementation Addendum
+## 11. V2 Validated Baseline Addendum
 
 The accepted implementation retains the architecture above and freezes these
 physical-loop decisions for the declared scenario:
@@ -271,4 +271,71 @@ physical-loop decisions for the declared scenario:
 
 These values are validated only for the fixed single-box, single-seed
 ray-cast-LiDAR Isaac gate. They are not general Lite3 hardware dimensions or a
-real-world navigation tuning claim.
+real-world navigation tuning claim. V2 used the legacy V12 URDF and no D435i
+runtime sensor, so it is not the final sensor-rig review target.
+
+## 12. V3 Sensor-Rig Correction
+
+### 12.1 Single-variable locomotion composition
+
+V3 composes the pinned V12 policy/control contract with the pinned V17
+Isaac-safe sensor-rig asset. Only the robot spawn asset changes. The V12
+checkpoint, policy module, 450-D observation, action order, default pose,
+actuator model, control/physics rates, command schedule, seed, and terrain stay
+fixed. An old-asset/new-asset A/B qualification precedes any planner run.
+
+The canonical rig URDF and generated Isaac derivative are separate identities:
+
+```text
+canonical geometry: d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80
+Isaac-safe runtime: 803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d
+```
+
+The runtime must read back imported links, joints, masses, collision bodies,
+sensor-frame prims, and fixed-joint retention. A successful URDF viewer load or
+source-level test is insufficient.
+
+### 12.2 MID-360 data path
+
+The navigation point sensor is bound to the imported `mid360_scan_frame`, not a
+hard-coded `TORSO` offset. It renders the declared physical course at 10 Hz
+using a recorded 360-degree horizontal and `-7..52` degree vertical field of
+view. The backend may be RTX LiDAR if a live compatibility probe passes;
+otherwise it uses the existing multi-mesh ray caster with an explicit
+rig-geometry self-occlusion mask. The latter is named MID-360-like ray-cast
+sensing, not a Livox sampling/timing reproduction.
+
+The filtered PointCloud2 path remains the SCAN input. Raw ray count, finite hit
+count, floor-filter count, obstacle count, self-occluded count, frame pose, and
+timestamp are recorded before transport.
+
+### 12.3 D435i data path
+
+The depth sensor is bound to the imported `d435i_depth_optical_frame` and uses
+a scene-rendered pinhole depth backend. V3 records the exact width, height,
+focal/aperture representation, FOV, range, update period, clipping behavior,
+and optical convention. The local evidence has device-specific RGB intrinsics
+but no accepted live depth CameraInfo, so V3 must retain an explicit
+provisional-depth-intrinsics label.
+
+D435i depth is not fused into SCAN in V3. It runs concurrently, is checked for
+finite/nonempty output, obstacle visibility, pose dependence, and advancing
+timestamps, and writes representative depth frames and metrics. Adding depth
+fusion would change the planner/perception experiment and requires a separate
+reviewed task.
+
+### 12.4 Cross-layer identity
+
+The V3 identity flows through one owner:
+
+```text
+asset + mesh hashes + sensor contracts
+  -> Isaac scene config and imported prim readback
+  -> sensor metrics and TCP frame config hash
+  -> Foxy PointCloud2 / odometry
+  -> acceptance report, ROS bag, MP4, and local/remote manifests
+```
+
+Every consumer records the same asset/sensor configuration hash. A run is an
+instrumentation failure if the robot asset hash, sensor frame, expected sensor
+output, or depth artifact is absent.
