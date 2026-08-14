@@ -1,0 +1,1092 @@
+{
+  "checks": {
+    "clean_process_exit": {
+      "expected": false,
+      "passed": true,
+      "value": {
+        "keyboard_interrupt": false,
+        "process_has_died": false
+      }
+    },
+    "cloud_nonempty": {
+      "expected": 0.99,
+      "passed": true,
+      "value": 1.0
+    },
+    "cloud_points": {
+      "expected": 10,
+      "passed": true,
+      "value": 229
+    },
+    "coalesced_command_frames": {
+      "expected": 50,
+      "passed": true,
+      "value": 37
+    },
+    "command_age_p95": {
+      "expected": 100.0,
+      "passed": true,
+      "value": 35.960429
+    },
+    "command_bounds": {
+      "expected": [
+        1.0,
+        0.35,
+        1.0
+      ],
+      "passed": true,
+      "value": [
+        0.9999999403953552,
+        0.13414059579372406,
+        1.0
+      ]
+    },
+    "contact_support": {
+      "expected": 0.95,
+      "passed": true,
+      "value": 0.9940411700975081
+    },
+    "finite_policy": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "forest_base_clearance": {
+      "expected": 0.15,
+      "passed": true,
+      "value": 0.21445495995558334
+    },
+    "forest_direct_path_blocked": {
+      "expected": "center_to_segment < required_center_clearance",
+      "passed": true,
+      "value": {
+        "center_to_segment_m": 0.0,
+        "required_center_clearance_m": 0.64
+      }
+    },
+    "forest_filter_enabled": {
+      "expected": 1.0,
+      "passed": true,
+      "value": 1.0
+    },
+    "forest_filter_keeps_obstacles": {
+      "expected": 10,
+      "passed": true,
+      "value": 229
+    },
+    "forest_filter_removes_terrain": {
+      "expected": 50,
+      "passed": true,
+      "value": 379
+    },
+    "forest_filter_sparse_fraction": {
+      "expected": 0.75,
+      "passed": true,
+      "value": 0.10921501706484642
+    },
+    "forest_forward_command_speed": {
+      "expected": 0.9,
+      "passed": true,
+      "value": 0.9999999403953552
+    },
+    "forest_geometry_only_planner_input": {
+      "expected": "rendered XYZ geometry filter with all scene-truth inputs forbidden",
+      "passed": true,
+      "value": {
+        "cell_size_m": 0.3,
+        "enabled": true,
+        "forbidden_inputs": [
+          "terrain_height_function",
+          "scene_prim_id",
+          "proxy_bounds",
+          "obstacle_label"
+        ],
+        "height_threshold_m": 0.22,
+        "inputs": [
+          "rendered_hit_xyz_world",
+          "sensor_position_world"
+        ],
+        "minimum_neighbor_cells": 2,
+        "neighbor_cells": 1
+      }
+    },
+    "forest_goal_identity": {
+      "expected": [
+        0.5,
+        3.0,
+        0.85
+      ],
+      "passed": true,
+      "value": [
+        0.5,
+        3.0,
+        0.85
+      ]
+    },
+    "forest_measured_speed_p75": {
+      "expected": 0.55,
+      "passed": true,
+      "value": 0.9749764773635371
+    },
+    "forest_nonflat_terrain": {
+      "expected": 0.03,
+      "passed": true,
+      "value": 0.5101828697994053
+    },
+    "forest_path_length_excess": {
+      "expected": 0.2,
+      "passed": true,
+      "value": 0.6948157556971788
+    },
+    "forest_planner_detour": {
+      "expected": 0.55,
+      "passed": true,
+      "value": 0.8108012676239014
+    },
+    "forest_primary_blocker_clearance": {
+      "expected": 0.55,
+      "passed": true,
+      "value": 0.798561009951609
+    },
+    "goal_xy": {
+      "expected": {
+        "continuous_stop_window_seconds": 2.0,
+        "goal_xy_tolerance_m": 0.25
+      },
+      "passed": true,
+      "value": {
+        "final_goal_error_m": 0.010507990275238743,
+        "stable_goal_stop_event": {
+          "anchor_position_w_xy_m": [
+            0.5121613144874573,
+            3.01472544670105
+          ],
+          "end_index": 614,
+          "end_sim_time_seconds": 12.309999724850059,
+          "maximum_command_abs": 0.03563028573989868,
+          "maximum_goal_error_m": 0.019780561360482295,
+          "maximum_planar_speed_mps": 0.07363858596002262,
+          "start_index": 513,
+          "start_sim_time_seconds": 10.289999770000577
+        }
+      }
+    },
+    "goal_z": {
+      "expected": 0.18,
+      "passed": true,
+      "value": 0.02753261327743528
+    },
+    "isaac_runtime_error": {
+      "expected": null,
+      "passed": true,
+      "value": null
+    },
+    "isaac_runtime_pass": {
+      "expected": "PASS",
+      "passed": true,
+      "value": "PASS"
+    },
+    "no_base_teleport": {
+      "expected": 0.06,
+      "passed": true,
+      "value": 0.025655290579153268
+    },
+    "no_collision": {
+      "expected": 75.0,
+      "passed": true,
+      "value": 0.0
+    },
+    "no_termination": {
+      "expected": false,
+      "passed": true,
+      "value": false
+    },
+    "nonzero_commands": {
+      "expected": 300,
+      "passed": true,
+      "value": 381
+    },
+    "obstacle_detour": {
+      "expected": 0.0,
+      "passed": true,
+      "value": 3.449737310409546
+    },
+    "obstacle_returns": {
+      "expected": 20,
+      "passed": true,
+      "value": 478
+    },
+    "origin_occupancy_errors": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "planner_failures": {
+      "expected": 5,
+      "passed": true,
+      "value": 0
+    },
+    "planner_successes": {
+      "expected": 2,
+      "passed": true,
+      "value": 2
+    },
+    "planner_wait_target": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "policy_rate": {
+      "expected": [
+        45.0,
+        55.0
+      ],
+      "passed": true,
+      "value": 50.00000111758712
+    },
+    "pose_dependent_sensor": {
+      "expected": 4.0,
+      "passed": true,
+      "value": 5.455103314028408
+    },
+    "record_count": {
+      "expected": 1250,
+      "passed": true,
+      "value": 1846
+    },
+    "root_height": {
+      "expected": [
+        0.3,
+        1.3
+      ],
+      "passed": true,
+      "value": [
+        0.3438268005847931,
+        0.924266517162323
+      ]
+    },
+    "ros_body_pose_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 8.251372181022335
+    },
+    "ros_body_pose_timestamps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "ros_cloud_points": {
+      "expected": 10,
+      "passed": true,
+      "value": 229
+    },
+    "ros_cloud_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 8.251374125785409
+    },
+    "ros_cloud_timestamps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "ros_sensor_pose_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 8.25137607977504
+    },
+    "ros_sensor_pose_timestamps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "ros_sensor_sync": {
+      "expected": 0.95,
+      "passed": true,
+      "value": 1.0
+    },
+    "ros_trajectories": {
+      "expected": 2,
+      "passed": true,
+      "value": 2
+    },
+    "rosbag_bytes": {
+      "expected": 10000,
+      "passed": true,
+      "value": 450560
+    },
+    "rosbag_metadata": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "sensor_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 10.000000223517423
+    },
+    "sequence_gaps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "sim_duration": {
+      "expected": 25.0,
+      "passed": true,
+      "value": 36.89999917522073
+    },
+    "stopped_command": {
+      "expected": 0.05,
+      "passed": true,
+      "value": 0.0
+    },
+    "stopped_motion": {
+      "expected": 0.15,
+      "passed": true,
+      "value": 0.01922772848558204
+    },
+    "telemetry_reconnects": {
+      "expected": 1,
+      "passed": true,
+      "value": 0
+    },
+    "threshold_identity": {
+      "expected": "59110d7a9041bd2856051d6de1cd88ed5c5d40b587f89ed56c254c484a4530e8",
+      "passed": true,
+      "value": "59110d7a9041bd2856051d6de1cd88ed5c5d40b587f89ed56c254c484a4530e8"
+    },
+    "transport_protocol_errors": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "unexpected_returns": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "v3_canonical_urdf_hash": {
+      "expected": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80",
+      "passed": true,
+      "value": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80"
+    },
+    "v3_depth_artifacts": {
+      "expected": 3,
+      "passed": true,
+      "value": {
+        "d435i_depth_frame_m.npy": true,
+        "d435i_depth_frame_mm.png": true,
+        "d435i_depth_preview.png": true
+      }
+    },
+    "v3_depth_dimensions": {
+      "expected": [
+        87,
+        58
+      ],
+      "passed": true,
+      "value": [
+        87,
+        58
+      ]
+    },
+    "v3_depth_finite": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "v3_depth_frame": {
+      "expected": "d435i_depth_optical_frame",
+      "passed": true,
+      "value": "d435i_depth_optical_frame"
+    },
+    "v3_depth_nonempty": {
+      "expected": 0.99,
+      "passed": true,
+      "value": 1.0
+    },
+    "v3_depth_obstacle": {
+      "expected": 20,
+      "passed": true,
+      "value": 436
+    },
+    "v3_depth_pose_dependent": {
+      "expected": 4.0,
+      "passed": true,
+      "value": 5.451754223203596
+    },
+    "v3_depth_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 10.000000223517423
+    },
+    "v3_depth_records": {
+      "expected": 250,
+      "passed": true,
+      "value": 370
+    },
+    "v3_isaac_urdf_hash": {
+      "expected": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d",
+      "passed": true,
+      "value": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d"
+    },
+    "v3_lidar_frame": {
+      "expected": "mid360_scan_frame",
+      "passed": true,
+      "value": "mid360_scan_frame"
+    },
+    "v3_lidar_self_occlusion": {
+      "expected": 1,
+      "passed": true,
+      "value": 467
+    },
+    "v3_no_silent_default_mass": {
+      "expected": "pass",
+      "passed": true,
+      "value": {
+        "d435i_depth_optical_frame_mass_kg": 9.999999974752427e-07,
+        "expected_frame_mass_kg": 1e-06,
+        "mid360_scan_frame_mass_kg": 9.999999974752427e-07,
+        "status": "pass"
+      }
+    },
+    "v3_runtime_body_count": {
+      "expected": 24,
+      "passed": true,
+      "value": 24
+    },
+    "v3_runtime_collision_count": {
+      "expected": 29,
+      "passed": true,
+      "value": 29
+    },
+    "v3_runtime_fixed_joint_count": {
+      "expected": 11,
+      "passed": true,
+      "value": 11
+    },
+    "v3_runtime_joint_count": {
+      "expected": 23,
+      "passed": true,
+      "value": 23
+    },
+    "v3_runtime_mass": {
+      "expected": [
+        13.2817,
+        13.2819
+      ],
+      "passed": true,
+      "value": 13.281788810606713
+    },
+    "v3_runtime_movable_joint_count": {
+      "expected": 12,
+      "passed": true,
+      "value": 12
+    },
+    "v6_acceleration_limit": {
+      "expected": 0.5,
+      "passed": true,
+      "value": 0.5
+    },
+    "v6_complete_bspline_records": {
+      "expected": 2,
+      "passed": true,
+      "value": 2
+    },
+    "v6_course_identity": {
+      "expected": "forest_gen_nav_v7_dynamic",
+      "passed": true,
+      "value": "forest_gen_nav_v7_dynamic"
+    },
+    "v6_high_command_measured_speed_p75": {
+      "expected": 0.7,
+      "passed": true,
+      "value": 0.9898317045592665
+    },
+    "v6_high_command_samples": {
+      "expected": 20,
+      "passed": true,
+      "value": 65
+    },
+    "v6_overlay_hash": {
+      "expected": "96240128091be11b8863e982ddaf940b22e4ddb78a0986f0f61faee54a3f8ed9",
+      "passed": true,
+      "value": "96240128091be11b8863e982ddaf940b22e4ddb78a0986f0f61faee54a3f8ed9"
+    },
+    "v6_overlay_input_hashes": {
+      "expected": {
+        "metrics": "a17d27a69c3428e5d87a7b4abf72df5552f33a93e12a2dcaf2469667a9ff0fa6",
+        "raw_video": "79278c8dee9c05567029274d0bd940c10e44a791bfee5027c379d4ecff831e8b",
+        "ros_events": "5e16521f5da06410145bfc3070735933f4e160792411c88b213d3346a35156d3",
+        "run_identity": "5291715468582ebc02aa40d9d925d8c6bf7661583e546a941a4cbe01385f89a3"
+      },
+      "passed": true,
+      "value": {
+        "metrics": "a17d27a69c3428e5d87a7b4abf72df5552f33a93e12a2dcaf2469667a9ff0fa6",
+        "raw_video": "79278c8dee9c05567029274d0bd940c10e44a791bfee5027c379d4ecff831e8b",
+        "ros_events": "5e16521f5da06410145bfc3070735933f4e160792411c88b213d3346a35156d3",
+        "run_identity": "5291715468582ebc02aa40d9d925d8c6bf7661583e546a941a4cbe01385f89a3"
+      }
+    },
+    "v6_overlay_time_alignment": {
+      "expected": 150.0,
+      "passed": true,
+      "value": 59.86832
+    },
+    "v6_overlay_video": {
+      "expected": {
+        "minimum_bytes": 100000,
+        "minimum_frames": 425
+      },
+      "passed": true,
+      "value": {
+        "bytes": 3567516,
+        "frame_count": 616,
+        "regular_file": true
+      }
+    },
+    "v6_proxy_bounds": {
+      "expected": 0.005,
+      "passed": true,
+      "value": 2.2447766490074628e-07
+    },
+    "v6_proxy_review_visibility": {
+      "expected": false,
+      "passed": true,
+      "value": {
+        "forest_proxy_000": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_001": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_002": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_003": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_004": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_005": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_006": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_007": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_008": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_009": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_010": {
+          "expected": false,
+          "visible_geometry_count": 0
+        }
+      }
+    },
+    "v6_rock_terrain_clearance": {
+      "expected": 0.01,
+      "passed": true,
+      "value": 0.014999999999999902
+    },
+    "v6_static_geometry_gate": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "v6_synchronized_forward_limits": {
+      "expected": 1.0,
+      "passed": true,
+      "value": {
+        "controller_max_vx_mps": 1.0,
+        "foxy_bridge_effective_max_vx_mps": 1.0,
+        "isaac_receiver_max_vx_mps": 1.0,
+        "scan_manager_max_acc_mps2": 0.5,
+        "scan_manager_max_vel_mps": 1.0,
+        "scan_optimizer_max_vel_mps": 1.0
+      }
+    },
+    "v7_command_relative_schedule_trigger": {
+      "expected": "elapsed stays zero until first accepted command exceeds 0.05",
+      "passed": true,
+      "value": {
+        "pre_trigger_maximum_command_abs": 0.0,
+        "pre_trigger_maximum_elapsed_seconds": 0.0,
+        "pre_trigger_record_count": 126,
+        "trigger_command_max_abs": 0.09546027332544327,
+        "trigger_index": 126,
+        "trigger_sim_time_seconds": 2.5299999434500933
+      }
+    },
+    "v7_controller_catchup_limit": {
+      "expected": 0.75,
+      "passed": true,
+      "value": 0.75
+    },
+    "v7_controller_finish_distance": {
+      "expected": 0.1,
+      "passed": true,
+      "value": 0.1
+    },
+    "v7_controller_tracking_window": {
+      "expected": 0.14,
+      "passed": true,
+      "value": 0.14
+    },
+    "v7_course_identity": {
+      "expected": "forest_gen_nav_v7_dynamic",
+      "passed": true,
+      "value": "forest_gen_nav_v7_dynamic"
+    },
+    "v7_depth_dynamic_observations": {
+      "expected": {
+        "minimum_frames": 3,
+        "minimum_position_span_m": 0.5
+      },
+      "passed": true,
+      "value": {
+        "frame_count": 52,
+        "position_span_m": 1.0
+      }
+    },
+    "v7_dynamic_identity": {
+      "expected": {
+        "height_m": 1.5,
+        "hold_fraction": 0.35714285714285715,
+        "hold_seconds": 2.5,
+        "radius_m": 0.3,
+        "schedule_trigger": "first nonzero accepted body command",
+        "shape": "cylinder",
+        "speed_mps": 0.8,
+        "wait_seconds": 0.0
+      },
+      "passed": true,
+      "value": {
+        "height_m": 1.5,
+        "hold_fraction": 0.35714285714285715,
+        "hold_seconds": 2.5,
+        "radius_m": 0.3,
+        "schedule_trigger": "first nonzero accepted body command",
+        "shape": "cylinder",
+        "speed_mps": 0.8,
+        "wait_seconds": 0.0
+      }
+    },
+    "v7_dynamic_motion": {
+      "expected": {
+        "maximum_pose_error_m": 0.03,
+        "minimum_actual_travel_m": 2.65,
+        "phases": [
+          "crossing",
+          "holding",
+          "parked",
+          "waiting"
+        ]
+      },
+      "passed": true,
+      "value": {
+        "actual_travel_m": 2.8062460849487465,
+        "maximum_pose_error_m": 2.409666958629281e-07,
+        "phases": [
+          "crossing",
+          "holding",
+          "parked",
+          "waiting"
+        ]
+      }
+    },
+    "v7_dynamic_physics_sensor_geometry": {
+      "expected": {
+        "collision_enabled": true,
+        "depth_transform_tracking": true,
+        "kinematic_enabled": true,
+        "lidar_transform_tracking": true,
+        "rigid_object_initialized": true,
+        "runtime_root_exists": true,
+        "visible_geometry": true
+      },
+      "passed": true,
+      "value": {
+        "checks": {
+          "collision_enabled": true,
+          "depth_transform_tracking": true,
+          "kinematic_enabled": true,
+          "lidar_transform_tracking": true,
+          "rigid_object_initialized": true,
+          "runtime_root_exists": true,
+          "visible_geometry": true
+        },
+        "collision_prim_paths": [
+          "/World/envs/env_0/DynamicObstacle/geometry/mesh"
+        ],
+        "configured_prim_expr": "/World/envs/env_.*/DynamicObstacle",
+        "depth_targets": [
+          {
+            "prim_expr": "/World/ground",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_000",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_001",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_002",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_003",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_004",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_005",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_006",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_007",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_008",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_009",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_010",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/DynamicObstacle",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/TORSO/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/pro_interface_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/sensor_carrier_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/s410_guard_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/mid360_body_link/visuals",
+            "track_mesh_transforms": true
+          }
+        ],
+        "ground_truth_use": "evidence only; never planner input or robot steering",
+        "lidar_targets": [
+          {
+            "prim_expr": "/World/ground",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_000",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_001",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_002",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_003",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_004",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_005",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_006",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_007",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_008",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_009",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_010",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/DynamicObstacle",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/TORSO/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/pro_interface_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/sensor_carrier_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/s410_guard_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/d435i_body_link/visuals",
+            "track_mesh_transforms": true
+          }
+        ],
+        "passed": true,
+        "runtime_prim_path": "/World/envs/env_0/DynamicObstacle",
+        "visible_geometry_prim_paths": [
+          "/World/envs/env_0/DynamicObstacle/geometry/mesh"
+        ]
+      }
+    },
+    "v7_dynamic_terrain_clearance": {
+      "expected": 0.01,
+      "passed": true,
+      "value": 0.01999995851140557
+    },
+    "v7_ground_truth_evidence_only": {
+      "expected": "rendered sensor hits only; ground truth forbidden from planner/steering",
+      "passed": true,
+      "value": {
+        "ground_truth_use": "evidence classification and synchronized clearance only; forbidden from point injection, filtering, command generation, and robot steering",
+        "planner_input": "rendered sensor hits only"
+      }
+    },
+    "v7_lidar_dynamic_observations": {
+      "expected": {
+        "minimum_frames": 5,
+        "minimum_position_span_m": 0.5
+      },
+      "passed": true,
+      "value": {
+        "frame_count": 370,
+        "position_span_m": 2.8000001907348633
+      }
+    },
+    "v7_nominal_route_conflict": {
+      "expected": 0.1,
+      "passed": true,
+      "value": 0.008000000000000007
+    },
+    "v7_occupied_freshness_window": {
+      "expected": 8,
+      "passed": true,
+      "value": 8.0
+    },
+    "v7_overlay_dynamic_trace": {
+      "expected": {
+        "minimum_records": 425,
+        "rendered": true
+      },
+      "passed": true,
+      "value": {
+        "identity": {
+          "claim_boundary": "single deterministic crossing with reactive occupancy replanning; no obstacle-velocity prediction or intention model",
+          "collision_enabled": true,
+          "colour_rgb": [
+            1.0,
+            0.24,
+            0.02
+          ],
+          "crossing_duration_seconds": 3.4999999999999996,
+          "depth_transform_tracking": true,
+          "end_xy_m": [
+            -2.7,
+            4.8
+          ],
+          "ground_truth_use": "evidence classification and synchronized clearance only; forbidden from point injection, filtering, command generation, and robot steering",
+          "height_m": 1.5,
+          "hold_fraction": 0.35714285714285715,
+          "hold_seconds": 2.5,
+          "lidar_transform_tracking": true,
+          "name": "v7_crossing_actor",
+          "planner_input": "rendered sensor hits only",
+          "prim_expr": "{ENV_REGEX_NS}/DynamicObstacle",
+          "radius_m": 0.3,
+          "rigid_body_mode": "kinematic obstacle with scheduled pose writes",
+          "runtime_prim_path": "/World/envs/env_0/DynamicObstacle",
+          "schedule_trigger": "first nonzero accepted body command",
+          "shape": "cylinder",
+          "speed_mps": 0.8,
+          "start_xy_m": [
+            -2.7,
+            2.0
+          ],
+          "terrain_clearance_m": 0.02,
+          "wait_seconds": 0.0
+        },
+        "path_source": "dynamic_obstacle_actual_pos_w PhysX readback",
+        "record_count": 1846,
+        "rendered": true
+      }
+    },
+    "v7_physical_dynamic_clearance": {
+      "expected": 0.05,
+      "passed": true,
+      "value": 0.21519869263823016
+    },
+    "v7_post_detection_scan_response": {
+      "expected": {
+        "maximum_response_seconds": 3.0,
+        "minimum_records": 1
+      },
+      "passed": true,
+      "value": {
+        "first_lidar_detection_sim_time_seconds": 0.029999999329447746,
+        "post_detection_plan_ids": [
+          1,
+          2
+        ],
+        "response_latency_seconds": 2.4999999436705522
+      }
+    },
+    "v7_post_stop_drift": {
+      "expected": 0.35,
+      "passed": true,
+      "value": {
+        "final_goal_error_m": 0.010507990275238743,
+        "maximum_drift_m": 0.024077615758389462
+      }
+    },
+    "v7_stable_goal_stop_event": {
+      "expected": {
+        "goal_xy_tolerance_m": 0.25,
+        "stop_command_max_abs": 0.05,
+        "stop_planar_speed_max_mps": 0.15,
+        "stop_window_seconds": 2.0
+      },
+      "passed": true,
+      "value": {
+        "anchor_position_w_xy_m": [
+          0.5121613144874573,
+          3.01472544670105
+        ],
+        "end_index": 614,
+        "end_sim_time_seconds": 12.309999724850059,
+        "maximum_command_abs": 0.03563028573989868,
+        "maximum_goal_error_m": 0.019780561360482295,
+        "maximum_planar_speed_mps": 0.07363858596002262,
+        "start_index": 513,
+        "start_sim_time_seconds": 10.289999770000577
+      }
+    },
+    "video_bytes": {
+      "expected": 100000,
+      "passed": true,
+      "value": 16108621
+    },
+    "video_duration": {
+      "expected": 25.0,
+      "passed": true,
+      "value": 36.23529411764706
+    },
+    "video_frames": {
+      "expected": 425,
+      "passed": true,
+      "value": 616
+    },
+    "video_hash": {
+      "expected": "79278c8dee9c05567029274d0bd940c10e44a791bfee5027c379d4ecff831e8b",
+      "passed": true,
+      "value": "79278c8dee9c05567029274d0bd940c10e44a791bfee5027c379d4ecff831e8b"
+    },
+    "video_regular_file": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "watchdog_events": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    }
+  },
+  "claim": "single-seed Foxy-SCAN to V12-policy Lite3-Pro-sensor-rig reactive dynamic-obstacle forest simulation candidate",
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "command_age_p95_ms": 35.960429,
+    "detour_min_abs_y_m": 3.449737310409546,
+    "dynamic_obstacle_enabled": true,
+    "final_position_world_m": [
+      0.4916914999485016,
+      3.0064332485198975,
+      0.8224673867225647
+    ],
+    "forest_navigation_enabled": true,
+    "goal_xy_error_m": 0.010507990275238743,
+    "max_nonfoot_contact_n": 0.0,
+    "policy_rate_hz": 50.00000111758712,
+    "rosbag_bytes": 450560,
+    "sensor_rate_hz": 10.000000223517423,
+    "video_sha256": "79278c8dee9c05567029274d0bd940c10e44a791bfee5027c379d4ecff831e8b"
+  }
+}

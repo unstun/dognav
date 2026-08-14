@@ -1,0 +1,114 @@
+{
+  "claim_boundary": "Derived human-review overlay from the hashed raw SCAN Bspline, Isaac PhysX metrics, run identity, and untouched raw simulator MP4.",
+  "colours_bgr": {
+    "dynamic_obstacle_actual": [
+      0,
+      120,
+      255
+    ],
+    "isaac_actual": [
+      255,
+      220,
+      40
+    ],
+    "primary_obstacle": [
+      40,
+      70,
+      245
+    ],
+    "scan_planned": [
+      80,
+      220,
+      80
+    ]
+  },
+  "dynamic_obstacle": {
+    "identity": {
+      "claim_boundary": "single deterministic crossing with reactive occupancy replanning; no obstacle-velocity prediction or intention model",
+      "collision_enabled": true,
+      "colour_rgb": [
+        1.0,
+        0.24,
+        0.02
+      ],
+      "crossing_duration_seconds": 3.4999999999999996,
+      "depth_transform_tracking": true,
+      "end_xy_m": [
+        -2.7,
+        4.8
+      ],
+      "ground_truth_use": "evidence classification and synchronized clearance only; forbidden from point injection, filtering, command generation, and robot steering",
+      "height_m": 1.5,
+      "hold_fraction": 0.35714285714285715,
+      "hold_seconds": 2.5,
+      "lidar_transform_tracking": true,
+      "name": "v7_crossing_actor",
+      "planner_input": "rendered sensor hits only",
+      "prim_expr": "{ENV_REGEX_NS}/DynamicObstacle",
+      "radius_m": 0.3,
+      "rigid_body_mode": "kinematic obstacle with scheduled pose writes",
+      "runtime_prim_path": "/World/envs/env_0/DynamicObstacle",
+      "schedule_trigger": "first nonzero accepted body command",
+      "shape": "cylinder",
+      "speed_mps": 0.8,
+      "start_xy_m": [
+        -2.7,
+        2.0
+      ],
+      "terrain_clearance_m": 0.02,
+      "wait_seconds": 0.0
+    },
+    "path_source": "dynamic_obstacle_actual_pos_w PhysX readback",
+    "record_count": 1863,
+    "rendered": true
+  },
+  "input_sha256": {
+    "metrics": "f661eddfc419f81d0b5b5bd7d2be112cf225c66f16d344a985878e98b443542a",
+    "raw_video": "6d5eef568a288c504f382860aa28b6c11a7fc1d1076da35777f8e96ca1614542",
+    "ros_events": "50c4743778e609816df0399251ea89749ed0814d9155abe525a56d945f2551c6",
+    "run_identity": "cebc02279a73e8303910955d6be57624ebde6a6f6333d81295307c1355e3df46"
+  },
+  "mapping": {
+    "frame_stride": 3,
+    "frame_to_sim_time": "metrics rows where step modulo video frame_stride equals zero",
+    "maximum_plan_pose_alignment_error_ms": 46.44695,
+    "plan_to_sim_time": "nearest simulator-stamped body_pose receipt"
+  },
+  "output": {
+    "bytes": 3585778,
+    "encoder": "ffmpeg libx264 yuv420p",
+    "fps": 17.0,
+    "frame_count": 621,
+    "path": "closed_loop_review_overlay.mp4",
+    "resolution": [
+      1280,
+      720
+    ],
+    "sha256": "5f7ea9e1f6d52308a613ac99b39a61fcc518b9f0f761795925c4f01ee588eccc"
+  },
+  "plans": [
+    {
+      "effective_sim_time_seconds": 2.529999943,
+      "receipt_alignment_error_ms": 36.032898,
+      "trajectory_id": 1
+    },
+    {
+      "effective_sim_time_seconds": 3.229999927,
+      "receipt_alignment_error_ms": 46.44695,
+      "trajectory_id": 2
+    }
+  ],
+  "plot_bounds_world_xy_m": [
+    -5.9339608335494995,
+    1.4193010711669922,
+    1.0867811059951782,
+    5.713219084739685
+  ],
+  "sample_count_per_trajectory": 160,
+  "schema_version": 2,
+  "trajectory_count": 2,
+  "trajectory_ids": [
+    1,
+    2
+  ]
+}

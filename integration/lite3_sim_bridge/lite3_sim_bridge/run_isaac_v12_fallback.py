@@ -15,8 +15,11 @@ import xml.etree.ElementTree as ET
 from .command_state import CommandLimits, LatestCommandState
 from .isaac_adapter_core import (
     DEFAULT_QUALIFICATION_SCHEDULE,
+    DynamicObstacleSpec,
     QualificationSegment,
     canonical_config_sha256,
+    circle_surface_clearance_2d,
+    dynamic_obstacle_state,
     local_minimum_obstacle_hits,
     point_to_segment_distance_2d,
     quaternion_wxyz_to_xyzw,
@@ -83,6 +86,18 @@ FOREST_ROCK_SEATING_CLEARANCE_M = 0.015
 FOREST_ROCK_SUPPORT_BAND_M = 0.020
 FOREST_NAVIGATION_GOAL_WORLD_M = (0.5, 3.0, 0.85)
 FOREST_NAVIGATION_PLANNING_RADIUS_M = 0.40
+DYNAMIC_OBSTACLE_PRIM_EXPR = "{ENV_REGEX_NS}/DynamicObstacle"
+DYNAMIC_OBSTACLE_RUNTIME_PRIM = "/World/envs/env_0/DynamicObstacle"
+DYNAMIC_OBSTACLE_DEFAULT_X_M = -3.0
+DYNAMIC_OBSTACLE_DEFAULT_START_Y_M = 1.2
+DYNAMIC_OBSTACLE_DEFAULT_END_Y_M = 4.8
+DYNAMIC_OBSTACLE_DEFAULT_WAIT_SECONDS = 0.2
+DYNAMIC_OBSTACLE_DEFAULT_SPEED_MPS = 0.8
+DYNAMIC_OBSTACLE_DEFAULT_RADIUS_M = 0.30
+DYNAMIC_OBSTACLE_DEFAULT_HEIGHT_M = 1.50
+DYNAMIC_OBSTACLE_DEFAULT_TERRAIN_CLEARANCE_M = 0.02
+DYNAMIC_OBSTACLE_DEFAULT_HOLD_FRACTION = 0.5
+DYNAMIC_OBSTACLE_DEFAULT_HOLD_SECONDS = 0.0
 FOREST_PREVIEW_SCHEDULE = (
     QualificationSegment("settle_zero", 1.5, (0.0, 0.0, 0.0)),
     QualificationSegment("forward", 4.0, (0.25, 0.0, 0.0)),
@@ -179,15 +194,47 @@ def _sensor_rig_enabled(args) -> bool:
 
 
 def _forest_enabled(args) -> bool:
-    return args.course in ("forest_gen", "forest_gen_nav", "forest_gen_nav_v6")
+    return args.course in (
+        "forest_gen",
+        "forest_gen_nav",
+        "forest_gen_nav_v6",
+        "forest_gen_nav_v7_dynamic",
+    )
 
 
 def _forest_navigation_enabled(args) -> bool:
-    return args.course in ("forest_gen_nav", "forest_gen_nav_v6")
+    return args.course in (
+        "forest_gen_nav",
+        "forest_gen_nav_v6",
+        "forest_gen_nav_v7_dynamic",
+    )
 
 
 def _forest_v6_enabled(args) -> bool:
     return args.course == "forest_gen_nav_v6"
+
+
+def _forest_v7_enabled(args) -> bool:
+    return args.course == "forest_gen_nav_v7_dynamic"
+
+
+def _forest_review_geometry_enabled(args) -> bool:
+    return _forest_v6_enabled(args) or _forest_v7_enabled(args)
+
+
+def _dynamic_obstacle_spec(args) -> DynamicObstacleSpec:
+    return DynamicObstacleSpec(
+        name="v7_crossing_actor",
+        start_xy=(args.dynamic_obstacle_x, args.dynamic_obstacle_start_y),
+        end_xy=(args.dynamic_obstacle_x, args.dynamic_obstacle_end_y),
+        wait_seconds=args.dynamic_obstacle_wait_seconds,
+        speed_mps=args.dynamic_obstacle_speed,
+        radius_m=args.dynamic_obstacle_radius,
+        height_m=args.dynamic_obstacle_height,
+        terrain_clearance_m=args.dynamic_obstacle_terrain_clearance,
+        hold_fraction=args.dynamic_obstacle_hold_fraction,
+        hold_seconds=args.dynamic_obstacle_hold_seconds,
+    )
 
 
 def _forest_preview_enabled(args) -> bool:
@@ -474,7 +521,7 @@ def _build_forest_layout(args):
         mesh_support = None
         seating = None
         if _forest_kind(asset) == "Rock":
-            if _forest_v6_enabled(args):
+            if _forest_review_geometry_enabled(args):
                 (
                     local_lower,
                     local_upper,
@@ -490,7 +537,7 @@ def _build_forest_layout(args):
             else:
                 local_lower, local_upper = _usd_default_prim_bounds(runtime_path)
             local_bounds = {"min_m": local_lower, "max_m": local_upper}
-            if _forest_v6_enabled(args):
+            if _forest_review_geometry_enabled(args):
                 seating = dict(
                     terrain_seating_for_mesh_support(
                         world_position[:2],
@@ -556,7 +603,7 @@ def _build_forest_layout(args):
             )
             shape = "cylinder"
             center = (x, y, ground_z + 0.5 * size[2])
-        elif _forest_v6_enabled(args):
+        elif _forest_review_geometry_enabled(args):
             local_bounds = visual["runtime_local_bounds_m"]
             local_lower = tuple(local_bounds["min_m"])
             local_upper = tuple(local_bounds["max_m"])
@@ -584,7 +631,7 @@ def _build_forest_layout(args):
                 "shape": shape,
                 "center_m": center,
                 "size_m": size,
-                "render_visible": not _forest_v6_enabled(args),
+                "render_visible": not _forest_review_geometry_enabled(args),
                 "bounds_min_m": tuple(center[i] - half[i] for i in range(3)),
                 "bounds_max_m": tuple(center[i] + half[i] for i in range(3)),
             }
@@ -678,12 +725,12 @@ def _build_forest_layout(args):
             "physics_sensor_proxy_count": len(proxies),
             "proxy_render_mode": (
                 "hidden_registered_collision_and_sensor_geometry"
-                if _forest_v6_enabled(args)
+                if _forest_review_geometry_enabled(args)
                 else "visible_debug_geometry"
             ),
             "rock_seating": (
                 "runtime_USD_lowest_20mm_mesh_vertex_band_terrain_support"
-                if _forest_v6_enabled(args)
+                if _forest_review_geometry_enabled(args)
                 else "upstream_origin_at_centre_terrain_height"
             ),
             "full_grass_field_instantiated": False,
@@ -785,6 +832,8 @@ def _urdf_contract(path: Path):
 
 
 def _candidate_name(args) -> str:
+    if _forest_v7_enabled(args):
+        return "V12 model_149999 on Lite3 Pro sensor rig v7 dynamic SCAN forest navigation"
     if _forest_v6_enabled(args):
         return "V12 model_149999 on Lite3 Pro sensor rig v6 1mps SCAN forest navigation"
     if _forest_navigation_enabled(args):
@@ -1173,6 +1222,41 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
             )
             setattr(env_cfg.scene, proxy["name"], proxy_cfg)
 
+        if _forest_v7_enabled(args):
+            from isaaclab.assets import RigidObjectCfg
+
+            spec = _dynamic_obstacle_spec(args)
+            initial = dynamic_obstacle_state(
+                0.0,
+                spec,
+                lambda x, y: _forest_height_world(forest_layout, x, y),
+            )
+            spawn = forest_layout["spawn_world_xyz_m"]
+            centre = initial["center_xyz_m"]
+            relative_centre = tuple(
+                float(centre[index]) - float(spawn[index]) for index in range(3)
+            )
+            env_cfg.scene.dynamic_obstacle = RigidObjectCfg(
+                prim_path=DYNAMIC_OBSTACLE_PRIM_EXPR,
+                spawn=sim_utils.CylinderCfg(
+                    radius=spec.radius_m,
+                    height=spec.height_m,
+                    rigid_props=sim_utils.RigidBodyPropertiesCfg(
+                        kinematic_enabled=True,
+                        disable_gravity=True,
+                    ),
+                    mass_props=sim_utils.MassPropertiesCfg(mass=20.0),
+                    collision_props=sim_utils.CollisionPropertiesCfg(),
+                    visual_material=sim_utils.PreviewSurfaceCfg(
+                        diffuse_color=(1.0, 0.24, 0.02),
+                        emissive_color=(0.12, 0.01, 0.0),
+                        roughness=0.65,
+                    ),
+                ),
+                init_state=RigidObjectCfg.InitialStateCfg(pos=relative_centre),
+                collision_group=-1,
+            )
+
     from isaaclab.sensors import MultiMeshRayCasterCfg, patterns
     from isaaclab.sensors.ray_caster import MultiMeshRayCasterCameraCfg
 
@@ -1192,6 +1276,14 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
             proxy["prim_path"] for proxy in forest_layout["proxies"]
         )
     lidar_targets = list(environment_targets)
+    if _forest_v7_enabled(args):
+        lidar_targets.append(
+            MultiMeshRayCasterCfg.RaycastTargetCfg(
+                prim_expr=DYNAMIC_OBSTACLE_PRIM_EXPR,
+                merge_prim_meshes=True,
+                track_mesh_transforms=True,
+            )
+        )
     if sensor_rig:
         lidar_targets.extend(
             MultiMeshRayCasterCfg.RaycastTargetCfg(
@@ -1229,6 +1321,14 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
     )
     if sensor_rig:
         depth_targets = list(environment_targets)
+        if _forest_v7_enabled(args):
+            depth_targets.append(
+                MultiMeshRayCasterCfg.RaycastTargetCfg(
+                    prim_expr=DYNAMIC_OBSTACLE_PRIM_EXPR,
+                    merge_prim_meshes=True,
+                    track_mesh_transforms=True,
+                )
+            )
         depth_targets.extend(
             MultiMeshRayCasterCfg.RaycastTargetCfg(
                 prim_expr=f"{{ENV_REGEX_NS}}/Robot/{link}/visuals",
@@ -1336,6 +1436,34 @@ def _forest_obstacle_hit_mask(points_w, proxies, torch):
         upper = points_w.new_tensor(proxy["bounds_max_m"]) + 0.015
         mask |= finite & ((points_w >= lower) & (points_w <= upper)).all(dim=-1)
     return mask
+
+
+def _forest_proxy_hit_counts(points_w, proxies, torch):
+    """Count evidence hits per declared proxy without changing planner points."""
+
+    finite = torch.isfinite(points_w).all(dim=-1)
+    counts = {}
+    for proxy in proxies:
+        lower = points_w.new_tensor(proxy["bounds_min_m"]) - 0.015
+        upper = points_w.new_tensor(proxy["bounds_max_m"]) + 0.015
+        mask = finite & ((points_w >= lower) & (points_w <= upper)).all(dim=-1)
+        counts[proxy["name"]] = int(mask.sum().item())
+    return counts
+
+
+def _dynamic_obstacle_hit_mask(points_w, center_xyz, spec, torch):
+    """Classify rendered hits for evidence without altering planner input."""
+
+    finite = torch.isfinite(points_w).all(dim=-1)
+    centre = points_w.new_tensor(center_xyz)
+    radial_distance = torch.linalg.vector_norm(points_w[:, :2] - centre[:2], dim=-1)
+    half_height = 0.5 * float(spec.height_m)
+    return (
+        finite
+        & (radial_distance <= float(spec.radius_m) + 0.02)
+        & (points_w[:, 2] >= centre[2] - half_height - 0.02)
+        & (points_w[:, 2] <= centre[2] + half_height + 0.02)
+    )
 
 
 def _forest_height_world(forest_layout, x_world: float, y_world: float) -> float:
@@ -1509,6 +1637,90 @@ def _inspect_forest_geometry(stage, forest_layout, lidar, depth_camera):
     }
 
 
+def _inspect_dynamic_obstacle(stage, dynamic_obstacle, lidar, depth_camera):
+    from pxr import Usd, UsdGeom, UsdPhysics
+
+    def target_records(sensor):
+        records = []
+        for target in sensor.cfg.mesh_prim_paths:
+            if isinstance(target, str):
+                records.append(
+                    {
+                        "prim_expr": target,
+                        "track_mesh_transforms": False,
+                    }
+                )
+            else:
+                records.append(
+                    {
+                        "prim_expr": str(target.prim_expr),
+                        "track_mesh_transforms": bool(
+                            target.track_mesh_transforms
+                        ),
+                    }
+                )
+        return records
+
+    root = stage.GetPrimAtPath(DYNAMIC_OBSTACLE_RUNTIME_PRIM)
+    collision_paths = []
+    visible_geometry_paths = []
+    if root.IsValid():
+        for prim in Usd.PrimRange(root, Usd.TraverseInstanceProxies()):
+            if prim.HasAPI(UsdPhysics.CollisionAPI):
+                collision_paths.append(str(prim.GetPath()))
+            if prim.GetTypeName() in (
+                "Capsule",
+                "Cone",
+                "Cube",
+                "Cylinder",
+                "Mesh",
+                "Sphere",
+            ):
+                imageable = UsdGeom.Imageable(prim)
+                if imageable and str(imageable.ComputeVisibility()) != "invisible":
+                    visible_geometry_paths.append(str(prim.GetPath()))
+    rigid_api = UsdPhysics.RigidBodyAPI(root) if root.IsValid() else None
+    kinematic_enabled = (
+        bool(rigid_api.GetKinematicEnabledAttr().Get())
+        if rigid_api is not None and rigid_api.GetKinematicEnabledAttr().IsValid()
+        else False
+    )
+    lidar_targets = target_records(lidar)
+    depth_targets = target_records(depth_camera)
+    configured_dynamic_expr = str(dynamic_obstacle.cfg.prim_path)
+
+    def has_tracked_target(records):
+        return any(
+            row["prim_expr"] in (
+                DYNAMIC_OBSTACLE_PRIM_EXPR,
+                configured_dynamic_expr,
+            )
+            and row["track_mesh_transforms"]
+            for row in records
+        )
+
+    checks = {
+        "runtime_root_exists": root.IsValid(),
+        "rigid_object_initialized": bool(dynamic_obstacle.is_initialized),
+        "kinematic_enabled": kinematic_enabled,
+        "collision_enabled": bool(collision_paths),
+        "visible_geometry": bool(visible_geometry_paths),
+        "lidar_transform_tracking": has_tracked_target(lidar_targets),
+        "depth_transform_tracking": has_tracked_target(depth_targets),
+    }
+    return {
+        "passed": all(checks.values()),
+        "checks": checks,
+        "runtime_prim_path": DYNAMIC_OBSTACLE_RUNTIME_PRIM,
+        "configured_prim_expr": configured_dynamic_expr,
+        "collision_prim_paths": collision_paths,
+        "visible_geometry_prim_paths": visible_geometry_paths,
+        "lidar_targets": lidar_targets,
+        "depth_targets": depth_targets,
+        "ground_truth_use": "evidence only; never planner input or robot steering",
+    }
+
+
 def _forest_preview_report(
     records,
     sink,
@@ -1664,6 +1876,7 @@ def _run(args) -> int:
         raise
     if forest_layout is not None:
         print("[forest-v4] run_identity_start", flush=True)
+    dynamic_spec = _dynamic_obstacle_spec(args) if _forest_v7_enabled(args) else None
     qualification_schedule = (
         FOREST_PREVIEW_SCHEDULE if _forest_preview_enabled(args) else None
     )
@@ -1683,6 +1896,8 @@ def _run(args) -> int:
         raycast_targets.extend(
             proxy["prim_path"] for proxy in forest_layout["proxies"]
         )
+    if dynamic_spec is not None:
+        raycast_targets.append(DYNAMIC_OBSTACLE_PRIM_EXPR)
     if forest_layout is None:
         camera_eye = VIDEO_CAMERA_EYE
         camera_lookat = VIDEO_CAMERA_LOOKAT
@@ -1696,7 +1911,9 @@ def _run(args) -> int:
         camera_lookat = (spawn_x + 1.5, spawn_y, spawn_z + 0.5)
     identity = {
         "schema_version": (
-            4
+            5
+            if _forest_v7_enabled(args)
+            else 4
             if _forest_v6_enabled(args)
             else 3
             if forest_layout is not None
@@ -1840,6 +2057,38 @@ def _run(args) -> int:
             ),
         },
     }
+    if dynamic_spec is not None:
+        identity["dynamic_obstacle"] = {
+            "name": dynamic_spec.name,
+            "prim_expr": DYNAMIC_OBSTACLE_PRIM_EXPR,
+            "runtime_prim_path": DYNAMIC_OBSTACLE_RUNTIME_PRIM,
+            "shape": "cylinder",
+            "start_xy_m": dynamic_spec.start_xy,
+            "end_xy_m": dynamic_spec.end_xy,
+            "wait_seconds": dynamic_spec.wait_seconds,
+            "speed_mps": dynamic_spec.speed_mps,
+            "crossing_duration_seconds": dynamic_spec.crossing_duration_seconds,
+            "hold_fraction": dynamic_spec.hold_fraction,
+            "hold_seconds": dynamic_spec.hold_seconds,
+            "schedule_trigger": "first nonzero accepted body command",
+            "radius_m": dynamic_spec.radius_m,
+            "height_m": dynamic_spec.height_m,
+            "terrain_clearance_m": dynamic_spec.terrain_clearance_m,
+            "rigid_body_mode": "kinematic obstacle with scheduled pose writes",
+            "collision_enabled": True,
+            "lidar_transform_tracking": True,
+            "depth_transform_tracking": True,
+            "colour_rgb": [1.0, 0.24, 0.02],
+            "planner_input": "rendered sensor hits only",
+            "ground_truth_use": (
+                "evidence classification and synchronized clearance only; forbidden "
+                "from point injection, filtering, command generation, and robot steering"
+            ),
+            "claim_boundary": (
+                "single deterministic crossing with reactive occupancy replanning; "
+                "no obstacle-velocity prediction or intention model"
+            ),
+        }
     if forest_layout is not None:
         identity["forest_scene"] = forest_layout["identity"]
     if sensor_rig:
@@ -1913,6 +2162,7 @@ def _run(args) -> int:
     video_frame_count = 0
     runtime_rates = {}
     static_forest_geometry_checks = None
+    dynamic_obstacle_geometry_checks = None
     try:
         __import__("robot_lab.tasks")
         env_cfg = load_cfg_from_registry(args.task, "env_cfg_entry_point")
@@ -1941,6 +2191,11 @@ def _run(args) -> int:
                 f"ActorCriticMoECTS resolved outside the pinned source: {policy_source}"
             )
         robot = base_env.scene["robot"]
+        dynamic_obstacle = (
+            base_env.scene["dynamic_obstacle"]
+            if dynamic_spec is not None
+            else None
+        )
         lidar = base_env.scene.sensors["navigation_lidar"]
         depth_camera = (
             base_env.scene.sensors["navigation_depth_camera"]
@@ -2067,6 +2322,28 @@ def _run(args) -> int:
                 lidar,
                 depth_camera,
             )
+        if dynamic_obstacle is not None:
+            initial_dynamic_state = dynamic_obstacle_state(
+                0.0,
+                dynamic_spec,
+                lambda x, y: _forest_height_world(forest_layout, x, y),
+            )
+            initial_dynamic_pose = torch.tensor(
+                [[*initial_dynamic_state["center_xyz_m"], 1.0, 0.0, 0.0, 0.0]],
+                dtype=torch.float32,
+                device=base_env.device,
+            )
+            dynamic_obstacle.write_root_pose_to_sim(initial_dynamic_pose)
+            dynamic_obstacle.write_root_velocity_to_sim(
+                torch.zeros((1, 6), dtype=torch.float32, device=base_env.device)
+            )
+            base_env.sim.forward()
+            dynamic_obstacle_geometry_checks = _inspect_dynamic_obstacle(
+                stage,
+                dynamic_obstacle,
+                lidar,
+                depth_camera,
+            )
         runtime_composition = {
             "schema_version": 1,
             "candidate": _candidate_name(args),
@@ -2105,6 +2382,14 @@ def _run(args) -> int:
                     "static_geometry_checks": static_forest_geometry_checks,
                 }
             ),
+            "dynamic_obstacle": (
+                None
+                if dynamic_obstacle is None
+                else {
+                    "identity": identity["dynamic_obstacle"],
+                    "geometry_checks": dynamic_obstacle_geometry_checks,
+                }
+            ),
         }
         _write_json(output_dir / "runtime_composition.json", runtime_composition)
         if (
@@ -2112,6 +2397,11 @@ def _run(args) -> int:
             and not static_forest_geometry_checks["passed"]
         ):
             raise AdapterFailure("forest visible/physics/sensor static gate failed")
+        if (
+            dynamic_obstacle_geometry_checks is not None
+            and not dynamic_obstacle_geometry_checks["passed"]
+        ):
+            raise AdapterFailure("dynamic obstacle physics/sensor gate failed")
         previous_actions = torch.zeros((1, 12), device=base_env.device)
         sensor_stride = max(1, int(round(args.sensor_period / float(base_env.step_dt))))
         if args.video_path is not None:
@@ -2162,6 +2452,7 @@ def _run(args) -> int:
             if args.mode in ("qualification", "sensor_qualification")
             else args.duration_seconds
         )
+        dynamic_schedule_start_sim_time = None
         metrics_path = output_dir / "metrics.jsonl"
         sensor_metrics_path = output_dir / "sensor_metrics.jsonl"
         depth_metrics_path = output_dir / "depth_metrics.jsonl"
@@ -2175,6 +2466,40 @@ def _run(args) -> int:
                     raise AdapterFailure(f"fallback command sender failed: {sender.error}")
                 snapshot = command_server.snapshot(time.monotonic_ns())
                 command = (snapshot.command.vx, snapshot.command.vy, snapshot.command.wz)
+                if (
+                    dynamic_obstacle is not None
+                    and dynamic_schedule_start_sim_time is None
+                    and max(abs(float(value)) for value in command) > 0.05
+                ):
+                    dynamic_schedule_start_sim_time = float(base_env.sim.current_time)
+                scheduled_dynamic_state = None
+                if dynamic_obstacle is not None:
+                    scheduled_dynamic_state = dynamic_obstacle_state(
+                        0.0
+                        if dynamic_schedule_start_sim_time is None
+                        else max(
+                            0.0,
+                            float(base_env.sim.current_time)
+                            - dynamic_schedule_start_sim_time,
+                        ),
+                        dynamic_spec,
+                        lambda x, y: _forest_height_world(forest_layout, x, y),
+                    )
+                    dynamic_pose = torch.tensor(
+                        [[*scheduled_dynamic_state["center_xyz_m"], 1.0, 0.0, 0.0, 0.0]],
+                        dtype=torch.float32,
+                        device=base_env.device,
+                    )
+                    dynamic_velocity_xy = scheduled_dynamic_state[
+                        "velocity_xy_mps"
+                    ]
+                    dynamic_velocity = torch.tensor(
+                        [[*dynamic_velocity_xy, 0.0, 0.0, 0.0, 0.0]],
+                        dtype=torch.float32,
+                        device=base_env.device,
+                    )
+                    dynamic_obstacle.write_root_pose_to_sim(dynamic_pose)
+                    dynamic_obstacle.write_root_velocity_to_sim(dynamic_velocity)
                 command_term = base_env.command_manager.get_term("base_velocity")
                 command_term.commands[:, 0] = command[0]
                 command_term.commands[:, 1] = command[1]
@@ -2185,7 +2510,10 @@ def _run(args) -> int:
                 expected_command = actual_command.new_tensor([command])
                 if not torch.allclose(actual_command, expected_command, atol=1.0e-6, rtol=0.0):
                     raise AdapterFailure(
-                        f"V12 live command drifted: {actual_command.detach().cpu().tolist()}"
+                        "V12 live command drifted after the physics step: "
+                        f"actual={actual_command.detach().cpu().tolist()} "
+                        f"expected={expected_command.detach().cpu().tolist()} "
+                        f"dones={dones.detach().cpu().tolist()}"
                     )
                 observed_command, command_error, command_history_index = _policy_command_evidence(
                     observation, command
@@ -2235,6 +2563,65 @@ def _run(args) -> int:
                     if forest_layout is not None
                     else 0.0
                 )
+                dynamic_metrics = {}
+                if dynamic_obstacle is not None:
+                    dynamic_actual_position = _tensor_list(
+                        dynamic_obstacle.data.root_pos_w[0]
+                    )
+                    dynamic_actual_velocity = _tensor_list(
+                        dynamic_obstacle.data.root_lin_vel_w[0]
+                    )
+                    dynamic_ground_z = _forest_height_world(
+                        forest_layout,
+                        dynamic_actual_position[0],
+                        dynamic_actual_position[1],
+                    )
+                    dynamic_center_distance = math.dist(
+                        root_position[:2], dynamic_actual_position[:2]
+                    )
+                    dynamic_metrics = {
+                        "dynamic_obstacle_phase": scheduled_dynamic_state["phase"],
+                        "dynamic_obstacle_elapsed_seconds": scheduled_dynamic_state[
+                            "elapsed_seconds"
+                        ],
+                        "dynamic_obstacle_schedule_triggered": (
+                            dynamic_schedule_start_sim_time is not None
+                        ),
+                        "dynamic_obstacle_trigger_sim_time_seconds": (
+                            dynamic_schedule_start_sim_time
+                        ),
+                        "dynamic_obstacle_crossing_fraction": scheduled_dynamic_state[
+                            "crossing_fraction"
+                        ],
+                        "dynamic_obstacle_scheduled_pos_w": list(
+                            scheduled_dynamic_state["center_xyz_m"]
+                        ),
+                        "dynamic_obstacle_actual_pos_w": dynamic_actual_position,
+                        "dynamic_obstacle_scheduled_lin_vel_w": [
+                            *scheduled_dynamic_state["velocity_xy_mps"],
+                            0.0,
+                        ],
+                        "dynamic_obstacle_actual_lin_vel_w": dynamic_actual_velocity,
+                        "dynamic_obstacle_pose_error_m": math.dist(
+                            scheduled_dynamic_state["center_xyz_m"],
+                            dynamic_actual_position,
+                        ),
+                        "dynamic_obstacle_terrain_height_m": dynamic_ground_z,
+                        "dynamic_obstacle_bottom_clearance_m": (
+                            dynamic_actual_position[2]
+                            - 0.5 * dynamic_spec.height_m
+                            - dynamic_ground_z
+                        ),
+                        "root_to_dynamic_center_xy_m": dynamic_center_distance,
+                        "root_to_dynamic_surface_clearance_m": (
+                            circle_surface_clearance_2d(
+                                root_position[:2],
+                                dynamic_actual_position[:2],
+                                FOREST_NAVIGATION_PLANNING_RADIUS_M,
+                                dynamic_spec.radius_m,
+                            )
+                        ),
+                    }
                 row = {
                     "step": step,
                     "wall_elapsed_seconds": now - started,
@@ -2269,6 +2656,7 @@ def _run(args) -> int:
                     "watchdog_events": snapshot.watchdog_events,
                     "sequence_gaps": snapshot.sequence_gaps,
                     "command_age_ms": command_age_ms,
+                    **dynamic_metrics,
                 }
                 records.append(row)
                 metrics_file.write(json.dumps(row, sort_keys=True) + "\n")
@@ -2344,10 +2732,33 @@ def _run(args) -> int:
                             forest_layout["proxies"],
                             torch,
                         ) & ~self_occluded_hits
+                    raw_proxy_hit_counts = {}
+                    planner_proxy_hit_counts = {}
+                    if forest_layout is not None:
+                        raw_proxy_hit_counts = _forest_proxy_hit_counts(
+                            hits_w,
+                            forest_layout["proxies"],
+                            torch,
+                        )
+                        if planner_world_hits:
+                            planner_proxy_hit_counts = _forest_proxy_hit_counts(
+                                hits_w.new_tensor(planner_world_hits),
+                                forest_layout["proxies"],
+                                torch,
+                            )
+                    dynamic_obstacle_hits = torch.zeros_like(finite_hits)
+                    if dynamic_obstacle is not None:
+                        dynamic_obstacle_hits = _dynamic_obstacle_hit_mask(
+                            hits_w,
+                            dynamic_actual_position,
+                            dynamic_spec,
+                            torch,
+                        ) & ~self_occluded_hits
                     ground_hits = (
                         finite_hits
                         & ~self_occluded_hits
                         & ~obstacle_hits
+                        & ~dynamic_obstacle_hits
                         if forest_layout is not None
                         else finite_hits
                         & ~self_occluded_hits
@@ -2420,6 +2831,16 @@ def _run(args) -> int:
                             else 0
                         ),
                         "obstacle_surface_hit_count": int(obstacle_hits.sum().item()),
+                        "forest_raw_proxy_hit_counts": raw_proxy_hit_counts,
+                        "forest_planner_proxy_hit_counts": planner_proxy_hit_counts,
+                        "dynamic_obstacle_surface_hit_count": int(
+                            dynamic_obstacle_hits.sum().item()
+                        ),
+                        "dynamic_obstacle_actual_pos_w": (
+                            None
+                            if dynamic_obstacle is None
+                            else dynamic_actual_position
+                        ),
                         "unexpected_above_floor_hit_count": int(
                             0
                             if forest_layout is not None
@@ -2478,6 +2899,16 @@ def _run(args) -> int:
                                 forest_layout["proxies"],
                                 torch,
                             ) & ~self_occluded_pixels
+                        dynamic_obstacle_pixels = torch.zeros_like(
+                            finite_camera_hits
+                        )
+                        if dynamic_obstacle is not None:
+                            dynamic_obstacle_pixels = _dynamic_obstacle_hit_mask(
+                                camera_hits_w,
+                                dynamic_actual_position,
+                                dynamic_spec,
+                                torch,
+                            ) & ~self_occluded_pixels
                         valid_values = depth_flat[valid_depth]
                         depth_row = {
                             "step": step,
@@ -2502,6 +2933,14 @@ def _run(args) -> int:
                             ),
                             "obstacle_surface_pixel_count": int(
                                 obstacle_pixels.sum().item()
+                            ),
+                            "dynamic_obstacle_surface_pixel_count": int(
+                                dynamic_obstacle_pixels.sum().item()
+                            ),
+                            "dynamic_obstacle_actual_pos_w": (
+                                None
+                                if dynamic_obstacle is None
+                                else dynamic_actual_position
                             ),
                             "minimum_valid_depth_m": (
                                 None
@@ -2528,9 +2967,13 @@ def _run(args) -> int:
                             -1
                             if best_depth_metadata is None
                             else best_depth_metadata["obstacle_surface_pixel_count"]
+                            + best_depth_metadata.get(
+                                "dynamic_obstacle_surface_pixel_count", 0
+                            )
                         )
                         if (
                             depth_row["obstacle_surface_pixel_count"]
+                            + depth_row["dynamic_obstacle_surface_pixel_count"]
                             > best_obstacle_count
                         ):
                             best_depth_frame = raw_depth.detach().cpu().clone()
@@ -2677,6 +3120,48 @@ def _run(args) -> int:
                     > 0,
                 }
             )
+        if dynamic_obstacle is not None:
+            dynamic_actual_positions = [
+                row["dynamic_obstacle_actual_pos_w"] for row in records
+            ]
+            dynamic_travel = (
+                math.dist(dynamic_actual_positions[0], dynamic_actual_positions[-1])
+                if len(dynamic_actual_positions) >= 2
+                else 0.0
+            )
+            external_checks.update(
+                {
+                    "dynamic_obstacle_geometry": bool(
+                        dynamic_obstacle_geometry_checks
+                        and dynamic_obstacle_geometry_checks["passed"]
+                    ),
+                    "dynamic_obstacle_motion": dynamic_travel
+                    >= 0.90 * math.dist(dynamic_spec.start_xy, dynamic_spec.end_xy),
+                    "dynamic_obstacle_pose_readback": bool(records)
+                    and max(
+                        row["dynamic_obstacle_pose_error_m"] for row in records
+                    )
+                    <= 0.05,
+                    "dynamic_obstacle_terrain_clearance": bool(records)
+                    and min(
+                        row["dynamic_obstacle_bottom_clearance_m"]
+                        for row in records
+                    )
+                    >= dynamic_spec.terrain_clearance_m - 0.01,
+                    "dynamic_obstacle_lidar_observed": bool(sensor_records)
+                    and max(
+                        row.get("dynamic_obstacle_surface_hit_count", 0)
+                        for row in sensor_records
+                    )
+                    > 0,
+                    "dynamic_obstacle_depth_observed": bool(depth_records)
+                    and max(
+                        row.get("dynamic_obstacle_surface_pixel_count", 0)
+                        for row in depth_records
+                    )
+                    > 0,
+                }
+            )
         report = {
             "schema_version": 1,
             "status": "PASS" if all(external_checks.values()) else "FAIL",
@@ -2686,6 +3171,7 @@ def _run(args) -> int:
             "telemetry_transport": telemetry_server.stats().__dict__,
             "record_count": len(records),
             "static_geometry_checks": static_forest_geometry_checks,
+            "dynamic_obstacle_geometry_checks": dynamic_obstacle_geometry_checks,
             "forest_navigation": (
                 None
                 if forest_layout is None
@@ -2765,6 +3251,7 @@ def _parser() -> argparse.ArgumentParser:
             "forest_gen",
             "forest_gen_nav",
             "forest_gen_nav_v6",
+            "forest_gen_nav_v7_dynamic",
         ),
         default="flat",
     )
@@ -2774,6 +3261,56 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--forest-size", type=int, default=FOREST_SIZE_M)
     parser.add_argument("--forest-margin", type=int, default=FOREST_MARGIN_M)
     parser.add_argument("--forest-seed", type=int, default=FOREST_SEED)
+    parser.add_argument(
+        "--dynamic-obstacle-x",
+        type=float,
+        default=DYNAMIC_OBSTACLE_DEFAULT_X_M,
+    )
+    parser.add_argument(
+        "--dynamic-obstacle-start-y",
+        type=float,
+        default=DYNAMIC_OBSTACLE_DEFAULT_START_Y_M,
+    )
+    parser.add_argument(
+        "--dynamic-obstacle-end-y",
+        type=float,
+        default=DYNAMIC_OBSTACLE_DEFAULT_END_Y_M,
+    )
+    parser.add_argument(
+        "--dynamic-obstacle-wait-seconds",
+        type=float,
+        default=DYNAMIC_OBSTACLE_DEFAULT_WAIT_SECONDS,
+    )
+    parser.add_argument(
+        "--dynamic-obstacle-speed",
+        type=float,
+        default=DYNAMIC_OBSTACLE_DEFAULT_SPEED_MPS,
+    )
+    parser.add_argument(
+        "--dynamic-obstacle-radius",
+        type=float,
+        default=DYNAMIC_OBSTACLE_DEFAULT_RADIUS_M,
+    )
+    parser.add_argument(
+        "--dynamic-obstacle-height",
+        type=float,
+        default=DYNAMIC_OBSTACLE_DEFAULT_HEIGHT_M,
+    )
+    parser.add_argument(
+        "--dynamic-obstacle-terrain-clearance",
+        type=float,
+        default=DYNAMIC_OBSTACLE_DEFAULT_TERRAIN_CLEARANCE_M,
+    )
+    parser.add_argument(
+        "--dynamic-obstacle-hold-fraction",
+        type=float,
+        default=DYNAMIC_OBSTACLE_DEFAULT_HOLD_FRACTION,
+    )
+    parser.add_argument(
+        "--dynamic-obstacle-hold-seconds",
+        type=float,
+        default=DYNAMIC_OBSTACLE_DEFAULT_HOLD_SECONDS,
+    )
     parser.add_argument("--duration-seconds", type=float, default=30.0)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--device", default="cuda:0")
@@ -2906,8 +3443,13 @@ def main(argv=None) -> int:
             or args.terrain_filter_minimum_neighbor_cells <= 0
         ):
             raise SystemExit("forest navigation terrain-filter parameters are invalid")
-    if _forest_v6_enabled(args) and abs(float(args.max_vx) - 1.0) > 1.0e-9:
-        raise SystemExit("V6 requires the Isaac forward command limit to equal 1.0 m/s")
+    if _forest_review_geometry_enabled(args) and abs(float(args.max_vx) - 1.0) > 1.0e-9:
+        raise SystemExit("V6/V7 requires the Isaac forward command limit to equal 1.0 m/s")
+    if _forest_v7_enabled(args):
+        try:
+            _dynamic_obstacle_spec(args)
+        except ValueError as error:
+            raise SystemExit(f"invalid V7 dynamic obstacle contract: {error}") from error
     from isaaclab.app import AppLauncher
 
     simulation_app = AppLauncher(

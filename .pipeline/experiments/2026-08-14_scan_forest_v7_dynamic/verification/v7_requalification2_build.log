@@ -1,0 +1,300 @@
+Starting >>> plan_env
+Starting >>> scan_planner_msgs
+[ 18%] Built target gtest
+[ 36%] Built target gtest_main
+[  2%] Built target scan_planner_msgs__cpp
+[ 12%] Built target scan_planner_msgs__rosidl_generator_c
+[ 54%] Built target test_occupancy_decay
+[ 23%] Built target scan_planner_msgs__rosidl_typesupport_cpp
+[ 72%] Built target test_occlusion_shadow
+[ 33%] Built target scan_planner_msgs__rosidl_typesupport_introspection_cpp
+[ 43%] Built target scan_planner_msgs__rosidl_typesupport_c
+[ 53%] Built target scan_planner_msgs__rosidl_typesupport_introspection_c
+[ 64%] Built target scan_planner_msgs__rosidl_typesupport_fastrtps_cpp
+[100%] Built target plan_env
+[ 74%] Built target scan_planner_msgs__rosidl_typesupport_fastrtps_c
+[ 74%] Built target scan_planner_msgs
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /workspace/install/plan_env/include/plan_env/grid_map.h
+-- Up-to-date symlink: /workspace/install/plan_env/include/plan_env/occlusion_shadow.h
+-- Up-to-date symlink: /workspace/install/plan_env/include/plan_env/occupancy_decay.h
+-- Up-to-date symlink: /workspace/install/plan_env/include/plan_env/raycast.h
+-- Up-to-date symlink: /workspace/install/plan_env/share/plan_env/environment/library_path.sh
+-- Up-to-date symlink: /workspace/install/plan_env/share/plan_env/environment/library_path.dsv
+-- Up-to-date symlink: /workspace/install/plan_env/share/ament_index/resource_index/package_run_dependencies/plan_env
+-- Up-to-date symlink: /workspace/install/plan_env/share/ament_index/resource_index/parent_prefix_path/plan_env
+-- Up-to-date symlink: /workspace/install/plan_env/share/plan_env/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /workspace/install/plan_env/share/plan_env/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /workspace/install/plan_env/share/plan_env/environment/path.sh
+-- Up-to-date symlink: /workspace/install/plan_env/share/plan_env/environment/path.dsv
+-- Up-to-date symlink: /workspace/install/plan_env/share/plan_env/local_setup.bash
+-- Up-to-date symlink: /workspace/install/plan_env/share/plan_env/local_setup.sh
+-- Up-to-date symlink: /workspace/install/plan_env/share/plan_env/local_setup.zsh
+-- Up-to-date symlink: /workspace/install/plan_env/share/plan_env/local_setup.dsv
+-- Symlinking: /workspace/install/plan_env/share/plan_env/package.dsv
+[ 76%] Built target scan_planner_msgs__py
+-- Up-to-date symlink: /workspace/install/plan_env/share/ament_index/resource_index/packages/plan_env
+-- Up-to-date symlink: /workspace/install/plan_env/share/plan_env/cmake/ament_cmake_export_targets-extras.cmake
+-- Up-to-date symlink: /workspace/install/plan_env/share/plan_env/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Up-to-date symlink: /workspace/install/plan_env/share/plan_env/cmake/plan_envConfig.cmake
+-- Up-to-date symlink: /workspace/install/plan_env/share/plan_env/cmake/plan_envConfig-version.cmake
+-- Up-to-date symlink: /workspace/install/plan_env/share/plan_env/package.xml
+-- Up-to-date: /workspace/install/plan_env/lib/libplan_env.a
+-- Up-to-date: /workspace/install/plan_env/share/plan_env/cmake/export_plan_envExport.cmake
+-- Up-to-date: /workspace/install/plan_env/share/plan_env/cmake/export_plan_envExport-noconfig.cmake
+[ 84%] Built target scan_planner_msgs__python
+[ 97%] Built target scan_planner_msgs__rosidl_typesupport_introspection_c__pyext
+[100%] Built target scan_planner_msgs__rosidl_typesupport_fastrtps_c__pyext
+[ 97%] Built target scan_planner_msgs__rosidl_typesupport_c__pyext
+Finished <<< plan_env [0.09s]
+Starting >>> path_searching
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/ament_index/resource_index/rosidl_interfaces/scan_planner_msgs
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/bspline.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/data_disp.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/bspline__functions.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/bspline__struct.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/bspline__type_support.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/data_disp__functions.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/data_disp__struct.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/data_disp__type_support.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/rosidl_generator_c__visibility_control.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/environment/library_path.sh
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/environment/library_path.dsv
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/bspline__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/data_disp__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/lib/libscan_planner_msgs__rosidl_typesupport_fastrtps_c.so
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/bspline__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/data_disp__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/lib/libscan_planner_msgs__rosidl_typesupport_fastrtps_cpp.so
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/bspline__rosidl_typesupport_introspection_c.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/data_disp__rosidl_typesupport_introspection_c.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/bspline.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/data_disp.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/bspline__builder.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/bspline__struct.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/bspline__traits.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/bspline__type_support.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/data_disp__builder.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/data_disp__struct.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/data_disp__traits.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/data_disp__type_support.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/bspline__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/include/scan_planner_msgs/msg/detail/data_disp__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/environment/pythonpath.sh
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/environment/pythonpath.dsv
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/lib/python3.8/site-packages/scan_planner_msgs/__init__.py
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/lib/python3.8/site-packages/scan_planner_msgs/msg/__init__.py
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/lib/python3.8/site-packages/scan_planner_msgs/msg/_bspline.py
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/lib/python3.8/site-packages/scan_planner_msgs/msg/_data_disp.py
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/lib/python3.8/site-packages/scan_planner_msgs/scan_planner_msgs_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/lib/python3.8/site-packages/scan_planner_msgs/scan_planner_msgs_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/lib/python3.8/site-packages/scan_planner_msgs/scan_planner_msgs_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/lib/libscan_planner_msgs__python.so
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/msg/Bspline.idl
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/msg/DataDisp.idl
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/msg/Bspline.msg
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/msg/DataDisp.msg
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/ament_index/resource_index/package_run_dependencies/scan_planner_msgs
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/ament_index/resource_index/parent_prefix_path/scan_planner_msgs
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/environment/path.sh
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/environment/path.dsv
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/local_setup.bash
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/local_setup.sh
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/local_setup.zsh
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/local_setup.dsv
+-- Symlinking: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/package.dsv
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/ament_index/resource_index/packages/scan_planner_msgs
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/rosidl_cmake-extras.cmake
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/ament_cmake_export_targets-extras.cmake
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/scan_planner_msgsConfig.cmake
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/scan_planner_msgsConfig-version.cmake
+-- Up-to-date symlink: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/package.xml
+-- Up-to-date: /workspace/install/scan_planner_msgs/lib/libscan_planner_msgs__rosidl_generator_c.so
+-- Up-to-date: /workspace/install/scan_planner_msgs/lib/libscan_planner_msgs__rosidl_typesupport_introspection_c.so
+-- Up-to-date: /workspace/install/scan_planner_msgs/lib/libscan_planner_msgs__rosidl_typesupport_c.so
+-- Up-to-date: /workspace/install/scan_planner_msgs/lib/libscan_planner_msgs__rosidl_typesupport_introspection_cpp.so
+-- Up-to-date: /workspace/install/scan_planner_msgs/lib/libscan_planner_msgs__rosidl_typesupport_cpp.so
+[100%] Built target path_searching
+-- Up-to-date: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/scan_planner_msgs__rosidl_generator_cExport.cmake
+-- Up-to-date: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/scan_planner_msgs__rosidl_generator_cExport-noconfig.cmake
+-- Up-to-date: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/scan_planner_msgs__rosidl_typesupport_introspection_cExport.cmake
+-- Up-to-date: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/scan_planner_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+-- Up-to-date: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/scan_planner_msgs__rosidl_typesupport_cExport.cmake
+-- Up-to-date: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/scan_planner_msgs__rosidl_typesupport_cExport-noconfig.cmake
+-- Up-to-date: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/scan_planner_msgs__rosidl_generator_cppExport.cmake
+-- Up-to-date: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/scan_planner_msgs__rosidl_typesupport_introspection_cppExport.cmake
+-- Up-to-date: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/scan_planner_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+-- Up-to-date: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/scan_planner_msgs__rosidl_typesupport_cppExport.cmake
+-- Up-to-date: /workspace/install/scan_planner_msgs/share/scan_planner_msgs/cmake/scan_planner_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /workspace/install/path_searching/include/path_searching/dyn_a_star.h
+-- Up-to-date symlink: /workspace/install/path_searching/share/path_searching/environment/library_path.sh
+-- Up-to-date symlink: /workspace/install/path_searching/share/path_searching/environment/library_path.dsv
+-- Up-to-date symlink: /workspace/install/path_searching/share/ament_index/resource_index/package_run_dependencies/path_searching
+-- Up-to-date symlink: /workspace/install/path_searching/share/ament_index/resource_index/parent_prefix_path/path_searching
+-- Up-to-date symlink: /workspace/install/path_searching/share/path_searching/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /workspace/install/path_searching/share/path_searching/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /workspace/install/path_searching/share/path_searching/environment/path.sh
+-- Up-to-date symlink: /workspace/install/path_searching/share/path_searching/environment/path.dsv
+-- Up-to-date symlink: /workspace/install/path_searching/share/path_searching/local_setup.bash
+-- Up-to-date symlink: /workspace/install/path_searching/share/path_searching/local_setup.sh
+-- Up-to-date symlink: /workspace/install/path_searching/share/path_searching/local_setup.zsh
+-- Up-to-date symlink: /workspace/install/path_searching/share/path_searching/local_setup.dsv
+-- Symlinking: /workspace/install/path_searching/share/path_searching/package.dsv
+-- Up-to-date symlink: /workspace/install/path_searching/share/ament_index/resource_index/packages/path_searching
+-- Up-to-date symlink: /workspace/install/path_searching/share/path_searching/cmake/ament_cmake_export_targets-extras.cmake
+-- Up-to-date symlink: /workspace/install/path_searching/share/path_searching/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Up-to-date symlink: /workspace/install/path_searching/share/path_searching/cmake/path_searchingConfig.cmake
+-- Up-to-date symlink: /workspace/install/path_searching/share/path_searching/cmake/path_searchingConfig-version.cmake
+-- Up-to-date symlink: /workspace/install/path_searching/share/path_searching/package.xml
+-- Up-to-date: /workspace/install/path_searching/lib/libpath_searching.a
+-- Up-to-date: /workspace/install/path_searching/share/path_searching/cmake/export_path_searchingExport.cmake
+-- Up-to-date: /workspace/install/path_searching/share/path_searching/cmake/export_path_searchingExport-noconfig.cmake
+Finished <<< scan_planner_msgs [0.17s]
+Starting >>> lite3_sim_bridge
+Finished <<< path_searching [0.09s]
+Starting >>> bspline_opt
+[ 20%] Built target gtest
+[ 40%] Built target gtest_main
+[ 80%] Built target bspline_opt
+[100%] Built target test_uniform_bspline
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /workspace/install/bspline_opt/include/bspline_opt/bspline_optimizer.h
+-- Up-to-date symlink: /workspace/install/bspline_opt/include/bspline_opt/gradient_descent_optimizer.h
+-- Up-to-date symlink: /workspace/install/bspline_opt/include/bspline_opt/lbfgs.hpp
+-- Up-to-date symlink: /workspace/install/bspline_opt/include/bspline_opt/uniform_bspline.h
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/bspline_opt/environment/library_path.sh
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/bspline_opt/environment/library_path.dsv
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/ament_index/resource_index/package_run_dependencies/bspline_opt
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/ament_index/resource_index/parent_prefix_path/bspline_opt
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/bspline_opt/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/bspline_opt/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/bspline_opt/environment/path.sh
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/bspline_opt/environment/path.dsv
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/bspline_opt/local_setup.bash
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/bspline_opt/local_setup.sh
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/bspline_opt/local_setup.zsh
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/bspline_opt/local_setup.dsv
+-- Symlinking: /workspace/install/bspline_opt/share/bspline_opt/package.dsv
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/ament_index/resource_index/packages/bspline_opt
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/bspline_opt/cmake/ament_cmake_export_targets-extras.cmake
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/bspline_opt/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/bspline_opt/cmake/bspline_optConfig.cmake
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/bspline_opt/cmake/bspline_optConfig-version.cmake
+-- Up-to-date symlink: /workspace/install/bspline_opt/share/bspline_opt/package.xml
+-- Up-to-date: /workspace/install/bspline_opt/lib/libbspline_opt.a
+-- Up-to-date: /workspace/install/bspline_opt/share/bspline_opt/cmake/export_bspline_optExport.cmake
+-- Up-to-date: /workspace/install/bspline_opt/share/bspline_opt/cmake/export_bspline_optExport-noconfig.cmake
+Finished <<< bspline_opt [0.16s]
+Starting >>> traj_utils
+[100%] Built target traj_utils
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /workspace/install/traj_utils/include/traj_utils/planning_visualization.h
+-- Up-to-date symlink: /workspace/install/traj_utils/include/traj_utils/polynomial_traj.h
+-- Up-to-date symlink: /workspace/install/traj_utils/share/traj_utils/environment/library_path.sh
+-- Up-to-date symlink: /workspace/install/traj_utils/share/traj_utils/environment/library_path.dsv
+-- Up-to-date symlink: /workspace/install/traj_utils/share/ament_index/resource_index/package_run_dependencies/traj_utils
+-- Up-to-date symlink: /workspace/install/traj_utils/share/ament_index/resource_index/parent_prefix_path/traj_utils
+-- Up-to-date symlink: /workspace/install/traj_utils/share/traj_utils/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /workspace/install/traj_utils/share/traj_utils/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /workspace/install/traj_utils/share/traj_utils/environment/path.sh
+-- Up-to-date symlink: /workspace/install/traj_utils/share/traj_utils/environment/path.dsv
+-- Up-to-date symlink: /workspace/install/traj_utils/share/traj_utils/local_setup.bash
+-- Up-to-date symlink: /workspace/install/traj_utils/share/traj_utils/local_setup.sh
+-- Up-to-date symlink: /workspace/install/traj_utils/share/traj_utils/local_setup.zsh
+-- Up-to-date symlink: /workspace/install/traj_utils/share/traj_utils/local_setup.dsv
+-- Symlinking: /workspace/install/traj_utils/share/traj_utils/package.dsv
+-- Up-to-date symlink: /workspace/install/traj_utils/share/ament_index/resource_index/packages/traj_utils
+-- Up-to-date symlink: /workspace/install/traj_utils/share/traj_utils/cmake/ament_cmake_export_targets-extras.cmake
+-- Up-to-date symlink: /workspace/install/traj_utils/share/traj_utils/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Up-to-date symlink: /workspace/install/traj_utils/share/traj_utils/cmake/traj_utilsConfig.cmake
+-- Up-to-date symlink: /workspace/install/traj_utils/share/traj_utils/cmake/traj_utilsConfig-version.cmake
+-- Up-to-date symlink: /workspace/install/traj_utils/share/traj_utils/package.xml
+-- Up-to-date: /workspace/install/traj_utils/lib/libtraj_utils.a
+-- Up-to-date: /workspace/install/traj_utils/share/traj_utils/cmake/export_traj_utilsExport.cmake
+-- Up-to-date: /workspace/install/traj_utils/share/traj_utils/cmake/export_traj_utilsExport-noconfig.cmake
+Finished <<< traj_utils [0.07s]
+running develop
+running egg_info
+writing lite3_sim_bridge.egg-info/PKG-INFO
+writing dependency_links to lite3_sim_bridge.egg-info/dependency_links.txt
+writing entry points to lite3_sim_bridge.egg-info/entry_points.txt
+writing requirements to lite3_sim_bridge.egg-info/requires.txt
+writing top-level names to lite3_sim_bridge.egg-info/top_level.txt
+reading manifest file 'lite3_sim_bridge.egg-info/SOURCES.txt'
+writing manifest file 'lite3_sim_bridge.egg-info/SOURCES.txt'
+running build_ext
+Creating /workspace/install/lite3_sim_bridge/lib/python3.8/site-packages/lite3-sim-bridge.egg-link (link to .)
+Installing acceptance_monitor_node script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing compare_v12_asset_qualification script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing evaluate_acceptance script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing foxy_bridge_node script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing probe_rtx_lidar script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing run_isaac_lite3 script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing run_isaac_v12_fallback script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+
+Installed /workspace/build/lite3_sim_bridge
+running install_data
+Finished <<< lite3_sim_bridge [0.37s]
+Starting >>> scan_planner
+[ 25%] Built target gtest
+[ 33%] Built target gtest_main
+Scanning dependencies of target test_trajectory_progress
+Scanning dependencies of target closed_loop_controller
+[ 41%] Building CXX object CMakeFiles/test_trajectory_progress.dir/test/test_trajectory_progress.cpp.o
+Scanning dependencies of target scan_planner_node
+[ 50%] Building CXX object CMakeFiles/closed_loop_controller.dir/src/closed_loop_controller.cpp.o
+[ 58%] Building CXX object CMakeFiles/scan_planner_node.dir/src/scan_replan_fsm.cpp.o
+[ 66%] Linking CXX executable test_trajectory_progress
+[ 66%] Built target test_trajectory_progress
+[ 75%] Linking CXX executable closed_loop_controller
+[ 75%] Built target closed_loop_controller
+[ 83%] Linking CXX executable scan_planner_node
+[100%] Built target scan_planner_node
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /workspace/install/scan_planner/lib/scan_planner/scan_planner_node
+-- Up-to-date symlink: /workspace/install/scan_planner/lib/scan_planner/closed_loop_controller
+-- Up-to-date symlink: /workspace/install/scan_planner/include/plan_manage/plan_container.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner/include/plan_manage/planner_manager.h
+-- Up-to-date symlink: /workspace/install/scan_planner/include/plan_manage/scan_replan_fsm.h
+-- Up-to-date symlink: /workspace/install/scan_planner/include/plan_manage/trajectory_progress.h
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/launch/foxy_isaac_closed_loop.launch.py
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/config/foxy_isaac_planner.yaml
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/config/foxy_isaac_forest_v5_planner.yaml
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/config/foxy_isaac_controller.yaml
+-- Up-to-date symlink: /workspace/install/scan_planner/share/ament_index/resource_index/package_run_dependencies/scan_planner
+-- Up-to-date symlink: /workspace/install/scan_planner/share/ament_index/resource_index/parent_prefix_path/scan_planner
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/environment/path.sh
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/environment/path.dsv
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/local_setup.bash
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/local_setup.sh
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/local_setup.zsh
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/local_setup.dsv
+-- Symlinking: /workspace/install/scan_planner/share/scan_planner/package.dsv
+-- Up-to-date symlink: /workspace/install/scan_planner/share/ament_index/resource_index/packages/scan_planner
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/cmake/scan_plannerConfig.cmake
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/cmake/scan_plannerConfig-version.cmake
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/package.xml
+Finished <<< scan_planner [8.04s]
+
+Summary: 7 packages finished [8.65s]

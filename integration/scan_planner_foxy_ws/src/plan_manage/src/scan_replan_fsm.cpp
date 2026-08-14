@@ -1,5 +1,6 @@
 
 #include <plan_manage/scan_replan_fsm.h>
+#include <plan_manage/trajectory_progress.h>
 #include <cmath>
 #include <stdexcept>
 
@@ -27,6 +28,7 @@ namespace scan_planner
     have_new_target_ = false;
     rviz_height_ready_ = false;
     go2_execution_frozen_ = false;
+    go2_catchup_active_ = false;
     flag_escape_emergency_ = true;
     need_hover_stop_ = false;
     replan_fail_count_ = 0;
@@ -78,6 +80,9 @@ namespace scan_planner
     go2_execution_frozen_sub_ = node_->create_subscription<std_msgs::msg::Bool>(
         "planning/go2_execution_frozen", 10,
         std::bind(&SCANReplanFSM::go2ExecutionFrozenCallback, this, std::placeholders::_1));
+    go2_catchup_active_sub_ = node_->create_subscription<std_msgs::msg::Bool>(
+        "planning/go2_catchup_active", 10,
+        std::bind(&SCANReplanFSM::go2CatchupActiveCallback, this, std::placeholders::_1));
 
     bspline_pub_ = node_->create_publisher<scan_planner_msgs::msg::Bspline>("planning/bspline", 10);
     data_disp_pub_ = node_->create_publisher<scan_planner_msgs::msg::DataDisp>("planning/data_display", 100);
@@ -417,6 +422,11 @@ namespace scan_planner
   void SCANReplanFSM::go2ExecutionFrozenCallback(std_msgs::msg::Bool::ConstSharedPtr msg)
   {
     go2_execution_frozen_ = msg->data;
+  }
+
+  void SCANReplanFSM::go2CatchupActiveCallback(std_msgs::msg::Bool::ConstSharedPtr msg)
+  {
+    go2_catchup_active_ = msg->data;
   }
 
   void SCANReplanFSM::updateLocalTrajTimeFreeze()
@@ -809,6 +819,13 @@ namespace scan_planner
     auto map = planner_manager_->grid_map_;
 
     if (exec_state_ == WAIT_TARGET || info->start_time_.seconds() < 1e-5)
+      return;
+    // The controller freezes trajectory time while it aligns to a newly
+    // published safety trajectory. Starting another optimizer call during
+    // that bounded catch-up can starve odometry callbacks and compound the
+    // start mismatch. Resume collision-triggered replanning immediately after
+    // the controller reports strict tracking again.
+    if (scan_planner::shouldDeferCollisionReplan(go2_catchup_active_))
       return;
 
     /* ---------- check trajectory ---------- */

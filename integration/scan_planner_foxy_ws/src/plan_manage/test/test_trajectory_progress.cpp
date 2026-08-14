@@ -42,4 +42,39 @@ TEST(TrajectoryProgress, FinishedStateLatchesAfterEnteringGoalTolerance)
   EXPECT_TRUE(shouldLatchTrajectoryFinished(false, 7.0, 7.0, 0.14, 0.15));
   EXPECT_TRUE(shouldLatchTrajectoryFinished(true, 7.0, 7.0, 0.30, 0.15));
 }
+
+TEST(TrajectoryProgress, BoundsReplanCatchupBeforeStrictTracking)
+{
+  EXPECT_EQ(classifyTrajectoryCatchup(0.08, 0.10, 0.40),
+            TrajectoryCatchupState::TRACKING);
+  EXPECT_EQ(classifyTrajectoryCatchup(0.353, 0.10, 0.40),
+            TrajectoryCatchupState::CATCHUP);
+  EXPECT_EQ(classifyTrajectoryCatchup(0.401, 0.10, 0.40),
+            TrajectoryCatchupState::REJECTED);
+}
+
+TEST(TrajectoryProgress, DefersCollisionReplanOnlyWhileCatchupIsActive)
+{
+  EXPECT_FALSE(isTrajectoryCatchupActive(TrajectoryCatchupState::TRACKING));
+  EXPECT_TRUE(isTrajectoryCatchupActive(TrajectoryCatchupState::CATCHUP));
+  EXPECT_FALSE(isTrajectoryCatchupActive(TrajectoryCatchupState::REJECTED));
+  EXPECT_TRUE(shouldDeferCollisionReplan(true));
+  EXPECT_FALSE(shouldDeferCollisionReplan(false));
+}
+
+TEST(TrajectoryProgress, CatchupVelocityClearsThePolicyDeadbandButStaysBounded)
+{
+  const Eigen::Vector2d slow = boundedCatchupVelocity(
+      Eigen::Vector2d(0.15, 0.0), 0.8, 0.20, 1.0);
+  EXPECT_NEAR(slow.x(), 0.20, 1.0e-9);
+  EXPECT_NEAR(slow.y(), 0.0, 1.0e-9);
+
+  const Eigen::Vector2d saturated = boundedCatchupVelocity(
+      Eigen::Vector2d(2.0, 0.0), 0.8, 0.20, 1.0);
+  EXPECT_NEAR(saturated.norm(), 1.0, 1.0e-9);
+  EXPECT_NEAR(
+      boundedCatchupVelocity(
+          Eigen::Vector2d::Zero(), 0.8, 0.20, 1.0).norm(),
+      0.0, 1.0e-9);
+}
 }  // namespace scan_planner

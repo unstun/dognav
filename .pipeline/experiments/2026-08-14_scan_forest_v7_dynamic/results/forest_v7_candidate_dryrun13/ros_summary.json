@@ -1,0 +1,65 @@
+{
+  "cloud_points": {
+    "maximum": 617,
+    "mean": 315.7432432432432,
+    "minimum": 229
+  },
+  "last_body_position": [
+    0.4916914999485016,
+    3.0064332485198975,
+    0.8224673867225647
+  ],
+  "last_command": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "max_abs_command": [
+    0.9999999570382001,
+    0.13947976871220827,
+    1.0
+  ],
+  "monitor_duration_seconds": 47.618438481,
+  "nonzero_command_count": 943,
+  "path_length_m": 6.517579399303063,
+  "schema_version": 1,
+  "synchronized_sensor_triplet_count": 370,
+  "synchronized_sensor_triplet_fraction": 1.0,
+  "topics": {
+    "body_pose": {
+      "count": 370,
+      "duration_seconds": 44.719834702,
+      "nonincreasing_stamp_count": 0,
+      "rate_hz": 8.251372181022335
+    },
+    "bspline": {
+      "count": 2,
+      "duration_seconds": 0.819892335,
+      "nonincreasing_stamp_count": 0,
+      "rate_hz": 1.2196723366123432
+    },
+    "cloud": {
+      "count": 370,
+      "duration_seconds": 44.719824162,
+      "nonincreasing_stamp_count": 0,
+      "rate_hz": 8.251374125785409
+    },
+    "cmd_vel": {
+      "count": 4760,
+      "duration_seconds": 47.590035929,
+      "nonincreasing_stamp_count": 0,
+      "rate_hz": 99.99992450310386
+    },
+    "sensor_pose": {
+      "count": 370,
+      "duration_seconds": 44.719813572,
+      "nonincreasing_stamp_count": 0,
+      "rate_hz": 8.25137607977504
+    }
+  },
+  "trajectory_ids": [
+    1,
+    2
+  ],
+  "unique_trajectory_count": 2
+}

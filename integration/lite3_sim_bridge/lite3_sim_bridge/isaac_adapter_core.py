@@ -35,6 +35,132 @@ DEFAULT_QUALIFICATION_SCHEDULE = (
 )
 
 
+@dataclass(frozen=True)
+class DynamicObstacleSpec:
+    """Frozen straight-line wait/cross/hold/cross/park moving-body trajectory."""
+
+    name: str
+    start_xy: Tuple[float, float]
+    end_xy: Tuple[float, float]
+    wait_seconds: float
+    speed_mps: float
+    radius_m: float
+    height_m: float
+    terrain_clearance_m: float
+    hold_fraction: float = 0.5
+    hold_seconds: float = 0.0
+
+    def __post_init__(self) -> None:
+        if not self.name:
+            raise ValueError("dynamic obstacle needs a name")
+        if len(self.start_xy) != 2 or len(self.end_xy) != 2:
+            raise ValueError("dynamic obstacle endpoints must be two-dimensional")
+        values = tuple(float(value) for value in self.start_xy + self.end_xy) + (
+            float(self.wait_seconds),
+            float(self.speed_mps),
+            float(self.radius_m),
+            float(self.height_m),
+            float(self.terrain_clearance_m),
+            float(self.hold_fraction),
+            float(self.hold_seconds),
+        )
+        if not all(math.isfinite(value) for value in values):
+            raise ValueError("dynamic obstacle values must be finite")
+        if math.dist(self.start_xy, self.end_xy) <= 1.0e-9:
+            raise ValueError("dynamic obstacle endpoints must be distinct")
+        if (
+            self.wait_seconds < 0.0
+            or self.hold_seconds < 0.0
+            or self.terrain_clearance_m < 0.0
+        ):
+            raise ValueError(
+                "dynamic obstacle wait, hold, and clearance must be non-negative"
+            )
+        if not 0.0 < self.hold_fraction < 1.0:
+            raise ValueError("dynamic obstacle hold fraction must be inside (0, 1)")
+        if self.speed_mps <= 0.0 or self.radius_m <= 0.0 or self.height_m <= 0.0:
+            raise ValueError("dynamic obstacle speed and dimensions must be positive")
+
+    @property
+    def crossing_duration_seconds(self) -> float:
+        return math.dist(self.start_xy, self.end_xy) / self.speed_mps
+
+
+def dynamic_obstacle_state(
+    elapsed_seconds: float,
+    spec: DynamicObstacleSpec,
+    terrain_height: Callable[[float, float], float],
+) -> Mapping[str, object]:
+    """Evaluate a terrain-seated obstacle pose without simulator dependencies."""
+
+    if not math.isfinite(elapsed_seconds) or elapsed_seconds < 0.0:
+        raise ValueError("dynamic obstacle elapsed time must be finite and non-negative")
+    crossing_elapsed = elapsed_seconds - spec.wait_seconds
+    if crossing_elapsed <= 0.0:
+        phase = "waiting"
+        fraction = 0.0
+    elif crossing_elapsed < spec.crossing_duration_seconds * spec.hold_fraction:
+        phase = "crossing"
+        fraction = crossing_elapsed / spec.crossing_duration_seconds
+    elif crossing_elapsed < (
+        spec.crossing_duration_seconds * spec.hold_fraction + spec.hold_seconds
+    ):
+        phase = "holding"
+        fraction = spec.hold_fraction
+    elif crossing_elapsed < spec.crossing_duration_seconds + spec.hold_seconds:
+        phase = "crossing"
+        fraction = (
+            crossing_elapsed - spec.hold_seconds
+        ) / spec.crossing_duration_seconds
+    else:
+        phase = "parked"
+        fraction = 1.0
+    dx = float(spec.end_xy[0]) - float(spec.start_xy[0])
+    dy = float(spec.end_xy[1]) - float(spec.start_xy[1])
+    x = float(spec.start_xy[0]) + fraction * dx
+    y = float(spec.start_xy[1]) + fraction * dy
+    segment_length = math.hypot(dx, dy)
+    velocity_xy = (
+        (spec.speed_mps * dx / segment_length, spec.speed_mps * dy / segment_length)
+        if phase == "crossing"
+        else (0.0, 0.0)
+    )
+    ground_z = float(terrain_height(x, y))
+    if not math.isfinite(ground_z):
+        raise ValueError("dynamic obstacle terrain height must be finite")
+    center_z = ground_z + 0.5 * spec.height_m + spec.terrain_clearance_m
+    return {
+        "phase": phase,
+        "elapsed_seconds": float(elapsed_seconds),
+        "crossing_fraction": fraction,
+        "center_xy_m": (x, y),
+        "center_xyz_m": (x, y, center_z),
+        "velocity_xy_mps": velocity_xy,
+        "terrain_height_m": ground_z,
+        "bottom_terrain_clearance_m": center_z - 0.5 * spec.height_m - ground_z,
+    }
+
+
+def circle_surface_clearance_2d(
+    first_xy: Sequence[float],
+    second_xy: Sequence[float],
+    first_radius_m: float,
+    second_radius_m: float,
+) -> float:
+    """Return signed planar clearance between two synchronized circle bounds."""
+
+    if len(first_xy) != 2 or len(second_xy) != 2:
+        raise ValueError("circle centres must be two-dimensional")
+    values = tuple(float(value) for value in first_xy) + tuple(
+        float(value) for value in second_xy
+    ) + (float(first_radius_m), float(second_radius_m))
+    if not all(math.isfinite(value) for value in values):
+        raise ValueError("circle clearance inputs must be finite")
+    if first_radius_m < 0.0 or second_radius_m < 0.0:
+        raise ValueError("circle radii must be non-negative")
+    return math.dist(first_xy, second_xy) - first_radius_m - second_radius_m
+
+
 def schedule_state(
     elapsed_seconds: float,
     schedule: Sequence[QualificationSegment] = DEFAULT_QUALIFICATION_SCHEDULE,

@@ -32,6 +32,12 @@ public:
     max_vyaw_ = std::min(declare_parameter<double>("max_vyaw", 1.0), kMaxVYawLimit);
     finish_dist_ = declare_parameter<double>("finish_dist", 0.15);
     max_tracking_error_ = declare_parameter<double>("max_tracking_error", 0.10);
+    replan_catchup_max_error_ = std::max(
+        max_tracking_error_,
+        declare_parameter<double>("replan_catchup_max_error", max_tracking_error_));
+    replan_catchup_min_speed_ = std::clamp(
+        declare_parameter<double>("replan_catchup_min_speed", 0.0), 0.0,
+        std::max(max_vx_, max_vy_));
 
     bspline_sub_ = create_subscription<scan_planner_msgs::msg::Bspline>(
         "planning/bspline", 10,
@@ -41,6 +47,7 @@ public:
         std::bind(&ClosedLoopController::odomCallback, this, std::placeholders::_1));
     cmd_vel_pub_ = create_publisher<geometry_msgs::msg::Twist>("cmd_vel", 20);
     execution_frozen_pub_ = create_publisher<std_msgs::msg::Bool>("planning/go2_execution_frozen", 10);
+    catchup_active_pub_ = create_publisher<std_msgs::msg::Bool>("planning/go2_catchup_active", 10);
     cmd_timer_ = create_wall_timer(std::chrono::milliseconds(10),
                                    std::bind(&ClosedLoopController::cmdCallback, this));
     last_update_time_ = now();
@@ -87,6 +94,13 @@ private:
     execution_frozen_pub_->publish(msg);
   }
 
+  void publishCatchupActive(bool active)
+  {
+    std_msgs::msg::Bool msg;
+    msg.data = active;
+    catchup_active_pub_->publish(msg);
+  }
+
   void bsplineCallback(const scan_planner_msgs::msg::Bspline::ConstSharedPtr msg)
   {
     if (msg->pos_pts.empty() || msg->knots.empty() || msg->order <= 0)
@@ -107,10 +121,17 @@ private:
     traj_id_ = msg->traj_id;
     exec_time_ = 0.0;
     trajectory_finished_ = false;
+    const double start_error = have_odom_
+        ? (traj_[0].evaluateDeBoorT(0.0).head<2>() - odom_pos_.head<2>()).norm()
+        : 0.0;
+    catchup_state_ = classifyTrajectoryCatchup(
+        start_error, max_tracking_error_, replan_catchup_max_error_);
     last_update_time_ = now();
     receive_traj_ = true;
-    RCLCPP_INFO(get_logger(), "Received trajectory %lld, duration %.3fs",
-                static_cast<long long>(traj_id_), traj_duration_);
+    RCLCPP_INFO(get_logger(),
+                "Received trajectory %lld, duration %.3fs, start error %.3fm, catchup state %d",
+                static_cast<long long>(traj_id_), traj_duration_, start_error,
+                static_cast<int>(catchup_state_));
   }
 
   void odomCallback(const nav_msgs::msg::Odometry::ConstSharedPtr msg)
@@ -125,6 +146,7 @@ private:
     if (!receive_traj_ || !have_odom_)
     {
       publishExecutionFrozen(false);
+      publishCatchupActive(false);
       publishStop();
       return;
     }
@@ -132,6 +154,7 @@ private:
     if (trajectory_finished_)
     {
       publishExecutionFrozen(false);
+      publishCatchupActive(false);
       publishStop();
       last_update_time_ = current_time;
       return;
@@ -142,9 +165,47 @@ private:
     Eigen::Vector3d pos_des = traj_[0].evaluateDeBoorT(t_eval);
     const double yaw_error = normalizeAngle(estimateDesiredYaw(t_eval, pos_des) - odom_yaw_);
     const double yaw_command = std::clamp(kp_yaw_ * yaw_error, -max_vyaw_, max_vyaw_);
+    if (catchup_state_ == TrajectoryCatchupState::REJECTED)
+    {
+      publishExecutionFrozen(true);
+      publishCatchupActive(false);
+      publishStop();
+      last_update_time_ = current_time;
+      return;
+    }
+    if (catchup_state_ == TrajectoryCatchupState::CATCHUP)
+    {
+      const Eigen::Vector2d catchup_error(
+          pos_des.x() - odom_pos_.x(), pos_des.y() - odom_pos_.y());
+      if (catchup_error.norm() <= max_tracking_error_)
+      {
+        catchup_state_ = TrajectoryCatchupState::TRACKING;
+        publishCatchupActive(false);
+      }
+      else
+      {
+        publishExecutionFrozen(true);
+        publishCatchupActive(true);
+        const Eigen::Vector2d vel_world = boundedCatchupVelocity(
+            catchup_error, kp_pos_, replan_catchup_min_speed_,
+            std::max(max_vx_, max_vy_));
+        const double c = std::cos(odom_yaw_);
+        const double s = std::sin(odom_yaw_);
+        geometry_msgs::msg::Twist command;
+        command.linear.x = std::clamp(
+            c * vel_world.x() + s * vel_world.y(), -max_vx_, max_vx_);
+        command.linear.y = std::clamp(
+            -s * vel_world.x() + c * vel_world.y(), -max_vy_, max_vy_);
+        command.angular.z = yaw_command;
+        cmd_vel_pub_->publish(command);
+        last_update_time_ = current_time;
+        return;
+      }
+    }
     if (std::abs(yaw_error) > heading_error_threshold_)
     {
       publishExecutionFrozen(true);
+      publishCatchupActive(false);
       publishStop(yaw_command);
       last_update_time_ = current_time;
       return;
@@ -156,6 +217,7 @@ private:
         exec_time_, dt, traj_duration_, odom_pos_.head<2>(),
         candidate_pos.head<2>(), max_tracking_error_);
     publishExecutionFrozen(progress.frozen);
+    publishCatchupActive(false);
     exec_time_ = progress.next_time;
     last_update_time_ = current_time;
     pos_des = traj_[0].evaluateDeBoorT(exec_time_);
@@ -179,12 +241,14 @@ private:
 
   rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_pub_;
   rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr execution_frozen_pub_;
+  rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr catchup_active_pub_;
   rclcpp::Subscription<scan_planner_msgs::msg::Bspline>::SharedPtr bspline_sub_;
   rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub_;
   rclcpp::TimerBase::SharedPtr cmd_timer_;
   bool receive_traj_{false};
   bool have_odom_{false};
   bool trajectory_finished_{false};
+  TrajectoryCatchupState catchup_state_{TrajectoryCatchupState::TRACKING};
   std::vector<UniformBspline> traj_;
   double traj_duration_{0.0};
   std::int64_t traj_id_{0};
@@ -194,6 +258,7 @@ private:
   rclcpp::Time last_update_time_{0, 0, RCL_ROS_TIME};
   double time_forward_, heading_error_threshold_, kp_pos_, kp_yaw_;
   double max_vx_, max_vy_, max_vyaw_, finish_dist_, max_tracking_error_;
+  double replan_catchup_max_error_, replan_catchup_min_speed_;
 };
 }  // namespace scan_planner
 

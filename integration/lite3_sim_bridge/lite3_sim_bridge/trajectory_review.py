@@ -17,6 +17,7 @@ PLAN_COLOR_BGR = (80, 220, 80)
 ACTUAL_COLOR_BGR = (255, 220, 40)
 PRIMARY_OBSTACLE_COLOR_BGR = (40, 70, 245)
 OBSTACLE_COLOR_BGR = (145, 145, 145)
+DYNAMIC_OBSTACLE_COLOR_BGR = (0, 120, 255)
 
 
 def _finite_point(point: Sequence[float]) -> tuple[float, float, float]:
@@ -192,6 +193,14 @@ def _plot_bounds(
         (float(row["root_pos_w"][0]), float(row["root_pos_w"][1]))
         for row in metrics
     )
+    points.extend(
+        (
+            float(row["dynamic_obstacle_actual_pos_w"][0]),
+            float(row["dynamic_obstacle_actual_pos_w"][1]),
+        )
+        for row in metrics
+        if row.get("dynamic_obstacle_actual_pos_w") is not None
+    )
     for plan in plans:
         points.extend((float(point[0]), float(point[1])) for point in plan["sampled_points"])
     if not points:
@@ -280,6 +289,7 @@ def render_trajectory_review(
         raise ValueError(f"cannot create overlay staging video: {staging}")
 
     actual_path = []
+    dynamic_path = []
     active_plan_index = -1
     rendered = 0
     try:
@@ -298,6 +308,11 @@ def render_trajectory_review(
             ):
                 active_plan_index += 1
             actual_path.append(tuple(float(value) for value in row["root_pos_w"][:2]))
+            dynamic_position = row.get("dynamic_obstacle_actual_pos_w")
+            if dynamic_position is not None:
+                dynamic_path.append(
+                    (float(dynamic_position[0]), float(dynamic_position[1]))
+                )
 
             shaded = frame.copy()
             cv2.rectangle(
@@ -363,6 +378,41 @@ def render_trajectory_review(
                     lineType=cv2.LINE_AA,
                 )
             cv2.circle(frame, mapper(actual_path[-1]), 5, ACTUAL_COLOR_BGR, thickness=-1)
+            if dynamic_path:
+                dynamic_pixels = _polyline(dynamic_path, mapper)
+                if len(dynamic_pixels) >= 2:
+                    cv2.polylines(
+                        frame,
+                        [np.asarray(dynamic_pixels, dtype=np.int32)],
+                        False,
+                        DYNAMIC_OBSTACLE_COLOR_BGR,
+                        thickness=2,
+                        lineType=cv2.LINE_AA,
+                    )
+                dynamic_centre_px = mapper(dynamic_path[-1])
+                dynamic_radius = float(
+                    (identity.get("dynamic_obstacle") or {}).get("radius_m", 0.30)
+                )
+                dynamic_edge_px = mapper(
+                    (dynamic_path[-1][0] + dynamic_radius, dynamic_path[-1][1])
+                )
+                dynamic_radius_px = max(
+                    3, abs(dynamic_edge_px[0] - dynamic_centre_px[0])
+                )
+                cv2.circle(
+                    frame,
+                    dynamic_centre_px,
+                    dynamic_radius_px,
+                    DYNAMIC_OBSTACLE_COLOR_BGR,
+                    thickness=3,
+                )
+                cv2.circle(
+                    frame,
+                    dynamic_centre_px,
+                    4,
+                    DYNAMIC_OBSTACLE_COLOR_BGR,
+                    thickness=-1,
+                )
             goal = navigation.get("goal_world_m")
             if goal and len(goal) >= 2:
                 cv2.drawMarker(
@@ -380,6 +430,25 @@ def render_trajectory_review(
             cv2.putText(frame, "SCAN planned", (inset_left + 48, legend_y + 23), cv2.FONT_HERSHEY_SIMPLEX, 0.46, (245, 245, 245), 1, cv2.LINE_AA)
             cv2.line(frame, (inset_left + 175, legend_y + 18), (inset_left + 203, legend_y + 18), ACTUAL_COLOR_BGR, 3, cv2.LINE_AA)
             cv2.putText(frame, "Isaac actual", (inset_left + 211, legend_y + 23), cv2.FONT_HERSHEY_SIMPLEX, 0.46, (245, 245, 245), 1, cv2.LINE_AA)
+            if dynamic_path:
+                cv2.line(
+                    frame,
+                    (inset_left + 12, legend_y + 42),
+                    (inset_left + 40, legend_y + 42),
+                    DYNAMIC_OBSTACLE_COLOR_BGR,
+                    3,
+                    cv2.LINE_AA,
+                )
+                cv2.putText(
+                    frame,
+                    "Dynamic obstacle actual",
+                    (inset_left + 48, legend_y + 47),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.46,
+                    (245, 245, 245),
+                    1,
+                    cv2.LINE_AA,
+                )
             speed = math.hypot(float(row["root_lin_vel_w"][0]), float(row["root_lin_vel_w"][1]))
             command_vx = float(row["applied_command"][0])
             trajectory_id = "none" if active_plan_index < 0 else str(plans[active_plan_index]["trajectory_id"])
@@ -393,6 +462,21 @@ def render_trajectory_review(
                 2,
                 cv2.LINE_AA,
             )
+            if dynamic_path:
+                phase = str(row.get("dynamic_obstacle_phase", "unknown"))
+                clearance = float(
+                    row.get("root_to_dynamic_surface_clearance_m", math.nan)
+                )
+                cv2.putText(
+                    frame,
+                    f"dynamic={phase}  synchronized clearance={clearance:4.2f} m",
+                    (24, height - 52),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.60,
+                    DYNAMIC_OBSTACLE_COLOR_BGR,
+                    2,
+                    cv2.LINE_AA,
+                )
             writer.write(frame)
             rendered += 1
     finally:
@@ -431,7 +515,7 @@ def render_trajectory_review(
         encoder = "ffmpeg libx264 yuv420p"
 
     metadata = {
-        "schema_version": 1,
+        "schema_version": 2 if identity.get("dynamic_obstacle") else 1,
         "mapping": {
             "plan_to_sim_time": "nearest simulator-stamped body_pose receipt",
             "frame_to_sim_time": "metrics rows where step modulo video frame_stride equals zero",
@@ -457,12 +541,34 @@ def render_trajectory_review(
         },
         "trajectory_ids": [int(plan["trajectory_id"]) for plan in plans],
         "trajectory_count": len(plans),
+        "plans": [
+            {
+                "trajectory_id": int(plan["trajectory_id"]),
+                "effective_sim_time_seconds": float(
+                    plan["effective_sim_time_seconds"]
+                ),
+                "receipt_alignment_error_ms": float(
+                    plan["receipt_alignment_error_ms"]
+                ),
+            }
+            for plan in plans
+        ],
         "sample_count_per_trajectory": len(plans[0]["sampled_points"]),
         "plot_bounds_world_xy_m": list(bounds),
+        "dynamic_obstacle": {
+            "rendered": bool(dynamic_path),
+            "record_count": sum(
+                row.get("dynamic_obstacle_actual_pos_w") is not None
+                for row in metrics
+            ),
+            "identity": identity.get("dynamic_obstacle"),
+            "path_source": "dynamic_obstacle_actual_pos_w PhysX readback",
+        },
         "colours_bgr": {
             "scan_planned": list(PLAN_COLOR_BGR),
             "isaac_actual": list(ACTUAL_COLOR_BGR),
             "primary_obstacle": list(PRIMARY_OBSTACLE_COLOR_BGR),
+            "dynamic_obstacle_actual": list(DYNAMIC_OBSTACLE_COLOR_BGR),
         },
         "claim_boundary": (
             "Derived human-review overlay from the hashed raw SCAN Bspline, "

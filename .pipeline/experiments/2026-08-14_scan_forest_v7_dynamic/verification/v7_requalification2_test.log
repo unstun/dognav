@@ -1,0 +1,328 @@
+Starting >>> plan_env
+Starting >>> scan_planner_msgs
+Finished <<< scan_planner_msgs [0.01s]
+Starting >>> lite3_sim_bridge
+UpdateCTestConfiguration  from :/workspace/build/plan_env/CTestConfiguration.ini
+Parse Config file:/workspace/build/plan_env/CTestConfiguration.ini
+   Site: ubuntu
+   Build name: (empty)
+ Add coverage exclude regular expressions.
+SetCTestConfiguration:CMakeCommand:/usr/bin/cmake
+Create new tag: 20260814-2050 - Experimental
+UpdateCTestConfiguration  from :/workspace/build/plan_env/CTestConfiguration.ini
+Parse Config file:/workspace/build/plan_env/CTestConfiguration.ini
+Test project /workspace/build/plan_env
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: test_occlusion_shadow
+
+1: Test command: /usr/bin/python3 "-u" "/opt/ros/foxy/share/ament_cmake_test/cmake/run_test.py" "/workspace/build/plan_env/test_results/plan_env/test_occlusion_shadow.gtest.xml" "--package-name" "plan_env" "--output-file" "/workspace/build/plan_env/ament_cmake_gtest/test_occlusion_shadow.txt" "--command" "/workspace/build/plan_env/test_occlusion_shadow" "--gtest_output=xml:/workspace/build/plan_env/test_results/plan_env/test_occlusion_shadow.gtest.xml"
+1: Test timeout computed to be: 60
+1: -- run_test.py: invoking following command in '/workspace/build/plan_env':
+1:  - /workspace/build/plan_env/test_occlusion_shadow --gtest_output=xml:/workspace/build/plan_env/test_results/plan_env/test_occlusion_shadow.gtest.xml
+1: Running main() from /opt/ros/foxy/src/gtest_vendor/src/gtest_main.cc
+1: [==========] Running 2 tests from 1 test case.
+1: [----------] Global test environment set-up.
+1: [----------] 2 tests from OcclusionShadow
+1: [ RUN      ] OcclusionShadow.ExtendsBehindARealLidarHitAtVoxelResolution
+1: [       OK ] OcclusionShadow.ExtendsBehindARealLidarHitAtVoxelResolution (0 ms)
+1: [ RUN      ] OcclusionShadow.RejectsDegenerateOrDisabledInputs
+1: [       OK ] OcclusionShadow.RejectsDegenerateOrDisabledInputs (0 ms)
+1: [----------] 2 tests from OcclusionShadow (0 ms total)
+1: 
+1: [----------] Global test environment tear-down
+1: [==========] 2 tests from 1 test case ran. (0 ms total)
+1: [  PASSED  ] 2 tests.
+1: -- run_test.py: return code 0
+1: -- run_test.py: inject classname prefix into gtest result file '/workspace/build/plan_env/test_results/plan_env/test_occlusion_shadow.gtest.xml'
+1: -- run_test.py: verify result file '/workspace/build/plan_env/test_results/plan_env/test_occlusion_shadow.gtest.xml'
+1/2 Test #1: test_occlusion_shadow ............   Passed    0.03 sec
+test 2
+    Start 2: test_occupancy_decay
+
+2: Test command: /usr/bin/python3 "-u" "/opt/ros/foxy/share/ament_cmake_test/cmake/run_test.py" "/workspace/build/plan_env/test_results/plan_env/test_occupancy_decay.gtest.xml" "--package-name" "plan_env" "--output-file" "/workspace/build/plan_env/ament_cmake_gtest/test_occupancy_decay.txt" "--command" "/workspace/build/plan_env/test_occupancy_decay" "--gtest_output=xml:/workspace/build/plan_env/test_results/plan_env/test_occupancy_decay.gtest.xml"
+2: Test timeout computed to be: 60
+2: -- run_test.py: invoking following command in '/workspace/build/plan_env':
+2:  - /workspace/build/plan_env/test_occupancy_decay --gtest_output=xml:/workspace/build/plan_env/test_results/plan_env/test_occupancy_decay.gtest.xml
+2: Running main() from /opt/ros/foxy/src/gtest_vendor/src/gtest_main.cc
+2: [==========] Running 2 tests from 1 test case.
+2: [----------] Global test environment set-up.
+2: [----------] 2 tests from OccupancyDecay
+2: [ RUN      ] OccupancyDecay.DisabledOrUnobservedCellsDoNotExpire
+2: [       OK ] OccupancyDecay.DisabledOrUnobservedCellsDoNotExpire (0 ms)
+2: [ RUN      ] OccupancyDecay.ExpiresOnlyAfterTheCompleteAgeWindow
+2: [       OK ] OccupancyDecay.ExpiresOnlyAfterTheCompleteAgeWindow (0 ms)
+2: [----------] 2 tests from OccupancyDecay (0 ms total)
+2: 
+2: [----------] Global test environment tear-down
+2: [==========] 2 tests from 1 test case ran. (0 ms total)
+2: [  PASSED  ] 2 tests.
+2: -- run_test.py: return code 0
+2: -- run_test.py: inject classname prefix into gtest result file '/workspace/build/plan_env/test_results/plan_env/test_occupancy_decay.gtest.xml'
+2: -- run_test.py: verify result file '/workspace/build/plan_env/test_results/plan_env/test_occupancy_decay.gtest.xml'
+2/2 Test #2: test_occupancy_decay .............   Passed    0.03 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Label Time Summary:
+gtest    =   0.06 sec*proc (2 tests)
+
+Total Test time (real) =   0.06 sec
+Finished <<< plan_env [0.09s]
+Starting >>> path_searching
+Finished <<< path_searching [0.01s]
+Starting >>> bspline_opt
+UpdateCTestConfiguration  from :/workspace/build/bspline_opt/CTestConfiguration.ini
+Parse Config file:/workspace/build/bspline_opt/CTestConfiguration.ini
+   Site: ubuntu
+   Build name: (empty)
+ Add coverage exclude regular expressions.
+SetCTestConfiguration:CMakeCommand:/usr/bin/cmake
+Create new tag: 20260814-2050 - Experimental
+UpdateCTestConfiguration  from :/workspace/build/bspline_opt/CTestConfiguration.ini
+Parse Config file:/workspace/build/bspline_opt/CTestConfiguration.ini
+Test project /workspace/build/bspline_opt
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: test_uniform_bspline
+
+1: Test command: /usr/bin/python3 "-u" "/opt/ros/foxy/share/ament_cmake_test/cmake/run_test.py" "/workspace/build/bspline_opt/test_results/bspline_opt/test_uniform_bspline.gtest.xml" "--package-name" "bspline_opt" "--output-file" "/workspace/build/bspline_opt/ament_cmake_gtest/test_uniform_bspline.txt" "--command" "/workspace/build/bspline_opt/test_uniform_bspline" "--gtest_output=xml:/workspace/build/bspline_opt/test_results/bspline_opt/test_uniform_bspline.gtest.xml"
+1: Test timeout computed to be: 60
+1: -- run_test.py: invoking following command in '/workspace/build/bspline_opt':
+1:  - /workspace/build/bspline_opt/test_uniform_bspline --gtest_output=xml:/workspace/build/bspline_opt/test_results/bspline_opt/test_uniform_bspline.gtest.xml
+1: Running main() from /opt/ros/foxy/src/gtest_vendor/src/gtest_main.cc
+1: [==========] Running 2 tests from 1 test case.
+1: [----------] Global test environment set-up.
+1: [----------] 2 tests from UniformBspline
+1: [ RUN      ] UniformBspline.EvaluatesLinearControlPoints
+1: [       OK ] UniformBspline.EvaluatesLinearControlPoints (2 ms)
+1: [ RUN      ] UniformBspline.DerivativeMatchesLinearSlope
+1: [       OK ] UniformBspline.DerivativeMatchesLinearSlope (0 ms)
+1: [----------] 2 tests from UniformBspline (2 ms total)
+1: 
+1: [----------] Global test environment tear-down
+1: [==========] 2 tests from 1 test case ran. (2 ms total)
+1: [  PASSED  ] 2 tests.
+1: -- run_test.py: return code 0
+1: -- run_test.py: inject classname prefix into gtest result file '/workspace/build/bspline_opt/test_results/bspline_opt/test_uniform_bspline.gtest.xml'
+1: -- run_test.py: verify result file '/workspace/build/bspline_opt/test_results/bspline_opt/test_uniform_bspline.gtest.xml'
+1/1 Test #1: test_uniform_bspline .............   Passed    0.03 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Label Time Summary:
+gtest    =   0.03 sec*proc (1 test)
+
+Total Test time (real) =   0.03 sec
+Finished <<< bspline_opt [0.05s]
+Starting >>> traj_utils
+Finished <<< traj_utils [0.01s]
+============================= test session starts ==============================
+platform linux -- Python 3.8.10, pytest-4.6.9, py-1.8.1, pluggy-0.13.0
+cachedir: /workspace/build/lite3_sim_bridge/.pytest_cache
+rootdir: /workspace/src/lite3_sim_bridge
+plugins: ament-pep257-0.9.8, ament-flake8-0.9.8, launch-testing-0.10.10, ament-copyright-0.9.8, launch-testing-ros-0.11.7, ament-xmllint-0.9.8, ament-lint-0.9.8, colcon-core-0.12.1
+collected 64 items
+
+tests/test_acceptance.py .....                                           [  7%]
+tests/test_command_state.py ........                                     [ 20%]
+tests/test_isaac_adapter_core.py ...............                         [ 43%]
+tests/test_monitor_core.py ...                                           [ 48%]
+tests/test_probe_rtx_lidar.py ..                                         [ 51%]
+tests/test_protocol.py ...........                                       [ 68%]
+tests/test_qualification_compare.py ..                                   [ 71%]
+tests/test_trajectory_review.py .....                                    [ 79%]
+tests/test_transport.py ....                                             [ 85%]
+tests/test_v12_sensor_gate.py .........                                  [100%]
+
+------- generated xml file: /workspace/build/lite3_sim_bridge/pytest.xml -------
+========================== 64 passed in 0.31 seconds ===========================
+Finished <<< lite3_sim_bridge [0.57s]
+Starting >>> scan_planner
+UpdateCTestConfiguration  from :/workspace/build/scan_planner/CTestConfiguration.ini
+Parse Config file:/workspace/build/scan_planner/CTestConfiguration.ini
+   Site: ubuntu
+   Build name: (empty)
+ Add coverage exclude regular expressions.
+SetCTestConfiguration:CMakeCommand:/usr/bin/cmake
+Create new tag: 20260814-2050 - Experimental
+UpdateCTestConfiguration  from :/workspace/build/scan_planner/CTestConfiguration.ini
+Parse Config file:/workspace/build/scan_planner/CTestConfiguration.ini
+Test project /workspace/build/scan_planner
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: test_trajectory_progress
+
+1: Test command: /usr/bin/python3 "-u" "/opt/ros/foxy/share/ament_cmake_test/cmake/run_test.py" "/workspace/build/scan_planner/test_results/scan_planner/test_trajectory_progress.gtest.xml" "--package-name" "scan_planner" "--output-file" "/workspace/build/scan_planner/ament_cmake_gtest/test_trajectory_progress.txt" "--command" "/workspace/build/scan_planner/test_trajectory_progress" "--gtest_output=xml:/workspace/build/scan_planner/test_results/scan_planner/test_trajectory_progress.gtest.xml"
+1: Test timeout computed to be: 60
+1: -- run_test.py: invoking following command in '/workspace/build/scan_planner':
+1:  - /workspace/build/scan_planner/test_trajectory_progress --gtest_output=xml:/workspace/build/scan_planner/test_results/scan_planner/test_trajectory_progress.gtest.xml
+1: Running main() from /opt/ros/foxy/src/gtest_vendor/src/gtest_main.cc
+1: [==========] Running 6 tests from 1 test case.
+1: [----------] Global test environment set-up.
+1: [----------] 6 tests from TrajectoryProgress
+1: [ RUN      ] TrajectoryProgress.FreezesTheFormalRunCornerCut
+1: [       OK ] TrajectoryProgress.FreezesTheFormalRunCornerCut (0 ms)
+1: [ RUN      ] TrajectoryProgress.AdvancesWhileRobotTracksAndClampsAtDuration
+1: [       OK ] TrajectoryProgress.AdvancesWhileRobotTracksAndClampsAtDuration (0 ms)
+1: [ RUN      ] TrajectoryProgress.FinishedStateLatchesAfterEnteringGoalTolerance
+1: [       OK ] TrajectoryProgress.FinishedStateLatchesAfterEnteringGoalTolerance (0 ms)
+1: [ RUN      ] TrajectoryProgress.BoundsReplanCatchupBeforeStrictTracking
+1: [       OK ] TrajectoryProgress.BoundsReplanCatchupBeforeStrictTracking (0 ms)
+1: [ RUN      ] TrajectoryProgress.DefersCollisionReplanOnlyWhileCatchupIsActive
+1: [       OK ] TrajectoryProgress.DefersCollisionReplanOnlyWhileCatchupIsActive (0 ms)
+1: [ RUN      ] TrajectoryProgress.CatchupVelocityClearsThePolicyDeadbandButStaysBounded
+1: [       OK ] TrajectoryProgress.CatchupVelocityClearsThePolicyDeadbandButStaysBounded (0 ms)
+1: [----------] 6 tests from TrajectoryProgress (0 ms total)
+1: 
+1: [----------] Global test environment tear-down
+1: [==========] 6 tests from 1 test case ran. (0 ms total)
+1: [  PASSED  ] 6 tests.
+1: -- run_test.py: return code 0
+1: -- run_test.py: inject classname prefix into gtest result file '/workspace/build/scan_planner/test_results/scan_planner/test_trajectory_progress.gtest.xml'
+1: -- run_test.py: verify result file '/workspace/build/scan_planner/test_results/scan_planner/test_trajectory_progress.gtest.xml'
+1/3 Test #1: test_trajectory_progress ...........   Passed    0.03 sec
+test 2
+    Start 2: test_test_planner_startup.py
+
+2: Test command: /usr/bin/python3 "-u" "/opt/ros/foxy/share/ament_cmake_test/cmake/run_test.py" "/workspace/build/scan_planner/test_results/scan_planner/test_test_planner_startup.py.xunit.xml" "--package-name" "scan_planner" "--output-file" "/workspace/build/scan_planner/launch_test/CHANGEME.txt" "--command" "/usr/bin/python3" "-m" "launch_testing.launch_test" "/workspace/src/plan_manage/test/test_planner_startup.py" "--junit-xml=/workspace/build/scan_planner/test_results/scan_planner/test_test_planner_startup.py.xunit.xml" "--package-name=scan_planner"
+2: Test timeout computed to be: 30
+2: -- run_test.py: invoking following command in '/workspace/build/scan_planner':
+2:  - /usr/bin/python3 -m launch_testing.launch_test /workspace/src/plan_manage/test/test_planner_startup.py --junit-xml=/workspace/build/scan_planner/test_results/scan_planner/test_test_planner_startup.py.xunit.xml --package-name=scan_planner
+2: [INFO] [launch]: All log files can be found below /root/.ros/log/2026-08-14-20-50-27-377810-ubuntu-996
+2: [INFO] [launch]: Default logging verbosity is set to INFO
+2: 
+2: ----------------------------------------------------------------------
+2: Ran 0 tests in 0.000s
+2: 
+2: OK
+2: Task exception was never retrieved
+2: future: <Task finished name='Task-9' coro=<LaunchService._process_one_event() done, defined at /opt/ros/foxy/lib/python3.8/site-packages/launch/launch_service.py:226> exception=RuntimeError('Signal event received before subprocess transport available.')>
+2: Traceback (most recent call last):
+2:   File "/opt/ros/foxy/lib/python3.8/site-packages/launch/launch_service.py", line 228, in _process_one_event
+2:     await self.__process_event(next_event)
+2:   File "/opt/ros/foxy/lib/python3.8/site-packages/launch/launch_service.py", line 248, in __process_event
+2:     visit_all_entities_and_collect_futures(entity, self.__context))
+2:   File "/opt/ros/foxy/lib/python3.8/site-packages/launch/utilities/visit_all_entities_and_collect_futures_impl.py", line 38, in visit_all_entities_and_collect_futures
+2:     sub_entities = entity.visit(context)
+2:   File "/opt/ros/foxy/lib/python3.8/site-packages/launch/action.py", line 108, in visit
+2:     return self.execute(context)
+2:   File "/opt/ros/foxy/lib/python3.8/site-packages/launch/actions/opaque_function.py", line 75, in execute
+2:     return self.__function(context, *self.__args, **self.__kwargs)
+2:   File "/opt/ros/foxy/lib/python3.8/site-packages/launch/actions/execute_process.py", line 443, in __on_signal_process_event
+2:     raise RuntimeError('Signal event received before subprocess transport available.')
+2: RuntimeError: Signal event received before subprocess transport available.
+2: [INFO] [scan_planner_node-1]: process started with pid [999]
+2: [scan_planner_node-1] hit: 1.7346
+2: [scan_planner_node-1] miss: -0.847298
+2: [scan_planner_node-1] min log: -1.99243
+2: [scan_planner_node-1] max: 3.89182
+2: [scan_planner_node-1] thresh log: 1.38629
+2: [scan_planner_node-1] [FSM]: state: INIT
+2: [scan_planner_node-1] no odom.
+2: [scan_planner_node-1] wait for goal.
+2: [scan_planner_node-1] [FSM]: state: INIT
+2: [scan_planner_node-1] no odom.
+2: [scan_planner_node-1] wait for goal.
+2: [scan_planner_node-1] [FSM]: state: INIT
+2: [scan_planner_node-1] no odom.
+2: [scan_planner_node-1] wait for goal.
+2: [scan_planner_node-1] [FSM]: state: INIT
+2: [scan_planner_node-1] no odom.
+2: [scan_planner_node-1] wait for goal.
+2: [ERROR] [scan_planner_node-1]: process[scan_planner_node-1] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+2: [INFO] [scan_planner_node-1]: sending signal 'SIGTERM' to process[scan_planner_node-1]
+2: [ERROR] [scan_planner_node-1]: process has died [pid 999, exit code -15, cmd '/workspace/install/scan_planner/lib/scan_planner/scan_planner_node --ros-args -r __node:=scan_planner_node --params-file /workspace/src/plan_manage/config/planner.yaml'].
+2: 
+2: ----------------------------------------------------------------------
+2: Ran 0 tests in 0.000s
+2: 
+2: OK
+2: -- run_test.py: return code 0
+2: -- run_test.py: verify result file '/workspace/build/scan_planner/test_results/scan_planner/test_test_planner_startup.py.xunit.xml'
+2/3 Test #2: test_test_planner_startup.py .......   Passed    5.19 sec
+test 3
+    Start 3: test_test_waypoint_parameters.py
+
+3: Test command: /usr/bin/python3 "-u" "/opt/ros/foxy/share/ament_cmake_test/cmake/run_test.py" "/workspace/build/scan_planner/test_results/scan_planner/test_test_waypoint_parameters.py.xunit.xml" "--package-name" "scan_planner" "--output-file" "/workspace/build/scan_planner/launch_test/CHANGEME.txt" "--command" "/usr/bin/python3" "-m" "launch_testing.launch_test" "/workspace/src/plan_manage/test/test_waypoint_parameters.py" "--junit-xml=/workspace/build/scan_planner/test_results/scan_planner/test_test_waypoint_parameters.py.xunit.xml" "--package-name=scan_planner"
+3: Test timeout computed to be: 30
+3: -- run_test.py: invoking following command in '/workspace/build/scan_planner':
+3:  - /usr/bin/python3 -m launch_testing.launch_test /workspace/src/plan_manage/test/test_waypoint_parameters.py --junit-xml=/workspace/build/scan_planner/test_results/scan_planner/test_test_waypoint_parameters.py.xunit.xml --package-name=scan_planner
+3: [INFO] [launch]: All log files can be found below /root/.ros/log/2026-08-14-20-50-32-547887-ubuntu-1012
+3: [INFO] [launch]: Default logging verbosity is set to INFO
+3: 
+3: ----------------------------------------------------------------------
+3: Ran 0 tests in 0.000s
+3: 
+3: OK
+3: Task exception was never retrieved
+3: future: <Task finished name='Task-9' coro=<LaunchService._process_one_event() done, defined at /opt/ros/foxy/lib/python3.8/site-packages/launch/launch_service.py:226> exception=RuntimeError('Signal event received before subprocess transport available.')>
+3: Traceback (most recent call last):
+3:   File "/opt/ros/foxy/lib/python3.8/site-packages/launch/launch_service.py", line 228, in _process_one_event
+3:     await self.__process_event(next_event)
+3:   File "/opt/ros/foxy/lib/python3.8/site-packages/launch/launch_service.py", line 248, in __process_event
+3:     visit_all_entities_and_collect_futures(entity, self.__context))
+3:   File "/opt/ros/foxy/lib/python3.8/site-packages/launch/utilities/visit_all_entities_and_collect_futures_impl.py", line 38, in visit_all_entities_and_collect_futures
+3:     sub_entities = entity.visit(context)
+3:   File "/opt/ros/foxy/lib/python3.8/site-packages/launch/action.py", line 108, in visit
+3:     return self.execute(context)
+3:   File "/opt/ros/foxy/lib/python3.8/site-packages/launch/actions/opaque_function.py", line 75, in execute
+3:     return self.__function(context, *self.__args, **self.__kwargs)
+3:   File "/opt/ros/foxy/lib/python3.8/site-packages/launch/actions/execute_process.py", line 443, in __on_signal_process_event
+3:     raise RuntimeError('Signal event received before subprocess transport available.')
+3: RuntimeError: Signal event received before subprocess transport available.
+3: [INFO] [scan_planner_node-1]: process started with pid [1015]
+3: [scan_planner_node-1] hit: 1.7346
+3: [scan_planner_node-1] miss: -0.847298
+3: [scan_planner_node-1] min log: -1.99243
+3: [scan_planner_node-1] max: 3.89182
+3: [scan_planner_node-1] thresh log: 1.38629
+3: [scan_planner_node-1] [INFO] [1786740632.644778750] [scan_planner_node]: Preset waypoint mode will start after the first odometry message
+3: [scan_planner_node-1] [FSM]: state: INIT
+3: [scan_planner_node-1] no odom.
+3: [scan_planner_node-1] wait for goal.
+3: [scan_planner_node-1] [FSM]: state: INIT
+3: [scan_planner_node-1] no odom.
+3: [scan_planner_node-1] wait for goal.
+3: [scan_planner_node-1] [FSM]: state: INIT
+3: [scan_planner_node-1] no odom.
+3: [scan_planner_node-1] wait for goal.
+3: [scan_planner_node-1] [FSM]: state: INIT
+3: [scan_planner_node-1] no odom.
+3: [scan_planner_node-1] wait for goal.
+3: [ERROR] [scan_planner_node-1]: process[scan_planner_node-1] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+3: [INFO] [scan_planner_node-1]: sending signal 'SIGTERM' to process[scan_planner_node-1]
+3: [ERROR] [scan_planner_node-1]: process has died [pid 1015, exit code -15, cmd '/workspace/install/scan_planner/lib/scan_planner/scan_planner_node --ros-args -r __node:=scan_planner_node --params-file /workspace/src/plan_manage/config/planner.yaml --params-file /workspace/src/plan_manage/config/keypoints.example.yaml'].
+3: 
+3: ----------------------------------------------------------------------
+3: Ran 0 tests in 0.000s
+3: 
+3: OK
+3: -- run_test.py: return code 0
+3: -- run_test.py: verify result file '/workspace/build/scan_planner/test_results/scan_planner/test_test_waypoint_parameters.py.xunit.xml'
+3/3 Test #3: test_test_waypoint_parameters.py ...   Passed    5.17 sec
+
+100% tests passed, 0 tests failed out of 3
+
+Label Time Summary:
+gtest    =   0.03 sec*proc (1 test)
+
+Total Test time (real) =  10.39 sec
+Finished <<< scan_planner [10.4s]
+
+Summary: 7 packages finished [11.1s]

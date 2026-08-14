@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "status": "r2_frozen_automated_gate_pass_human_review_pending",
+  "experiment": "SCAN forest V7 deterministic dynamic-obstacle crossing",
+  "local_source_of_truth": "/Users/sun/tongbu/study/phdproject/machine-dog-nav",
+  "remote_execution_copy": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v7_dynamic",
+  "labels": {
+    "project_integrated": false,
+    "automated_gate_passed": true,
+    "human_accepted": false,
+    "real_robot_validated": false
+  },
+  "pinned_inputs": {
+    "locomotion_source_commit": "8c3fdffa84b85be0704a10ea5b2533817d543822",
+    "checkpoint": "model_149999.pt",
+    "checkpoint_sha256": "a9d31dce90e6e8c564d955e473d6d3502f893d7ef5a5c1efaf5bb50d6b3d5450",
+    "canonical_urdf_sha256": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80",
+    "isaac_urdf_sha256": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d",
+    "forest_gen_commit": "a75fb28c7b896e2a67e2d889b804732d33c56e0c",
+    "stripe_kit_commit": "ce97eed40d9fc4927c4856eda6a17204d01087db"
+  },
+  "v7_candidate_contract": {
+    "course": "forest_gen_nav_v7_dynamic",
+    "forest_seed": 14,
+    "goal_world_m": [0.5, 3.0, 0.85],
+    "forward_limit_mps": 1.0,
+    "dynamic_shape": "cylinder",
+    "dynamic_start_xy_m": [-2.7, 2.0],
+    "dynamic_end_xy_m": [-2.7, 4.8],
+    "dynamic_wait_seconds": 0.0,
+    "dynamic_speed_mps": 0.8,
+    "dynamic_hold_fraction": 0.35714285714285715,
+    "dynamic_hold_seconds": 2.5,
+    "dynamic_schedule_trigger": "first nonzero accepted body command",
+    "dynamic_radius_m": 0.3,
+    "dynamic_height_m": 1.5,
+    "dynamic_terrain_clearance_m": 0.02,
+    "occupied_decay_updates": 8,
+    "controller_strict_tracking_error_m": 0.14,
+    "controller_replan_catchup_max_error_m": 0.75,
+    "controller_replan_catchup_minimum_speed_mps": 0.20,
+    "controller_finish_distance_m": 0.10,
+    "maximum_post_stop_drift_m": 0.35,
+    "frozen_acceptance_sha256": "9006d391e2e2ee2926f934cce6db10e262634a0b889acf7351a0310ec0a10863",
+    "frozen_acceptance_r2_sha256": "b7d76d52d2596cd13b0d60cc992fa9fa3dac771981488b5addde243a3badb4a3",
+    "planner_semantics": "reactive occupancy update and trajectory collision check; no velocity prediction"
+  },
+  "preserved_runs": [
+    {
+      "run_id": "forest_v7_candidate_dryrun01",
+      "status": "INSTRUMENTATION_ERROR",
+      "purpose": "first V7 launch proved the dynamic rigid body, collision and visible geometry existed and both sensor configs carried transform tracking, but the local audit compared the ENV_REGEX_NS template with Isaac's expanded regex literally and stopped before opening transport ports"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun02",
+      "status": "INSTRUMENTATION_ERROR",
+      "purpose": "the corrected dynamic target gate passed and the waiting body had exact pose readback plus LiDAR returns, but the candidate wait schedule began only after the robot had reached the unchanged direct-path tree; the initial straight SCAN trajectory had not yet been replaced and the episode terminated before the dynamic crossing"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun03",
+      "status": "FAIL_SAFE_STOP_STALE_OCCUPANCY",
+      "purpose": "the retimed obstacle travelled 3.61 m, produced 294 LiDAR and 156 depth detection frames, triggered four SCAN trajectories, maintained 1.18 m synchronized surface clearance and zero collision, but departed-object inflated voxels kept the robot start inside occupancy during recovery and it stopped at [-3.44, 3.58] instead of reaching the goal"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun04",
+      "status": "FAIL_REPLAN_TRACKING_FREEZE",
+      "purpose": "the eight-update occupancy freshness window removed all origin-occupancy and planner failures while retaining the static scene, but safety trajectory 3 started 0.353 m behind the physical robot; the inherited 0.10 m controller tracking gate froze progress and the run stopped before the goal"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun05",
+      "status": "FAIL_STATIC_CLEARANCE",
+      "purpose": "a global 0.40 m tracking window reached the goal within 0.075 m with 0.995 m dynamic clearance, zero collision and two sensor-causal SCAN trajectories, but cut inside the planned static-tree path: 0.540 m actual centre clearance versus 0.692 m planned and the 0.550 m candidate minimum"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun06",
+      "status": "FAIL_REPLAN_ODOMETRY_STARVATION",
+      "purpose": "bounded catch-up preserved strict tracking and zero collision, but repeated safety replans continued during catch-up; trajectory 6 used SCAN odometry at [-4.20, 3.30] while the physical root was [-1.98, 3.78], so its 2.20 m start mismatch was correctly rejected and the robot stopped before the goal"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun07",
+      "status": "FAIL_INITIAL_CATCHUP_DEADBAND",
+      "purpose": "replan backpressure worked, but the first SCAN trajectory's reproducible 0.120 m discretization offset exceeded the inherited 0.10 m strict window; the resulting 0.02 m catch-up demand remained inside the Lite3 locomotion deadband, so execution stayed frozen at the start"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun08",
+      "status": "FAIL_CATCHUP_LIMIT",
+      "purpose": "the 0.14 m strict window cleared the initial deadband and replan backpressure limited the run to two trajectories, but the first dynamic safety trajectory arrived with a 0.652 m start mismatch and was correctly rejected by the 0.40 m catch-up ceiling"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun09",
+      "status": "FAIL_GOAL_STOP_WINDOW",
+      "purpose": "the 0.75 m bounded catch-up completed the dynamic replan and preserved zero collision, 0.55 m static-tree clearance and positive dynamic clearance, but the unchanged 0.15 m finish latch combined with the 0.14 m strict window stopped 0.275 m from the goal and left earlier deceleration samples inside the two-second stop window"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun10",
+      "status": "FAIL_FINAL_GOAL_DRIFT",
+      "purpose": "the robot reached within 0.015 m of the SCAN goal and then maintained zero command with a two-second stopped window, but passive V12 stance drift on the forest slope accumulated to 0.291 m by the end; this motivated an explicit stable-arrival event plus a separately bounded and reported post-stop drift instead of shortening the run"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun11",
+      "status": "FAIL_DYNAMIC_COLLISION_STARTUP_RACE",
+      "purpose": "the simulator-start-relative crossing reached the route before SCAN produced its dynamic safety trajectory; the cylinder made physical contact at 2.32 sim seconds and triggered the unchanged V12 termination path, proving the prior timing was not robust to startup variation"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun12",
+      "status": "PREFLIGHT_GPU_DEVICE_LOST",
+      "purpose": "Isaac Vulkan initialization failed before metrics creation with ERROR_DEVICE_LOST; the exact hung run processes were terminated after TERM did not exit, GPU memory returned from 9021 MiB to 260 MiB, and no navigation claim was evaluated"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun13",
+      "status": "PASS_CANDIDATE_THRESHOLDS",
+      "purpose": "first complete pass of 119/119 automated checks with 0.215 m dynamic surface clearance, 0.799 m static-tree centre clearance, zero non-foot collision, 0.975 m/s measured speed p75, a two-second stable goal stop, and 0.011 m final goal error"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun14",
+      "status": "PASS_CANDIDATE_THRESHOLDS",
+      "purpose": "second same-effective-input 119/119 pass with 0.244 m dynamic surface clearance, 0.784 m static-tree centre clearance, zero non-foot collision, 0.973 m/s measured speed p75, and 0.027 m final goal error; effective-input and candidate-threshold hashes matched dry run 13"
+    },
+    {
+      "run_id": "forest_v7_review_candidate01",
+      "status": "SUPERSEDED_TRELLIS_SAFETY_REVIEW",
+      "purpose": "the frozen run passed 119/119, but later Trellis review found collision-replan deferral reused the broad execution-frozen topic and could suppress safety checks during heading or ordinary tracking freeze; the run remains immutable and is not eligible for human acceptance"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun15",
+      "status": "FAIL_CATCHUP_POLICY_DEADBAND",
+      "purpose": "the dedicated catch-up-only replan signal removed the over-broad deferral, but a 0.261 m trajectory-start mismatch converged only to about 0.17 m; the resulting roughly 0.13 m/s command remained inside the V12 policy deadband and the robot could not recover the strict 0.14 m window"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun16",
+      "status": "PASS_R2_CANDIDATE_THRESHOLDS",
+      "purpose": "passed 120/120 while exercising a 0.719 m safety-trajectory start mismatch, the dedicated catch-up-only signal, and the 0.20 m/s catch-up deadband floor; reached the goal with 0.899 m dynamic and 0.838 m static-tree clearance"
+    },
+    {
+      "run_id": "forest_v7_candidate_dryrun17",
+      "status": "PASS_R2_CANDIDATE_THRESHOLDS",
+      "purpose": "second same-source/config 120/120 pass on the normal no-catch-up path with 0.249 m dynamic clearance, 0.783 m static-tree clearance, and 0.017 m final goal error"
+    },
+    {
+      "run_id": "forest_v7_review_candidate02",
+      "status": "SUPERSEDED_INPUT_MANIFEST_COMPATIBILITY_FIX",
+      "purpose": "passed the frozen R2 gate 120/120, but final cross-scenario review found that the shared runner did not initialize V7-only hold variables for non-V7 callers; the compatibility-only fix changed the recorded runner hash, so this run remains immutable but is not the review candidate"
+    }
+  ],
+  "review_candidate": {
+    "run_id": "forest_v7_review_candidate03",
+    "automated_status": "PASS_120_OF_120",
+    "human_status": "pending",
+    "effective_input_sha256": "55ebb9eb7730dd36074fbf17131b3f6a4d1b2722d4ec530bde33d1e20c715fcb",
+    "frozen_acceptance_sha256": "b7d76d52d2596cd13b0d60cc992fa9fa3dac771981488b5addde243a3badb4a3",
+    "shared_runner_sha256": "e7fbeed62c20fd85b4593cb16c99e287d9bf8d3d0a1ceaf72ad7e096905f6cde",
+    "dynamic_surface_clearance_m": 0.7387809618291368,
+    "static_tree_center_clearance_m": 0.9012506725584872,
+    "measured_planar_speed_p75_mps": 0.9539560596754181,
+    "final_goal_error_m": 0.08918270994539244,
+    "maximum_post_stop_drift_m": 0.03898952280775326,
+    "maximum_nonfoot_contact_n": 0.0,
+    "scan_trajectory_count": 3,
+    "raw_video": "results/forest_v7_review_candidate03/closed_loop.mp4",
+    "overlay_video": "results/forest_v7_review_candidate03/closed_loop_review_overlay.mp4",
+    "human_checklist": "HUMAN_REVIEW.md"
+  },
+  "claim_boundary": [
+    "No V7 runtime result exists until remote evidence is copied back and checked.",
+    "R2 thresholds were frozen only after dry runs 16 and 17 passed 120/120 with identical effective-input and candidate-threshold hashes.",
+    "Obstacle truth is evaluation-only; SCAN consumes rendered point geometry.",
+    "No training, real-robot actuation, LIO, hardware sensor parity, or general dynamic-navigation claim is authorized."
+  ]
+}

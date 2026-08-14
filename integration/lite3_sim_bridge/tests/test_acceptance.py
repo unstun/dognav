@@ -197,7 +197,15 @@ class AcceptanceTest(unittest.TestCase):
                 "[FSM]: from EXEC_TRAJ to WAIT_TARGET\n",
                 "frozen",
             )
-            self.assertEqual(report["status"], "PASS")
+            self.assertEqual(
+                report["status"],
+                "PASS",
+                msg={
+                    name: check
+                    for name, check in report["checks"].items()
+                    if not check["passed"]
+                },
+            )
 
             metrics[300]["nonfoot_contact_max_n"] = 100.0
             failed = evaluate_acceptance(
@@ -606,6 +614,253 @@ class AcceptanceTest(unittest.TestCase):
             self.assertEqual(failed["status"], "FAIL")
             self.assertFalse(
                 failed["checks"]["v6_proxy_review_visibility"]["passed"]
+            )
+
+    def test_v7_requires_moving_dual_sensor_obstacle_and_post_detection_plan(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            video = root / "run.mp4"
+            video.write_bytes(b"v" * 120000)
+            video_sha = hashlib.sha256(video.read_bytes()).hexdigest()
+            bag = root / "rosbag"
+            bag.mkdir()
+            (bag / "metadata.yaml").write_text(
+                "rosbag2_bagfile_information: {}\n"
+            )
+            (bag / "run_0.db3").write_bytes(b"b" * 12000)
+
+            thresholds = self._thresholds()
+            thresholds["v7_dynamic_obstacle"] = {
+                "expected_course": "forest_gen_nav_v7_dynamic",
+                "expected_shape": "cylinder",
+                "expected_radius_m": 0.30,
+                "expected_height_m": 1.50,
+                "expected_speed_mps": 1.0,
+                "expected_wait_seconds": 2.0,
+                "expected_hold_fraction": 0.5,
+                "expected_hold_seconds": 0.0,
+                "expected_schedule_trigger": "first nonzero accepted body command",
+                "expected_occupied_decay_updates": 8,
+                "expected_controller_strict_tracking_error_m": 0.10,
+                "expected_controller_catchup_max_error_m": 0.40,
+                "expected_controller_catchup_minimum_speed_mps": 0.20,
+                "expected_controller_finish_distance_m": 0.10,
+                "maximum_post_stop_drift_m": 0.35,
+                "minimum_actual_travel_m": 1.9,
+                "maximum_pose_error_m": 0.02,
+                "minimum_terrain_clearance_m": 0.01,
+                "minimum_lidar_hits_per_detection": 3,
+                "minimum_depth_pixels_per_detection": 3,
+                "minimum_lidar_detection_frames": 5,
+                "minimum_depth_detection_frames": 5,
+                "minimum_observed_position_span_m": 0.5,
+                "maximum_nominal_route_distance_m": 0.10,
+                "minimum_post_detection_bspline_records": 1,
+                "maximum_replan_response_seconds": 0.5,
+                "minimum_synchronized_surface_clearance_m": 0.10,
+                "minimum_overlay_dynamic_records": 300,
+            }
+            metrics = self._metrics()
+            settle_start = len(metrics) - 122
+            ramp_start = metrics[settle_start - 1]["root_pos_w"][:2]
+            for offset, row in enumerate(metrics[settle_start : settle_start + 20]):
+                fraction = (offset + 1) / 20.0
+                row["root_pos_w"] = [
+                    ramp_start[0] + (4.0 - ramp_start[0]) * fraction,
+                    ramp_start[1] * (1.0 - fraction),
+                    0.31,
+                ]
+            for row in metrics[settle_start + 20 :]:
+                row["root_pos_w"] = [4.0, 0.0, 0.31]
+                row["root_lin_vel_w"] = [0.0, 0.0, 0.0]
+                row["applied_command"] = [0.0, 0.0, 0.0]
+            for row in metrics:
+                elapsed = float(row["sim_time_seconds"])
+                triggered = elapsed >= 0.2
+                if not triggered:
+                    row["applied_command"] = [0.0, 0.0, 0.0]
+                if elapsed <= 2.0:
+                    phase = "waiting"
+                    y = -1.0
+                elif elapsed < 4.0:
+                    phase = "crossing"
+                    y = -1.0 + (elapsed - 2.0)
+                else:
+                    phase = "parked"
+                    y = 1.0
+                actual = [2.0, y, 1.0]
+                row.update(
+                    {
+                        "dynamic_obstacle_phase": phase,
+                        "dynamic_obstacle_elapsed_seconds": (
+                            elapsed - 0.2 if triggered else 0.0
+                        ),
+                        "dynamic_obstacle_schedule_triggered": triggered,
+                        "dynamic_obstacle_trigger_sim_time_seconds": (
+                            0.2 if triggered else None
+                        ),
+                        "dynamic_obstacle_actual_pos_w": actual,
+                        "dynamic_obstacle_pose_error_m": 0.005,
+                        "dynamic_obstacle_bottom_clearance_m": 0.02,
+                        "root_to_dynamic_surface_clearance_m": 0.20,
+                    }
+                )
+            sensor_metrics = self._sensor_metrics()
+            depth_metrics = self._depth_metrics()
+            for rows, hit_key in (
+                (sensor_metrics, "dynamic_obstacle_surface_hit_count"),
+                (depth_metrics, "dynamic_obstacle_surface_pixel_count"),
+            ):
+                for index, row in enumerate(rows):
+                    elapsed = float(row["sim_time_seconds"])
+                    y = max(-1.0, min(1.0, elapsed - 3.0))
+                    row["dynamic_obstacle_actual_pos_w"] = [2.0, y, 1.0]
+                    row[hit_key] = 8 if 20 <= index <= 40 else 0
+            identity = {
+                "acceptance_config_sha256": "frozen",
+                "course": {"name": "forest_gen_nav_v7_dynamic"},
+                "dynamic_obstacle": {
+                    "shape": "cylinder",
+                    "radius_m": 0.30,
+                    "height_m": 1.50,
+                    "speed_mps": 1.0,
+                    "wait_seconds": 2.0,
+                    "hold_fraction": 0.5,
+                    "hold_seconds": 0.0,
+                    "schedule_trigger": "first nonzero accepted body command",
+                    "start_xy_m": [2.0, -1.0],
+                    "end_xy_m": [2.0, 1.0],
+                    "planner_input": "rendered sensor hits only",
+                    "ground_truth_use": "forbidden from planner and robot steering",
+                },
+                "forest_scene": {
+                    "navigation": {
+                        "start_world_m": [0.0, 0.0, 0.35],
+                        "goal_world_m": [4.0, 0.0, 0.35],
+                    }
+                },
+            }
+            geometry_checks = {
+                name: True
+                for name in (
+                    "runtime_root_exists",
+                    "rigid_object_initialized",
+                    "kinematic_enabled",
+                    "collision_enabled",
+                    "visible_geometry",
+                    "lidar_transform_tracking",
+                    "depth_transform_tracking",
+                )
+            }
+            review_metadata = {
+                "plans": [
+                    {"trajectory_id": 2, "effective_sim_time_seconds": 2.2},
+                    {"trajectory_id": 3, "effective_sim_time_seconds": 3.0},
+                ],
+                "dynamic_obstacle": {"rendered": True, "record_count": 310},
+            }
+            report = evaluate_acceptance(
+                thresholds,
+                metrics,
+                sensor_metrics,
+                {
+                    "status": "PASS",
+                    "runtime_error": None,
+                    "command_transport": {"protocol_errors": 0},
+                    "telemetry_transport": {"protocol_errors": 0, "reconnects": 1},
+                    "video": {
+                        "frame_count": 310,
+                        "encoded_duration_seconds": 12.4,
+                        "sha256": video_sha,
+                    },
+                },
+                identity,
+                self._ros_summary(),
+                video,
+                bag,
+                "final_plan_success=1\nfinal_plan_success=1\n"
+                "[FSM]: from EXEC_TRAJ to WAIT_TARGET\n",
+                "frozen",
+                depth_metrics=depth_metrics,
+                runtime_composition={
+                    "dynamic_obstacle": {
+                        "geometry_checks": {
+                            "passed": True,
+                            "checks": geometry_checks,
+                        }
+                    }
+                },
+                trajectory_review_metadata=review_metadata,
+                planner_config_text="    grid_map.occupied_decay_updates: 8\n",
+                controller_config_text=(
+                    "    max_tracking_error: 0.10\n"
+                    "    replan_catchup_max_error: 0.40\n"
+                    "    replan_catchup_min_speed: 0.20\n"
+                    "    finish_dist: 0.10\n"
+                ),
+            )
+            self.assertEqual(
+                report["status"],
+                "PASS",
+                msg={
+                    name: check
+                    for name, check in report["checks"].items()
+                    if not check["passed"]
+                },
+            )
+            self.assertTrue(
+                report["checks"]["v7_post_detection_scan_response"]["passed"]
+            )
+            self.assertTrue(
+                report["checks"]["v7_physical_dynamic_clearance"]["passed"]
+            )
+
+            review_metadata["plans"] = [
+                {"trajectory_id": 1, "effective_sim_time_seconds": 1.0}
+            ]
+            failed = evaluate_acceptance(
+                thresholds,
+                metrics,
+                sensor_metrics,
+                {
+                    "status": "PASS",
+                    "runtime_error": None,
+                    "command_transport": {"protocol_errors": 0},
+                    "telemetry_transport": {"protocol_errors": 0, "reconnects": 1},
+                    "video": {
+                        "frame_count": 310,
+                        "encoded_duration_seconds": 12.4,
+                        "sha256": video_sha,
+                    },
+                },
+                identity,
+                self._ros_summary(),
+                video,
+                bag,
+                "final_plan_success=1\nfinal_plan_success=1\n"
+                "[FSM]: from EXEC_TRAJ to WAIT_TARGET\n",
+                "frozen",
+                depth_metrics=depth_metrics,
+                runtime_composition={
+                    "dynamic_obstacle": {
+                        "geometry_checks": {
+                            "passed": True,
+                            "checks": geometry_checks,
+                        }
+                    }
+                },
+                trajectory_review_metadata=review_metadata,
+                planner_config_text="    grid_map.occupied_decay_updates: 8\n",
+                controller_config_text=(
+                    "    max_tracking_error: 0.10\n"
+                    "    replan_catchup_max_error: 0.40\n"
+                    "    replan_catchup_min_speed: 0.20\n"
+                    "    finish_dist: 0.10\n"
+                ),
+            )
+            self.assertEqual(failed["status"], "FAIL")
+            self.assertFalse(
+                failed["checks"]["v7_post_detection_scan_response"]["passed"]
             )
 
 

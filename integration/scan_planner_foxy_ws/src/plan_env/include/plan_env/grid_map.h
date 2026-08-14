@@ -14,6 +14,7 @@
 #include <rclcpp/rclcpp.hpp>
 #include <rmw/qos_profiles.h>
 #include <tuple>
+#include <unordered_set>
 #include <sensor_msgs/msg/image.hpp>
 #include <sensor_msgs/image_encodings.hpp>
 #include <sensor_msgs/msg/point_cloud2.hpp>
@@ -81,6 +82,7 @@ struct MappingParameters {
       min_occupancy_log_;                   // logit of occupancy probability
   double min_ray_length_, max_ray_length_;  // range of doing raycasting
   double occlusion_shadow_length_;
+  int occupied_decay_updates_;
 
   /* visualization and computation time display */
   double vis_height_, ground_height_;
@@ -105,6 +107,8 @@ struct MappingData {
   std::vector<double> occupancy_buffer_;
   std::vector<char> occupancy_buffer_inflate_;
   std::vector<int> occupancy_buffer_inflate_cnt_;
+  std::vector<int> occupancy_last_hit_update_;
+  std::unordered_set<int> occupied_addresses_;
   vector<Eigen::Vector3i> inflate_offsets_;
 
   // raycast origin and sensor pose data
@@ -144,6 +148,7 @@ struct MappingData {
 
   double fuse_time_, max_fuse_time_;
   int update_num_;
+  int occupancy_update_sequence_;
 
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 };
@@ -233,6 +238,7 @@ private:
   void resetCellByAddressForSliding(int addr, const std::vector<char>& clear_mask);
   void hashIdToGlobalIndex(int addr, Eigen::Vector3i& id_g) const;
   void applyOccupancyUpdate(const Eigen::Vector3i& id, double new_log_odds);
+  void decayStaleOccupancy();
   void rebuildInflationOffsets();
   void updateInflation(const Eigen::Vector3i& id, int delta, const std::vector<char>* ignore_mask = nullptr);
   void updateInflationLayer(const Eigen::Vector3i& id, int delta,

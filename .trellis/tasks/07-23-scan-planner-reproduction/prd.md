@@ -106,6 +106,23 @@ blocker-centre clearance, 0.039 m goal error, real-mesh rock support evidence,
 hidden registered proxies, and a hashed planned-versus-actual overlay.
 AC30--AC33 are satisfied; AC34 remains entirely human-owned.
 
+## V7 Dynamic-Obstacle Review Decision
+
+On 2026-08-14, Dr Sun requested a dynamic obstacle after the V6 automated
+candidate was delivered. V6 therefore remains immutable, automated-pass
+evidence but is not the accepted final review candidate. V7 adds one
+deterministic moving rigid obstacle that crosses the robot's nominal route in
+the existing forest scene. The same visible and collidable prim must be
+observed through the MID-360-like and D435i-like simulated sensors; its points
+must not be injected into SCAN and its ground-truth pose must not be used to
+steer the robot. The V12 weights, robot URDF, sensor rig, 1.0 m/s ceiling,
+forest identity, start/goal, transport, and SCAN algorithms remain unchanged.
+
+V7 evaluates reactive moving-occupancy avoidance: SCAN may replace its active
+trajectory or stop after current sensor measurements update the occupancy map.
+It does not add or claim obstacle-velocity prediction, intention estimation,
+or a generally validated dynamic-navigation benchmark.
+
 ## Requirements
 
 - **R1 — Source provenance.** Preserve the selected SCAN revision as an
@@ -253,6 +270,55 @@ AC30--AC33 are satisfied; AC34 remains entirely human-owned.
   thresholds, then run one uninterrupted review candidate. Sync the raw video,
   trajectory-overlay video, trace data, geometry audit, ROS bag, metrics,
   configs, and hashes locally. Automated PASS never satisfies human review.
+- **R34 — Deterministic moving rigid body.** V7 adds one visible, collidable,
+  terrain-seated cylinder or person-shaped proxy with a frozen
+  command-relative wait/cross/hold/cross schedule. The schedule remains at its
+  start until the first accepted nonzero body command, avoiding dependence on
+  simulator startup time. Isaac PhysX owns its runtime pose; every commanded
+  pose and actual simulator readback is recorded. Robot-root writes, scripted
+  robot turns, and collision-disabled visual animation cannot satisfy this
+  requirement.
+- **R35 — Sensor-causal dynamic occupancy.** Register that same moving prim as
+  a transform-tracked target for both the MID-360-like ray caster and the
+  D435i-like depth camera. SCAN receives only rendered scene observations and
+  simulator-truth robot/sensor pose. Dynamic-object bounds, identity, schedule,
+  or ground truth may be used for evidence classification but never for cloud
+  injection, planner filtering, command generation, or robot steering.
+- **R36 — Reactive avoidance and clearance.** Freeze a crossing that creates a
+  time-space conflict with the nominal route. Record when the obstacle enters
+  the corridor, sensor detections, occupancy/replan or emergency-stop events,
+  every SCAN B-spline, commands, and physical poses. Acceptance requires a
+  causally later trajectory response plus positive time-synchronized physical
+  clearance and zero non-foot collision; no predictive-planning claim is made.
+- **R37 — V7 evidence and preservation.** Keep all V6 files immutable. V7 uses
+  a new dated evidence boundary containing motion identity, scene/sensor
+  identities, raw and overlaid MP4s, dynamic and robot trajectories, plan
+  records, contacts, metrics, thresholds, hashes, and local re-evaluation.
+  Freeze thresholds after preflight and two same-input dry runs but before the
+  final review candidate.
+- **R38 — Bounded occupied-voxel freshness.** V7 may add one disabled-by-default
+  SCAN map parameter that expires an occupied source voxel only after it has
+  received no hit for a frozen number of complete cloud updates. Static
+  geometry that remains observed must refresh continuously. The expiry must
+  remove its paired inflation contribution, remain off for V1--V6, be unit
+  tested, and be recorded as a V7 project adaptation rather than upstream
+  dynamic prediction.
+- **R39 — Bounded replan tracking catch-up.** V7 may use a separate controller
+  parameter file with a frozen maximum tracking error no smaller than the
+  measured safety-replan start mismatch and no larger than the value qualified
+  by dry runs. A V7-only minimum catch-up command may clear the measured V12
+  low-speed deadband, but applies only while returning to the received
+  B-spline start and remains within the unchanged policy velocity bound. The
+  controller still follows only the received SCAN B-spline; this change may
+  not add a waypoint, robot pose write, or scripted turn.
+- **R40 — Replan backpressure during catch-up.** While the controller reports
+  a dedicated bounded start-catch-up state, SCAN may defer additional
+  collision-triggered optimizer calls and continue processing pose/cloud
+  callbacks. The broader execution-frozen signal used for trajectory-time and
+  heading alignment must not suppress collision checking. Collision checking
+  resumes as soon as strict tracking is restored. The catch-up command remains
+  bounded and follows the received trajectory start; this is not permission to
+  ignore a collision during heading or normal trajectory execution.
 
 ## Acceptance Criteria
 
@@ -382,9 +448,35 @@ AC30--AC33 are satisfied; AC34 remains entirely human-owned.
   frozen candidate have complete local/remote hash parity, decoded raw and
   overlay MP4s, ROS bag, complete B-spline records, root trace, geometry audit,
   speed evidence, collision/goal outcome, and machine-readable acceptance.
-- [ ] **AC34 — V6 human review:** Dr Sun watches the complete V6 overlay MP4
-  and explicitly accepts or rejects its speed, obstacle avoidance, terrain and
-  obstacle appearance, trajectory agreement, and physical motion.
+- [x] **AC34 — V6 human-review disposition:** Dr Sun requested a V7 dynamic
+  obstacle candidate. V6 remains immutable automated-pass evidence and is
+  marked change-requested rather than accepted.
+- [x] **AC35 — V7 moving-body and sensor gate:** runtime records prove one
+  terrain-seated visible/collidable body follows the frozen crossing schedule,
+  its actual pose advances as expected, and both simulated sensors observe the
+  same moving prim at multiple distinct poses without injected points.
+- [x] **AC36 — V7 reactive-planning gate:** the frozen nominal route and moving
+  obstacle overlap in time and space; after live sensor detection SCAN replaces
+  the active trajectory or invokes its emergency-stop path, with event timing
+  and complete B-spline provenance showing the response is sensor-causal rather
+  than scripted or predictive. The frozen occupied-voxel freshness window
+  clears departed-object inflation without removing continuously observed
+  static blockers, and the frozen tracking window permits the physical robot to
+  catch up to a safety-replanned B-spline without changing its geometry.
+- [x] **AC37 — V7 physical-result gate:** the unchanged V12 policy drives the
+  articulated Lite3 to the goal or a declared safe stop while maintaining the
+  frozen time-synchronized obstacle clearance, zero non-foot collision, finite
+  state, valid support, advancing sensors, and no robot teleport or scripted
+  avoidance command.
+- [x] **AC38 — V7 evidence gate:** two identical-input passing dry runs and one
+  frozen candidate have complete local/remote hash parity, decodable raw and
+  overlay MP4s, ROS bag, obstacle commanded/readback trajectory, sensor-hit
+  trace, map/replan events, SCAN paths, physical root path, contacts, and a
+  machine-readable acceptance report.
+- [ ] **AC39 — V7 human review:** Dr Sun watches the complete V7 overlay MP4
+  and explicitly accepts or rejects obstacle motion and visibility, reactive
+  avoidance, planned-versus-actual motion, speed, terrain appearance, and stop
+  or goal behavior.
 
 ## Stop Conditions
 
@@ -413,4 +505,6 @@ validated closed loop.
   new training.
 - Real-robot actuation, hardware power/cabling, payload CAD, or sensor mounting.
 - Calibrated MID-360 noise, coverage, timing, intensity, or weather parity.
-- Multi-map, multi-seed, dynamic-obstacle, or comparative benchmark claims.
+- Multi-map, multi-seed, comparative benchmark, predictive dynamic planning,
+  multi-agent intention modeling, or general dynamic-navigation claims beyond
+  the single frozen V7 crossing.

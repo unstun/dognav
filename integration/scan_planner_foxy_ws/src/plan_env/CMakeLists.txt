@@ -43,6 +43,8 @@ if(BUILD_TESTING)
   ament_add_gtest(test_occlusion_shadow test/test_occlusion_shadow.cpp)
   target_include_directories(test_occlusion_shadow PRIVATE include)
   target_link_libraries(test_occlusion_shadow Eigen3::Eigen)
+  ament_add_gtest(test_occupancy_decay test/test_occupancy_decay.cpp)
+  target_include_directories(test_occupancy_decay PRIVATE include)
 endif()
 
 ament_export_targets(export_plan_env HAS_LIBRARY_TARGET)

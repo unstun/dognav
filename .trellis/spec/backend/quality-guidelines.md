@@ -613,3 +613,144 @@ state.update_batch(updates)  # observes all; applies only fresh latest
 stale intermediates + fresh latest -> bounded atomic coalesce
 stale latest / malformed batch     -> unchanged fail-closed path
 ```
+
+## Scenario: React to a Moving Obstacle with a Policy-Controlled Robot
+
+### 1. Scope / Trigger
+
+Use this contract when a moving simulator body updates a SCAN-style occupancy
+map and can invalidate the active B-spline while an articulated locomotion
+policy lags or starts behind a replacement trajectory. It is a reactive
+moving-occupancy contract, not velocity prediction or intention modeling.
+
+### 2. Signatures
+
+```yaml
+grid_map.occupied_decay_updates: <complete cloud updates; 0 disables>
+closed_loop_controller.max_tracking_error: <strict metres>
+closed_loop_controller.replan_catchup_max_error: <fail-closed metres>
+closed_loop_controller.replan_catchup_min_speed: <catch-up-only m/s>
+```
+
+```text
+planning/go2_execution_frozen  # trajectory-time alignment only
+planning/go2_catchup_active    # collision-replan backpressure only
+```
+
+```cpp
+TrajectoryCatchupState classifyTrajectoryCatchup(
+    double start_error, double strict_error, double maximum_catchup_error);
+Eigen::Vector2d boundedCatchupVelocity(
+    const Eigen::Vector2d &position_error, double gain,
+    double minimum_speed, double maximum_speed);
+bool shouldDeferCollisionReplan(bool catchup_active);
+```
+
+### 3. Contracts
+
+- A dynamic body is one visible, collidable, terrain-seated prim tracked by
+  every declared simulated sensor. A command-relative schedule may begin only
+  after the first accepted nonzero robot command so simulator startup latency
+  cannot decide the collision outcome.
+- SCAN receives rendered point geometry only. Dynamic-body truth may classify
+  sensor hits, compare scheduled/readback poses, compute synchronized
+  clearance, and draw evidence; it may not inject or remove planner points,
+  generate a trajectory, or steer the robot.
+- Occupied-source freshness is disabled by default. When enabled, each
+  occupied source voxel records the most recent complete cloud update that hit
+  it. Expiry removes the source occupancy and its reference-counted inflation
+  contribution only after the full configured age. Continuously observed
+  static geometry refreshes its age.
+- A replacement trajectory inside the strict tracking window starts normal
+  B-spline execution. A larger mismatch up to the maximum enters bounded
+  position-only catch-up with B-spline time frozen. A larger mismatch is
+  rejected and stopped. A minimum catch-up speed may clear a measured policy
+  deadband, but applies only in `CATCHUP` and remains below the unchanged
+  policy maximum.
+- `go2_execution_frozen` may freeze SCAN trajectory time for heading, tracking,
+  or catch-up alignment. It must never suppress collision checking by itself.
+  Only the separately published `go2_catchup_active` state may defer another
+  optimizer call, and collision checking resumes immediately on `TRACKING` or
+  `REJECTED`.
+- Goal success for a locomotion policy requires a continuous in-tolerance
+  stopped window. Later zero-command stance drift is recorded and bounded
+  separately; shortening a run to hide drift is forbidden.
+- Freeze thresholds only after two passing same-source/config dry runs. A
+  post-candidate safety review can supersede an automated PASS; preserve it and
+  requalify the changed code before naming another review candidate.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required behavior |
+|---|---|
+| Freshness parameter is zero | Preserve legacy occupancy behavior |
+| Occupied source is hit again | Refresh age; retain occupancy and inflation |
+| Source exceeds full update age | Remove its occupancy and one paired inflation contribution |
+| Replacement start error is within strict bound | Track normally; catch-up inactive |
+| Start error is between strict and maximum bounds | Freeze B-spline time; command only toward the received start |
+| Catch-up proportional command falls inside the measured policy deadband | Apply the frozen catch-up-only minimum norm |
+| Start error exceeds maximum | Reject, publish zero command, keep collision checking active |
+| Heading or ordinary tracking freezes execution time | Keep collision checking active |
+| Catch-up is active | Defer only another collision optimizer call; continue pose/cloud callbacks |
+| Dynamic body contacts a non-foot link or triggers reset | Preserve FAIL; do not retime or shrink the obstacle after the frozen run |
+| Robot reaches and stops, then drifts | Report stable-arrival event and bounded later drift separately |
+
+### 5. Good / Base / Bad Cases
+
+- **Good:** command-relative collidable body, transform-tracked dual sensing,
+  rendered-only planner input, default-off freshness, bounded catch-up with a
+  dedicated backpressure state, live collision checks outside catch-up, two
+  same-input dry runs, frozen candidate, local hash parity, and human review.
+- **Base:** a static blocker can validate the geometric closed loop, but cannot
+  support a moving-obstacle claim.
+- **Bad:** animate a collision-disabled visual, classify truth bounds into the
+  planner cloud, reuse a broad execution-frozen signal to suppress collision
+  checks, widen normal tracking to absorb mismatch, or rerun a startup-timed
+  crossing until one attempt happens not to collide.
+
+### 6. Tests Required
+
+- Unit-test wait/cross/hold/cross/park schedule boundaries, invalid dimensions,
+  hold fraction, terrain seating, pose readback, and signed circle clearance.
+- Unit-test occupied-age boundary behavior with disabled, unobserved,
+  refreshed, exact-age, and expired sources; integration evidence must retain
+  a static blocker after departed-body cells expire.
+- Unit-test `TRACKING`, `CATCHUP`, and `REJECTED`; prove the minimum catch-up
+  speed clears a small request, maximum speed still saturates, and zero error
+  stays zero.
+- Assert collision replanning defers for `CATCHUP` only, not tracking, heading
+  alignment, ordinary time freeze, or rejected trajectory state.
+- Run a physical dry run that actually exercises a large bounded mismatch and
+  another same-input run through normal tracking before freezing.
+- In the frozen run, assert command-relative trigger evidence, all motion
+  phases, dual-sensor multi-pose detections, a causally later SCAN plan,
+  positive synchronized clearance, zero non-foot collision, stable goal stop,
+  bounded later drift, decoded raw/overlay videos, ROS bag integrity, and
+  local/remote SHA-256 parity.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```cpp
+if (go2_execution_frozen)
+  return;  // also hides collisions during heading and ordinary tracking freeze
+```
+
+```text
+dynamic truth bounds -> synthetic planner points -> apparent replan
+```
+
+#### Correct
+
+```cpp
+if (go2_catchup_active)
+  return;  // optimizer backpressure only during bounded start catch-up
+// heading/tracking/rejected states still execute collision checking
+```
+
+```text
+command-relative PhysX body -> transform-tracked sensor hits -> SCAN occupancy
+  -> reactive B-spline -> bounded catch-up if needed -> articulated motion
+  -> synchronized clearance/contact evidence
+```

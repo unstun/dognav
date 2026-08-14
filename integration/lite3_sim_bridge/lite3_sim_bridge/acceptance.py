@@ -89,6 +89,7 @@ def evaluate_acceptance(
 ) -> Dict[str, object]:
     limits = thresholds["thresholds"]
     goal = thresholds["goal_world_m"]
+    v7 = thresholds.get("v7_dynamic_obstacle")
     checks = {}
 
     def add(name: str, passed: bool, value, expected) -> None:
@@ -100,6 +101,63 @@ def evaluate_acceptance(
     final_position = [float(value) for value in metrics[-1]["root_pos_w"]]
     goal_xy_error = math.dist(final_position[:2], [float(goal[0]), float(goal[1])])
     goal_z_error = abs(final_position[2] - float(goal[2]))
+    goal_stop_event = None
+    if v7 is not None:
+        goal_xy_tolerance = float(limits["goal_xy_tolerance_m"])
+        stop_window_seconds = float(limits["stop_window_seconds"])
+        stop_command_limit = float(limits["stop_command_max_abs"])
+        stop_speed_limit = float(limits["stop_planar_speed_max_mps"])
+        for start_index, start_row in enumerate(metrics):
+            start_time = float(start_row["sim_time_seconds"])
+            end_index = start_index
+            while (
+                end_index < len(metrics)
+                and float(metrics[end_index]["sim_time_seconds"]) - start_time
+                < stop_window_seconds
+            ):
+                end_index += 1
+            if end_index >= len(metrics):
+                break
+            window_rows = metrics[start_index : end_index + 1]
+            window_goal_errors = [
+                math.dist(
+                    [float(value) for value in row["root_pos_w"][:2]],
+                    [float(goal[0]), float(goal[1])],
+                )
+                for row in window_rows
+            ]
+            window_command = max(
+                max(abs(float(value)) for value in row["applied_command"])
+                for row in window_rows
+            )
+            window_speed = max(
+                math.hypot(
+                    float(row["root_lin_vel_w"][0]),
+                    float(row["root_lin_vel_w"][1]),
+                )
+                for row in window_rows
+            )
+            if (
+                max(window_goal_errors) <= goal_xy_tolerance
+                and window_command <= stop_command_limit
+                and window_speed <= stop_speed_limit
+            ):
+                anchor_position = [
+                    float(value) for value in metrics[end_index]["root_pos_w"][:2]
+                ]
+                goal_stop_event = {
+                    "start_index": start_index,
+                    "end_index": end_index,
+                    "start_sim_time_seconds": start_time,
+                    "end_sim_time_seconds": float(
+                        metrics[end_index]["sim_time_seconds"]
+                    ),
+                    "maximum_goal_error_m": max(window_goal_errors),
+                    "maximum_command_abs": window_command,
+                    "maximum_planar_speed_mps": window_speed,
+                    "anchor_position_w_xy_m": anchor_position,
+                }
+                break
     stop_start = float(metrics[-1]["sim_time_seconds"]) - float(
         limits["stop_window_seconds"]
     )
@@ -151,7 +209,21 @@ def evaluate_acceptance(
     add("isaac_runtime_error", isaac_report.get("runtime_error") is None, isaac_report.get("runtime_error"), None)
     add("record_count", len(metrics) >= int(limits["minimum_record_count"]), len(metrics), limits["minimum_record_count"])
     add("sim_duration", duration >= float(limits["minimum_sim_duration_seconds"]), duration, limits["minimum_sim_duration_seconds"])
-    add("goal_xy", goal_xy_error <= float(limits["goal_xy_tolerance_m"]), goal_xy_error, limits["goal_xy_tolerance_m"])
+    if v7 is None:
+        add("goal_xy", goal_xy_error <= float(limits["goal_xy_tolerance_m"]), goal_xy_error, limits["goal_xy_tolerance_m"])
+    else:
+        add(
+            "goal_xy",
+            goal_stop_event is not None,
+            {
+                "final_goal_error_m": goal_xy_error,
+                "stable_goal_stop_event": goal_stop_event,
+            },
+            {
+                "goal_xy_tolerance_m": limits["goal_xy_tolerance_m"],
+                "continuous_stop_window_seconds": limits["stop_window_seconds"],
+            },
+        )
     add("goal_z", goal_z_error <= float(limits["goal_z_tolerance_m"]), goal_z_error, limits["goal_z_tolerance_m"])
     add("stopped_command", stop_command <= float(limits["stop_command_max_abs"]), stop_command, limits["stop_command_max_abs"])
     add("stopped_motion", stop_speed <= float(limits["stop_planar_speed_max_mps"]), stop_speed, limits["stop_planar_speed_max_mps"])
@@ -915,6 +987,442 @@ def evaluate_acceptance(
             v6["maximum_plan_pose_alignment_error_ms"],
         )
 
+    if v7 is not None:
+        add(
+            "v7_stable_goal_stop_event",
+            goal_stop_event is not None,
+            goal_stop_event,
+            {
+                "goal_xy_tolerance_m": limits["goal_xy_tolerance_m"],
+                "stop_window_seconds": limits["stop_window_seconds"],
+                "stop_command_max_abs": limits["stop_command_max_abs"],
+                "stop_planar_speed_max_mps": limits[
+                    "stop_planar_speed_max_mps"
+                ],
+            },
+        )
+        post_stop_drift = math.inf
+        if goal_stop_event is not None:
+            anchor = goal_stop_event["anchor_position_w_xy_m"]
+            post_stop_drift = max(
+                math.dist(
+                    [float(value) for value in row["root_pos_w"][:2]], anchor
+                )
+                for row in metrics[int(goal_stop_event["end_index"]) :]
+            )
+        add(
+            "v7_post_stop_drift",
+            post_stop_drift <= float(v7["maximum_post_stop_drift_m"]),
+            {
+                "maximum_drift_m": post_stop_drift,
+                "final_goal_error_m": goal_xy_error,
+            },
+            v7["maximum_post_stop_drift_m"],
+        )
+        try:
+            occupied_decay_updates = _yaml_numeric_value(
+                planner_config_text or "", "grid_map.occupied_decay_updates"
+            )
+        except ValueError:
+            occupied_decay_updates = None
+        add(
+            "v7_occupied_freshness_window",
+            occupied_decay_updates is not None
+            and abs(
+                occupied_decay_updates
+                - float(v7["expected_occupied_decay_updates"])
+            )
+            <= 1.0e-9,
+            occupied_decay_updates,
+            v7["expected_occupied_decay_updates"],
+        )
+        try:
+            controller_tracking_error = _yaml_numeric_value(
+                controller_config_text or "", "max_tracking_error"
+            )
+        except ValueError:
+            controller_tracking_error = None
+        add(
+            "v7_controller_tracking_window",
+            controller_tracking_error is not None
+            and abs(
+                controller_tracking_error
+                - float(v7["expected_controller_strict_tracking_error_m"])
+            )
+            <= 1.0e-9,
+            controller_tracking_error,
+            v7["expected_controller_strict_tracking_error_m"],
+        )
+        try:
+            controller_catchup_error = _yaml_numeric_value(
+                controller_config_text or "", "replan_catchup_max_error"
+            )
+        except ValueError:
+            controller_catchup_error = None
+        add(
+            "v7_controller_catchup_limit",
+            controller_catchup_error is not None
+            and abs(
+                controller_catchup_error
+                - float(v7["expected_controller_catchup_max_error_m"])
+            )
+            <= 1.0e-9,
+            controller_catchup_error,
+            v7["expected_controller_catchup_max_error_m"],
+        )
+        try:
+            controller_catchup_min_speed = _yaml_numeric_value(
+                controller_config_text or "", "replan_catchup_min_speed"
+            )
+        except ValueError:
+            controller_catchup_min_speed = None
+        add(
+            "v7_controller_catchup_minimum_speed",
+            controller_catchup_min_speed is not None
+            and abs(
+                controller_catchup_min_speed
+                - float(v7["expected_controller_catchup_minimum_speed_mps"])
+            )
+            <= 1.0e-9,
+            controller_catchup_min_speed,
+            v7["expected_controller_catchup_minimum_speed_mps"],
+        )
+        try:
+            controller_finish_distance = _yaml_numeric_value(
+                controller_config_text or "", "finish_dist"
+            )
+        except ValueError:
+            controller_finish_distance = None
+        add(
+            "v7_controller_finish_distance",
+            controller_finish_distance is not None
+            and abs(
+                controller_finish_distance
+                - float(v7["expected_controller_finish_distance_m"])
+            )
+            <= 1.0e-9,
+            controller_finish_distance,
+            v7["expected_controller_finish_distance_m"],
+        )
+        dynamic_identity = run_identity.get("dynamic_obstacle") or {}
+        composition = runtime_composition or {}
+        dynamic_geometry = composition.get("dynamic_obstacle", {}).get(
+            "geometry_checks"
+        ) or {}
+        add(
+            "v7_course_identity",
+            run_identity.get("course", {}).get("name") == v7["expected_course"],
+            run_identity.get("course", {}).get("name"),
+            v7["expected_course"],
+        )
+        expected_identity = {
+            "shape": v7["expected_shape"],
+            "radius_m": float(v7["expected_radius_m"]),
+            "height_m": float(v7["expected_height_m"]),
+            "speed_mps": float(v7["expected_speed_mps"]),
+            "wait_seconds": float(v7["expected_wait_seconds"]),
+            "hold_fraction": float(v7["expected_hold_fraction"]),
+            "hold_seconds": float(v7["expected_hold_seconds"]),
+            "schedule_trigger": v7["expected_schedule_trigger"],
+        }
+        observed_identity = {
+            "shape": dynamic_identity.get("shape"),
+            "radius_m": dynamic_identity.get("radius_m"),
+            "height_m": dynamic_identity.get("height_m"),
+            "speed_mps": dynamic_identity.get("speed_mps"),
+            "wait_seconds": dynamic_identity.get("wait_seconds"),
+            "hold_fraction": dynamic_identity.get("hold_fraction"),
+            "hold_seconds": dynamic_identity.get("hold_seconds"),
+            "schedule_trigger": dynamic_identity.get("schedule_trigger"),
+        }
+        add(
+            "v7_dynamic_identity",
+            observed_identity == expected_identity,
+            observed_identity,
+            expected_identity,
+        )
+        required_geometry_checks = (
+            "runtime_root_exists",
+            "rigid_object_initialized",
+            "kinematic_enabled",
+            "collision_enabled",
+            "visible_geometry",
+            "lidar_transform_tracking",
+            "depth_transform_tracking",
+        )
+        add(
+            "v7_dynamic_physics_sensor_geometry",
+            bool(dynamic_geometry.get("passed"))
+            and all(
+                dynamic_geometry.get("checks", {}).get(name) is True
+                for name in required_geometry_checks
+            ),
+            dynamic_geometry,
+            {name: True for name in required_geometry_checks},
+        )
+        add(
+            "v7_ground_truth_evidence_only",
+            dynamic_identity.get("planner_input") == "rendered sensor hits only"
+            and "forbidden" in str(dynamic_identity.get("ground_truth_use", "")),
+            {
+                "planner_input": dynamic_identity.get("planner_input"),
+                "ground_truth_use": dynamic_identity.get("ground_truth_use"),
+            },
+            "rendered sensor hits only; ground truth forbidden from planner/steering",
+        )
+
+        dynamic_rows = [
+            row
+            for row in metrics
+            if row.get("dynamic_obstacle_actual_pos_w") is not None
+        ]
+        phases = {str(row.get("dynamic_obstacle_phase")) for row in dynamic_rows}
+        required_phases = {"waiting", "crossing", "parked"}
+        if float(v7["expected_hold_seconds"]) > 0.0:
+            required_phases.add("holding")
+        trigger_indices = [
+            index
+            for index, row in enumerate(dynamic_rows)
+            if row.get("dynamic_obstacle_schedule_triggered") is True
+        ]
+        trigger_evidence = None
+        if trigger_indices:
+            trigger_index = trigger_indices[0]
+            trigger_row = dynamic_rows[trigger_index]
+            pre_trigger_rows = dynamic_rows[:trigger_index]
+            trigger_evidence = {
+                "trigger_index": trigger_index,
+                "trigger_sim_time_seconds": trigger_row.get(
+                    "dynamic_obstacle_trigger_sim_time_seconds"
+                ),
+                "trigger_command_max_abs": max(
+                    abs(float(value)) for value in trigger_row["applied_command"]
+                ),
+                "pre_trigger_record_count": len(pre_trigger_rows),
+                "pre_trigger_maximum_elapsed_seconds": max(
+                    (
+                        float(row.get("dynamic_obstacle_elapsed_seconds", math.inf))
+                        for row in pre_trigger_rows
+                    ),
+                    default=0.0,
+                ),
+                "pre_trigger_maximum_command_abs": max(
+                    (
+                        max(abs(float(value)) for value in row["applied_command"])
+                        for row in pre_trigger_rows
+                    ),
+                    default=0.0,
+                ),
+            }
+        add(
+            "v7_command_relative_schedule_trigger",
+            trigger_evidence is not None
+            and trigger_evidence["trigger_command_max_abs"] > 0.05
+            and trigger_evidence["pre_trigger_maximum_elapsed_seconds"] <= 1.0e-9
+            and trigger_evidence["pre_trigger_maximum_command_abs"] <= 0.05,
+            trigger_evidence,
+            "elapsed stays zero until first accepted command exceeds 0.05",
+        )
+        actual_travel = (
+            math.dist(
+                dynamic_rows[0]["dynamic_obstacle_actual_pos_w"],
+                dynamic_rows[-1]["dynamic_obstacle_actual_pos_w"],
+            )
+            if len(dynamic_rows) >= 2
+            else 0.0
+        )
+        maximum_pose_error = max(
+            (
+                float(row.get("dynamic_obstacle_pose_error_m", math.inf))
+                for row in dynamic_rows
+            ),
+            default=math.inf,
+        )
+        minimum_terrain_clearance = min(
+            (
+                float(row.get("dynamic_obstacle_bottom_clearance_m", -math.inf))
+                for row in dynamic_rows
+            ),
+            default=-math.inf,
+        )
+        add(
+            "v7_dynamic_motion",
+            required_phases.issubset(phases)
+            and actual_travel >= float(v7["minimum_actual_travel_m"])
+            and maximum_pose_error <= float(v7["maximum_pose_error_m"]),
+            {
+                "phases": sorted(phases),
+                "actual_travel_m": actual_travel,
+                "maximum_pose_error_m": maximum_pose_error,
+            },
+            {
+                "phases": sorted(required_phases),
+                "minimum_actual_travel_m": v7["minimum_actual_travel_m"],
+                "maximum_pose_error_m": v7["maximum_pose_error_m"],
+            },
+        )
+        add(
+            "v7_dynamic_terrain_clearance",
+            minimum_terrain_clearance
+            >= float(v7["minimum_terrain_clearance_m"]),
+            minimum_terrain_clearance,
+            v7["minimum_terrain_clearance_m"],
+        )
+
+        lidar_dynamic_rows = [
+            row
+            for row in sensor_metrics
+            if int(row.get("dynamic_obstacle_surface_hit_count", 0))
+            >= int(v7["minimum_lidar_hits_per_detection"])
+            and row.get("dynamic_obstacle_actual_pos_w") is not None
+        ]
+        depth_dynamic_rows = [
+            row
+            for row in (depth_metrics or [])
+            if int(row.get("dynamic_obstacle_surface_pixel_count", 0))
+            >= int(v7["minimum_depth_pixels_per_detection"])
+            and row.get("dynamic_obstacle_actual_pos_w") is not None
+        ]
+
+        def observation_span(rows):
+            if len(rows) < 2:
+                return 0.0
+            positions = [row["dynamic_obstacle_actual_pos_w"] for row in rows]
+            return max(
+                math.dist(left[:2], right[:2])
+                for left in positions
+                for right in positions
+            )
+
+        lidar_span = observation_span(lidar_dynamic_rows)
+        depth_span = observation_span(depth_dynamic_rows)
+        add(
+            "v7_lidar_dynamic_observations",
+            len(lidar_dynamic_rows) >= int(v7["minimum_lidar_detection_frames"])
+            and lidar_span >= float(v7["minimum_observed_position_span_m"]),
+            {"frame_count": len(lidar_dynamic_rows), "position_span_m": lidar_span},
+            {
+                "minimum_frames": v7["minimum_lidar_detection_frames"],
+                "minimum_position_span_m": v7["minimum_observed_position_span_m"],
+            },
+        )
+        add(
+            "v7_depth_dynamic_observations",
+            len(depth_dynamic_rows) >= int(v7["minimum_depth_detection_frames"])
+            and depth_span >= float(v7["minimum_observed_position_span_m"]),
+            {"frame_count": len(depth_dynamic_rows), "position_span_m": depth_span},
+            {
+                "minimum_frames": v7["minimum_depth_detection_frames"],
+                "minimum_position_span_m": v7["minimum_observed_position_span_m"],
+            },
+        )
+
+        navigation = run_identity.get("forest_scene", {}).get("navigation") or {}
+        start = navigation.get("start_world_m", [])
+        nav_goal = navigation.get("goal_world_m", [])
+        dynamic_start = dynamic_identity.get("start_xy_m", [])
+        dynamic_end = dynamic_identity.get("end_xy_m", [])
+        if (
+            len(start) >= 2
+            and len(nav_goal) >= 2
+            and len(dynamic_start) == 2
+            and len(dynamic_end) == 2
+        ):
+            dynamic_corridor_distance = min(
+                point_to_segment_distance_2d(
+                    (
+                        float(dynamic_start[0])
+                        + (float(dynamic_end[0]) - float(dynamic_start[0]))
+                        * index
+                        / 100.0,
+                        float(dynamic_start[1])
+                        + (float(dynamic_end[1]) - float(dynamic_start[1]))
+                        * index
+                        / 100.0,
+                    ),
+                    start[:2],
+                    nav_goal[:2],
+                )
+                for index in range(101)
+            )
+        else:
+            dynamic_corridor_distance = math.inf
+        required_conflict_distance = float(v7["maximum_nominal_route_distance_m"])
+        add(
+            "v7_nominal_route_conflict",
+            dynamic_corridor_distance <= required_conflict_distance,
+            dynamic_corridor_distance,
+            required_conflict_distance,
+        )
+
+        first_detection_time = min(
+            (float(row["sim_time_seconds"]) for row in lidar_dynamic_rows),
+            default=math.inf,
+        )
+        plan_records = list((trajectory_review_metadata or {}).get("plans", []))
+        post_detection_plans = [
+            row
+            for row in plan_records
+            if float(row.get("effective_sim_time_seconds", -math.inf))
+            >= first_detection_time
+        ]
+        response_latency = (
+            min(
+                float(row["effective_sim_time_seconds"])
+                for row in post_detection_plans
+            )
+            - first_detection_time
+            if post_detection_plans and math.isfinite(first_detection_time)
+            else math.inf
+        )
+        add(
+            "v7_post_detection_scan_response",
+            len(post_detection_plans)
+            >= int(v7["minimum_post_detection_bspline_records"])
+            and 0.0 <= response_latency
+            <= float(v7["maximum_replan_response_seconds"]),
+            {
+                "first_lidar_detection_sim_time_seconds": first_detection_time,
+                "post_detection_plan_ids": [
+                    row.get("trajectory_id") for row in post_detection_plans
+                ],
+                "response_latency_seconds": response_latency,
+            },
+            {
+                "minimum_records": v7["minimum_post_detection_bspline_records"],
+                "maximum_response_seconds": v7["maximum_replan_response_seconds"],
+            },
+        )
+        synchronized_clearance = min(
+            (
+                float(row.get("root_to_dynamic_surface_clearance_m", -math.inf))
+                for row in dynamic_rows
+                if row.get("dynamic_obstacle_phase") == "crossing"
+            ),
+            default=-math.inf,
+        )
+        add(
+            "v7_physical_dynamic_clearance",
+            synchronized_clearance
+            >= float(v7["minimum_synchronized_surface_clearance_m"]),
+            synchronized_clearance,
+            v7["minimum_synchronized_surface_clearance_m"],
+        )
+        review_dynamic = (trajectory_review_metadata or {}).get(
+            "dynamic_obstacle", {}
+        )
+        add(
+            "v7_overlay_dynamic_trace",
+            review_dynamic.get("rendered") is True
+            and int(review_dynamic.get("record_count", 0))
+            >= int(v7["minimum_overlay_dynamic_records"]),
+            review_dynamic,
+            {
+                "rendered": True,
+                "minimum_records": v7["minimum_overlay_dynamic_records"],
+            },
+        )
+
     passed = all(value["passed"] for value in checks.values())
     return {
         "schema_version": 1,
@@ -932,6 +1440,7 @@ def evaluate_acceptance(
             "video_sha256": video_hash,
             "rosbag_bytes": bag_bytes,
             "forest_navigation_enabled": forest is not None,
+            "dynamic_obstacle_enabled": v7 is not None,
         },
     }
 

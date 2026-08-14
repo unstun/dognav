@@ -1,0 +1,26 @@
+closed_loop_controller:
+  ros__parameters:
+    use_sim_time: false
+    time_forward: 0.8
+    heading_error_threshold: 0.8
+    kp_pos: 0.8
+    kp_yaw: 1.5
+    max_vx: 1.00
+    max_vy: 0.35
+    max_vyaw: 1.0
+    # Keep the terminal latch plus strict tracking envelope inside the frozen
+    # 0.25 m goal gate: 0.10 + 0.14 = 0.24 m.
+    finish_dist: 0.10
+    # The first SCAN trajectory has a reproducible 0.120 m discretization
+    # offset. A 0.14 m strict window clears that deadband while preserving the
+    # 0.55 m static-tree gate against the 0.692 m planned clearance.
+    max_tracking_error: 0.14
+    # Dry run 04 measured a 0.353 m start mismatch after a safety replan.
+    # Freeze B-spline time and use position-only catch-up at t=0 until the
+    # strict 0.14 m window is recovered. Dry run 08 measured 0.652 m at the
+    # first dynamic safety replan, so reject only mismatches above 0.75 m.
+    replan_catchup_max_error: 0.75
+    # Dry run 15 held a 0.17 m start error at a 0.13 m/s command inside the
+    # V12 policy deadband. Catch-up only uses this minimum until the strict
+    # 0.14 m tracking window is recovered; normal tracking is unchanged.
+    replan_catchup_min_speed: 0.20

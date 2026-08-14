@@ -1,0 +1,67 @@
+{
+  "artifacts": {
+    "depth_metres_npy": {
+      "bytes": 20312,
+      "path": "d435i_depth_frame_m.npy",
+      "sha256": "39ce1856abdb65db9d4d4ee22519c66394c71b55d522ba9d57db16f92da0f051"
+    },
+    "depth_millimetres_png": {
+      "bytes": 3206,
+      "invalid_or_clipped_value_mm": 5000,
+      "path": "d435i_depth_frame_mm.png",
+      "sha256": "b8309e3c2d7a7ca6ab62b7df9b0443dc4607abc672a4e46bc98a39a3cbc40372"
+    },
+    "human_preview_png": {
+      "bytes": 996,
+      "display_rule": "nearer valid depth is brighter; invalid is black",
+      "path": "d435i_depth_preview.png",
+      "sha256": "096d199fe621720bd0272e7425ec0e00b79f8852f42d894932178fe5783a93cf"
+    }
+  },
+  "dynamic_obstacle_actual_pos_w": [
+    -2.700000047683716,
+    3.0,
+    0.9337998628616333
+  ],
+  "dynamic_obstacle_surface_pixel_count": 797,
+  "height": 58,
+  "intrinsic_matrix": [
+    [
+      45.83973693847656,
+      0.0,
+      43.5
+    ],
+    [
+      0.0,
+      45.83973693847656,
+      29.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "maximum_valid_depth_m": 4.008218765258789,
+  "mean_valid_depth_m": 0.9086716175079346,
+  "minimum_valid_depth_m": 0.3550545573234558,
+  "nonfinite_depth_count": 0,
+  "obstacle_surface_pixel_count": 25,
+  "pixel_count": 5046,
+  "self_occluded_pixel_count": 0,
+  "sensor_position_w": [
+    -3.729170322418213,
+    3.046844244003296,
+    0.5246791839599609
+  ],
+  "sensor_quaternion_wxyz_ros": [
+    0.3677702248096466,
+    -0.6001291871070862,
+    0.6027329564094543,
+    -0.37590292096138
+  ],
+  "sim_time_seconds": 4.229999905452132,
+  "step": 210,
+  "valid_depth_pixel_count": 4910,
+  "width": 87
+}

@@ -124,10 +124,24 @@ class TrajectoryReviewTest(unittest.TestCase):
                         "root_pos_w": [frame_index * 0.25, 0.05 * frame_index, 0.4],
                         "root_lin_vel_w": [0.5, 0.0, 0.0],
                         "applied_command": [1.0, 0.0, 0.0],
+                        "dynamic_obstacle_phase": (
+                            "waiting" if frame_index == 0 else "crossing"
+                        ),
+                        "dynamic_obstacle_actual_pos_w": [
+                            0.4,
+                            -0.2 + 0.15 * frame_index,
+                            0.75,
+                        ],
+                        "root_to_dynamic_surface_clearance_m": 0.4,
                     }
                 )
             identity = {
                 "video": {"frame_stride": 3},
+                "dynamic_obstacle": {
+                    "radius_m": 0.30,
+                    "start_xy_m": [0.4, -0.2],
+                    "end_xy_m": [0.4, 0.4],
+                },
                 "forest_scene": {
                     "navigation": {
                         "start_world_m": [0.0, 0.0, 0.4],
@@ -168,6 +182,8 @@ class TrajectoryReviewTest(unittest.TestCase):
             self.assertTrue(metadata_path.is_file())
             self.assertEqual(metadata["output"]["frame_count"], 4)
             self.assertEqual(metadata["trajectory_ids"], [1])
+            self.assertTrue(metadata["dynamic_obstacle"]["rendered"])
+            self.assertEqual(metadata["dynamic_obstacle"]["record_count"], 4)
             decoded = cv2.VideoCapture(str(output))
             self.assertTrue(decoded.isOpened())
             self.assertEqual(int(decoded.get(cv2.CAP_PROP_FRAME_COUNT)), 4)

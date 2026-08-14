@@ -3,8 +3,11 @@ import unittest
 
 from lite3_sim_bridge.isaac_adapter_core import (
     DEFAULT_QUALIFICATION_SCHEDULE,
+    DynamicObstacleSpec,
     assert_command_visible_in_critic,
     canonical_config_sha256,
+    circle_surface_clearance_2d,
+    dynamic_obstacle_state,
     local_minimum_obstacle_hits,
     point_to_segment_distance_2d,
     quaternion_wxyz_to_xyzw,
@@ -18,6 +21,84 @@ from lite3_sim_bridge.isaac_adapter_core import (
 
 
 class IsaacAdapterCoreTest(unittest.TestCase):
+    def test_dynamic_obstacle_wait_cross_and_park_schedule(self):
+        spec = DynamicObstacleSpec(
+            name="crossing_actor",
+            start_xy=(-3.5, 1.2),
+            end_xy=(-3.5, 4.8),
+            wait_seconds=3.5,
+            speed_mps=0.8,
+            radius_m=0.30,
+            height_m=1.50,
+            terrain_clearance_m=0.02,
+            hold_fraction=0.5,
+            hold_seconds=2.0,
+        )
+        waiting = dynamic_obstacle_state(2.0, spec, lambda x, y: x * 0.01 + y * 0.02)
+        self.assertEqual(waiting["phase"], "waiting")
+        self.assertEqual(waiting["center_xy_m"], (-3.5, 1.2))
+        self.assertEqual(waiting["velocity_xy_mps"], (0.0, 0.0))
+
+        crossing = dynamic_obstacle_state(4.5, spec, lambda _x, _y: 0.25)
+        self.assertEqual(crossing["phase"], "crossing")
+        self.assertAlmostEqual(crossing["center_xy_m"][0], -3.5)
+        self.assertAlmostEqual(crossing["center_xy_m"][1], 2.0)
+        self.assertEqual(crossing["velocity_xy_mps"], (0.0, 0.8))
+        self.assertAlmostEqual(crossing["center_xyz_m"][2], 1.02)
+        self.assertAlmostEqual(crossing["bottom_terrain_clearance_m"], 0.02)
+
+        holding = dynamic_obstacle_state(7.0, spec, lambda _x, _y: 0.25)
+        self.assertEqual(holding["phase"], "holding")
+        self.assertAlmostEqual(holding["center_xy_m"][1], 3.0)
+        self.assertEqual(holding["velocity_xy_mps"], (0.0, 0.0))
+
+        parked = dynamic_obstacle_state(20.0, spec, lambda _x, _y: 0.10)
+        self.assertEqual(parked["phase"], "parked")
+        self.assertEqual(parked["center_xy_m"], (-3.5, 4.8))
+        self.assertEqual(parked["velocity_xy_mps"], (0.0, 0.0))
+        self.assertAlmostEqual(spec.crossing_duration_seconds, 4.5)
+
+    def test_dynamic_obstacle_contract_rejects_invalid_values(self):
+        with self.assertRaisesRegex(ValueError, "distinct"):
+            DynamicObstacleSpec(
+                "bad", (0.0, 0.0), (0.0, 0.0), 1.0, 1.0, 0.2, 1.0, 0.0
+            )
+        with self.assertRaisesRegex(ValueError, "positive"):
+            DynamicObstacleSpec(
+                "bad", (0.0, 0.0), (1.0, 0.0), 1.0, 0.0, 0.2, 1.0, 0.0
+            )
+        with self.assertRaisesRegex(ValueError, "hold fraction"):
+            DynamicObstacleSpec(
+                "bad",
+                (0.0, 0.0),
+                (1.0, 0.0),
+                1.0,
+                1.0,
+                0.2,
+                1.0,
+                0.0,
+                hold_fraction=1.0,
+            )
+        spec = DynamicObstacleSpec(
+            "actor", (0.0, 0.0), (1.0, 0.0), 1.0, 1.0, 0.2, 1.0, 0.0
+        )
+        with self.assertRaisesRegex(ValueError, "elapsed"):
+            dynamic_obstacle_state(-0.1, spec, lambda _x, _y: 0.0)
+        with self.assertRaisesRegex(ValueError, "terrain height"):
+            dynamic_obstacle_state(0.0, spec, lambda _x, _y: float("nan"))
+
+    def test_circle_surface_clearance_is_time_synchronized_geometry(self):
+        self.assertAlmostEqual(
+            circle_surface_clearance_2d((0.0, 0.0), (1.0, 0.0), 0.4, 0.3),
+            0.3,
+        )
+        self.assertAlmostEqual(
+            circle_surface_clearance_2d((0.0, 0.0), (0.5, 0.0), 0.4, 0.3),
+            -0.2,
+        )
+        with self.assertRaisesRegex(ValueError, "radii"):
+            circle_surface_clearance_2d((0.0, 0.0), (1.0, 0.0), -0.1, 0.3)
+
     def test_schedule_boundaries_and_disconnect(self):
         first, elapsed = schedule_state(0.25)
         self.assertEqual(first.name, "settle_zero")

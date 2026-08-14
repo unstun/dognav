@@ -64,11 +64,22 @@ PLANNER_FLOOR_FILTER_MAX_Z=${SCAN_PLANNER_FLOOR_FILTER_MAX_Z:-0.05}
 ROBOT_ARGS=()
 ROBOT_INPUTS=()
 FOREST_ARGS=()
+DYNAMIC_ARGS=()
 FOREST_PYTHONPATH=
 TERRAIN_FILTER_CELL_SIZE=
 TERRAIN_FILTER_HEIGHT_THRESHOLD=
 TERRAIN_FILTER_NEIGHBOR_CELLS=
 TERRAIN_FILTER_MINIMUM_NEIGHBOR_CELLS=
+DYNAMIC_OBSTACLE_X=
+DYNAMIC_OBSTACLE_START_Y=
+DYNAMIC_OBSTACLE_END_Y=
+DYNAMIC_OBSTACLE_WAIT_SECONDS=
+DYNAMIC_OBSTACLE_SPEED=
+DYNAMIC_OBSTACLE_RADIUS=
+DYNAMIC_OBSTACLE_HEIGHT=
+DYNAMIC_OBSTACLE_TERRAIN_CLEARANCE=
+DYNAMIC_OBSTACLE_HOLD_FRACTION=
+DYNAMIC_OBSTACLE_HOLD_SECONDS=
 if [[ ! $MAX_VX =~ ^([0-9]+([.][0-9]*)?|[.][0-9]+)$ ]] \
   || ! awk -v value="$MAX_VX" 'BEGIN { exit !(value > 0.0) }'; then
   echo "SCAN_MAX_VX must be a positive decimal" >&2
@@ -89,7 +100,7 @@ fi
 case "$COURSE" in
   flat|single_box)
     ;;
-  forest_gen|forest_gen_nav|forest_gen_nav_v6)
+  forest_gen|forest_gen_nav|forest_gen_nav_v6|forest_gen_nav_v7_dynamic)
     FOREST_GEN_ROOT=${SCAN_FOREST_GEN_ROOT:-}
     STRIPE_KIT_ROOT=${SCAN_STRIPE_KIT_ROOT:-}
     FOREST_ASSET_PATH=${SCAN_FOREST_ASSET_PATH:-}
@@ -105,7 +116,7 @@ case "$COURSE" in
       --forest-asset-path "$FOREST_ASSET_PATH"
     )
     FOREST_PYTHONPATH=$FOREST_GEN_ROOT:$STRIPE_KIT_ROOT
-    if [[ $COURSE == forest_gen_nav || $COURSE == forest_gen_nav_v6 ]]; then
+    if [[ $COURSE == forest_gen_nav || $COURSE == forest_gen_nav_v6 || $COURSE == forest_gen_nav_v7_dynamic ]]; then
       TERRAIN_FILTER_CELL_SIZE=${SCAN_TERRAIN_FILTER_CELL_SIZE:-0.30}
       TERRAIN_FILTER_HEIGHT_THRESHOLD=${SCAN_TERRAIN_FILTER_HEIGHT_THRESHOLD:-0.22}
       TERRAIN_FILTER_NEIGHBOR_CELLS=${SCAN_TERRAIN_FILTER_NEIGHBOR_CELLS:-1}
@@ -115,6 +126,30 @@ case "$COURSE" in
         --terrain-filter-height-threshold "$TERRAIN_FILTER_HEIGHT_THRESHOLD"
         --terrain-filter-neighbor-cells "$TERRAIN_FILTER_NEIGHBOR_CELLS"
         --terrain-filter-minimum-neighbor-cells "$TERRAIN_FILTER_MINIMUM_NEIGHBOR_CELLS"
+      )
+    fi
+    if [[ $COURSE == forest_gen_nav_v7_dynamic ]]; then
+      DYNAMIC_OBSTACLE_X=${SCAN_DYNAMIC_OBSTACLE_X:--3.0}
+      DYNAMIC_OBSTACLE_START_Y=${SCAN_DYNAMIC_OBSTACLE_START_Y:-1.2}
+      DYNAMIC_OBSTACLE_END_Y=${SCAN_DYNAMIC_OBSTACLE_END_Y:-4.8}
+      DYNAMIC_OBSTACLE_WAIT_SECONDS=${SCAN_DYNAMIC_OBSTACLE_WAIT_SECONDS:-0.2}
+      DYNAMIC_OBSTACLE_SPEED=${SCAN_DYNAMIC_OBSTACLE_SPEED:-0.8}
+      DYNAMIC_OBSTACLE_RADIUS=${SCAN_DYNAMIC_OBSTACLE_RADIUS:-0.30}
+      DYNAMIC_OBSTACLE_HEIGHT=${SCAN_DYNAMIC_OBSTACLE_HEIGHT:-1.50}
+      DYNAMIC_OBSTACLE_TERRAIN_CLEARANCE=${SCAN_DYNAMIC_OBSTACLE_TERRAIN_CLEARANCE:-0.02}
+      DYNAMIC_OBSTACLE_HOLD_FRACTION=${SCAN_DYNAMIC_OBSTACLE_HOLD_FRACTION:-0.5}
+      DYNAMIC_OBSTACLE_HOLD_SECONDS=${SCAN_DYNAMIC_OBSTACLE_HOLD_SECONDS:-0.0}
+      DYNAMIC_ARGS=(
+        --dynamic-obstacle-x "$DYNAMIC_OBSTACLE_X"
+        --dynamic-obstacle-start-y "$DYNAMIC_OBSTACLE_START_Y"
+        --dynamic-obstacle-end-y "$DYNAMIC_OBSTACLE_END_Y"
+        --dynamic-obstacle-wait-seconds "$DYNAMIC_OBSTACLE_WAIT_SECONDS"
+        --dynamic-obstacle-speed "$DYNAMIC_OBSTACLE_SPEED"
+        --dynamic-obstacle-radius "$DYNAMIC_OBSTACLE_RADIUS"
+        --dynamic-obstacle-height "$DYNAMIC_OBSTACLE_HEIGHT"
+        --dynamic-obstacle-terrain-clearance "$DYNAMIC_OBSTACLE_TERRAIN_CLEARANCE"
+        --dynamic-obstacle-hold-fraction "$DYNAMIC_OBSTACLE_HOLD_FRACTION"
+        --dynamic-obstacle-hold-seconds "$DYNAMIC_OBSTACLE_HOLD_SECONDS"
       )
     fi
     ;;
@@ -174,6 +209,16 @@ mkdir -p "$LOG_DIR" "$OUTPUT_DIR"
   printf 'terrain_filter_height_threshold=%s\n' "$TERRAIN_FILTER_HEIGHT_THRESHOLD"
   printf 'terrain_filter_neighbor_cells=%s\n' "$TERRAIN_FILTER_NEIGHBOR_CELLS"
   printf 'terrain_filter_minimum_neighbor_cells=%s\n' "$TERRAIN_FILTER_MINIMUM_NEIGHBOR_CELLS"
+  printf 'dynamic_obstacle_x=%s\n' "$DYNAMIC_OBSTACLE_X"
+  printf 'dynamic_obstacle_start_y=%s\n' "$DYNAMIC_OBSTACLE_START_Y"
+  printf 'dynamic_obstacle_end_y=%s\n' "$DYNAMIC_OBSTACLE_END_Y"
+  printf 'dynamic_obstacle_wait_seconds=%s\n' "$DYNAMIC_OBSTACLE_WAIT_SECONDS"
+  printf 'dynamic_obstacle_speed=%s\n' "$DYNAMIC_OBSTACLE_SPEED"
+  printf 'dynamic_obstacle_radius=%s\n' "$DYNAMIC_OBSTACLE_RADIUS"
+  printf 'dynamic_obstacle_height=%s\n' "$DYNAMIC_OBSTACLE_HEIGHT"
+  printf 'dynamic_obstacle_terrain_clearance=%s\n' "$DYNAMIC_OBSTACLE_TERRAIN_CLEARANCE"
+  printf 'dynamic_obstacle_hold_fraction=%s\n' "$DYNAMIC_OBSTACLE_HOLD_FRACTION"
+  printf 'dynamic_obstacle_hold_seconds=%s\n' "$DYNAMIC_OBSTACLE_HOLD_SECONDS"
   printf 'video_fps=%s\n' "$VIDEO_FPS"
   printf 'video_frame_stride=%s\n' "$VIDEO_FRAME_STRIDE"
   printf 'max_vx=%s\n' "$MAX_VX"
@@ -260,6 +305,7 @@ python -u -m lite3_sim_bridge.run_isaac_v12_fallback \
   --vendored-rsl-rl "$RUNTIME/source/rsl_rl" \
   "${ROBOT_ARGS[@]}" \
   "${FOREST_ARGS[@]}" \
+  "${DYNAMIC_ARGS[@]}" \
   --source-commit 8c3fdffa84b85be0704a10ea5b2533817d543822 \
   --telemetry-port "$TELEMETRY_PORT" \
   --command-port "$COMMAND_PORT" \

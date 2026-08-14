@@ -508,3 +508,154 @@ trajectory time reaches its duration and planar error is within the frozen
 finish tolerance. It publishes zero until a newly identified B-spline arrives;
 the next trajectory callback explicitly resets the latch. A unit regression
 proves that later drift cannot reopen the completed trajectory.
+
+## 16. V7 Deterministic Dynamic-Obstacle Crossing
+
+V7 extends the immutable V6 composition with one orange moving rigid cylinder.
+It waits beside the nominal route until the first accepted nonzero body
+command, crosses laterally to the route, holds there for 2.5 s, then completes
+the crossing and remains parked outside the route. The trigger, initial pose,
+hold, crossing endpoints, speed, radius, height, colour, collision material,
+and terrain clearance are part of the run identity. The obstacle is kinematic
+only in the sense that its own pose follows this external schedule; the robot
+remains fully policy-driven and its root pose is never written.
+
+The obstacle prim uses Isaac collision and is registered as a transform-tracked
+target in both `MultiMeshRayCaster` instances. The simulator updates the
+obstacle before each physics step, reads its actual root pose back after the
+step, and forces fresh LiDAR/depth recomputation on the existing sensor cadence.
+Ground-truth obstacle bounds classify rendered hits for evidence only. They
+cannot add points, remove points, change the terrain filter, create a planner
+goal, or generate a velocity command.
+
+SCAN's probabilistic raycast map can clear old occupied voxels after later
+free-space returns, but the preserved V7 dry run 03 showed that a crossing body
+could still leave inflated cells around the stopped robot long enough to make
+every recovery plan reject its start as occupied. V7 therefore adds a bounded,
+disabled-by-default occupied-source freshness window. A source voxel expires
+only after it receives no hit for eight complete cloud updates; expiry removes
+that source's reference-counted inflation contribution. Continuously observed
+trees, rocks, and the current moving-body surface refresh their timestamps.
+V1--V6 remain at the default value zero and are behaviorally unchanged.
+
+The existing collision callback checks the active B-spline against the latest
+inflated map and can request a replacement trajectory or an emergency stop. V7
+instruments this behavior and the new freshness window; it does not add a
+velocity predictor. The causal evidence chain is:
+
+```text
+frozen obstacle schedule -> PhysX/readback motion -> rendered sensor hits
+  -> SCAN occupancy update -> trajectory replacement or emergency stop
+  -> TCP body command -> unchanged V12 policy -> articulated root motion
+```
+
+Each simulator record includes scheduled and readback obstacle pose, phase and
+velocity, terrain clearance, robot-to-obstacle centre and surface clearance,
+collision state, and sensor hit counts. The ROS monitor preserves plan IDs,
+publication times, B-splines, collision/replan state when observable, and map
+health. The review overlay adds the obstacle's accumulated path, current body,
+and clearance while retaining V6's planned SCAN path and physical root path.
+Its sidecar hashes every source record and both videos.
+
+Dry run 03 is retained as the evidence that motivated freshness expiry: the
+dynamic body travelled 3.61 m, both sensors observed it, SCAN published four
+trajectories, the physical clearance remained positive, and the robot stopped
+safely, but stale inflated occupancy prevented progress to the goal. A later
+candidate must show both recovery and continued static-tree avoidance before
+the freshness parameter can be frozen.
+
+Dry run 04 proved the freshness window removed all origin-occupancy and planner
+failures, then exposed a separate controller/trajectory interface mismatch.
+The third safety trajectory began 0.353 m behind the physical root while the
+inherited controller froze progress beyond 0.10 m. V7 therefore adds a bounded
+catch-up mode. Dry run 07 showed the first SCAN path
+has a reproducible 0.120 m discretization offset and that a 0.10 m window asks
+the Lite3 for an ineffective 0.02 m catch-up. V7 therefore freezes the strict
+window at 0.14 m. On a new trajectory whose start mismatch
+is within that bound, B-spline time remains frozen and a position-only command
+returns the robot to the 0.14 m window; normal feed-forward tracking resumes
+only after recovery. Larger mismatches are rejected. The planned static-tree
+clearance is 0.692 m, leaving 0.552 m under the full 0.14 m tracking allowance,
+still above the 0.55 m physical acceptance gate. Velocity, gain, heading, and
+policy contracts remain V6-identical. The controller still
+samples only SCAN's B-spline and never receives obstacle truth or a scripted
+waypoint.
+
+Dry run 06 exposed replan backpressure rather than a larger permissible
+tracking error. While the controller was in bounded catch-up, the SCAN safety
+timer launched successive optimizer calls on its single-threaded executor.
+Trajectory 6 was generated from odometry at `[-4.20, 3.30]` after the physical
+root had reached `[-1.98, 3.78]`, so the 2.20 m mismatch was correctly rejected.
+V7 defers collision-triggered replans only while the controller is actively in
+bounded start catch-up. B-spline time remains frozen, pose/cloud callbacks can
+catch up, and collision replanning resumes immediately after the 0.14 m strict
+tracking window is restored.
+
+After replan backpressure removed the cascade, dry run 08 isolated a 0.652 m
+start mismatch on the first dynamic safety trajectory. The bounded
+position-only catch-up ceiling is therefore 0.75 m. This does not widen normal
+path tracking: the robot must move back toward the received trajectory start
+with B-spline time frozen and recover the 0.14 m strict window before any
+feed-forward progression. Mismatches above 0.75 m remain fail-closed.
+
+Dry run 09 then completed the same dynamic replan with zero collision and the
+static-clearance gate intact, but stopped 0.275 m from the goal. The result is
+consistent with the unchanged 0.15 m finish latch plus the 0.14 m strict
+tracking envelope. V7 therefore narrows only `finish_dist` to 0.10 m, making
+the combined 0.24 m terminal envelope smaller than the unchanged 0.25 m goal
+tolerance. Obstacle-clearance thresholds, velocity limits, and normal strict
+tracking remain unchanged.
+
+Dry run 10 disproved that terminal-envelope explanation on its own. The robot
+reached within 0.015 m of the exact sampled SCAN endpoint and then held zero
+command for more than two seconds, but the V12 zero-command stance drifted
+0.301 m from the end of that stopped window over the remainder of the long
+slope trial. V7 does not hide this by shortening the run. Its navigation gate
+now requires a continuous two-second window inside the unchanged 0.25 m goal,
+with both command and physical speed below their existing stop limits, and
+separately reports and bounds all later passive drift at 0.35 m. This is a
+simulation navigation-arrival claim, not a station-keeping or real-robot hold
+claim; both the raw and overlay videos remain mandatory human-review evidence.
+
+Dry run 11 exposed a second startup-dependent race: with the obstacle schedule
+anchored to simulator launch time, the V12 controller began moving before SCAN
+could publish the safety trajectory, and the cylinder made physical contact at
+2.32 s. Repeating until a lucky run passes is forbidden. The revised scenario
+holds the actor at its start until the first accepted nonzero body command,
+moves from `[-2.7, 2.0]` to the nominal route at `[-2.7, 3.0]`, holds there for
+2.5 s, and then completes its crossing to `[-2.7, 4.8]`. This binds the
+time-space conflict to closed-loop execution rather than machine startup and
+leaves a visible, sensor-derived replan interval before physical intersection.
+
+Trellis review after candidate 01 found that the first implementation reused
+the broader `go2_execution_frozen` topic for this backpressure. That topic also
+covers heading alignment and ordinary tracking freeze, so collision checking
+could be deferred outside start catch-up. Candidate 01 is preserved and
+superseded despite its 119/119 automated report. The corrected interface keeps
+`go2_execution_frozen` for trajectory-time alignment and adds a separate
+`go2_catchup_active` topic; only the latter may defer the collision callback.
+Tracking, heading, and rejected-trajectory states continue collision checking.
+
+The first requalification, dry run 15, then exposed a locomotion deadband
+rather than a planner failure. A 0.261 m start mismatch converged to roughly
+0.17 m, where the proportional catch-up command was only about 0.13 m/s and
+the V12 policy stopped producing useful displacement. V7 therefore applies a
+0.20 m/s minimum norm only during active catch-up until the 0.14 m strict
+window is recovered. Normal B-spline tracking, the 1.0 m/s maximum, gains,
+acceleration bound, and obstacle/goal thresholds remain unchanged.
+
+Qualification proceeds through a short motion/sensing preflight, a causal
+crossing preflight, two same-input full dry runs, threshold freeze, and one
+uninterrupted final candidate. A passing candidate must demonstrate a genuine
+time-space conflict, sensor detection at multiple poses, a causally later SCAN
+response, physical clearance with no non-foot collision, and either goal reach
+plus stop or a declared safe stop. Human visual acceptance remains separate.
+
+Dry runs 16 and 17 passed the R2 candidate gate 120/120 and exercised bounded
+catch-up and normal tracking respectively. Candidate 02 then passed the frozen
+R2 gate, but a final cross-scenario runner review found no empty initialization
+for the V7-only hold variables when older wrappers invoked the shared runner
+under `set -u`. Those variables are now initialized without changing V7 values
+or behavior. Because the shared runner hash changed, candidate 02 is preserved
+and superseded. Post-fix candidate 03 passed the unchanged frozen R2 gate
+120/120, matched remote/local hashes, and remains pending Dr Sun's video review.

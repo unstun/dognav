@@ -398,6 +398,67 @@ human-only decision.
 **Gate 23:** AC30--AC33 pass before V6 is a review candidate; AC34 remains a
 human-only decision.
 
+## Phase 24 — Reopen From V6 Dynamic-Obstacle Feedback
+
+- [x] Preserve every V6 artifact and record Dr Sun's dynamic-obstacle request
+  as a human change request rather than accepting or relabeling V6.
+- [x] Inspect the installed Isaac Lab transform-tracked ray-caster interface,
+  SCAN occupancy clearing, and active-trajectory collision callback before
+  freezing the V7 claim boundary.
+- [x] Freeze V7 invariants: V12 weights/contracts, Lite3 sensor-rig URDF,
+  forest source/seed/start/goal, 1.0 m/s limits, transport, and SCAN algorithms
+  remain unchanged; V7 claims reactive rather than predictive avoidance.
+- [x] Create a new dated V7 local/remote evidence boundary and return the task
+  to `in_progress`, excluding all unrelated dirty paths.
+
+## Phase 25 — Implement Dynamic Body, Sensing, and Evidence
+
+- [x] Add and unit-test a deterministic command-relative
+  wait/cross/hold/cross/park obstacle trajectory,
+  terrain seating, schedule/readback comparison, and synchronized clearance.
+- [x] Spawn one visible/collidable Isaac rigid body and register that same prim
+  as a transform-tracked target for both simulated sensors; never write the
+  robot root or inject obstacle points.
+- [x] Record obstacle command/readback state, sensor hit counts, collision and
+  clearance metrics, plan/replan timing, and immutable run identity.
+- [x] Add a disabled-by-default, unit-tested occupied-source freshness window
+  to the SCAN map and prove V7 clears departed-object inflation while retaining
+  continuously observed static obstacles; keep V1--V6 behavior unchanged.
+- [x] Qualify a V7-only controller tracking window against the measured
+  safety-replan start mismatch without changing any speed, gain, policy,
+  waypoint, or robot-root contract.
+- [x] Defer collision-triggered optimizer calls only during controller-reported
+  catch-up, then prove replanning resumes with current odometry and without a
+  stale-start cascade.
+- [x] Extend the review overlay and provenance sidecar with the dynamic path,
+  current obstacle footprint, physical root, active SCAN plan, and clearance.
+- [x] Extend acceptance and tests for motion, dual sensing, time-space conflict,
+  causal SCAN response, physical clearance, goal/safe stop, video, and hashes.
+
+## Phase 26 — Remote V7 Qualification and Candidate
+
+- [x] Sync only task-owned V7 source/configuration to the 5070 Ti execution
+  copy and rebuild changed components in their pinned runtimes.
+- [x] Run a short dynamic-motion/dual-sensor preflight, then a causal crossing
+  preflight; preserve failures and tune only the declared obstacle schedule.
+- [x] Run two identical-input full dry runs and compare input, scene, obstacle,
+  sensor, trajectory, and outcome evidence before freezing thresholds.
+- [x] Freeze numerical acceptance thresholds and execute one uninterrupted V7
+  review candidate with SCAN, ROS bag, dual sensors, policy/PhysX, contacts,
+  raw video, and synchronized review overlay.
+
+## Phase 27 — Sync, Check, Commit, and Human Review
+
+- [x] Copy every V7 artifact locally and verify remote/local hashes, video
+  decode, structured records, overlay provenance, and local acceptance parity.
+- [x] Run `trellis-check`, review only task-owned changes, and commit without
+  staging unrelated research paths.
+- [x] Set the task to `review` and deliver the directly openable V7 overlay plus
+  raw MP4 and human checklist. Do not archive or call V7 accepted before AC39.
+
+**Gate 27:** AC35--AC38 pass before V7 is a review candidate; AC39 remains a
+human-only decision.
+
 ## Planned Validation Matrix
 
 | Layer | Required evidence | Failure response |

@@ -1,0 +1,701 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-08-14-19-27-22-792755-ubuntu-47
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [foxy_bridge_node-1]: process started with pid [61]
+[INFO] [scan_planner_node-2]: process started with pid [63]
+[INFO] [closed_loop_controller-3]: process started with pid [65]
+[INFO] [acceptance_monitor_node-4]: process started with pid [67]
+[closed_loop_controller-3] [INFO] [1786735642.823563256] [closed_loop_controller]: Closed-loop controller ready
+[scan_planner_node-2] hit: 1.7346
+[scan_planner_node-2] miss: -0.847298
+[scan_planner_node-2] min log: -1.99243
+[scan_planner_node-2] max: 3.89182
+[scan_planner_node-2] thresh log: 1.38629
+[scan_planner_node-2] [INFO] [1786735642.906796610] [scan_planner_node]: Preset waypoint mode will start after the first odometry message
+[acceptance_monitor_node-4] [INFO] [1786735642.980370433] [lite3_acceptance_monitor]: Acceptance monitor writing /evidence/ros_events.jsonl and /evidence/ros_summary.json
+[foxy_bridge_node-1] [INFO] [1786735642.984521797] [lite3_sim_bridge]: Lite3 bridge ready: telemetry 127.0.0.1:46420, command 127.0.0.1:46421
+[foxy_bridge_node-1] [INFO] [1786735642.984699819] [lite3_sim_bridge]: Telemetry stream connected
+[foxy_bridge_node-1] [INFO] [1786735642.985034073] [lite3_sim_bridge]: Command stream connected
+[scan_planner_node-2] [INFO] [1786735643.254264295] [scan_planner_node]: [navi_mode=2] Planning to waypoint 1/1: [0.50, 3.00, 0.85]
+[scan_planner_node-2] [TRIG]: from INIT to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------0
+[scan_planner_node-2] start:   -5    3 0.92, 0 0 0
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [32miter(+1)=103,time(ms)=20.459,total_t(ms)=20.459,cost=0.017
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] total time:[42m0.0251[0m,optimize:0.0244,refine:0.000752
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786735646.361954346] [closed_loop_controller]: Received trajectory 1, duration 7.360s
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------1
+[scan_planner_node-2] start: -4.88  3.01 0.814,     0.678 -5.69e-07  -0.00599
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] iter=18,time(ms)=3,rebound.
+[scan_planner_node-2] [32miter(+1)=71,time(ms)=9.512,total_t(ms)=12.557,cost=0.011
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] total time:[42m0.023[0m,optimize:0.023,refine:0.00062
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [SAFETY]: from EXEC_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786735647.717700306] [closed_loop_controller]: Received trajectory 2, duration 7.200s
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------2
+[scan_planner_node-2] start: -4.88  3.03 0.826,   0.993   0.345 0.00554
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [32miter(+1)=49,time(ms)=6.368,total_t(ms)=6.369,cost=0.002
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] total time:[42m0.00939[0m,optimize:0.00874,refine:0.000646
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [SAFETY]: from EXEC_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786735648.471174866] [closed_loop_controller]: Received trajectory 3, duration 7.200s
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------3
+[scan_planner_node-2] start: -3.89  3.35 0.441,       1 0.00494 0.00447
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] iter=23,time(ms)=7,rebound.
+[scan_planner_node-2] iter=34,time(ms)=8.7,rebound.
+[scan_planner_node-2] [32miter(+1)=128,time(ms)=16.575,keep optimizing
+[scan_planner_node-2] [0m[32miter(+1)=67,time(ms)=9.326,keep optimizing
+[scan_planner_node-2] [0m[32miter(+1)=93,time(ms)=12.301,keep optimizing
+[scan_planner_node-2] [0mfirst_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------4
+[scan_planner_node-2] start: -3.89  3.35 0.441,       1 0.00494 0.00447
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] iter=5,time(ms)=15.8,rebound.
+[scan_planner_node-2] iter=23,time(ms)=3.7,rebound.
+[scan_planner_node-2] iter=36,time(ms)=7,rebound.
+[scan_planner_node-2] [ERROR] [1786735651.394192950] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] [32miter(+1)=135,time(ms)=17.236,keep optimizing
+[scan_planner_node-2] [0m[32miter(+1)=114,time(ms)=15.175,keep optimizing
+[scan_planner_node-2] [0m[32miter(+1)=41,time(ms)=5.228,keep optimizing
+[scan_planner_node-2] [0mfirst_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [WARN] [1786735651.400407288] [scan_planner_node]: Obstacle discovered; emergency stop in 0.000s
+[scan_planner_node-2] [SAFETY]: from EXEC_TRAJ to EMERGENCY_STOP
+[closed_loop_controller-3] [INFO] [1786735653.486012651] [closed_loop_controller]: Received trajectory 4, duration 3.000s
+[scan_planner_node-2] [FSM]: from EMERGENCY_STOP to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------5
+[scan_planner_node-2] start: -3.62   3.5 0.396, 0 0 0
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [ERROR] [1786735661.433609927] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] [ERROR] [1786735661.434137512] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735661.456493664] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22.9,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.457061234] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735661.478667455] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.479290339] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735661.501855612] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=23.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.502433191] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735661.524669278] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.525219476] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735661.547796190] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=23.1,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.548356357] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735661.570988173] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=23.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.571579789] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735661.594284832] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=23.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.594857322] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735661.617353636] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=23.1,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.617928409] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735661.640405948] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=23,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.640971575] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735661.663206861] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.663769001] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735661.685959904] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.686594580] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735661.709182625] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=23.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.709763911] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735661.731966546] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.732523236] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735661.754988101] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=23,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.777916823] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22.9,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.800706024] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.823851330] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=23.1,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.847339186] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=23.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.870716235] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=23.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.871285789] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735661.894005811] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=23.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735661.894580174] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735661.926944170] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735661.950149328] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=56.2,rebound.
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------6
+[scan_planner_node-2] start: -3.57  3.57 0.387, 0 0 0
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [ERROR] [1786735664.474214807] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] [ERROR] [1786735664.474747923] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735664.506504688] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=32.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735664.507113545] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735664.538219254] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735664.538794629] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735664.570421922] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=32.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735664.571069181] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735664.602802592] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=32.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735664.603396862] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735664.634257302] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735664.634854979] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735664.665092636] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735664.665756867] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735664.696268335] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735664.727658395] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735664.728254098] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735664.758889198] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735664.790889808] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=32,rebound.
+[scan_planner_node-2] [ERROR] [1786735664.821657485] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735664.853813977] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=32.1,rebound.
+[scan_planner_node-2] [ERROR] [1786735664.885082249] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735664.916607982] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735664.948031725] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735664.979568178] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735665.011518535] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=32,rebound.
+[scan_planner_node-2] [ERROR] [1786735665.043232140] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735665.075224045] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=32,rebound.
+[scan_planner_node-2] [ERROR] [1786735665.106425813] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735665.137903197] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.5,rebound.
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------7
+[scan_planner_node-2] start: -3.59  3.57 0.385, 0 0 0
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [ERROR] [1786735667.078410053] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] [ERROR] [1786735667.104189433] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=25.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.130537055] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=26.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.157079230] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=26.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.183018950] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=25.9,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.209395206] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=26.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.235317102] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=25.9,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.261900033] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=26.6,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.288060616] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=26.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.314255993] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=26.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.341435840] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=27.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.367879351] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=26.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.394207116] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=26.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.421245117] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=27.1,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.448064210] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=26.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.474438943] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=26.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.501206909] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=26.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.527834665] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=26.6,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.554646544] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=26.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.581414581] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=26.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.607820392] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=26.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735667.635307843] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=27.5,rebound.
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------8
+[scan_planner_node-2] start: -3.59  3.57 0.384, 0 0 0
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [ERROR] [1786735669.425134758] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] [ERROR] [1786735669.425679466] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735669.455762337] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.456365123] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735669.487442533] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.488011796] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735669.520115042] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=32.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.551907758] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.552521033] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735669.582812324] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.9,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.583384383] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735669.614281014] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.614892938] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735669.645836968] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.646418805] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735669.677367153] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.677971241] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735669.708581979] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.709223117] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735669.740065457] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.771235089] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.802660458] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.833973858] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.865404698] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.897132011] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.928346897] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.959903041] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.6,rebound.
+[scan_planner_node-2] [ERROR] [1786735669.991824678] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.9,rebound.
+[scan_planner_node-2] [ERROR] [1786735670.023570797] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735670.054762420] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735670.085970464] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.2,rebound.
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------9
+[scan_planner_node-2] start: -3.59  3.57 0.386, 0 0 0
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [ERROR] [1786735671.676966752] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] [ERROR] [1786735671.677491312] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735671.698400987] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735671.699005386] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735671.720356966] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22,rebound.
+[scan_planner_node-2] [ERROR] [1786735671.720931339] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735671.742089077] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735671.742662689] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735671.763704521] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.6,rebound.
+[scan_planner_node-2] [ERROR] [1786735671.764258636] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735671.785389043] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735671.785948999] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735671.806640717] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735671.807187799] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735671.827887141] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735671.828423292] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735671.849888655] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22,rebound.
+[scan_planner_node-2] [ERROR] [1786735671.850532258] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735671.871407638] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735671.871954179] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735671.892773596] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735671.893309777] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735671.914406281] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735671.914994981] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735671.935740699] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735671.936295556] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735671.957027278] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735671.957588968] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735671.978690641] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735671.979442406] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735672.001854237] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=23.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735672.002498621] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735672.024147698] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735672.024731458] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735672.046421862] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735672.046983591] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735672.069153551] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735672.069741630] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735672.091446160] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735672.091999664] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735672.114137824] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735672.114749056] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735672.136926220] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=22.8,rebound.
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------10
+[scan_planner_node-2] start: -3.56   3.6 0.389, 0 0 0
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [ERROR] [1786735674.153140682] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] [ERROR] [1786735674.153684819] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735674.188052038] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735674.208885722] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=55.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735674.209488999] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735674.243526923] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735674.264063683] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=55.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735674.264666389] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735674.297801486] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735674.318685504] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=54.6,rebound.
+[scan_planner_node-2] [ERROR] [1786735674.319291046] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735674.352958798] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735674.373748109] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=55,rebound.
+[scan_planner_node-2] [ERROR] [1786735674.374319407] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735674.407448854] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735674.428114103] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=54.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735674.428692604] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735674.462256582] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735674.482902416] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=54.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735674.483549024] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735674.516511038] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735674.537664800] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=54.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735674.538279689] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735674.571488934] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735674.592244242] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=54.6,rebound.
+[scan_planner_node-2] [ERROR] [1786735674.592835146] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735674.626275384] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735674.646955541] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=54.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735674.647554119] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735674.681133958] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735674.701761396] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=54.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735674.702352000] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735674.735610287] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735674.756502691] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=54.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735674.757090690] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735674.790984755] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735674.812177811] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=55.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735674.812779555] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735674.845950870] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735674.866813117] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=54.6,rebound.
+[scan_planner_node-2] [ERROR] [1786735674.867395165] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735674.900655837] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735674.921838463] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=55,rebound.
+[scan_planner_node-2] [ERROR] [1786735674.922431531] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735674.955840320] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735674.976758281] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=54.9,rebound.
+[scan_planner_node-2] [ERROR] [1786735674.977354605] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735675.010228956] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735675.031435016] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=54.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735675.032034226] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735675.064995659] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735675.086214404] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=54.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735675.086816508] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735675.120082290] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735675.140859139] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=54.6,rebound.
+[scan_planner_node-2] [ERROR] [1786735675.141436318] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735675.175060239] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735675.195956951] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=55.1,rebound.
+[scan_planner_node-2] [ERROR] [1786735675.196557173] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735675.229202806] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735675.250531536] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=54.6,rebound.
+[scan_planner_node-2] [ERROR] [1786735675.251146144] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [WARN] [1786735675.284388933] [bspline_opt]: A-star failed on a collision segment; merge it with the next segment
+[scan_planner_node-2] [ERROR] [1786735675.306069741] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=55.5,rebound.
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------11
+[scan_planner_node-2] start: -3.53  3.58 0.382, 0 0 0
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [ERROR] [1786735677.146564522] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] [ERROR] [1786735677.147084864] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.167742681] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.168344786] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.188546571] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=20.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.189137815] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.209377832] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=20.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.209952165] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.230598400] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.231187881] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.250958972] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=20.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.251501195] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.271478851] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=20.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.272027927] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.293027443] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.6,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.293610492] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.314494662] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.315070758] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.335463279] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=20.9,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.336025891] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.356216254] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=20.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.356759619] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.377629002] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.378428976] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.398761245] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.1,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.399331581] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.419946367] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.420527854] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.441093198] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.1,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.441682609] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.461936271] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=20.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.482570123] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=20.6,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.483108109] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.503579457] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.504126299] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.524611453] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.525170187] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.545638891] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.546204047] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.566819575] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735677.567391714] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735677.588153996] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=21.3,rebound.
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[foxy_bridge_node-1] [WARN] [1786735679.022465952] [lite3_sim_bridge]: Telemetry stream reset: socket closed with 40 bytes remaining
+[foxy_bridge_node-1] [WARN] [1786735679.042328374] [lite3_sim_bridge]: Command stream reset: [Errno 104] Connection reset by peer
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------12
+[scan_planner_node-2] start: -3.49  3.58 0.378, 0 0 0
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [ERROR] [1786735679.270165183] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] [ERROR] [1786735679.270706535] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.300087892] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.300685669] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.330041339] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.9,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.330633715] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.360063543] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.360653976] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.389955244] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.9,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.390545467] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.419749423] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.420337391] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.449552849] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.450152519] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.479263231] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.479849146] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.509004781] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.509594994] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.538670360] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.539259290] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.568429883] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.569020297] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.598177585] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.598769070] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.627782841] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.6,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.628372743] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.656946321] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.657538808] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.686144887] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.2,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.686741121] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.715251241] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.1,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.715857453] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.744254632] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.744844714] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.772995412] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=28.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.773632663] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.802062833] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.1,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.802648978] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.830540151] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=28.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.831085410] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.858810302] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=28.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735679.859342677] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735679.886942405] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=28.1,rebound.
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------13
+[scan_planner_node-2] start: -3.46  3.58 0.373, 0 0 0
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [ERROR] [1786735681.519567713] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] [ERROR] [1786735681.520070192] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735681.549335203] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.8,rebound.
+[scan_planner_node-2] [ERROR] [1786735681.549859844] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735681.578044666] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=28.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735681.578556423] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735681.606698105] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=28.7,rebound.
+[scan_planner_node-2] [ERROR] [1786735681.607207016] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735681.635305708] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=28.6,rebound.
+[scan_planner_node-2] [ERROR] [1786735681.635818947] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735681.665698787] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735681.666210082] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735681.696101744] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735681.696615394] [bspline_opt]: The robot is inside an obstacle
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [acceptance_monitor_node-4]: sending signal 'SIGINT' to process[acceptance_monitor_node-4]
+[INFO] [closed_loop_controller-3]: sending signal 'SIGINT' to process[closed_loop_controller-3]
+[INFO] [scan_planner_node-2]: sending signal 'SIGINT' to process[scan_planner_node-2]
+[INFO] [foxy_bridge_node-1]: sending signal 'SIGINT' to process[foxy_bridge_node-1]
+[closed_loop_controller-3] [INFO] [1786735681.700032619] [rclcpp]: signal_handler(signal_value=2)
+[scan_planner_node-2] [INFO] [1786735681.700157603] [rclcpp]: signal_handler(signal_value=2)
+[INFO] [closed_loop_controller-3]: process has finished cleanly [pid 65]
+[INFO] [acceptance_monitor_node-4]: process has finished cleanly [pid 67]
+[INFO] [foxy_bridge_node-1]: process has finished cleanly [pid 61]
+[scan_planner_node-2] [ERROR] [1786735681.727583537] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=31.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735681.728167729] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735681.758248655] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.6,rebound.
+[scan_planner_node-2] [ERROR] [1786735681.758779927] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735681.788666681] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735681.789180791] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735681.819043118] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735681.819559633] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735681.849366337] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735681.849878183] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735681.879687431] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735681.880193777] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735681.910011582] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735681.910525161] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735681.940303061] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735681.940820087] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735681.970620578] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735681.971126273] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735682.001013247] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.4,rebound.
+[scan_planner_node-2] [ERROR] [1786735682.001601265] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735682.031481697] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.5,rebound.
+[scan_planner_node-2] [ERROR] [1786735682.031999735] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735682.061837738] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=30.3,rebound.
+[scan_planner_node-2] [ERROR] [1786735682.062348862] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735682.091769776] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.9,rebound.
+[scan_planner_node-2] [ERROR] [1786735682.092276432] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735682.121662000] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.9,rebound.
+[scan_planner_node-2] [ERROR] [1786735682.122171161] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] [ERROR] [1786735682.151545698] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=5,time(ms)=29.9,rebound.
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] des manager
+[INFO] [scan_planner_node-2]: process has finished cleanly [pid 63]
