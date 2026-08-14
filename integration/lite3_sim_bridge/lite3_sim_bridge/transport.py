@@ -1,6 +1,7 @@
 """Local-only TCP roles built on the shared v1 frame decoder."""
 
 from dataclasses import dataclass
+import select
 import socket
 import threading
 import time
@@ -34,6 +35,7 @@ class TransportStats:
     protocol_errors: int
     io_errors: int
     last_protocol_error: Optional[str]
+    coalesced_frames: int
 
 
 class _StatsState:
@@ -46,6 +48,7 @@ class _StatsState:
         self.protocol_errors = 0
         self.io_errors = 0
         self.last_protocol_error = None  # type: Optional[str]
+        self.coalesced_frames = 0
 
     def increment(self, field: str, count: int = 1) -> None:
         with self.lock:
@@ -66,6 +69,7 @@ class _StatsState:
                 protocol_errors=self.protocol_errors,
                 io_errors=self.io_errors,
                 last_protocol_error=self.last_protocol_error,
+                coalesced_frames=self.coalesced_frames,
             )
 
 
@@ -250,7 +254,12 @@ class CommandReceiverServer:
     def _receive_connection(self, connection: socket.socket) -> None:
         while not self._stop_event.is_set():
             try:
-                frame = recv_frame(connection)
+                frames = [recv_frame(connection)]
+                while len(frames) < 256:
+                    readable, _, _ = select.select([connection], [], [], 0.0)
+                    if not readable:
+                        break
+                    frames.append(recv_frame(connection))
             except socket.timeout:
                 continue
             except ProtocolError as error:
@@ -258,32 +267,39 @@ class CommandReceiverServer:
                 return
             except (EOFError, OSError):
                 return
-            if frame.header.message_type == MessageType.HEARTBEAT_V1:
-                if frame.payload:
-                    self._stats.record_protocol_error(
-                        "heartbeat frame must have an empty payload"
-                    )
-                    return
-                self._stats.increment("frames_received")
-                continue
-            if frame.header.message_type != MessageType.CMD_VEL_V1:
-                self._stats.record_protocol_error(
-                    "command stream received a non-command frame"
-                )
-                return
+            updates = []
             try:
-                command = decode_command_payload(frame.payload)
-                snapshot = self._command_state.update(
-                    command=command,
-                    sequence=frame.header.sequence,
-                    source_timestamp_ns=frame.header.timestamp_ns,
-                    received_monotonic_ns=time.monotonic_ns(),
+                received_monotonic_ns = time.monotonic_ns()
+                for frame in frames:
+                    if frame.header.message_type == MessageType.HEARTBEAT_V1:
+                        if frame.payload:
+                            raise ProtocolError(
+                                "heartbeat frame must have an empty payload"
+                            )
+                        continue
+                    if frame.header.message_type != MessageType.CMD_VEL_V1:
+                        raise ProtocolError(
+                            "command stream received a non-command frame"
+                        )
+                    updates.append(
+                        (
+                            decode_command_payload(frame.payload),
+                            frame.header.sequence,
+                            frame.header.timestamp_ns,
+                            received_monotonic_ns,
+                        )
+                    )
+                snapshot = (
+                    None
+                    if not updates
+                    else self._command_state.update_batch(updates)
                 )
             except ProtocolError as error:
                 self._stats.record_protocol_error(error)
                 return
-            self._stats.increment("frames_received")
-            if self._on_update is not None:
+            self._stats.increment("frames_received", len(frames))
+            self._stats.increment("coalesced_frames", max(0, len(updates) - 1))
+            if snapshot is not None and self._on_update is not None:
                 self._on_update(snapshot)
 
     def snapshot(self, now_monotonic_ns: Optional[int] = None) -> CommandSnapshot:

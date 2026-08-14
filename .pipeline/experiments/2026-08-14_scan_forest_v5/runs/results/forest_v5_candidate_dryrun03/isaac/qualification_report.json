@@ -1,0 +1,471 @@
+{
+  "candidate": "V12 model_149999 on Lite3 Pro sensor rig v5 SCAN forest navigation",
+  "checks": {
+    "command_connected": true,
+    "commands_received": true,
+    "direct_path_blocked": true,
+    "finite_policy": true,
+    "forest_static_geometry": true,
+    "geometry_filter_active": true,
+    "geometry_filter_removed_terrain": true,
+    "no_termination": true,
+    "records_present": true,
+    "telemetry_connected": true,
+    "telemetry_sent": true
+  },
+  "claim": "external bridge runtime only; closed-loop goal result evaluated separately",
+  "command_transport": {
+    "accepted_connections": 1,
+    "coalesced_frames": 25,
+    "frames_received": 1597,
+    "frames_sent": 0,
+    "io_errors": 0,
+    "last_protocol_error": null,
+    "protocol_errors": 0,
+    "reconnects": 0
+  },
+  "depth_artifact": {
+    "artifacts": {
+      "depth_metres_npy": {
+        "bytes": 20312,
+        "path": "d435i_depth_frame_m.npy",
+        "sha256": "f7497ebc164b10fdb71c52c601bdf0b0a407c3c536dbc3017272836141f3341f"
+      },
+      "depth_millimetres_png": {
+        "bytes": 3549,
+        "invalid_or_clipped_value_mm": 5000,
+        "path": "d435i_depth_frame_mm.png",
+        "sha256": "36d45169972f1e7f9edb06224936f6b6518df35dca28b030e83c6f1663e85388"
+      },
+      "human_preview_png": {
+        "bytes": 1096,
+        "display_rule": "nearer valid depth is brighter; invalid is black",
+        "path": "d435i_depth_preview.png",
+        "sha256": "e54960d9e6c7222aac16fdbf73c4aaad1ea13e60540b03cd15083489b81b6661"
+      }
+    },
+    "height": 58,
+    "intrinsic_matrix": [
+      [
+        45.83973693847656,
+        0.0,
+        43.5
+      ],
+      [
+        0.0,
+        45.83973693847656,
+        29.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "maximum_valid_depth_m": 4.637564659118652,
+    "mean_valid_depth_m": 1.6771165132522583,
+    "minimum_valid_depth_m": 0.6228616833686829,
+    "nonfinite_depth_count": 0,
+    "obstacle_surface_pixel_count": 416,
+    "pixel_count": 5046,
+    "self_occluded_pixel_count": 0,
+    "sensor_position_w": [
+      -4.745500564575195,
+      2.999969959259033,
+      0.9698081612586975
+    ],
+    "sensor_quaternion_wxyz_ros": [
+      0.37728479504585266,
+      -0.5979778170585632,
+      0.5980437397956848,
+      -0.3773888945579529
+    ],
+    "sim_time_seconds": 0.029999999329447746,
+    "step": 0,
+    "valid_depth_pixel_count": 4399,
+    "width": 87
+  },
+  "depth_checks": {
+    "finite_depth": true,
+    "frames_present": true,
+    "intrinsics_present": true,
+    "obstacle_returns": true,
+    "pose_dependent_frame": true,
+    "pose_displacement_m_value": 5.4066311933496145,
+    "timestamps_advance": true,
+    "valid_depth_returns": true
+  },
+  "forest_navigation": {
+    "direct_path_intersects_inflated_blocker": true,
+    "goal_world_m": [
+      0.5,
+      3.0,
+      0.85
+    ],
+    "planner_body_radius_m": 0.4,
+    "planner_input_boundary": "rendered XYZ plus sensor pose only; proxy bounds and terrain height are retained for evaluation and never enter SCAN input",
+    "primary_blocker": {
+      "bounds_max_m": [
+        -1.5600000000000007,
+        3.24,
+        4.277655718203352
+      ],
+      "bounds_min_m": [
+        -2.040000000000001,
+        2.76,
+        0.27765571820335255
+      ],
+      "center_m": [
+        -1.8000000000000007,
+        3.0,
+        2.2776557182033526
+      ],
+      "kind": "Pine",
+      "name": "forest_proxy_000",
+      "prim_path": "/World/forest_collision/proxy_000",
+      "shape": "cylinder",
+      "size_m": [
+        0.48,
+        0.48,
+        4.0
+      ],
+      "visual_name": "forest_visual_000"
+    },
+    "primary_center_to_direct_segment_m": 0.0,
+    "required_center_clearance_m": 0.64,
+    "start_world_m": [
+      -5.0,
+      3.0,
+      0.5635006053705359
+    ]
+  },
+  "record_count": 1310,
+  "runtime_error": null,
+  "runtime_rates": {
+    "physics_hz": 200.0,
+    "policy_hz": 50.0,
+    "sensor_hz": 10.0
+  },
+  "schema_version": 1,
+  "sensor_checks": {
+    "cloud_centroid_displacement_m_value": 1.9325818574186722,
+    "finite": true,
+    "frames_present": true,
+    "ground_returns": true,
+    "nonempty": true,
+    "obstacle_returns": true,
+    "pose_dependent_geometry": true,
+    "pose_displacement_m_value": 5.400104667442274,
+    "timestamps_advance": true
+  },
+  "static_geometry_checks": {
+    "agreement_definition": "each declared proxy root is visible, has a CollisionAPI descendant, and is the same root targeted by both ray sensors",
+    "checks": {
+      "all_proxies_are_visible": true,
+      "all_proxies_have_collision": true,
+      "all_proxies_targeted_by_depth": true,
+      "all_proxies_targeted_by_lidar": true,
+      "all_proxy_roots_exist": true,
+      "all_source_visuals_exist": true,
+      "terrain_targeted_by_depth": true,
+      "terrain_targeted_by_lidar": true
+    },
+    "passed": true,
+    "proxy_records": [
+      {
+        "collision_prim_paths": [
+          "/World/forest_collision/proxy_000/geometry/mesh"
+        ],
+        "declared_bounds_max_m": [
+          -1.5600000000000007,
+          3.24,
+          4.277655718203352
+        ],
+        "declared_bounds_min_m": [
+          -2.040000000000001,
+          2.76,
+          0.27765571820335255
+        ],
+        "depth_targeted": true,
+        "lidar_targeted": true,
+        "name": "forest_proxy_000",
+        "prim_path": "/World/forest_collision/proxy_000",
+        "root_prim_valid": true,
+        "source_visual_prim_path": "/World/forest_visual/asset_000",
+        "source_visual_prim_valid": true,
+        "visible_geometry_prim_paths": [
+          "/World/forest_collision/proxy_000/geometry/mesh"
+        ]
+      },
+      {
+        "collision_prim_paths": [
+          "/World/forest_collision/proxy_001/geometry/mesh"
+        ],
+        "declared_bounds_max_m": [
+          0.0400000000000007,
+          1.0400000000000007,
+          5.356230494843151
+        ],
+        "declared_bounds_min_m": [
+          -0.4399999999999993,
+          0.5600000000000007,
+          1.356230494843151
+        ],
+        "depth_targeted": true,
+        "lidar_targeted": true,
+        "name": "forest_proxy_001",
+        "prim_path": "/World/forest_collision/proxy_001",
+        "root_prim_valid": true,
+        "source_visual_prim_path": "/World/forest_visual/asset_001",
+        "source_visual_prim_valid": true,
+        "visible_geometry_prim_paths": [
+          "/World/forest_collision/proxy_001/geometry/mesh"
+        ]
+      },
+      {
+        "collision_prim_paths": [
+          "/World/forest_collision/proxy_002/geometry/mesh"
+        ],
+        "declared_bounds_max_m": [
+          -7.76,
+          -0.76,
+          5.01141656565145
+        ],
+        "declared_bounds_min_m": [
+          -8.24,
+          -1.24,
+          1.0114165656514502
+        ],
+        "depth_targeted": true,
+        "lidar_targeted": true,
+        "name": "forest_proxy_002",
+        "prim_path": "/World/forest_collision/proxy_002",
+        "root_prim_valid": true,
+        "source_visual_prim_path": "/World/forest_visual/asset_002",
+        "source_visual_prim_valid": true,
+        "visible_geometry_prim_paths": [
+          "/World/forest_collision/proxy_002/geometry/mesh"
+        ]
+      },
+      {
+        "collision_prim_paths": [
+          "/World/forest_collision/proxy_003/geometry/mesh"
+        ],
+        "declared_bounds_max_m": [
+          -9.76,
+          5.74,
+          5.302561320405121
+        ],
+        "declared_bounds_min_m": [
+          -10.24,
+          5.26,
+          1.302561320405121
+        ],
+        "depth_targeted": true,
+        "lidar_targeted": true,
+        "name": "forest_proxy_003",
+        "prim_path": "/World/forest_collision/proxy_003",
+        "root_prim_valid": true,
+        "source_visual_prim_path": "/World/forest_visual/asset_003",
+        "source_visual_prim_valid": true,
+        "visible_geometry_prim_paths": [
+          "/World/forest_collision/proxy_003/geometry/mesh"
+        ]
+      },
+      {
+        "collision_prim_paths": [
+          "/World/forest_collision/proxy_004/geometry/mesh"
+        ],
+        "declared_bounds_max_m": [
+          2.24,
+          7.24,
+          4.4337398797614105
+        ],
+        "declared_bounds_min_m": [
+          1.76,
+          6.76,
+          0.4337398797614105
+        ],
+        "depth_targeted": true,
+        "lidar_targeted": true,
+        "name": "forest_proxy_004",
+        "prim_path": "/World/forest_collision/proxy_004",
+        "root_prim_valid": true,
+        "source_visual_prim_path": "/World/forest_visual/asset_004",
+        "source_visual_prim_valid": true,
+        "visible_geometry_prim_paths": [
+          "/World/forest_collision/proxy_004/geometry/mesh"
+        ]
+      },
+      {
+        "collision_prim_paths": [
+          "/World/forest_collision/proxy_005/geometry/mesh"
+        ],
+        "declared_bounds_max_m": [
+          4.24,
+          -0.76,
+          5.049588574502087
+        ],
+        "declared_bounds_min_m": [
+          3.76,
+          -1.24,
+          1.0495885745020868
+        ],
+        "depth_targeted": true,
+        "lidar_targeted": true,
+        "name": "forest_proxy_005",
+        "prim_path": "/World/forest_collision/proxy_005",
+        "root_prim_valid": true,
+        "source_visual_prim_path": "/World/forest_visual/asset_005",
+        "source_visual_prim_valid": true,
+        "visible_geometry_prim_paths": [
+          "/World/forest_collision/proxy_005/geometry/mesh"
+        ]
+      },
+      {
+        "collision_prim_paths": [
+          "/World/forest_collision/proxy_006/geometry/mesh"
+        ],
+        "declared_bounds_max_m": [
+          -11.76,
+          1.24,
+          5.560326918491188
+        ],
+        "declared_bounds_min_m": [
+          -12.24,
+          0.76,
+          1.5603269184911879
+        ],
+        "depth_targeted": true,
+        "lidar_targeted": true,
+        "name": "forest_proxy_006",
+        "prim_path": "/World/forest_collision/proxy_006",
+        "root_prim_valid": true,
+        "source_visual_prim_path": "/World/forest_visual/asset_006",
+        "source_visual_prim_valid": true,
+        "visible_geometry_prim_paths": [
+          "/World/forest_collision/proxy_006/geometry/mesh"
+        ]
+      },
+      {
+        "collision_prim_paths": [
+          "/World/forest_collision/proxy_007/geometry/mesh"
+        ],
+        "declared_bounds_max_m": [
+          -2.76,
+          10.24,
+          5.341064209141567
+        ],
+        "declared_bounds_min_m": [
+          -3.24,
+          9.76,
+          1.3410642091415674
+        ],
+        "depth_targeted": true,
+        "lidar_targeted": true,
+        "name": "forest_proxy_007",
+        "prim_path": "/World/forest_collision/proxy_007",
+        "root_prim_valid": true,
+        "source_visual_prim_path": "/World/forest_visual/asset_007",
+        "source_visual_prim_valid": true,
+        "visible_geometry_prim_paths": [
+          "/World/forest_collision/proxy_007/geometry/mesh"
+        ]
+      },
+      {
+        "collision_prim_paths": [
+          "/World/forest_collision/proxy_008/geometry/mesh"
+        ],
+        "declared_bounds_max_m": [
+          -1.9400000000000008,
+          1.8099999999999992,
+          1.2560758281756106
+        ],
+        "declared_bounds_min_m": [
+          -2.6600000000000006,
+          1.0899999999999994,
+          0.7960758281756106
+        ],
+        "depth_targeted": true,
+        "lidar_targeted": true,
+        "name": "forest_proxy_008",
+        "prim_path": "/World/forest_collision/proxy_008",
+        "root_prim_valid": true,
+        "source_visual_prim_path": "/World/forest_visual/asset_008",
+        "source_visual_prim_valid": true,
+        "visible_geometry_prim_paths": [
+          "/World/forest_collision/proxy_008/geometry/mesh"
+        ]
+      },
+      {
+        "collision_prim_paths": [
+          "/World/forest_collision/proxy_009/geometry/mesh"
+        ],
+        "declared_bounds_max_m": [
+          -6.64,
+          5.36,
+          1.5703247063598211
+        ],
+        "declared_bounds_min_m": [
+          -7.36,
+          4.64,
+          1.1103247063598212
+        ],
+        "depth_targeted": true,
+        "lidar_targeted": true,
+        "name": "forest_proxy_009",
+        "prim_path": "/World/forest_collision/proxy_009",
+        "root_prim_valid": true,
+        "source_visual_prim_path": "/World/forest_visual/asset_009",
+        "source_visual_prim_valid": true,
+        "visible_geometry_prim_paths": [
+          "/World/forest_collision/proxy_009/geometry/mesh"
+        ]
+      },
+      {
+        "collision_prim_paths": [
+          "/World/forest_collision/proxy_010/geometry/mesh"
+        ],
+        "declared_bounds_max_m": [
+          1.3599999999999999,
+          6.36,
+          0.9959445015014637
+        ],
+        "declared_bounds_min_m": [
+          0.64,
+          5.64,
+          0.5359445015014638
+        ],
+        "depth_targeted": true,
+        "lidar_targeted": true,
+        "name": "forest_proxy_010",
+        "prim_path": "/World/forest_collision/proxy_010",
+        "root_prim_valid": true,
+        "source_visual_prim_path": "/World/forest_visual/asset_010",
+        "source_visual_prim_valid": true,
+        "visible_geometry_prim_paths": [
+          "/World/forest_collision/proxy_010/geometry/mesh"
+        ]
+      }
+    ]
+  },
+  "status": "PASS",
+  "telemetry_transport": {
+    "accepted_connections": 1,
+    "coalesced_frames": 0,
+    "frames_received": 0,
+    "frames_sent": 524,
+    "io_errors": 0,
+    "last_protocol_error": null,
+    "protocol_errors": 0,
+    "reconnects": 0
+  },
+  "video": {
+    "bytes": 11094074,
+    "encoded_duration_seconds": 25.705882352941178,
+    "fps": 17,
+    "frame_count": 437,
+    "path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v5/results/forest_v5_candidate_dryrun03/closed_loop.mp4",
+    "sha256": "70523264cc4500de113f0e72e441a89b997e07dd89f9620331151ddf09b493c7"
+  }
+}

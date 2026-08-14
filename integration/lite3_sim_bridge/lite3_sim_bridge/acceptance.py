@@ -7,6 +7,8 @@ import math
 from pathlib import Path
 from typing import Dict, Iterable, List, Mapping, Sequence
 
+from .isaac_adapter_core import point_to_segment_distance_2d
+
 
 def _sha256(path: Path) -> str:
     digest = hashlib.sha256()
@@ -173,6 +175,15 @@ def evaluate_acceptance(
     telemetry_transport = isaac_report["telemetry_transport"]
     protocol_errors = int(command_transport["protocol_errors"]) + int(telemetry_transport["protocol_errors"])
     add("transport_protocol_errors", protocol_errors <= int(limits["maximum_transport_protocol_errors"]), protocol_errors, limits["maximum_transport_protocol_errors"])
+    if "maximum_coalesced_command_frames" in limits:
+        coalesced_commands = int(command_transport.get("coalesced_frames", 0))
+        add(
+            "coalesced_command_frames",
+            coalesced_commands
+            <= int(limits["maximum_coalesced_command_frames"]),
+            coalesced_commands,
+            limits["maximum_coalesced_command_frames"],
+        )
     add("telemetry_reconnects", int(telemetry_transport["reconnects"]) <= int(limits["maximum_telemetry_reconnects"]), telemetry_transport["reconnects"], limits["maximum_telemetry_reconnects"])
 
     video = isaac_report.get("video", {})
@@ -392,6 +403,233 @@ def evaluate_acceptance(
             v3["minimum_depth_artifact_count"],
         )
 
+    forest = thresholds.get("forest_navigation")
+    if forest is not None:
+        navigation = run_identity.get("forest_scene", {}).get("navigation") or {}
+        primary = navigation.get("primary_blocker") or {}
+        start = [float(value) for value in navigation.get("start_world_m", [])]
+        nav_goal = [float(value) for value in navigation.get("goal_world_m", [])]
+        center = [float(value) for value in primary.get("center_m", [])]
+        identity_valid = len(start) == 3 and len(nav_goal) == 3 and len(center) == 3
+        expected_goal = [float(value) for value in forest["goal_world_m"]]
+        add(
+            "forest_goal_identity",
+            identity_valid and nav_goal == expected_goal,
+            nav_goal,
+            expected_goal,
+        )
+        direct_distance = (
+            point_to_segment_distance_2d(center[:2], start[:2], nav_goal[:2])
+            if identity_valid
+            else math.inf
+        )
+        required_clearance = float(
+            navigation.get("required_center_clearance_m", math.inf)
+        )
+        add(
+            "forest_direct_path_blocked",
+            identity_valid
+            and bool(navigation.get("direct_path_intersects_inflated_blocker"))
+            and direct_distance < required_clearance,
+            {
+                "center_to_segment_m": direct_distance,
+                "required_center_clearance_m": required_clearance,
+            },
+            "center_to_segment < required_center_clearance",
+        )
+        sensor_filter = run_identity.get("sensor", {}).get(
+            "forest_geometry_filter", {}
+        )
+        forbidden_inputs = set(sensor_filter.get("forbidden_inputs", []))
+        add(
+            "forest_geometry_only_planner_input",
+            sensor_filter.get("enabled") is True
+            and forbidden_inputs
+            == {
+                "terrain_height_function",
+                "scene_prim_id",
+                "proxy_bounds",
+                "obstacle_label",
+            },
+            sensor_filter,
+            "rendered XYZ geometry filter with all scene-truth inputs forbidden",
+        )
+
+        filter_enabled_fraction = sum(
+            bool(row.get("planner_geometry_filter_enabled"))
+            for row in sensor_metrics
+        ) / len(sensor_metrics)
+        minimum_filtered_ground = min(
+            int(row.get("planner_geometry_filter_ground_hit_count", 0))
+            for row in sensor_metrics
+        )
+        minimum_filtered_obstacles = min(
+            int(row.get("planner_geometry_filter_obstacle_hit_count", 0))
+            for row in sensor_metrics
+        )
+        maximum_sparse_fraction = max(
+            int(row.get("planner_geometry_filter_sparse_retained_hit_count", 0))
+            / max(
+                1,
+                int(row.get("planner_geometry_filter_obstacle_hit_count", 0)),
+            )
+            for row in sensor_metrics
+        )
+        add(
+            "forest_filter_enabled",
+            filter_enabled_fraction
+            >= float(forest["minimum_filter_enabled_fraction"]),
+            filter_enabled_fraction,
+            forest["minimum_filter_enabled_fraction"],
+        )
+        add(
+            "forest_filter_removes_terrain",
+            minimum_filtered_ground
+            >= int(forest["minimum_filtered_ground_hits_per_frame"]),
+            minimum_filtered_ground,
+            forest["minimum_filtered_ground_hits_per_frame"],
+        )
+        add(
+            "forest_filter_keeps_obstacles",
+            minimum_filtered_obstacles
+            >= int(forest["minimum_filtered_obstacle_hits_per_frame"]),
+            minimum_filtered_obstacles,
+            forest["minimum_filtered_obstacle_hits_per_frame"],
+        )
+        add(
+            "forest_filter_sparse_fraction",
+            maximum_sparse_fraction
+            <= float(forest["maximum_sparse_retained_fraction"]),
+            maximum_sparse_fraction,
+            forest["maximum_sparse_retained_fraction"],
+        )
+
+        moving_rows = [
+            row
+            for row in metrics
+            if math.hypot(
+                float(row["applied_command"][0]),
+                float(row["applied_command"][1]),
+            )
+            >= 0.10
+        ]
+        max_forward_command = max(
+            (float(row["applied_command"][0]) for row in metrics), default=0.0
+        )
+        moving_speeds = [
+            math.hypot(
+                float(row["root_lin_vel_w"][0]),
+                float(row["root_lin_vel_w"][1]),
+            )
+            for row in moving_rows
+        ]
+        speed_p75 = _percentile(moving_speeds, 0.75) if moving_speeds else 0.0
+        add(
+            "forest_forward_command_speed",
+            max_forward_command >= float(forest["minimum_forward_command_mps"]),
+            max_forward_command,
+            forest["minimum_forward_command_mps"],
+        )
+        add(
+            "forest_measured_speed_p75",
+            speed_p75 >= float(forest["minimum_measured_speed_p75_mps"]),
+            speed_p75,
+            forest["minimum_measured_speed_p75_mps"],
+        )
+
+        if identity_valid:
+            primary_clearance = min(
+                math.dist(
+                    [float(value) for value in row["root_pos_w"][:2]],
+                    center[:2],
+                )
+                for row in metrics
+            )
+            obstacle_window = [
+                float(value) for value in forest["obstacle_x_window_m"]
+            ]
+            obstacle_rows = [
+                row
+                for row in metrics
+                if obstacle_window[0]
+                <= float(row["root_pos_w"][0])
+                <= obstacle_window[1]
+            ]
+            maximum_line_deviation = max(
+                (
+                    point_to_segment_distance_2d(
+                        [float(value) for value in row["root_pos_w"][:2]],
+                        start[:2],
+                        nav_goal[:2],
+                    )
+                    for row in obstacle_rows
+                ),
+                default=0.0,
+            )
+            path_length = sum(
+                math.dist(
+                    [float(value) for value in left["root_pos_w"][:2]],
+                    [float(value) for value in right["root_pos_w"][:2]],
+                )
+                for left, right in zip(metrics, metrics[1:])
+            )
+            direct_length = math.dist(start[:2], nav_goal[:2])
+            path_excess = path_length - direct_length
+        else:
+            primary_clearance = 0.0
+            maximum_line_deviation = 0.0
+            path_excess = 0.0
+        add(
+            "forest_primary_blocker_clearance",
+            primary_clearance
+            >= float(forest["minimum_primary_center_clearance_m"]),
+            primary_clearance,
+            forest["minimum_primary_center_clearance_m"],
+        )
+        add(
+            "forest_planner_detour",
+            maximum_line_deviation
+            >= float(forest["minimum_line_deviation_m"]),
+            maximum_line_deviation,
+            forest["minimum_line_deviation_m"],
+        )
+        add(
+            "forest_path_length_excess",
+            path_excess >= float(forest["minimum_path_length_excess_m"]),
+            path_excess,
+            forest["minimum_path_length_excess_m"],
+        )
+        base_clearances = [
+            float(row["base_clearance_m"])
+            for row in metrics
+            if row.get("base_clearance_m") is not None
+        ]
+        terrain_heights = [
+            float(row["terrain_height_under_root_m"])
+            for row in metrics
+            if row.get("terrain_height_under_root_m") is not None
+        ]
+        minimum_base_clearance = min(base_clearances) if base_clearances else 0.0
+        terrain_height_range = (
+            max(terrain_heights) - min(terrain_heights)
+            if terrain_heights
+            else 0.0
+        )
+        add(
+            "forest_base_clearance",
+            minimum_base_clearance
+            >= float(forest["minimum_base_clearance_m"]),
+            minimum_base_clearance,
+            forest["minimum_base_clearance_m"],
+        )
+        add(
+            "forest_nonflat_terrain",
+            terrain_height_range
+            >= float(forest["minimum_terrain_height_range_m"]),
+            terrain_height_range,
+            forest["minimum_terrain_height_range_m"],
+        )
+
     passed = all(value["passed"] for value in checks.values())
     return {
         "schema_version": 1,
@@ -408,6 +646,7 @@ def evaluate_acceptance(
             "command_age_p95_ms": command_age_p95,
             "video_sha256": video_hash,
             "rosbag_bytes": bag_bytes,
+            "forest_navigation_enabled": forest is not None,
         },
     }
 

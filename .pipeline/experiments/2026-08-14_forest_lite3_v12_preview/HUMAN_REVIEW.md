@@ -2,7 +2,11 @@
 
 Automated status: `PASS`.
 
-Human status: **pending**. Do not check these boxes on behalf of Dr Sun.
+Human status: **change requested by Dr Sun on 2026-08-14**.
+
+Review decision: retain this run as the bounded open-loop baseline and produce
+a faster planner-driven obstacle-avoidance revision. This does not reject the
+automated V4 evidence; it rejects `preview02` as the final review candidate.
 
 Primary artifact:
 
@@ -31,7 +35,8 @@ wall-clock time. Use it to judge appearance and physical motion; use
 
 - [ ] Accept `preview02` as the V4 human-reviewed forest locomotion preview.
 - [ ] Request a clean-render variant with validation proxies hidden.
-- [ ] Request a camera, terrain, vegetation, or motion change before acceptance.
+- [x] Request a camera, terrain, vegetation, or motion change before acceptance:
+  faster motion plus real SCAN obstacle avoidance.
 
 Acceptance here does not authorize training, SCAN-Planner forest closed-loop
 execution, or real-robot actuation.

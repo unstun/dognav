@@ -1,0 +1,135 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-08-14-11-43-31-506600-ubuntu-47
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [foxy_bridge_node-1]: process started with pid [61]
+[INFO] [scan_planner_node-2]: process started with pid [63]
+[INFO] [closed_loop_controller-3]: process started with pid [65]
+[INFO] [acceptance_monitor_node-4]: process started with pid [67]
+[closed_loop_controller-3] [INFO] [1786707811.550890896] [closed_loop_controller]: Closed-loop controller ready
+[scan_planner_node-2] hit: 1.7346
+[scan_planner_node-2] miss: -0.847298
+[scan_planner_node-2] min log: -1.99243
+[scan_planner_node-2] max: 3.89182
+[scan_planner_node-2] thresh log: 1.38629
+[scan_planner_node-2] [INFO] [1786707811.631463005] [scan_planner_node]: Preset waypoint mode will start after the first odometry message
+[acceptance_monitor_node-4] [INFO] [1786707811.718570254] [lite3_acceptance_monitor]: Acceptance monitor writing /evidence/ros_events.jsonl and /evidence/ros_summary.json
+[foxy_bridge_node-1] [INFO] [1786707811.721757208] [lite3_sim_bridge]: Command stream connected
+[foxy_bridge_node-1] [INFO] [1786707811.721906620] [lite3_sim_bridge]: Lite3 bridge ready: telemetry 127.0.0.1:46340, command 127.0.0.1:46341
+[foxy_bridge_node-1] [INFO] [1786707811.722357359] [lite3_sim_bridge]: Telemetry stream connected
+[scan_planner_node-2] [INFO] [1786707812.001238368] [scan_planner_node]: [navi_mode=2] Planning to waypoint 1/1: [0.50, 3.00, 0.85]
+[scan_planner_node-2] [TRIG]: from INIT to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------0
+[scan_planner_node-2] start:   -5    3 0.92, 0 0 0
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [32miter(+1)=37,time(ms)=0.114,total_t(ms)=0.114,cost=0.029
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] total time:[42m0.000242[0m,optimize:0.000217,refine:2.55e-05
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786707812.040672427] [closed_loop_controller]: Received trajectory 1, duration 11.840s
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------1
+[scan_planner_node-2] start: -5.01     3 0.913,     0.105 -1.63e-08 -0.000174
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] iter=5,time(ms)=0.064,rebound.
+[scan_planner_node-2] iter=71,time(ms)=0.29,rebound.
+[scan_planner_node-2] [32miter(+1)=28,time(ms)=0.082,total_t(ms)=0.444,cost=0.065
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] total time:[42m0.00071[0m,optimize:0.00068,refine:3e-05
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [SAFETY]: from EXEC_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786707812.431932195] [closed_loop_controller]: Received trajectory 2, duration 11.840s
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------2
+[scan_planner_node-2] start: -5.02     3   0.9,    0.154  -0.0019 -0.00051
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] iter=5,time(ms)=0.047,rebound.
+[scan_planner_node-2] iter=50,time(ms)=0.23,rebound.
+[scan_planner_node-2] [32miter(+1)=64,time(ms)=0.242,total_t(ms)=0.525,cost=0.031
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] total time:[42m0.00081[0m,optimize:0.00076,refine:4.5e-05
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [SAFETY]: from EXEC_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786707812.532107999] [closed_loop_controller]: Received trajectory 3, duration 11.840s
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------3
+[scan_planner_node-2] start:    -5     3 0.879,    0.206 -0.00645 -0.00111
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] iter=8,time(ms)=0.054,rebound.
+[scan_planner_node-2] [ERROR] [1786707812.634454312] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=21,time(ms)=3,rebound.
+[scan_planner_node-2] iter=5,time(ms)=0.025,rebound.
+[scan_planner_node-2] [ERROR] [1786707812.634627969] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=27,time(ms)=0.12,rebound.
+[scan_planner_node-2] iter=5,time(ms)=0.026,rebound.
+[scan_planner_node-2] iter=20,time(ms)=0.098,rebound.
+[scan_planner_node-2] iter=44,time(ms)=0.19,rebound.
+[scan_planner_node-2] [32miter(+1)=16,time(ms)=0.057,total_t(ms)=3.591,cost=0.389
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] total time:[42m0.0039[0m,optimize:0.0039,refine:4.5e-05
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [SAFETY]: from EXEC_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786707812.635159861] [closed_loop_controller]: Received trajectory 4, duration 11.840s
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------4
+[scan_planner_node-2] start: -4.97  2.99 0.867,     0.29  -0.0125 -0.00179
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] iter=7,time(ms)=0.14,rebound.
+[scan_planner_node-2] iter=23,time(ms)=0.13,rebound.
+[scan_planner_node-2] iter=41,time(ms)=0.23,rebound.
+[scan_planner_node-2] iter=39,time(ms)=0.2,rebound.
+[scan_planner_node-2] [32miter(+1)=165,time(ms)=0.919,total_t(ms)=1.614,cost=0.028
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] total time:[42m0.002[0m,optimize:0.002,refine:2.8e-05
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [SAFETY]: from EXEC_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786707812.783228337] [closed_loop_controller]: Received trajectory 5, duration 11.733s
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: from EXEC_TRAJ to WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[foxy_bridge_node-1] [WARN] [1786707843.732001928] [lite3_sim_bridge]: Telemetry stream reset: socket closed with 40 bytes remaining
+[foxy_bridge_node-1] [WARN] [1786707843.751871920] [lite3_sim_bridge]: Command stream reset: [Errno 104] Connection reset by peer
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [acceptance_monitor_node-4]: sending signal 'SIGINT' to process[acceptance_monitor_node-4]
+[INFO] [closed_loop_controller-3]: sending signal 'SIGINT' to process[closed_loop_controller-3]
+[INFO] [scan_planner_node-2]: sending signal 'SIGINT' to process[scan_planner_node-2]
+[INFO] [foxy_bridge_node-1]: sending signal 'SIGINT' to process[foxy_bridge_node-1]
+[closed_loop_controller-3] [INFO] [1786707846.373477098] [rclcpp]: signal_handler(signal_value=2)
+[scan_planner_node-2] [INFO] [1786707846.373649461] [rclcpp]: signal_handler(signal_value=2)
+[scan_planner_node-2] des manager
+[INFO] [closed_loop_controller-3]: process has finished cleanly [pid 65]
+[INFO] [scan_planner_node-2]: process has finished cleanly [pid 63]
+[INFO] [foxy_bridge_node-1]: process has finished cleanly [pid 61]
+[INFO] [acceptance_monitor_node-4]: process has finished cleanly [pid 67]

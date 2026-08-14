@@ -74,6 +74,18 @@ the pinned V3 Lite3 Pro sensor-rig URDF, load the unchanged V12
 inside a fixed forest scene. V4 is a human-review preview, not a new frozen
 SCAN acceptance run. V1--V3 evidence remains immutable.
 
+## V5 Forest Closed-Loop Revision Decision
+
+On 2026-08-14, Dr Sun reviewed the V4 preview and requested two concrete
+changes: visibly faster motion and obstacle avoidance. V4 therefore remains a
+reproduced open-loop forest locomotion baseline but is not the accepted review
+candidate. V5 reconnects the existing Foxy SCAN closed loop, raises the
+commanded forward limit from the V4 preview's 0.25 m/s to the already-qualified
+0.50 m/s SCAN/V12 limit, and places one declared tree proxy directly across the
+start-to-goal line. Avoidance must be caused by SCAN trajectory generation and
+replanning from MID-360-like point data; a pre-scripted yaw sequence cannot
+satisfy V5.
+
 ## Requirements
 
 - **R1 — Source provenance.** Preserve the selected SCAN revision as an
@@ -166,6 +178,34 @@ SCAN acceptance run. V1--V3 evidence remains immutable.
   locomotion preview with the pinned policy and robot asset. It is not a SCAN
   forest-navigation validation, a sensor hardware-parity result, or real-robot
   evidence. Human visual review remains required.
+- **R23 — V4 review disposition.** Preserve `preview02` and its automated PASS
+  unchanged, but record Dr Sun's explicit change request. Do not relabel V4 as
+  accepted or overwrite its video, metrics, or run identity.
+- **R24 — Faster frozen limit.** V5 uses the previously qualified SCAN planner
+  and controller forward limit of 0.50 m/s, with the V12 transport bound still
+  0.75 m/s. The run must record the planner command, policy-visible command,
+  measured planar velocity, and timing; changing policy weights, gains, or
+  control rates to obtain speed is forbidden.
+- **R25 — Terrain-only point filtering.** Forest ground removal must operate
+  only on the rendered point geometry and sensor pose. It may use deterministic
+  local-minimum/slope logic, but not the terrain height function, USD prim IDs,
+  proxy bounds, or scene-truth obstacle labels to choose the points delivered
+  to SCAN. Raw finite hits, filtered ground points, and planner points must all
+  remain recorded.
+- **R26 — Direct-path blocker.** A declared tree with one shared visible,
+  collision, MID-360-like, and D435i-like proxy root must intersect the direct
+  start-to-goal corridor after applying the frozen Lite3 planning envelope.
+  The goal and blocker identity are fixed before the first closed-loop dry run.
+- **R27 — Planner-caused avoidance.** The Foxy process must publish the
+  trajectory and `cmd_vel`; the Isaac runtime may only consume the received
+  command. Acceptance requires a sensor-observed blocker, at least one
+  obstacle-driven replacement trajectory, measurable lateral detour and
+  physical clearance, zero non-foot collision, and final goal stop.
+- **R28 — V5 evidence and claim.** Preserve failed preflights and at least two
+  identical-input passing dry runs before freezing a review candidate. Sync
+  configs, hashes, binaries, logs, ROS bag, raw metrics, depth evidence, and a
+  directly viewable MP4 locally. The strongest claim remains a single-seed
+  project-integrated forest simulation pending human review.
 
 ## Acceptance Criteria
 
@@ -248,9 +288,35 @@ SCAN acceptance run. V1--V3 evidence remains immutable.
 - [x] **AC21 — V4 evidence gate:** a directly openable MP4, raw metrics,
   command/action/contact trace, scene and robot identities, runtime log, and
   remote/local SHA-256 manifest are present in a new dated evidence directory.
-- [ ] **AC22 — V4 human review:** Dr Sun watches the V4 video and explicitly
-  accepts or rejects its robot appearance, forest geometry, and physical
-  motion. Automated checks do not satisfy this criterion.
+- [x] **AC22 — V4 human review:** Dr Sun reviewed V4 and requested faster
+  motion plus obstacle avoidance. V4 is retained as a rejected final candidate,
+  not relabeled as accepted.
+- [x] **AC23 — V4 change request recorded:** Dr Sun explicitly requested faster
+  motion and obstacle avoidance; V4 remains immutable and is marked
+  change-requested rather than accepted.
+- [x] **AC24 — V5 terrain filter:** unit tests and runtime metrics show the
+  planner cloud is derived only from raw point geometry, suppresses traversable
+  sloped terrain, retains the direct-path tree, and causes no planner-origin
+  occupancy error.
+- [x] **AC25 — V5 speed:** SCAN and the controller share the frozen 0.50 m/s
+  limit; the trace contains at least one forward command of 0.45 m/s or higher
+  and a measured planar-speed response of at least 0.30 m/s without changing
+  the V12 policy/controller contract.
+- [x] **AC26 — V5 physical avoidance:** the direct path intersects the declared
+  blocker, SCAN publishes at least two unique trajectories, and the physical
+  root path maintains the frozen blocker clearance while producing a
+  nontrivial lateral detour and zero non-foot collision.
+- [x] **AC27 — V5 closed-loop result:** the articulated Lite3 reaches the fixed
+  forest goal and stops within tolerance with finite policy state, support,
+  advancing dual-sensor data, no hidden reset/teleport, no protocol/watchdog
+  error, and no manual or scripted avoidance command.
+- [x] **AC28 — V5 evidence:** two identical-input dry runs and one review
+  candidate have complete local/remote hash parity, decoded MP4, ROS bag,
+  planner log, command/action/contact trace, terrain/filter identity, and
+  machine-readable acceptance report.
+- [ ] **AC29 — V5 human review:** Dr Sun watches the complete V5 MP4 and
+  explicitly accepts or rejects its speed, avoidance path, robot appearance,
+  and physical motion. Automated checks do not satisfy this criterion.
 
 ## Stop Conditions
 

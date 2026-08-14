@@ -288,6 +288,62 @@ data, a TORSO-relative substitute, or a static-map image is a failure.
 **Gate 15:** AC18--AC21 pass before the preview is called reproduced; AC22
 remains unchecked until Dr Sun reviews the video.
 
+## Phase 16 — Reopen From V4 Human Feedback
+
+- [x] Record Dr Sun's request for faster motion and avoidance as a V4
+  change-request decision without modifying V4 raw artifacts.
+- [x] Freeze V5 as planner-driven avoidance, not a scripted turn: 0.50 m/s
+  SCAN/controller limit, deterministic forest seed, direct-path tree, fixed
+  start/goal, unchanged V12 checkpoint and sensor-rig hashes.
+- [x] Return the task to `in_progress`, keep unrelated dirty paths excluded,
+  and create a new dated local/remote V5 evidence boundary.
+
+## Phase 17 — Implement the Forest Navigation Data Path
+
+- [x] Add a tested geometry-only local-minimum terrain filter; reject any
+  implementation that selects planner points from terrain truth, prim IDs,
+  proxy bounds, or obstacle labels.
+- [x] Add the opt-in `forest_gen_nav` layout while preserving V4
+  `forest_gen`; place one shared visual/PhysX/LiDAR/depth tree proxy across the
+  direct route and record its geometry.
+- [x] Add a V5 planner config with the fixed goal and existing 0.50 m/s limit;
+  make the launch and common runner accept explicit config/course inputs while
+  preserving V3 defaults.
+- [x] Extend machine-readable metrics and acceptance evaluation for raw versus
+  planner point counts, terrain filtering, maximum forward command, measured
+  planar speed, direct-line intersection, lateral detour, blocker clearance,
+  and terrain-relative base clearance.
+- [x] Run local Python/C++/launch/shell tests before remote synchronization.
+
+## Phase 18 — Remote Dry Runs and Candidate
+
+- [x] Create a task-owned V5 execution copy on the 5070 Ti, pin every source
+  and binary hash, rebuild the changed Foxy workspace in the existing rootless
+  Foxy container, and run an instrumentation preflight. Video remained active
+  in the diagnostic because the first full run identified the combined
+  sensor/render workload as the relevant transport stressor.
+- [x] Preserve failures and fix only their owning layer. Do not reduce robot
+  inflation, obstacle size, clearance, speed evidence, or collision thresholds
+  after seeing a run.
+- [x] Obtain two identical-input passing dry runs, compare terrain/config/input
+  hashes, then freeze the candidate thresholds.
+- [x] Run one uninterrupted video candidate with SCAN, ROS bag, dual sensors,
+  V12 policy, PhysX contacts, and complete causal metrics active.
+
+## Phase 19 — Sync, Check, and Human Review
+
+- [x] Copy all V5 results and logs into the dated local bundle; verify structured
+  data, depth array, full-video decode, ROS bag, binary identities, and exact
+  remote/local hashes.
+- [x] Run full Trellis checks and update the durable spec only for verified new
+  contracts; commit only task-owned paths.
+- [x] Set the task to `review` and deliver the actual V5 MP4 plus human
+  checklist. Do not archive, start training, operate the robot, or call V5
+  accepted before AC29.
+
+**Gate 19:** AC24--AC28 pass before V5 is a review candidate; AC29 remains a
+human-only decision.
+
 ## Planned Validation Matrix
 
 | Layer | Required evidence | Failure response |

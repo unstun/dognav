@@ -1,10 +1,10 @@
 # Lite3 V12 native forest preview
 
-Status: **reproduced; awaiting Dr Sun's visual review**.
+Status: **reproduced; Dr Sun requested a faster obstacle-avoidance revision**.
 
-The review candidate is `runs/results/preview02/forest_lite3_v12.mp4`.
-Automated checks passed, but this document does not mark the human-review gate
-as accepted.
+The reviewed baseline is `runs/results/preview02/forest_lite3_v12.mp4`.
+Automated checks passed, but Dr Sun did not accept it as the final candidate;
+V5 must be faster and use planner-driven obstacle avoidance.
 
 ## Result
 

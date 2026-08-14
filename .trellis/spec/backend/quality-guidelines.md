@@ -485,3 +485,114 @@ pin policy + URDFs + forest commits
 ```text
 one declared proxy prim root -> visible + PhysX collision + LiDAR target + depth target
 ```
+
+## Scenario: Coalesce a Buffered Command Backlog Without Relaxing Freshness
+
+### 1. Scope / Trigger
+
+Use this contract when a simulator or another non-real-time producer can pause
+wall-clock command consumption while physics is also paused. A local TCP sender
+may continue placing 50 Hz command frames in the socket buffer. This is a
+latest-wins backlog case, not permission to widen the real-robot watchdog.
+
+### 2. Signatures
+
+- Atomic state update:
+
+  ```python
+  LatestCommandState.update_batch(
+      updates: Sequence[Tuple[CommandV1, int, int, int]]
+  ) -> CommandSnapshot
+  # tuple fields: command, sequence, source_timestamp_ns, received_monotonic_ns
+  ```
+
+- Transport evidence:
+
+  ```python
+  TransportStats.coalesced_frames: int
+  ```
+
+- The receiver may collect at most 256 complete command frames that are
+  already readable with a zero-timeout socket readiness check. It must not wait
+  for a future frame to make a stale latest frame appear fresh.
+
+### 3. Contracts
+
+- Decode and validate every complete buffered frame. Observe every command
+  sequence in increasing order before applying state, so intentional
+  coalescing is not reported as packet loss.
+- Intermediate source-stale commands are never applied. Apply only the newest
+  command, and only when that newest source timestamp satisfies the unchanged
+  `max_source_age_ns` and future-skew limits.
+- A non-increasing sequence, malformed payload, non-finite value, future-skewed
+  timestamp, or stale newest command rejects the whole batch through the
+  existing fail-closed path. Validation must be atomic: a rejected batch may
+  not partially advance the state sequence.
+- Keep `timeout_ns` and `max_source_age_ns` at the scenario's previously
+  qualified values. Record `coalesced_frames` separately from true sequence
+  gaps, watchdog events, protocol errors, and reconnects.
+- The formal run must hash both Isaac-side and Foxy-side protocol, transport,
+  and command-state sources. Both process copies must be byte-identical.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required behavior |
+|---|---|
+| Stale intermediates followed by a fresh latest frame | Observe all sequences; apply only latest; increment `coalesced_frames` |
+| Newest buffered frame is stale | Reject batch and fail closed |
+| Any frame has future skew or invalid numeric data | Reject batch and fail closed |
+| Duplicate or decreasing sequence occurs inside batch | Reject atomically; retain prior sequence/state |
+| Sequence is missing from the buffered batch | Count a real sequence gap |
+| More than 256 frames are immediately buffered | Process a bounded batch; never allocate an unbounded queue |
+| Formal run reports watchdog, protocol error, or reconnect | Preserve failure and return to transport diagnosis |
+
+### 5. Good / Base / Bad Cases
+
+- **Good:** a 275 ms simulator sensor synchronization leaves several valid
+  frames buffered; the receiver validates the batch, applies the fresh latest
+  command, reports bounded coalescing, and records zero gaps/watchdogs/errors.
+- **Base:** a single fresh command uses `update()`, which delegates to the same
+  one-element atomic batch contract.
+- **Bad:** disconnect on the first stale intermediate frame, discard fresher
+  frames behind it, then increase the watchdog until the acceptance report
+  turns green.
+
+### 6. Tests Required
+
+- Send one combined TCP write containing multiple stale command frames followed
+  by a fresh latest frame. Assert the latest value is active, every sequence is
+  observed, `coalesced_frames` equals the skipped intermediate count, and gaps,
+  watchdog events, and protocol errors remain zero.
+- Unit-test that a stale newest frame and a future-skewed frame are rejected.
+- Unit-test that an internal duplicate sequence leaves the prior state and gap
+  count unchanged.
+- Re-run the full sensor/render workload with the original source-age and
+  watchdog values. Require zero reconnects, gaps, watchdog events, and protocol
+  errors, and record the bounded coalesced-frame count in acceptance evidence.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```python
+frame = recv_frame(connection)
+state.update(decoded(frame))  # oldest buffered frame can be stale
+# On error: disconnect and lose fresher frames already queued behind it.
+```
+
+```text
+stale backlog observed -> increase watchdog/source-age threshold
+```
+
+#### Correct
+
+```python
+frames = receive_complete_frames_already_buffered(limit=256)
+updates = [decode_and_validate(frame) for frame in frames]
+state.update_batch(updates)  # observes all; applies only fresh latest
+```
+
+```text
+stale intermediates + fresh latest -> bounded atomic coalesce
+stale latest / malformed batch     -> unchanged fail-closed path
+```

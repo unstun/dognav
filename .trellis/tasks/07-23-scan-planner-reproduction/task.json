@@ -23,7 +23,7 @@
   ],
   "parent": null,
   "relatedFiles": [],
-  "notes": "V3 uses the pinned sensor-rig URDF with V12 model_149999 plus live MID-360-like and D435i-like simulated sensors. Asset, locomotion A/B, dual-sensor, two-dry-run, frozen closed-loop, sync, and local re-evaluation gates passed 71/71. Human review remains required; V2 is baseline-only. On 2026-08-14 Dr Sun approved a bounded V4 forest locomotion preview using the same URDF and checkpoint. V4 preview02 passed automated identity, deterministic terrain, visible/collision/dual-sensor geometry, locomotion, video, sync, and hash gates; Dr Sun's visual review remains pending. V3 evidence stays immutable and SCAN forest closed-loop remains out of scope.",
+  "notes": "V3 uses the pinned sensor-rig URDF with V12 model_149999 plus live MID-360-like and D435i-like simulated sensors. Asset, locomotion A/B, dual-sensor, two-dry-run, frozen closed-loop, sync, and local re-evaluation gates passed 71/71. Human review remains required; V2 is baseline-only. V4 preview02 passed its bounded automated forest-locomotion gates, but on 2026-08-14 Dr Sun requested faster motion and obstacle avoidance, so V4 is preserved as a change-requested baseline rather than accepted. V5 now has two identical-input passing dry runs and one frozen review candidate: 0.50 m/s SCAN command, 0.523 m/s measured planar-speed p75, five trajectories, 1.014 m primary-tree centre clearance, 0.059 m goal error, and zero collision/watchdog/protocol/reconnect events. All remote evidence is synced with exact tree-hash parity. Human V5 video review remains required; no training or real-robot work occurred.",
   "meta": {
     "automated_acceptance": "v3_pass_71_of_71",
     "human_review": "pending_human_v3",
@@ -31,7 +31,10 @@
     "v3_scope": "new_urdf_v12_mid360_d435i",
     "v3_status": "ready_for_human_review",
     "v4_scope": "forest_gen_lite3_v12_short_inference_preview",
-    "v4_status": "automated_gates_passed_ready_for_human_review",
-    "v4_human_review": "pending"
+    "v4_status": "automated_gates_passed_human_change_requested",
+    "v4_human_review": "change_requested_faster_and_obstacle_avoidance",
+    "v5_scope": "forest_gen_nav_scan_closed_loop_faster_avoidance",
+    "v5_status": "frozen_automated_gate_pass_human_review_ready",
+    "v5_human_review": "pending"
   }
 }

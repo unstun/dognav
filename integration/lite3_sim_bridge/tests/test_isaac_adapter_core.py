@@ -5,6 +5,8 @@ from lite3_sim_bridge.isaac_adapter_core import (
     DEFAULT_QUALIFICATION_SCHEDULE,
     assert_command_visible_in_critic,
     canonical_config_sha256,
+    local_minimum_obstacle_hits,
+    point_to_segment_distance_2d,
     quaternion_wxyz_to_xyzw,
     rotation_matrix_from_wxyz,
     schedule_duration,
@@ -81,6 +83,72 @@ class IsaacAdapterCoreTest(unittest.TestCase):
                 2.0,
                 minimum_world_z=float("nan"),
             )
+
+    def test_local_minimum_filter_removes_slope_and_keeps_tree_and_rock(self):
+        slope = []
+        for x_index in range(6):
+            for y_index in range(3):
+                x = 0.30 * x_index
+                y = 0.30 * y_index
+                slope.append((x, y, 0.08 * x_index + 0.02 * y_index))
+        # The obstacle cell has nearby rendered ground plus taller returns.
+        slope.extend(
+            (
+                (0.90, 0.30, 0.26),
+                (0.90, 0.30, 0.55),
+                (0.90, 0.30, 1.20),
+            )
+        )
+        obstacles, stats = local_minimum_obstacle_hits(
+            slope,
+            (-1.0, 0.0, 1.0),
+            0.1,
+            5.0,
+            cell_size=0.30,
+            height_threshold=0.22,
+        )
+        self.assertIn((0.90, 0.30, 0.55), obstacles)
+        self.assertIn((0.90, 0.30, 1.20), obstacles)
+        self.assertNotIn((0.90, 0.30, 0.26), obstacles)
+        self.assertGreater(stats["filtered_ground_hit_count"], 10)
+        self.assertEqual(stats["obstacle_hit_count"], 2)
+
+    def test_local_minimum_filter_retains_sparse_hit_conservatively(self):
+        obstacles, stats = local_minimum_obstacle_hits(
+            ((1.0, 1.0, 0.7), (float("nan"), 0.0, 0.0), (20.0, 0.0, 0.0)),
+            (0.0, 0.0, 1.0),
+            0.1,
+            5.0,
+            cell_size=0.30,
+            height_threshold=0.22,
+        )
+        self.assertEqual(obstacles, ((1.0, 1.0, 0.7),))
+        self.assertEqual(stats["sparse_retained_hit_count"], 1)
+        self.assertEqual(stats["finite_in_range_hit_count"], 1)
+
+    def test_local_minimum_filter_rejects_invalid_parameters(self):
+        with self.assertRaisesRegex(ValueError, "cell size"):
+            local_minimum_obstacle_hits(
+                (), (0.0, 0.0, 1.0), 0.1, 5.0, 0.0, 0.22
+            )
+        with self.assertRaisesRegex(ValueError, "height threshold"):
+            local_minimum_obstacle_hits(
+                (), (0.0, 0.0, 1.0), 0.1, 5.0, 0.30, float("nan")
+            )
+
+    def test_point_to_segment_distance_clamps_projection(self):
+        self.assertAlmostEqual(
+            point_to_segment_distance_2d((0.0, 1.0), (-1.0, 0.0), (1.0, 0.0)),
+            1.0,
+        )
+        self.assertAlmostEqual(
+            point_to_segment_distance_2d((3.0, 0.0), (-1.0, 0.0), (1.0, 0.0)),
+            2.0,
+        )
+        self.assertAlmostEqual(
+            point_to_segment_distance_2d((1.0, 1.0), (0.0, 0.0), (0.0, 0.0)),
+            math.sqrt(2.0),
+        )
 
     def test_command_visibility(self):
         observation = [0.0] * 20

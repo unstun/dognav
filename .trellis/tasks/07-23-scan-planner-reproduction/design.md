@@ -375,3 +375,69 @@ viewport frames. Frames are captured during stepping; transport and metrics
 are closed before the video writer and simulator teardown complete. Failure is
 preserved; no training, controller tuning, SCAN connection, or threshold
 relaxation is permitted.
+
+## 14. V5 Faster Forest SCAN Closed Loop
+
+V5 preserves the V3 Foxy/SCAN/TCP/V12 causal chain and the V4 pinned forest,
+robot, and sensor identities. It adds a new `forest_gen_nav` course instead of
+changing the immutable V4 `forest_gen` preview. The first tree proxy is moved
+onto the direct start-to-goal corridor only in this new course. The goal is
+fixed at world `(0.5, 3.0, 0.85) m`; the deterministic start is approximately
+`(-5.0, 3.0, 0.92) m`, and the primary tree centre is approximately
+`(-1.8, 3.0)` with a 0.24 m trunk radius before Lite3 envelope inflation.
+
+The planner data flow is:
+
+```text
+raw MID-360-like world hits + sensor pose
+  -> finite/range gate
+  -> XY cells and neighboring local minimum heights
+  -> retain points above the local terrain envelope
+  -> existing world-to-sensor conversion and TCP SENSOR_FRAME_V1
+  -> Foxy PointCloud2 + truth odometry
+  -> SCAN occupancy / safety replan / B-spline
+  -> closed-loop controller limited to 0.50 m/s
+  -> TCP CMD_VEL_V1
+  -> unchanged V12 observation and policy
+  -> articulated PhysX motion and fresh sensing
+```
+
+The terrain filter is a pure geometry operation. It cannot read the forest
+height function, asset type, USD prim path, proxy bounds, or ground/obstacle
+labels. Each finite in-range hit is placed in an XY cell. The minimum height
+over the cell and its fixed neighboring cells defines the local terrain
+envelope; hits above a frozen clearance are planner obstacles. Sparse cells are
+retained conservatively. Synthetic sloped-ground, trunk, rock, sparse-return,
+non-finite, and range-boundary tests own this contract.
+
+The V3 launch gains optional planner/controller parameter-file arguments while
+retaining its current files as defaults. V5 supplies a separate forest planner
+configuration and reuses the already-qualified V3 controller configuration.
+The common remote runner gains opt-in course and forest-source arguments; its
+default remains the V3 single-box course. This avoids a second copied closed-
+loop orchestration path.
+
+V5 acceptance does not infer avoidance from video alone. It proves that the
+un-inflated direct line intersects the tree envelope, then checks planner
+trajectory replacement, command origin, maximum forward command, measured
+speed response, lateral detour, minimum root-to-tree clearance, path length,
+goal stop, contacts, sensing, transport, ROS bag, and video. V4, every failed
+V5 run, and the eventual review candidate remain separate immutable bundles.
+
+### 14.1 Command backlog under simulator sensor stalls
+
+The forest ray-cast workload can occasionally block one simulator Python step
+for longer than the 250 ms command source-age limit while physics is not
+advancing. The original receiver then violated its latest-wins contract: it
+read the oldest queued command, rejected that stale timestamp, disconnected,
+and discarded fresher commands already buffered behind it.
+
+The V5 receiver preserves the 250 ms source-age and watchdog limits. It reads
+the complete command frames already buffered on the socket as one bounded
+batch, validates every frame and monotonically observes every sequence, then
+atomically applies only the newest command. Intermediate source-stale commands
+are never applied and are counted as intentional coalescing rather than packet
+loss. If the newest frame is stale, malformed, non-increasing, or future
+skewed, the unchanged fail-closed path rejects the whole batch. Acceptance
+records and bounds the number of coalesced frames in addition to requiring zero
+sequence gaps, watchdog events, protocol errors, and reconnects.

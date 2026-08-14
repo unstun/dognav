@@ -1,8 +1,14 @@
+import socket
 import time
 import unittest
 
 from lite3_sim_bridge.command_state import CommandLimits, LatestCommandState
-from lite3_sim_bridge.protocol import CommandV1, MessageType, encode_frame
+from lite3_sim_bridge.protocol import (
+    CommandV1,
+    MessageType,
+    encode_command_payload,
+    encode_frame,
+)
 from lite3_sim_bridge.transport import (
     CommandClient,
     CommandReceiverServer,
@@ -96,6 +102,44 @@ class TransportTest(unittest.TestCase):
             server.stats().last_protocol_error,
             "command stream received a non-command frame",
         )
+        client.close()
+        server.stop()
+
+    def test_command_backlog_applies_only_fresh_latest_frame(self):
+        limits = CommandLimits(0.75, 0.35, 1.0)
+        state = LatestCommandState(
+            limits,
+            timeout_ns=250_000_000,
+            max_source_age_ns=50_000_000,
+            max_future_skew_ns=25_000_000,
+        )
+        server = CommandReceiverServer(state, port=0, io_timeout_seconds=0.05)
+        server.start()
+        client = socket.create_connection(server.endpoint, timeout=0.5)
+        now_ns = time.monotonic_ns()
+        frames = []
+        for sequence in range(1, 6):
+            timestamp_ns = now_ns if sequence == 5 else now_ns - 200_000_000
+            frames.append(
+                encode_frame(
+                    MessageType.CMD_VEL_V1,
+                    sequence,
+                    timestamp_ns,
+                    encode_command_payload(CommandV1(0.1 * sequence, 0.0, 0.0)),
+                )
+            )
+        client.sendall(b"".join(frames))
+
+        active = wait_until(
+            lambda: server.snapshot().sequence == 5
+            and not server.snapshot().stale
+            and server.snapshot()
+        )
+        self.assertAlmostEqual(active.command.vx, 0.5)
+        self.assertEqual(active.sequence_gaps, 0)
+        self.assertEqual(active.watchdog_events, 0)
+        self.assertEqual(server.stats().protocol_errors, 0)
+        self.assertEqual(server.stats().coalesced_frames, 4)
         client.close()
         server.stop()
 

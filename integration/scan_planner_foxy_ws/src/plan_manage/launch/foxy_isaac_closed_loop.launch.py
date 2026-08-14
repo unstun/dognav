@@ -14,8 +14,10 @@ from launch_ros.parameter_descriptions import ParameterValue
 def generate_launch_description():
     scan_share = get_package_share_directory("scan_planner")
     bridge_share = get_package_share_directory("lite3_sim_bridge")
-    planner_config = os.path.join(scan_share, "config", "foxy_isaac_planner.yaml")
-    controller_config = os.path.join(
+    planner_config_default = os.path.join(
+        scan_share, "config", "foxy_isaac_planner.yaml"
+    )
+    controller_config_default = os.path.join(
         scan_share, "config", "foxy_isaac_controller.yaml"
     )
     bridge_config = os.path.join(bridge_share, "config", "foxy_bridge.yaml")
@@ -24,6 +26,8 @@ def generate_launch_description():
     telemetry_port = LaunchConfiguration("telemetry_port")
     command_host = LaunchConfiguration("command_host")
     command_port = LaunchConfiguration("command_port")
+    planner_config = LaunchConfiguration("planner_config")
+    controller_config = LaunchConfiguration("controller_config")
     enable_monitor = LaunchConfiguration("enable_monitor")
     monitor_event_log = LaunchConfiguration("monitor_event_log")
     monitor_summary = LaunchConfiguration("monitor_summary")
@@ -34,6 +38,12 @@ def generate_launch_description():
             DeclareLaunchArgument("telemetry_port", default_value="46000"),
             DeclareLaunchArgument("command_host", default_value="127.0.0.1"),
             DeclareLaunchArgument("command_port", default_value="46001"),
+            DeclareLaunchArgument(
+                "planner_config", default_value=planner_config_default
+            ),
+            DeclareLaunchArgument(
+                "controller_config", default_value=controller_config_default
+            ),
             DeclareLaunchArgument("enable_monitor", default_value="false"),
             DeclareLaunchArgument(
                 "monitor_event_log",

@@ -43,6 +43,7 @@ class AcceptanceTest(unittest.TestCase):
                 "minimum_unique_trajectories": 2,
                 "minimum_synchronized_sensor_fraction": 0.95,
                 "maximum_transport_protocol_errors": 0,
+                "maximum_coalesced_command_frames": 100,
                 "maximum_telemetry_reconnects": 1,
                 "minimum_video_frames": 250,
                 "minimum_video_duration_seconds": 10.0,
@@ -67,6 +68,8 @@ class AcceptanceTest(unittest.TestCase):
                     "sim_time_seconds": 0.02 * index,
                     "root_pos_w": [x, y, 0.31],
                     "root_lin_vel_w": [0.0 if stopped else 0.3, 0.0, 0.0],
+                    "terrain_height_under_root_m": 0.05 * fraction,
+                    "base_clearance_m": 0.31 - 0.05 * fraction,
                     "applied_command": [0.0, 0.0, 0.0]
                     if stopped
                     else [0.3, 0.0, 0.2],
@@ -89,6 +92,10 @@ class AcceptanceTest(unittest.TestCase):
                 "point_count": 30,
                 "obstacle_surface_hit_count": 30,
                 "unexpected_above_floor_hit_count": 0,
+                "planner_geometry_filter_enabled": True,
+                "planner_geometry_filter_ground_hit_count": 100,
+                "planner_geometry_filter_obstacle_hit_count": 30,
+                "planner_geometry_filter_sparse_retained_hit_count": 3,
             }
             for index in range(125)
         ]
@@ -316,6 +323,115 @@ class AcceptanceTest(unittest.TestCase):
             )
             self.assertEqual(failed["status"], "FAIL")
             self.assertFalse(failed["checks"]["v3_isaac_urdf_hash"]["passed"])
+
+    def test_forest_navigation_requires_speed_geometry_filter_and_real_detour(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            video = root / "run.mp4"
+            video.write_bytes(b"v" * 120000)
+            video_sha = hashlib.sha256(video.read_bytes()).hexdigest()
+            bag = root / "rosbag"
+            bag.mkdir()
+            (bag / "metadata.yaml").write_text(
+                "rosbag2_bagfile_information: {}\n"
+            )
+            (bag / "run_0.db3").write_bytes(b"b" * 12000)
+            thresholds = self._thresholds()
+            thresholds["forest_navigation"] = {
+                "goal_world_m": [4.0, 0.0, 0.35],
+                "obstacle_x_window_m": [1.0, 3.0],
+                "minimum_filter_enabled_fraction": 1.0,
+                "minimum_filtered_ground_hits_per_frame": 50,
+                "minimum_filtered_obstacle_hits_per_frame": 20,
+                "maximum_sparse_retained_fraction": 0.20,
+                "minimum_forward_command_mps": 0.25,
+                "minimum_measured_speed_p75_mps": 0.25,
+                "minimum_primary_center_clearance_m": 0.60,
+                "minimum_line_deviation_m": 0.80,
+                "minimum_path_length_excess_m": 0.20,
+                "minimum_base_clearance_m": 0.20,
+                "minimum_terrain_height_range_m": 0.04,
+            }
+            identity = {
+                "acceptance_config_sha256": "frozen",
+                "forest_scene": {
+                    "navigation": {
+                        "start_world_m": [0.0, 0.0, 0.31],
+                        "goal_world_m": [4.0, 0.0, 0.35],
+                        "primary_blocker": {"center_m": [2.0, 0.0, 0.4]},
+                        "required_center_clearance_m": 0.64,
+                        "direct_path_intersects_inflated_blocker": True,
+                    }
+                },
+                "sensor": {
+                    "forest_geometry_filter": {
+                        "enabled": True,
+                        "forbidden_inputs": [
+                            "terrain_height_function",
+                            "scene_prim_id",
+                            "proxy_bounds",
+                            "obstacle_label",
+                        ],
+                    }
+                },
+            }
+            report = evaluate_acceptance(
+                thresholds,
+                self._metrics(),
+                self._sensor_metrics(),
+                {
+                    "status": "PASS",
+                    "runtime_error": None,
+                    "command_transport": {"protocol_errors": 0},
+                    "telemetry_transport": {"protocol_errors": 0, "reconnects": 1},
+                    "video": {
+                        "frame_count": 310,
+                        "encoded_duration_seconds": 12.4,
+                        "sha256": video_sha,
+                    },
+                },
+                identity,
+                self._ros_summary(),
+                video,
+                bag,
+                "final_plan_success=1\nfinal_plan_success=1\n"
+                "[FSM]: from EXEC_TRAJ to WAIT_TARGET\n",
+                "frozen",
+            )
+            self.assertEqual(report["status"], "PASS")
+            self.assertTrue(report["checks"]["forest_planner_detour"]["passed"])
+
+            straight_metrics = self._metrics()
+            for row in straight_metrics:
+                row["root_pos_w"][1] = 0.0
+            failed = evaluate_acceptance(
+                thresholds,
+                straight_metrics,
+                self._sensor_metrics(),
+                {
+                    "status": "PASS",
+                    "runtime_error": None,
+                    "command_transport": {"protocol_errors": 0},
+                    "telemetry_transport": {"protocol_errors": 0, "reconnects": 1},
+                    "video": {
+                        "frame_count": 310,
+                        "encoded_duration_seconds": 12.4,
+                        "sha256": video_sha,
+                    },
+                },
+                identity,
+                self._ros_summary(),
+                video,
+                bag,
+                "final_plan_success=1\nfinal_plan_success=1\n"
+                "[FSM]: from EXEC_TRAJ to WAIT_TARGET\n",
+                "frozen",
+            )
+            self.assertEqual(failed["status"], "FAIL")
+            self.assertFalse(
+                failed["checks"]["forest_primary_blocker_clearance"]["passed"]
+            )
+            self.assertFalse(failed["checks"]["forest_planner_detour"]["passed"])
 
 
 if __name__ == "__main__":

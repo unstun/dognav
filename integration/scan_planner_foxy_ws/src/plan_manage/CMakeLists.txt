@@ -53,6 +53,7 @@ install(FILES
   DESTINATION share/${PROJECT_NAME}/launch)
 install(FILES
   config/foxy_isaac_planner.yaml
+  config/foxy_isaac_forest_v5_planner.yaml
   config/foxy_isaac_controller.yaml
   DESTINATION share/${PROJECT_NAME}/config)
 

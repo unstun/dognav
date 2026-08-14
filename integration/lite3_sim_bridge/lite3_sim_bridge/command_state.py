@@ -3,7 +3,7 @@
 from dataclasses import dataclass
 import math
 import threading
-from typing import Optional
+from typing import Optional, Sequence, Tuple
 
 from .protocol import CommandV1, ProtocolError, SequenceTracker
 
@@ -83,24 +83,62 @@ class LatestCommandState:
         source_timestamp_ns: int,
         received_monotonic_ns: int,
     ) -> CommandSnapshot:
-        for name, value in (
-            ("sequence", sequence),
-            ("source_timestamp_ns", source_timestamp_ns),
-            ("received_monotonic_ns", received_monotonic_ns),
-        ):
-            if not isinstance(value, int) or value < 0:
-                raise ProtocolError("{} must be a non-negative integer".format(name))
-        age_ns = received_monotonic_ns - source_timestamp_ns
-        if age_ns > self._max_source_age_ns:
+        return self.update_batch(
+            ((command, sequence, source_timestamp_ns, received_monotonic_ns),)
+        )
+
+    def update_batch(
+        self,
+        updates: Sequence[Tuple[CommandV1, int, int, int]],
+    ) -> CommandSnapshot:
+        """Atomically coalesce a received backlog to its fresh latest command.
+
+        Every sequence is observed so an intentional latest-wins coalesce is
+        not reported as packet loss. Intermediate source-stale commands are
+        never applied. The newest command must still satisfy the unchanged
+        freshness and future-skew limits, otherwise the whole batch fails.
+        """
+
+        if not updates:
+            raise ValueError("command update batch must not be empty")
+        checked_updates = []
+        for command, sequence, source_timestamp_ns, received_monotonic_ns in updates:
+            for name, value in (
+                ("sequence", sequence),
+                ("source_timestamp_ns", source_timestamp_ns),
+                ("received_monotonic_ns", received_monotonic_ns),
+            ):
+                if not isinstance(value, int) or value < 0:
+                    raise ProtocolError(
+                        "{} must be a non-negative integer".format(name)
+                    )
+            age_ns = received_monotonic_ns - source_timestamp_ns
+            if age_ns < -self._max_future_skew_ns:
+                raise ProtocolError("command timestamp is too far in the future")
+            checked_updates.append(
+                (
+                    self._limits.clamp(command),
+                    sequence,
+                    source_timestamp_ns,
+                    received_monotonic_ns,
+                    age_ns,
+                )
+            )
+        if checked_updates[-1][4] > self._max_source_age_ns:
             raise ProtocolError("command timestamp is stale")
-        if age_ns < -self._max_future_skew_ns:
-            raise ProtocolError("command timestamp is too far in the future")
-        checked_command = self._limits.clamp(command)
+
         with self._lock:
-            self._sequence_tracker.observe(sequence)
-            self._command = checked_command
-            self._source_timestamp_ns = source_timestamp_ns
-            self._received_monotonic_ns = received_monotonic_ns
+            previous_sequence = self._sequence_tracker.last_sequence
+            for _, sequence, _, _, _ in checked_updates:
+                if previous_sequence is not None and sequence <= previous_sequence:
+                    raise ProtocolError("sequence is not increasing")
+                previous_sequence = sequence
+            for _, sequence, _, _, _ in checked_updates:
+                self._sequence_tracker.observe(sequence)
+            latest = checked_updates[-1]
+            self._command = latest[0]
+            self._source_timestamp_ns = latest[2]
+            self._received_monotonic_ns = latest[3]
             self._stale = False
             self._reason = "active"
             return self._snapshot_locked()

@@ -87,3 +87,23 @@ The durable rule is now in `.trellis/spec/backend/quality-guidelines.md`:
 policy identity, asset identity, runtime USD readback, locomotion A/B,
 dual-sensor output, failed preflight preservation, frozen acceptance, and
 human review are distinct gates.
+
+## 8. V5 Forest Transport Backlog
+
+The first V5 forest closed loop reached its goal and avoided the tree but was
+preserved as failed because it recorded one stale-command protocol error, one
+reconnect, fourteen sequence gaps, and one watchdog event. A targeted timing
+run showed that the geometry filter itself took about 4 ms, while one rendered
+forest point transfer/synchronization took about 275 ms. Foxy continued to
+send commands during that interval, so its sender and the shared monotonic
+clock were excluded.
+
+The root cause was the command receiver's single-frame processing, not the
+250 ms limit. A backlog placed old and fresh frames in the same socket buffer;
+the receiver rejected the first stale frame and closed before reaching the
+fresh latest frame. A failing loopback regression reproduced this with four
+stale intermediate frames followed by a fresh fifth frame. The correction
+coalesces only frames already buffered, validates and observes every sequence,
+and applies the fresh latest frame atomically. A stale latest frame still fails
+closed. The regression and the full 5070 Ti scenario then passed without
+relaxing source age or watchdog thresholds.

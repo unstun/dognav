@@ -17,6 +17,8 @@ from .isaac_adapter_core import (
     DEFAULT_QUALIFICATION_SCHEDULE,
     QualificationSegment,
     canonical_config_sha256,
+    local_minimum_obstacle_hits,
+    point_to_segment_distance_2d,
     quaternion_wxyz_to_xyzw,
     schedule_duration,
     schedule_state,
@@ -76,6 +78,8 @@ FOREST_SEED = 14
 FOREST_TREE_PROXY_RADIUS_M = 0.24
 FOREST_TREE_PROXY_HEIGHT_M = 4.0
 FOREST_ROCK_PROXY_SIZE_M = (0.72, 0.72, 0.46)
+FOREST_NAVIGATION_GOAL_WORLD_M = (0.5, 3.0, 0.85)
+FOREST_NAVIGATION_PLANNING_RADIUS_M = 0.40
 FOREST_PREVIEW_SCHEDULE = (
     QualificationSegment("settle_zero", 1.5, (0.0, 0.0, 0.0)),
     QualificationSegment("forward", 4.0, (0.25, 0.0, 0.0)),
@@ -172,6 +176,14 @@ def _sensor_rig_enabled(args) -> bool:
 
 
 def _forest_enabled(args) -> bool:
+    return args.course in ("forest_gen", "forest_gen_nav")
+
+
+def _forest_navigation_enabled(args) -> bool:
+    return args.course == "forest_gen_nav"
+
+
+def _forest_preview_enabled(args) -> bool:
     return args.course == "forest_gen"
 
 
@@ -308,14 +320,21 @@ def _build_forest_layout(args):
                 rotation=(1.0, 0.0, 0.0, 0.0),
                 additional_tags={
                     "species": kind,
-                    "placement": "v4_deterministic_adapter",
+                    "placement": (
+                        "v5_navigation_blocker"
+                        if _forest_navigation_enabled(args)
+                        and kind == "Pine"
+                        and index == 0
+                        else "v4_deterministic_adapter"
+                    ),
                 },
                 global_collisions=False,
             )
         )
 
+    primary_tree_y = 0.0 if _forest_navigation_enabled(args) else 1.65
     tree_layout = (
-        ("Pine", 1, 3.2, 1.65),
+        ("Pine", 1, 3.2, primary_tree_y),
         ("Birch", 1, 4.8, -2.20),
         ("Pine", 2, -3.0, -4.0),
         ("Birch", 2, -5.0, 2.5),
@@ -385,7 +404,15 @@ def _build_forest_layout(args):
         )
 
     for asset in generated_assets:
-        add_visual(asset, asset.position, "v4_deterministic_adapter_placement")
+        add_visual(
+            asset,
+            asset.position,
+            (
+                "v5_navigation_blocker_placement"
+                if _forest_navigation_enabled(args) and asset.name == "Pine_0"
+                else "v4_deterministic_adapter_placement"
+            ),
+        )
     print("[forest-v4] visual_records_ready", flush=True)
 
     proxies = []
@@ -439,6 +466,40 @@ def _build_forest_layout(args):
         source_origin_xy[1] - 0.5 * args.forest_size,
         source_origin_z,
     )
+    navigation_identity = None
+    if _forest_navigation_enabled(args):
+        primary_proxy = next(
+            proxy
+            for proxy in proxies
+            if proxy["visual_name"] == "forest_visual_000"
+        )
+        direct_path_distance = point_to_segment_distance_2d(
+            primary_proxy["center_m"][:2],
+            spawn_world[:2],
+            FOREST_NAVIGATION_GOAL_WORLD_M[:2],
+        )
+        required_center_clearance = (
+            FOREST_TREE_PROXY_RADIUS_M + FOREST_NAVIGATION_PLANNING_RADIUS_M
+        )
+        navigation_identity = {
+            "start_world_m": spawn_world,
+            "goal_world_m": FOREST_NAVIGATION_GOAL_WORLD_M,
+            "primary_blocker": dict(primary_proxy),
+            "planner_body_radius_m": FOREST_NAVIGATION_PLANNING_RADIUS_M,
+            "required_center_clearance_m": required_center_clearance,
+            "primary_center_to_direct_segment_m": direct_path_distance,
+            "direct_path_intersects_inflated_blocker": (
+                direct_path_distance < required_center_clearance
+            ),
+            "planner_input_boundary": (
+                "rendered XYZ plus sensor pose only; proxy bounds and terrain "
+                "height are retained for evaluation and never enter SCAN input"
+            ),
+        }
+        if not navigation_identity["direct_path_intersects_inflated_blocker"]:
+            raise AdapterFailure(
+                "V5 primary tree does not block the direct start-to-goal segment"
+            )
     identity_visuals = [
         {key: (str(value) if isinstance(value, Path) else value) for key, value in visual.items() if key != "asset"}
         for visual in visual_specs
@@ -468,6 +529,7 @@ def _build_forest_layout(args):
             ),
         },
         "source_asset_instantiated_counts": generated_counts,
+        "navigation": navigation_identity,
         "bounded_adapter": {
             "visual_count": len(visual_specs),
             "physics_sensor_proxy_count": len(proxies),
@@ -565,7 +627,9 @@ def _urdf_contract(path: Path):
 
 
 def _candidate_name(args) -> str:
-    if _forest_enabled(args):
+    if _forest_navigation_enabled(args):
+        return "V12 model_149999 on Lite3 Pro sensor rig v5 SCAN forest navigation"
+    if _forest_preview_enabled(args):
         return "V12 model_149999 on Lite3 Pro sensor rig v4 forest preview"
     if _sensor_rig_enabled(args):
         return "V12 model_149999 on Lite3 Pro sensor rig v3"
@@ -791,6 +855,12 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
         env_cfg.viewer.origin_type = "world"
         env_cfg.viewer.eye = VIDEO_CAMERA_EYE
         env_cfg.viewer.lookat = VIDEO_CAMERA_LOOKAT
+        env_cfg.viewer.resolution = VIDEO_RESOLUTION
+    elif args.video_path is not None and _forest_navigation_enabled(args):
+        spawn_x, spawn_y, spawn_z = forest_layout["spawn_world_xyz_m"]
+        env_cfg.viewer.origin_type = "world"
+        env_cfg.viewer.eye = (spawn_x + 1.5, spawn_y - 7.5, spawn_z + 5.0)
+        env_cfg.viewer.lookat = (spawn_x + 3.0, spawn_y, spawn_z + 0.45)
         env_cfg.viewer.resolution = VIDEO_RESOLUTION
     elif args.video_path is not None:
         spawn_x, spawn_y, spawn_z = forest_layout["spawn_world_xyz_m"]
@@ -1349,7 +1419,7 @@ def _run(args) -> int:
     if forest_layout is not None:
         print("[forest-v4] run_identity_start", flush=True)
     qualification_schedule = (
-        FOREST_PREVIEW_SCHEDULE if forest_layout is not None else None
+        FOREST_PREVIEW_SCHEDULE if _forest_preview_enabled(args) else None
     )
     sensor_rotation_wxyz = (
         math.cos(math.radians(args.sensor_pitch_degrees) / 2.0),
@@ -1370,6 +1440,10 @@ def _run(args) -> int:
     if forest_layout is None:
         camera_eye = VIDEO_CAMERA_EYE
         camera_lookat = VIDEO_CAMERA_LOOKAT
+    elif _forest_navigation_enabled(args):
+        spawn_x, spawn_y, spawn_z = forest_layout["spawn_world_xyz_m"]
+        camera_eye = (spawn_x + 1.5, spawn_y - 7.5, spawn_z + 5.0)
+        camera_lookat = (spawn_x + 3.0, spawn_y, spawn_z + 0.45)
     else:
         spawn_x, spawn_y, spawn_z = forest_layout["spawn_world_xyz_m"]
         camera_eye = (spawn_x - 6.0, spawn_y, spawn_z + 2.8)
@@ -1407,9 +1481,7 @@ def _run(args) -> int:
                 "connected": segment.connected,
             }
             for segment in (
-                FOREST_PREVIEW_SCHEDULE
-                if forest_layout is not None
-                else ()
+                FOREST_PREVIEW_SCHEDULE if _forest_preview_enabled(args) else ()
             )
         ],
         "watchdog_seconds": args.watchdog_seconds,
@@ -1459,9 +1531,41 @@ def _run(args) -> int:
                     else args.planner_floor_filter_max_z
                 ),
                 "reason": (
-                    "disabled for the terrain-only V4 preview; SCAN is not connected"
+                    "replaced by the geometry-only local terrain filter in V5"
+                    if _forest_navigation_enabled(args)
+                    else "disabled for the terrain-only V4 preview; SCAN is not connected"
                     if forest_layout is not None
                     else "SCAN occupancy input excludes the traversable flat floor"
+                ),
+            },
+            "forest_geometry_filter": {
+                "enabled": _forest_navigation_enabled(args),
+                "inputs": ["rendered_hit_xyz_world", "sensor_position_world"],
+                "forbidden_inputs": [
+                    "terrain_height_function",
+                    "scene_prim_id",
+                    "proxy_bounds",
+                    "obstacle_label",
+                ],
+                "cell_size_m": (
+                    args.terrain_filter_cell_size
+                    if _forest_navigation_enabled(args)
+                    else None
+                ),
+                "height_threshold_m": (
+                    args.terrain_filter_height_threshold
+                    if _forest_navigation_enabled(args)
+                    else None
+                ),
+                "neighbor_cells": (
+                    args.terrain_filter_neighbor_cells
+                    if _forest_navigation_enabled(args)
+                    else None
+                ),
+                "minimum_neighbor_cells": (
+                    args.terrain_filter_minimum_neighbor_cells
+                    if _forest_navigation_enabled(args)
+                    else None
                 ),
             },
             "raycast_targets": raycast_targets,
@@ -1925,8 +2029,24 @@ def _run(args) -> int:
                     sensor_quaternion_values = _tensor_list(
                         sensor_quaternion_wxyz_tensor
                     )
+                    world_hit_values = hits_w.detach().cpu().tolist()
+                    geometry_filter_stats = None
+                    planner_world_hits = world_hit_values
+                    if _forest_navigation_enabled(args):
+                        planner_world_hits, geometry_filter_stats = (
+                            local_minimum_obstacle_hits(
+                                world_hit_values,
+                                sensor_position_values,
+                                args.lidar_min_range,
+                                args.lidar_max_range,
+                                args.terrain_filter_cell_size,
+                                args.terrain_filter_height_threshold,
+                                args.terrain_filter_neighbor_cells,
+                                args.terrain_filter_minimum_neighbor_cells,
+                            )
+                        )
                     points = world_hits_to_sensor_points(
-                        hits_w.detach().cpu().tolist(),
+                        planner_world_hits,
                         sensor_position_values,
                         sensor_quaternion_values,
                         args.lidar_min_range,
@@ -2003,6 +2123,41 @@ def _run(args) -> int:
                         ),
                         "planner_floor_filtered_hit_count": int(
                             floor_filtered_hits.sum().item()
+                        ),
+                        "planner_geometry_filter_enabled": (
+                            geometry_filter_stats is not None
+                        ),
+                        "planner_geometry_filter_input_hit_count": (
+                            0
+                            if geometry_filter_stats is None
+                            else geometry_filter_stats["input_hit_count"]
+                        ),
+                        "planner_geometry_filter_finite_in_range_hit_count": (
+                            0
+                            if geometry_filter_stats is None
+                            else geometry_filter_stats[
+                                "finite_in_range_hit_count"
+                            ]
+                        ),
+                        "planner_geometry_filter_cell_count": (
+                            0
+                            if geometry_filter_stats is None
+                            else geometry_filter_stats["cell_count"]
+                        ),
+                        "planner_geometry_filter_ground_hit_count": (
+                            0
+                            if geometry_filter_stats is None
+                            else geometry_filter_stats["filtered_ground_hit_count"]
+                        ),
+                        "planner_geometry_filter_obstacle_hit_count": (
+                            0
+                            if geometry_filter_stats is None
+                            else geometry_filter_stats["obstacle_hit_count"]
+                        ),
+                        "planner_geometry_filter_sparse_retained_hit_count": (
+                            0
+                            if geometry_filter_stats is None
+                            else geometry_filter_stats["sparse_retained_hit_count"]
                         ),
                         "ground_hit_count": int(ground_hits.sum().item()),
                         "terrain_surface_hit_count": int(
@@ -2244,6 +2399,30 @@ def _run(args) -> int:
             "telemetry_connected": telemetry_server.stats().accepted_connections > 0,
             "telemetry_sent": telemetry_server.stats().frames_sent > 0,
         }
+        if _forest_navigation_enabled(args):
+            navigation = forest_layout["identity"]["navigation"]
+            external_checks.update(
+                {
+                    "forest_static_geometry": bool(
+                        static_forest_geometry_checks
+                        and static_forest_geometry_checks["passed"]
+                    ),
+                    "direct_path_blocked": bool(
+                        navigation["direct_path_intersects_inflated_blocker"]
+                    ),
+                    "geometry_filter_active": bool(sensor_records)
+                    and all(
+                        row["planner_geometry_filter_enabled"]
+                        for row in sensor_records
+                    ),
+                    "geometry_filter_removed_terrain": bool(sensor_records)
+                    and max(
+                        row["planner_geometry_filter_ground_hit_count"]
+                        for row in sensor_records
+                    )
+                    > 0,
+                }
+            )
         report = {
             "schema_version": 1,
             "status": "PASS" if all(external_checks.values()) else "FAIL",
@@ -2252,6 +2431,12 @@ def _run(args) -> int:
             "command_transport": command_server.stats().__dict__,
             "telemetry_transport": telemetry_server.stats().__dict__,
             "record_count": len(records),
+            "static_geometry_checks": static_forest_geometry_checks,
+            "forest_navigation": (
+                None
+                if forest_layout is None
+                else forest_layout["identity"].get("navigation")
+            ),
         }
     elif forest_layout is not None:
         report = _forest_preview_report(
@@ -2320,7 +2505,7 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--task", default=DEFAULT_TASK)
     parser.add_argument(
         "--course",
-        choices=("flat", "single_box", "forest_gen"),
+        choices=("flat", "single_box", "forest_gen", "forest_gen_nav"),
         default="flat",
     )
     parser.add_argument("--forest-gen-root", type=Path)
@@ -2357,6 +2542,14 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--depth-min-range", type=float, default=0.10)
     parser.add_argument("--depth-max-range", type=float, default=5.0)
     parser.add_argument("--planner-floor-filter-max-z", type=float, default=0.05)
+    parser.add_argument("--terrain-filter-cell-size", type=float, default=0.30)
+    parser.add_argument(
+        "--terrain-filter-height-threshold", type=float, default=0.22
+    )
+    parser.add_argument("--terrain-filter-neighbor-cells", type=int, default=1)
+    parser.add_argument(
+        "--terrain-filter-minimum-neighbor-cells", type=int, default=2
+    )
     parser.add_argument("--video-path", type=Path)
     parser.add_argument("--video-fps", type=int, default=25)
     parser.add_argument("--video-frame-stride", type=int, default=2)
@@ -2421,9 +2614,11 @@ def main(argv=None) -> int:
             raise SystemExit("depth sensor parameters are invalid")
     if _forest_enabled(args):
         if not _sensor_rig_enabled(args):
-            raise SystemExit("forest preview requires the pinned V3 sensor-rig URDFs")
-        if args.mode != "qualification":
+            raise SystemExit("forest courses require the pinned V3 sensor-rig URDFs")
+        if _forest_preview_enabled(args) and args.mode != "qualification":
             raise SystemExit("forest preview is a standalone qualification run")
+        if _forest_navigation_enabled(args) and args.mode != "external":
+            raise SystemExit("forest navigation requires the external SCAN loop")
         if (
             args.forest_size != FOREST_SIZE_M
             or args.forest_margin != FOREST_MARGIN_M
@@ -2441,6 +2636,16 @@ def main(argv=None) -> int:
             raise SystemExit(
                 "forest asset path must be the models directory of the pinned forest_gen"
             )
+    if _forest_navigation_enabled(args):
+        if (
+            not math.isfinite(args.terrain_filter_cell_size)
+            or args.terrain_filter_cell_size <= 0.0
+            or not math.isfinite(args.terrain_filter_height_threshold)
+            or args.terrain_filter_height_threshold <= 0.0
+            or args.terrain_filter_neighbor_cells < 0
+            or args.terrain_filter_minimum_neighbor_cells <= 0
+        ):
+            raise SystemExit("forest navigation terrain-filter parameters are invalid")
     from isaaclab.app import AppLauncher
 
     simulation_app = AppLauncher(

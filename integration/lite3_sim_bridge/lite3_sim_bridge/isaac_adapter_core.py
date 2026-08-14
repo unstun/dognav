@@ -4,7 +4,7 @@ from dataclasses import dataclass
 import hashlib
 import json
 import math
-from typing import Iterable, Mapping, Optional, Sequence, Tuple
+from typing import Dict, Iterable, Mapping, Optional, Sequence, Tuple
 
 
 @dataclass(frozen=True)
@@ -140,6 +140,119 @@ def world_hits_to_sensor_points(
         if minimum_range <= distance <= maximum_range:
             result.append(local)
     return tuple(result)
+
+
+def local_minimum_obstacle_hits(
+    world_hits: Iterable[Sequence[float]],
+    sensor_position_world: Sequence[float],
+    minimum_range: float,
+    maximum_range: float,
+    cell_size: float,
+    height_threshold: float,
+    neighbor_cells: int = 1,
+    minimum_neighbor_cells: int = 2,
+) -> Tuple[Tuple[Tuple[float, float, float], ...], Mapping[str, int]]:
+    """Keep obstacle-like hits above a local terrain envelope.
+
+    The filter deliberately consumes only rendered XYZ geometry and sensor
+    position. It has no terrain-height, scene-prim, or obstacle-label input.
+    Sparse cells are retained conservatively rather than being called ground.
+    """
+
+    if len(sensor_position_world) != 3:
+        raise ValueError("sensor position must contain three values")
+    origin = tuple(float(value) for value in sensor_position_world)
+    if not all(math.isfinite(value) for value in origin):
+        raise ValueError("sensor position must be finite")
+    if (
+        not math.isfinite(minimum_range)
+        or not math.isfinite(maximum_range)
+        or minimum_range < 0.0
+        or maximum_range <= minimum_range
+    ):
+        raise ValueError("range limits are invalid")
+    if not math.isfinite(cell_size) or cell_size <= 0.0:
+        raise ValueError("terrain-filter cell size must be positive and finite")
+    if not math.isfinite(height_threshold) or height_threshold <= 0.0:
+        raise ValueError("terrain-filter height threshold must be positive and finite")
+    if neighbor_cells < 0:
+        raise ValueError("terrain-filter neighbor cell count must be non-negative")
+    if minimum_neighbor_cells <= 0:
+        raise ValueError("terrain-filter minimum neighbor cells must be positive")
+
+    candidates = []
+    cell_minimum_z: Dict[Tuple[int, int], float] = {}
+    input_count = 0
+    for hit in world_hits:
+        input_count += 1
+        if len(hit) != 3:
+            raise ValueError("each world hit must contain three values")
+        point = tuple(float(value) for value in hit)
+        if not all(math.isfinite(value) for value in point):
+            continue
+        distance = math.dist(point, origin)
+        if distance < minimum_range or distance > maximum_range:
+            continue
+        cell = (
+            math.floor(point[0] / cell_size),
+            math.floor(point[1] / cell_size),
+        )
+        candidates.append((point, cell))
+        cell_minimum_z[cell] = min(point[2], cell_minimum_z.get(cell, point[2]))
+
+    obstacle_hits = []
+    filtered_ground_count = 0
+    sparse_retained_count = 0
+    for point, cell in candidates:
+        local_minima = []
+        for dx in range(-neighbor_cells, neighbor_cells + 1):
+            for dy in range(-neighbor_cells, neighbor_cells + 1):
+                neighbor = (cell[0] + dx, cell[1] + dy)
+                if neighbor in cell_minimum_z:
+                    local_minima.append(cell_minimum_z[neighbor])
+        if len(local_minima) < minimum_neighbor_cells:
+            obstacle_hits.append(point)
+            sparse_retained_count += 1
+            continue
+        terrain_envelope_z = min(local_minima)
+        if point[2] - terrain_envelope_z > height_threshold:
+            obstacle_hits.append(point)
+        else:
+            filtered_ground_count += 1
+
+    stats = {
+        "input_hit_count": input_count,
+        "finite_in_range_hit_count": len(candidates),
+        "cell_count": len(cell_minimum_z),
+        "filtered_ground_hit_count": filtered_ground_count,
+        "obstacle_hit_count": len(obstacle_hits),
+        "sparse_retained_hit_count": sparse_retained_count,
+    }
+    return tuple(obstacle_hits), stats
+
+
+def point_to_segment_distance_2d(
+    point: Sequence[float], start: Sequence[float], end: Sequence[float]
+) -> float:
+    """Return Euclidean distance from a 2-D point to a closed segment."""
+
+    if len(point) != 2 or len(start) != 2 or len(end) != 2:
+        raise ValueError("point and segment endpoints must be two-dimensional")
+    px, py = (float(value) for value in point)
+    sx, sy = (float(value) for value in start)
+    ex, ey = (float(value) for value in end)
+    if not all(math.isfinite(value) for value in (px, py, sx, sy, ex, ey)):
+        raise ValueError("point and segment endpoints must be finite")
+    dx = ex - sx
+    dy = ey - sy
+    length_squared = dx * dx + dy * dy
+    if length_squared <= 1.0e-18:
+        return math.hypot(px - sx, py - sy)
+    projection = ((px - sx) * dx + (py - sy) * dy) / length_squared
+    projection = max(0.0, min(1.0, projection))
+    closest_x = sx + projection * dx
+    closest_y = sy + projection * dy
+    return math.hypot(px - closest_x, py - closest_y)
 
 
 def assert_command_visible_in_critic(

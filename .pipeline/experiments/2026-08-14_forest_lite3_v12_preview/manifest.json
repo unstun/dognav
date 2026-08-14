@@ -1,7 +1,8 @@
 {
   "schema_version": 1,
-  "status": "reproduced_awaiting_human_review",
-  "reviewed": false,
+  "status": "reproduced_human_change_requested",
+  "reviewed": true,
+  "human_decision": "retain as open-loop baseline; produce a faster planner-driven obstacle-avoidance revision",
   "review_candidate": "runs/results/preview02/forest_lite3_v12.mp4",
   "claim": "Pinned V12 policy short locomotion preview on a deterministic forest_gen-derived terrain in Isaac Lab",
   "claim_boundary": [

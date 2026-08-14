@@ -31,6 +31,39 @@ class CommandStateTest(unittest.TestCase):
         with self.assertRaises(ProtocolError):
             self.state.update(CommandV1(0.0, 0.0, 0.0), 1, 1011, 1000)
 
+    def test_batch_coalesces_stale_intermediate_but_rejects_stale_latest(self):
+        active = self.state.update_batch(
+            (
+                (CommandV1(0.1, 0.0, 0.0), 1, 800, 1000),
+                (CommandV1(0.2, 0.0, 0.0), 2, 950, 1000),
+            )
+        )
+        self.assertEqual(active.command, CommandV1(0.2, 0.0, 0.0))
+        self.assertEqual(active.sequence, 2)
+        self.assertEqual(active.sequence_gaps, 0)
+
+        with self.assertRaisesRegex(ProtocolError, "timestamp is stale"):
+            self.state.update_batch(
+                (
+                    (CommandV1(0.3, 0.0, 0.0), 3, 950, 1100),
+                    (CommandV1(0.4, 0.0, 0.0), 4, 999, 1100),
+                )
+            )
+        self.assertEqual(self.state.snapshot(1000).sequence, 2)
+
+    def test_batch_sequence_validation_is_atomic(self):
+        self.state.update(CommandV1(0.1, 0.0, 0.0), 1, 1000, 1000)
+        with self.assertRaisesRegex(ProtocolError, "sequence is not increasing"):
+            self.state.update_batch(
+                (
+                    (CommandV1(0.2, 0.0, 0.0), 2, 1001, 1001),
+                    (CommandV1(0.3, 0.0, 0.0), 2, 1002, 1002),
+                )
+            )
+        snapshot = self.state.snapshot(1002)
+        self.assertEqual(snapshot.sequence, 1)
+        self.assertEqual(snapshot.sequence_gaps, 0)
+
     def test_watchdog_zeroes_once(self):
         self.state.update(CommandV1(0.2, 0.0, 0.0), 1, 1000, 1000)
         self.assertFalse(self.state.snapshot(1250).stale)
