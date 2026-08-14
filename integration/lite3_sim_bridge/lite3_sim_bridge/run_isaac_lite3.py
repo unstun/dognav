@@ -15,6 +15,7 @@ from typing import Dict, Optional, Sequence
 
 from .command_state import CommandLimits, LatestCommandState
 from .isaac_adapter_core import (
+    DEFAULT_QUALIFICATION_SCHEDULE,
     assert_command_visible_in_critic,
     canonical_config_sha256,
     quaternion_wxyz_to_xyzw,
@@ -74,10 +75,19 @@ def _write_json(path: Path, value: object) -> None:
 class _QualificationSender:
     """Drive the command server through its real TCP boundary."""
 
-    def __init__(self, port: int, rate_hz: float, limits: CommandLimits) -> None:
+    def __init__(
+        self,
+        port: int,
+        rate_hz: float,
+        limits: CommandLimits,
+        schedule=DEFAULT_QUALIFICATION_SCHEDULE,
+    ) -> None:
         self._port = port
         self._period = 1.0 / rate_hz
         self._limits = limits
+        self._schedule = tuple(schedule)
+        if not self._schedule:
+            raise ValueError("qualification schedule must not be empty")
         self._stop = threading.Event()
         self._thread = threading.Thread(
             target=self._run, name="lite3-qualification-command-source", daemon=True
@@ -106,12 +116,12 @@ class _QualificationSender:
             while not self._stop.is_set():
                 loop_start = time.monotonic()
                 elapsed = loop_start - self.started_monotonic
-                if elapsed >= schedule_duration():
+                if elapsed >= schedule_duration(self._schedule):
                     break
-                segment, _ = schedule_state(elapsed)
+                segment, _ = schedule_state(elapsed, self._schedule)
                 if not segment.connected:
                     client.close()
-                    self._stop.wait(schedule_duration() - elapsed)
+                    self._stop.wait(schedule_duration(self._schedule) - elapsed)
                     break
                 client.send_command(CommandV1(*segment.command))
                 self._stop.wait(max(0.0, self._period - (time.monotonic() - loop_start)))

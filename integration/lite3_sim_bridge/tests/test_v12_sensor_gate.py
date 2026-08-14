@@ -3,7 +3,9 @@ import tempfile
 import unittest
 
 from lite3_sim_bridge.run_isaac_v12_fallback import (
+    FOREST_PREVIEW_SCHEDULE,
     _depth_gate,
+    _forest_preview_report,
     _sensor_gate,
     _urdf_contract,
 )
@@ -133,6 +135,71 @@ class SensorRigUrdfContractTest(unittest.TestCase):
         self.assertEqual(contract["total_declared_mass_kg"], 2.0)
         self.assertEqual(contract["links_without_inertial"], ["frame"])
         self.assertEqual(len(contract["referenced_meshes"]["shape.stl"]["sha256"]), 64)
+
+
+class _Stats:
+    def __init__(self):
+        self.frames_received = 4
+
+
+class ForestPreviewReportTest(unittest.TestCase):
+    def _row(self, segment, root_x, forward=0.0, yaw=0.0):
+        return {
+            "done": False,
+            "finite": True,
+            "command_observation_max_error": 0.0,
+            "contact_count": 4,
+            "base_clearance_m": 0.30,
+            "schedule_segment": segment,
+            "schedule_segment_elapsed_seconds": 1.0,
+            "root_lin_vel_b": [forward, 0.0, 0.0],
+            "root_ang_vel_b": [0.0, 0.0, yaw],
+            "applied_command": (
+                [0.0, 0.0, 0.0]
+                if segment in ("settle_zero", "stop_zero")
+                else ([0.25, 0.0, 0.0] if segment == "forward" else [0.0, 0.0, 0.35])
+            ),
+            "root_pos_w": [root_x, 0.0, 0.30],
+            "terrain_height_under_root_m": 0.01 * root_x,
+        }
+
+    def test_accepts_bounded_forest_motion_with_geometry_agreement(self):
+        records = [
+            self._row("settle_zero", 0.0),
+            self._row("forward", 0.25, forward=0.20),
+            self._row("yaw", 0.38, yaw=0.24),
+            self._row("stop_zero", 0.40),
+        ]
+        report = _forest_preview_report(
+            records,
+            {"sensor_frames": 4, "nonempty_sensor_frames": 4, "status_frames": 4},
+            _Stats(),
+            _Stats(),
+            {"passed": True},
+        )
+        self.assertEqual(report["status"], "PASS")
+        self.assertTrue(report["checks"]["locomotion_displacement"])
+        self.assertEqual(
+            [segment.name for segment in FOREST_PREVIEW_SCHEDULE],
+            ["settle_zero", "forward", "yaw", "stop_zero"],
+        )
+
+    def test_rejects_unproven_proxy_geometry(self):
+        records = [
+            self._row("settle_zero", 0.0),
+            self._row("forward", 0.25, forward=0.20),
+            self._row("yaw", 0.38, yaw=0.24),
+            self._row("stop_zero", 0.40),
+        ]
+        report = _forest_preview_report(
+            records,
+            {"sensor_frames": 4, "nonempty_sensor_frames": 4, "status_frames": 4},
+            _Stats(),
+            _Stats(),
+            {"passed": False},
+        )
+        self.assertEqual(report["status"], "FAIL")
+        self.assertFalse(report["checks"]["static_geometry_agreement"])
 
 
 if __name__ == "__main__":

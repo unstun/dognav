@@ -1,0 +1,81 @@
+{
+  "status": "isaac_raw_generated",
+  "reviewed": false,
+  "task": "forest_gen visual preview only; no training",
+  "forest_gen_commit": "a75fb28c7b896e2a67e2d889b804732d33c56e0c",
+  "stripe_kit_commit": "ce97eed40d9fc4927c4856eda6a17204d01087db",
+  "seed": 14,
+  "size_m": 32,
+  "resolution": [
+    1280,
+    720
+  ],
+  "forest_origin_xy": [
+    11.0,
+    19.0
+  ],
+  "asset_counts": {
+    "Birch": 41,
+    "Bush": 50,
+    "Grass": 4484,
+    "Pine": 46,
+    "Rock": 5,
+    "distant": 1,
+    "dome": 1
+  },
+  "asset_total_including_lights": 4628,
+  "terrain_mesh_count": 2,
+  "robot": "Isaac Lab SPOT_CFG (upstream example; not Lite3)",
+  "claim_boundary": [
+    "raw viewport images from a live Isaac Lab scene",
+    "vegetation collision is not established",
+    "Lite3, v12, MID-360, D435i, and SCAN are not integrated"
+  ],
+  "files": {
+    "overview": {
+      "path": "forest_gen_overview.png",
+      "bytes": 2664449,
+      "sha256": "032b8750f1467d800cf7bca03d3a7b723bc5f5d368044746c4001ea53b9e4a63",
+      "eye": [
+        16.0,
+        -12.16,
+        14.4
+      ],
+      "target": [
+        16.0,
+        16.0,
+        1.8
+      ]
+    },
+    "robot_context": {
+      "path": "forest_gen_robot_context.png",
+      "bytes": 2858585,
+      "sha256": "c0d13cf5abbad8ff16cf5515c0b7e4516966ac1551f10b70b08e8c3950e7d3dd",
+      "eye": [
+        4.0,
+        10.0,
+        4.8
+      ],
+      "target": [
+        11.0,
+        19.0,
+        1.2
+      ]
+    },
+    "canopy": {
+      "path": "forest_gen_canopy.png",
+      "bytes": 2870879,
+      "sha256": "ffc0c37f2b258cb2e3601bdbbf27cd9261a0979c3b0efe9541bc1b439d7ed1cf",
+      "eye": [
+        16.0,
+        16.0,
+        29.44
+      ],
+      "target": [
+        16.0,
+        16.0,
+        0.5
+      ]
+    }
+  }
+}

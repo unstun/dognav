@@ -1,0 +1,4 @@
+a25a6b931a2a30d739c664ca00a49180f2652c7f3f41d989c7110b6aca59da7c  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preflight01/gpu_identity.txt
+5d6c0100f6a814ecbb976ba8063fd90f7bee16e7fadfb5b51452f8e1f47ae270  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preflight01/input_sha256.txt
+5d706624ae2f8638316aaa2dc5a601ae75302b50d5ba8d719ab16fc17d6fcc0b  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preflight01/output_sha256.txt
+6366f0cc6bfa963aeb2ed62ba194a226b5b00c46529bbdb941ee06a4e65c4ea3  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preflight01/upstream_git_state.txt

@@ -1,0 +1,15 @@
+d29848c103688dd0b8a1d349b71d6f60585f08763d57028b9ad0a5e287554857  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preview01/forest_lite3_v12.mp4
+a25a6b931a2a30d739c664ca00a49180f2652c7f3f41d989c7110b6aca59da7c  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preview01/gpu_identity.txt
+5d15156cf997e6b3bf044c68155f5e2de8f37b448dade118b0568573e5b9f014  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preview01/input_sha256.txt
+3f6221f19e1a83f2bb218b34b5609474873250305b33bed29d76e86bbd841014  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preview01/isaac/d435i_depth_frame_m.npy
+ebc3cc67a1091b0f75e4c77c6eb2866bbcadf907e0e5d1ac5d22031cd216add3  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preview01/isaac/d435i_depth_frame_metadata.json
+7a7755b8e059b687691249c2ac9c135f7daa9ed25efa6d8b6a1d3fd67567d3e9  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preview01/isaac/d435i_depth_frame_mm.png
+7c60baf5e7c81f2aab377400c3d84fc5341caf0e2cc85eb00b3af0a367462e97  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preview01/isaac/d435i_depth_preview.png
+f25d179cab357e5ba4a213e82ff9508e915ef6eead1a9c2edc61b98a2f769c96  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preview01/isaac/depth_metrics.jsonl
+5fdd1db29e2fb71cb48ee25730d65dc7dd12714846f60a66a8e646b927c72716  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preview01/isaac/metrics.jsonl
+96028cec59374eba840100136c90896ff218bf3e6fca005f71538c374398ec07  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preview01/isaac/qualification_report.json
+249f02b66f91c24667c0716bd9c207acd230f7f5df3f54da199dbf75d85fa3d0  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preview01/isaac/run_identity.json
+2389b3543295bc4cbe0592a27d9ca6b794006302f0a4e370006d2f4baa5e4da4  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preview01/isaac/runtime_composition.json
+6be2665dbb7ebf58fdacd86ca766def54c2fb9c1a23afddfd8e675af1260296d  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preview01/isaac/sensor_metrics.jsonl
+0bad4aafa20dd6c2f9a8db3cb5b2e248e808ded362be5626e26a8d31658d7fb3  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preview01/output_sha256.txt
+6366f0cc6bfa963aeb2ed62ba194a226b5b00c46529bbdb941ee06a4e65c4ea3  /home/sun/machine-dog-nav-runs/2026-08-14_forest_lite3_v12_preview/results/preview01/upstream_git_state.txt

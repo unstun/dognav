@@ -1,0 +1,77 @@
+{
+  "candidate": "V12 model_149999 on Lite3 Pro sensor rig v4 forest preview",
+  "checks": {
+    "command_visible": false,
+    "final_zero": false,
+    "finite_policy": false,
+    "forward_mean": null,
+    "forward_response": false,
+    "locomotion_displacement": false,
+    "minimum_base_clearance_m_value": null,
+    "no_termination": false,
+    "records_present": false,
+    "root_xy_displacement_m_value": 0.0,
+    "static_geometry_agreement": false,
+    "support": false,
+    "supported_sample_fraction_value": 0.0,
+    "telemetry_nonempty": false,
+    "terrain_height_range_m_value": 0.0,
+    "yaw_mean": null,
+    "yaw_response": false
+  },
+  "claim": "pinned V12 policy short locomotion preview on a native forest_gen terrain; not training, navigation, obstacle avoidance, or real-robot validation",
+  "command_transport": {
+    "accepted_connections": 0,
+    "frames_received": 0,
+    "frames_sent": 0,
+    "io_errors": 0,
+    "last_protocol_error": null,
+    "protocol_errors": 0,
+    "reconnects": 0
+  },
+  "depth_artifact": null,
+  "depth_checks": {
+    "finite_depth": false,
+    "frames_present": false,
+    "intrinsics_present": false,
+    "obstacle_returns": false,
+    "pose_dependent_frame": false,
+    "pose_displacement_m_value": 0.0,
+    "timestamps_advance": false,
+    "valid_depth_returns": false
+  },
+  "record_count": 0,
+  "runtime_error": {
+    "message": "Terrain type 'main' is not defined in cfg.terrain_max_command_ranges.",
+    "type": "ValueError"
+  },
+  "runtime_rates": {},
+  "schema_version": 1,
+  "sensor_checks": {
+    "cloud_centroid_displacement_m_value": 0.0,
+    "finite": false,
+    "frames_present": false,
+    "ground_returns": false,
+    "nonempty": false,
+    "obstacle_returns": false,
+    "pose_dependent_geometry": false,
+    "pose_displacement_m_value": 0.0,
+    "timestamps_advance": false
+  },
+  "static_geometry_checks": null,
+  "status": "INSTRUMENTATION_ERROR",
+  "telemetry_sink": {
+    "nonempty_sensor_frames": 0,
+    "sensor_frames": 0,
+    "status_frames": 0
+  },
+  "telemetry_transport": {
+    "accepted_connections": 0,
+    "frames_received": 0,
+    "frames_sent": 0,
+    "io_errors": 0,
+    "last_protocol_error": null,
+    "protocol_errors": 0,
+    "reconnects": 0
+  }
+}

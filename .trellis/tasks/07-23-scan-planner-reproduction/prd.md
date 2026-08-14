@@ -65,6 +65,15 @@ MID-360-like scene sensor at `mid360_scan_frame` and a D435i-like depth sensor
 at `d435i_depth_optical_frame`; visual links without live sensor data do not
 satisfy the requirement.
 
+## V4 Forest Locomotion Preview Decision
+
+On 2026-08-14, after reviewing raw native `forest_gen` viewport images, Dr Sun
+explicitly approved a bounded follow-up: replace the upstream Spot example with
+the pinned V3 Lite3 Pro sensor-rig URDF, load the unchanged V12
+`model_149999` checkpoint, and produce a short physical policy-inference video
+inside a fixed forest scene. V4 is a human-review preview, not a new frozen
+SCAN acceptance run. V1--V3 evidence remains immutable.
+
 ## Requirements
 
 - **R1 — Source provenance.** Preserve the selected SCAN revision as an
@@ -134,6 +143,29 @@ satisfy the requirement.
 - **R17 — V2 preservation and V3 review.** Do not overwrite V1 or V2 evidence.
   V3 receives a new run identity, thresholds, hashes, logs, ROS recording,
   depth evidence, and MP4. Only V3 may be offered for final human acceptance.
+- **R18 — V4 single-variable composition.** Reuse the exact V3 canonical and
+  Isaac-safe URDF hashes, V12 checkpoint hash, 450-dimensional observation,
+  12-action order, default pose, actuator settings, control/physics timing, and
+  sensor contracts. The intended changes are the forest scene and the declared
+  bounded V4 zero/forward/yaw/zero review schedule; neither changes the policy.
+- **R19 — Forest source identity.** Use `forest_gen` `v0.3.8` commit
+  `a75fb28c7b896e2a67e2d889b804732d33c56e0c` with STRIPE-kit commit
+  `ce97eed40d9fc4927c4856eda6a17204d01087db`, a recorded scene seed, and a
+  task-owned adapter. Preserve the upstream source unchanged.
+- **R20 — Physical and perceptual obstacle agreement.** A declared set of
+  visible trunks or rocks near the review route must have explicit collision
+  proxies and appear in the declared MID-360-like/D435i-like scene geometry.
+  Visible-only vegetation cannot satisfy the forest locomotion gate. Grass is
+  visual-only and must not create thousands of physics or ray-cast bodies.
+- **R21 — Bounded policy preview.** Run one environment with a short frozen
+  zero/forward/yaw/zero command sequence. Record policy input/action, root
+  motion, contacts, support, termination/reset state, collision events, and a
+  directly viewable MP4. Do not train, tune, connect SCAN, or issue manual
+  commands during the run.
+- **R22 — Honest V4 claim.** The strongest possible result is a forest
+  locomotion preview with the pinned policy and robot asset. It is not a SCAN
+  forest-navigation validation, a sensor hardware-parity result, or real-robot
+  evidence. Human visual review remains required.
 
 ## Acceptance Criteria
 
@@ -202,6 +234,23 @@ satisfy the requirement.
 - [ ] **AC17 — Human acceptance:** Dr Sun reviews the complete V3 MP4 and
   evidence bundle, then explicitly records acceptance or rejection. Automated
   checks and agent visual inspection do not satisfy this criterion.
+- [x] **AC18 — V4 identity gate:** local and remote manifests reproduce the
+  pinned forest commits, checkpoint, canonical/Isaac URDFs, observation/action
+  contract, sensor frames, and runtime versions with matching hashes.
+- [x] **AC19 — Forest geometry gate:** at least one route-relevant visible
+  obstacle has an explicit physics collider and is included in both declared
+  simulated sensor backends; a contact/raycast probe distinguishes it from the
+  ground and visual-only vegetation.
+- [x] **AC20 — Forest locomotion gate:** the unchanged V12 policy drives the
+  articulated Lite3 through the frozen short command schedule with finite
+  state, valid foot support, no hidden reset/teleport, and recorded collision
+  outcome.
+- [x] **AC21 — V4 evidence gate:** a directly openable MP4, raw metrics,
+  command/action/contact trace, scene and robot identities, runtime log, and
+  remote/local SHA-256 manifest are present in a new dated evidence directory.
+- [ ] **AC22 — V4 human review:** Dr Sun watches the V4 video and explicitly
+  accepts or rejects its robot appearance, forest geometry, and physical
+  motion. Automated checks do not satisfy this criterion.
 
 ## Stop Conditions
 

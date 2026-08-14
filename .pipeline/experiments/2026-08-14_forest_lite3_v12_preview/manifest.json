@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "status": "reproduced_awaiting_human_review",
+  "reviewed": false,
+  "review_candidate": "runs/results/preview02/forest_lite3_v12.mp4",
+  "claim": "Pinned V12 policy short locomotion preview on a deterministic forest_gen-derived terrain in Isaac Lab",
+  "claim_boundary": [
+    "no training or policy tuning",
+    "no SCAN-Planner or ROS 2 closed loop",
+    "no autonomous obstacle avoidance claim",
+    "no real-robot safety claim"
+  ],
+  "identities": {
+    "checkpoint_sha256": "a9d31dce90e6e8c564d955e473d6d3502f893d7ef5a5c1efaf5bb50d6b3d5450",
+    "canonical_urdf_sha256": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80",
+    "isaac_urdf_sha256": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d",
+    "forest_gen_commit": "a75fb28c7b896e2a67e2d889b804732d33c56e0c",
+    "stripe_kit_commit": "ce97eed40d9fc4927c4856eda6a17204d01087db",
+    "terrain_geometry_sha256": "02a062e08fc870fa425672606ad21efdc19a12534dd2733b4d7a00426de18328"
+  },
+  "preview02": {
+    "status": "PASS",
+    "policy_step_records": 412,
+    "lidar_records": 83,
+    "depth_records": 83,
+    "root_xy_displacement_m": 1.3496913921654854,
+    "terrain_height_range_along_path_m": 0.4562009082192925,
+    "minimum_base_clearance_m": 0.2449850814084863,
+    "support_fraction": 0.8786407766990292,
+    "visible_collision_lidar_depth_proxy_count": 11,
+    "recorded_wall_elapsed_seconds": 10.257061119991704,
+    "recorded_sim_time_seconds": 8.24999981559813,
+    "maximum_nonfoot_contact_force_n": 0.0,
+    "terminated_samples": 0,
+    "nonfinite_samples": 0,
+    "trailing_watchdog_events": 1,
+    "trailing_stale_zero_command_samples": 11,
+    "video": {
+      "codec": "h264",
+      "width": 1280,
+      "height": 720,
+      "fps": 17,
+      "frames": 138,
+      "duration_seconds": 8.117647,
+      "bytes": 4085770,
+      "sha256": "d0cf0458393862ca3d5ce101fbffffab19efa0f6ff6d3c753ba7e21abecc7a33"
+    }
+  },
+  "key_artifacts": {
+    "qualification_report": {
+      "path": "runs/results/preview02/isaac/qualification_report.json",
+      "sha256": "8b256367f1d4e8ab63431e67cb14a5bd271c9cc57290006f6ceea40caf5b3cf0"
+    },
+    "run_identity": {
+      "path": "runs/results/preview02/isaac/run_identity.json",
+      "sha256": "ac4c9d6103af55270c74890c4f9e9c943954b10d640a4734838f56d83400eb39"
+    },
+    "runtime_composition": {
+      "path": "runs/results/preview02/isaac/runtime_composition.json",
+      "sha256": "2389b3543295bc4cbe0592a27d9ca6b794006302f0a4e370006d2f4baa5e4da4"
+    },
+    "policy_metrics": {
+      "path": "runs/results/preview02/isaac/metrics.jsonl",
+      "sha256": "c9e3f2023a551425531e9efcca6e4fe4656de257792b44a44aa63243a46fc334"
+    },
+    "lidar_metrics": {
+      "path": "runs/results/preview02/isaac/sensor_metrics.jsonl",
+      "sha256": "27540182835a5f5ffdcbbd0758dad8f53add7641f432d1e165d5c30f9b25b89c"
+    },
+    "depth_metrics": {
+      "path": "runs/results/preview02/isaac/depth_metrics.jsonl",
+      "sha256": "f33d440fa31728850f0c2f1b810042dea00d8b6814aaefb1464c9423d96d90d8"
+    }
+  },
+  "remote_local_hash_parity": {
+    "scope": "all preview02 result files except generated self-hash list, plus all preview02 log files",
+    "status": "PASS",
+    "differences": 0
+  }
+}

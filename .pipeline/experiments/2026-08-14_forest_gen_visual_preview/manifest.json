@@ -1,0 +1,46 @@
+{
+  "run_id": "2026-08-14_forest_gen_visual_preview",
+  "status": "visual_render_reproduced_with_forced_shutdown",
+  "reviewed": false,
+  "training_started": false,
+  "source_of_truth": "local machine-dog-nav repository",
+  "remote_execution_copy": "/home/sun/machine-dog-nav-runs/2026-08-14_forest_gen_visual_preview",
+  "source": {
+    "forest_gen_url": "https://github.com/GrafCzterech/forest_gen",
+    "forest_gen_version": "v0.3.8",
+    "forest_gen_commit": "a75fb28c7b896e2a67e2d889b804732d33c56e0c",
+    "stripe_kit_url": "https://github.com/GrafCzterech/STRIPE-kit",
+    "stripe_kit_commit": "ce97eed40d9fc4927c4856eda6a17204d01087db",
+    "capture_script_sha256": "b1e14f2998b8b96802948a8493bb2d6f9ec63e94361158b73b7e88b267a64b57"
+  },
+  "runtime": {
+    "host_os": "Ubuntu 24.04.3 LTS",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti 16303 MiB",
+    "driver": "580.126.09",
+    "isaac_sim": "5.1",
+    "isaac_lab": "v2.3.2",
+    "isaac_lab_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+    "numpy": "1.26.0",
+    "opensimplex": "0.4.5.1"
+  },
+  "capture": {
+    "size_m": 32,
+    "seed": 14,
+    "resolution": [1280, 720],
+    "views": ["overview", "robot_context", "canopy"],
+    "robot": "Isaac Lab SPOT_CFG upstream example, not Lite3"
+  },
+  "sha256": {
+    "logs/runtime_attempt01.log": "7dcf5ecfaded622710a07bf0387fae3329a835252863c4dd944ad8a694d54691",
+    "results/capture_metrics.json": "adbe76d0d16c2c36a7c30c016909222a680704ff9cff47b13e1833c7f8b52b5b",
+    "results/forest_gen_canopy.png": "ffc0c37f2b258cb2e3601bdbbf27cd9261a0979c3b0efe9541bc1b439d7ed1cf",
+    "results/forest_gen_overview.png": "032b8750f1467d800cf7bca03d3a7b723bc5f5d368044746c4001ea53b9e4a63",
+    "results/forest_gen_robot_context.png": "c0d13cf5abbad8ff16cf5515c0b7e4516966ac1551f10b70b08e8c3950e7d3dd"
+  },
+  "limitations": [
+    "Application teardown required an interrupt after outputs were synchronized.",
+    "Imported vegetation emitted corrupt UV primvar warnings.",
+    "Vegetation collision and sensor visibility were not tested.",
+    "Lite3, V12, MID-360, D435i, SCAN-Planner, and navigation were not integrated."
+  ]
+}

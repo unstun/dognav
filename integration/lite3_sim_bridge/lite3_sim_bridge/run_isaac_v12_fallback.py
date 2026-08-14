@@ -1,15 +1,21 @@
 """Qualify the one allowed V12 model_149999 fallback in its pinned runtime."""
 
 import argparse
+import copy
+import hashlib
 import inspect
 import json
 import math
 from pathlib import Path
+import random
+import subprocess
 import time
 import xml.etree.ElementTree as ET
 
 from .command_state import CommandLimits, LatestCommandState
 from .isaac_adapter_core import (
+    DEFAULT_QUALIFICATION_SCHEDULE,
+    QualificationSegment,
     canonical_config_sha256,
     quaternion_wxyz_to_xyzw,
     schedule_duration,
@@ -51,6 +57,8 @@ PINNED_SENSOR_RIG_ISAAC_SHA256 = (
 PINNED_V12_ROBOT_ASSET_SHA256 = (
     "178428b97e7d0820e93c200b333f39f0b3b60a81f97d99cd06559d8957c58865"
 )
+PINNED_FOREST_GEN_COMMIT = "a75fb28c7b896e2a67e2d889b804732d33c56e0c"
+PINNED_STRIPE_KIT_COMMIT = "ce97eed40d9fc4927c4856eda6a17204d01087db"
 DEFAULT_TASK = "Wave-C-Stairs-V12-Lite3-v0"
 POLICY_OBSERVATION_DIMENSION = 450
 COMMAND_HISTORY_OFFSET = 60
@@ -62,6 +70,18 @@ OBSTACLE_MESH_PRIM = "/World/ground/scan_obstacle"
 VIDEO_CAMERA_EYE = (2.0, -5.5, 3.2)
 VIDEO_CAMERA_LOOKAT = (2.0, 0.0, 0.25)
 VIDEO_RESOLUTION = (1280, 720)
+FOREST_SIZE_M = 32
+FOREST_MARGIN_M = 10
+FOREST_SEED = 14
+FOREST_TREE_PROXY_RADIUS_M = 0.24
+FOREST_TREE_PROXY_HEIGHT_M = 4.0
+FOREST_ROCK_PROXY_SIZE_M = (0.72, 0.72, 0.46)
+FOREST_PREVIEW_SCHEDULE = (
+    QualificationSegment("settle_zero", 1.5, (0.0, 0.0, 0.0)),
+    QualificationSegment("forward", 4.0, (0.25, 0.0, 0.0)),
+    QualificationSegment("yaw", 3.0, (0.0, 0.0, 0.35)),
+    QualificationSegment("stop_zero", 1.5, (0.0, 0.0, 0.0)),
+)
 MID360_FRAME = "mid360_scan_frame"
 D435I_FRAME = "d435i_depth_optical_frame"
 SENSOR_RIG_REQUIRED_LINKS = (
@@ -151,6 +171,346 @@ def _sensor_rig_enabled(args) -> bool:
     return args.robot_asset is not None
 
 
+def _forest_enabled(args) -> bool:
+    return args.course == "forest_gen"
+
+
+def _git_head(path: Path) -> str:
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(path), "rev-parse", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except (OSError, subprocess.CalledProcessError) as error:
+        raise AdapterFailure(f"cannot resolve pinned git commit for {path}") from error
+    return result.stdout.strip()
+
+
+def _path_is_within(path: Path, root: Path) -> bool:
+    try:
+        path.resolve().relative_to(root.resolve())
+    except ValueError:
+        return False
+    return True
+
+
+def _forest_asset_source_path(asset) -> Path:
+    converter = getattr(asset.mesh, "converter", None)
+    converter_cfg = getattr(converter, "cfg", None)
+    source_path = getattr(converter_cfg, "asset_path", None)
+    if not source_path:
+        raise AdapterFailure(
+            f"forest visual {asset.name} has no traceable converter input"
+        )
+    path = Path(source_path).resolve()
+    if not path.is_file():
+        raise AdapterFailure(f"forest visual source asset is missing: {path}")
+    return path
+
+
+def _forest_kind(asset) -> str:
+    return asset.name.split("_", 1)[0]
+
+
+def _build_forest_layout(args):
+    """Generate one pinned forest terrain and a bounded visual/physics subset."""
+
+    if not _forest_enabled(args):
+        return None
+
+    print("[forest-v4] layout_imports_start", flush=True)
+    import numpy as np
+    import forest_gen
+    import stripe_kit
+    from forest_gen.assets import PlantModelFactory
+    from forest_gen.scene import HeightmapTerrain, classify_terrain
+    from forest_gen_utils.terrain import TerrainConfig, TerrainGenerator
+    from forest_gen_utils.terrain.microrelief import BasicMicrorelief
+    from forest_gen_utils.terrain.moisture import DefaultMoistureModel
+    from forest_gen_utils.terrain.noise import FractalNoise
+    from stripe_kit import AssetInstance
+    print("[forest-v4] layout_imports_ready", flush=True)
+
+    forest_root = args.forest_gen_root.resolve()
+    stripe_root = args.stripe_kit_root.resolve()
+    if not _path_is_within(Path(forest_gen.__file__), forest_root):
+        raise AdapterFailure("forest_gen imported outside the pinned source tree")
+    if not _path_is_within(Path(stripe_kit.__file__), stripe_root):
+        raise AdapterFailure("stripe_kit imported outside the pinned source tree")
+    if _git_head(forest_root) != PINNED_FOREST_GEN_COMMIT:
+        raise AdapterFailure("forest_gen source commit mismatch")
+    if _git_head(stripe_root) != PINNED_STRIPE_KIT_COMMIT:
+        raise AdapterFailure("STRIPE-kit source commit mismatch")
+
+    origin_rng = random.Random(args.forest_seed)
+    source_origin_xy = (
+        float(origin_rng.randint(args.forest_margin, args.forest_size - args.forest_margin)),
+        float(origin_rng.randint(args.forest_margin, args.forest_size - args.forest_margin)),
+    )
+    np.random.seed(args.forest_seed)
+    print("[forest-v4] terrain_generation_start", flush=True)
+    terrain_generator = TerrainGenerator(
+        noise=FractalNoise(seed=args.forest_seed),
+        micro=BasicMicrorelief(),
+        moisture_model=DefaultMoistureModel(
+            {"flow": 0.55, "slope": 0.30, "aspect": 0.15}
+        ),
+    )
+    terrain_cfg = TerrainConfig(
+        size=args.forest_size,
+        resolution=0.25,
+        scale=4.0,
+        octaves=2,
+        height_scale=2,
+        apply_microrelief=True,
+    )
+    raw_terrain = terrain_generator.generate(terrain_cfg)
+    source_origin_z = float(raw_terrain(*source_origin_xy))
+    terrain = HeightmapTerrain(
+        raw_terrain.to_meshes(classify_terrain),
+        (*source_origin_xy, source_origin_z),
+        (args.forest_size, args.forest_size),
+        raw_terrain,
+    )
+    for mesh, _tags in terrain.mesh:
+        if hasattr(mesh.visual, "to_color"):
+            mesh.visual = mesh.visual.to_color()
+    print("[forest-v4] terrain_generation_ready", flush=True)
+    # TerrainImporter adds the V12 base z=0.35 to this origin. forest_gen's
+    # upstream +1.0 offset is Spot-specific and is deliberately not reused.
+    terrain.origin = (*source_origin_xy, source_origin_z)
+
+    print("[forest-v4] bounded_visual_generation_start", flush=True)
+    model_factory = PlantModelFactory(path=str(args.forest_asset_path.resolve()))
+    generated_assets = []
+    generated_counts = {}
+
+    def make_asset(kind, variant, dx, dy, *, z_offset=0.0, scale_mult=1.0):
+        source_x = source_origin_xy[0] + dx
+        source_y = source_origin_xy[1] + dy
+        position = (
+            source_x,
+            source_y,
+            float(terrain.raw(source_x, source_y)) + z_offset,
+        )
+        index = generated_counts.get(kind, 0)
+        generated_counts[kind] = index + 1
+        generated_assets.append(
+            AssetInstance(
+                asset_class=None,
+                mesh=model_factory.get_usdz_model_by_name(
+                    kind, variant, scale_mult
+                ),
+                name=f"{kind}_{index}",
+                position=position,
+                rotation=(1.0, 0.0, 0.0, 0.0),
+                additional_tags={
+                    "species": kind,
+                    "placement": "v4_deterministic_adapter",
+                },
+                global_collisions=False,
+            )
+        )
+
+    tree_layout = (
+        ("Pine", 1, 3.2, 1.65),
+        ("Birch", 1, 4.8, -2.20),
+        ("Pine", 2, -3.0, -4.0),
+        ("Birch", 2, -5.0, 2.5),
+        ("Pine", 3, 7.0, 4.0),
+        ("Birch", 3, 9.0, -4.0),
+        ("Pine", 1, -7.0, -2.0),
+        ("Birch", 1, 2.0, 7.0),
+    )
+    for kind, variant, dx, dy in tree_layout:
+        make_asset(kind, variant, dx, dy)
+    for variant, dx, dy in (
+        (1, 2.7, -1.55),
+        (2, -2.0, 2.0),
+        (3, 6.0, 3.0),
+    ):
+        make_asset("Rock", variant, dx, dy, scale_mult=1.5)
+    for dx, dy in (
+        (1.8, 3.0),
+        (-1.5, -2.8),
+        (5.5, 2.4),
+        (6.5, -3.0),
+        (-4.0, 4.0),
+        (0.0, 5.5),
+    ):
+        make_asset("Bush", 1, dx, dy)
+    placement_rng = random.Random(args.forest_seed + 1000)
+    for index in range(30):
+        angle = 2.0 * math.pi * index / 30.0 + placement_rng.uniform(-0.08, 0.08)
+        radius = placement_rng.uniform(1.2, 8.0)
+        make_asset(
+            "Grass",
+            1,
+            radius * math.cos(angle),
+            radius * math.sin(angle),
+            z_offset=-0.1,
+        )
+    print(
+        "[forest-v4] bounded_visual_generation_ready "
+        f"count={len(generated_assets)} counts={generated_counts}",
+        flush=True,
+    )
+
+    visual_specs = []
+
+    def add_visual(asset, source_position, placement):
+        index = len(visual_specs)
+        source_path = _forest_asset_source_path(asset)
+        source_position = tuple(float(value) for value in source_position)
+        world_position = (
+            source_position[0] - 0.5 * args.forest_size,
+            source_position[1] - 0.5 * args.forest_size,
+            source_position[2],
+        )
+        visual_specs.append(
+            {
+                "name": f"forest_visual_{index:03d}",
+                "prim_path": f"/World/forest_visual/asset_{index:03d}",
+                "kind": _forest_kind(asset),
+                "source_asset_instance_name": asset.name,
+                "source_asset_path": source_path,
+                "source_asset_sha256": _sha256(source_path),
+                "source_position_m": source_position,
+                "world_position_m": world_position,
+                "placement": placement,
+                "asset": asset,
+            }
+        )
+
+    for asset in generated_assets:
+        add_visual(asset, asset.position, "v4_deterministic_adapter_placement")
+    print("[forest-v4] visual_records_ready", flush=True)
+
+    proxies = []
+    for visual in visual_specs:
+        if visual["kind"] not in ("Pine", "Birch", "Rock"):
+            continue
+        x, y, ground_z = visual["world_position_m"]
+        if visual["kind"] in ("Pine", "Birch"):
+            size = (
+                2.0 * FOREST_TREE_PROXY_RADIUS_M,
+                2.0 * FOREST_TREE_PROXY_RADIUS_M,
+                FOREST_TREE_PROXY_HEIGHT_M,
+            )
+            shape = "cylinder"
+        else:
+            size = FOREST_ROCK_PROXY_SIZE_M
+            shape = "cuboid"
+        center = (x, y, ground_z + 0.5 * size[2])
+        half = tuple(0.5 * value for value in size)
+        index = len(proxies)
+        proxies.append(
+            {
+                "name": f"forest_proxy_{index:03d}",
+                "prim_path": f"/World/forest_collision/proxy_{index:03d}",
+                "visual_name": visual["name"],
+                "kind": visual["kind"],
+                "shape": shape,
+                "center_m": center,
+                "size_m": size,
+                "bounds_min_m": tuple(center[i] - half[i] for i in range(3)),
+                "bounds_max_m": tuple(center[i] + half[i] for i in range(3)),
+            }
+        )
+    print(f"[forest-v4] proxy_records_ready count={len(proxies)}", flush=True)
+
+    terrain_digest = hashlib.sha256()
+    terrain_vertex_count = 0
+    terrain_face_count = 0
+    terrain_z_values = []
+    for mesh, _tags in terrain.mesh:
+        vertices = np.asarray(mesh.vertices, dtype=np.float64)
+        faces = np.asarray(mesh.faces, dtype=np.int64)
+        terrain_digest.update(vertices.tobytes(order="C"))
+        terrain_digest.update(faces.tobytes(order="C"))
+        terrain_vertex_count += int(vertices.shape[0])
+        terrain_face_count += int(faces.shape[0])
+        terrain_z_values.extend(vertices[:, 2].tolist())
+    print("[forest-v4] terrain_identity_ready", flush=True)
+    spawn_world = (
+        source_origin_xy[0] - 0.5 * args.forest_size,
+        source_origin_xy[1] - 0.5 * args.forest_size,
+        source_origin_z,
+    )
+    identity_visuals = [
+        {key: (str(value) if isinstance(value, Path) else value) for key, value in visual.items() if key != "asset"}
+        for visual in visual_specs
+    ]
+    identity = {
+        "forest_gen_commit": PINNED_FOREST_GEN_COMMIT,
+        "stripe_kit_commit": PINNED_STRIPE_KIT_COMMIT,
+        "forest_gen_root": str(forest_root),
+        "stripe_kit_root": str(stripe_root),
+        "asset_root": str(args.forest_asset_path.resolve()),
+        "seed": args.forest_seed,
+        "size_m": args.forest_size,
+        "margin_m": args.forest_margin,
+        "source_origin_xy_m": source_origin_xy,
+        "spawn_world_xyz_m": spawn_world,
+        "spot_specific_upstream_spawn_offset_removed_m": 1.0,
+        "terrain": {
+            "mesh_count": len(terrain.mesh),
+            "vertex_count": terrain_vertex_count,
+            "face_count": terrain_face_count,
+            "z_min_m": min(terrain_z_values),
+            "z_max_m": max(terrain_z_values),
+            "geometry_sha256": terrain_digest.hexdigest(),
+            "visual_normalization": (
+                "TextureVisuals converted to ColorVisuals before TerrainImporter "
+                "concatenation; vertices and faces are unchanged"
+            ),
+        },
+        "source_asset_instantiated_counts": generated_counts,
+        "bounded_adapter": {
+            "visual_count": len(visual_specs),
+            "physics_sensor_proxy_count": len(proxies),
+            "full_grass_field_instantiated": False,
+            "upstream_population_generator_used": False,
+            "terrain_seed_injection": (
+                "FractalNoise(seed=14) plus numpy seed 14 for BasicMicrorelief; "
+                "forest_gen v0.3.8 otherwise constructs unseeded RandomState and "
+                "random.Random(None) instances"
+            ),
+            "vegetation_placement": "task-owned deterministic bounded layout",
+            "selection_reason": (
+                "retain the upstream terrain algorithm and source visual assets "
+                "without invoking its nondeterministic full population generator or "
+                "instantiating thousands of independent grass prims"
+            ),
+            "placement_reason": (
+                "guarantee visible and sensor-observable obstacles beside, not in, "
+                "the short open-loop route"
+            ),
+            "v12_command_terrain_binding": {
+                "terrain_name": "main",
+                "maximum_range_source": "unchanged V12 flat-terrain range",
+                "live_commands": "overwritten by the recorded preview schedule",
+            },
+        },
+        "visuals": identity_visuals,
+        "proxies": proxies,
+    }
+    print(
+        "[forest-v4] layout_ready "
+        f"visuals={len(visual_specs)} proxies={len(proxies)}",
+        flush=True,
+    )
+    return {
+        "terrain": terrain,
+        "visuals": visual_specs,
+        "proxies": proxies,
+        "spawn_world_xyz_m": spawn_world,
+        "identity": identity,
+    }
+
+
 def _urdf_contract(path: Path):
     root = ET.parse(path).getroot()
     links = root.findall("link")
@@ -205,6 +565,8 @@ def _urdf_contract(path: Path):
 
 
 def _candidate_name(args) -> str:
+    if _forest_enabled(args):
+        return "V12 model_149999 on Lite3 Pro sensor rig v4 forest preview"
     if _sensor_rig_enabled(args):
         return "V12 model_149999 on Lite3 Pro sensor rig v3"
     return "V12 model_149999 fallback"
@@ -414,7 +776,7 @@ def _load_inference_policy(wrapped_env, agent_cfg, checkpoint: Path, device: str
     return policy_module.act_inference, policy_module, observations, source
 
 
-def _configure_environment(env_cfg, args) -> None:
+def _configure_environment(env_cfg, args, forest_layout=None) -> None:
     env_cfg.scene.num_envs = 1
     env_cfg.seed = args.seed
     env_cfg.sim.device = args.device
@@ -425,10 +787,16 @@ def _configure_environment(env_cfg, args) -> None:
         # complete V12 task configuration and replace only the physical URDF.
         env_cfg.scene.robot.spawn.asset_path = str(args.robot_asset.resolve())
         env_cfg.scene.robot.spawn.merge_fixed_joints = False
-    if args.video_path is not None:
+    if args.video_path is not None and forest_layout is None:
         env_cfg.viewer.origin_type = "world"
         env_cfg.viewer.eye = VIDEO_CAMERA_EYE
         env_cfg.viewer.lookat = VIDEO_CAMERA_LOOKAT
+        env_cfg.viewer.resolution = VIDEO_RESOLUTION
+    elif args.video_path is not None:
+        spawn_x, spawn_y, spawn_z = forest_layout["spawn_world_xyz_m"]
+        env_cfg.viewer.origin_type = "world"
+        env_cfg.viewer.eye = (spawn_x - 6.0, spawn_y, spawn_z + 2.8)
+        env_cfg.viewer.lookat = (spawn_x + 1.5, spawn_y, spawn_z + 0.5)
         env_cfg.viewer.resolution = VIDEO_RESOLUTION
     if args.mode == "external":
         env_cfg.episode_length_s = max(
@@ -486,17 +854,37 @@ def _configure_environment(env_cfg, args) -> None:
     command_cfg.ranges.lin_vel_x = (0.0, 0.0)
     command_cfg.ranges.lin_vel_y = (0.0, 0.0)
     command_cfg.ranges.ang_vel_yaw = (0.0, 0.0)
+    if forest_layout is not None:
+        command_cfg.terrain_max_command_ranges["main"] = dict(
+            command_cfg.terrain_max_command_ranges["flat"]
+        )
 
-    terrain = env_cfg.scene.terrain.terrain_generator
-    if terrain is None or "flat" not in terrain.sub_terrains:
-        raise AdapterFailure("pinned V12 task has no flat terrain generator")
-    terrain.num_rows = 1
-    terrain.num_cols = 1
-    terrain.curriculum = False
-    terrain.difficulty_range = (0.0, 0.0)
-    terrain.use_cache = False
-    for name, sub_cfg in terrain.sub_terrains.items():
-        sub_cfg.proportion = 1.0 if name == "flat" else 0.0
+    if forest_layout is None:
+        terrain = env_cfg.scene.terrain.terrain_generator
+        if terrain is None or "flat" not in terrain.sub_terrains:
+            raise AdapterFailure("pinned V12 task has no flat terrain generator")
+        terrain.num_rows = 1
+        terrain.num_cols = 1
+        terrain.curriculum = False
+        terrain.difficulty_range = (0.0, 0.0)
+        terrain.use_cache = False
+        for name, sub_cfg in terrain.sub_terrains.items():
+            sub_cfg.proportion = 1.0 if name == "flat" else 0.0
+    else:
+        import isaaclab.sim as sim_utils
+
+        terrain = forest_layout["terrain"].to_cfg()
+        terrain.num_rows = 1
+        terrain.num_cols = 1
+        terrain.curriculum = False
+        terrain.difficulty_range = (0.0, 0.0)
+        terrain.seed = args.forest_seed
+        terrain.use_cache = False
+        terrain.color_scheme = "none"
+        env_cfg.scene.terrain.terrain_generator = terrain
+        env_cfg.scene.terrain.visual_material = sim_utils.PreviewSurfaceCfg(
+            diffuse_color=(0.16, 0.24, 0.08), roughness=0.92
+        )
     env_cfg.scene.terrain.max_init_terrain_level = 0
 
     if args.course == "single_box":
@@ -515,6 +903,45 @@ def _configure_environment(env_cfg, args) -> None:
             init_state=AssetBaseCfg.InitialStateCfg(pos=COURSE_OBSTACLE_CENTER),
         )
 
+    if forest_layout is not None:
+        import isaaclab.sim as sim_utils
+        from isaaclab.assets import AssetBaseCfg
+
+        for visual in forest_layout["visuals"]:
+            visual_cfg = copy.deepcopy(visual["asset"].to_cfg())
+            visual_cfg.prim_path = visual["prim_path"]
+            visual_cfg.init_state.pos = visual["world_position_m"]
+            # forest_gen currently emits a zero quaternion. Normalize it at the
+            # adapter boundary and record that decision in the run identity.
+            visual_cfg.init_state.rot = (1.0, 0.0, 0.0, 0.0)
+            visual_cfg.collision_group = -1
+            setattr(env_cfg.scene, visual["name"], visual_cfg)
+        for proxy in forest_layout["proxies"]:
+            if proxy["shape"] == "cylinder":
+                spawn_cfg = sim_utils.CylinderCfg(
+                    radius=0.5 * proxy["size_m"][0],
+                    height=proxy["size_m"][2],
+                    collision_props=sim_utils.CollisionPropertiesCfg(),
+                    visual_material=sim_utils.PreviewSurfaceCfg(
+                        diffuse_color=(0.19, 0.09, 0.035), roughness=0.88
+                    ),
+                )
+            else:
+                spawn_cfg = sim_utils.CuboidCfg(
+                    size=proxy["size_m"],
+                    collision_props=sim_utils.CollisionPropertiesCfg(),
+                    visual_material=sim_utils.PreviewSurfaceCfg(
+                        diffuse_color=(0.24, 0.25, 0.22), roughness=0.95
+                    ),
+                )
+            proxy_cfg = AssetBaseCfg(
+                prim_path=proxy["prim_path"],
+                spawn=spawn_cfg,
+                init_state=AssetBaseCfg.InitialStateCfg(pos=proxy["center_m"]),
+                collision_group=-1,
+            )
+            setattr(env_cfg.scene, proxy["name"], proxy_cfg)
+
     from isaaclab.sensors import MultiMeshRayCasterCfg, patterns
     from isaaclab.sensors.ray_caster import MultiMeshRayCasterCameraCfg
 
@@ -529,6 +956,10 @@ def _configure_environment(env_cfg, args) -> None:
     environment_targets = [GROUND_MESH_PRIM]
     if args.course == "single_box":
         environment_targets.append(OBSTACLE_MESH_PRIM)
+    elif forest_layout is not None:
+        environment_targets.extend(
+            proxy["prim_path"] for proxy in forest_layout["proxies"]
+        )
     lidar_targets = list(environment_targets)
     if sensor_rig:
         lidar_targets.extend(
@@ -666,6 +1097,201 @@ def _sensor_gate(sensor_records):
     return checks, all(bool(checks[name]) for name in required)
 
 
+def _forest_obstacle_hit_mask(points_w, proxies, torch):
+    mask = torch.zeros(points_w.shape[0], dtype=torch.bool, device=points_w.device)
+    finite = torch.isfinite(points_w).all(dim=-1)
+    for proxy in proxies:
+        lower = points_w.new_tensor(proxy["bounds_min_m"]) - 0.015
+        upper = points_w.new_tensor(proxy["bounds_max_m"]) + 0.015
+        mask |= finite & ((points_w >= lower) & (points_w <= upper)).all(dim=-1)
+    return mask
+
+
+def _forest_height_world(forest_layout, x_world: float, y_world: float) -> float:
+    terrain = forest_layout["terrain"]
+    side = float(forest_layout["identity"]["size_m"])
+    return float(terrain.raw(x_world + 0.5 * side, y_world + 0.5 * side))
+
+
+def _inspect_forest_geometry(stage, forest_layout, lidar, depth_camera):
+    from pxr import Usd, UsdGeom, UsdPhysics
+
+    def direct_paths(sensor) -> set[str]:
+        return {
+            value
+            for value in sensor.cfg.mesh_prim_paths
+            if isinstance(value, str)
+        }
+
+    lidar_paths = direct_paths(lidar)
+    depth_paths = direct_paths(depth_camera)
+    records = []
+    for proxy in forest_layout["proxies"]:
+        root = stage.GetPrimAtPath(proxy["prim_path"])
+        collision_paths = []
+        visible_geometry_paths = []
+        if root.IsValid():
+            for prim in Usd.PrimRange(root, Usd.TraverseInstanceProxies()):
+                if prim.HasAPI(UsdPhysics.CollisionAPI):
+                    collision_paths.append(str(prim.GetPath()))
+                if prim.GetTypeName() in (
+                    "Capsule",
+                    "Cone",
+                    "Cube",
+                    "Cylinder",
+                    "Mesh",
+                    "Sphere",
+                ):
+                    imageable = UsdGeom.Imageable(prim)
+                    if imageable and str(imageable.ComputeVisibility()) != "invisible":
+                        visible_geometry_paths.append(str(prim.GetPath()))
+        visual = next(
+            item
+            for item in forest_layout["visuals"]
+            if item["name"] == proxy["visual_name"]
+        )
+        visual_prim = stage.GetPrimAtPath(visual["prim_path"])
+        records.append(
+            {
+                "name": proxy["name"],
+                "prim_path": proxy["prim_path"],
+                "root_prim_valid": root.IsValid(),
+                "collision_prim_paths": collision_paths,
+                "visible_geometry_prim_paths": visible_geometry_paths,
+                "lidar_targeted": proxy["prim_path"] in lidar_paths,
+                "depth_targeted": proxy["prim_path"] in depth_paths,
+                "source_visual_prim_path": visual["prim_path"],
+                "source_visual_prim_valid": visual_prim.IsValid(),
+                "declared_bounds_min_m": proxy["bounds_min_m"],
+                "declared_bounds_max_m": proxy["bounds_max_m"],
+            }
+        )
+    checks = {
+        "terrain_targeted_by_lidar": GROUND_MESH_PRIM in lidar_paths,
+        "terrain_targeted_by_depth": GROUND_MESH_PRIM in depth_paths,
+        "all_proxy_roots_exist": bool(records)
+        and all(row["root_prim_valid"] for row in records),
+        "all_proxies_have_collision": bool(records)
+        and all(bool(row["collision_prim_paths"]) for row in records),
+        "all_proxies_are_visible": bool(records)
+        and all(bool(row["visible_geometry_prim_paths"]) for row in records),
+        "all_proxies_targeted_by_lidar": bool(records)
+        and all(row["lidar_targeted"] for row in records),
+        "all_proxies_targeted_by_depth": bool(records)
+        and all(row["depth_targeted"] for row in records),
+        "all_source_visuals_exist": bool(records)
+        and all(row["source_visual_prim_valid"] for row in records),
+    }
+    return {
+        "passed": all(checks.values()),
+        "checks": checks,
+        "proxy_records": records,
+        "agreement_definition": (
+            "each declared proxy root is visible, has a CollisionAPI descendant, "
+            "and is the same root targeted by both ray sensors"
+        ),
+    }
+
+
+def _forest_preview_report(
+    records,
+    sink,
+    command_stats,
+    telemetry_stats,
+    static_geometry_checks,
+):
+    checks = {
+        "records_present": bool(records),
+        "no_termination": bool(records) and not any(row["done"] for row in records),
+        "finite_policy": bool(records) and all(row["finite"] for row in records),
+        "command_visible": bool(records)
+        and max(row["command_observation_max_error"] for row in records) <= 1.0e-5,
+        "static_geometry_agreement": bool(static_geometry_checks)
+        and bool(static_geometry_checks.get("passed")),
+    }
+    supported_fraction = (
+        sum(row["contact_count"] >= 2 for row in records) / len(records)
+        if records
+        else 0.0
+    )
+    minimum_clearance = (
+        min(row["base_clearance_m"] for row in records) if records else None
+    )
+    checks["supported_sample_fraction_value"] = supported_fraction
+    checks["minimum_base_clearance_m_value"] = minimum_clearance
+    checks["support"] = (
+        bool(records)
+        and supported_fraction >= 0.85
+        and minimum_clearance is not None
+        and minimum_clearance >= 0.15
+    )
+    for name, field, index in (
+        ("forward", "root_lin_vel_b", 0),
+        ("yaw", "root_ang_vel_b", 2),
+    ):
+        samples = [
+            row[field][index]
+            for row in records
+            if row["schedule_segment"] == name
+            and row["schedule_segment_elapsed_seconds"] >= 0.75
+        ]
+        mean = sum(samples) / len(samples) if samples else None
+        checks[f"{name}_mean"] = mean
+        checks[f"{name}_response"] = bool(samples) and mean > 0.03
+    stop_samples = [
+        row
+        for row in records
+        if row["schedule_segment"] == "stop_zero"
+        and row["schedule_segment_elapsed_seconds"] >= 0.5
+    ]
+    checks["final_zero"] = bool(stop_samples) and all(
+        row["applied_command"] == [0.0, 0.0, 0.0] for row in stop_samples
+    )
+    displacement = (
+        math.dist(records[0]["root_pos_w"][:2], records[-1]["root_pos_w"][:2])
+        if len(records) >= 2
+        else 0.0
+    )
+    terrain_heights = [row["terrain_height_under_root_m"] for row in records]
+    checks["root_xy_displacement_m_value"] = displacement
+    checks["terrain_height_range_m_value"] = (
+        max(terrain_heights) - min(terrain_heights) if terrain_heights else 0.0
+    )
+    checks["locomotion_displacement"] = displacement >= 0.25
+    checks["telemetry_nonempty"] = (
+        sink.get("sensor_frames", 0) > 0
+        and sink.get("nonempty_sensor_frames", 0) == sink.get("sensor_frames", 0)
+        and sink.get("status_frames", 0) > 0
+    )
+    required = (
+        "records_present",
+        "no_termination",
+        "finite_policy",
+        "command_visible",
+        "static_geometry_agreement",
+        "support",
+        "forward_response",
+        "yaw_response",
+        "final_zero",
+        "locomotion_displacement",
+        "telemetry_nonempty",
+    )
+    return {
+        "schema_version": 1,
+        "status": "PASS" if all(bool(checks[name]) for name in required) else "FAIL",
+        "claim": (
+            "pinned V12 policy short locomotion preview on a native forest_gen "
+            "terrain; not training, navigation, obstacle avoidance, or real-robot validation"
+        ),
+        "checks": checks,
+        "static_geometry_checks": static_geometry_checks,
+        "telemetry_sink": sink,
+        "command_transport": command_stats.__dict__,
+        "telemetry_transport": telemetry_stats.__dict__,
+        "record_count": len(records),
+    }
+
+
 def _run(args) -> int:
     import gymnasium as gym
     import torch
@@ -709,6 +1335,22 @@ def _run(args) -> int:
 
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
+    if _forest_enabled(args):
+        print("[forest-v4] run_enter", flush=True)
+    try:
+        forest_layout = _build_forest_layout(args)
+    except BaseException as error:
+        print(
+            "[forest-v4] layout_exception "
+            f"type={type(error).__name__} value={error!r}",
+            flush=True,
+        )
+        raise
+    if forest_layout is not None:
+        print("[forest-v4] run_identity_start", flush=True)
+    qualification_schedule = (
+        FOREST_PREVIEW_SCHEDULE if forest_layout is not None else None
+    )
     sensor_rotation_wxyz = (
         math.cos(math.radians(args.sensor_pitch_degrees) / 2.0),
         0.0,
@@ -721,8 +1363,19 @@ def _run(args) -> int:
     raycast_targets = [GROUND_MESH_PRIM]
     if args.course == "single_box":
         raycast_targets.append(OBSTACLE_MESH_PRIM)
+    elif forest_layout is not None:
+        raycast_targets.extend(
+            proxy["prim_path"] for proxy in forest_layout["proxies"]
+        )
+    if forest_layout is None:
+        camera_eye = VIDEO_CAMERA_EYE
+        camera_lookat = VIDEO_CAMERA_LOOKAT
+    else:
+        spawn_x, spawn_y, spawn_z = forest_layout["spawn_world_xyz_m"]
+        camera_eye = (spawn_x - 6.0, spawn_y, spawn_z + 2.8)
+        camera_lookat = (spawn_x + 1.5, spawn_y, spawn_z + 0.5)
     identity = {
-        "schema_version": 2 if sensor_rig else 1,
+        "schema_version": 3 if forest_layout is not None else (2 if sensor_rig else 1),
         "candidate": _candidate_name(args),
         "source_commit": args.source_commit,
         "checkpoint_sha256": checkpoint_sha256,
@@ -731,7 +1384,11 @@ def _run(args) -> int:
         "mode": args.mode,
         "seed": args.seed,
         "device": args.device,
-        "terrain": "flat at difficulty 0.0",
+        "terrain": (
+            "pinned forest_gen native heightmap"
+            if forest_layout is not None
+            else "flat at difficulty 0.0"
+        ),
         "course": {
             "name": args.course,
             "obstacle_center_m": (
@@ -742,6 +1399,19 @@ def _run(args) -> int:
             ),
         },
         "command_limits": [args.max_vx, args.max_vy, args.max_wz],
+        "command_schedule": [
+            {
+                "name": segment.name,
+                "duration_seconds": segment.duration_seconds,
+                "command": segment.command,
+                "connected": segment.connected,
+            }
+            for segment in (
+                FOREST_PREVIEW_SCHEDULE
+                if forest_layout is not None
+                else ()
+            )
+        ],
         "watchdog_seconds": args.watchdog_seconds,
         "acceptance_config_sha256": (
             None if args.acceptance_config is None else _sha256(args.acceptance_config)
@@ -751,8 +1421,8 @@ def _run(args) -> int:
             "filename": None if args.video_path is None else args.video_path.name,
             "fps": args.video_fps,
             "frame_stride": args.video_frame_stride,
-            "camera_eye_world": VIDEO_CAMERA_EYE,
-            "camera_lookat_world": VIDEO_CAMERA_LOOKAT,
+            "camera_eye_world": camera_eye,
+            "camera_lookat_world": camera_lookat,
             "resolution": VIDEO_RESOLUTION,
         },
         "policy_observation_contract": {
@@ -782,8 +1452,17 @@ def _run(args) -> int:
             "period_seconds": args.sensor_period,
             "planner_floor_filter": {
                 "frame": "world",
-                "remove_hits_at_or_below_z_m": args.planner_floor_filter_max_z,
-                "reason": "SCAN occupancy input excludes the traversable flat floor",
+                "enabled": forest_layout is None,
+                "remove_hits_at_or_below_z_m": (
+                    None
+                    if forest_layout is not None
+                    else args.planner_floor_filter_max_z
+                ),
+                "reason": (
+                    "disabled for the terrain-only V4 preview; SCAN is not connected"
+                    if forest_layout is not None
+                    else "SCAN occupancy input excludes the traversable flat floor"
+                ),
             },
             "raycast_targets": raycast_targets,
             "self_occlusion_links": (
@@ -797,10 +1476,14 @@ def _run(args) -> int:
                 else "not modelled by the legacy V12 sensor"
             ),
             "obstacle_return_classification": (
-                "finite hit above floor filter inside the only non-ground mesh bounds"
+                "finite hit inside a declared visible physics-and-sensor proxy bound"
+                if forest_layout is not None
+                else "finite hit above floor filter inside the only non-ground mesh bounds"
             ),
         },
     }
+    if forest_layout is not None:
+        identity["forest_scene"] = forest_layout["identity"]
     if sensor_rig:
         identity["depth_camera"] = {
             "backend": "IsaacLab MultiMeshRayCasterCameraCfg",
@@ -827,7 +1510,7 @@ def _run(args) -> int:
                 "recorded color CameraInfo is intentionally not reused."
             ),
             "navigation_use": (
-                "generated and logged concurrently; not fused into SCAN in v3"
+                "generated and logged concurrently; not fused into SCAN in this preview"
             ),
         }
     config_sha256 = canonical_config_sha256(identity)
@@ -846,9 +1529,19 @@ def _run(args) -> int:
     sender = None
     sink = None
     if args.mode in ("qualification", "sensor_qualification"):
-        sender = _QualificationSender(args.command_port, 50.0, limits)
+        sender = _QualificationSender(
+            args.command_port,
+            50.0,
+            limits,
+            schedule=(
+                qualification_schedule
+                if qualification_schedule is not None
+                else DEFAULT_QUALIFICATION_SCHEDULE
+            ),
+        )
         sink = _TelemetrySink(args.telemetry_port, config_sha256)
 
+    raw_env = None
     wrapped_env = None
     runtime_error = None
     records = []
@@ -861,12 +1554,13 @@ def _run(args) -> int:
     video_writer = None
     video_frame_count = 0
     runtime_rates = {}
+    static_forest_geometry_checks = None
     try:
         __import__("robot_lab.tasks")
         env_cfg = load_cfg_from_registry(args.task, "env_cfg_entry_point")
         agent_cfg = load_cfg_from_registry(args.task, "rsl_rl_cfg_entry_point")
         v12_task_contract = _capture_v12_task_contract(env_cfg)
-        _configure_environment(env_cfg, args)
+        _configure_environment(env_cfg, args, forest_layout)
         agent_cfg.seed = args.seed
         agent_cfg.device = args.device
         raw_env = gym.make(
@@ -1008,6 +1702,13 @@ def _run(args) -> int:
                         f"{frame_name} received an unexpected runtime mass: "
                         f"{runtime_mass_by_link[frame_name]}"
                     )
+        if forest_layout is not None:
+            static_forest_geometry_checks = _inspect_forest_geometry(
+                stage,
+                forest_layout,
+                lidar,
+                depth_camera,
+            )
         runtime_composition = {
             "schema_version": 1,
             "candidate": _candidate_name(args),
@@ -1038,8 +1739,21 @@ def _run(args) -> int:
             "navigation_depth_camera_prim_path": (
                 None if depth_camera is None else depth_camera.cfg.prim_path
             ),
+            "forest_scene": (
+                None
+                if forest_layout is None
+                else {
+                    "identity": forest_layout["identity"],
+                    "static_geometry_checks": static_forest_geometry_checks,
+                }
+            ),
         }
         _write_json(output_dir / "runtime_composition.json", runtime_composition)
+        if (
+            static_forest_geometry_checks is not None
+            and not static_forest_geometry_checks["passed"]
+        ):
+            raise AdapterFailure("forest visible/physics/sensor static gate failed")
         previous_actions = torch.zeros((1, 12), device=base_env.device)
         sensor_stride = max(1, int(round(args.sensor_period / float(base_env.step_dt))))
         if args.video_path is not None:
@@ -1080,8 +1794,13 @@ def _run(args) -> int:
             )
         started = time.monotonic()
         next_tick = started
+        active_schedule = (
+            qualification_schedule
+            if qualification_schedule is not None
+            else DEFAULT_QUALIFICATION_SCHEDULE
+        )
         run_seconds = (
-            schedule_duration() + 0.25
+            schedule_duration(active_schedule) + 0.25
             if args.mode in ("qualification", "sensor_qualification")
             else args.duration_seconds
         )
@@ -1145,7 +1864,19 @@ def _run(args) -> int:
                 schedule_elapsed = 0.0
                 if sender is not None and sender.started_monotonic is not None:
                     schedule_elapsed = max(0.0, now - sender.started_monotonic)
-                segment, segment_elapsed = schedule_state(schedule_elapsed)
+                segment, segment_elapsed = schedule_state(
+                    schedule_elapsed, active_schedule
+                )
+                root_position = _tensor_list(robot.data.root_pos_w[0])
+                terrain_height_under_root = (
+                    _forest_height_world(
+                        forest_layout,
+                        root_position[0],
+                        root_position[1],
+                    )
+                    if forest_layout is not None
+                    else 0.0
+                )
                 row = {
                     "step": step,
                     "wall_elapsed_seconds": now - started,
@@ -1161,7 +1892,9 @@ def _run(args) -> int:
                     "command_observation": observed_command,
                     "command_observation_history_index": command_history_index,
                     "command_observation_max_error": command_error,
-                    "root_pos_w": _tensor_list(robot.data.root_pos_w[0]),
+                    "root_pos_w": root_position,
+                    "terrain_height_under_root_m": terrain_height_under_root,
+                    "base_clearance_m": root_position[2] - terrain_height_under_root,
                     "root_quat_wxyz": _tensor_list(robot.data.root_quat_w[0]),
                     "root_lin_vel_w": _tensor_list(robot.data.root_lin_vel_w[0]),
                     "root_ang_vel_w": _tensor_list(robot.data.root_ang_vel_w[0]),
@@ -1198,7 +1931,11 @@ def _run(args) -> int:
                         sensor_quaternion_values,
                         args.lidar_min_range,
                         args.lidar_max_range,
-                        minimum_world_z=args.planner_floor_filter_max_z,
+                        minimum_world_z=(
+                            None
+                            if forest_layout is not None
+                            else args.planner_floor_filter_max_z
+                        ),
                     )
                     point_count, point_bytes = pack_xyz_points(points)
                     finite_hits = torch.isfinite(hits_w).all(dim=-1)
@@ -1208,11 +1945,11 @@ def _run(args) -> int:
                     self_occluded_hits = finite_hits & (
                         hit_ranges < args.lidar_min_range
                     )
-                    floor_filtered_hits = finite_hits & (
-                        hits_w[:, 2] <= args.planner_floor_filter_max_z
-                    )
-                    ground_hits = finite_hits & ~self_occluded_hits & torch.isclose(
-                        hits_w[:, 2], hits_w.new_tensor(0.0), atol=0.03, rtol=0.0
+                    floor_filtered_hits = (
+                        torch.zeros_like(finite_hits)
+                        if forest_layout is not None
+                        else finite_hits
+                        & (hits_w[:, 2] <= args.planner_floor_filter_max_z)
                     )
                     obstacle_hits = torch.zeros_like(finite_hits)
                     if args.course == "single_box":
@@ -1227,6 +1964,26 @@ def _run(args) -> int:
                                 & (hits_w <= center + half_size + 0.01)
                             ).all(dim=-1)
                         )
+                    elif forest_layout is not None:
+                        obstacle_hits = _forest_obstacle_hit_mask(
+                            hits_w,
+                            forest_layout["proxies"],
+                            torch,
+                        ) & ~self_occluded_hits
+                    ground_hits = (
+                        finite_hits
+                        & ~self_occluded_hits
+                        & ~obstacle_hits
+                        if forest_layout is not None
+                        else finite_hits
+                        & ~self_occluded_hits
+                        & torch.isclose(
+                            hits_w[:, 2],
+                            hits_w.new_tensor(0.0),
+                            atol=0.03,
+                            rtol=0.0,
+                        )
+                    )
                     centroid = [0.0, 0.0, 0.0]
                     if points:
                         centroid = [
@@ -1248,9 +2005,16 @@ def _run(args) -> int:
                             floor_filtered_hits.sum().item()
                         ),
                         "ground_hit_count": int(ground_hits.sum().item()),
+                        "terrain_surface_hit_count": int(
+                            ground_hits.sum().item()
+                            if forest_layout is not None
+                            else 0
+                        ),
                         "obstacle_surface_hit_count": int(obstacle_hits.sum().item()),
                         "unexpected_above_floor_hit_count": int(
-                            (
+                            0
+                            if forest_layout is not None
+                            else (
                                 finite_hits
                                 & ~self_occluded_hits
                                 & (hits_w[:, 2] > args.planner_floor_filter_max_z)
@@ -1299,6 +2063,12 @@ def _run(args) -> int:
                                     & (camera_hits_w <= center + half_size + 0.01)
                                 ).all(dim=-1)
                             )
+                        elif forest_layout is not None:
+                            obstacle_pixels = _forest_obstacle_hit_mask(
+                                camera_hits_w,
+                                forest_layout["proxies"],
+                                torch,
+                            ) & ~self_occluded_pixels
                         valid_values = depth_flat[valid_depth]
                         depth_row = {
                             "step": step,
@@ -1446,6 +2216,8 @@ def _run(args) -> int:
                     runtime_error = error
         if wrapped_env is not None:
             wrapped_env.close()
+        elif raw_env is not None:
+            raw_env.close()
 
     if sink is not None and sink.error is not None and runtime_error is None:
         runtime_error = sink.error
@@ -1481,6 +2253,14 @@ def _run(args) -> int:
             "telemetry_transport": telemetry_server.stats().__dict__,
             "record_count": len(records),
         }
+    elif forest_layout is not None:
+        report = _forest_preview_report(
+            records,
+            sink_snapshot,
+            command_server.stats(),
+            telemetry_server.stats(),
+            static_forest_geometry_checks,
+        )
     else:
         report = _qualification_report(
             records, sink_snapshot, command_server.stats(), telemetry_server.stats()
@@ -1538,7 +2318,17 @@ def _parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--source-commit", default=PINNED_SOURCE_COMMIT)
     parser.add_argument("--task", default=DEFAULT_TASK)
-    parser.add_argument("--course", choices=("flat", "single_box"), default="flat")
+    parser.add_argument(
+        "--course",
+        choices=("flat", "single_box", "forest_gen"),
+        default="flat",
+    )
+    parser.add_argument("--forest-gen-root", type=Path)
+    parser.add_argument("--stripe-kit-root", type=Path)
+    parser.add_argument("--forest-asset-path", type=Path)
+    parser.add_argument("--forest-size", type=int, default=FOREST_SIZE_M)
+    parser.add_argument("--forest-margin", type=int, default=FOREST_MARGIN_M)
+    parser.add_argument("--forest-seed", type=int, default=FOREST_SEED)
     parser.add_argument("--duration-seconds", type=float, default=30.0)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--device", default="cuda:0")
@@ -1629,6 +2419,28 @@ def main(argv=None) -> int:
             )
         ):
             raise SystemExit("depth sensor parameters are invalid")
+    if _forest_enabled(args):
+        if not _sensor_rig_enabled(args):
+            raise SystemExit("forest preview requires the pinned V3 sensor-rig URDFs")
+        if args.mode != "qualification":
+            raise SystemExit("forest preview is a standalone qualification run")
+        if (
+            args.forest_size != FOREST_SIZE_M
+            or args.forest_margin != FOREST_MARGIN_M
+            or args.forest_seed != FOREST_SEED
+        ):
+            raise SystemExit(
+                "forest preview requires the pinned size=32, margin=10, seed=14"
+            )
+        for name in ("forest_gen_root", "stripe_kit_root", "forest_asset_path"):
+            value = getattr(args, name)
+            if value is None or not value.is_dir():
+                raise SystemExit(f"required forest directory is missing: {name}")
+        expected_asset_root = args.forest_gen_root.resolve() / "models"
+        if args.forest_asset_path.resolve() != expected_asset_root:
+            raise SystemExit(
+                "forest asset path must be the models directory of the pinned forest_gen"
+            )
     from isaaclab.app import AppLauncher
 
     simulation_app = AppLauncher(

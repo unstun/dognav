@@ -262,6 +262,32 @@ data, a TORSO-relative substitute, or a static-map image is a failure.
   task to `review`, and provide the V3 MP4 plus human-review checklist directly.
 - [ ] Archive only after Dr Sun explicitly accepts V3.
 
+## Phase 15 — V4 Forest Locomotion Preview
+
+- [x] Preserve V1--V3 evidence and create a new dated V4 experiment directory
+  naming the local source of truth, remote run root, expected files, and claim
+  boundary.
+- [x] Pin and verify `forest_gen` `v0.3.8`, STRIPE-kit, the V3 checkpoint,
+  canonical/Isaac URDF bundle, policy/config source, and runtime identities.
+- [x] Build a task-owned forest adapter that reuses the V3 policy/robot runtime,
+  keeps upstream visual assets unchanged, instances visual-only vegetation,
+  and adds separately named route-relevant trunk/rock collision and sensor
+  proxies.
+- [x] Run a static one-environment gate proving Lite3 topology/sensor frames,
+  visual/collision/sensor agreement for a declared obstacle, finite sensor
+  output, and absence of unexpected bodies or default mass.
+- [x] Run the frozen zero/forward/yaw/zero V12 command sequence without
+  training or tuning; record policy/actions, articulated motion, contacts,
+  support, collisions, resets, termination, and performance.
+- [x] Capture a directly viewable MP4, close simulation-time instrumentation
+  before encoding/teardown, copy all artifacts back, and verify remote/local
+  SHA-256 parity plus local decode and structured-data checks.
+- [x] Run Trellis checks and return the video for Dr Sun's explicit human
+  acceptance. Do not start a SCAN forest closed loop inside V4.
+
+**Gate 15:** AC18--AC21 pass before the preview is called reproduced; AC22
+remains unchecked until Dr Sun reviews the video.
+
 ## Planned Validation Matrix
 
 | Layer | Required evidence | Failure response |

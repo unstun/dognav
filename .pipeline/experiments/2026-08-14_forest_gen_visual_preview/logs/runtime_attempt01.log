@@ -1,0 +1,138 @@
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /home/sun/miniconda3/envs/isaaclab/bin/python
+Loading user config located at: '/home/sun/miniconda3/envs/isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/sun/miniconda3/envs/isaaclab/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260814_042210.log
+2026-08-14T08:22:11Z [110ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-14T08:22:11Z [110ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-08-14T08:22:11Z [116ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-08-14T08:22:11Z [355ms] [Warning] [gpu.foundation.plugin] Skipping unsupported non-NVIDIA GPU: AMD Ryzen 7 9700X 8-Core Processor (RADV RAPHAEL_MENDOCINO)
+2026-08-14T08:22:11Z [355ms] [Warning] [gpu.foundation.plugin] Skipping unsupported non-NVIDIA GPU: AMD Ryzen 7 9700X 8-Core Processor (RADV RAPHAEL_MENDOCINO)
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 580.126.09    | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA GeForce RTX 5070 Ti       | Yes: 0 |     | 16303   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2c05      | 9a0eb7bb.. |
+|     |                                  |        |     |            | 1         |            |
+|---------------------------------------------------------------------------------------------|
+| 1   | AMD Ryzen 7 9700X 8-Core Proce.. |        |     | 10720   MB | 1002      | 0          |
+|     |                                  |        |     |            | 13c0      | 00000000.. |
+|     |                                  |        |     |            | 11        |            |
+|=============================================================================================|
+| OS: 24.04.3 LTS (Noble Numbat) ubuntu, Version: 24.04.3, Kernel: 6.17.0-22-generic
+| Processor: AMD Ryzen 7 9700X 8-Core Processor
+| Cores: 8 | Logical Cores: 16
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 31137 | Free Memory: 27504
+| Total Page/Swap (MB): 69497 | Free Page/Swap: 69497
+|---------------------------------------------------------------------------------------------|
+2026-08-14T08:22:11Z [561ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+2026-08-14T08:22:11Z [561ms] [Warning] [gpu.foundation.plugin] Detected IOMMU is enabled. Running CUDA peer-to-peer bandwidth and latency validation.
+Unidirectional P2P=Enabled Bandwidth (P2P Writes) Matrix (GB/s)
+   D\D     0 
+     0 708.62 
+P2P=Enabled Latency (P2P Writes) Matrix (us)
+   GPU     0 
+     0   2.07 
+
+   CPU     0 
+     0   1.67 
+2026-08-14T08:22:11Z [795ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-14T08:22:11Z [795ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-08-14T08:22:11Z [806ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-14T08:22:11Z [806ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-08-14T08:22:11Z [810ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-14T08:22:11Z [810ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+Warning: Possible version incompatibility. Attempting to load carb::cudainterop::CudaInterop with version v0.17 against v0.15.
+[INFO][AppLauncher]: The argument 'width' will be used to configure the SimulationApp.
+[INFO][AppLauncher]: The argument 'height' will be used to configure the SimulationApp.
+[INFO][AppLauncher]: Input keyword argument `livestream=2` has overridden the environment variable `LIVESTREAM=0`.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/sun/ssh/sun/IsaacLab/apps/isaaclab.python.rendering.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-08-14_04-22-22.log[0m
+[36m======================================================================================[0m
+
+[33m04:22:22 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+2026-08-14T08:22:11Z [815ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-14T08:22:11Z [815ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-08-14T08:22:11Z [815ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-14T08:22:11Z [815ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-08-14T08:22:11Z [816ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-14T08:22:11Z [816ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-08-14T08:22:12Z [997ms] [Warning] [omni.log] Source: omni.hydra was already registered.
+2026-08-14T08:22:12Z [1,146ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-08-14T08:22:12Z [1,291ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+
+Active user not found. Using default user [kiosk]Streaming server started.
+2026-08-14T08:22:18Z [7,689ms] [Warning] [pxr.Semantics] pxr.Semantics is deprecated - please use Semantics instead
+2026-08-14T08:22:18Z [7,857ms] [Warning] [omni.graph.core.plugin] Found duplicate of category 'Replicator' - was 'Annotators', adding 'Fabric Reader'
+2026-08-14T08:22:18Z [7,857ms] [Warning] [omni.graph.core.plugin] Category 'Replicator' not accepted on node type 'omni.replicator.core.FabricReader' in extension 'omni.replicator.core'
+2026-08-14T08:22:18Z [7,858ms] [Warning] [omni.replicator.core.scripts.extension] No material configuration file, adding configuration to material settings directly.
+2026-08-14T08:22:20Z [9,054ms] [Warning] [gpu.foundation.plugin] Invalid sync scope for buffer resource 'shared swapchain buffer'. Create resource with valid sync scope for lifetime tracking or use kResourceUsageFlagNoSyncScope.
+2026-08-14T08:22:20Z [9,054ms] [Warning] [gpu.foundation.plugin] Invalid sync scope for buffer resource 'shared swapchain buffer'. Create resource with valid sync scope for lifetime tracking or use kResourceUsageFlagNoSyncScope.
+2026-08-14T08:22:20Z [9,054ms] [Warning] [gpu.foundation.plugin] Invalid sync scope for buffer resource 'shared swapchain buffer'. Create resource with valid sync scope for lifetime tracking or use kResourceUsageFlagNoSyncScope.
+2026-08-14T08:22:20Z [9,108ms] [Warning] [omni.fabric.plugin] Warning: attribute viewportHandle not found for bucket id 9
+
+2026-08-14T08:31:12Z [541,569ms] [Warning] [isaacsim.core.utils.semantics] Function 'add_update_semantics' uses the deprecated SemanticsAPI. Consider upgrading the semantics with `upgrade_prim_semantics_to_labels(prim)` first and then using `add_labels` instead.
+2026-08-14T08:31:12Z [541,574ms] [Warning] [isaacsim.core.utils.semantics] Function 'add_update_semantics' uses the deprecated SemanticsAPI. Consider upgrading the semantics with `upgrade_prim_semantics_to_labels(prim)` first and then using `add_labels` instead.
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_8187218739331463500/mesh_0' has corrupted data in primvar 'st_2': buffer size 1380 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_16937549756617863522/mesh_0' has corrupted data in primvar 'st_2': buffer size 1380 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_1699616693595574279/mesh_0' has corrupted data in primvar 'st_2': buffer size 378 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_1699616693595574279/mesh_0' has corrupted data in primvar 'st_5': buffer size 4530 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_16937549756617863522/mesh_0' has corrupted data in primvar 'st_1': buffer size 1362 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_8187218739331463500/mesh_0' has corrupted data in primvar 'st_1': buffer size 1362 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_1699616693595574279/mesh_0' has corrupted data in primvar 'st_4': buffer size 1902 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_8187218739331463500/mesh_0' has corrupted data in primvar 'st': buffer size 198 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_16937549756617863522/mesh_0' has corrupted data in primvar 'st': buffer size 198 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_1699616693595574279/mesh_0' has corrupted data in primvar 'st_6': buffer size 228 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_8187218739331463500/mesh_0' has corrupted data in primvar 'st_3': buffer size 198 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_16937549756617863522/mesh_0' has corrupted data in primvar 'st_3': buffer size 198 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_11637694688382292531/mesh_0' has corrupted data in primvar 'st_2': buffer size 59238 doesn't match expected size 77241 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_11637694688382292531/mesh_0' has corrupted data in primvar 'st_5': buffer size 240 doesn't match expected size 77241 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_11637694688382292531/mesh_0' has corrupted data in primvar 'st_4': buffer size 1830 doesn't match expected size 77241 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_11637694688382292531/mesh_0' has corrupted data in primvar 'st_7': buffer size 1200 doesn't match expected size 77241 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_11637694688382292531/mesh_0' has corrupted data in primvar 'st_6': buffer size 402 doesn't match expected size 77241 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_11637694688382292531/mesh_0' has corrupted data in primvar 'st_1': buffer size 9711 doesn't match expected size 77241 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_11637694688382292531/mesh_0' has corrupted data in primvar 'st': buffer size 540 doesn't match expected size 77241 in faceVarying primvars
+2026-08-14T08:31:15Z [544,490ms] [Warning] [omni.hydra] Mesh '/__Prototype_11637694688382292531/mesh_0' has corrupted data in primvar 'st_3': buffer size 4080 doesn't match expected size 77241 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_1699616693595574279/mesh_0' has corrupted data in primvar 'st_1': buffer size 2505 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_1699616693595574279/mesh_0' has corrupted data in primvar 'st': buffer size 336 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_1699616693595574279/mesh_0' has corrupted data in primvar 'st_3': buffer size 336 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_8532706012599810456/mesh_0' has corrupted data in primvar 'st_1': buffer size 7710 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_8532706012599810456/mesh_0' has corrupted data in primvar 'st': buffer size 2505 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_13320315089539090578/mesh_0' has corrupted data in primvar 'st_2': buffer size 378 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_13320315089539090578/mesh_0' has corrupted data in primvar 'st_5': buffer size 2505 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_13320315089539090578/mesh_0' has corrupted data in primvar 'st_4': buffer size 336 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_13320315089539090578/mesh_0' has corrupted data in primvar 'st_6': buffer size 336 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_13320315089539090578/mesh_0' has corrupted data in primvar 'st_1': buffer size 1902 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_13320315089539090578/mesh_0' has corrupted data in primvar 'st': buffer size 4530 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_13320315089539090578/mesh_0' has corrupted data in primvar 'st_3': buffer size 228 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_2975734884615242985/mesh_0' has corrupted data in primvar 'st_2': buffer size 1380 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_2975734884615242985/mesh_0' has corrupted data in primvar 'st_1': buffer size 1362 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_2975734884615242985/mesh_0' has corrupted data in primvar 'st': buffer size 198 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_2975734884615242985/mesh_0' has corrupted data in primvar 'st_3': buffer size 198 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_13371290522779424/mesh_0' has corrupted data in primvar 'st_2': buffer size 1380 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_13371290522779424/mesh_0' has corrupted data in primvar 'st_1': buffer size 1362 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_13371290522779424/mesh_0' has corrupted data in primvar 'st': buffer size 198 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,491ms] [Warning] [omni.hydra] Mesh '/__Prototype_13371290522779424/mesh_0' has corrupted data in primvar 'st_3': buffer size 198 doesn't match expected size 3138 in faceVarying primvars
+2026-08-14T08:31:15Z [544,492ms] [Warning] [omni.hydra] Mesh '/__Prototype_10674323882329428463/mesh_0' has corrupted data in primvar 'st_2': buffer size 1902 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,492ms] [Warning] [omni.hydra] Mesh '/__Prototype_10674323882329428463/mesh_0' has corrupted data in primvar 'st_5': buffer size 336 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,492ms] [Warning] [omni.hydra] Mesh '/__Prototype_10674323882329428463/mesh_0' has corrupted data in primvar 'st_4': buffer size 228 doesn't match expected size 10659 in faceVarying primvars
+[forest-preview] overview=/home/sun/machine-dog-nav-runs/2026-08-14_forest_gen_visual_preview/results/forest_gen_overview.png
+[forest-preview] robot_context=/home/sun/machine-dog-nav-runs/2026-08-14_forest_gen_visual_preview/results/forest_gen_robot_context.png
+[forest-preview] canopy=/home/sun/machine-dog-nav-runs/2026-08-14_forest_gen_visual_preview/results/forest_gen_canopy.png
+[forest-preview] metrics=/home/sun/machine-dog-nav-runs/2026-08-14_forest_gen_visual_preview/results/capture_metrics.json
+2026-08-14T08:31:15Z [544,492ms] [Warning] [omni.hydra] Mesh '/__Prototype_10674323882329428463/mesh_0' has corrupted data in primvar 'st_6': buffer size 336 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,492ms] [Warning] [omni.hydra] Mesh '/__Prototype_10674323882329428463/mesh_0' has corrupted data in primvar 'st_1': buffer size 4530 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,492ms] [Warning] [omni.hydra] Mesh '/__Prototype_10674323882329428463/mesh_0' has corrupted data in primvar 'st': buffer size 2505 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:15Z [544,492ms] [Warning] [omni.hydra] Mesh '/__Prototype_10674323882329428463/mesh_0' has corrupted data in primvar 'st_3': buffer size 378 doesn't match expected size 10659 in faceVarying primvars
+2026-08-14T08:31:17Z [546,291ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-14T08:31:17Z [546,291ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-08-14T08:31:19Z [548,127ms] [Warning] [carb] Client gpu.foundation.plugin has acquired [gpu::unstable::IMemoryBudgetManagerFactory v0.1] 100 times. Consider accessing this interface with carb::getCachedInterface() (Performance warning)
+2026-08-14T08:31:20Z [549,061ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-14T08:31:20Z [549,061ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)

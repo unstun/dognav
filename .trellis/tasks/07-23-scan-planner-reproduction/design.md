@@ -339,3 +339,39 @@ asset + mesh hashes + sensor contracts
 Every consumer records the same asset/sensor configuration hash. A run is an
 instrumentation failure if the robot asset hash, sensor frame, expected sensor
 output, or depth artifact is absent.
+
+## 13. V4 Native Forest Locomotion Preview
+
+V4 composes the already-qualified V3 Lite3/V12 runtime with the pinned native
+`forest_gen` terrain implementation. It does not reuse the upstream Spot task
+and does not alter V3 artifacts. `forest_gen` v0.3.8 creates unseeded terrain
+and population RNG objects internally, so the adapter explicitly seeds the
+terrain strategies and uses a bounded deterministic vegetation layout instead
+of claiming that the upstream full population is repeatable. The local
+repository owns four separately declared tracks:
+
+```text
+forest_gen terrain mesh            -> visual + terrain physics
+tree/rock visual USD assets        -> upstream appearance only
+source-derived trunk/rock proxies  -> bounded physics + sensor geometry
+grass/understory                   -> bounded visual only
+```
+
+The first short preview uses one fixed seed and one environment. It places the
+Lite3 at a reviewed clear spawn and declares a short zero/forward/yaw/zero
+command schedule. A route-relevant obstacle probe precedes locomotion and must
+show the same obstacle in visual, PhysX, and both declared sensor geometry
+owners. The proxy is labeled source-derived and may not replace the upstream
+visual mesh in rendered evidence.
+
+The policy/runtime path is imported from the immutable V3 payload. Before
+stepping, V4 asserts the checkpoint, 450-D observation, 12-action order,
+default pose, actuator settings, timing, canonical URDF, Isaac-safe URDF, and
+sensor frame names. Any mismatch stops the run as an identity failure.
+
+The preview records command, policy action, root pose/velocity, contacts,
+support, collision/reset/termination state, sensor obstacle evidence, and raw
+viewport frames. Frames are captured during stepping; transport and metrics
+are closed before the video writer and simulator teardown complete. Failure is
+preserved; no training, controller tuning, SCAN connection, or threshold
+relaxation is permitted.

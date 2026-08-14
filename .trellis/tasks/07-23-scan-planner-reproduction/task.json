@@ -23,12 +23,15 @@
   ],
   "parent": null,
   "relatedFiles": [],
-  "notes": "V3 uses the pinned sensor-rig URDF with V12 model_149999 plus live MID-360-like and D435i-like simulated sensors. Asset, locomotion A/B, dual-sensor, two-dry-run, frozen closed-loop, sync, and local re-evaluation gates passed 71/71. Human review remains required; V2 is baseline-only.",
+  "notes": "V3 uses the pinned sensor-rig URDF with V12 model_149999 plus live MID-360-like and D435i-like simulated sensors. Asset, locomotion A/B, dual-sensor, two-dry-run, frozen closed-loop, sync, and local re-evaluation gates passed 71/71. Human review remains required; V2 is baseline-only. On 2026-08-14 Dr Sun approved a bounded V4 forest locomotion preview using the same URDF and checkpoint. V4 preview02 passed automated identity, deterministic terrain, visible/collision/dual-sensor geometry, locomotion, video, sync, and hash gates; Dr Sun's visual review remains pending. V3 evidence stays immutable and SCAN forest closed-loop remains out of scope.",
   "meta": {
     "automated_acceptance": "v3_pass_71_of_71",
     "human_review": "pending_human_v3",
     "v2_status": "baseline_only",
     "v3_scope": "new_urdf_v12_mid360_d435i",
-    "v3_status": "ready_for_human_review"
+    "v3_status": "ready_for_human_review",
+    "v4_scope": "forest_gen_lite3_v12_short_inference_preview",
+    "v4_status": "automated_gates_passed_ready_for_human_review",
+    "v4_human_review": "pending"
   }
 }

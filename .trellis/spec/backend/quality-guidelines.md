@@ -329,3 +329,159 @@ pin policy + canonical URDF + Isaac URDF
 ```text
 visual rig surface blocks ray -> record self-occlusion -> no environmental hit
 ```
+
+## Scenario: Qualify a Pinned Locomotion Policy on Procedural Forest Terrain
+
+### 1. Scope / Trigger
+
+Use this scenario when an already-qualified locomotion policy and robot asset
+are exercised on imported or procedurally generated terrain, especially when
+the run must also prove live simulated LiDAR/depth response and deliver a video
+for human review. This scenario is an experiment gate, not a training or
+planner-integration gate.
+
+### 2. Signatures
+
+- The runtime must expose an explicit forest course and immutable run inputs:
+
+  ```text
+  --course forest_gen
+  --seed <integer>
+  --checkpoint <pinned file>
+  --canonical-urdf <pinned file>
+  --isaac-urdf <pinned file>
+  --output-dir <run-owned directory>
+  [--record-video]
+  ```
+
+- The run bundle must contain at least:
+
+  ```text
+  qualification_report.json
+  run_identity.json
+  runtime_composition.json
+  policy_metrics.jsonl
+  sensor_metrics.jsonl
+  depth_metrics.jsonl
+  output_sha256.txt
+  forest_lite3_v12.mp4       # when video is requested
+  ```
+
+  The generated terrain identity and static proxy audit may be embedded in
+  `run_identity.json`, `runtime_composition.json`, and
+  `qualification_report.json`; they do not require duplicate sidecar files.
+
+- The launcher exit contract is independent of simulator shutdown behavior:
+
+  ```text
+  missing qualification_report.json -> exit 90
+  qualification_report.status != PASS -> exit 91
+  PASS report and complete artifacts -> exit 0
+  ```
+
+### 3. Contracts
+
+- Verify the forest-source commits, checkpoint hash, canonical URDF hash, and
+  Isaac-safe URDF hash before starting the simulator. Record the exact policy,
+  robot, terrain, command schedule, sensor, physics, and seed identities.
+- Do not infer determinism from an upstream `seed` parameter. Inspect every
+  random-number source used by terrain and asset population. Either route the
+  declared seed into all of them or freeze and compare the generated geometry
+  hash across identical-input runs.
+- Normalize upstream mesh visual types only when required by the simulator
+  importer. Preserve the source vertices and faces, and record the resulting
+  mesh hash so a rendering compatibility conversion cannot silently change the
+  terrain.
+- Every route-relevant tree or rock proxy must be visible, collision-enabled,
+  and targeted by both the MID-360-like and D435i-like sensor queries at the
+  same prim root. A decorative asset beside an unrelated invisible collider
+  does not satisfy this contract.
+- Bind the policy command terrain key to the declared course without changing
+  the pinned observation/action contract. The recorded command tensor, not
+  only the requested schedule, is the evidence that zero/forward/yaw/stop
+  reached the policy.
+- Treat the machine-readable qualification report as the launcher truth
+  source. Some simulator shutdown paths can swallow the Python process return
+  code, so a shell exit code alone must never promote a run.
+- Keep automated qualification and human visual acceptance separate. A
+  decoded video can pass instrumentation while an occluding camera makes it
+  unusable for review; preserve that run as superseded and record a new camera
+  run without changing the experiment inputs.
+- Preserve failed attempts, copy complete artifacts back to the local source
+  of truth, and prove local/remote hash parity before reporting a run as ready
+  for review.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required behavior |
+|---|---|
+| Forest source commit, checkpoint, or URDF hash differs | Stop before simulator import |
+| Identical seed produces a different terrain geometry hash | Fail reproducibility; seed all hidden RNGs or freeze the generated asset |
+| Upstream visual mesh types cannot be concatenated by the importer | Preserve failure; normalize visuals without changing vertices/faces |
+| Forest course is absent from the policy command-terrain mapping | Fail before policy inference; add an explicit unchanged-contract binding |
+| Tree/rock proxy lacks visibility, collision, or either sensor target | Fail static geometry qualification |
+| Qualification report is missing after simulator exit | Launcher exits 90 even if the simulator process returned zero |
+| Qualification report status is not `PASS` | Launcher exits 91 and preserves the report and logs |
+| Video cannot be decoded or the robot is materially occluded | Keep automated result; mark video superseded and leave human review pending |
+| Local/remote artifact hashes differ | Do not present the local bundle as the executed evidence |
+
+### 5. Good / Base / Bad Cases
+
+- **Good:** pinned identities, repeated identical terrain hash, terrain and
+  route proxies visible/collidable/dual-sensor-targeted, recorded policy
+  response on uneven ground, launcher report enforcement, complete local hash
+  parity, decoded unobstructed video, and a separate pending human decision.
+- **Base:** a deterministic flat or obstacle course can validate the policy and
+  sensors, but it cannot be promoted as forest-terrain evidence.
+- **Bad:** launch a photorealistic forest backdrop with a flat invisible floor,
+  let LiDAR query different geometry from physics, trust process exit zero, or
+  call an occluded video human-approved.
+
+### 6. Tests Required
+
+- Unit-test forest report evaluation, missing/static proxy rejection, identity
+  serialization, command scheduling, and the launcher exit mapping.
+- Run at least two identical-input terrain generations and assert the complete
+  mesh hash is identical. Record the seed and all upstream commit hashes.
+- Inspect the instantiated stage and assert terrain plus every route-relevant
+  proxy is visible, collision-enabled where declared, and included in both
+  sensor target sets.
+- Execute the pinned policy on the terrain and assert finite state/action,
+  scheduled command visibility, nontrivial displacement, terrain-height
+  variation, support/contact bounds, and no hidden reset or termination.
+- Assert LiDAR/depth timestamps advance, outputs are finite and nonempty,
+  obstacle returns exist, and readings change with pose.
+- Decode the full video, inspect representative frames, parse JSON/JSONL,
+  verify the recorded terrain identity, and compare remote/local SHA-256
+  manifests.
+- Leave human acceptance unchecked until the named reviewer watches the full
+  video and records a decision.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```text
+upstream seed set + simulator exit 0 + MP4 exists -> forest run validated
+```
+
+```text
+photorealistic tree visual + separate invisible box + sensor-only mesh -> same obstacle
+```
+
+#### Correct
+
+```text
+pin policy + URDFs + forest commits
+  -> seed every RNG / compare terrain hash
+  -> inspect visible-collision-sensor geometry
+  -> run recorded policy schedule
+  -> enforce qualification_report.status
+  -> copy and hash-check artifacts
+  -> decode unobstructed video
+  -> human review remains a separate decision
+```
+
+```text
+one declared proxy prim root -> visible + PhysX collision + LiDAR target + depth target
+```
