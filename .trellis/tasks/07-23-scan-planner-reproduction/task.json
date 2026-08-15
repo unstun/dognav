@@ -3,7 +3,7 @@
   "name": "scan-planner-reproduction",
   "title": "Integrate SCAN-Planner Foxy with Lite3 Physics Simulation",
   "description": "Port the pinned SCAN ROS 2 planner core to Foxy and validate a versioned TCP closed loop against a pinned Lite3 Isaac policy simulation on the 5070 Ti.",
-  "status": "review",
+  "status": "in_progress",
   "dev_type": "research",
   "scope": "foxy-isaac-closed-loop",
   "package": null,
@@ -23,10 +23,10 @@
   ],
   "parent": null,
   "relatedFiles": [],
-  "notes": "V3 uses the pinned sensor-rig URDF with V12 model_149999 plus live MID-360-like and D435i-like simulated sensors. V4--V6 remain immutable human-change-requested evidence. Trellis review superseded V7 candidate01 despite 119/119 because collision-replan deferral reused the broader execution-frozen signal. R2 uses a catch-up-only topic and a bounded 0.20 m/s catch-up floor; dry runs 16 and 17 passed 120/120. Candidate02 also passed but was superseded after adding compatibility-only empty defaults for V7 variables in the shared runner. Post-fix review candidate03 passed 120/120. Full R2 evidence is local with hash parity. AC35--AC38 pass; AC39 remains entirely Dr Sun's human video decision. No training or real-robot work was performed.",
+  "notes": "V3 uses the pinned sensor-rig URDF with V12 model_149999 plus live MID-360-like and D435i-like simulated sensors. V4--V6 remain immutable human-change-requested evidence. V7 candidate03 remains immutable with human review pending. The procedural V8 candidate passed automated gates but Dr Sun rejected its hand-authored human representation on 2026-08-14; it is immutable negative evidence and will not be submitted. V8 R2 now references NVIDIA's versioned Isaac Sim 5.1 male_adult_police_04 asset. The official Biped AnimationGraph runs in a separate bounded process and produces a deterministic 101-joint retarget cache; the Direct-GPU Lite3 process replays the cache without the People graph. A separate hidden 1.70 m x 0.30 m capsule owns collision, clearance, and both sensor targets. Visual preflight06 passed its automated composition gate and produced a directly viewable local MP4. V8 R2 remains in progress pending Dr Sun's appearance review before SCAN no-contact/full runs. No training or real-robot work is authorized.",
   "meta": {
-    "automated_acceptance": "v6_pass_100_of_100",
-    "human_review": "v6_change_requested_v7_active",
+    "automated_acceptance": "v8_r2_visual_composition_preflight_pass",
+    "human_review": "v8_procedural_change_requested_official_preview_pending",
     "v2_status": "baseline_only",
     "v3_scope": "new_urdf_v12_mid360_d435i",
     "v3_status": "ready_for_human_review",
@@ -43,6 +43,14 @@
     "v7_status": "r2_frozen_automated_gate_pass_ready_for_human_review",
     "v7_human_review": "pending",
     "v7_automated_acceptance": "120_of_120",
-    "v7_review_candidate": "forest_v7_review_candidate03"
+    "v7_review_candidate": "forest_v7_review_candidate03",
+    "v8_scope": "yellow_procedural_humanoid_dynamic_crossing_with_hidden_capsule",
+    "v8_status": "procedural_candidate_frozen_human_change_requested",
+    "v8_human_review": "change_requested_use_official_isaac_human",
+    "v8_automated_acceptance": "125_of_125",
+    "v8_review_candidate": "v8_human_review_candidate01_superseded",
+    "v8_r2_scope": "official_isaac_5_1_police_human_biped_retarget_cache_hidden_physics_sensor_proxy",
+    "v8_r2_status": "visual_composition_preflight_pass_full_scan_runs_blocked_on_human_review",
+    "v8_r2_human_review": "official_animated_visual_preflight_pending"
   }
 }

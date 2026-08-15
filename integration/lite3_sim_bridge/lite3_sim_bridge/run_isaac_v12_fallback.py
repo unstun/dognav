@@ -10,6 +10,7 @@ from pathlib import Path
 import random
 import subprocess
 import time
+from typing import Mapping
 import xml.etree.ElementTree as ET
 
 from .command_state import CommandLimits, LatestCommandState
@@ -20,8 +21,11 @@ from .isaac_adapter_core import (
     canonical_config_sha256,
     circle_surface_clearance_2d,
     dynamic_obstacle_state,
+    expand_isaac_env_regex_ns,
     local_minimum_obstacle_hits,
+    official_human_registered_state,
     point_to_segment_distance_2d,
+    procedural_human_gait_angles,
     quaternion_wxyz_to_xyzw,
     schedule_duration,
     schedule_state,
@@ -37,6 +41,11 @@ from .protocol import (
     encode_sensor_payload,
     encode_status_payload,
     pack_xyz_points,
+)
+from .official_human_contract import (
+    BIPED_URL as OFFICIAL_HUMAN_BIPED_URL,
+    CHARACTER_URL as OFFICIAL_HUMAN_CHARACTER_URL,
+    cache_content_sha256 as official_human_cache_content_sha256,
 )
 from .run_isaac_lite3 import (
     AdapterFailure,
@@ -88,6 +97,7 @@ FOREST_NAVIGATION_GOAL_WORLD_M = (0.5, 3.0, 0.85)
 FOREST_NAVIGATION_PLANNING_RADIUS_M = 0.40
 DYNAMIC_OBSTACLE_PRIM_EXPR = "{ENV_REGEX_NS}/DynamicObstacle"
 DYNAMIC_OBSTACLE_RUNTIME_PRIM = "/World/envs/env_0/DynamicObstacle"
+DYNAMIC_HUMAN_VISUAL_RUNTIME_PRIM = "/World/DynamicHumanVisual"
 DYNAMIC_OBSTACLE_DEFAULT_X_M = -3.0
 DYNAMIC_OBSTACLE_DEFAULT_START_Y_M = 1.2
 DYNAMIC_OBSTACLE_DEFAULT_END_Y_M = 4.8
@@ -98,6 +108,23 @@ DYNAMIC_OBSTACLE_DEFAULT_HEIGHT_M = 1.50
 DYNAMIC_OBSTACLE_DEFAULT_TERRAIN_CLEARANCE_M = 0.02
 DYNAMIC_OBSTACLE_DEFAULT_HOLD_FRACTION = 0.5
 DYNAMIC_OBSTACLE_DEFAULT_HOLD_SECONDS = 0.0
+DYNAMIC_HUMAN_PART_NAMES = (
+    "Head",
+    "Torso",
+    "Pelvis",
+    "LeftArm",
+    "RightArm",
+    "LeftLeg",
+    "RightLeg",
+)
+DYNAMIC_HUMAN_GAIT_CADENCE_HZ = 1.6
+DYNAMIC_HUMAN_GAIT_MAX_SWING_RADIANS = math.radians(25.0)
+DYNAMIC_HUMAN_COLOR_RGB = (1.0, 0.82, 0.02)
+OFFICIAL_HUMAN_SOURCE_FOOT_Z_M = -1.9355964298028994e-7
+OFFICIAL_HUMAN_SOURCE_VISIBLE_TOP_Z_M = 1.7357525825500488
+OFFICIAL_HUMAN_SOURCE_FORWARD_YAW_RADIANS = -math.pi / 2.0
+OFFICIAL_HUMAN_CAPSULE_HEIGHT_M = 1.70
+OFFICIAL_HUMAN_CAPSULE_RADIUS_M = 0.30
 FOREST_PREVIEW_SCHEDULE = (
     QualificationSegment("settle_zero", 1.5, (0.0, 0.0, 0.0)),
     QualificationSegment("forward", 4.0, (0.25, 0.0, 0.0)),
@@ -199,6 +226,8 @@ def _forest_enabled(args) -> bool:
         "forest_gen_nav",
         "forest_gen_nav_v6",
         "forest_gen_nav_v7_dynamic",
+        "forest_gen_nav_v8_human",
+        "forest_gen_nav_v8_official_human",
     )
 
 
@@ -207,6 +236,8 @@ def _forest_navigation_enabled(args) -> bool:
         "forest_gen_nav",
         "forest_gen_nav_v6",
         "forest_gen_nav_v7_dynamic",
+        "forest_gen_nav_v8_human",
+        "forest_gen_nav_v8_official_human",
     )
 
 
@@ -218,13 +249,35 @@ def _forest_v7_enabled(args) -> bool:
     return args.course == "forest_gen_nav_v7_dynamic"
 
 
+def _forest_v8_enabled(args) -> bool:
+    return args.course == "forest_gen_nav_v8_human"
+
+
+def _forest_v8_official_enabled(args) -> bool:
+    return args.course == "forest_gen_nav_v8_official_human"
+
+
+def _forest_v8_any_enabled(args) -> bool:
+    return _forest_v8_enabled(args) or _forest_v8_official_enabled(args)
+
+
+def _dynamic_obstacle_enabled(args) -> bool:
+    return _forest_v7_enabled(args) or _forest_v8_any_enabled(args)
+
+
 def _forest_review_geometry_enabled(args) -> bool:
-    return _forest_v6_enabled(args) or _forest_v7_enabled(args)
+    return _forest_v6_enabled(args) or _dynamic_obstacle_enabled(args)
 
 
 def _dynamic_obstacle_spec(args) -> DynamicObstacleSpec:
     return DynamicObstacleSpec(
-        name="v7_crossing_actor",
+        name=(
+            "v8_official_human_crossing_actor"
+            if _forest_v8_official_enabled(args)
+            else "v8_human_crossing_actor"
+            if _forest_v8_enabled(args)
+            else "v7_crossing_actor"
+        ),
         start_xy=(args.dynamic_obstacle_x, args.dynamic_obstacle_start_y),
         end_xy=(args.dynamic_obstacle_x, args.dynamic_obstacle_end_y),
         wait_seconds=args.dynamic_obstacle_wait_seconds,
@@ -235,6 +288,458 @@ def _dynamic_obstacle_spec(args) -> DynamicObstacleSpec:
         hold_fraction=args.dynamic_obstacle_hold_fraction,
         hold_seconds=args.dynamic_obstacle_hold_seconds,
     )
+
+
+def _dynamic_human_part_exprs() -> tuple[str, ...]:
+    return tuple(
+        f"{{ENV_REGEX_NS}}/DynamicObstacle/Visual/{name}"
+        for name in DYNAMIC_HUMAN_PART_NAMES
+    )
+
+
+def _official_human_sensor_exprs() -> tuple[str, ...]:
+    return (f"{DYNAMIC_OBSTACLE_PRIM_EXPR}/CollisionCapsule",)
+
+
+def _write_procedural_human_usd(path: Path, spec: DynamicObstacleSpec) -> Mapping[str, object]:
+    """Author the V8 human visual and hidden collision capsule as run evidence."""
+
+    from pxr import Gf, PhysxSchema, Sdf, Usd, UsdGeom, UsdPhysics, UsdShade
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    stage = Usd.Stage.CreateNew(str(path))
+    UsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)
+    UsdGeom.SetStageMetersPerUnit(stage, 1.0)
+    root = UsdGeom.Xform.Define(stage, "/Human")
+    stage.SetDefaultPrim(root.GetPrim())
+    rigid = UsdPhysics.RigidBodyAPI.Apply(root.GetPrim())
+    rigid.CreateKinematicEnabledAttr(True)
+    PhysxSchema.PhysxRigidBodyAPI.Apply(root.GetPrim()).CreateDisableGravityAttr(True)
+    UsdPhysics.MassAPI.Apply(root.GetPrim()).CreateMassAttr(20.0)
+
+    material = UsdShade.Material.Define(stage, "/Human/Looks/YellowHuman")
+    shader = UsdShade.Shader.Define(stage, "/Human/Looks/YellowHuman/PreviewSurface")
+    shader.CreateIdAttr("UsdPreviewSurface")
+    shader.CreateInput("diffuseColor", Sdf.ValueTypeNames.Color3f).Set(
+        Gf.Vec3f(*DYNAMIC_HUMAN_COLOR_RGB)
+    )
+    shader.CreateInput("roughness", Sdf.ValueTypeNames.Float).Set(0.62)
+    shader.CreateInput("metallic", Sdf.ValueTypeNames.Float).Set(0.0)
+    material.CreateSurfaceOutput().ConnectToSource(shader.ConnectableAPI(), "surface")
+
+    collision = UsdGeom.Capsule.Define(stage, "/Human/CollisionCapsule")
+    collision.CreateAxisAttr(UsdGeom.Tokens.z)
+    collision.CreateRadiusAttr(float(spec.radius_m))
+    collision.CreateHeightAttr(float(spec.height_m - 2.0 * spec.radius_m))
+    UsdPhysics.CollisionAPI.Apply(collision.GetPrim())
+    collision.MakeInvisible()
+
+    UsdGeom.Xform.Define(stage, "/Human/Visual")
+
+    def part_xform(name, translation, rotate_x=False):
+        part = UsdGeom.Xform.Define(stage, f"/Human/Visual/{name}")
+        part.AddTranslateOp().Set(Gf.Vec3d(*translation))
+        if rotate_x:
+            part.AddRotateXOp().Set(0.0)
+        return part
+
+    def bind(geometry):
+        UsdShade.MaterialBindingAPI(geometry.GetPrim()).Bind(material)
+
+    head_part = part_xform("Head", (0.0, 0.0, 0.68))
+    head = UsdGeom.Sphere.Define(stage, f"{head_part.GetPath()}/Shape")
+    head.CreateRadiusAttr(0.16)
+    bind(head)
+
+    torso_part = part_xform("Torso", (0.0, 0.0, 0.30))
+    torso = UsdGeom.Cube.Define(stage, f"{torso_part.GetPath()}/Shape")
+    torso.CreateSizeAttr(1.0)
+    # A high-visibility jacket-sized torso keeps the rendered human surface
+    # commensurate with its conservative physical capsule.  A narrower first
+    # draft produced only half the cylinder baseline's early lidar returns and
+    # allowed the planner to react after the physical envelope was breached.
+    torso.AddScaleOp().Set(Gf.Vec3f(0.52, 0.42, 0.58))
+    bind(torso)
+
+    pelvis_part = part_xform("Pelvis", (0.0, 0.0, 0.00))
+    pelvis = UsdGeom.Cube.Define(stage, f"{pelvis_part.GetPath()}/Shape")
+    pelvis.CreateSizeAttr(1.0)
+    pelvis.AddScaleOp().Set(Gf.Vec3f(0.38, 0.32, 0.24))
+    bind(pelvis)
+
+    for name, x in (("LeftArm", 0.24), ("RightArm", -0.24)):
+        part = part_xform(name, (x, 0.0, 0.48), rotate_x=True)
+        arm = UsdGeom.Capsule.Define(stage, f"{part.GetPath()}/Shape")
+        arm.CreateAxisAttr(UsdGeom.Tokens.z)
+        arm.CreateRadiusAttr(0.075)
+        arm.CreateHeightAttr(0.48)
+        arm.AddTranslateOp().Set(Gf.Vec3d(0.0, 0.0, -0.30))
+        bind(arm)
+
+    for name, x in (("LeftLeg", 0.105), ("RightLeg", -0.105)):
+        part = part_xform(name, (x, 0.0, -0.08), rotate_x=True)
+        leg = UsdGeom.Capsule.Define(stage, f"{part.GetPath()}/Shape")
+        leg.CreateAxisAttr(UsdGeom.Tokens.z)
+        leg.CreateRadiusAttr(0.095)
+        leg.CreateHeightAttr(0.60)
+        leg.AddTranslateOp().Set(Gf.Vec3d(0.0, 0.0, -0.385))
+        bind(leg)
+
+    stage.GetRootLayer().Save()
+    return {
+        "path": str(path),
+        "sha256": _sha256(path),
+        "bytes": path.stat().st_size,
+        "source": "locally generated procedural USDA; no external character asset",
+        "visible_part_names": list(DYNAMIC_HUMAN_PART_NAMES),
+        "collision_prim_path": "/Human/CollisionCapsule",
+        "collision_shape": "hidden capsule",
+        "colour_rgb": list(DYNAMIC_HUMAN_COLOR_RGB),
+        "gait_cadence_hz": DYNAMIC_HUMAN_GAIT_CADENCE_HZ,
+        "gait_maximum_swing_radians": DYNAMIC_HUMAN_GAIT_MAX_SWING_RADIANS,
+    }
+
+
+def _write_official_human_wrapper_usd(
+    path: Path, spec: DynamicObstacleSpec
+) -> Mapping[str, object]:
+    """Author the hidden physical/sensor proxy without the skinned visual."""
+
+    from pxr import PhysxSchema, Usd, UsdGeom, UsdPhysics
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    stage = Usd.Stage.CreateNew(str(path))
+    UsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)
+    UsdGeom.SetStageMetersPerUnit(stage, 1.0)
+    root = UsdGeom.Xform.Define(stage, "/Human")
+    stage.SetDefaultPrim(root.GetPrim())
+    UsdPhysics.RigidBodyAPI.Apply(root.GetPrim()).CreateKinematicEnabledAttr(True)
+    PhysxSchema.PhysxRigidBodyAPI.Apply(root.GetPrim()).CreateDisableGravityAttr(True)
+    UsdPhysics.MassAPI.Apply(root.GetPrim()).CreateMassAttr(20.0)
+
+    collision = UsdGeom.Capsule.Define(stage, "/Human/CollisionCapsule")
+    collision.CreateAxisAttr(UsdGeom.Tokens.z)
+    collision.CreateRadiusAttr(float(spec.radius_m))
+    collision.CreateHeightAttr(float(spec.height_m - 2.0 * spec.radius_m))
+    UsdPhysics.CollisionAPI.Apply(collision.GetPrim())
+    collision.MakeInvisible()
+
+    stage.GetRootLayer().Save()
+    return {
+        "path": str(path),
+        "sha256": _sha256(path),
+        "bytes": path.stat().st_size,
+        "source": "local hidden collision and sensor proxy; no visible character",
+        "official_character_url": OFFICIAL_HUMAN_CHARACTER_URL,
+        "official_biped_url": OFFICIAL_HUMAN_BIPED_URL,
+        "collision_prim_path": "/Human/CollisionCapsule",
+        "collision_shape": "hidden capsule",
+        "total_envelope_height_m": float(spec.height_m),
+        "radius_m": float(spec.radius_m),
+        "redistribution": "official NVIDIA content is referenced, not vendored",
+    }
+
+
+def _load_official_human_animation_cache(path: Path) -> Mapping[str, object]:
+    import numpy as np
+
+    if path is None or not path.is_file():
+        raise AdapterFailure(f"official Biped retarget cache is missing: {path}")
+    required = {
+        "schema_version",
+        "fps",
+        "joints",
+        "character_url",
+        "biped_url",
+        "idle_translations",
+        "idle_rotations_xyzw",
+        "walk_translations",
+        "walk_rotations_xyzw",
+    }
+    with np.load(path, allow_pickle=False) as archive:
+        missing = sorted(required - set(archive.files))
+        if missing:
+            raise AdapterFailure(f"official Biped retarget cache fields missing: {missing}")
+        arrays = {name: np.array(archive[name], copy=True) for name in required}
+    schema_version = int(arrays["schema_version"][0])
+    fps = int(arrays["fps"][0])
+    joints = tuple(str(value) for value in arrays["joints"].tolist())
+    if schema_version != 1 or fps <= 0 or len(joints) != 101:
+        raise AdapterFailure(
+            "official Biped retarget cache identity is invalid: "
+            f"schema={schema_version} fps={fps} joints={len(joints)}"
+        )
+    if str(arrays["character_url"][0]) != OFFICIAL_HUMAN_CHARACTER_URL:
+        raise AdapterFailure("official Biped retarget cache character URL changed")
+    if str(arrays["biped_url"][0]) != OFFICIAL_HUMAN_BIPED_URL:
+        raise AdapterFailure("official Biped retarget cache Biped URL changed")
+    for clip in ("idle", "walk"):
+        translations = arrays[f"{clip}_translations"]
+        rotations = arrays[f"{clip}_rotations_xyzw"]
+        if (
+            translations.ndim != 3
+            or translations.shape[0] <= 1
+            or translations.shape[1:] != (len(joints), 3)
+            or rotations.shape != (translations.shape[0], len(joints), 4)
+        ):
+            raise AdapterFailure(
+                f"official {clip} Biped cache shapes are invalid: "
+                f"translations={translations.shape} rotations={rotations.shape}"
+            )
+        if not np.isfinite(translations).all() or not np.isfinite(rotations).all():
+            raise AdapterFailure(f"official {clip} Biped cache contains non-finite data")
+        quaternion_norms = np.linalg.norm(rotations, axis=2)
+        if np.max(np.abs(quaternion_norms - 1.0)) > 1.0e-4:
+            raise AdapterFailure(f"official {clip} Biped cache quaternions are not unit")
+        if (
+            np.max(np.abs(translations - translations[0])) <= 1.0e-4
+            and np.max(np.abs(rotations - rotations[0])) <= 1.0e-4
+        ):
+            raise AdapterFailure(f"official {clip} Biped cache is a static pose")
+    return {
+        "path": str(path.resolve()),
+        "file_sha256": _sha256(path),
+        "content_sha256": official_human_cache_content_sha256(arrays),
+        "schema_version": schema_version,
+        "fps": fps,
+        "joints": joints,
+        "idle_translations": arrays["idle_translations"],
+        "idle_rotations_xyzw": arrays["idle_rotations_xyzw"],
+        "walk_translations": arrays["walk_translations"],
+        "walk_rotations_xyzw": arrays["walk_rotations_xyzw"],
+    }
+
+
+def _official_human_usd_components(translations, rotations_xyzw):
+    from pxr import Gf
+
+    usd_translations = [Gf.Vec3f(*[float(value) for value in row]) for row in translations]
+    usd_rotations = [
+        Gf.Quatf(
+            float(row[3]),
+            Gf.Vec3f(float(row[0]), float(row[1]), float(row[2])),
+        )
+        for row in rotations_xyzw
+    ]
+    return usd_translations, usd_rotations
+
+
+def _write_official_human_visual_usd(
+    path: Path,
+    animation_cache_path: Path,
+) -> Mapping[str, object]:
+    """Author a visual-only official person with a Biped-retargeted replay slot."""
+
+    from pxr import Sdf, Usd, UsdGeom, UsdSkel
+
+    cache = _load_official_human_animation_cache(animation_cache_path)
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    stage = Usd.Stage.CreateNew(str(path))
+    UsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)
+    UsdGeom.SetStageMetersPerUnit(stage, 1.0)
+    root = UsdGeom.Xform.Define(stage, "/HumanVisual")
+    stage.SetDefaultPrim(root.GetPrim())
+    character = UsdGeom.Xform.Define(stage, "/HumanVisual/OfficialCharacter")
+    character.GetPrim().GetReferences().AddReference(OFFICIAL_HUMAN_CHARACTER_URL)
+
+    skeleton_prims = [
+        prim for prim in stage.Traverse() if prim.GetTypeName() == "Skeleton"
+    ]
+    if len(skeleton_prims) != 1:
+        raise AdapterFailure(
+            f"official character needs one skeleton, found {len(skeleton_prims)}"
+        )
+    skeleton_prim = skeleton_prims[0]
+    skeleton = UsdSkel.Skeleton(skeleton_prim)
+    skeleton_joints = tuple(str(value) for value in skeleton.GetJointsAttr().Get())
+    rest_transforms = skeleton.GetRestTransformsAttr().Get()
+    if len(skeleton_joints) != len(rest_transforms):
+        raise AdapterFailure("official skeleton joint and rest-transform counts differ")
+    if skeleton_joints != cache["joints"]:
+        raise AdapterFailure("official runtime skeleton differs from the Biped cache")
+    _, _, rest_scales = UsdSkel.DecomposeTransforms(rest_transforms)
+    target_path = Sdf.Path("/HumanVisual/OfficialAnimations/Active")
+    target = UsdSkel.Animation.Define(stage, target_path)
+    target.CreateJointsAttr(list(skeleton_joints))
+    initial_components = _official_human_usd_components(
+        cache["idle_translations"][0],
+        cache["idle_rotations_xyzw"][0],
+    )
+    target.CreateTranslationsAttr(initial_components[0])
+    target.CreateRotationsAttr(initial_components[1])
+    target.CreateScalesAttr(rest_scales)
+
+    binding = UsdSkel.BindingAPI.Apply(skeleton_prim)
+    binding.CreateAnimationSourceRel().SetTargets([target_path])
+    stage.GetRootLayer().Save()
+    return {
+        "path": str(path),
+        "sha256": _sha256(path),
+        "bytes": path.stat().st_size,
+        "source": "visual-only wrapper referencing NVIDIA Isaac Sim 5.1 content",
+        "official_character_url": OFFICIAL_HUMAN_CHARACTER_URL,
+        "skeleton_path": str(skeleton_prim.GetPath()),
+        "source_geometry": {
+            "meters_per_unit": 1.0,
+            "up_axis": "Z",
+            "foot_z_m": OFFICIAL_HUMAN_SOURCE_FOOT_Z_M,
+            "visible_top_z_m": OFFICIAL_HUMAN_SOURCE_VISIBLE_TOP_Z_M,
+            "source_forward_yaw_radians": OFFICIAL_HUMAN_SOURCE_FORWARD_YAW_RADIANS,
+        },
+        "biped_retarget_cache": {
+            "path": cache["path"],
+            "file_sha256": cache["file_sha256"],
+            "content_sha256": cache["content_sha256"],
+            "schema_version": cache["schema_version"],
+            "fps": cache["fps"],
+            "joint_count": len(cache["joints"]),
+            "idle_frame_count": int(cache["idle_translations"].shape[0]),
+            "walk_frame_count": int(cache["walk_translations"].shape[0]),
+            "source": "NVIDIA Biped AnimationGraph ControlRig retarget output",
+            "target_path": str(target_path),
+        },
+        "redistribution": "official NVIDIA content is referenced, not vendored",
+    }
+
+
+class _OfficialHumanAnimationPlayer:
+    """Replay official Biped-retargeted poses without an AnimationGraph."""
+
+    def __init__(self, stage, animation_cache_path: Path):
+        from pxr import Usd, UsdSkel
+
+        self.stage = stage
+        self.cache = _load_official_human_animation_cache(animation_cache_path)
+        visual_root = stage.GetPrimAtPath(DYNAMIC_HUMAN_VISUAL_RUNTIME_PRIM)
+        if not visual_root.IsValid():
+            raise AdapterFailure("official human visual root is absent")
+        skeleton_prims = [
+            prim
+            for prim in Usd.PrimRange(visual_root, Usd.TraverseInstanceProxies())
+            if prim.GetTypeName() == "Skeleton"
+        ]
+        if len(skeleton_prims) != 1:
+            raise AdapterFailure(
+                f"runtime official human needs one skeleton, found {len(skeleton_prims)}"
+            )
+        self.skeleton_prim = skeleton_prims[0]
+        skeleton = UsdSkel.Skeleton(self.skeleton_prim)
+        self.skeleton_joints = tuple(
+            str(value) for value in skeleton.GetJointsAttr().Get()
+        )
+        if self.skeleton_joints != self.cache["joints"]:
+            raise AdapterFailure("runtime official skeleton differs from Biped cache")
+        self.target = UsdSkel.Animation(
+            stage.GetPrimAtPath(
+                f"{DYNAMIC_HUMAN_VISUAL_RUNTIME_PRIM}/OfficialAnimations/Active"
+            )
+        )
+        if not self.target:
+            raise AdapterFailure("runtime official animation replay slot is absent")
+        self.active_name = None
+        self.clip_origin_seconds = 0.0
+
+    def update(self, elapsed_seconds: float, phase: str) -> Mapping[str, object]:
+        if not math.isfinite(elapsed_seconds) or elapsed_seconds < 0.0:
+            raise AdapterFailure("official animation elapsed time is invalid")
+        name = "walk" if phase == "crossing" else "idle"
+        if self.active_name != name:
+            self.active_name = name
+            self.clip_origin_seconds = elapsed_seconds
+        translations = self.cache[f"{name}_translations"]
+        rotations = self.cache[f"{name}_rotations_xyzw"]
+        frame_index = int(
+            max(0.0, elapsed_seconds - self.clip_origin_seconds) * self.cache["fps"]
+        ) % int(translations.shape[0])
+        components = _official_human_usd_components(
+            translations[frame_index],
+            rotations[frame_index],
+        )
+        self.target.GetTranslationsAttr().Set(components[0])
+        self.target.GetRotationsAttr().Set(components[1])
+        target_path = self.target.GetPrim().GetPath()
+        return {
+            "source": "NVIDIA Isaac Sim 5.1 Biped AnimationGraph retarget cache",
+            "clip": name,
+            "phase": phase,
+            "frame_index": frame_index,
+            "frame_count": int(translations.shape[0]),
+            "fps": self.cache["fps"],
+            "target_joint_count": len(self.skeleton_joints),
+            "target_animation_path": str(target_path),
+            "cache_content_sha256": self.cache["content_sha256"],
+            "local_procedural_gait": False,
+            "direct_gpu_animation_graph_used": False,
+        }
+
+
+def _set_official_human_visual_pose(stage, registered_state) -> Mapping[str, object]:
+    from pxr import Gf, Usd, UsdGeom
+
+    prim = stage.GetPrimAtPath(DYNAMIC_HUMAN_VISUAL_RUNTIME_PRIM)
+    if not prim.IsValid():
+        raise AdapterFailure("official human visual root is absent during pose update")
+    xformable = UsdGeom.Xformable(prim)
+    translate_op = None
+    orient_op = None
+    for op in xformable.GetOrderedXformOps():
+        if op.GetOpType() == UsdGeom.XformOp.TypeTranslate:
+            translate_op = op
+        elif op.GetOpType() == UsdGeom.XformOp.TypeOrient:
+            orient_op = op
+    if translate_op is None:
+        translate_op = xformable.AddTranslateOp(UsdGeom.XformOp.PrecisionDouble)
+    if orient_op is None:
+        orient_op = xformable.AddOrientOp(UsdGeom.XformOp.PrecisionDouble)
+    xyz = registered_state["visual_root_xyz_m"]
+    quat = registered_state["visual_quaternion_wxyz"]
+    translate_op.Set(Gf.Vec3d(*xyz))
+    orient_op.Set(Gf.Quatd(quat[0], Gf.Vec3d(quat[1], quat[2], quat[3])))
+    world_translation = xformable.ComputeLocalToWorldTransform(
+        Usd.TimeCode.Default()
+    ).ExtractTranslation()
+    return {
+        "scheduled_root_xyz_m": list(xyz),
+        "readback_root_xyz_m": [float(value) for value in world_translation],
+        "root_pose_error_m": math.dist(xyz, world_translation),
+        "visual_foot_world_z_m": registered_state["visual_foot_world_z_m"],
+        "visual_top_world_z_m": registered_state["visual_top_world_z_m"],
+        "capsule_bottom_world_z_m": registered_state[
+            "capsule_bottom_world_z_m"
+        ],
+        "foot_to_capsule_bottom_error_m": registered_state[
+            "foot_to_capsule_bottom_error_m"
+        ],
+        "visual_yaw_radians": registered_state["visual_yaw_radians"],
+    }
+
+
+def _apply_procedural_human_gait(stage, angles: Mapping[str, float]) -> None:
+    """Write reviewed part-local rotations; the dynamic root remains PhysX-owned."""
+
+    from pxr import UsdGeom
+
+    angle_by_part = {
+        "LeftArm": angles["left_arm_radians"],
+        "RightArm": angles["right_arm_radians"],
+        "LeftLeg": angles["left_leg_radians"],
+        "RightLeg": angles["right_leg_radians"],
+    }
+    for name, radians in angle_by_part.items():
+        prim = stage.GetPrimAtPath(
+            f"{DYNAMIC_OBSTACLE_RUNTIME_PRIM}/Visual/{name}"
+        )
+        if not prim.IsValid():
+            raise AdapterFailure(f"procedural human part is missing: {name}")
+        rotate_ops = [
+            op
+            for op in UsdGeom.Xformable(prim).GetOrderedXformOps()
+            if op.GetOpType() == UsdGeom.XformOp.TypeRotateX
+        ]
+        if len(rotate_ops) != 1:
+            raise AdapterFailure(f"procedural human part has no unique rotateX op: {name}")
+        rotate_ops[0].Set(math.degrees(float(radians)))
 
 
 def _forest_preview_enabled(args) -> bool:
@@ -832,6 +1337,8 @@ def _urdf_contract(path: Path):
 
 
 def _candidate_name(args) -> str:
+    if _forest_v8_enabled(args):
+        return "V12 model_149999 on Lite3 Pro sensor rig v8 human SCAN forest navigation"
     if _forest_v7_enabled(args):
         return "V12 model_149999 on Lite3 Pro sensor rig v7 dynamic SCAN forest navigation"
     if _forest_v6_enabled(args):
@@ -1222,7 +1729,7 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
             )
             setattr(env_cfg.scene, proxy["name"], proxy_cfg)
 
-        if _forest_v7_enabled(args):
+        if _dynamic_obstacle_enabled(args):
             from isaaclab.assets import RigidObjectCfg
 
             spec = _dynamic_obstacle_spec(args)
@@ -1236,9 +1743,38 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
             relative_centre = tuple(
                 float(centre[index]) - float(spawn[index]) for index in range(3)
             )
-            env_cfg.scene.dynamic_obstacle = RigidObjectCfg(
-                prim_path=DYNAMIC_OBSTACLE_PRIM_EXPR,
-                spawn=sim_utils.CylinderCfg(
+            if _forest_v8_official_enabled(args):
+                registered = official_human_registered_state(
+                    initial,
+                    spec,
+                    source_foot_z_m=OFFICIAL_HUMAN_SOURCE_FOOT_Z_M,
+                    source_visible_top_z_m=OFFICIAL_HUMAN_SOURCE_VISIBLE_TOP_Z_M,
+                    source_forward_yaw_radians=(
+                        OFFICIAL_HUMAN_SOURCE_FORWARD_YAW_RADIANS
+                    ),
+                )
+                env_cfg.scene.dynamic_human_visual = AssetBaseCfg(
+                    prim_path=DYNAMIC_HUMAN_VISUAL_RUNTIME_PRIM,
+                    spawn=sim_utils.UsdFileCfg(
+                        usd_path=str(args.dynamic_human_visual_usd_path),
+                    ),
+                    init_state=AssetBaseCfg.InitialStateCfg(
+                        pos=registered["visual_root_xyz_m"],
+                        rot=registered["visual_quaternion_wxyz"],
+                    ),
+                    collision_group=-1,
+                )
+            dynamic_spawn = (
+                sim_utils.UsdFileCfg(
+                    usd_path=str(args.dynamic_human_usd_path),
+                    rigid_props=sim_utils.RigidBodyPropertiesCfg(
+                        kinematic_enabled=True,
+                        disable_gravity=True,
+                    ),
+                    mass_props=sim_utils.MassPropertiesCfg(mass=20.0),
+                )
+                if _forest_v8_any_enabled(args)
+                else sim_utils.CylinderCfg(
                     radius=spec.radius_m,
                     height=spec.height_m,
                     rigid_props=sim_utils.RigidBodyPropertiesCfg(
@@ -1252,7 +1788,11 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
                         emissive_color=(0.12, 0.01, 0.0),
                         roughness=0.65,
                     ),
-                ),
+                )
+            )
+            env_cfg.scene.dynamic_obstacle = RigidObjectCfg(
+                prim_path=DYNAMIC_OBSTACLE_PRIM_EXPR,
+                spawn=dynamic_spawn,
                 init_state=RigidObjectCfg.InitialStateCfg(pos=relative_centre),
                 collision_group=-1,
             )
@@ -1276,13 +1816,22 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
             proxy["prim_path"] for proxy in forest_layout["proxies"]
         )
     lidar_targets = list(environment_targets)
-    if _forest_v7_enabled(args):
-        lidar_targets.append(
+    if _dynamic_obstacle_enabled(args):
+        dynamic_targets = (
+            _official_human_sensor_exprs()
+            if _forest_v8_official_enabled(args)
+            else
+            _dynamic_human_part_exprs()
+            if _forest_v8_enabled(args)
+            else (DYNAMIC_OBSTACLE_PRIM_EXPR,)
+        )
+        lidar_targets.extend(
             MultiMeshRayCasterCfg.RaycastTargetCfg(
-                prim_expr=DYNAMIC_OBSTACLE_PRIM_EXPR,
+                prim_expr=prim_expr,
                 merge_prim_meshes=True,
                 track_mesh_transforms=True,
             )
+            for prim_expr in dynamic_targets
         )
     if sensor_rig:
         lidar_targets.extend(
@@ -1321,13 +1870,22 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
     )
     if sensor_rig:
         depth_targets = list(environment_targets)
-        if _forest_v7_enabled(args):
-            depth_targets.append(
+        if _dynamic_obstacle_enabled(args):
+            dynamic_targets = (
+                _official_human_sensor_exprs()
+                if _forest_v8_official_enabled(args)
+                else
+                _dynamic_human_part_exprs()
+                if _forest_v8_enabled(args)
+                else (DYNAMIC_OBSTACLE_PRIM_EXPR,)
+            )
+            depth_targets.extend(
                 MultiMeshRayCasterCfg.RaycastTargetCfg(
-                    prim_expr=DYNAMIC_OBSTACLE_PRIM_EXPR,
+                    prim_expr=prim_expr,
                     merge_prim_meshes=True,
                     track_mesh_transforms=True,
                 )
+                for prim_expr in dynamic_targets
             )
         depth_targets.extend(
             MultiMeshRayCasterCfg.RaycastTargetCfg(
@@ -1637,7 +2195,14 @@ def _inspect_forest_geometry(stage, forest_layout, lidar, depth_camera):
     }
 
 
-def _inspect_dynamic_obstacle(stage, dynamic_obstacle, lidar, depth_camera):
+def _inspect_dynamic_obstacle(
+    stage,
+    dynamic_obstacle,
+    lidar,
+    depth_camera,
+    expected_target_exprs=(DYNAMIC_OBSTACLE_PRIM_EXPR,),
+    require_separate_official_visual=False,
+):
     from pxr import Usd, UsdGeom, UsdPhysics
 
     def target_records(sensor):
@@ -1663,7 +2228,9 @@ def _inspect_dynamic_obstacle(stage, dynamic_obstacle, lidar, depth_camera):
 
     root = stage.GetPrimAtPath(DYNAMIC_OBSTACLE_RUNTIME_PRIM)
     collision_paths = []
+    visible_collision_paths = []
     visible_geometry_paths = []
+    visible_part_names = set()
     if root.IsValid():
         for prim in Usd.PrimRange(root, Usd.TraverseInstanceProxies()):
             if prim.HasAPI(UsdPhysics.CollisionAPI):
@@ -1678,7 +2245,15 @@ def _inspect_dynamic_obstacle(stage, dynamic_obstacle, lidar, depth_camera):
             ):
                 imageable = UsdGeom.Imageable(prim)
                 if imageable and str(imageable.ComputeVisibility()) != "invisible":
-                    visible_geometry_paths.append(str(prim.GetPath()))
+                    geometry_path = str(prim.GetPath())
+                    visible_geometry_paths.append(geometry_path)
+                    if prim.HasAPI(UsdPhysics.CollisionAPI):
+                        visible_collision_paths.append(geometry_path)
+                    visual_prefix = f"{DYNAMIC_OBSTACLE_RUNTIME_PRIM}/Visual/"
+                    if geometry_path.startswith(visual_prefix):
+                        visible_part_names.add(
+                            geometry_path[len(visual_prefix):].split("/", 1)[0]
+                        )
     rigid_api = UsdPhysics.RigidBodyAPI(root) if root.IsValid() else None
     kinematic_enabled = (
         bool(rigid_api.GetKinematicEnabledAttr().Get())
@@ -1688,25 +2263,97 @@ def _inspect_dynamic_obstacle(stage, dynamic_obstacle, lidar, depth_camera):
     lidar_targets = target_records(lidar)
     depth_targets = target_records(depth_camera)
     configured_dynamic_expr = str(dynamic_obstacle.cfg.prim_path)
+    official_visual_root = stage.GetPrimAtPath(DYNAMIC_HUMAN_VISUAL_RUNTIME_PRIM)
+    official_visual_geometry_paths = []
+    official_visual_collision_paths = []
+    if official_visual_root.IsValid():
+        for prim in Usd.PrimRange(
+            official_visual_root, Usd.TraverseInstanceProxies()
+        ):
+            if prim.HasAPI(UsdPhysics.CollisionAPI):
+                official_visual_collision_paths.append(str(prim.GetPath()))
+            if prim.GetTypeName() == "Mesh":
+                imageable = UsdGeom.Imageable(prim)
+                if imageable and str(imageable.ComputeVisibility()) != "invisible":
+                    official_visual_geometry_paths.append(str(prim.GetPath()))
+    official_visual_rigid = (
+        official_visual_root.IsValid()
+        and official_visual_root.HasAPI(UsdPhysics.RigidBodyAPI)
+    )
 
-    def has_tracked_target(records):
-        return any(
-            row["prim_expr"] in (
-                DYNAMIC_OBSTACLE_PRIM_EXPR,
-                configured_dynamic_expr,
-            )
-            and row["track_mesh_transforms"]
+    def tracked_targets(records):
+        return {
+            row["prim_expr"]
             for row in records
-        )
+            if row["track_mesh_transforms"]
+        }
+
+    expected_targets = {
+        expand_isaac_env_regex_ns(expr) for expr in expected_target_exprs
+    }
+    if expected_targets == {
+        expand_isaac_env_regex_ns(DYNAMIC_OBSTACLE_PRIM_EXPR)
+    }:
+        expected_targets.add(configured_dynamic_expr)
+        lidar_tracking = bool(expected_targets & tracked_targets(lidar_targets))
+        depth_tracking = bool(expected_targets & tracked_targets(depth_targets))
+    else:
+        lidar_tracking = expected_targets.issubset(tracked_targets(lidar_targets))
+        depth_tracking = expected_targets.issubset(tracked_targets(depth_targets))
+    human_expected = expected_targets == {
+        expand_isaac_env_regex_ns(expr) for expr in _dynamic_human_part_exprs()
+    }
+    official_human_expected = expected_targets == {
+        expand_isaac_env_regex_ns(expr)
+        for expr in _official_human_sensor_exprs()
+    }
+    human_parts_complete = (
+        set(DYNAMIC_HUMAN_PART_NAMES) == visible_part_names
+        if human_expected
+        else True
+    )
 
     checks = {
         "runtime_root_exists": root.IsValid(),
         "rigid_object_initialized": bool(dynamic_obstacle.is_initialized),
         "kinematic_enabled": kinematic_enabled,
         "collision_enabled": bool(collision_paths),
-        "visible_geometry": bool(visible_geometry_paths),
-        "lidar_transform_tracking": has_tracked_target(lidar_targets),
-        "depth_transform_tracking": has_tracked_target(depth_targets),
+        "physical_geometry_visibility": (
+            not visible_geometry_paths
+            if require_separate_official_visual
+            else bool(visible_geometry_paths)
+        ),
+        "lidar_transform_tracking": lidar_tracking,
+        "depth_transform_tracking": depth_tracking,
+        "human_parts_complete": human_parts_complete,
+        "human_collision_hidden": (
+            not visible_collision_paths if human_expected else True
+        ),
+        "official_visual_root_exists": (
+            official_visual_root.IsValid()
+            if require_separate_official_visual
+            else True
+        ),
+        "official_visual_geometry_visible": (
+            bool(official_visual_geometry_paths)
+            if require_separate_official_visual
+            else True
+        ),
+        "official_visual_has_no_collision": (
+            not official_visual_collision_paths
+            if require_separate_official_visual
+            else True
+        ),
+        "official_visual_has_no_rigid_body": (
+            not official_visual_rigid
+            if require_separate_official_visual
+            else True
+        ),
+        "official_sensor_proxy_is_capsule": (
+            official_human_expected
+            if require_separate_official_visual
+            else True
+        ),
     }
     return {
         "passed": all(checks.values()),
@@ -1715,6 +2362,12 @@ def _inspect_dynamic_obstacle(stage, dynamic_obstacle, lidar, depth_camera):
         "configured_prim_expr": configured_dynamic_expr,
         "collision_prim_paths": collision_paths,
         "visible_geometry_prim_paths": visible_geometry_paths,
+        "visible_collision_prim_paths": visible_collision_paths,
+        "visible_human_part_names": sorted(visible_part_names),
+        "official_visual_runtime_prim": DYNAMIC_HUMAN_VISUAL_RUNTIME_PRIM,
+        "official_visual_geometry_prim_paths": official_visual_geometry_paths,
+        "official_visual_collision_prim_paths": official_visual_collision_paths,
+        "expected_sensor_target_exprs": sorted(expected_target_exprs),
         "lidar_targets": lidar_targets,
         "depth_targets": depth_targets,
         "ground_truth_use": "evidence only; never planner input or robot steering",
@@ -1876,7 +2529,42 @@ def _run(args) -> int:
         raise
     if forest_layout is not None:
         print("[forest-v4] run_identity_start", flush=True)
-    dynamic_spec = _dynamic_obstacle_spec(args) if _forest_v7_enabled(args) else None
+    dynamic_spec = (
+        _dynamic_obstacle_spec(args) if _dynamic_obstacle_enabled(args) else None
+    )
+    dynamic_human_asset = None
+    args.dynamic_human_usd_path = None
+    args.dynamic_human_visual_usd_path = None
+    if _forest_v8_official_enabled(args):
+        args.dynamic_human_usd_path = output_dir / "official_human_proxy.usda"
+        args.dynamic_human_visual_usd_path = (
+            output_dir / "official_human_visual.usda"
+        )
+        physical_proxy = _write_official_human_wrapper_usd(
+            args.dynamic_human_usd_path,
+            dynamic_spec,
+        )
+        official_visual = _write_official_human_visual_usd(
+            args.dynamic_human_visual_usd_path,
+            args.official_human_animation_cache,
+        )
+        dynamic_human_asset = {
+            "physical_and_sensor_proxy": physical_proxy,
+            "official_visual": official_visual,
+            "registration": {
+                "time_xy_heading_owner": "dynamic obstacle schedule",
+                "visual_vertical_datum": "official shoe sole",
+                "physical_vertical_datum": "capsule centre",
+                "visual_runtime_prim": DYNAMIC_HUMAN_VISUAL_RUNTIME_PRIM,
+                "physical_runtime_prim": DYNAMIC_OBSTACLE_RUNTIME_PRIM,
+            },
+        }
+    elif _forest_v8_enabled(args):
+        args.dynamic_human_usd_path = output_dir / "procedural_human.usda"
+        dynamic_human_asset = _write_procedural_human_usd(
+            args.dynamic_human_usd_path,
+            dynamic_spec,
+        )
     qualification_schedule = (
         FOREST_PREVIEW_SCHEDULE if _forest_preview_enabled(args) else None
     )
@@ -1897,7 +2585,13 @@ def _run(args) -> int:
             proxy["prim_path"] for proxy in forest_layout["proxies"]
         )
     if dynamic_spec is not None:
-        raycast_targets.append(DYNAMIC_OBSTACLE_PRIM_EXPR)
+        raycast_targets.extend(
+            _official_human_sensor_exprs()
+            if _forest_v8_official_enabled(args)
+            else _dynamic_human_part_exprs()
+            if _forest_v8_enabled(args)
+            else (DYNAMIC_OBSTACLE_PRIM_EXPR,)
+        )
     if forest_layout is None:
         camera_eye = VIDEO_CAMERA_EYE
         camera_lookat = VIDEO_CAMERA_LOOKAT
@@ -1911,7 +2605,11 @@ def _run(args) -> int:
         camera_lookat = (spawn_x + 1.5, spawn_y, spawn_z + 0.5)
     identity = {
         "schema_version": (
-            5
+            7
+            if _forest_v8_official_enabled(args)
+            else 6
+            if _forest_v8_enabled(args)
+            else 5
             if _forest_v7_enabled(args)
             else 4
             if _forest_v6_enabled(args)
@@ -2062,7 +2760,18 @@ def _run(args) -> int:
             "name": dynamic_spec.name,
             "prim_expr": DYNAMIC_OBSTACLE_PRIM_EXPR,
             "runtime_prim_path": DYNAMIC_OBSTACLE_RUNTIME_PRIM,
-            "shape": "cylinder",
+            "shape": (
+                "procedural_humanoid"
+                if _forest_v8_enabled(args)
+                else "official_skinned_human_plus_capsule"
+                if _forest_v8_official_enabled(args)
+                else "cylinder"
+            ),
+            "collision_shape": (
+                "hidden_capsule"
+                if _forest_v8_any_enabled(args)
+                else "visible_cylinder"
+            ),
             "start_xy_m": dynamic_spec.start_xy,
             "end_xy_m": dynamic_spec.end_xy,
             "wait_seconds": dynamic_spec.wait_seconds,
@@ -2078,14 +2787,73 @@ def _run(args) -> int:
             "collision_enabled": True,
             "lidar_transform_tracking": True,
             "depth_transform_tracking": True,
-            "colour_rgb": [1.0, 0.24, 0.02],
+            "colour_rgb": (
+                list(DYNAMIC_HUMAN_COLOR_RGB)
+                if _forest_v8_enabled(args)
+                else None
+                if _forest_v8_official_enabled(args)
+                else [1.0, 0.24, 0.02]
+            ),
+            "human_asset": dynamic_human_asset,
+            "visible_part_names": (
+                list(DYNAMIC_HUMAN_PART_NAMES)
+                if _forest_v8_enabled(args)
+                else [DYNAMIC_HUMAN_VISUAL_RUNTIME_PRIM]
+                if _forest_v8_official_enabled(args)
+                else []
+            ),
+            "sensor_target_exprs": (
+                list(_dynamic_human_part_exprs())
+                if _forest_v8_enabled(args)
+                else list(_official_human_sensor_exprs())
+                if _forest_v8_official_enabled(args)
+                else [DYNAMIC_OBSTACLE_PRIM_EXPR]
+            ),
+            "gait": (
+                {
+                    "enabled_phase": "crossing",
+                    "neutral_phases": ["waiting", "holding", "parked"],
+                    "cadence_hz": DYNAMIC_HUMAN_GAIT_CADENCE_HZ,
+                    "maximum_swing_radians": DYNAMIC_HUMAN_GAIT_MAX_SWING_RADIANS,
+                    "part_local_visual_transforms_only": True,
+                }
+                if _forest_v8_enabled(args)
+                else {
+                    "status": "official_biped_retarget_cache_replay",
+                    "source": (
+                        "NVIDIA Isaac Sim 5.1 Biped AnimationGraph output after "
+                        "ControlRig retargeting to male_adult_police_04"
+                    ),
+                    "biped_url": OFFICIAL_HUMAN_BIPED_URL,
+                    "retarget_cache": dynamic_human_asset["official_visual"][
+                        "biped_retarget_cache"
+                    ],
+                    "local_procedural_gait": False,
+                    "direct_gpu_animation_graph_used": False,
+                    "claim": (
+                        "official Biped graph output replayed on the exact 101-joint "
+                        "official character; runtime gait still requires rendered "
+                        "visual verification"
+                    ),
+                }
+                if _forest_v8_official_enabled(args)
+                else None
+            ),
             "planner_input": "rendered sensor hits only",
             "ground_truth_use": (
                 "evidence classification and synchronized clearance only; forbidden "
                 "from point injection, filtering, command generation, and robot steering"
             ),
             "claim_boundary": (
-                "single deterministic crossing with reactive occupancy replanning; "
+                "official Isaac character, Biped-retarget cache replay, and co-moving "
+                "physical/sensor proxy integrated for qualification; human appearance and full "
+                "closed-loop avoidance remain unvalidated until runtime and human review"
+                if _forest_v8_official_enabled(args)
+                else "single deterministic person-shaped crossing with reactive "
+                "occupancy replanning; no semantic person detection, social navigation, "
+                "obstacle-velocity prediction, or intention model"
+                if _forest_v8_enabled(args)
+                else "single deterministic crossing with reactive occupancy replanning; "
                 "no obstacle-velocity prediction or intention model"
             ),
         }
@@ -2163,6 +2931,8 @@ def _run(args) -> int:
     runtime_rates = {}
     static_forest_geometry_checks = None
     dynamic_obstacle_geometry_checks = None
+    official_animation_player = None
+    official_visual_pose_evidence = None
     try:
         __import__("robot_lab.tasks")
         env_cfg = load_cfg_from_registry(args.task, "env_cfg_entry_point")
@@ -2315,6 +3085,11 @@ def _run(args) -> int:
                         f"{frame_name} received an unexpected runtime mass: "
                         f"{runtime_mass_by_link[frame_name]}"
                     )
+        if _forest_v8_official_enabled(args):
+            official_animation_player = _OfficialHumanAnimationPlayer(
+                stage,
+                args.official_human_animation_cache,
+            )
         if forest_layout is not None:
             static_forest_geometry_checks = _inspect_forest_geometry(
                 stage,
@@ -2337,12 +3112,39 @@ def _run(args) -> int:
             dynamic_obstacle.write_root_velocity_to_sim(
                 torch.zeros((1, 6), dtype=torch.float32, device=base_env.device)
             )
+            if _forest_v8_enabled(args):
+                _apply_procedural_human_gait(
+                    stage,
+                    procedural_human_gait_angles(0.0, "waiting"),
+                )
+            elif _forest_v8_official_enabled(args):
+                initial_registered_state = official_human_registered_state(
+                    initial_dynamic_state,
+                    dynamic_spec,
+                    source_foot_z_m=OFFICIAL_HUMAN_SOURCE_FOOT_Z_M,
+                    source_visible_top_z_m=OFFICIAL_HUMAN_SOURCE_VISIBLE_TOP_Z_M,
+                    source_forward_yaw_radians=(
+                        OFFICIAL_HUMAN_SOURCE_FORWARD_YAW_RADIANS
+                    ),
+                )
+                official_visual_pose_evidence = _set_official_human_visual_pose(
+                    stage, initial_registered_state
+                )
+                official_animation_player.update(0.0, "waiting")
             base_env.sim.forward()
             dynamic_obstacle_geometry_checks = _inspect_dynamic_obstacle(
                 stage,
                 dynamic_obstacle,
                 lidar,
                 depth_camera,
+                (
+                    _official_human_sensor_exprs()
+                    if _forest_v8_official_enabled(args)
+                    else _dynamic_human_part_exprs()
+                    if _forest_v8_enabled(args)
+                    else (DYNAMIC_OBSTACLE_PRIM_EXPR,)
+                ),
+                require_separate_official_visual=_forest_v8_official_enabled(args),
             )
         runtime_composition = {
             "schema_version": 1,
@@ -2388,6 +3190,16 @@ def _run(args) -> int:
                 else {
                     "identity": identity["dynamic_obstacle"],
                     "geometry_checks": dynamic_obstacle_geometry_checks,
+                    "official_visual_initial_pose": (
+                        official_visual_pose_evidence
+                        if _forest_v8_official_enabled(args)
+                        else None
+                    ),
+                    "official_animation_player_initialized": (
+                        official_animation_player is not None
+                        if _forest_v8_official_enabled(args)
+                        else None
+                    ),
                 }
             ),
         }
@@ -2473,6 +3285,7 @@ def _run(args) -> int:
                 ):
                     dynamic_schedule_start_sim_time = float(base_env.sim.current_time)
                 scheduled_dynamic_state = None
+                dynamic_human_gait = None
                 if dynamic_obstacle is not None:
                     scheduled_dynamic_state = dynamic_obstacle_state(
                         0.0
@@ -2500,6 +3313,33 @@ def _run(args) -> int:
                     )
                     dynamic_obstacle.write_root_pose_to_sim(dynamic_pose)
                     dynamic_obstacle.write_root_velocity_to_sim(dynamic_velocity)
+                    if _forest_v8_enabled(args):
+                        dynamic_human_gait = procedural_human_gait_angles(
+                            scheduled_dynamic_state["elapsed_seconds"],
+                            scheduled_dynamic_state["phase"],
+                            DYNAMIC_HUMAN_GAIT_CADENCE_HZ,
+                            DYNAMIC_HUMAN_GAIT_MAX_SWING_RADIANS,
+                        )
+                        _apply_procedural_human_gait(stage, dynamic_human_gait)
+                    elif _forest_v8_official_enabled(args):
+                        registered_state = official_human_registered_state(
+                            scheduled_dynamic_state,
+                            dynamic_spec,
+                            source_foot_z_m=OFFICIAL_HUMAN_SOURCE_FOOT_Z_M,
+                            source_visible_top_z_m=(
+                                OFFICIAL_HUMAN_SOURCE_VISIBLE_TOP_Z_M
+                            ),
+                            source_forward_yaw_radians=(
+                                OFFICIAL_HUMAN_SOURCE_FORWARD_YAW_RADIANS
+                            ),
+                        )
+                        official_visual_pose_evidence = (
+                            _set_official_human_visual_pose(stage, registered_state)
+                        )
+                        dynamic_human_gait = official_animation_player.update(
+                            scheduled_dynamic_state["elapsed_seconds"],
+                            scheduled_dynamic_state["phase"],
+                        )
                 command_term = base_env.command_manager.get_term("base_velocity")
                 command_term.commands[:, 0] = command[0]
                 command_term.commands[:, 1] = command[1]
@@ -2620,6 +3460,12 @@ def _run(args) -> int:
                                 FOREST_NAVIGATION_PLANNING_RADIUS_M,
                                 dynamic_spec.radius_m,
                             )
+                        ),
+                        "dynamic_human_gait_angles": dynamic_human_gait,
+                        "official_human_visual_pose": (
+                            official_visual_pose_evidence
+                            if _forest_v8_official_enabled(args)
+                            else None
                         ),
                     }
                 row = {
@@ -2841,6 +3687,12 @@ def _run(args) -> int:
                             if dynamic_obstacle is None
                             else dynamic_actual_position
                         ),
+                        "dynamic_human_gait_angles": dynamic_human_gait,
+                        "official_human_visual_pose": (
+                            official_visual_pose_evidence
+                            if _forest_v8_official_enabled(args)
+                            else None
+                        ),
                         "unexpected_above_floor_hit_count": int(
                             0
                             if forest_layout is not None
@@ -2941,6 +3793,12 @@ def _run(args) -> int:
                                 None
                                 if dynamic_obstacle is None
                                 else dynamic_actual_position
+                            ),
+                            "dynamic_human_gait_angles": dynamic_human_gait,
+                            "official_human_visual_pose": (
+                                official_visual_pose_evidence
+                                if _forest_v8_official_enabled(args)
+                                else None
                             ),
                             "minimum_valid_depth_m": (
                                 None
@@ -3252,12 +4110,22 @@ def _parser() -> argparse.ArgumentParser:
             "forest_gen_nav",
             "forest_gen_nav_v6",
             "forest_gen_nav_v7_dynamic",
+            "forest_gen_nav_v8_human",
+            "forest_gen_nav_v8_official_human",
         ),
         default="flat",
     )
     parser.add_argument("--forest-gen-root", type=Path)
     parser.add_argument("--stripe-kit-root", type=Path)
     parser.add_argument("--forest-asset-path", type=Path)
+    parser.add_argument(
+        "--official-human-animation-cache",
+        type=Path,
+        help=(
+            "Runtime-generated NVIDIA Biped AnimationGraph retarget cache; "
+            "required only by forest_gen_nav_v8_official_human"
+        ),
+    )
     parser.add_argument("--forest-size", type=int, default=FOREST_SIZE_M)
     parser.add_argument("--forest-margin", type=int, default=FOREST_MARGIN_M)
     parser.add_argument("--forest-seed", type=int, default=FOREST_SEED)
@@ -3414,7 +4282,14 @@ def main(argv=None) -> int:
             raise SystemExit("forest courses require the pinned V3 sensor-rig URDFs")
         if _forest_preview_enabled(args) and args.mode != "qualification":
             raise SystemExit("forest preview is a standalone qualification run")
-        if _forest_navigation_enabled(args) and args.mode != "external":
+        if (
+            _forest_navigation_enabled(args)
+            and args.mode != "external"
+            and not (
+                _forest_v8_official_enabled(args)
+                and args.mode == "qualification"
+            )
+        ):
             raise SystemExit("forest navigation requires the external SCAN loop")
         if (
             args.forest_size != FOREST_SIZE_M
@@ -3444,18 +4319,42 @@ def main(argv=None) -> int:
         ):
             raise SystemExit("forest navigation terrain-filter parameters are invalid")
     if _forest_review_geometry_enabled(args) and abs(float(args.max_vx) - 1.0) > 1.0e-9:
-        raise SystemExit("V6/V7 requires the Isaac forward command limit to equal 1.0 m/s")
-    if _forest_v7_enabled(args):
+        raise SystemExit("V6/V7/V8 requires the Isaac forward command limit to equal 1.0 m/s")
+    if _dynamic_obstacle_enabled(args):
         try:
             _dynamic_obstacle_spec(args)
         except ValueError as error:
-            raise SystemExit(f"invalid V7 dynamic obstacle contract: {error}") from error
+            raise SystemExit(f"invalid dynamic obstacle contract: {error}") from error
+    if _forest_v8_official_enabled(args) and (
+        abs(float(args.dynamic_obstacle_height) - OFFICIAL_HUMAN_CAPSULE_HEIGHT_M)
+        > 1.0e-9
+        or abs(float(args.dynamic_obstacle_radius) - OFFICIAL_HUMAN_CAPSULE_RADIUS_M)
+        > 1.0e-9
+    ):
+        raise SystemExit(
+            "official human requires the frozen 1.70 m x 0.30 m capsule contract"
+        )
+    if _forest_v8_official_enabled(args):
+        if (
+            args.official_human_animation_cache is None
+            or not args.official_human_animation_cache.is_file()
+        ):
+            raise SystemExit(
+                "official human requires a runtime-generated Biped retarget cache"
+            )
+    elif args.official_human_animation_cache is not None:
+        raise SystemExit(
+            "--official-human-animation-cache is valid only for the official-human course"
+        )
     from isaaclab.app import AppLauncher
 
+    launcher_kwargs = {
+        "headless": True,
+        "enable_cameras": args.video_path is not None or _sensor_rig_enabled(args),
+        "device": args.device,
+    }
     simulation_app = AppLauncher(
-        headless=True,
-        enable_cameras=args.video_path is not None or _sensor_rig_enabled(args),
-        device=args.device,
+        **launcher_kwargs,
     ).app
     try:
         return _run(args)

@@ -5,6 +5,7 @@ import unittest
 
 from lite3_sim_bridge.trajectory_review import (
     associate_bspline_sim_times,
+    dynamic_obstacle_color_bgr,
     frame_metric_rows,
     render_trajectory_review,
     sample_uniform_bspline,
@@ -12,6 +13,20 @@ from lite3_sim_bridge.trajectory_review import (
 
 
 class TrajectoryReviewTest(unittest.TestCase):
+    def test_human_dynamic_obstacle_uses_yellow_overlay(self):
+        self.assertEqual(
+            dynamic_obstacle_color_bgr(
+                {"dynamic_obstacle": {"shape": "procedural_humanoid"}}
+            ),
+            (0, 215, 255),
+        )
+        self.assertEqual(
+            dynamic_obstacle_color_bgr(
+                {"dynamic_obstacle": {"shape": "cylinder"}}
+            ),
+            (0, 120, 255),
+        )
+
     def test_samples_clamped_cubic_bspline_not_control_polygon(self):
         points = sample_uniform_bspline(
             order=3,

@@ -90,6 +90,7 @@ def evaluate_acceptance(
     limits = thresholds["thresholds"]
     goal = thresholds["goal_world_m"]
     v7 = thresholds.get("v7_dynamic_obstacle")
+    v8 = thresholds.get("v8_human_obstacle")
     checks = {}
 
     def add(name: str, passed: bool, value, expected) -> None:
@@ -1423,6 +1424,201 @@ def evaluate_acceptance(
             },
         )
 
+        if v8 is not None:
+            expected_parts = sorted(str(value) for value in v8["expected_part_names"])
+            human_asset = dynamic_identity.get("human_asset") or {}
+            human_asset_path = (
+                None
+                if depth_artifact_root is None
+                else depth_artifact_root / str(v8["expected_asset_filename"])
+            )
+            observed_asset_sha = (
+                None
+                if human_asset_path is None or not human_asset_path.is_file()
+                else _sha256(human_asset_path)
+            )
+            add(
+                "v8_generated_human_asset",
+                human_asset.get("source")
+                == "locally generated procedural USDA; no external character asset"
+                and human_asset.get("sha256") == observed_asset_sha
+                and observed_asset_sha == v8["expected_asset_sha256"],
+                {
+                    "identity": human_asset,
+                    "copied_asset_sha256": observed_asset_sha,
+                },
+                {
+                    "source": "locally generated procedural USDA; no external character asset",
+                    "sha256": v8["expected_asset_sha256"],
+                },
+            )
+            observed_human_identity = {
+                "shape": dynamic_identity.get("shape"),
+                "collision_shape": dynamic_identity.get("collision_shape"),
+                "colour_rgb": dynamic_identity.get("colour_rgb"),
+                "visible_part_names": sorted(
+                    str(value)
+                    for value in dynamic_identity.get("visible_part_names", [])
+                ),
+                "sensor_target_count": len(
+                    dynamic_identity.get("sensor_target_exprs", [])
+                ),
+            }
+            expected_human_identity = {
+                "shape": "procedural_humanoid",
+                "collision_shape": "hidden_capsule",
+                "colour_rgb": list(v8["expected_colour_rgb"]),
+                "visible_part_names": expected_parts,
+                "sensor_target_count": len(expected_parts),
+            }
+            add(
+                "v8_human_identity",
+                observed_human_identity == expected_human_identity,
+                observed_human_identity,
+                expected_human_identity,
+            )
+            add(
+                "v8_human_stage_geometry",
+                dynamic_geometry.get("checks", {}).get("human_parts_complete") is True
+                and dynamic_geometry.get("checks", {}).get("human_collision_hidden")
+                is True
+                and dynamic_geometry.get("checks", {}).get(
+                    "lidar_transform_tracking"
+                )
+                is True
+                and dynamic_geometry.get("checks", {}).get(
+                    "depth_transform_tracking"
+                )
+                is True
+                and sorted(dynamic_geometry.get("visible_human_part_names", []))
+                == expected_parts
+                and len(dynamic_geometry.get("collision_prim_paths", [])) == 1
+                and not dynamic_geometry.get("visible_collision_prim_paths"),
+                dynamic_geometry,
+                {
+                    "visible_part_names": expected_parts,
+                    "one_hidden_collision_prim": True,
+                    "dual_sensor_transform_tracking": True,
+                },
+            )
+
+            gait_rows = [
+                row
+                for row in dynamic_rows
+                if isinstance(row.get("dynamic_human_gait_angles"), dict)
+            ]
+            crossing_gait = [
+                row["dynamic_human_gait_angles"]
+                for row in gait_rows
+                if row.get("dynamic_obstacle_phase") == "crossing"
+            ]
+            neutral_gait = [
+                row["dynamic_human_gait_angles"]
+                for row in gait_rows
+                if row.get("dynamic_obstacle_phase")
+                in ("waiting", "holding", "parked")
+            ]
+            maximum_swing = max(
+                (
+                    max(abs(float(value)) for value in row.values())
+                    for row in crossing_gait
+                ),
+                default=0.0,
+            )
+            opposition_error = max(
+                (
+                    max(
+                        abs(
+                            float(row["left_arm_radians"])
+                            + float(row["right_arm_radians"])
+                        ),
+                        abs(
+                            float(row["left_leg_radians"])
+                            + float(row["right_leg_radians"])
+                        ),
+                        abs(
+                            float(row["left_arm_radians"])
+                            - float(row["right_leg_radians"])
+                        ),
+                    )
+                    for row in crossing_gait
+                ),
+                default=math.inf,
+            )
+            neutral_maximum = max(
+                (
+                    max(abs(float(value)) for value in row.values())
+                    for row in neutral_gait
+                ),
+                default=math.inf,
+            )
+            add(
+                "v8_human_gait",
+                len(crossing_gait) >= int(v8["minimum_crossing_gait_records"])
+                and maximum_swing >= float(v8["minimum_observed_swing_radians"])
+                and maximum_swing
+                <= float(v8["expected_maximum_swing_radians"]) + 1.0e-6
+                and opposition_error <= float(v8["maximum_opposition_error_radians"])
+                and neutral_gait
+                and neutral_maximum <= float(v8["maximum_neutral_swing_radians"]),
+                {
+                    "crossing_record_count": len(crossing_gait),
+                    "maximum_swing_radians": maximum_swing,
+                    "maximum_opposition_error_radians": opposition_error,
+                    "maximum_neutral_swing_radians": neutral_maximum,
+                },
+                {
+                    "minimum_crossing_records": v8["minimum_crossing_gait_records"],
+                    "minimum_swing_radians": v8["minimum_observed_swing_radians"],
+                    "crossing_only_and_opposed": True,
+                },
+            )
+
+            def animated_detection_count(rows, count_key):
+                return sum(
+                    int(row.get(count_key, 0)) > 0
+                    and isinstance(row.get("dynamic_human_gait_angles"), dict)
+                    and max(
+                        abs(float(value))
+                        for value in row["dynamic_human_gait_angles"].values()
+                    )
+                    >= float(v8["minimum_sensor_visible_swing_radians"])
+                    for row in rows
+                )
+
+            lidar_animated = animated_detection_count(
+                sensor_metrics, "dynamic_obstacle_surface_hit_count"
+            )
+            depth_animated = animated_detection_count(
+                depth_metrics or [], "dynamic_obstacle_surface_pixel_count"
+            )
+            expected_overlay_colour = list(v8["expected_overlay_colour_bgr"])
+            observed_overlay_colour = (
+                (trajectory_review_metadata or {})
+                .get("colours_bgr", {})
+                .get("dynamic_obstacle_actual")
+            )
+            add(
+                "v8_sensor_visible_gait_and_overlay",
+                lidar_animated >= int(v8["minimum_lidar_animated_detections"])
+                and depth_animated >= int(v8["minimum_depth_animated_detections"])
+                and observed_overlay_colour == expected_overlay_colour,
+                {
+                    "lidar_animated_detection_count": lidar_animated,
+                    "depth_animated_detection_count": depth_animated,
+                    "overlay_colour_bgr": observed_overlay_colour,
+                },
+                {
+                    "minimum_lidar_animated_detections": v8[
+                        "minimum_lidar_animated_detections"
+                    ],
+                    "minimum_depth_animated_detections": v8[
+                        "minimum_depth_animated_detections"
+                    ],
+                    "overlay_colour_bgr": expected_overlay_colour,
+                },
+            )
+
     passed = all(value["passed"] for value in checks.values())
     return {
         "schema_version": 1,
@@ -1441,6 +1637,7 @@ def evaluate_acceptance(
             "rosbag_bytes": bag_bytes,
             "forest_navigation_enabled": forest is not None,
             "dynamic_obstacle_enabled": v7 is not None,
+            "human_obstacle_enabled": v8 is not None,
         },
     }
 

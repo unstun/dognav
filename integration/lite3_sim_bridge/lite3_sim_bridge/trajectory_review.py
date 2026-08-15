@@ -18,6 +18,16 @@ ACTUAL_COLOR_BGR = (255, 220, 40)
 PRIMARY_OBSTACLE_COLOR_BGR = (40, 70, 245)
 OBSTACLE_COLOR_BGR = (145, 145, 145)
 DYNAMIC_OBSTACLE_COLOR_BGR = (0, 120, 255)
+DYNAMIC_HUMAN_COLOR_BGR = (0, 215, 255)
+
+
+def dynamic_obstacle_color_bgr(identity: Mapping[str, object]) -> tuple[int, int, int]:
+    dynamic_identity = identity.get("dynamic_obstacle") or {}
+    return (
+        DYNAMIC_HUMAN_COLOR_BGR
+        if dynamic_identity.get("shape") == "procedural_humanoid"
+        else DYNAMIC_OBSTACLE_COLOR_BGR
+    )
 
 
 def _finite_point(point: Sequence[float]) -> tuple[float, float, float]:
@@ -253,6 +263,7 @@ def render_trajectory_review(
     events = _load_jsonl(ros_events_path)
     metrics = _load_jsonl(metrics_path)
     identity = json.loads(run_identity_path.read_text(encoding="utf-8"))
+    dynamic_color_bgr = dynamic_obstacle_color_bgr(identity)
     video_identity = identity.get("video", {})
     frame_stride = int(video_identity.get("frame_stride", 0))
     capture = cv2.VideoCapture(str(raw_video))
@@ -385,7 +396,7 @@ def render_trajectory_review(
                         frame,
                         [np.asarray(dynamic_pixels, dtype=np.int32)],
                         False,
-                        DYNAMIC_OBSTACLE_COLOR_BGR,
+                        dynamic_color_bgr,
                         thickness=2,
                         lineType=cv2.LINE_AA,
                     )
@@ -403,14 +414,14 @@ def render_trajectory_review(
                     frame,
                     dynamic_centre_px,
                     dynamic_radius_px,
-                    DYNAMIC_OBSTACLE_COLOR_BGR,
+                    dynamic_color_bgr,
                     thickness=3,
                 )
                 cv2.circle(
                     frame,
                     dynamic_centre_px,
                     4,
-                    DYNAMIC_OBSTACLE_COLOR_BGR,
+                    dynamic_color_bgr,
                     thickness=-1,
                 )
             goal = navigation.get("goal_world_m")
@@ -435,7 +446,7 @@ def render_trajectory_review(
                     frame,
                     (inset_left + 12, legend_y + 42),
                     (inset_left + 40, legend_y + 42),
-                    DYNAMIC_OBSTACLE_COLOR_BGR,
+                    dynamic_color_bgr,
                     3,
                     cv2.LINE_AA,
                 )
@@ -473,7 +484,7 @@ def render_trajectory_review(
                     (24, height - 52),
                     cv2.FONT_HERSHEY_SIMPLEX,
                     0.60,
-                    DYNAMIC_OBSTACLE_COLOR_BGR,
+                    dynamic_color_bgr,
                     2,
                     cv2.LINE_AA,
                 )
@@ -568,7 +579,7 @@ def render_trajectory_review(
             "scan_planned": list(PLAN_COLOR_BGR),
             "isaac_actual": list(ACTUAL_COLOR_BGR),
             "primary_obstacle": list(PRIMARY_OBSTACLE_COLOR_BGR),
-            "dynamic_obstacle_actual": list(DYNAMIC_OBSTACLE_COLOR_BGR),
+            "dynamic_obstacle_actual": list(dynamic_color_bgr),
         },
         "claim_boundary": (
             "Derived human-review overlay from the hashed raw SCAN Bspline, "

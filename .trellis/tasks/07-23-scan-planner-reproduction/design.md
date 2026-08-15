@@ -659,3 +659,91 @@ under `set -u`. Those variables are now initialized without changing V7 values
 or behavior. Because the shared runner hash changed, candidate 02 is preserved
 and superseded. Post-fix candidate 03 passed the unchanged frozen R2 gate
 120/120, matched remote/local hashes, and remains pending Dr Sun's video review.
+
+## 17. V8 Procedural Human Dynamic Obstacle (Superseded)
+
+V8 branches from the immutable V7 candidate and changes only the moving actor
+representation plus its audit surface. The root schedule, terrain seating,
+collision radius, reactive SCAN data path, occupied-voxel freshness, bounded
+catch-up, V12 policy, Lite3 asset, forest, goal, and command limits remain the
+V7 values. V8 uses a separate course name and evidence directory so no V7 file
+or threshold is overwritten.
+
+At runtime, reviewed local code authors a run-owned USDA file with one default
+human root. Seven yellow visible parts sit below that root: head, torso, pelvis,
+left/right arm, and left/right leg. A separate invisible Z-axis capsule below
+the same root has a 0.30 m radius and a frozen 1.70 m total envelope. The root
+is the only kinematic rigid body and has the same scheduled pose writes and
+PhysX readback as V7; the capsule owns collision and synchronized clearance,
+while the visible parts own appearance and optical geometry. The generated
+USDA hash and authored part/collision paths enter run identity.
+
+Each visible part is a distinct transform-tracked target in both multi-mesh
+ray casters. During `crossing`, a pure deterministic gait function swings the
+left leg with the right arm and the right leg with the left arm at the frozen
+amplitude and cadence. `waiting`, `holding`, and `parked` use the neutral pose.
+The simulator writes only part-local visual transforms and the already-declared
+actor root pose; it never writes the Lite3 root. Sensor refresh then queries
+the resulting part transforms. Per-step metrics record all four limb angles,
+and the stage audit proves every expected visible part is targeted by both
+sensors with transform tracking enabled.
+
+The acceptance layer reuses every applicable V7 causal, planning, collision,
+goal, drift, and evidence gate, then adds human-specific identity, USD hash,
+part inventory, hidden-capsule, sensor-target, and gait-span checks. Yellow in
+the review overlay identifies the actual human-root path and capsule footprint;
+the raw video remains authoritative for recognizability and gait. This is a
+geometric moving-person-shaped obstacle, not semantic person detection, social
+navigation, pose estimation, or pedestrian-intention prediction.
+
+The first full V8 run exposed a representation mismatch rather than a planner
+or policy defect: the narrow cosmetic torso produced roughly half the V7
+cylinder's early LiDAR returns while the unchanged hidden capsule remained
+0.30 m in radius. The robot reached the goal but breached that unseen envelope.
+The failed run is preserved. V8 widens only the visible high-visibility torso,
+pelvis, and limb radii so rendered optical geometry is commensurate with the
+physical capsule; actor timing, route, sensors, SCAN configuration, policy,
+speed, and collision thresholds remain unchanged. A corrected no-contact
+preflight, two same-input full passes, and the frozen candidate are required to
+guard against a lucky stochastic trajectory.
+
+Dr Sun rejected this representation on 2026-08-14 because the visible person
+was hand-authored. Its runs remain immutable negative evidence only. It is not
+a current review candidate, and its automated acceptance does not satisfy the
+revised V8 criteria.
+
+## 18. V8 R2 Official Isaac Human
+
+V8 R2 replaces only the rejected visible actor and its animation. The visible
+character is NVIDIA's Isaac Sim 5.1 `male_adult_police_04`, referenced
+from the versioned Isaac People asset root rather than copied into this repo.
+Crossing uses output from NVIDIA's official Biped AnimationGraph after its
+ControlRig retargets to the character's exact 101-joint skeleton; hold phases
+use the graph's idle output. The runtime manifest records
+asset URLs, Isaac Sim and extension versions, server metadata, readable hashes,
+and the NVIDIA content-license boundary.
+
+The official skinned character is not treated as the physical pedestrian body.
+A hidden 1.70 m by 0.30 m capsule under a dedicated kinematic root provides
+deterministic PhysX collision, both ray-caster targets, and clearance. The visual
+root and capsule root share schedule time, XY, and heading but use separate
+official shoe-sole and capsule-centre vertical datums. A visual preflight must
+first prove the official model and animation in the forest. Only after Dr Sun
+accepts that appearance may the existing V7 crossing, dual-sensor, SCAN, V12,
+collision, trajectory, and evidence gates be rerun. The overlay must identify
+the conservative proxy contract rather than imply deforming-mesh sensing.
+
+The first integration pass proved the official character can be referenced and
+rendered in the existing forest, but it remained in T-pose. Enabling the
+official People graph at Isaac Lab startup and applying it before physics
+reproducibly caused CUDA illegal-access aborts in the pinned Direct-GPU
+PhysX/Fabric runtime. Moving the graph and Biped setup outside the rigid root did
+not remove the failure. A CPU-physics isolation run completed but reported
+animation-variable type mismatches and moved the character outside the review
+view. These are retained as negative evidence. The implemented safe path now
+runs the official graph in a separate bounded Isaac process, captures its 101
+local joint translations and rotations at 30 Hz, validates non-static idle and
+walk output, and writes a run-owned cache. The Direct-GPU physics process
+references the official character and replays that cache through one
+`UsdSkelAnimation` slot; it never loads the People graph or a local procedural
+gait.

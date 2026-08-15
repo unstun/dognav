@@ -55,6 +55,8 @@ FOXY_COMMAND_STATE_SOURCE=$FOXY_WORKSPACE/src/lite3_sim_bridge/lite3_sim_bridge/
 FOXY_MONITOR_SOURCE=$FOXY_WORKSPACE/src/lite3_sim_bridge/lite3_sim_bridge/acceptance_monitor_node.py
 TRAJECTORY_REVIEW_SOURCE=$BRIDGE/lite3_sim_bridge/trajectory_review.py
 ISAAC_ADAPTER_CORE_SOURCE=$BRIDGE/lite3_sim_bridge/isaac_adapter_core.py
+OFFICIAL_HUMAN_BAKER_SOURCE=$BRIDGE/lite3_sim_bridge/bake_official_human_animation.py
+OFFICIAL_HUMAN_CONTRACT_SOURCE=$BRIDGE/lite3_sim_bridge/official_human_contract.py
 CONTAINER_NAME=scan-foxy-$RUN_ID
 ROS_RUNTIME_SECONDS=$((DURATION_SECONDS + 3))
 VIDEO_FPS=${SCAN_VIDEO_FPS:-25}
@@ -80,6 +82,8 @@ DYNAMIC_OBSTACLE_HEIGHT=
 DYNAMIC_OBSTACLE_TERRAIN_CLEARANCE=
 DYNAMIC_OBSTACLE_HOLD_FRACTION=
 DYNAMIC_OBSTACLE_HOLD_SECONDS=
+OFFICIAL_HUMAN_CACHE=
+OFFICIAL_HUMAN_CACHE_CONTENT_SHA256=
 if [[ ! $MAX_VX =~ ^([0-9]+([.][0-9]*)?|[.][0-9]+)$ ]] \
   || ! awk -v value="$MAX_VX" 'BEGIN { exit !(value > 0.0) }'; then
   echo "SCAN_MAX_VX must be a positive decimal" >&2
@@ -100,7 +104,7 @@ fi
 case "$COURSE" in
   flat|single_box)
     ;;
-  forest_gen|forest_gen_nav|forest_gen_nav_v6|forest_gen_nav_v7_dynamic)
+  forest_gen|forest_gen_nav|forest_gen_nav_v6|forest_gen_nav_v7_dynamic|forest_gen_nav_v8_human|forest_gen_nav_v8_official_human)
     FOREST_GEN_ROOT=${SCAN_FOREST_GEN_ROOT:-}
     STRIPE_KIT_ROOT=${SCAN_STRIPE_KIT_ROOT:-}
     FOREST_ASSET_PATH=${SCAN_FOREST_ASSET_PATH:-}
@@ -116,7 +120,7 @@ case "$COURSE" in
       --forest-asset-path "$FOREST_ASSET_PATH"
     )
     FOREST_PYTHONPATH=$FOREST_GEN_ROOT:$STRIPE_KIT_ROOT
-    if [[ $COURSE == forest_gen_nav || $COURSE == forest_gen_nav_v6 || $COURSE == forest_gen_nav_v7_dynamic ]]; then
+    if [[ $COURSE == forest_gen_nav || $COURSE == forest_gen_nav_v6 || $COURSE == forest_gen_nav_v7_dynamic || $COURSE == forest_gen_nav_v8_human || $COURSE == forest_gen_nav_v8_official_human ]]; then
       TERRAIN_FILTER_CELL_SIZE=${SCAN_TERRAIN_FILTER_CELL_SIZE:-0.30}
       TERRAIN_FILTER_HEIGHT_THRESHOLD=${SCAN_TERRAIN_FILTER_HEIGHT_THRESHOLD:-0.22}
       TERRAIN_FILTER_NEIGHBOR_CELLS=${SCAN_TERRAIN_FILTER_NEIGHBOR_CELLS:-1}
@@ -128,14 +132,18 @@ case "$COURSE" in
         --terrain-filter-minimum-neighbor-cells "$TERRAIN_FILTER_MINIMUM_NEIGHBOR_CELLS"
       )
     fi
-    if [[ $COURSE == forest_gen_nav_v7_dynamic ]]; then
+    if [[ $COURSE == forest_gen_nav_v7_dynamic || $COURSE == forest_gen_nav_v8_human || $COURSE == forest_gen_nav_v8_official_human ]]; then
       DYNAMIC_OBSTACLE_X=${SCAN_DYNAMIC_OBSTACLE_X:--3.0}
       DYNAMIC_OBSTACLE_START_Y=${SCAN_DYNAMIC_OBSTACLE_START_Y:-1.2}
       DYNAMIC_OBSTACLE_END_Y=${SCAN_DYNAMIC_OBSTACLE_END_Y:-4.8}
       DYNAMIC_OBSTACLE_WAIT_SECONDS=${SCAN_DYNAMIC_OBSTACLE_WAIT_SECONDS:-0.2}
       DYNAMIC_OBSTACLE_SPEED=${SCAN_DYNAMIC_OBSTACLE_SPEED:-0.8}
       DYNAMIC_OBSTACLE_RADIUS=${SCAN_DYNAMIC_OBSTACLE_RADIUS:-0.30}
-      DYNAMIC_OBSTACLE_HEIGHT=${SCAN_DYNAMIC_OBSTACLE_HEIGHT:-1.50}
+      if [[ $COURSE == forest_gen_nav_v8_official_human ]]; then
+        DYNAMIC_OBSTACLE_HEIGHT=${SCAN_DYNAMIC_OBSTACLE_HEIGHT:-1.70}
+      else
+        DYNAMIC_OBSTACLE_HEIGHT=${SCAN_DYNAMIC_OBSTACLE_HEIGHT:-1.50}
+      fi
       DYNAMIC_OBSTACLE_TERRAIN_CLEARANCE=${SCAN_DYNAMIC_OBSTACLE_TERRAIN_CLEARANCE:-0.02}
       DYNAMIC_OBSTACLE_HOLD_FRACTION=${SCAN_DYNAMIC_OBSTACLE_HOLD_FRACTION:-0.5}
       DYNAMIC_OBSTACLE_HOLD_SECONDS=${SCAN_DYNAMIC_OBSTACLE_HOLD_SECONDS:-0.0}
@@ -182,6 +190,8 @@ for required in \
   "$FOXY_MONITOR_SOURCE" \
   "$TRAJECTORY_REVIEW_SOURCE" \
   "$ISAAC_ADAPTER_CORE_SOURCE" \
+  "$OFFICIAL_HUMAN_BAKER_SOURCE" \
+  "$OFFICIAL_HUMAN_CONTRACT_SOURCE" \
   "${ROBOT_INPUTS[@]}" \
   "$FOXY_WORKSPACE/build/plan_env/libplan_env.a" \
   "$FOXY_WORKSPACE/build/scan_planner/scan_planner_node" \
@@ -198,6 +208,35 @@ if [[ -e $LOG_DIR || -e $OUTPUT_DIR ]]; then
 fi
 
 mkdir -p "$LOG_DIR" "$OUTPUT_DIR"
+
+# The official AnimationGraph cannot share the Direct GPU process safely in the
+# pinned runtime.  Generate its ControlRig-retargeted pose cache in a bounded,
+# isolated Isaac process before the physical Lite3 scene starts.
+# shellcheck source=/dev/null
+source /home/sun/miniconda3/etc/profile.d/conda.sh
+conda activate isaaclab
+export OMNI_KIT_ACCEPT_EULA=YES
+export PRIVACY_CONSENT=N
+export KMP_DUPLICATE_LIB_OK=TRUE
+export PYTHONPATH="$BRIDGE:$RUNTIME/source/rsl_rl:$RUNTIME/source/robot_lab${FOREST_PYTHONPATH:+:$FOREST_PYTHONPATH}${PYTHONPATH:+:$PYTHONPATH}"
+if [[ $COURSE == forest_gen_nav_v8_official_human ]]; then
+  OFFICIAL_HUMAN_CACHE=$OUTPUT_DIR/official_human_retarget_cache.npz
+  OFFICIAL_HUMAN_MANIFEST=$OUTPUT_DIR/official_human_retarget_cache.json
+  python -u -m lite3_sim_bridge.bake_official_human_animation \
+    --output "$OFFICIAL_HUMAN_CACHE" \
+    --manifest "$OFFICIAL_HUMAN_MANIFEST" \
+    >"$LOG_DIR/official_human_bake.log" 2>&1
+  if [[ ! -s $OFFICIAL_HUMAN_CACHE || ! -s $OFFICIAL_HUMAN_MANIFEST ]]; then
+    echo "official Biped retarget cache generation failed" >&2
+    exit 70
+  fi
+  OFFICIAL_HUMAN_CACHE_CONTENT_SHA256=$(python -c \
+    'import json,sys; print(json.load(open(sys.argv[1]))["cache_content_sha256"])' \
+    "$OFFICIAL_HUMAN_MANIFEST")
+  DYNAMIC_ARGS+=(--official-human-animation-cache "$OFFICIAL_HUMAN_CACHE")
+  sha256sum "$OFFICIAL_HUMAN_CACHE" "$OFFICIAL_HUMAN_MANIFEST" \
+    >"$OUTPUT_DIR/official_human_cache_sha256.txt"
+fi
 
 {
   printf 'duration_seconds=%s\n' "$DURATION_SECONDS"
@@ -219,6 +258,7 @@ mkdir -p "$LOG_DIR" "$OUTPUT_DIR"
   printf 'dynamic_obstacle_terrain_clearance=%s\n' "$DYNAMIC_OBSTACLE_TERRAIN_CLEARANCE"
   printf 'dynamic_obstacle_hold_fraction=%s\n' "$DYNAMIC_OBSTACLE_HOLD_FRACTION"
   printf 'dynamic_obstacle_hold_seconds=%s\n' "$DYNAMIC_OBSTACLE_HOLD_SECONDS"
+  printf 'official_human_cache_content_sha256=%s\n' "$OFFICIAL_HUMAN_CACHE_CONTENT_SHA256"
   printf 'video_fps=%s\n' "$VIDEO_FPS"
   printf 'video_frame_stride=%s\n' "$VIDEO_FRAME_STRIDE"
   printf 'max_vx=%s\n' "$MAX_VX"
@@ -240,6 +280,8 @@ sha256sum \
   "$FOXY_LAUNCH_SOURCE" \
   "$BRIDGE/lite3_sim_bridge/run_isaac_v12_fallback.py" \
   "$ISAAC_ADAPTER_CORE_SOURCE" \
+  "$OFFICIAL_HUMAN_BAKER_SOURCE" \
+  "$OFFICIAL_HUMAN_CONTRACT_SOURCE" \
   "$BRIDGE/lite3_sim_bridge/acceptance.py" \
   "$BRIDGE/lite3_sim_bridge/command_state.py" \
   "$BRIDGE/lite3_sim_bridge/transport.py" \
@@ -286,14 +328,6 @@ cleanup() {
   fi
 }
 trap cleanup EXIT
-
-# shellcheck source=/dev/null
-source /home/sun/miniconda3/etc/profile.d/conda.sh
-conda activate isaaclab
-export OMNI_KIT_ACCEPT_EULA=YES
-export PRIVACY_CONSENT=N
-export KMP_DUPLICATE_LIB_OK=TRUE
-export PYTHONPATH="$BRIDGE:$RUNTIME/source/rsl_rl:$RUNTIME/source/robot_lab${FOREST_PYTHONPATH:+:$FOREST_PYTHONPATH}${PYTHONPATH:+:$PYTHONPATH}"
 
 cd "$RUNTIME"
 python -u -m lite3_sim_bridge.run_isaac_v12_fallback \

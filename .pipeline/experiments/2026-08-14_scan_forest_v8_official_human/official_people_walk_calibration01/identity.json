@@ -1,0 +1,104 @@
+{
+  "animation_graph": "/World/Characters/Biped_Setup/CharacterAnimation/AnimationGraph",
+  "biped_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/Biped_Setup.usd",
+  "character_root": "/World/Characters/Character",
+  "character_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/male_adult_construction_03/male_adult_construction_03.usd",
+  "claim": "official Isaac Sim 5.1 character driven by the official Biped animation graph and omni.anim.people GoTo controller; isolated visual calibration, not Lite3 navigation or collision validation",
+  "command": "Character GoTo 0 5 0 180",
+  "controller": "omni.anim.people GoTo",
+  "final_visible_bbox_max_m": [
+    0.4470573791984674,
+    4.362583904575634,
+    1.7740528697693885
+  ],
+  "final_visible_bbox_min_m": [
+    -0.41155337575389356,
+    3.6791964507296857,
+    -0.1574199266156506
+  ],
+  "fps": 30,
+  "frame_count": 240,
+  "runtime": {
+    "environment": "isaaclab conda runtime",
+    "isaac_sim": "5.1",
+    "omni_anim_people": "0.7.9",
+    "replicator_agent_core": "0.7.28"
+  },
+  "sampled_root_positions": [
+    {
+      "frame": 0,
+      "root_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "seconds": 0.0
+    },
+    {
+      "frame": 30,
+      "root_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "seconds": 1.0
+    },
+    {
+      "frame": 60,
+      "root_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "seconds": 2.0
+    },
+    {
+      "frame": 90,
+      "root_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "seconds": 3.0
+    },
+    {
+      "frame": 120,
+      "root_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "seconds": 4.0
+    },
+    {
+      "frame": 150,
+      "root_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "seconds": 5.0
+    },
+    {
+      "frame": 180,
+      "root_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "seconds": 6.0
+    },
+    {
+      "frame": 210,
+      "root_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "seconds": 7.0
+    }
+  ],
+  "schema_version": 1,
+  "skel_root": "/World/Characters/Character/male_adult_construction_03/ManRoot/male_adult_construction_03",
+  "video_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/results/official_people_walk_calibration01/official_isaac_people_goto_walk.mp4"
+}

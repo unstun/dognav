@@ -1,0 +1,9 @@
+[INFO] [1786744681.229623528] [rosbag2_storage]: Opened database '/evidence/rosbag/rosbag_0.db3' for READ_WRITE.
+[INFO] [1786744681.232853129] [rosbag2_transport]: Listening for topics...
+[INFO] [1786744681.333666118] [rosbag2_transport]: Subscribed to topic '/planning/bspline'
+[INFO] [1786744681.333951435] [rosbag2_transport]: Subscribed to topic '/quad_0/body_pose'
+[INFO] [1786744681.334175125] [rosbag2_transport]: Subscribed to topic '/quad_0/cloud'
+[INFO] [1786744681.334485739] [rosbag2_transport]: Subscribed to topic '/quad_0/cmd_vel'
+[INFO] [1786744681.334639899] [rosbag2_transport]: Subscribed to topic '/quad_0/lidar_pose'
+[INFO] [1786744681.334643997] [rosbag2_transport]: All requested topics are subscribed. Stopping discovery...
+[INFO] [1786744730.336349108] [rclcpp]: signal_handler(signal_value=2)

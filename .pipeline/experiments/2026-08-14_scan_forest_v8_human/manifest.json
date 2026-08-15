@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "status": "frozen_automated_gate_pass_human_review_pending",
+  "experiment": "SCAN forest V8 procedural-human dynamic crossing",
+  "local_source_of_truth": "/Users/sun/tongbu/study/phdproject/machine-dog-nav",
+  "remote_execution_copy": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human",
+  "labels": {
+    "project_integrated": false,
+    "automated_gate_passed": true,
+    "human_accepted": false,
+    "real_robot_validated": false
+  },
+  "pinned_inputs": {
+    "locomotion_source_commit": "8c3fdffa84b85be0704a10ea5b2533817d543822",
+    "checkpoint": "model_149999.pt",
+    "checkpoint_sha256": "a9d31dce90e6e8c564d955e473d6d3502f893d7ef5a5c1efaf5bb50d6b3d5450",
+    "canonical_urdf_sha256": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80",
+    "isaac_urdf_sha256": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d",
+    "forest_gen_commit": "a75fb28c7b896e2a67e2d889b804732d33c56e0c",
+    "stripe_kit_commit": "ce97eed40d9fc4927c4856eda6a17204d01087db"
+  },
+  "v8_contract": {
+    "course": "forest_gen_nav_v8_human",
+    "forest_seed": 14,
+    "goal_world_m": [0.5, 3.0, 0.85],
+    "forward_limit_mps": 1.0,
+    "human_shape": "procedural_humanoid",
+    "human_visible_parts": ["Head", "Torso", "Pelvis", "LeftArm", "RightArm", "LeftLeg", "RightLeg"],
+    "human_asset_sha256": "24efd3335c5a5d2654ff7eaf14c93052f50045d62d7342de7cac3ff10bd183a0",
+    "collision_shape": "hidden_capsule",
+    "dynamic_start_xy_m": [-2.7, 2.0],
+    "dynamic_end_xy_m": [-2.7, 4.8],
+    "dynamic_speed_mps": 0.8,
+    "dynamic_hold_fraction": 0.35714285714285715,
+    "dynamic_hold_seconds": 2.5,
+    "dynamic_schedule_trigger": "first nonzero accepted body command",
+    "dynamic_radius_m": 0.3,
+    "dynamic_height_m": 1.7,
+    "gait_cadence_hz": 1.6,
+    "gait_maximum_swing_radians": 0.4363323129985824,
+    "frozen_acceptance_sha256": "14265b9e2d331506708186fdd4fa37ba069ce99b189fe818a78e2e95687ae48a",
+    "planner_semantics": "reactive rendered-geometry occupancy update; no semantics, velocity prediction, or intention model"
+  },
+  "preserved_runs": [
+    {
+      "run_id": "v8_human_stage_preflight01",
+      "status": "INSTRUMENTATION_ERROR",
+      "purpose": "runtime regex audit mismatch; real human geometry was instantiated but the gate compared template and expanded sensor target strings"
+    },
+    {
+      "run_id": "v8_human_stage_preflight02",
+      "status": "PASS_V8_PREFLIGHT_FAIL_SHORT_NAVIGATION",
+      "purpose": "proved seven-part geometry, hidden collision, gait, dual-sensor animated detections, and overlay; eight seconds intentionally could not satisfy the full navigation thresholds"
+    },
+    {
+      "run_id": "v8_human_candidate_dryrun01",
+      "status": "FAIL_DYNAMIC_COLLISION",
+      "purpose": "narrow first body reached the goal but produced 2319.98 N non-foot contact and -0.139 m synchronized clearance; preserved as the evidence for widening only the rendered physical body"
+    },
+    {
+      "run_id": "v8_human_stage_preflight03",
+      "status": "PASS_CORRECTED_GEOMETRY_PREFLIGHT",
+      "purpose": "corrected high-visibility body maintained 0.339 m minimum clearance and zero contact"
+    },
+    {
+      "run_id": "v8_human_candidate_dryrun02",
+      "status": "PASS_CANDIDATE_THRESHOLDS",
+      "purpose": "first same-input 125/125 pass"
+    },
+    {
+      "run_id": "v8_human_candidate_dryrun03",
+      "status": "PASS_CANDIDATE_THRESHOLDS",
+      "purpose": "second same-input 125/125 pass before threshold freeze"
+    }
+  ],
+  "review_candidate": {
+    "run_id": "v8_human_review_candidate01",
+    "automated_status": "PASS_125_OF_125",
+    "human_status": "pending",
+    "effective_input_sha256": "b0330f7375a0dd26c307180b475d293d6ea5528d0d957887b561d718f3118bfe",
+    "frozen_acceptance_sha256": "14265b9e2d331506708186fdd4fa37ba069ce99b189fe818a78e2e95687ae48a",
+    "dynamic_surface_clearance_m": 0.31939431725807904,
+    "static_tree_center_clearance_m": 0.9878396086234393,
+    "measured_planar_speed_p75_mps": 0.8444893700931995,
+    "high_command_speed_p75_mps": 1.008452127494607,
+    "final_goal_error_m": 0.018591825696853057,
+    "maximum_post_stop_drift_m": 0.0503739802966883,
+    "maximum_nonfoot_contact_n": 0.0,
+    "scan_trajectory_count": 3,
+    "lidar_animated_detection_count": 25,
+    "depth_animated_detection_count": 22,
+    "raw_video": "results/v8_human_review_candidate01/closed_loop.mp4",
+    "overlay_video": "results/v8_human_review_candidate01/closed_loop_review_overlay.mp4",
+    "human_checklist": "HUMAN_REVIEW.md"
+  },
+  "claim_boundary": [
+    "The person is a geometric proxy, not a semantic or behavioral human model.",
+    "Obstacle truth is evaluation-only; SCAN consumes rendered point geometry.",
+    "Automated PASS does not satisfy the pending human review criterion.",
+    "No training, real-robot actuation, LIO, hardware sensor parity, predictive navigation, or real-person safety claim is authorized."
+  ]
+}

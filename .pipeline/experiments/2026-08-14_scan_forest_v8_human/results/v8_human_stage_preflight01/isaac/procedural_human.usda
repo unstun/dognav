@@ -1,0 +1,154 @@
+#usda 1.0
+(
+    defaultPrim = "Human"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "Human" (
+    prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysxRigidBodyAPI", "PhysicsMassAPI"]
+)
+{
+    bool physics:kinematicEnabled = 1
+    float physics:mass = 20
+    bool physxRigidBody:disableGravity = 1
+
+    def "Looks"
+    {
+        def Material "YellowHuman"
+        {
+            token outputs:surface.connect = </Human/Looks/YellowHuman/PreviewSurface.outputs:surface>
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 0.82, 0.02)
+                float inputs:metallic = 0
+                float inputs:roughness = 0.62
+                token outputs:surface
+            }
+        }
+    }
+
+    def Capsule "CollisionCapsule" (
+        prepend apiSchemas = ["PhysicsCollisionAPI"]
+    )
+    {
+        uniform token axis = "Z"
+        double height = 1.1
+        double radius = 0.3
+        token visibility = "invisible"
+    }
+
+    def Xform "Visual"
+    {
+        def Xform "Head"
+        {
+            double3 xformOp:translate = (0, 0, 0.68)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Sphere "Shape"
+            {
+                rel material:binding = </Human/Looks/YellowHuman>
+                double radius = 0.16
+            }
+        }
+
+        def Xform "Torso"
+        {
+            double3 xformOp:translate = (0, 0, 0.3)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Cube "Shape"
+            {
+                rel material:binding = </Human/Looks/YellowHuman>
+                double size = 1
+                float3 xformOp:scale = (0.38, 0.23, 0.5)
+                uniform token[] xformOpOrder = ["xformOp:scale"]
+            }
+        }
+
+        def Xform "Pelvis"
+        {
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Cube "Shape"
+            {
+                rel material:binding = </Human/Looks/YellowHuman>
+                double size = 1
+                float3 xformOp:scale = (0.32, 0.22, 0.2)
+                uniform token[] xformOpOrder = ["xformOp:scale"]
+            }
+        }
+
+        def Xform "LeftArm"
+        {
+            float xformOp:rotateX = 0
+            double3 xformOp:translate = (0.24, 0, 0.48)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateX"]
+
+            def Capsule "Shape"
+            {
+                uniform token axis = "Z"
+                double height = 0.48
+                rel material:binding = </Human/Looks/YellowHuman>
+                double radius = 0.065
+                double3 xformOp:translate = (0, 0, -0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+
+        def Xform "RightArm"
+        {
+            float xformOp:rotateX = 0
+            double3 xformOp:translate = (-0.24, 0, 0.48)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateX"]
+
+            def Capsule "Shape"
+            {
+                uniform token axis = "Z"
+                double height = 0.48
+                rel material:binding = </Human/Looks/YellowHuman>
+                double radius = 0.065
+                double3 xformOp:translate = (0, 0, -0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+
+        def Xform "LeftLeg"
+        {
+            float xformOp:rotateX = 0
+            double3 xformOp:translate = (0.105, 0, -0.08)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateX"]
+
+            def Capsule "Shape"
+            {
+                uniform token axis = "Z"
+                double height = 0.6
+                rel material:binding = </Human/Looks/YellowHuman>
+                double radius = 0.085
+                double3 xformOp:translate = (0, 0, -0.385)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+
+        def Xform "RightLeg"
+        {
+            float xformOp:rotateX = 0
+            double3 xformOp:translate = (-0.105, 0, -0.08)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateX"]
+
+            def Capsule "Shape"
+            {
+                uniform token axis = "Z"
+                double height = 0.6
+                rel material:binding = </Human/Looks/YellowHuman>
+                double radius = 0.085
+                double3 xformOp:translate = (0, 0, -0.385)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+}
+

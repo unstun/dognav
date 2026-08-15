@@ -754,3 +754,121 @@ command-relative PhysX body -> transform-tracked sensor hits -> SCAN occupancy
   -> reactive B-spline -> bounded catch-up if needed -> articulated motion
   -> synchronized clearance/contact evidence
 ```
+
+## Scenario: Replace a Dynamic Primitive with an Official Animated Human
+
+### 1. Scope / Trigger
+
+Use this contract when a previously qualified cylinder or box is replaced by a
+ready-made vendor human asset while keeping the same reactive planner,
+schedule, policy, robot, sensors, and physical-clearance claim. A recognizable
+render alone is insufficient: the surfaces seen by planning must be
+commensurate with the physical collision envelope.
+
+### 2. Signatures
+
+```python
+def expand_isaac_env_regex_ns(prim_expr: str) -> str: ...
+```
+
+```text
+visible asset: versioned official Isaac character URL under a visual-only root
+animation: official Biped AnimationGraph retarget output, cached outside Direct GPU
+physical proxy: one hidden capsule under a separate kinematic root
+registration: common schedule time/XY/heading with explicit vertical datums
+sensor contract: conservative co-moving capsule proxy
+```
+
+### 3. Contracts
+
+- Pin the official asset URL and runtime version. Record source metadata,
+  readable hashes, extension versions, license boundary, collision path, and
+  animation identity. Never vendor or redistribute restricted vendor content.
+- Keep the collision capsule hidden but collidable. Register its dedicated root
+  and the visual root to the same schedule time, XY, and heading; compare the
+  capsule-centre and shoe-sole vertical datums instead of equating root Z.
+- Use the official Biped AnimationGraph and its ControlRig retarget output for
+  visible gait. If Direct GPU cannot host the graph, generate a run-owned cache
+  in a separate bounded Isaac process, validate exact joint order and non-static
+  poses, and replay it without the graph. Do not implement a local procedural gait.
+- The rendered body surface must be commensurate with the declared capsule at
+  the sensor-facing planes. Compare early-route rendered hit counts and physical
+  clearance against the primitive baseline. A sparse cosmetic body inside a
+  broad collision capsule is a sensor/physics mismatch, not a planner failure.
+- Normalize `{ENV_REGEX_NS}` to `/World/envs/env_.*` before comparing declared
+  target expressions with Isaac's runtime target records.
+- Human part identity, truth pose, capsule bounds, and gait angles are evidence
+  only. SCAN receives rendered geometry; no semantic label, truth point,
+  predicted velocity, or scripted avoidance command may enter planning.
+- Preserve a collision-producing geometry run. Fix the owning representation
+  layer, re-run a no-contact preflight and two same-input full dry runs, then
+  freeze a new human-asset hash and acceptance file before a review candidate.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required behavior |
+|---|---|
+| Official asset URL/version or readable hash differs | Stop or fail acceptance before promoting the run |
+| Official character or animation fails to load | Fail the visual preflight |
+| Capsule is visible, non-collidable, or registration error exceeds tolerance | Fail the physics gate |
+| Cache joint order differs from the official character skeleton | Fail before scene startup |
+| Walk or idle cache is static or contains invalid quaternions | Fail the visual preflight |
+| A visible part lacks transform tracking in either sensor | Fail the sensor gate |
+| Runtime target uses expanded environment regex | Normalize then compare exact expressions |
+| Local procedural gait drives the visible human | Reject as out of scope |
+| Visible surface is too sparse for its collision envelope | Preserve collision/clearance failure; enlarge or correct the rendered body |
+| Human truth is used to add/remove planner points or steer | Reject the run as non-causal |
+| Automated candidate passes but video is unreviewed | Keep task and manifest at human-review pending |
+
+### 5. Good / Base / Bad Cases
+
+- **Good:** versioned official animated human, hidden stable capsule, audited
+  dual-sensor occupancy, comparable sensing/physics
+  envelopes, positive clearance, frozen candidate, and pending human review.
+- **Base:** the original cylinder remains a valid reactive-obstacle baseline but
+  cannot satisfy human recognizability or gait evidence.
+- **Bad:** draw a person around the old cylinder while sensors still target only
+  the cylinder, or use a thin visible mannequin inside a broad capsule and
+  blame SCAN after the robot contacts the unseen envelope.
+
+### 6. Tests Required
+
+- Unit-test official asset selection, phase-to-animation state, invalid phase,
+  and environment-regex expansion.
+- Assert the official asset/animation identity, one hidden collision prim,
+  initialized synchronized roots, and no visible primitive fallback.
+- Assert the declared official-mesh or proxy sensor targets are present in both
+  runtime target lists and detected at multiple actor poses.
+- Record early-route human hit counts, synchronized physical clearance, non-foot
+  contact, causally later SCAN trajectories, goal stop, and overlay identity.
+- Require a no-contact preflight, two same-effective-input full passes, one
+  frozen run, local acceptance parity, ROS bag integrity, MP4 decode, and
+  local/remote SHA-256 parity.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```text
+unverified downloaded model + broad hidden capsule
+  -> sparse sensor returns -> late replan -> collision with unseen envelope
+```
+
+```python
+expected = "{ENV_REGEX_NS}/DynamicObstacle/Visual/Head"
+assert expected in runtime_targets  # Isaac has already expanded the token
+```
+
+#### Correct
+
+```text
+visible body commensurate with physical capsule
+  -> transform-tracked rendered hits -> SCAN occupancy -> physical clearance
+```
+
+```python
+expected = expand_isaac_env_regex_ns(
+    "{ENV_REGEX_NS}/DynamicObstacle/Visual/Head"
+)
+assert expected in runtime_targets
+```

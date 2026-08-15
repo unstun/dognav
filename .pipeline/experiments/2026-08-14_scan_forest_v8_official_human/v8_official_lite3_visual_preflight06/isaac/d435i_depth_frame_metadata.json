@@ -1,0 +1,98 @@
+{
+  "artifacts": {
+    "depth_metres_npy": {
+      "bytes": 20312,
+      "path": "d435i_depth_frame_m.npy",
+      "sha256": "00c05cb1a5047501e39e9bcde8a6c12082625090935458085452cf0e6befa6b7"
+    },
+    "depth_millimetres_png": {
+      "bytes": 2642,
+      "invalid_or_clipped_value_mm": 5000,
+      "path": "d435i_depth_frame_mm.png",
+      "sha256": "14ef532a60db0123b4b9f2839ff38be33be6e0c6ba74229b36ad9fc6845409ea"
+    },
+    "human_preview_png": {
+      "bytes": 906,
+      "display_rule": "nearer valid depth is brighter; invalid is black",
+      "path": "d435i_depth_preview.png",
+      "sha256": "1d6f4c5dda7e6790fd020de9d3cd80c88c06b226077ccd1653097f6f6c447ab6"
+    }
+  },
+  "dynamic_human_gait_angles": {
+    "cache_content_sha256": "76c19b57ebd03e01820e6b9db79bde8f2f3e436302744ef457278af8d17ef5b3",
+    "clip": "walk",
+    "direct_gpu_animation_graph_used": false,
+    "fps": 30,
+    "frame_count": 90,
+    "frame_index": 8,
+    "local_procedural_gait": false,
+    "phase": "crossing",
+    "source": "NVIDIA Isaac Sim 5.1 Biped AnimationGraph retarget cache",
+    "target_animation_path": "/World/DynamicHumanVisual/OfficialAnimations/Active",
+    "target_joint_count": 101
+  },
+  "dynamic_obstacle_actual_pos_w": [
+    -3.0,
+    3.8399999141693115,
+    0.9284433126449585
+  ],
+  "dynamic_obstacle_surface_pixel_count": 676,
+  "height": 58,
+  "intrinsic_matrix": [
+    [
+      45.83973693847656,
+      0.0,
+      43.5
+    ],
+    [
+      0.0,
+      45.83973693847656,
+      29.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "maximum_valid_depth_m": 2.2793819904327393,
+  "mean_valid_depth_m": 0.7546272277832031,
+  "minimum_valid_depth_m": 0.3594737648963928,
+  "nonfinite_depth_count": 0,
+  "obstacle_surface_pixel_count": 0,
+  "official_human_visual_pose": {
+    "capsule_bottom_world_z_m": 0.07844331828887674,
+    "foot_to_capsule_bottom_error_m": -5.551115123125783e-17,
+    "readback_root_xyz_m": [
+      -3.0,
+      3.839999937415123,
+      0.07844351184851966
+    ],
+    "root_pose_error_m": 0.0,
+    "scheduled_root_xyz_m": [
+      -3.0,
+      3.839999937415123,
+      0.07844351184851966
+    ],
+    "visual_foot_world_z_m": 0.07844331828887668,
+    "visual_top_world_z_m": 1.8141960943985684,
+    "visual_yaw_radians": 3.141592653589793
+  },
+  "pixel_count": 5046,
+  "self_occluded_pixel_count": 0,
+  "sensor_position_w": [
+    -3.9567158222198486,
+    3.4611263275146484,
+    0.5437785983085632
+  ],
+  "sensor_quaternion_wxyz_ros": [
+    -0.3741458058357239,
+    0.697546660900116,
+    -0.5678592324256897,
+    0.22578634321689606
+  ],
+  "sim_time_seconds": 3.9299999121576548,
+  "step": 195,
+  "valid_depth_pixel_count": 5046,
+  "width": 87
+}

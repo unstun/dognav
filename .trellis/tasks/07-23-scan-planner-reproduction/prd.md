@@ -123,6 +123,36 @@ trajectory or stop after current sensor measurements update the occupancy map.
 It does not add or claim obstacle-velocity prediction, intention estimation,
 or a generally validated dynamic-navigation benchmark.
 
+## V8 Official-Human Dynamic-Obstacle Decision
+
+On 2026-08-14, after V7 candidate 03 was delivered for review, Dr Sun approved
+an independent V8 that replaces the orange cylinder appearance with a yellow
+human-shaped moving obstacle. V7 code, runs, thresholds, videos, and pending
+human-review record remain immutable; the request does not retroactively accept
+V7. V8 preserves the V7 schedule, SCAN map/controller adaptations, forest,
+start/goal, V12 policy, Lite3 sensor-rig URDF, dual-sensor settings, and 1.0 m/s
+boundary. Only the moving actor representation and the evidence needed to prove
+that representation are changed.
+
+The first V8 candidate used a locally generated segmented humanoid and passed
+its automated gates, but Dr Sun rejected that representation on 2026-08-14 and
+required a ready-made Isaac human instead of a hand-authored model. That
+candidate is immutable negative evidence and cannot be submitted or accepted.
+
+V8 R2 references NVIDIA's versioned Isaac Sim 5.1 character
+`male_adult_police_04` and the official Biped AnimationGraph from the versioned
+Isaac People asset root. The repository records the exact asset URLs,
+runtime extension versions, file hashes where the server permits byte reads,
+and license boundary; it does not vendor or redistribute NVIDIA character
+content. A hidden terrain-seated capsule remains the conservative collision and
+clearance proxy because the official skinned character is a visual/animation
+asset rather than a stable rigid-body pedestrian. The visual and proxy use
+separate roots with separate shoe-sole and capsule-centre vertical datums, but
+share the same schedule time, XY position, and heading. The proxy remains absent
+from the rendered image.
+SCAN receives only geometry returned by the declared simulated sensors; actor
+truth, semantic identity, and commanded motion remain evidence-only.
+
 ## Requirements
 
 - **R1 — Source provenance.** Preserve the selected SCAN revision as an
@@ -319,6 +349,35 @@ or a generally validated dynamic-navigation benchmark.
   resumes as soon as strict tracking is restored. The catch-up command remains
   bounded and follows the received trajectory start; this is not permission to
   ignore a collision during heading or normal trajectory execution.
+- **R41 — Official human identity.** V8 R2 references the NVIDIA Isaac Sim 5.1
+  `male_adult_police_04` character and the official Isaac People Biped graph.
+  Record the versioned URLs, extension/runtime versions, server
+  metadata, available file hashes, and applicable NVIDIA asset-license boundary.
+  Do not copy or redistribute the official character content into this repo.
+- **R42 — Stable physical representation.** A hidden terrain-seated capsule
+  under a dedicated kinematic rigid root owns collision, mass, pose scheduling,
+  readback, sensor occupancy, and synchronized clearance. A separate visual root
+  is registered by the official shoe sole. Both roots share schedule time, XY,
+  and heading while retaining their explicit vertical datums. Visible limbs do
+  not create unstable articulated collision. The capsule radius and total height
+  are frozen before dry runs; collision-disabled viewport-only motion cannot
+  satisfy V8.
+- **R43 — Official animation and sensor-visible occupancy.** Crossing uses an
+  official Isaac People Biped AnimationGraph pose after ControlRig retargeting
+  to the exact 101-joint character skeleton; waiting and hold phases use the
+  official graph's idle output. Because the People graph is incompatible with
+  the pinned Direct-GPU process, this output is generated in a separate bounded
+  process and replayed from a validated runtime cache. No local gait generator
+  may animate the visible human. Runtime evidence must identify
+  whether each sensor reads the deforming official mesh or a conservative
+  co-moving sensor proxy; this distinction must be visible in the manifest and
+  overlay. In either case, no truth points may be injected into SCAN.
+- **R44 — V8 evidence and preservation.** Create a new dated V8 local/remote
+  boundary. Preserve V7 unchanged, obtain two identical-input passing V8 dry
+  runs, freeze new human-specific thresholds, then execute one uninterrupted
+  review candidate. Copy back the generated USD, hashes, stage audit, raw and
+  overlay videos, sensor/trajectory/contact traces, ROS bag, and acceptance
+  reports before making any V8 claim.
 
 ## Acceptance Criteria
 
@@ -477,6 +536,32 @@ or a generally validated dynamic-navigation benchmark.
   and explicitly accepts or rejects obstacle motion and visibility, reactive
   avoidance, planned-versus-actual motion, speed, terrain appearance, and stop
   or goal behavior.
+- [ ] **AC40 — V8 R2 official asset gate:** runtime inspection proves the
+  visible actor is NVIDIA's versioned Isaac Sim 5.1
+  `male_adult_police_04`, records its source/version/license evidence, shows no
+  procedural-human fallback, and proves the separate hidden collidable capsule
+  shares schedule time, XY, and heading without appearing in RGB output.
+- [ ] **AC41 — V8 R2 official animation and sensor gate:** an official Isaac
+  Biped-retargeted walk is visibly active during crossing and its idle output is
+  active outside it; the cache proves exact 101-joint output and non-static
+  walk/idle pose arrays. Both simulated sensors observe the co-moving capsule at
+  multiple actor positions. Truth remains evidence-only and no points are
+  injected into SCAN.
+- [ ] **AC42 — V8 R2 reactive physical result:** under the unchanged V7 schedule,
+  planner/controller adaptations, policy, robot, forest, and speed boundary,
+  SCAN produces a causally later response and the articulated Lite3 reaches
+  the goal or declared safe stop with positive capsule clearance, zero non-foot
+  collision, finite state, advancing sensors, and no scripted robot motion.
+- [ ] **AC43 — V8 R2 evidence gate:** one official-human visual preflight accepted
+  by Dr Sun precedes two identical-input passing dry runs and one
+  frozen review candidate have complete local/remote hash parity, a decodable
+  raw MP4 and official-human overlay, asset manifest and stage audit, animation
+  trace, dual-sensor observations, ROS bag, SCAN paths, physical root path,
+  contacts, and machine-readable acceptance.
+- [ ] **AC44 — V8 R2 human review:** Dr Sun watches the full V8 R2 raw and overlay
+  videos and explicitly judges human recognizability, gait, sensor-causal
+  avoidance, planned-versus-actual motion, terrain appearance, speed, clearance,
+  and terminal behavior. Automated PASS cannot satisfy this criterion.
 
 ## Stop Conditions
 
@@ -507,4 +592,7 @@ validated closed loop.
 - Calibrated MID-360 noise, coverage, timing, intensity, or weather parity.
 - Multi-map, multi-seed, comparative benchmark, predictive dynamic planning,
   multi-agent intention modeling, or general dynamic-navigation claims beyond
-  the single frozen V7 crossing.
+  the single frozen V7/V8 crossing.
+- Human pose estimation, pedestrian intention prediction, semantic person
+  detection, social-navigation cost fields, crowd simulation, or claims about
+  safe operation near real people.

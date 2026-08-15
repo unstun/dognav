@@ -1,0 +1,152 @@
+{
+  "animation_graph": "/World/Characters/Biped_Setup/CharacterAnimation/AnimationGraph",
+  "biped_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/Biped_Setup.usd",
+  "character_root": "/World/Characters/Character",
+  "character_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/male_adult_construction_03/male_adult_construction_03.usd",
+  "claim": "official Isaac Sim 5.1 character driven by the official Biped animation graph and omni.anim.people GoTo controller; isolated visual calibration, not Lite3 navigation or collision validation",
+  "command": "Character GoTo 0 5 0 180",
+  "controller": "omni.anim.people GoTo",
+  "final_visible_bbox_max_m": [
+    0.4470573791984674,
+    4.362583904575634,
+    1.7740528697693885
+  ],
+  "final_visible_bbox_min_m": [
+    -0.41155337575389356,
+    3.6791964507296857,
+    -0.1574199266156506
+  ],
+  "fps": 30,
+  "frame_count": 240,
+  "runtime": {
+    "environment": "isaaclab conda runtime",
+    "isaac_sim": "5.1",
+    "omni_anim_people": "0.7.9",
+    "replicator_agent_core": "0.7.28"
+  },
+  "sampled_root_positions": [
+    {
+      "frame": 0,
+      "root_position_m": [
+        -0.002129105618223548,
+        0.0032436144538223743,
+        -1.9457059574623514e-10
+      ],
+      "root_rotation_xyzw": [
+        0.0,
+        0.0,
+        0.9999990463256836,
+        -0.0014254122506827116
+      ],
+      "seconds": 0.0
+    },
+    {
+      "frame": 30,
+      "root_position_m": [
+        0.002104413928464055,
+        0.2204137146472931,
+        -2.4195479397803865e-08
+      ],
+      "root_rotation_xyzw": [
+        0.0,
+        0.0,
+        0.9999384880065918,
+        -0.011097158305346966
+      ],
+      "seconds": 1.0
+    },
+    {
+      "frame": 60,
+      "root_position_m": [
+        0.02959233894944191,
+        0.7463182806968689,
+        -5.735073926871337e-08
+      ],
+      "root_rotation_xyzw": [
+        1.1640620412034508e-10,
+        4.573789697676078e-12,
+        0.9999237656593323,
+        -0.012347252108156681
+      ],
+      "seconds": 2.0
+    },
+    {
+      "frame": 90,
+      "root_position_m": [
+        -0.04790683835744858,
+        1.3088892698287964,
+        -1.0179420684153229e-07
+      ],
+      "root_rotation_xyzw": [
+        3.476824828041458e-09,
+        7.067076784883497e-11,
+        0.9999727606773376,
+        -0.007380008697509766
+      ],
+      "seconds": 3.0
+    },
+    {
+      "frame": 120,
+      "root_position_m": [
+        0.025863012298941612,
+        1.8575513362884521,
+        -1.369775759485492e-07
+      ],
+      "root_rotation_xyzw": [
+        3.956459604381735e-09,
+        9.176234772034775e-11,
+        1.0,
+        -5.5865921240183525e-06
+      ],
+      "seconds": 4.0
+    },
+    {
+      "frame": 150,
+      "root_position_m": [
+        -0.005136776715517044,
+        2.4169762134552,
+        -1.8107544974554912e-07
+      ],
+      "root_rotation_xyzw": [
+        3.956539096350298e-09,
+        8.88538617682677e-11,
+        0.9999995231628418,
+        -0.00103988335467875
+      ],
+      "seconds": 5.0
+    },
+    {
+      "frame": 180,
+      "root_position_m": [
+        0.017745641991496086,
+        2.9574015140533447,
+        -2.0290569580083684e-07
+      ],
+      "root_rotation_xyzw": [
+        8.393388206684449e-09,
+        1.3674741894398323e-10,
+        0.9996550679206848,
+        0.02626272849738598
+      ],
+      "seconds": 6.0
+    },
+    {
+      "frame": 210,
+      "root_position_m": [
+        0.07573357969522476,
+        3.4630959033966064,
+        -2.1940788030860858e-07
+      ],
+      "root_rotation_xyzw": [
+        1.0425030616545428e-08,
+        2.187181338819677e-11,
+        0.9999068379402161,
+        0.013648571446537971
+      ],
+      "seconds": 7.0
+    }
+  ],
+  "schema_version": 1,
+  "skel_root": "/World/Characters/Character/male_adult_construction_03/ManRoot/male_adult_construction_03",
+  "video_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/results/official_people_walk_calibration03/official_isaac_people_goto_walk.mp4"
+}

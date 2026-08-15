@@ -1,0 +1,65 @@
+#usda 1.0
+(
+    defaultPrim = "Human"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "Human" (
+    prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysxRigidBodyAPI", "PhysicsMassAPI"]
+)
+{
+    bool physics:kinematicEnabled = 1
+    float physics:mass = 20
+    bool physxRigidBody:disableGravity = 1
+
+    def Xform "OfficialCharacter" (
+        prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/male_adult_construction_03/male_adult_construction_03.usd@
+    )
+    {
+        over "male_adult_construction_03"
+        {
+            over "ManRoot"
+            {
+                over "male_adult_construction_03"
+                {
+                    over "male_adult_construction_03"
+                    {
+                        over "male_adult_construction_03" (
+                            prepend apiSchemas = ["SkelBindingAPI"]
+                        )
+                        {
+                            rel skel:animationSource = </Human/OfficialAnimations/Walk>
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    def Scope "OfficialAnimations"
+    {
+        over "Walk" (
+            prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Animations/stand_walk_loop_in_place.skelanim.usd@
+        )
+        {
+        }
+
+        over "Idle" (
+            prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Animations/stand_idle_loop.skelanim.usd@
+        )
+        {
+        }
+    }
+
+    def Capsule "CollisionCapsule" (
+        prepend apiSchemas = ["PhysicsCollisionAPI"]
+    )
+    {
+        uniform token axis = "Z"
+        double height = 1.1
+        double radius = 0.3
+        token visibility = "invisible"
+    }
+}
+

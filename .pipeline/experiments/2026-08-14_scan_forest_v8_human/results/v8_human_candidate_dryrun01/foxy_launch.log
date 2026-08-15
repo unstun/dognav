@@ -1,0 +1,81 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-08-14-21-52-41-553151-ubuntu-47
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [foxy_bridge_node-1]: process started with pid [61]
+[INFO] [scan_planner_node-2]: process started with pid [63]
+[INFO] [closed_loop_controller-3]: process started with pid [65]
+[INFO] [acceptance_monitor_node-4]: process started with pid [67]
+[closed_loop_controller-3] [INFO] [1786744361.585045989] [closed_loop_controller]: Closed-loop controller ready
+[scan_planner_node-2] hit: 1.7346
+[scan_planner_node-2] miss: -0.847298
+[scan_planner_node-2] min log: -1.99243
+[scan_planner_node-2] max: 3.89182
+[scan_planner_node-2] thresh log: 1.38629
+[scan_planner_node-2] [INFO] [1786744361.673462755] [scan_planner_node]: Preset waypoint mode will start after the first odometry message
+[acceptance_monitor_node-4] [INFO] [1786744361.743540040] [lite3_acceptance_monitor]: Acceptance monitor writing /evidence/ros_events.jsonl and /evidence/ros_summary.json
+[foxy_bridge_node-1] [INFO] [1786744361.746923196] [lite3_sim_bridge]: Lite3 bridge ready: telemetry 127.0.0.1:46610, command 127.0.0.1:46611
+[foxy_bridge_node-1] [INFO] [1786744361.747378831] [lite3_sim_bridge]: Telemetry stream connected
+[foxy_bridge_node-1] [INFO] [1786744361.747432031] [lite3_sim_bridge]: Command stream connected
+[scan_planner_node-2] [INFO] [1786744362.017426911] [scan_planner_node]: [navi_mode=2] Planning to waypoint 1/1: [0.50, 3.00, 0.85]
+[scan_planner_node-2] [TRIG]: from INIT to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------0
+[scan_planner_node-2] start:   -5    3 0.92, 0 0 0
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [32miter(+1)=103,time(ms)=20.550,total_t(ms)=20.551,cost=0.017
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] total time:[42m0.0254[0m,optimize:0.0246,refine:0.000744
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786744365.187757094] [closed_loop_controller]: Received trajectory 1, duration 7.360s, start error 0.120m, catchup state 0
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------1
+[scan_planner_node-2] start:  -4.9     3 0.818,         1 -1.14e-06    -0.012
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [32miter(+1)=68,time(ms)=9.264,total_t(ms)=9.265,cost=0.006
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] total time:[42m0.019[0m,optimize:0.018,refine:0.00063
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [SAFETY]: from EXEC_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786744367.398967311] [closed_loop_controller]: Received trajectory 2, duration 7.200s, start error 0.890m, catchup state 2
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------2
+[scan_planner_node-2] start: -3.78  3.05 0.466,       1   0.503 0.00652
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [ERROR] [1786744369.423659807] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] iter=5,time(ms)=2.2,rebound.
+[scan_planner_node-2] [ERROR] [1786744369.524893426] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] [ERROR] [1786744369.618082114] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] [32miter(+1)=50,time(ms)=5.898,keep optimizing
+[scan_planner_node-2] [0m[32miter(+1)=7,time(ms)=0.709,keep optimizing
+[scan_planner_node-2] [0m[32miter(+1)=12,time(ms)=1.388,total_t(ms)=195.807,cost=0.126
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] Need to reallocate time.
+[scan_planner_node-2] [34mThis refined trajectory is unsafe or dynamically infeasible. Skip publishing it.
+[scan_planner_node-2] [0mfinal_plan_success=0
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------3
+[scan_planner_node-2] start: -3.78  3.05 0.466,       1   0.503 0.00652
+[scan_planner_node-2] goal: 0.5    3 0.85, 0 0 0
+[scan_planner_node-2] [ERROR] [1786744369.736899968] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] [32miter(+1)=90,time(ms)=11.237,keep optimizing
+[scan_planner_node-2] [0m[32miter(+1)=10,time(ms)=1.068,total_t(ms)=105.085,cost=0.105
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] total time:[42m0.11[0m,optimize:0.11,refine:0.00055
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [SAFETY]: from EXEC_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786744369.739267079] [closed_loop_controller]: Received trajectory 3, duration 6.240s, start error 0.018m, catchup state 0
+[scan_planner_node-2] [FSM]: from EXEC_TRAJ to WAIT_TARGET
+[foxy_bridge_node-1] [WARN] [1786744406.775631679] [lite3_sim_bridge]: Telemetry stream reset: socket closed with 40 bytes remaining
+[foxy_bridge_node-1] [WARN] [1786744406.795480342] [lite3_sim_bridge]: Command stream reset: [Errno 104] Connection reset by peer
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [acceptance_monitor_node-4]: sending signal 'SIGINT' to process[acceptance_monitor_node-4]
+[INFO] [closed_loop_controller-3]: sending signal 'SIGINT' to process[closed_loop_controller-3]
+[INFO] [scan_planner_node-2]: sending signal 'SIGINT' to process[scan_planner_node-2]
+[INFO] [foxy_bridge_node-1]: sending signal 'SIGINT' to process[foxy_bridge_node-1]
+[closed_loop_controller-3] [INFO] [1786744409.454428154] [rclcpp]: signal_handler(signal_value=2)
+[scan_planner_node-2] [INFO] [1786744409.454689103] [rclcpp]: signal_handler(signal_value=2)
+[INFO] [closed_loop_controller-3]: process has finished cleanly [pid 65]
+[INFO] [foxy_bridge_node-1]: process has finished cleanly [pid 61]
+[INFO] [acceptance_monitor_node-4]: process has finished cleanly [pid 67]
+[scan_planner_node-2] des manager
+[INFO] [scan_planner_node-2]: process has finished cleanly [pid 63]

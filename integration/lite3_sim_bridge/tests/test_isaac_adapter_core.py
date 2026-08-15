@@ -8,8 +8,12 @@ from lite3_sim_bridge.isaac_adapter_core import (
     canonical_config_sha256,
     circle_surface_clearance_2d,
     dynamic_obstacle_state,
+    expand_isaac_env_regex_ns,
+    official_human_registered_state,
+    retarget_joint_indices,
     local_minimum_obstacle_hits,
     point_to_segment_distance_2d,
+    procedural_human_gait_angles,
     quaternion_wxyz_to_xyzw,
     rotation_matrix_from_wxyz,
     schedule_duration,
@@ -57,6 +61,82 @@ class IsaacAdapterCoreTest(unittest.TestCase):
         self.assertEqual(parked["center_xy_m"], (-3.5, 4.8))
         self.assertEqual(parked["velocity_xy_mps"], (0.0, 0.0))
         self.assertAlmostEqual(spec.crossing_duration_seconds, 4.5)
+        self.assertAlmostEqual(crossing["heading_yaw_radians"], math.pi / 2.0)
+
+    def test_official_human_registration_separates_foot_and_capsule_datums(self):
+        spec = DynamicObstacleSpec(
+            name="official_human",
+            start_xy=(-3.0, 1.2),
+            end_xy=(-3.0, 4.8),
+            wait_seconds=0.2,
+            speed_mps=0.8,
+            radius_m=0.30,
+            height_m=1.70,
+            terrain_clearance_m=0.02,
+        )
+        state = dynamic_obstacle_state(1.0, spec, lambda _x, _y: 0.35)
+        registered = official_human_registered_state(
+            state,
+            spec,
+            source_foot_z_m=-1.9355964298028994e-7,
+            source_visible_top_z_m=1.7357525825500488,
+            source_forward_yaw_radians=-math.pi / 2.0,
+        )
+        self.assertAlmostEqual(registered["visual_root_xyz_m"][2], 0.37000019356)
+        self.assertAlmostEqual(registered["visual_foot_world_z_m"], 0.37)
+        self.assertAlmostEqual(registered["capsule_bottom_world_z_m"], 0.37)
+        self.assertAlmostEqual(registered["capsule_center_xyz_m"][2], 1.22)
+        self.assertAlmostEqual(registered["visual_top_world_z_m"], 2.10575277611)
+        self.assertAlmostEqual(registered["visual_yaw_radians"], math.pi)
+        self.assertAlmostEqual(registered["visual_quaternion_wxyz"][0], 0.0)
+        self.assertAlmostEqual(registered["visual_quaternion_wxyz"][3], 1.0)
+
+    def test_official_animation_joint_retarget_is_name_based_and_complete(self):
+        self.assertEqual(
+            retarget_joint_indices(
+                ("root", "hip", "face", "left_foot"),
+                ("root", "hip", "left_foot"),
+            ),
+            (0, 1, None, 2),
+        )
+        with self.assertRaisesRegex(ValueError, "duplicate"):
+            retarget_joint_indices(("root", "root"), ("root",))
+        with self.assertRaisesRegex(ValueError, "absent"):
+            retarget_joint_indices(("root",), ("root", "unknown"))
+
+    def test_procedural_human_gait_is_opposed_and_crossing_only(self):
+        neutral = procedural_human_gait_angles(0.25, "holding")
+        self.assertTrue(all(value == 0.0 for value in neutral.values()))
+
+        gait = procedural_human_gait_angles(
+            0.5,
+            "crossing",
+            cadence_hz=0.5,
+            maximum_swing_radians=0.4,
+        )
+        self.assertAlmostEqual(gait["left_leg_radians"], 0.4)
+        self.assertAlmostEqual(gait["right_arm_radians"], 0.4)
+        self.assertAlmostEqual(gait["right_leg_radians"], -0.4)
+        self.assertAlmostEqual(gait["left_arm_radians"], -0.4)
+
+        with self.assertRaisesRegex(ValueError, "phase"):
+            procedural_human_gait_angles(0.0, "running")
+        with self.assertRaisesRegex(ValueError, "cadence"):
+            procedural_human_gait_angles(0.0, "crossing", cadence_hz=0.0)
+        with self.assertRaisesRegex(ValueError, "swing"):
+            procedural_human_gait_angles(
+                0.0, "crossing", maximum_swing_radians=math.pi
+            )
+
+    def test_expand_isaac_env_regex_ns_matches_runtime_target(self):
+        self.assertEqual(
+            expand_isaac_env_regex_ns(
+                "{ENV_REGEX_NS}/DynamicObstacle/Visual/Head"
+            ),
+            "/World/envs/env_.*/DynamicObstacle/Visual/Head",
+        )
+        with self.assertRaisesRegex(ValueError, "non-empty"):
+            expand_isaac_env_regex_ns("")
 
     def test_dynamic_obstacle_contract_rejects_invalid_values(self):
         with self.assertRaisesRegex(ValueError, "distinct"):

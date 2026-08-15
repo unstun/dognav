@@ -1,0 +1,152 @@
+{
+  "animation_graph": "/World/Characters/Biped_Setup/CharacterAnimation/AnimationGraph",
+  "biped_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/Biped_Setup.usd",
+  "character_root": "/World/Characters/Character",
+  "character_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/male_adult_police_04/male_adult_police_04.usd",
+  "claim": "official Isaac Sim 5.1 character driven by the official Biped animation graph and omni.anim.people GoTo controller; isolated visual calibration, not Lite3 navigation or collision validation",
+  "command": "Character GoTo 0 5 0 180",
+  "controller": "omni.anim.people GoTo",
+  "final_visible_bbox_max_m": [
+    0.4432105782638742,
+    4.326702927822874,
+    1.7645757344435833
+  ],
+  "final_visible_bbox_min_m": [
+    -0.4113281349296658,
+    3.6681094618200216,
+    -0.1490588221934725
+  ],
+  "fps": 30,
+  "frame_count": 240,
+  "runtime": {
+    "environment": "isaaclab conda runtime",
+    "isaac_sim": "5.1",
+    "omni_anim_people": "0.7.9",
+    "replicator_agent_core": "0.7.28"
+  },
+  "sampled_root_positions": [
+    {
+      "frame": 0,
+      "root_position_m": [
+        -0.002116555580869317,
+        0.0032244944013655186,
+        -1.9342367985064612e-10
+      ],
+      "root_rotation_xyzw": [
+        0.0,
+        0.0,
+        0.9999990463256836,
+        -0.0014254122506827116
+      ],
+      "seconds": 0.0
+    },
+    {
+      "frame": 30,
+      "root_position_m": [
+        0.002092008013278246,
+        0.2191144973039627,
+        -2.224799899863683e-08
+      ],
+      "root_rotation_xyzw": [
+        0.0,
+        0.0,
+        0.9999384880065918,
+        -0.011097158305346966
+      ],
+      "seconds": 1.0
+    },
+    {
+      "frame": 60,
+      "root_position_m": [
+        0.029417874291539192,
+        0.7419191598892212,
+        -5.520781698464816e-08
+      ],
+      "root_rotation_xyzw": [
+        1.1640620412034508e-10,
+        4.573789697676078e-12,
+        0.9999237656593323,
+        -0.012347252108156681
+      ],
+      "seconds": 2.0
+    },
+    {
+      "frame": 90,
+      "root_position_m": [
+        -0.04762449860572815,
+        1.301174283027649,
+        -9.758442587326499e-08
+      ],
+      "root_rotation_xyzw": [
+        3.476824828041458e-09,
+        7.067076784883497e-11,
+        0.9999727606773376,
+        -0.007380008697509766
+      ],
+      "seconds": 3.0
+    },
+    {
+      "frame": 120,
+      "root_position_m": [
+        0.025710569694638252,
+        1.8466023206710815,
+        -1.3436530821309134e-07
+      ],
+      "root_rotation_xyzw": [
+        3.956459604381735e-09,
+        9.176234772034775e-11,
+        1.0,
+        -5.5865921240183525e-06
+      ],
+      "seconds": 4.0
+    },
+    {
+      "frame": 150,
+      "root_position_m": [
+        -0.005106493830680847,
+        2.4027299880981445,
+        -1.782032512664955e-07
+      ],
+      "root_rotation_xyzw": [
+        3.956539096350298e-09,
+        8.88538617682677e-11,
+        0.9999995231628418,
+        -0.00103988335467875
+      ],
+      "seconds": 5.0
+    },
+    {
+      "frame": 180,
+      "root_position_m": [
+        0.017641039565205574,
+        2.939969539642334,
+        -1.9990480382148235e-07
+      ],
+      "root_rotation_xyzw": [
+        8.393388206684449e-09,
+        1.3674741894398323e-10,
+        0.9996550679206848,
+        0.02626272849738598
+      ],
+      "seconds": 6.0
+    },
+    {
+      "frame": 210,
+      "root_position_m": [
+        0.07528718560934067,
+        3.442683458328247,
+        -2.1630965818530967e-07
+      ],
+      "root_rotation_xyzw": [
+        1.0425030616545428e-08,
+        2.187181338819677e-11,
+        0.9999068379402161,
+        0.013648571446537971
+      ],
+      "seconds": 7.0
+    }
+  ],
+  "schema_version": 1,
+  "skel_root": "/World/Characters/Character/male_adult_police_04/ManRoot/male_adult_police_04",
+  "video_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/results/official_people_walk_calibration04_police/official_isaac_people_goto_walk.mp4"
+}

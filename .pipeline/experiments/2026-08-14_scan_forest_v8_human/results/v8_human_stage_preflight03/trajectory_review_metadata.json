@@ -1,0 +1,174 @@
+{
+  "claim_boundary": "Derived human-review overlay from the hashed raw SCAN Bspline, Isaac PhysX metrics, run identity, and untouched raw simulator MP4.",
+  "colours_bgr": {
+    "dynamic_obstacle_actual": [
+      0,
+      215,
+      255
+    ],
+    "isaac_actual": [
+      255,
+      220,
+      40
+    ],
+    "primary_obstacle": [
+      40,
+      70,
+      245
+    ],
+    "scan_planned": [
+      80,
+      220,
+      80
+    ]
+  },
+  "dynamic_obstacle": {
+    "identity": {
+      "claim_boundary": "single deterministic person-shaped crossing with reactive occupancy replanning; no semantic person detection, social navigation, obstacle-velocity prediction, or intention model",
+      "collision_enabled": true,
+      "collision_shape": "hidden_capsule",
+      "colour_rgb": [
+        1.0,
+        0.82,
+        0.02
+      ],
+      "crossing_duration_seconds": 3.4999999999999996,
+      "depth_transform_tracking": true,
+      "end_xy_m": [
+        -2.7,
+        4.8
+      ],
+      "gait": {
+        "cadence_hz": 1.6,
+        "enabled_phase": "crossing",
+        "maximum_swing_radians": 0.4363323129985824,
+        "neutral_phases": [
+          "waiting",
+          "holding",
+          "parked"
+        ],
+        "part_local_visual_transforms_only": true
+      },
+      "ground_truth_use": "evidence classification and synchronized clearance only; forbidden from point injection, filtering, command generation, and robot steering",
+      "height_m": 1.7,
+      "hold_fraction": 0.35714285714285715,
+      "hold_seconds": 2.5,
+      "human_asset": {
+        "bytes": 4685,
+        "collision_prim_path": "/Human/CollisionCapsule",
+        "collision_shape": "hidden capsule",
+        "colour_rgb": [
+          1.0,
+          0.82,
+          0.02
+        ],
+        "gait_cadence_hz": 1.6,
+        "gait_maximum_swing_radians": 0.4363323129985824,
+        "path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/results/v8_human_stage_preflight03/isaac/procedural_human.usda",
+        "sha256": "24efd3335c5a5d2654ff7eaf14c93052f50045d62d7342de7cac3ff10bd183a0",
+        "source": "locally generated procedural USDA; no external character asset",
+        "visible_part_names": [
+          "Head",
+          "Torso",
+          "Pelvis",
+          "LeftArm",
+          "RightArm",
+          "LeftLeg",
+          "RightLeg"
+        ]
+      },
+      "lidar_transform_tracking": true,
+      "name": "v8_human_crossing_actor",
+      "planner_input": "rendered sensor hits only",
+      "prim_expr": "{ENV_REGEX_NS}/DynamicObstacle",
+      "radius_m": 0.3,
+      "rigid_body_mode": "kinematic obstacle with scheduled pose writes",
+      "runtime_prim_path": "/World/envs/env_0/DynamicObstacle",
+      "schedule_trigger": "first nonzero accepted body command",
+      "sensor_target_exprs": [
+        "{ENV_REGEX_NS}/DynamicObstacle/Visual/Head",
+        "{ENV_REGEX_NS}/DynamicObstacle/Visual/Torso",
+        "{ENV_REGEX_NS}/DynamicObstacle/Visual/Pelvis",
+        "{ENV_REGEX_NS}/DynamicObstacle/Visual/LeftArm",
+        "{ENV_REGEX_NS}/DynamicObstacle/Visual/RightArm",
+        "{ENV_REGEX_NS}/DynamicObstacle/Visual/LeftLeg",
+        "{ENV_REGEX_NS}/DynamicObstacle/Visual/RightLeg"
+      ],
+      "shape": "procedural_humanoid",
+      "speed_mps": 0.8,
+      "start_xy_m": [
+        -2.7,
+        2.0
+      ],
+      "terrain_clearance_m": 0.02,
+      "visible_part_names": [
+        "Head",
+        "Torso",
+        "Pelvis",
+        "LeftArm",
+        "RightArm",
+        "LeftLeg",
+        "RightLeg"
+      ],
+      "wait_seconds": 0.0
+    },
+    "path_source": "dynamic_obstacle_actual_pos_w PhysX readback",
+    "record_count": 387,
+    "rendered": true
+  },
+  "input_sha256": {
+    "metrics": "28822ba8f73a6641854edb6581d86fa358ce4cee44f3ea331c5a4fdcc1069a28",
+    "raw_video": "51b9968bfb6f7fafc2b7bfef26d9bc91ece52a0e6e32bdbcb72e84be5b39c8a4",
+    "ros_events": "74c95d9d177a9fb0b626be5c38be9e20f154d25808c4a7812c22a017b0fe3075",
+    "run_identity": "99532f5c970e00c0a958f73a5a64255146401b0951a5e667e6515878cb4a06e3"
+  },
+  "mapping": {
+    "frame_stride": 3,
+    "frame_to_sim_time": "metrics rows where step modulo video frame_stride equals zero",
+    "maximum_plan_pose_alignment_error_ms": 164.768787,
+    "plan_to_sim_time": "nearest simulator-stamped body_pose receipt"
+  },
+  "output": {
+    "bytes": 1039365,
+    "encoder": "ffmpeg libx264 yuv420p",
+    "fps": 17.0,
+    "frame_count": 129,
+    "path": "closed_loop_review_overlay.mp4",
+    "resolution": [
+      1280,
+      720
+    ],
+    "sha256": "326541a30ff7ba787a23e977e1ac6939a599de77311042cf8b419aea2a964f49"
+  },
+  "plans": [
+    {
+      "effective_sim_time_seconds": 2.429999945,
+      "receipt_alignment_error_ms": 28.317837,
+      "trajectory_id": 1
+    },
+    {
+      "effective_sim_time_seconds": 4.229999905,
+      "receipt_alignment_error_ms": 33.194778,
+      "trajectory_id": 2
+    },
+    {
+      "effective_sim_time_seconds": 7.729999827,
+      "receipt_alignment_error_ms": 164.768787,
+      "trajectory_id": 3
+    }
+  ],
+  "plot_bounds_world_xy_m": [
+    -5.933230972290039,
+    1.4124890327453614,
+    1.0875109672546386,
+    5.104488945007324
+  ],
+  "sample_count_per_trajectory": 160,
+  "schema_version": 2,
+  "trajectory_count": 3,
+  "trajectory_ids": [
+    1,
+    2,
+    3
+  ]
+}

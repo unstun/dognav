@@ -120,6 +120,7 @@ def dynamic_obstacle_state(
     x = float(spec.start_xy[0]) + fraction * dx
     y = float(spec.start_xy[1]) + fraction * dy
     segment_length = math.hypot(dx, dy)
+    heading_yaw_radians = math.atan2(dy, dx)
     velocity_xy = (
         (spec.speed_mps * dx / segment_length, spec.speed_mps * dy / segment_length)
         if phase == "crossing"
@@ -136,9 +137,131 @@ def dynamic_obstacle_state(
         "center_xy_m": (x, y),
         "center_xyz_m": (x, y, center_z),
         "velocity_xy_mps": velocity_xy,
+        "heading_yaw_radians": heading_yaw_radians,
         "terrain_height_m": ground_z,
         "bottom_terrain_clearance_m": center_z - 0.5 * spec.height_m - ground_z,
     }
+
+
+def official_human_registered_state(
+    dynamic_state: Mapping[str, object],
+    spec: DynamicObstacleSpec,
+    *,
+    source_foot_z_m: float,
+    source_visible_top_z_m: float,
+    source_forward_yaw_radians: float,
+) -> Mapping[str, object]:
+    """Register an official foot-datum visual to a centre-datum capsule.
+
+    The visual and the physical proxy deliberately keep separate world roots.
+    Both are derived from one scheduled state so their time, XY, and heading
+    cannot drift while their vertical datums remain physically meaningful.
+    """
+
+    scalar_values = (
+        float(source_foot_z_m),
+        float(source_visible_top_z_m),
+        float(source_forward_yaw_radians),
+    )
+    if not all(math.isfinite(value) for value in scalar_values):
+        raise ValueError("official human source geometry must be finite")
+    if source_visible_top_z_m <= source_foot_z_m:
+        raise ValueError("official human visible top must be above its foot datum")
+    center_xyz = tuple(float(value) for value in dynamic_state["center_xyz_m"])
+    if len(center_xyz) != 3 or not all(math.isfinite(value) for value in center_xyz):
+        raise ValueError("official human scheduled centre must be finite XYZ")
+    terrain_height_m = float(dynamic_state["terrain_height_m"])
+    heading_yaw_radians = float(dynamic_state["heading_yaw_radians"])
+    if not math.isfinite(terrain_height_m) or not math.isfinite(heading_yaw_radians):
+        raise ValueError("official human terrain and heading must be finite")
+
+    visual_foot_world_z_m = terrain_height_m + float(spec.terrain_clearance_m)
+    visual_root_z_m = visual_foot_world_z_m - float(source_foot_z_m)
+    visual_yaw_radians = heading_yaw_radians - float(source_forward_yaw_radians)
+    half_yaw = 0.5 * visual_yaw_radians
+    capsule_bottom_world_z_m = center_xyz[2] - 0.5 * float(spec.height_m)
+    return {
+        "visual_root_xyz_m": (center_xyz[0], center_xyz[1], visual_root_z_m),
+        "visual_quaternion_wxyz": (
+            math.cos(half_yaw),
+            0.0,
+            0.0,
+            math.sin(half_yaw),
+        ),
+        "visual_yaw_radians": visual_yaw_radians,
+        "visual_foot_world_z_m": visual_foot_world_z_m,
+        "visual_top_world_z_m": (
+            visual_root_z_m + float(source_visible_top_z_m)
+        ),
+        "capsule_center_xyz_m": center_xyz,
+        "capsule_bottom_world_z_m": capsule_bottom_world_z_m,
+        "foot_to_capsule_bottom_error_m": (
+            visual_foot_world_z_m - capsule_bottom_world_z_m
+        ),
+    }
+
+
+def retarget_joint_indices(
+    skeleton_joints: Sequence[str], animation_joints: Sequence[str]
+) -> Tuple[Optional[int], ...]:
+    """Map an official animation joint table onto a character skeleton by name."""
+
+    skeleton_names = tuple(str(value) for value in skeleton_joints)
+    animation_names = tuple(str(value) for value in animation_joints)
+    if not skeleton_names or not animation_names:
+        raise ValueError("skeleton and animation joint tables must be non-empty")
+    if len(set(skeleton_names)) != len(skeleton_names):
+        raise ValueError("skeleton joint table contains duplicate names")
+    if len(set(animation_names)) != len(animation_names):
+        raise ValueError("animation joint table contains duplicate names")
+    animation_index = {name: index for index, name in enumerate(animation_names)}
+    absent = sorted(set(animation_names) - set(skeleton_names))
+    if absent:
+        raise ValueError(f"animation joints are absent from the skeleton: {absent}")
+    return tuple(animation_index.get(name) for name in skeleton_names)
+
+
+def procedural_human_gait_angles(
+    elapsed_seconds: float,
+    phase: str,
+    cadence_hz: float = 1.6,
+    maximum_swing_radians: float = math.radians(25.0),
+) -> Mapping[str, float]:
+    """Return deterministic opposing limb angles for a rigid-root human visual."""
+
+    values = (
+        float(elapsed_seconds),
+        float(cadence_hz),
+        float(maximum_swing_radians),
+    )
+    if not all(math.isfinite(value) for value in values):
+        raise ValueError("human gait inputs must be finite")
+    if elapsed_seconds < 0.0 or cadence_hz <= 0.0:
+        raise ValueError("human gait time and cadence are invalid")
+    if not 0.0 < maximum_swing_radians <= math.pi / 2.0:
+        raise ValueError("human gait swing must be inside (0, pi/2]")
+    if phase not in ("waiting", "crossing", "holding", "parked"):
+        raise ValueError(f"unsupported human gait phase: {phase}")
+
+    swing = 0.0
+    if phase == "crossing":
+        swing = maximum_swing_radians * math.sin(
+            2.0 * math.pi * cadence_hz * elapsed_seconds
+        )
+    return {
+        "left_arm_radians": -swing,
+        "right_arm_radians": swing,
+        "left_leg_radians": swing,
+        "right_leg_radians": -swing,
+    }
+
+
+def expand_isaac_env_regex_ns(prim_expr: str) -> str:
+    """Expand Isaac Lab's environment namespace token to its runtime regex."""
+
+    if not isinstance(prim_expr, str) or not prim_expr:
+        raise ValueError("prim expression must be a non-empty string")
+    return prim_expr.replace("{ENV_REGEX_NS}", "/World/envs/env_.*")
 
 
 def circle_surface_clearance_2d(

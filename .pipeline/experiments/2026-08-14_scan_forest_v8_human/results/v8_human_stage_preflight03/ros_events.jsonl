@@ -1,0 +1,1509 @@
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10399926676646}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10399936614416}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10399946741963}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10399956669082}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10399966621921}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10399976614394}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10399986583833}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10399996702723}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400006688173}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400016651401}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400026620970}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400036610477}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400046602530}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400056610652}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400066673537}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400076606508}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400086611084}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400096629295}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400106611979}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400116619279}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400126629446}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400136634182}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400146614712}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400156613857}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400166631818}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400176742212}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400186642391}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400196775539}
+{"kind": "body_pose", "position": [-5.003566741943359, 3.000006675720215, 0.9202616810798645], "receipt_monotonic_ns": 10400199439048, "stamp_ns": 29999999}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10400199610811, "stamp_ns": 29999999}
+{"is_bigendian": false, "kind": "cloud", "point_count": 218, "receipt_monotonic_ns": 10400199776322, "stamp_ns": 29999999}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400206618200}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400216644947}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400226572948}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400236565060}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400246563334}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400256557219}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400266577294}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400276575297}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400286619437}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400296613262}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400306604603}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400316785500}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400326622760}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400336560099}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400346582278}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400356651334}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400366605395}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400376595353}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400386610138}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400396583875}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400406584944}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400416603466}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400426612269}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400436584454}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400446589891}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400456583135}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400466618137}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400476659632}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400486598825}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400496601918}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400506587067}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400516581032}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400526692779}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400536596815}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400546614556}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400556622397}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400566583811}
+{"kind": "body_pose", "position": [-5.010659217834473, 3.001692771911621, 0.9128250479698181], "receipt_monotonic_ns": 10400569170075, "stamp_ns": 129999997}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10400569283839, "stamp_ns": 129999997}
+{"is_bigendian": false, "kind": "cloud", "point_count": 268, "receipt_monotonic_ns": 10400569439292, "stamp_ns": 129999997}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400576579079}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400586585558}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400596567481}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400606585131}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400616559190}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400626570157}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400636591213}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400646597111}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400656760666}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400666652349}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400676589978}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400686582060}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400696569624}
+{"kind": "body_pose", "position": [-5.020741939544678, 3.0033230781555176, 0.9020708799362183], "receipt_monotonic_ns": 10400699174132, "stamp_ns": 229999994}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10400699290671, "stamp_ns": 229999994}
+{"is_bigendian": false, "kind": "cloud", "point_count": 254, "receipt_monotonic_ns": 10400699391020, "stamp_ns": 229999994}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400706620626}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400716583363}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400726610922}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400736670601}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400746623499}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400756591726}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400766580753}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400776594405}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400786581828}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400796559724}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400806583375}
+{"kind": "body_pose", "position": [-5.012099266052246, 2.9970815181732178, 0.8882237672805786], "receipt_monotonic_ns": 10400809195317, "stamp_ns": 329999992}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10400809313029, "stamp_ns": 329999992}
+{"is_bigendian": false, "kind": "cloud", "point_count": 253, "receipt_monotonic_ns": 10400809436220, "stamp_ns": 329999992}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400816747610}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400826595612}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400836604145}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400846574205}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400856574984}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400866590469}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400876583894}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400886613877}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400896593155}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400906648275}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400916579042}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400926561335}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400936593463}
+{"kind": "body_pose", "position": [-4.995946884155273, 2.9912426471710205, 0.8866231441497803], "receipt_monotonic_ns": 10400939162855, "stamp_ns": 429999990}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10400939274776, "stamp_ns": 429999990}
+{"is_bigendian": false, "kind": "cloud", "point_count": 256, "receipt_monotonic_ns": 10400939374884, "stamp_ns": 429999990}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400946595574}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400956639032}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400966612089}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400976579504}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400986594740}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10400996573957}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401006583041}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401016587446}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401026600047}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401036592199}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401046571096}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401056590589}
+{"kind": "body_pose", "position": [-4.986260890960693, 2.9916186332702637, 0.8855500221252441], "receipt_monotonic_ns": 10401059207070, "stamp_ns": 529999988}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10401059344469, "stamp_ns": 529999988}
+{"is_bigendian": false, "kind": "cloud", "point_count": 258, "receipt_monotonic_ns": 10401059460146, "stamp_ns": 529999988}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401066670477}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401076603348}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401086586122}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401096596188}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401106660165}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401116589198}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401126586420}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401136578792}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401146580582}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401156571051}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401166563774}
+{"kind": "body_pose", "position": [-4.977349281311035, 2.9933807849884033, 0.8807193636894226], "receipt_monotonic_ns": 10401169223426, "stamp_ns": 629999985}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10401169333323, "stamp_ns": 629999985}
+{"is_bigendian": false, "kind": "cloud", "point_count": 258, "receipt_monotonic_ns": 10401169590306, "stamp_ns": 629999985}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401176612292}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401186615796}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401196628537}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401206604598}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401216622679}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401226594052}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401236680892}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401246613813}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401256577962}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401266576396}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401276571544}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401286570378}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401296568431}
+{"kind": "body_pose", "position": [-4.968608856201172, 2.995075225830078, 0.8762654662132263], "receipt_monotonic_ns": 10401299176456, "stamp_ns": 729999983}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10401299318463, "stamp_ns": 729999983}
+{"is_bigendian": false, "kind": "cloud", "point_count": 257, "receipt_monotonic_ns": 10401299446324, "stamp_ns": 729999983}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401306580240}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401316597800}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401326600512}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401336580281}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401346582201}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401356594110}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401366591863}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401376579306}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401386604480}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401396596291}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401406581630}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401416624468}
+{"kind": "body_pose", "position": [-4.961592197418213, 2.997612476348877, 0.8705629706382751], "receipt_monotonic_ns": 10401419202015, "stamp_ns": 829999981}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10401419395479, "stamp_ns": 829999981}
+{"is_bigendian": false, "kind": "cloud", "point_count": 262, "receipt_monotonic_ns": 10401419519052, "stamp_ns": 829999981}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401426587726}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401436579447}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401446594432}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401456583969}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401466600467}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401476580907}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401486579441}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401496585479}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401506583462}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401516563671}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401526568407}
+{"kind": "body_pose", "position": [-4.954685211181641, 2.99873948097229, 0.8641372323036194], "receipt_monotonic_ns": 10401529231976, "stamp_ns": 929999979}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10401529347333, "stamp_ns": 929999979}
+{"is_bigendian": false, "kind": "cloud", "point_count": 259, "receipt_monotonic_ns": 10401529470866, "stamp_ns": 929999979}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401536573543}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401546590051}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401556567435}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401566580958}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401576562079}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401586580601}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401596575638}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401606592356}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401616615236}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401626589033}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401636626761}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401646591031}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401656587471}
+{"kind": "body_pose", "position": [-4.948155879974365, 2.999786376953125, 0.8571736812591553], "receipt_monotonic_ns": 10401659215463, "stamp_ns": 1029999976}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10401659295283, "stamp_ns": 1029999976}
+{"is_bigendian": false, "kind": "cloud", "point_count": 261, "receipt_monotonic_ns": 10401659405150, "stamp_ns": 1029999976}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401666576487}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401676617411}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401686595737}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401696575796}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401706593105}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401716570880}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401726581988}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401736584259}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401746600636}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401756599872}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401766575252}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401776576982}
+{"kind": "body_pose", "position": [-4.942418575286865, 3.0006964206695557, 0.85346519947052], "receipt_monotonic_ns": 10401779163968, "stamp_ns": 1129999974}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10401779287520, "stamp_ns": 1129999974}
+{"is_bigendian": false, "kind": "cloud", "point_count": 264, "receipt_monotonic_ns": 10401779412134, "stamp_ns": 1129999974}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401786628686}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401796571666}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401806561173}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401816594382}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401826611662}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401836621347}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401846590645}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401856572919}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401866602481}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401876596807}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401886636579}
+{"kind": "body_pose", "position": [-4.9370856285095215, 3.0014724731445312, 0.8502920269966125], "receipt_monotonic_ns": 10401889146139, "stamp_ns": 1229999972}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10401889259211, "stamp_ns": 1229999972}
+{"is_bigendian": false, "kind": "cloud", "point_count": 264, "receipt_monotonic_ns": 10401889386941, "stamp_ns": 1229999972}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401896597232}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401906600575}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401916577769}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401926588786}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401936590867}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401946588940}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401956596691}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401966607749}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401976580795}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401986590259}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10401996601137}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402006591545}
+{"kind": "body_pose", "position": [-4.931971073150635, 3.0017499923706055, 0.8462109565734863], "receipt_monotonic_ns": 10402009165316, "stamp_ns": 1329999970}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10402009288287, "stamp_ns": 1329999970}
+{"is_bigendian": false, "kind": "cloud", "point_count": 259, "receipt_monotonic_ns": 10402009419845, "stamp_ns": 1329999970}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402016580351}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402026585588}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402036591746}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402046588757}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402056579427}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402066658352}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402076579971}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402086592591}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402096632263}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402106619235}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402116597611}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402126582560}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402136590531}
+{"kind": "body_pose", "position": [-4.926713943481445, 3.001640796661377, 0.8417742848396301], "receipt_monotonic_ns": 10402139196513, "stamp_ns": 1429999968}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10402139358287, "stamp_ns": 1429999968}
+{"is_bigendian": false, "kind": "cloud", "point_count": 270, "receipt_monotonic_ns": 10402139472031, "stamp_ns": 1429999968}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402146596800}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402156612647}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402166610079}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402176650090}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402186627545}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402196628393}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402206624833}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402216634918}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402226582226}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402236594867}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402246571069}
+{"kind": "body_pose", "position": [-4.920477390289307, 3.0008280277252197, 0.838492214679718], "receipt_monotonic_ns": 10402249218417, "stamp_ns": 1529999965}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10402249397785, "stamp_ns": 1529999965}
+{"is_bigendian": false, "kind": "cloud", "point_count": 263, "receipt_monotonic_ns": 10402249554349, "stamp_ns": 1529999965}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402256608736}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402266608563}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402276612276}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402286621650}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402296585349}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402306588151}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402316608907}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402326595087}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402336587790}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402346580794}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402356588014}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402366617226}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402376638432}
+{"kind": "body_pose", "position": [-4.915363788604736, 2.9997775554656982, 0.8346319198608398], "receipt_monotonic_ns": 10402379177467, "stamp_ns": 1629999963}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10402379290620, "stamp_ns": 1629999963}
+{"is_bigendian": false, "kind": "cloud", "point_count": 270, "receipt_monotonic_ns": 10402379427828, "stamp_ns": 1629999963}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402386584748}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402396591437}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402406598507}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402416587313}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402426580236}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402436593218}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402446635153}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402456602769}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402466607424}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402476591351}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402486599242}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402496608206}
+{"kind": "body_pose", "position": [-4.911263942718506, 3.000025987625122, 0.8294894099235535], "receipt_monotonic_ns": 10402499218976, "stamp_ns": 1729999961}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10402499345885, "stamp_ns": 1729999961}
+{"is_bigendian": false, "kind": "cloud", "point_count": 270, "receipt_monotonic_ns": 10402499461722, "stamp_ns": 1729999961}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402506597472}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402516558726}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402526580534}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402536595509}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402546641532}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402556642340}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402566609084}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402576619891}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402586605972}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402596622820}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402606618268}
+{"kind": "body_pose", "position": [-4.907232761383057, 3.0013644695281982, 0.8262217044830322], "receipt_monotonic_ns": 10402609309880, "stamp_ns": 1829999959}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10402609513283, "stamp_ns": 1829999959}
+{"is_bigendian": false, "kind": "cloud", "point_count": 269, "receipt_monotonic_ns": 10402609690216, "stamp_ns": 1829999959}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402616602956}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402626616348}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402636600014}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402646596474}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402656593285}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402666619791}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402676612674}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402686597252}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402696634239}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402706601374}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402716584057}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402726640049}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402736600692}
+{"kind": "body_pose", "position": [-4.902596473693848, 3.001680374145508, 0.8228579163551331], "receipt_monotonic_ns": 10402739175294, "stamp_ns": 1929999956}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10402739297294, "stamp_ns": 1929999956}
+{"is_bigendian": false, "kind": "cloud", "point_count": 284, "receipt_monotonic_ns": 10402739408443, "stamp_ns": 1929999956}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402746629022}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402756600675}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402766618896}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402776613503}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402786609071}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402796587918}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402806605388}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402816605114}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402826608998}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402836595139}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402846579215}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402856584442}
+{"kind": "body_pose", "position": [-4.8992018699646, 3.0026981830596924, 0.8196526765823364], "receipt_monotonic_ns": 10402859172639, "stamp_ns": 2029999954}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10402859290070, "stamp_ns": 2029999954}
+{"is_bigendian": false, "kind": "cloud", "point_count": 278, "receipt_monotonic_ns": 10402859597909, "stamp_ns": 2029999954}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402866609526}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402876592150}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402886599270}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402896601912}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402906625572}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402916628966}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402926582816}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402936612909}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402946574623}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402956605749}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402966599173}
+{"kind": "body_pose", "position": [-4.895429611206055, 3.00337553024292, 0.8177447319030762], "receipt_monotonic_ns": 10402969300363, "stamp_ns": 2129999952}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10402969415921, "stamp_ns": 2129999952}
+{"is_bigendian": false, "kind": "cloud", "point_count": 271, "receipt_monotonic_ns": 10402969591320, "stamp_ns": 2129999952}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402976617595}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402986608514}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10402996624341}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403006613046}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403016579630}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403026601999}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403036605772}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403046619806}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403056598362}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403066669602}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403076618904}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403086581400}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403096638344}
+{"kind": "body_pose", "position": [-4.891305923461914, 3.0053536891937256, 0.8168273568153381], "receipt_monotonic_ns": 10403099187678, "stamp_ns": 2229999950}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10403099332571, "stamp_ns": 2229999950}
+{"is_bigendian": false, "kind": "cloud", "point_count": 264, "receipt_monotonic_ns": 10403099499294, "stamp_ns": 2229999950}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403106649622}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403116624882}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403126608959}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403136604787}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403146602470}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403156575796}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403166654221}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403176612879}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403186654635}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403196664600}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403206674144}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403216598228}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403226596682}
+{"kind": "body_pose", "position": [-4.88741397857666, 3.007779836654663, 0.8152909278869629], "receipt_monotonic_ns": 10403229208224, "stamp_ns": 2329999947}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10403229307931, "stamp_ns": 2329999947}
+{"is_bigendian": false, "kind": "cloud", "point_count": 277, "receipt_monotonic_ns": 10403229429289, "stamp_ns": 2329999947}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403236602069}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403246606273}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403256633441}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403266668954}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403276622474}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403286613042}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403296637816}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403306625249}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403316615066}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403326595416}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403336606062}
+{"kind": "body_pose", "position": [-4.884340286254883, 3.0103766918182373, 0.8142906427383423], "receipt_monotonic_ns": 10403339228013, "stamp_ns": 2429999945}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10403339434882, "stamp_ns": 2429999945}
+{"is_bigendian": false, "kind": "cloud", "point_count": 275, "receipt_monotonic_ns": 10403339569225, "stamp_ns": 2429999945}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403346626227}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403356607188}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10403366617394}
+{"control_point_count": 49, "control_points": [[-5.003563998943653, 3.0000066757169668, 0.9202616460587791], [-5.003563942632776, 3.0000066757168984, 0.9202616453398329], [-5.003563885904213, 3.0000066757168287, 0.9202616446155538], [-4.989169691049878, 3.0000066720351133, 0.920222562962601], [-4.9605093126217925, 3.0000066614986944, 0.9201117331372703], [-4.9177451585133864, 3.0000066414056454, 0.9199003501532397], [-4.860906775914252, 3.0000066094965647, 0.9195646178262734], [-4.790303915140452, 3.000006563915532, 0.9190849016265533], [-4.706074667869388, 3.000006503191077, 0.9184457419059519], [-4.608523652730236, 3.0000064262212085, 0.9176355491924726], [-4.497640856993237, 3.00000633224939, 0.9166464080922221], [-4.373439137867311, 3.000006220850534, 0.915473845815339], [-4.236074111506275, 3.0000060919041265, 0.9141166118622172], [-4.085692204132737, 3.0000059455789283, 0.912576454268827], [-3.9255455724996517, 3.0000057823061637, 0.9108578968947444], [-3.7652030237713174, 3.0000056027572217, 0.9089680163994306], [-3.604871629692609, 3.0000054078258054, 0.9069162193107233], [-3.444514944560441, 3.0000051986034437, 0.9047140190662907], [-3.2841898819939637, 3.0000049763647905, 0.9023748130629523], [-3.123965127813928, 3.000004742541866, 0.8999136597037327], [-2.963687638524687, 3.0000044986999317, 0.8973470554455527], [-2.8033088014525194, 3.0000042465217223, 0.894692711846756], [-2.6429776602612876, 3.0000039877847207, 0.8919693326146687], [-2.482583997903451, 3.0000037243404183, 0.8891963906531544], [-2.322371476752993, 3.000003458088938, 0.8863939051101711], [-2.1624403420117093, 3.0000031909573206, 0.8835822184253294], [-2.002534357249865, 3.000002924903583, 0.8807817733774447], [-1.8428575280299158, 3.0000026618561435, 0.8780128901320988], [-1.6828721179046682, 3.0000024036639235, 0.8752955432891726], [-1.5232396718362466, 3.0000021522387352, 0.8726491389305099], [-1.3650602895101258, 3.000001909390416, 0.870092291667058], [-1.2072034314025877, 3.0000016766035924, 0.8676426016879173], [-1.0483629876196818, 3.0000014555419074, 0.865316431802629], [-0.8885525081132578, 3.000001247774404, 0.8631286845071953], [-0.7290383103888041, 3.0000010543551294, 0.8610925789672532], [-0.5687818821447382, 3.000000876413985, 0.8592194282889586], [-0.4084952400464996, 3.0000007147276198, 0.8575184157963304], [-0.2530646453362248, 3.0000005700193046, 0.8559963747172624], [-0.11070704134615195, 3.0000004428951064, 0.8546575562649593], [0.0180608924435538, 3.000000333333522, 0.8535034368606285], [0.13283384215973235, 3.0000002412861866, 0.8525323948326844], [0.23305368786098232, 3.0000001660094475, 0.8517398161891703], [0.31837974579335643, 3.0000001066934447, 0.8511168157017549], [0.38820179216068895, 3.0000000619978437, 0.8506533172258733], [0.44193654226790935, 3.000000030517181, 0.8503278824610829], [0.4789037825704896, 3.000000011164625, 0.8501357343733432], [0.49834830897249266, 3.0000000020034685, 0.850016262197198], [0.4997143029449729, 3.0000000003465455, 0.8499988231263863], [0.49836287327960943, 3.0000000019858035, 0.8500160762401836]], "kind": "bspline", "knots": [-0.48, -0.32, -0.16, 0.0, 0.16, 0.32, 0.48, 0.64, 0.8, 0.9600000000000001, 1.12, 1.28, 1.44, 1.5999999999999999, 1.7599999999999998, 1.9199999999999997, 2.0799999999999996, 2.2399999999999998, 2.4, 2.56, 2.72, 2.8800000000000003, 3.0400000000000005, 3.2000000000000006, 3.3600000000000008, 3.520000000000001, 3.680000000000001, 3.840000000000001, 4.000000000000001, 4.160000000000001, 4.320000000000001, 4.480000000000001, 4.6400000000000015, 4.800000000000002, 4.960000000000002, 5.120000000000002, 5.280000000000002, 5.440000000000002, 5.600000000000002, 5.7600000000000025, 5.920000000000003, 6.080000000000003, 6.240000000000003, 6.400000000000003, 6.560000000000003, 6.720000000000003, 6.8800000000000034, 7.040000000000004, 7.200000000000004, 7.360000000000004, 7.520000000000004, 7.680000000000004, 7.840000000000004], "order": 3, "receipt_monotonic_ns": 10403367545850, "start_time_ns": 1786744574202482535, "trajectory_id": 1, "yaw_dt": 0.0, "yaw_points": []}
+{"command": [-0.09541708432508769, -0.005893095128730737, -0.03780910083481772], "kind": "cmd_vel", "receipt_monotonic_ns": 10403376635394}
+{"command": [-0.09492505950424333, -0.005905499659898316, -0.03780910581243936], "kind": "cmd_vel", "receipt_monotonic_ns": 10403386614531}
+{"command": [-0.0940763053365675, -0.005926897762351151, -0.03780911137871441], "kind": "cmd_vel", "receipt_monotonic_ns": 10403396636219}
+{"command": [-0.09286803982368691, -0.005957359573577098, -0.03780911694151638], "kind": "cmd_vel", "receipt_monotonic_ns": 10403406636576}
+{"command": [-0.09129637719415586, -0.005996983058498297, -0.03780912250666184], "kind": "cmd_vel", "receipt_monotonic_ns": 10403416724017}
+{"command": [-0.08936101063807103, -0.006045775952157464, -0.03780912808387807], "kind": "cmd_vel", "receipt_monotonic_ns": 10403426692083}
+{"command": [-0.08705894925641408, -0.006103813658678152, -0.03780913367096856], "kind": "cmd_vel", "receipt_monotonic_ns": 10403436632679}
+{"command": [-0.08438518848294291, -0.0061712223491293215, -0.03780913927650905], "kind": "cmd_vel", "receipt_monotonic_ns": 10403446614691}
+{"command": [-0.08133793313942793, -0.006248047282089683, -0.03780914491159227], "kind": "cmd_vel", "receipt_monotonic_ns": 10403456613536}
+{"command": [-0.07791449480360443, -0.0063343562358844875, -0.03780915057921473], "kind": "cmd_vel", "receipt_monotonic_ns": 10403466582735}
+{"kind": "body_pose", "position": [-4.880420207977295, 3.0126943588256836, 0.8132976293563843], "receipt_monotonic_ns": 10403469208813, "stamp_ns": 2529999943}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10403469352093, "stamp_ns": 2529999943}
+{"is_bigendian": false, "kind": "cloud", "point_count": 276, "receipt_monotonic_ns": 10403469469203, "stamp_ns": 2529999943}
+{"command": [-0.0772985279915946, -0.008148618136510426, -0.03889862328238622], "kind": "cmd_vel", "receipt_monotonic_ns": 10403476633106}
+{"command": [-0.07311361086154311, -0.008257166417660822, -0.0388986290331864], "kind": "cmd_vel", "receipt_monotonic_ns": 10403486621471}
+{"command": [-0.0685427603254318, -0.008375725030333743, -0.03889863483187551], "kind": "cmd_vel", "receipt_monotonic_ns": 10403496656974}
+{"command": [-0.06358680983856052, -0.008504272356385324, -0.03889864068625778], "kind": "cmd_vel", "receipt_monotonic_ns": 10403506636131}
+{"command": [-0.058239981293976464, -0.00864295826821569, -0.03889864659708504], "kind": "cmd_vel", "receipt_monotonic_ns": 10403516616581}
+{"command": [-0.052499814933768214, -0.008791846566968188, -0.03889865257333873], "kind": "cmd_vel", "receipt_monotonic_ns": 10403526605567}
+{"command": [-0.04650454636818526, -0.008947351731930649, -0.038898658619663795], "kind": "cmd_vel", "receipt_monotonic_ns": 10403536603700}
+{"command": [-0.040462795949428226, -0.0091040626205699, -0.03889866474011887], "kind": "cmd_vel", "receipt_monotonic_ns": 10403546743991}
+{"command": [-0.034383732085393186, -0.00926174142385245, -0.03889867093210119], "kind": "cmd_vel", "receipt_monotonic_ns": 10403556675609}
+{"command": [-0.02825984704678346, -0.009420582877914703, -0.038898677181362445], "kind": "cmd_vel", "receipt_monotonic_ns": 10403566704790}
+{"command": [-0.022098365010786544, -0.009580399602511117, -0.03889868348922121], "kind": "cmd_vel", "receipt_monotonic_ns": 10403576618865}
+{"command": [-0.015893519821186673, -0.009741341160968638, -0.03889868984231138], "kind": "cmd_vel", "receipt_monotonic_ns": 10403586602230}
+{"kind": "body_pose", "position": [-4.879117488861084, 3.015545606613159, 0.8169503211975098], "receipt_monotonic_ns": 10403589259708, "stamp_ns": 2629999941}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10403589403960, "stamp_ns": 2629999941}
+{"is_bigendian": false, "kind": "cloud", "point_count": 287, "receipt_monotonic_ns": 10403589614846, "stamp_ns": 2629999941}
+{"command": [-0.010726223031966558, -0.012174077269523773, -0.036460148672508436], "kind": "cmd_vel", "receipt_monotonic_ns": 10403596608319}
+{"command": [-0.004437918010932042, -0.012326954428947042, -0.03646015511227305], "kind": "cmd_vel", "receipt_monotonic_ns": 10403606599629}
+{"command": [0.001896048343062414, -0.012480941756170061, -0.036460161584099995], "kind": "cmd_vel", "receipt_monotonic_ns": 10403616611227}
+{"command": [0.00826642315181292, -0.01263581430175874, -0.036460168089877676], "kind": "cmd_vel", "receipt_monotonic_ns": 10403626618648}
+{"command": [0.014681961959115657, -0.01279178492558642, -0.036460174616066314], "kind": "cmd_vel", "receipt_monotonic_ns": 10403636666635}
+{"command": [0.02113831894809145, -0.012948747975514222, -0.036460181167857264], "kind": "cmd_vel", "receipt_monotonic_ns": 10403646642756}
+{"command": [0.027635497311884284, -0.013106703529774234, -0.036460187737274226], "kind": "cmd_vel", "receipt_monotonic_ns": 10403656661468}
+{"command": [0.0341735781078053, -0.013265653559589334, -0.03646019432104653], "kind": "cmd_vel", "receipt_monotonic_ns": 10403666635276}
+{"command": [0.04075463439347507, -0.013425648464580109, -0.03646020091618747], "kind": "cmd_vel", "receipt_monotonic_ns": 10403676623790}
+{"command": [0.047377084300487794, -0.013586649787917588, -0.03646020752193146], "kind": "cmd_vel", "receipt_monotonic_ns": 10403686656479}
+{"command": [0.05404014351970407, -0.013748638458087306, -0.03646021413396827], "kind": "cmd_vel", "receipt_monotonic_ns": 10403696625537}
+{"command": [0.06074417526621657, -0.013911623299314047, -0.03646022074932789], "kind": "cmd_vel", "receipt_monotonic_ns": 10403706632366}
+{"kind": "body_pose", "position": [-4.878116607666016, 3.019047260284424, 0.8154047727584839], "receipt_monotonic_ns": 10403709161543, "stamp_ns": 2729999938}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10403709323738, "stamp_ns": 2729999938}
+{"is_bigendian": false, "kind": "cloud", "point_count": 284, "receipt_monotonic_ns": 10403709458652, "stamp_ns": 2729999938}
+{"command": [0.06664545372497646, -0.016679583029773036, -0.0324845969449741], "kind": "cmd_vel", "receipt_monotonic_ns": 10403716621352}
+{"command": [0.07345337793878469, -0.01682704038460195, -0.032484603542297284], "kind": "cmd_vel", "receipt_monotonic_ns": 10403726662005}
+{"command": [0.08027655111015594, -0.016974828096389113, -0.032484610177059954], "kind": "cmd_vel", "receipt_monotonic_ns": 10403736650721}
+{"command": [0.08714218222487653, -0.01712353550310472, -0.03248461678184201], "kind": "cmd_vel", "receipt_monotonic_ns": 10403746655066}
+{"command": [0.09404800000337224, -0.01727311341012003, -0.03248462338126393], "kind": "cmd_vel", "receipt_monotonic_ns": 10403756662927}
+{"command": [0.10096706717488138, -0.017422978364497306, -0.03248462997126482], "kind": "cmd_vel", "receipt_monotonic_ns": 10403766642716}
+{"command": [0.10798189078293449, -0.017574917445437484, -0.03248463652468861], "kind": "cmd_vel", "receipt_monotonic_ns": 10403776658422}
+{"command": [0.11500994173230854, -0.017727143097219844, -0.03248464311770141], "kind": "cmd_vel", "receipt_monotonic_ns": 10403786678867}
+{"command": [0.12207570692894149, -0.017880185699594982, -0.03248464967085345], "kind": "cmd_vel", "receipt_monotonic_ns": 10403796625182}
+{"command": [0.12918401697727364, -0.018034149882717468, -0.032484656205819834], "kind": "cmd_vel", "receipt_monotonic_ns": 10403806625259}
+{"command": [0.1363326749375909, -0.018188988062014348, -0.03248466272563208], "kind": "cmd_vel", "receipt_monotonic_ns": 10403816658538}
+{"command": [0.14351951944763475, -0.018344653423428402, -0.032484669226907605], "kind": "cmd_vel", "receipt_monotonic_ns": 10403826599213}
+{"kind": "body_pose", "position": [-4.871947765350342, 3.0219860076904297, 0.8081915974617004], "receipt_monotonic_ns": 10403829213580, "stamp_ns": 2829999936}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10403829333706, "stamp_ns": 2829999936}
+{"is_bigendian": false, "kind": "cloud", "point_count": 304, "receipt_monotonic_ns": 10403829549212, "stamp_ns": 2829999936}
+{"command": [0.14577772986603854, -0.02065610981954516, -0.031571582143254076], "kind": "cmd_vel", "receipt_monotonic_ns": 10403836618777}
+{"command": [0.15304468889374917, -0.020809084958517052, -0.0315715886045978], "kind": "cmd_vel", "receipt_monotonic_ns": 10403846632810}
+{"command": [0.1603596138361582, -0.02096306988352926, -0.03157159504021726], "kind": "cmd_vel", "receipt_monotonic_ns": 10403856655089}
+{"command": [0.1677121636621955, -0.021117846900586615, -0.03157160145806897], "kind": "cmd_vel", "receipt_monotonic_ns": 10403866650616}
+{"command": [0.1751081886357801, -0.021273539162698703, -0.031571607846443986], "kind": "cmd_vel", "receipt_monotonic_ns": 10403876630075}
+{"command": [0.18254879232865553, -0.021430169901397577, -0.0315716142096531], "kind": "cmd_vel", "receipt_monotonic_ns": 10403886625322}
+{"command": [0.1900328261538079, -0.021587714938456654, -0.03157162054783711], "kind": "cmd_vel", "receipt_monotonic_ns": 10403896628274}
+{"command": [0.1975593471268313, -0.021746154423719233, -0.03157162685924628], "kind": "cmd_vel", "receipt_monotonic_ns": 10403906651685}
+{"command": [0.20513048137965964, -0.021905533114470927, -0.03157163314236425], "kind": "cmd_vel", "receipt_monotonic_ns": 10403916627246}
+{"command": [0.21271856889770466, -0.022065268744487394, -0.0315716393982642], "kind": "cmd_vel", "receipt_monotonic_ns": 10403926636480}
+{"command": [0.22040068465113116, -0.022226983807502328, -0.03157164560374473], "kind": "cmd_vel", "receipt_monotonic_ns": 10403936645092}
+{"command": [0.22810046240944412, -0.022389070730222897, -0.03157165182089814], "kind": "cmd_vel", "receipt_monotonic_ns": 10403946651631}
+{"command": [0.23584216799909746, -0.022552040329232362, -0.031571657986987536], "kind": "cmd_vel", "receipt_monotonic_ns": 10403956626010}
+{"kind": "body_pose", "position": [-4.861546039581299, 3.024167776107788, 0.7994080185890198], "receipt_monotonic_ns": 10403959172128, "stamp_ns": 2929999934}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10403959257168, "stamp_ns": 2929999934}
+{"is_bigendian": false, "kind": "cloud", "point_count": 304, "receipt_monotonic_ns": 10403959407451, "stamp_ns": 2929999934}
+{"command": [0.23527567256205129, -0.024274630628137457, -0.03149982930210119], "kind": "cmd_vel", "receipt_monotonic_ns": 10403966634212}
+{"command": [0.2431056148895842, -0.02443908266572823, -0.03149983540778944], "kind": "cmd_vel", "receipt_monotonic_ns": 10403976621635}
+{"command": [0.25097897478324127, -0.024604446660980887, -0.03149984148000849], "kind": "cmd_vel", "receipt_monotonic_ns": 10403986619898}
+{"command": [0.2588972540028532, -0.02477075415578942, -0.03149984751989429], "kind": "cmd_vel", "receipt_monotonic_ns": 10403996641836}
+{"command": [0.26685971320877866, -0.024937989622289256, -0.031499853528072275], "kind": "cmd_vel", "receipt_monotonic_ns": 10404006771056}
+{"command": [0.27485644795901826, -0.025105945036025434, -0.03149985950346806], "kind": "cmd_vel", "receipt_monotonic_ns": 10404016659713}
+{"command": [0.2828928232932038, -0.025274733076467493, -0.03149986544030566], "kind": "cmd_vel", "receipt_monotonic_ns": 10404026636866}
+{"command": [0.29096448787630147, -0.02544426235290245, -0.0314998713452041], "kind": "cmd_vel", "receipt_monotonic_ns": 10404036630902}
+{"command": [0.2990749819668141, -0.02561460722185203, -0.03149987721457784], "kind": "cmd_vel", "receipt_monotonic_ns": 10404046644574}
+{"command": [0.3072192429958219, -0.02578566135448969, -0.031499883050596984], "kind": "cmd_vel", "receipt_monotonic_ns": 10404056610106}
+{"command": [0.31540310910052743, -0.025957547369789592, -0.031499888849246864], "kind": "cmd_vel", "receipt_monotonic_ns": 10404066714770}
+{"kind": "body_pose", "position": [-4.844906330108643, 3.026278018951416, 0.7879850268363953], "receipt_monotonic_ns": 10404069228116, "stamp_ns": 3029999932}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10404069349414, "stamp_ns": 3029999932}
+{"is_bigendian": false, "kind": "cloud", "point_count": 318, "receipt_monotonic_ns": 10404069494257, "stamp_ns": 3029999932}
+{"command": [0.31028676486581086, -0.02743659287837588, -0.03100735996743639], "kind": "cmd_vel", "receipt_monotonic_ns": 10404076674530}
+{"command": [0.31854239268782736, -0.027607274254885635, -0.031007365695336547], "kind": "cmd_vel", "receipt_monotonic_ns": 10404086701989}
+{"command": [0.3268111664255141, -0.027778227473721648, -0.03100737138686548], "kind": "cmd_vel", "receipt_monotonic_ns": 10404096653474}
+{"command": [0.33512905982075086, -0.027950196276307224, -0.03100737702572894], "kind": "cmd_vel", "receipt_monotonic_ns": 10404106613385}
+{"command": [0.34351579506276614, -0.02812358841115179, -0.03100738263625341], "kind": "cmd_vel", "receipt_monotonic_ns": 10404116675489}
+{"command": [0.3519124846617485, -0.02829718640528081, -0.031007388230919163], "kind": "cmd_vel", "receipt_monotonic_ns": 10404126638846}
+{"command": [0.3603416130896432, -0.028471455115724652, -0.031007393770061696], "kind": "cmd_vel", "receipt_monotonic_ns": 10404136671314}
+{"command": [0.3688160608696125, -0.028646660842399425, -0.031007399268551856], "kind": "cmd_vel", "receipt_monotonic_ns": 10404146701908}
+{"command": [0.3773169366215474, -0.02882241301420005, -0.031007404734441676], "kind": "cmd_vel", "receipt_monotonic_ns": 10404156658083}
+{"command": [0.38585715562632394, -0.028998978649699945, -0.03100741015526372], "kind": "cmd_vel", "receipt_monotonic_ns": 10404166646287}
+{"command": [0.3944335514798801, -0.02917629228002583, -0.031007415539048844], "kind": "cmd_vel", "receipt_monotonic_ns": 10404176689304}
+{"command": [0.40304870211488825, -0.029354407195527454, -0.03100742088247186], "kind": "cmd_vel", "receipt_monotonic_ns": 10404186665406}
+{"command": [0.4117022955004824, -0.029533316945311815, -0.031007426185476326], "kind": "cmd_vel", "receipt_monotonic_ns": 10404196652298}
+{"kind": "body_pose", "position": [-4.821273326873779, 3.0292341709136963, 0.7819615006446838], "receipt_monotonic_ns": 10404199250093, "stamp_ns": 3129999930}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10404199403031, "stamp_ns": 3129999930}
+{"is_bigendian": false, "kind": "cloud", "point_count": 321, "receipt_monotonic_ns": 10404199548184, "stamp_ns": 3129999930}
+{"command": [0.4014549580227445, -0.03161167024023745, -0.03072679596097735], "kind": "cmd_vel", "receipt_monotonic_ns": 10404206638839}
+{"command": [0.4101893467746184, -0.03179061568270708, -0.030726801186026657], "kind": "cmd_vel", "receipt_monotonic_ns": 10404216643224}
+{"command": [0.41896332263286956, -0.031970372210018416, -0.030726806368906727], "kind": "cmd_vel", "receipt_monotonic_ns": 10404226632981}
+{"command": [0.42775506142251934, -0.03215049270028379, -0.03072681151146448], "kind": "cmd_vel", "receipt_monotonic_ns": 10404236645651}
+{"command": [0.43660599967182523, -0.03233182608345417, -0.030726816601047806], "kind": "cmd_vel", "receipt_monotonic_ns": 10404246613668}
+{"command": [0.4455215820558434, -0.0325144839078394, -0.03072682166158385], "kind": "cmd_vel", "receipt_monotonic_ns": 10404256627320}
+{"command": [0.4544554080419465, -0.03269751554375297, -0.03072682669560648], "kind": "cmd_vel", "receipt_monotonic_ns": 10404266630683}
+{"command": [0.46340954689342606, -0.032880963385199205, -0.030726831676791355], "kind": "cmd_vel", "receipt_monotonic_ns": 10404276655045}
+{"command": [0.47243815129701766, -0.03306593688530859, -0.030726836606636374], "kind": "cmd_vel", "receipt_monotonic_ns": 10404286650203}
+{"command": [0.4814902224982374, -0.03325139120774464, -0.030726841514708107], "kind": "cmd_vel", "receipt_monotonic_ns": 10404296680336}
+{"command": [0.49057963620084416, -0.033437610631183765, -0.030726846372995286], "kind": "cmd_vel", "receipt_monotonic_ns": 10404306679801}
+{"command": [0.4997074753734136, -0.03362461734324268, -0.030726851189059323], "kind": "cmd_vel", "receipt_monotonic_ns": 10404316644031}
+{"command": [0.5088721560674389, -0.03381237889304589, -0.030726855963418866], "kind": "cmd_vel", "receipt_monotonic_ns": 10404326617768}
+{"command": [0.5180790398250799, -0.03400100512351205, -0.030726860695206644], "kind": "cmd_vel", "receipt_monotonic_ns": 10404336612795}
+{"kind": "body_pose", "position": [-4.783292770385742, 3.034334659576416, 0.7823886275291443], "receipt_monotonic_ns": 10404339164454, "stamp_ns": 3229999927}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10404339289118, "stamp_ns": 3229999927}
+{"is_bigendian": false, "kind": "cloud", "point_count": 333, "receipt_monotonic_ns": 10404339437798, "stamp_ns": 3229999927}
+{"command": [0.49690531409936617, -0.037055871114274136, -0.02894062686473677], "kind": "cmd_vel", "receipt_monotonic_ns": 10404346617751}
+{"command": [0.5061793203363542, -0.037234824505607264, -0.028940631518375948], "kind": "cmd_vel", "receipt_monotonic_ns": 10404356629930}
+{"command": [0.5155011760564093, -0.03741470125368536, -0.02894063613127247], "kind": "cmd_vel", "receipt_monotonic_ns": 10404366702944}
+{"command": [0.5248420474465555, -0.03759494497463766, -0.028940640713669415], "kind": "cmd_vel", "receipt_monotonic_ns": 10404376692080}
+{"command": [0.5342183798825595, -0.03777587300259294, -0.02894064525300218], "kind": "cmd_vel", "receipt_monotonic_ns": 10404386676548}
+{"command": [0.5436308965423378, -0.037957499292458265, -0.02894064975895915], "kind": "cmd_vel", "receipt_monotonic_ns": 10404396650976}
+{"command": [0.5530808725750215, -0.03813984845013283, -0.0289406542333974], "kind": "cmd_vel", "receipt_monotonic_ns": 10404406635103}
+{"command": [0.5625653739732313, -0.03832286386054699, -0.02894065867840752], "kind": "cmd_vel", "receipt_monotonic_ns": 10404416648164}
+{"command": [0.5720853143296466, -0.03850656315290299, -0.02894066309408671], "kind": "cmd_vel", "receipt_monotonic_ns": 10404426638592}
+{"command": [0.5816384686210136, -0.03869090339283052, -0.02894066748231882], "kind": "cmd_vel", "receipt_monotonic_ns": 10404436667243}
+{"command": [0.5912260298461507, -0.03887590760102092, -0.028940671843535132], "kind": "cmd_vel", "receipt_monotonic_ns": 10404446643895}
+{"kind": "body_pose", "position": [-4.732205867767334, 3.032119035720825, 0.7623019814491272], "receipt_monotonic_ns": 10404449357639, "stamp_ns": 3329999925}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10404449540082, "stamp_ns": 3329999925}
+{"is_bigendian": false, "kind": "cloud", "point_count": 335, "receipt_monotonic_ns": 10404449673513, "stamp_ns": 3329999925}
+{"command": [0.5607996468366594, -0.021492018309551636, 0.011230090253356655], "kind": "cmd_vel", "receipt_monotonic_ns": 10404456628553}
+{"command": [0.5704622294921131, -0.02141967684935652, 0.01123008593955629], "kind": "cmd_vel", "receipt_monotonic_ns": 10404466692369}
+{"command": [0.5801576883945097, -0.02134708929569483, 0.011230081647175575], "kind": "cmd_vel", "receipt_monotonic_ns": 10404476682337}
+{"command": [0.589879905929835, -0.021274301449877294, 0.011230077376364403], "kind": "cmd_vel", "receipt_monotonic_ns": 10404486633803}
+{"command": [0.5996425702928807, -0.021201210825563383, 0.011230073128420127], "kind": "cmd_vel", "receipt_monotonic_ns": 10404496619392}
+{"command": [0.6095155191250498, -0.02112729455667953, 0.011230068896917682], "kind": "cmd_vel", "receipt_monotonic_ns": 10404506704088}
+{"command": [0.6192976825761973, -0.021054058002085853, 0.011230064649859067], "kind": "cmd_vel", "receipt_monotonic_ns": 10404516623382}
+{"command": [0.6291948817170411, -0.020979960231992896, 0.011230060468675826], "kind": "cmd_vel", "receipt_monotonic_ns": 10404526689874}
+{"command": [0.6391233015567319, -0.020905628747961078, 0.01123005626042736], "kind": "cmd_vel", "receipt_monotonic_ns": 10404536662499}
+{"command": [0.6490973602425969, -0.020830955605209568, 0.011230052056281695], "kind": "cmd_vel", "receipt_monotonic_ns": 10404546651735}
+{"command": [0.659109122089405, -0.02075600021626038, 0.011230047845495963], "kind": "cmd_vel", "receipt_monotonic_ns": 10404556626595}
+{"command": [0.6691629188708506, -0.020680730150409443, 0.011230043626843097], "kind": "cmd_vel", "receipt_monotonic_ns": 10404566646178}
+{"command": [0.6792606007777682, -0.020605131555931966, 0.0112300393939636], "kind": "cmd_vel", "receipt_monotonic_ns": 10404576614976}
+{"kind": "body_pose", "position": [-4.678216457366943, 3.0341036319732666, 0.7025306820869446], "receipt_monotonic_ns": 10404579159531, "stamp_ns": 3429999923}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10404579336484, "stamp_ns": 3429999923}
+{"is_bigendian": false, "kind": "cloud", "point_count": 331, "receipt_monotonic_ns": 10404579490474, "stamp_ns": 3429999923}
+{"command": [0.6457833013516701, -0.03288338393987731, -0.013018092177728788], "kind": "cmd_vel", "receipt_monotonic_ns": 10404586653154}
+{"command": [0.655965206225132, -0.0329717532395874, -0.013018096456867708], "kind": "cmd_vel", "receipt_monotonic_ns": 10404596632672}
+{"command": [0.6661916842892553, -0.03306050942000364, -0.01301810076006596], "kind": "cmd_vel", "receipt_monotonic_ns": 10404606654710}
+{"command": [0.6764589042645358, -0.033149619229386924, -0.013018105096293708], "kind": "cmd_vel", "receipt_monotonic_ns": 10404616638526}
+{"command": [0.6867654066475727, -0.033239070000751, -0.01301810946828634], "kind": "cmd_vel", "receipt_monotonic_ns": 10404626620148}
+{"command": [0.6971331186780013, -0.03332905204217791, -0.013018113879750472], "kind": "cmd_vel", "receipt_monotonic_ns": 10404636792058}
+{"command": [0.707481655827899, -0.03341886769114309, -0.013018118344453475], "kind": "cmd_vel", "receipt_monotonic_ns": 10404646681937}
+{"command": [0.7179473698387697, -0.033509700350768876, -0.013018122831897686], "kind": "cmd_vel", "receipt_monotonic_ns": 10404656631650}
+{"command": [0.7284252666764477, -0.03360063876631475, -0.013018127405122771], "kind": "cmd_vel", "receipt_monotonic_ns": 10404666637998}
+{"command": [0.7389472447214569, -0.03369195978606837, -0.013018132019289398], "kind": "cmd_vel", "receipt_monotonic_ns": 10404676669243}
+{"command": [0.7495019831292925, -0.03378356515565858, -0.013018136687942578], "kind": "cmd_vel", "receipt_monotonic_ns": 10404686650064}
+{"command": [0.7600697455528215, -0.03387528358182257, -0.013018141405691134], "kind": "cmd_vel", "receipt_monotonic_ns": 10404696624582}
+{"command": [0.7707378143076773, -0.03396787259469129, -0.013018146163228987], "kind": "cmd_vel", "receipt_monotonic_ns": 10404706647091}
+{"kind": "body_pose", "position": [-4.611444473266602, 3.0342493057250977, 0.6764926910400391], "receipt_monotonic_ns": 10404709188260, "stamp_ns": 3529999921}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10404709306923, "stamp_ns": 3529999921}
+{"is_bigendian": false, "kind": "cloud", "point_count": 321, "receipt_monotonic_ns": 10404709433051, "stamp_ns": 3529999921}
+{"command": [0.7281783742097819, -0.02900416257821264, -0.00331624444078772], "kind": "cmd_vel", "receipt_monotonic_ns": 10404716615148}
+{"command": [0.7389319154419116, -0.029027937914820168, -0.0033162493043022915], "kind": "cmd_vel", "receipt_monotonic_ns": 10404726615254}
+{"command": [0.7496971533564993, -0.029051739132295137, -0.0033162542460231812], "kind": "cmd_vel", "receipt_monotonic_ns": 10404736616844}
+{"command": [0.7605050703402116, -0.0290756347306172, -0.003316259225841082], "kind": "cmd_vel", "receipt_monotonic_ns": 10404746620898}
+{"command": [0.7713510851564037, -0.029099614581052015, -0.0033162642577966063], "kind": "cmd_vel", "receipt_monotonic_ns": 10404756620093}
+{"command": [0.7822422849117705, -0.029123694352829556, -0.0033162693396093], "kind": "cmd_vel", "receipt_monotonic_ns": 10404766643013}
+{"command": [0.7931743098006392, -0.02914786440678491, -0.0033162744744962966], "kind": "cmd_vel", "receipt_monotonic_ns": 10404776638701}
+{"command": [0.8041440153484538, -0.029172117790744582, -0.003316279660322684], "kind": "cmd_vel", "receipt_monotonic_ns": 10404786614673}
+{"command": [0.8151601554260914, -0.02919647385910199, -0.0033162848955307364], "kind": "cmd_vel", "receipt_monotonic_ns": 10404796650386}
+{"command": [0.8262121451287076, -0.02922090920930998, -0.0033162901842579257], "kind": "cmd_vel", "receipt_monotonic_ns": 10404806658177}
+{"command": [0.8373056442448411, -0.029245436353456885, -0.0033162955214114612], "kind": "cmd_vel", "receipt_monotonic_ns": 10404816615514}
+{"command": [0.8484660535409135, -0.029270111449247196, -0.0033163009103764013], "kind": "cmd_vel", "receipt_monotonic_ns": 10404826706461}
+{"kind": "body_pose", "position": [-4.531932353973389, 3.034518003463745, 0.674643874168396], "receipt_monotonic_ns": 10404829189030, "stamp_ns": 3629999918}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10404829347679, "stamp_ns": 3629999918}
+{"is_bigendian": false, "kind": "cloud", "point_count": 311, "receipt_monotonic_ns": 10404829611845, "stamp_ns": 3629999918}
+{"command": [0.7961217030203572, -0.02589111984394875, 0.0032372386578556774], "kind": "cmd_vel", "receipt_monotonic_ns": 10404836659039}
+{"command": [0.8073294217416684, -0.025866932634415484, 0.0032372331788581028], "kind": "cmd_vel", "receipt_monotonic_ns": 10404846657773}
+{"command": [0.818573162178698, -0.025842667703618066, 0.003237227636773173], "kind": "cmd_vel", "receipt_monotonic_ns": 10404856637351}
+{"command": [0.8298569967206352, -0.02581831626306089, 0.0032372220447463127], "kind": "cmd_vel", "receipt_monotonic_ns": 10404866647456}
+{"command": [0.8411768415063228, -0.025793887126107803, 0.003237216400766607], "kind": "cmd_vel", "receipt_monotonic_ns": 10404876671258}
+{"command": [0.8525382372947293, -0.025769368335417275, 0.0032372107068552366], "kind": "cmd_vel", "receipt_monotonic_ns": 10404886620629}
+{"command": [0.8639351051931856, -0.025744773009780814, 0.0032372049601884353], "kind": "cmd_vel", "receipt_monotonic_ns": 10404896651944}
+{"command": [0.8753720893065601, -0.02572009112691707, 0.0032371991637811653], "kind": "cmd_vel", "receipt_monotonic_ns": 10404906689742}
+{"command": [0.8868418043514322, -0.025695338624882363, 0.003237193315199324], "kind": "cmd_vel", "receipt_monotonic_ns": 10404916654763}
+{"command": [0.8983485970725059, -0.025670506123121616, 0.0032371874181407636], "kind": "cmd_vel", "receipt_monotonic_ns": 10404926622719}
+{"command": [0.9098953394215135, -0.025645587423814682, 0.0032371814702834437], "kind": "cmd_vel", "receipt_monotonic_ns": 10404936639437}
+{"command": [0.9098953394215135, -0.025645587423814682, 0.0032371754700112622], "kind": "cmd_vel", "receipt_monotonic_ns": 10404946582246}
+{"command": [0.9098953394215135, -0.025645587423814682, 0.0032371754700112622], "kind": "cmd_vel", "receipt_monotonic_ns": 10404956633569}
+{"kind": "body_pose", "position": [-4.445075988769531, 3.0257997512817383, 0.6482161283493042], "receipt_monotonic_ns": 10404959193413, "stamp_ns": 3729999916}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10404959304412, "stamp_ns": 3729999916}
+{"is_bigendian": false, "kind": "cloud", "point_count": 314, "receipt_monotonic_ns": 10404959467769, "stamp_ns": 3729999916}
+{"command": [0.8519900943191663, -0.018270206012718046, 0.004162945870185503], "kind": "cmd_vel", "receipt_monotonic_ns": 10404966633145}
+{"command": [0.8636211691316604, -0.018237926837591383, 0.004162939819105325], "kind": "cmd_vel", "receipt_monotonic_ns": 10404976689838}
+{"command": [0.8752744126650794, -0.01820558615533917, 0.004162933711153956], "kind": "cmd_vel", "receipt_monotonic_ns": 10404986681739}
+{"command": [0.8869685828358017, -0.018173131905130355, 0.004162927559626503], "kind": "cmd_vel", "receipt_monotonic_ns": 10404996657771}
+{"command": [0.8987010656209449, -0.018140571337204436, 0.004162921354504598], "kind": "cmd_vel", "receipt_monotonic_ns": 10405006630416}
+{"command": [0.9104716172537873, -0.018107905128034417, 0.004162915096936258], "kind": "cmd_vel", "receipt_monotonic_ns": 10405016639169}
+{"command": [0.9222795829936083, -0.018075135094688104, 0.004162908786708481], "kind": "cmd_vel", "receipt_monotonic_ns": 10405026633404}
+{"command": [0.9341624648189941, -0.018042157159916472, 0.004162902423828144], "kind": "cmd_vel", "receipt_monotonic_ns": 10405036676642}
+{"command": [0.9460141004323173, -0.01800926595030272, 0.0041628959875575225], "kind": "cmd_vel", "receipt_monotonic_ns": 10405046679264}
+{"command": [0.9579314458690649, -0.017976192388907287, 0.004162889535140293], "kind": "cmd_vel", "receipt_monotonic_ns": 10405056658792}
+{"command": [0.9579314458690649, -0.017976192388907287, 0.004162883013560758], "kind": "cmd_vel", "receipt_monotonic_ns": 10405066765990}
+{"command": [0.9579314458690649, -0.017976192388907287, 0.004162883013560758], "kind": "cmd_vel", "receipt_monotonic_ns": 10405076640300}
+{"kind": "body_pose", "position": [-4.364646911621094, 3.0232489109039307, 0.5844990611076355], "receipt_monotonic_ns": 10405079212628, "stamp_ns": 3829999914}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10405079341641, "stamp_ns": 3829999914}
+{"is_bigendian": false, "kind": "cloud", "point_count": 332, "receipt_monotonic_ns": 10405079508274, "stamp_ns": 3829999914}
+{"command": [0.905519735237427, -0.017300161158586815, 0.0021433200332713538], "kind": "cmd_vel", "receipt_monotonic_ns": 10405086637020}
+{"command": [0.9175141818623898, -0.017283022741473534, 0.0021433134548914014], "kind": "cmd_vel", "receipt_monotonic_ns": 10405096622069}
+{"command": [0.9295485971706159, -0.017265827223700927, 0.0021433068231796436], "kind": "cmd_vel", "receipt_monotonic_ns": 10405106661600}
+{"command": [0.9415819332135534, -0.017248633257075232, 0.0021433001349202025], "kind": "cmd_vel", "receipt_monotonic_ns": 10405116600061}
+{"command": [0.9537244541805724, -0.017231283289417112, 0.0021432934126001356], "kind": "cmd_vel", "receipt_monotonic_ns": 10405126640132}
+{"command": [0.9658728648953203, -0.01721392491515872, 0.002143286593990137], "kind": "cmd_vel", "receipt_monotonic_ns": 10405136642133}
+{"command": [0.9780499602751145, -0.017196525563517074, 0.0021432797364055044], "kind": "cmd_vel", "receipt_monotonic_ns": 10405146622513}
+{"command": [0.9902686285745458, -0.017179066818987187, 0.002143272826626941], "kind": "cmd_vel", "receipt_monotonic_ns": 10405156642547}
+{"command": [0.9998535137146373, -0.017115814689747343, 0.0021432658568104066], "kind": "cmd_vel", "receipt_monotonic_ns": 10405166656980}
+{"command": [0.9998535137146373, -0.017115814689747343, 0.002143258828327935], "kind": "cmd_vel", "receipt_monotonic_ns": 10405176653711}
+{"command": [0.9998535137146373, -0.017115814689747343, 0.002143258828327935], "kind": "cmd_vel", "receipt_monotonic_ns": 10405186647395}
+{"command": [0.9998535137146373, -0.017115814689747343, 0.002143258828327935], "kind": "cmd_vel", "receipt_monotonic_ns": 10405196669934}
+{"kind": "body_pose", "position": [-4.273560047149658, 3.0270838737487793, 0.5693098902702332], "receipt_monotonic_ns": 10405199218417, "stamp_ns": 3929999912}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10405199335918, "stamp_ns": 3929999912}
+{"is_bigendian": false, "kind": "cloud", "point_count": 344, "receipt_monotonic_ns": 10405199532067, "stamp_ns": 3929999912}
+{"command": [0.9417410336479601, -0.025544352862159135, -0.006183405479766696], "kind": "cmd_vel", "receipt_monotonic_ns": 10405206641898}
+{"command": [0.9540201100921967, -0.025594970736424943, -0.006183412534393105], "kind": "cmd_vel", "receipt_monotonic_ns": 10405216676970}
+{"command": [0.9661999179483655, -0.02564517948572824, -0.0061834197108404714], "kind": "cmd_vel", "receipt_monotonic_ns": 10405226639566}
+{"command": [0.9783438950444919, -0.02569524061949015, -0.006183426909578857], "kind": "cmd_vel", "receipt_monotonic_ns": 10405236625486}
+{"command": [0.9904455112232464, -0.025745127219112172, -0.0061834341669350385], "kind": "cmd_vel", "receipt_monotonic_ns": 10405246642825}
+{"command": [0.9996691389468453, -0.025721831919074064, -0.006183441478419522], "kind": "cmd_vel", "receipt_monotonic_ns": 10405256642061}
+{"command": [0.9996756860161206, -0.025466110582472043, -0.006183448844692438], "kind": "cmd_vel", "receipt_monotonic_ns": 10405266658518}
+{"command": [0.9996819956327642, -0.025217208562689154, -0.00618345626339188], "kind": "cmd_vel", "receipt_monotonic_ns": 10405276699802}
+{"command": [0.9996880749857859, -0.024975042166400136, -0.006183463735378021], "kind": "cmd_vel", "receipt_monotonic_ns": 10405286657899}
+{"command": [0.9996939393540399, -0.02473919195934593, -0.006183471254353049], "kind": "cmd_vel", "receipt_monotonic_ns": 10405296640934}
+{"command": [0.9996939393540399, -0.02473919195934593, -0.006183478824649455], "kind": "cmd_vel", "receipt_monotonic_ns": 10405306647563}
+{"command": [0.9996939393540399, -0.02473919195934593, -0.006183478824649455], "kind": "cmd_vel", "receipt_monotonic_ns": 10405316598207}
+{"command": [0.9996939393540399, -0.02473919195934593, -0.006183478824649455], "kind": "cmd_vel", "receipt_monotonic_ns": 10405326627598}
+{"kind": "body_pose", "position": [-4.177913665771484, 3.0341389179229736, 0.5330207943916321], "receipt_monotonic_ns": 10405329167114, "stamp_ns": 4029999909}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10405329282121, "stamp_ns": 4029999909}
+{"is_bigendian": false, "kind": "cloud", "point_count": 385, "receipt_monotonic_ns": 10405329466718, "stamp_ns": 4029999909}
+{"command": [0.985882084548809, -0.021503202555796363, 0.008829630050589853], "kind": "cmd_vel", "receipt_monotonic_ns": 10405336630160}
+{"command": [0.9976792843279764, -0.021433758735528625, 0.008829622431744299], "kind": "cmd_vel", "receipt_monotonic_ns": 10405346664381}
+{"command": [0.9997760975769482, -0.021160215353539392, 0.008829614763857244], "kind": "cmd_vel", "receipt_monotonic_ns": 10405356704412}
+{"command": [0.9997826099329524, -0.02085024881514743, 0.008829607048338827], "kind": "cmd_vel", "receipt_monotonic_ns": 10405366679582}
+{"command": [0.9997888311194373, -0.020549772962963016, 0.008829599285436356], "kind": "cmd_vel", "receipt_monotonic_ns": 10405376612302}
+{"command": [0.9997948415893302, -0.020255239602785732, 0.008829591511010605], "kind": "cmd_vel", "receipt_monotonic_ns": 10405386623760}
+{"command": [0.9998005667415215, -0.019970647043407147, 0.008829583641212143], "kind": "cmd_vel", "receipt_monotonic_ns": 10405396634136}
+{"command": [0.9998059905955503, -0.019697237604546967, 0.008829575750120885], "kind": "cmd_vel", "receipt_monotonic_ns": 10405406621799}
+{"command": [0.9998111360610353, -0.01943430493590209, 0.008829567826163377], "kind": "cmd_vel", "receipt_monotonic_ns": 10405416669145}
+{"command": [0.999816017341862, -0.019181539736357067, 0.008829559866468476], "kind": "cmd_vel", "receipt_monotonic_ns": 10405426634877}
+{"command": [0.999816017341862, -0.019181539736357067, 0.008829551879426372], "kind": "cmd_vel", "receipt_monotonic_ns": 10405436603645}
+{"command": [0.999816017341862, -0.019181539736357067, 0.008829551879426372], "kind": "cmd_vel", "receipt_monotonic_ns": 10405446609352}
+{"kind": "body_pose", "position": [-4.078033924102783, 3.0276432037353516, 0.5022241473197937], "receipt_monotonic_ns": 10405449186368, "stamp_ns": 4129999907}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10405449329357, "stamp_ns": 4129999907}
+{"is_bigendian": false, "kind": "cloud", "point_count": 403, "receipt_monotonic_ns": 10405449544161, "stamp_ns": 4129999907}
+{"command": [0.9999846342217668, -0.005543583710865677, 0.02420232400491843], "kind": "cmd_vel", "receipt_monotonic_ns": 10405456593919}
+{"command": [0.9999858337823387, -0.005322803268989828, 0.024202316026110754], "kind": "cmd_vel", "receipt_monotonic_ns": 10405466616317}
+{"command": [0.9999869353696925, -0.0051116621494375625, 0.02420230796681584], "kind": "cmd_vel", "receipt_monotonic_ns": 10405476626814}
+{"command": [0.9999879508861022, -0.004908979793654553, 0.024202299925066714], "kind": "cmd_vel", "receipt_monotonic_ns": 10405486669250}
+{"command": [0.9999888877432389, -0.004714275134087731, 0.024202291876465762], "kind": "cmd_vel", "receipt_monotonic_ns": 10405496717818}
+{"command": [0.999989747834144, -0.004528159295460413, 0.024202283819910714], "kind": "cmd_vel", "receipt_monotonic_ns": 10405506698718}
+{"command": [0.9999905458821597, -0.004348349836446597, 0.024202275800432944], "kind": "cmd_vel", "receipt_monotonic_ns": 10405516656455}
+{"command": [0.9999912789501122, -0.00417636489290233, 0.02420226773640375], "kind": "cmd_vel", "receipt_monotonic_ns": 10405526651142}
+{"command": [0.9999919544501172, -0.004011363238918399, 0.024202259711880624], "kind": "cmd_vel", "receipt_monotonic_ns": 10405536656038}
+{"command": [0.9999925766499969, -0.0038531344253845655, 0.024202251706576725], "kind": "cmd_vel", "receipt_monotonic_ns": 10405546645304}
+{"command": [0.9999925766499969, -0.0038531344253845655, 0.024202243727528116], "kind": "cmd_vel", "receipt_monotonic_ns": 10405556639559}
+{"kind": "body_pose", "position": [-3.98378586769104, 3.022555351257324, 0.46629294753074646], "receipt_monotonic_ns": 10405559324829, "stamp_ns": 4229999905}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10405559498556, "stamp_ns": 4229999905}
+{"is_bigendian": false, "kind": "cloud", "point_count": 424, "receipt_monotonic_ns": 10405559807046, "stamp_ns": 4229999905}
+{"command": [0.9998620041479571, -0.016612424905192, 0.001119470847462875], "kind": "cmd_vel", "receipt_monotonic_ns": 10405566636240}
+{"command": [0.999864260861214, -0.01647603873684534, 0.0011194628975823085], "kind": "cmd_vel", "receipt_monotonic_ns": 10405576669859}
+{"command": [0.9998664259755374, -0.016344118419329465, 0.001119454985855456], "kind": "cmd_vel", "receipt_monotonic_ns": 10405586633397}
+{"control_point_count": 33, "control_points": [[-5.135904383182222, 3.003375785951684, 0.821738153255661], [-4.895437651304257, 3.0033755270038913, 0.8190739725693862], [-4.65489951230818, 3.0033752330221795, 0.8160420535564153], [-4.421114581273308, 3.009408918452477, 0.8222193643098019], [-4.1884771468423345, 3.0247403594716116, 0.8214722569575351], [-3.953017543543735, 3.0574220748064787, 0.823805619938509], [-3.715494501000595, 3.117828930955756, 0.8250197726393508], [-3.47731802142374, 3.2076585696681015, 0.8266465668786009], [-3.238383032420004, 3.3229896968834134, 0.828162586501357], [-2.9981997837514385, 3.446728419285823, 0.829731152987052], [-2.758606302434034, 3.5659074669157986, 0.8312923757236004], [-2.520202449142186, 3.665549335617539, 0.8328543449860754], [-2.2812847916488703, 3.7413516417335524, 0.8344028330765204], [-2.0407768762179557, 3.792678105542767, 0.835929198158445], [-1.8001017154102656, 3.81998201165708, 0.837422333339541], [-1.5588460788363225, 3.8214452250163475, 0.8388713972786217], [-1.3181770256797165, 3.7939887576004736, 0.8402653484185202], [-1.0776624056762285, 3.7368781672777382, 0.8415934180997362], [-0.8379461111691772, 3.6496274125607497, 0.8428453099226672], [-0.6080507729326475, 3.532314477867667, 0.8440114787385832], [-0.39487846567674917, 3.3881887115209626, 0.845083385466259], [-0.20200157065174446, 3.2425224661236407, 0.8460537631179788], [-0.028574908370414705, 3.119594853179182, 0.8469168650112228], [0.11702842815161314, 3.025058625063408, 0.8476687674929685], [0.23544143291785055, 2.9588510228275515, 0.8483074917206517], [0.3295120990997769, 2.9216666187820435, 0.8488337230682658], [0.39636158303745195, 2.9114206478450932, 0.8492495882251135], [0.4364080847959632, 2.920973393673398, 0.8495636065351941], [0.4636024362731403, 2.946772048041519, 0.8497766088858603], [0.48551094753442686, 2.9790223243550322, 0.8499237207047488], [0.49782063272665344, 3.0000029858583024, 0.849962964585881], [0.499743271642928, 3.000000361031371, 0.8500278372986496], [0.4978620713677768, 3.0000029287994576, 0.8499624085162053]], "kind": "bspline", "knots": [-0.72, -0.48, -0.24, 0.0, 0.24, 0.48, 0.72, 0.96, 1.2, 1.44, 1.68, 1.92, 2.16, 2.4000000000000004, 2.6400000000000006, 2.880000000000001, 3.120000000000001, 3.360000000000001, 3.6000000000000014, 3.8400000000000016, 4.080000000000002, 4.320000000000002, 4.560000000000002, 4.8000000000000025, 5.040000000000003, 5.280000000000003, 5.520000000000003, 5.760000000000003, 6.0000000000000036, 6.240000000000004, 6.480000000000004, 6.720000000000004, 6.960000000000004, 7.200000000000005, 7.440000000000005, 7.680000000000005, 7.920000000000005], "order": 3, "receipt_monotonic_ns": 10405592519607, "start_time_ns": 1786744576427596295, "trajectory_id": 2, "yaw_dt": 0.0, "yaw_points": []}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405596623926}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405606786478}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405616673021}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405626629115}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405636681430}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405646662921}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405656638913}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405666641143}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405676673992}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405686599678}
+{"kind": "body_pose", "position": [-3.881143093109131, 3.0241904258728027, 0.46462494134902954], "receipt_monotonic_ns": 10405689287042, "stamp_ns": 4329999903}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10405689436794, "stamp_ns": 4329999903}
+{"is_bigendian": false, "kind": "cloud", "point_count": 459, "receipt_monotonic_ns": 10405689919792, "stamp_ns": 4329999903}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405696628429}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405706649645}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405716740503}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405726675166}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405736630328}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405746628241}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405756606256}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405766616512}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405776628511}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405786691435}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405796626099}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405806644360}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405816602718}
+{"kind": "body_pose", "position": [-3.8009731769561768, 3.024864673614502, 0.4510791003704071], "receipt_monotonic_ns": 10405819175707, "stamp_ns": 4429999900}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10405819287828, "stamp_ns": 4429999900}
+{"is_bigendian": false, "kind": "cloud", "point_count": 495, "receipt_monotonic_ns": 10405819569598, "stamp_ns": 4429999900}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405826620057}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405836617509}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405846647001}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405856619245}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405866704291}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405876648733}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405886622831}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405896665087}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405906687395}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405916650041}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405926667801}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405936640697}
+{"kind": "body_pose", "position": [-3.779719829559326, 3.0206687450408936, 0.4806113541126251], "receipt_monotonic_ns": 10405939203076, "stamp_ns": 4529999898}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10405939312792, "stamp_ns": 4529999898}
+{"is_bigendian": false, "kind": "cloud", "point_count": 514, "receipt_monotonic_ns": 10405939602757, "stamp_ns": 4529999898}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405946670940}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405956663332}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405966619336}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405976660069}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405986615933}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10405996635486}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406006625493}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406016652521}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406026621659}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406036616646}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406046630899}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406056604807}
+{"kind": "body_pose", "position": [-3.771500587463379, 3.0205278396606445, 0.4698970317840576], "receipt_monotonic_ns": 10406059263457, "stamp_ns": 4629999896}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10406059412487, "stamp_ns": 4629999896}
+{"is_bigendian": false, "kind": "cloud", "point_count": 507, "receipt_monotonic_ns": 10406059651497, "stamp_ns": 4629999896}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406066694883}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406076643272}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406086648538}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406096656770}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406106676714}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406116628510}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406126617115}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406136613044}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406146608311}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406156762949}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406166818239}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406176734077}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406186648333}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406196668276}
+{"kind": "body_pose", "position": [-3.7732698917388916, 3.020770311355591, 0.4574304223060608], "receipt_monotonic_ns": 10406199198114, "stamp_ns": 4729999894}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10406199321105, "stamp_ns": 4729999894}
+{"is_bigendian": false, "kind": "cloud", "point_count": 497, "receipt_monotonic_ns": 10406199587566, "stamp_ns": 4729999894}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406206613139}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406216631901}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406226650081}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406236702536}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406246703925}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406256632327}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406266645077}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406276637780}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406286653366}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406296623716}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406306656715}
+{"kind": "body_pose", "position": [-3.7713582515716553, 3.019617795944214, 0.4523569345474243], "receipt_monotonic_ns": 10406309302601, "stamp_ns": 4829999892}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10406309447874, "stamp_ns": 4829999892}
+{"is_bigendian": false, "kind": "cloud", "point_count": 495, "receipt_monotonic_ns": 10406309844560, "stamp_ns": 4829999892}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406316641843}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406326651207}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406336644621}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406346638737}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406356619357}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406366632828}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406376645749}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406386692353}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406396642045}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406406619869}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406416664600}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406426641072}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406436646649}
+{"kind": "body_pose", "position": [-3.7682416439056396, 3.0177669525146484, 0.4500567317008972], "receipt_monotonic_ns": 10406439230879, "stamp_ns": 4929999889}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10406439435023, "stamp_ns": 4929999889}
+{"is_bigendian": false, "kind": "cloud", "point_count": 492, "receipt_monotonic_ns": 10406439646791, "stamp_ns": 4929999889}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406446657155}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406456649497}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406466713203}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406476679346}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406486628647}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406496628313}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406506622087}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406516614339}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406526663759}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406536660679}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406546594311}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406556601831}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406566615513}
+{"kind": "body_pose", "position": [-3.765636920928955, 3.016113758087158, 0.44942209124565125], "receipt_monotonic_ns": 10406569178994, "stamp_ns": 5029999887}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10406569318837, "stamp_ns": 5029999887}
+{"is_bigendian": false, "kind": "cloud", "point_count": 495, "receipt_monotonic_ns": 10406569612539, "stamp_ns": 5029999887}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406576629346}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406586620245}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406596607958}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406606809003}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406616630934}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406626631031}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406636617311}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406646609042}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406656602376}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406666601120}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406676665287}
+{"kind": "body_pose", "position": [-3.762460708618164, 3.0148353576660156, 0.44919607043266296], "receipt_monotonic_ns": 10406679174406, "stamp_ns": 5129999885}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10406679308448, "stamp_ns": 5129999885}
+{"is_bigendian": false, "kind": "cloud", "point_count": 493, "receipt_monotonic_ns": 10406679552487, "stamp_ns": 5129999885}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406686631650}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406696635674}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406706635750}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406716610579}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406726615866}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406736642262}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406746621028}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406756664637}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406766661517}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406776608103}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406786627797}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406796628234}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406806612491}
+{"kind": "body_pose", "position": [-3.7595746517181396, 3.0141165256500244, 0.44983869791030884], "receipt_monotonic_ns": 10406809225324, "stamp_ns": 5229999883}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10406809352554, "stamp_ns": 5229999883}
+{"is_bigendian": false, "kind": "cloud", "point_count": 499, "receipt_monotonic_ns": 10406809587465, "stamp_ns": 5229999883}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406816628577}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406826642420}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406836700575}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406846676136}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406856605509}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406866655379}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406876636270}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406886669368}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406896661530}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406906657299}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406916630995}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406926678612}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406936624787}
+{"kind": "body_pose", "position": [-3.757387638092041, 3.012821674346924, 0.4490724205970764], "receipt_monotonic_ns": 10406939187827, "stamp_ns": 5329999880}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10406939336637, "stamp_ns": 5329999880}
+{"is_bigendian": false, "kind": "cloud", "point_count": 503, "receipt_monotonic_ns": 10406939571428, "stamp_ns": 5329999880}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406946623360}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406956607447}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406966691662}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406976628880}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406986670735}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10406996642428}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407006626034}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407016625469}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407026615046}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407036600304}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407046655965}
+{"kind": "body_pose", "position": [-3.755544424057007, 3.01180362701416, 0.4486134946346283], "receipt_monotonic_ns": 10407049173871, "stamp_ns": 5429999878}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10407049292875, "stamp_ns": 5429999878}
+{"is_bigendian": false, "kind": "cloud", "point_count": 514, "receipt_monotonic_ns": 10407049616533, "stamp_ns": 5429999878}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407056648357}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407066798516}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407076674880}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407086637496}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407096650497}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407106658719}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407116626274}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407126674441}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407136658898}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407146681237}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407156635517}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407166654399}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407176625301}
+{"kind": "body_pose", "position": [-3.7530453205108643, 3.011465072631836, 0.4487687349319458], "receipt_monotonic_ns": 10407179203169, "stamp_ns": 5529999876}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10407179347229, "stamp_ns": 5529999876}
+{"is_bigendian": false, "kind": "cloud", "point_count": 510, "receipt_monotonic_ns": 10407179672531, "stamp_ns": 5529999876}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407186622962}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407196663906}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407206712934}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407216684126}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407226651191}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407236630929}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407246626347}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407256613689}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407266688376}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407276643768}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407286628115}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407296598716}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407306647624}
+{"kind": "body_pose", "position": [-3.750622034072876, 3.0108659267425537, 0.4484809339046478], "receipt_monotonic_ns": 10407309199434, "stamp_ns": 5629999874}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10407309313047, "stamp_ns": 5629999874}
+{"is_bigendian": false, "kind": "cloud", "point_count": 510, "receipt_monotonic_ns": 10407309603764, "stamp_ns": 5629999874}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407316636400}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407326606139}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407336698159}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407346688296}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407356697400}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407366665225}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407376635325}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407386634250}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407396636761}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407406607923}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407416651471}
+{"kind": "body_pose", "position": [-3.748525381088257, 3.0102462768554688, 0.44707030057907104], "receipt_monotonic_ns": 10407419202228, "stamp_ns": 5729999871}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10407419333174, "stamp_ns": 5729999871}
+{"is_bigendian": false, "kind": "cloud", "point_count": 510, "receipt_monotonic_ns": 10407419582543, "stamp_ns": 5729999871}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407426653441}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407436663777}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407446638425}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407456631919}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407466636144}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407476627153}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407486641196}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407496652023}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407506686424}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407516642277}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407526625792}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407536680882}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407546654058}
+{"kind": "body_pose", "position": [-3.7463133335113525, 3.009700059890747, 0.44681516289711], "receipt_monotonic_ns": 10407549185479, "stamp_ns": 5829999869}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10407549303661, "stamp_ns": 5829999869}
+{"is_bigendian": false, "kind": "cloud", "point_count": 508, "receipt_monotonic_ns": 10407549613914, "stamp_ns": 5829999869}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407556629618}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407566643461}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407576648015}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407586628425}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407596636286}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407606674063}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407616694658}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407626716045}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407636727142}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407646688977}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407656635082}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407666616814}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407676623783}
+{"kind": "body_pose", "position": [-3.7441468238830566, 3.008997678756714, 0.4473283886909485], "receipt_monotonic_ns": 10407679198034, "stamp_ns": 5929999867}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10407679358215, "stamp_ns": 5929999867}
+{"is_bigendian": false, "kind": "cloud", "point_count": 506, "receipt_monotonic_ns": 10407679776031, "stamp_ns": 5929999867}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407686634579}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407696626801}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407706642687}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407716667761}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407726659612}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407736662704}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407746616133}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407756631147}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407766617428}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407776634426}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407786636786}
+{"kind": "body_pose", "position": [-3.742506742477417, 3.008175849914551, 0.4471166133880615], "receipt_monotonic_ns": 10407789212200, "stamp_ns": 6029999865}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10407789367262, "stamp_ns": 6029999865}
+{"is_bigendian": false, "kind": "cloud", "point_count": 505, "receipt_monotonic_ns": 10407789691261, "stamp_ns": 6029999865}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407796631222}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407806648331}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407816622869}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407826638605}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407836634714}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407846634059}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407856630138}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407866686931}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407876658304}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407886646007}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407896676300}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407906629719}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407916623494}
+{"kind": "body_pose", "position": [-3.741086959838867, 3.0075018405914307, 0.4468422830104828], "receipt_monotonic_ns": 10407919157880, "stamp_ns": 6129999862}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10407919268888, "stamp_ns": 6129999862}
+{"is_bigendian": false, "kind": "cloud", "point_count": 505, "receipt_monotonic_ns": 10407919554566, "stamp_ns": 6129999862}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407926619783}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407936632373}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407946665561}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407956673513}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407966647530}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407976683845}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407986642754}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10407996639264}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408006643989}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408016694490}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408026676683}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408036687590}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408046655225}
+{"kind": "body_pose", "position": [-3.7394089698791504, 3.0062875747680664, 0.4465349614620209], "receipt_monotonic_ns": 10408049182648, "stamp_ns": 6229999860}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10408049313094, "stamp_ns": 6229999860}
+{"is_bigendian": false, "kind": "cloud", "point_count": 500, "receipt_monotonic_ns": 10408049605944, "stamp_ns": 6229999860}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408056654720}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408066709410}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408076653661}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408086659899}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408096670555}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408106664340}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408116660669}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408126668711}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408136639252}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408146666099}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408156662368}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408166681080}
+{"kind": "body_pose", "position": [-3.7378711700439453, 3.005568504333496, 0.44606247544288635], "receipt_monotonic_ns": 10408169234561, "stamp_ns": 6329999858}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10408169368493, "stamp_ns": 6329999858}
+{"is_bigendian": false, "kind": "cloud", "point_count": 497, "receipt_monotonic_ns": 10408169590060, "stamp_ns": 6329999858}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408176707385}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408186680551}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408196629221}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408206701533}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408216659630}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408226655158}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408236633083}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408246704353}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408256680043}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408266641347}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408276634570}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408286629056}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408296617481}
+{"kind": "body_pose", "position": [-3.7362217903137207, 3.0054914951324463, 0.44619718194007874], "receipt_monotonic_ns": 10408299217390, "stamp_ns": 6429999856}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10408299360068, "stamp_ns": 6429999856}
+{"is_bigendian": false, "kind": "cloud", "point_count": 484, "receipt_monotonic_ns": 10408299581605, "stamp_ns": 6429999856}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408306657342}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408316665353}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408326693482}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408336664424}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408346638722}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408356630362}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408366631681}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408376644331}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408386652563}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408396672296}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408406660480}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408416668100}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408426662827}
+{"kind": "body_pose", "position": [-3.73494815826416, 3.005323886871338, 0.4454595148563385], "receipt_monotonic_ns": 10408429197533, "stamp_ns": 6529999854}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10408429323681, "stamp_ns": 6529999854}
+{"is_bigendian": false, "kind": "cloud", "point_count": 499, "receipt_monotonic_ns": 10408429554445, "stamp_ns": 6529999854}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408436642615}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408446625719}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408456630956}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408466649737}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408476679429}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408486659368}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408496643614}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408506651916}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408516685054}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408526632672}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408536619794}
+{"kind": "body_pose", "position": [-3.7337493896484375, 3.0051212310791016, 0.44534415006637573], "receipt_monotonic_ns": 10408539173717, "stamp_ns": 6629999851}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10408539288363, "stamp_ns": 6629999851}
+{"is_bigendian": false, "kind": "cloud", "point_count": 515, "receipt_monotonic_ns": 10408539569562, "stamp_ns": 6629999851}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408546669234}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408556688025}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408566646393}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408576637252}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408586640865}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408596636573}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408606672647}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408616659348}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408626653624}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408636637370}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408646638237}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408656615250}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408666620807}
+{"kind": "body_pose", "position": [-3.7323925495147705, 3.0047454833984375, 0.4451468884944916], "receipt_monotonic_ns": 10408669159682, "stamp_ns": 6729999849}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10408669270189, "stamp_ns": 6729999849}
+{"is_bigendian": false, "kind": "cloud", "point_count": 533, "receipt_monotonic_ns": 10408669575333, "stamp_ns": 6729999849}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408676639559}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408686614267}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408696642196}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408706701704}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408716652508}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408726645561}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408736631721}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408746625195}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408756644177}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408766676153}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408776668185}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408786648203}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408796621790}
+{"kind": "body_pose", "position": [-3.73075795173645, 3.0044069290161133, 0.4451081454753876], "receipt_monotonic_ns": 10408799188537, "stamp_ns": 6829999847}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10408799328330, "stamp_ns": 6829999847}
+{"is_bigendian": false, "kind": "cloud", "point_count": 533, "receipt_monotonic_ns": 10408799606182, "stamp_ns": 6829999847}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408806644469}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408816635648}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408826644712}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408836640099}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408846713534}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408856672512}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408866631221}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408876659350}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408886647584}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408896668660}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408906667554}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408916644758}
+{"kind": "body_pose", "position": [-3.729950189590454, 3.004426956176758, 0.4445318281650543], "receipt_monotonic_ns": 10408919189584, "stamp_ns": 6929999845}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10408919273511, "stamp_ns": 6929999845}
+{"is_bigendian": false, "kind": "cloud", "point_count": 506, "receipt_monotonic_ns": 10408919573255, "stamp_ns": 6929999845}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408926684609}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408936640983}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408946621082}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408956619124}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408966631053}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408976652740}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408986665470}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10408996676387}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409006672396}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409016644720}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409026625801}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409036644452}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409046637816}
+{"kind": "body_pose", "position": [-3.729093551635742, 3.004594564437866, 0.4447194039821625], "receipt_monotonic_ns": 10409049253084, "stamp_ns": 7029999842}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10409049393308, "stamp_ns": 7029999842}
+{"is_bigendian": false, "kind": "cloud", "point_count": 508, "receipt_monotonic_ns": 10409049661071, "stamp_ns": 7029999842}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409056638703}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409066790094}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409076817312}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409086726327}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409096653426}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409106624518}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409116622691}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409126651040}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409136660164}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409146696478}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409156662290}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409166653520}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409176653055}
+{"kind": "body_pose", "position": [-3.727964162826538, 3.004312753677368, 0.4441291093826294], "receipt_monotonic_ns": 10409179174096, "stamp_ns": 7129999840}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10409179288722, "stamp_ns": 7129999840}
+{"is_bigendian": false, "kind": "cloud", "point_count": 501, "receipt_monotonic_ns": 10409179568608, "stamp_ns": 7129999840}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409186657900}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409196660181}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409206667100}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409216676003}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409226704473}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409236684932}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409246634353}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409256643997}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409266624066}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409276625284}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409286615933}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409296652297}
+{"kind": "body_pose", "position": [-3.7268283367156982, 3.003880500793457, 0.44440707564353943], "receipt_monotonic_ns": 10409299147991, "stamp_ns": 7229999838}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10409299255563, "stamp_ns": 7229999838}
+{"is_bigendian": false, "kind": "cloud", "point_count": 492, "receipt_monotonic_ns": 10409299537694, "stamp_ns": 7229999838}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409306717086}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409316654213}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409326645413}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409336629690}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409346650405}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409356666571}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409366661899}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409376673006}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409386681528}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409396607605}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409406680789}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409416639377}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409426634374}
+{"kind": "body_pose", "position": [-3.725485324859619, 3.003746747970581, 0.4440974295139313], "receipt_monotonic_ns": 10409429178979, "stamp_ns": 7329999836}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10409429316828, "stamp_ns": 7329999836}
+{"is_bigendian": false, "kind": "cloud", "point_count": 487, "receipt_monotonic_ns": 10409429585894, "stamp_ns": 7329999836}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409436681769}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409446666096}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409456698242}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409466663693}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409476652078}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409486650962}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409496644406}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409506656765}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409516711915}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409526698325}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409536664688}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409546630460}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409556632209}
+{"kind": "body_pose", "position": [-3.7242653369903564, 3.0040438175201416, 0.44354894757270813], "receipt_monotonic_ns": 10409559298273, "stamp_ns": 7429999833}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10409559427827, "stamp_ns": 7429999833}
+{"is_bigendian": false, "kind": "cloud", "point_count": 496, "receipt_monotonic_ns": 10409559634646, "stamp_ns": 7429999833}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409566683142}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409576646589}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409586656343}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409596683651}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409606689358}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409616673624}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409626632884}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409636634293}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409646629329}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409656621861}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409666656403}
+{"kind": "body_pose", "position": [-3.723071813583374, 3.0043468475341797, 0.44341620802879333], "receipt_monotonic_ns": 10409669209293, "stamp_ns": 7529999831}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10409669344257, "stamp_ns": 7529999831}
+{"is_bigendian": false, "kind": "cloud", "point_count": 498, "receipt_monotonic_ns": 10409669638962, "stamp_ns": 7529999831}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409676602157}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409686707090}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409696660048}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409706643974}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409716679968}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409726642834}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409736638392}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409746685687}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409756654775}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409766655232}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409776655058}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409786623314}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409796620685}
+{"kind": "body_pose", "position": [-3.7225229740142822, 3.004542112350464, 0.44325026869773865], "receipt_monotonic_ns": 10409799173616, "stamp_ns": 7629999829}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10409799295936, "stamp_ns": 7629999829}
+{"is_bigendian": false, "kind": "cloud", "point_count": 488, "receipt_monotonic_ns": 10409799563229, "stamp_ns": 7629999829}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409806650708}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409816653600}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409826688221}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409836657840}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409846643118}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409856632595}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409866636618}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409876637797}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409886646449}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409896688144}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409906660277}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409916630848}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409926633730}
+{"kind": "body_pose", "position": [-3.722409963607788, 3.0042879581451416, 0.44233614206314087], "receipt_monotonic_ns": 10409929190027, "stamp_ns": 7729999827}
+{"kind": "sensor_pose", "receipt_monotonic_ns": 10409929330541, "stamp_ns": 7729999827}
+{"is_bigendian": false, "kind": "cloud", "point_count": 484, "receipt_monotonic_ns": 10409929539765, "stamp_ns": 7729999827}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409936672098}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409946641136}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409956806373}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409966779088}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409976835781}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409986847719}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10409996877562}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410006860475}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410016878626}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410026892438}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410036794249}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410046743600}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410056682892}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410066717884}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410076638561}
+{"command": [0.0, 0.0, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410086659827}
+{"control_point_count": 6, "control_points": [[-3.748525381088257, 3.0102462768554688, 0.44707030057907104], [-3.748525381088257, 3.0102462768554688, 0.44707030057907104], [-3.748525381088257, 3.0102462768554688, 0.44707030057907104], [-3.748525381088257, 3.0102462768554688, 0.44707030057907104], [-3.748525381088257, 3.0102462768554688, 0.44707030057907104], [-3.748525381088257, 3.0102462768554688, 0.44707030057907104]], "kind": "bspline", "knots": [-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0], "order": 3, "receipt_monotonic_ns": 10410093958814, "start_time_ns": 1786744580929123899, "trajectory_id": 3, "yaw_dt": 0.0, "yaw_points": []}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410096672688}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410106617831}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410116691545}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410126764619}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410136745078}
+{"command": [-0.02127119254643264, 0.0025974962086035428, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410146815577}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410156795335}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410166791775}
+{"command": [-0.021271192546433032, 0.00259749620860386, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410176739983}
+{"command": [-0.021271192546432324, 0.0025974962086039327, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410186736873}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410196737661}
+{"command": [-0.021271192546432324, 0.0025974962086039327, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410206700888}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410216722845}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410226661696}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410236659779}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410246659655}
+{"command": [-0.021271192546432324, 0.0025974962086039327, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410256657647}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410266677831}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410276671385}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410286627819}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410296636441}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410306627621}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410316634359}
+{"command": [-0.021271192546432324, 0.0025974962086039327, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410326651738}
+{"command": [-0.021271192546432324, 0.0025974962086039327, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410336641696}
+{"command": [-0.02127119254643264, 0.0025974962086035428, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410346641090}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410356639444}
+{"command": [-0.021271192546432324, 0.0025974962086039327, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410366683823}
+{"command": [-0.021271192546432713, 0.0025974962086042497, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410376684180}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410386683404}
+{"command": [-0.021271192546432713, 0.0025974962086042497, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410396690494}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410406674079}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410416676419}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410426675534}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410436685449}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410446659776}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410456646718}
+{"command": [-0.02127119254643197, 0.0025974962086039695, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410466645752}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410476645698}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410486641436}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410496644768}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410506658089}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410516658847}
+{"command": [-0.021271192546432324, 0.0025974962086039327, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410526655226}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410536663748}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410546653125}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410556643573}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410566642106}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410576664805}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410586650464}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410596649899}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410606655145}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410616679326}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410626668853}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410636674710}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410646657513}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410656649535}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410666645062}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410676682048}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410686691121}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410696693762}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410706691985}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410716689897}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410726693800}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410736690701}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410746696618}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410756689921}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410766697702}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410776698369}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410786695299}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410796700485}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410806693558}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410816693484}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410826693581}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410836691633}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410846702620}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410856694230}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410866692513}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410876697418}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410886700320}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410896697240}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410906685474}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410916696481}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410926699001}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410936693718}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410946704003}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410956697397}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410966698956}
+{"command": [-0.021271192546433032, 0.00259749620860386, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410976704412}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410986695241}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10410996685248}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411006700673}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411016701491}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411026697840}
+{"command": [-0.02127119254643264, 0.0025974962086035428, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411036696985}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411046705346}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411056698710}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411066752647}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411076694865}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411086684391}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411096700948}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411106698239}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411116696161}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411126706727}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411136684401}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411146681813}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411156681749}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411166695721}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411176688373}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411186635991}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411196655363}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411206672231}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411216684730}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411226639301}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411236678681}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411246662717}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411256659166}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411266676925}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411276674637}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411286691846}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411296693354}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411306686067}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411316706230}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411326671812}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411336706022}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411346713643}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411356703950}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411366713384}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411376711026}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411386708186}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411396717249}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411406696015}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411416715177}
+{"command": [-0.021271192546433382, 0.0025974962086038234, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411426697300}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411436707435}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411446717420}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411456709471}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411466712933}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411476704173}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411486707144}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411496679779}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411506669586}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411516716299}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411526693593}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411536702225}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411546704125}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411556701946}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411566706862}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411576693502}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411586683029}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411596632289}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411606626865}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411616642701}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411626643899}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411636627825}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411646631748}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411656626394}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411666639665}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411676628660}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411686878737}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411696654722}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411706658945}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411716679179}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411726678815}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411736675094}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411746679398}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411756672731}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411766670323}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411776683183}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411786624969}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411796656425}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411806632476}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411816630157}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411826625815}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411836621282}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411846625767}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411856619301}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411866624196}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411876645582}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411886705180}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411896722559}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411906741330}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411916785499}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411926722647}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411936687998}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411946681191}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411956679153}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411966685802}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411976682241}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411986680063}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10411996685890}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412006687219}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412016656917}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412026659408}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412036648533}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412046648760}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412056650019}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412066722701}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412076638629}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412086638996}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412096644893}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412106627656}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412116652619}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412126655050}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412136645418}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412146638972}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412156660819}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412166731167}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412176702329}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412186711241}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412196704775}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412206722384}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412216695299}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412226710333}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412236711411}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412246727437}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412256716332}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412266717661}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412276691608}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412286700610}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412296680939}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412306671417}
+{"command": [-0.021271192546433032, 0.00259749620860386, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412316701049}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412326699502}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412336700800}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412346701578}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412356706363}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412366699195}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412376702107}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412386702022}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412396713199}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412406705000}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412416702932}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412426703769}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412436703955}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412446700455}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412456704909}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412466701979}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412476702005}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412486702653}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412496704843}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412506704218}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412516700827}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412526702747}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412536703364}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412546704271}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412556714727}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412566702380}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412576705291}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412586701700}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412596704842}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412606705469}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412616703471}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412626700662}
+{"command": [-0.021271192546432675, 0.0025974962086038967, 0.0], "kind": "cmd_vel", "receipt_monotonic_ns": 10412636703373}

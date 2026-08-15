@@ -863,6 +863,188 @@ class AcceptanceTest(unittest.TestCase):
                 failed["checks"]["v7_post_detection_scan_response"]["passed"]
             )
 
+            human_asset = root / "procedural_human.usda"
+            human_asset.write_text("#usda 1.0\n", encoding="utf-8")
+            human_sha = hashlib.sha256(human_asset.read_bytes()).hexdigest()
+            part_names = sorted(
+                [
+                    "Head",
+                    "Torso",
+                    "Pelvis",
+                    "LeftArm",
+                    "RightArm",
+                    "LeftLeg",
+                    "RightLeg",
+                ]
+            )
+            thresholds["v7_dynamic_obstacle"]["expected_course"] = (
+                "forest_gen_nav_v8_human"
+            )
+            thresholds["v7_dynamic_obstacle"]["expected_shape"] = (
+                "procedural_humanoid"
+            )
+            thresholds["v8_human_obstacle"] = {
+                "expected_asset_filename": "procedural_human.usda",
+                "expected_asset_sha256": human_sha,
+                "expected_part_names": part_names,
+                "expected_colour_rgb": [1.0, 0.82, 0.02],
+                "expected_overlay_colour_bgr": [0, 215, 255],
+                "minimum_crossing_gait_records": 5,
+                "minimum_observed_swing_radians": 0.25,
+                "expected_maximum_swing_radians": 0.4,
+                "maximum_opposition_error_radians": 1.0e-9,
+                "maximum_neutral_swing_radians": 1.0e-9,
+                "minimum_sensor_visible_swing_radians": 0.25,
+                "minimum_lidar_animated_detections": 1,
+                "minimum_depth_animated_detections": 1,
+            }
+            identity["course"]["name"] = "forest_gen_nav_v8_human"
+            identity["dynamic_obstacle"].update(
+                {
+                    "shape": "procedural_humanoid",
+                    "collision_shape": "hidden_capsule",
+                    "colour_rgb": [1.0, 0.82, 0.02],
+                    "visible_part_names": part_names,
+                    "sensor_target_exprs": [f"target/{name}" for name in part_names],
+                    "human_asset": {
+                        "source": (
+                            "locally generated procedural USDA; no external character asset"
+                        ),
+                        "sha256": human_sha,
+                    },
+                }
+            )
+            for row in metrics:
+                swing = 0.3 if row["dynamic_obstacle_phase"] == "crossing" else 0.0
+                row["dynamic_human_gait_angles"] = {
+                    "left_arm_radians": -swing,
+                    "right_arm_radians": swing,
+                    "left_leg_radians": swing,
+                    "right_leg_radians": -swing,
+                }
+            for rows in (sensor_metrics, depth_metrics):
+                for row in rows:
+                    row["dynamic_human_gait_angles"] = {
+                        "left_arm_radians": -0.3,
+                        "right_arm_radians": 0.3,
+                        "left_leg_radians": 0.3,
+                        "right_leg_radians": -0.3,
+                    }
+            geometry_checks.update(
+                {
+                    "human_parts_complete": True,
+                    "human_collision_hidden": True,
+                }
+            )
+            human_geometry = {
+                "passed": True,
+                "checks": geometry_checks,
+                "visible_human_part_names": part_names,
+                "collision_prim_paths": ["/Human/CollisionCapsule"],
+                "visible_collision_prim_paths": [],
+            }
+            review_metadata["plans"] = [
+                {"trajectory_id": 2, "effective_sim_time_seconds": 2.2},
+                {"trajectory_id": 3, "effective_sim_time_seconds": 3.0},
+            ]
+            review_metadata["colours_bgr"] = {
+                "dynamic_obstacle_actual": [0, 215, 255]
+            }
+            human_report = evaluate_acceptance(
+                thresholds,
+                metrics,
+                sensor_metrics,
+                {
+                    "status": "PASS",
+                    "runtime_error": None,
+                    "command_transport": {"protocol_errors": 0},
+                    "telemetry_transport": {"protocol_errors": 0, "reconnects": 1},
+                    "video": {
+                        "frame_count": 310,
+                        "encoded_duration_seconds": 12.4,
+                        "sha256": video_sha,
+                    },
+                },
+                identity,
+                self._ros_summary(),
+                video,
+                bag,
+                "final_plan_success=1\nfinal_plan_success=1\n"
+                "[FSM]: from EXEC_TRAJ to WAIT_TARGET\n",
+                "frozen",
+                depth_metrics=depth_metrics,
+                runtime_composition={
+                    "dynamic_obstacle": {"geometry_checks": human_geometry}
+                },
+                depth_artifact_root=root,
+                trajectory_review_metadata=review_metadata,
+                planner_config_text="    grid_map.occupied_decay_updates: 8\n",
+                controller_config_text=(
+                    "    max_tracking_error: 0.10\n"
+                    "    replan_catchup_max_error: 0.40\n"
+                    "    replan_catchup_min_speed: 0.20\n"
+                    "    finish_dist: 0.10\n"
+                ),
+            )
+            self.assertEqual(
+                human_report["status"],
+                "PASS",
+                msg={
+                    name: check
+                    for name, check in human_report["checks"].items()
+                    if not check["passed"]
+                },
+            )
+            self.assertTrue(human_report["checks"]["v8_human_gait"]["passed"])
+            self.assertTrue(
+                human_report["checks"]["v8_sensor_visible_gait_and_overlay"][
+                    "passed"
+                ]
+            )
+
+            human_geometry["checks"]["lidar_transform_tracking"] = False
+            missing_tracking_report = evaluate_acceptance(
+                thresholds,
+                metrics,
+                sensor_metrics,
+                {
+                    "status": "PASS",
+                    "runtime_error": None,
+                    "command_transport": {"protocol_errors": 0},
+                    "telemetry_transport": {"protocol_errors": 0, "reconnects": 1},
+                    "video": {
+                        "frame_count": 310,
+                        "encoded_duration_seconds": 12.4,
+                        "sha256": video_sha,
+                    },
+                },
+                identity,
+                self._ros_summary(),
+                video,
+                bag,
+                "final_plan_success=1\nfinal_plan_success=1\n"
+                "[FSM]: from EXEC_TRAJ to WAIT_TARGET\n",
+                "frozen",
+                depth_metrics=depth_metrics,
+                runtime_composition={
+                    "dynamic_obstacle": {"geometry_checks": human_geometry}
+                },
+                depth_artifact_root=root,
+                trajectory_review_metadata=review_metadata,
+                planner_config_text="    grid_map.occupied_decay_updates: 8\n",
+                controller_config_text=(
+                    "    max_tracking_error: 0.10\n"
+                    "    replan_catchup_max_error: 0.40\n"
+                    "    replan_catchup_min_speed: 0.20\n"
+                    "    finish_dist: 0.10\n"
+                ),
+            )
+            self.assertFalse(
+                missing_tracking_report["checks"]["v8_human_stage_geometry"][
+                    "passed"
+                ]
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -459,6 +459,89 @@ human-only decision.
 **Gate 27:** AC35--AC38 pass before V7 is a review candidate; AC39 remains a
 human-only decision.
 
+## Phase 28 — Reopen for V8 Human Representation
+
+- [x] Preserve V7 candidate 03, thresholds, videos, and pending human decision;
+  record Dr Sun's approval for an independent V8 rather than editing V7.
+- [x] Freeze V8 invariants: V7 schedule and planner/controller changes, forest,
+  start/goal, V12 policy, Lite3 URDF, sensors, and 1.0 m/s boundary are unchanged.
+- [x] Select a locally generated yellow segmented humanoid plus a hidden stable
+  collision capsule, avoiding an external character-asset dependency.
+- [x] Return the task to `in_progress` and create new dated local/remote V8
+  evidence roots while preserving unrelated dirty paths.
+
+## Phase 29 — Implement and Test Human Geometry
+
+- [x] Add the deterministic procedural USDA generator, seven-part identity,
+  hidden collision capsule, and pure crossing-only gait function with tests.
+- [x] Register every visible part as a transform-tracked LiDAR and depth target;
+  animate part-local transforms and record part inventory, gait, and stage audit.
+- [x] Add the opt-in V8 course/wrapper, yellow overlay identity, generated-asset
+  hashes, and acceptance checks while retaining V1--V7 defaults and artifacts.
+- [x] Run the local bridge suite plus script, structured-data, and compatibility
+  checks before synchronizing only task-owned V8 changes.
+
+## Phase 30 — Remote V8 Qualification and Candidate
+
+- [x] Create the V8 execution copy on the 5070 Ti and run a stage-only preflight
+  proving the humanoid USD imports, the capsule collides, and all part targets
+  initialize for both sensors.
+- [x] Run a motion/gait/dual-sensor preflight and inspect raw frames before a
+  full closed loop; preserve and diagnose every failed attempt.
+- [x] Obtain two identical-input full passes, compare source/config/human-asset
+  hashes and geometry/gait evidence, then freeze V8 thresholds.
+- [x] Execute one uninterrupted frozen review candidate with SCAN, ROS bag,
+  dual sensors, V12/PhysX, contacts, raw video, and yellow-human overlay.
+
+## Phase 31 — Procedural V8 Candidate (Superseded by Human Review)
+
+- [x] Copy all V8 artifacts locally and verify hashes, USDA/stage audit,
+  structured records, ROS bag, video decode, overlay provenance, and local
+  acceptance parity.
+- [x] Run full-scope `trellis-check`, update durable specs if warranted, review
+  only task-owned changes, and propose the required commit batch to Dr Sun.
+- [x] Set the task to `review` and deliver directly openable raw/overlay MP4s
+  plus the V8 human checklist. Do not archive or call V8 accepted before AC44.
+
+**Gate 31 disposition:** Dr Sun rejected the hand-authored character. Preserve
+the artifacts as immutable negative evidence, remove current-review status, and
+do not commit this candidate as the requested solution.
+
+## Phase 32 — Reopen for Official Isaac Human
+
+- [x] Record the procedural candidate as human change-requested and return the
+  task to `in_progress`; reset AC40--AC44 for V8 R2.
+- [x] Verify on the exact 5070 Ti runtime that Isaac Sim 5.1 provides
+  `male_adult_police_04`, the official Biped graph, and the installed
+  People/Replicator Agent extensions.
+- [ ] Record official asset provenance, runtime versions, license boundary, and
+  readable server metadata/hashes without vendoring NVIDIA content.
+- [x] Preserve the static official-character preflight and the failed
+  AnimationGraph GPU/CPU attempts as negative evidence; remove the crashing
+  graph wiring from the current safe code path.
+
+## Phase 33 — Official-Human Visual Preflight
+
+- [x] Reference the official character and official animation in the existing
+  forest while keeping the collision capsule hidden and synchronized.
+- [x] Prove the official character itself loads and renders beside Lite3 in the
+  forest; classify the T-pose output as incomplete rather than review-ready.
+- [x] Bake or cache an official NVIDIA walk clip outside Direct-GPU PhysX, then
+  replay the baked official animation without the People graph in the physics
+  process.
+- [x] Render a short raw visual preflight with the current Lite3, terrain, and
+  moving-human path; provide the directly openable MP4/image to Dr Sun.
+- [ ] Stop for explicit human appearance review before full qualification.
+
+## Phase 34 — V8 R2 Closed-Loop Qualification
+
+- [ ] After visual approval, integrate audited sensor occupancy, run the
+  no-contact preflight, two identical-input full dry runs, and one frozen run.
+- [ ] Copy evidence locally, verify hash parity and local acceptance, run the
+  full task check, then request Dr Sun's final video review for AC44.
+
+**Gate 34:** AC40--AC43 are automated/runtime gates; AC44 remains human-only.
+
 ## Planned Validation Matrix
 
 | Layer | Required evidence | Failure response |
