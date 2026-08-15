@@ -1,0 +1,206 @@
+{
+  "claim_boundary": "Derived human-review overlay from the hashed raw SCAN Bspline, Isaac PhysX metrics, run identity, and untouched raw simulator MP4.",
+  "colours_bgr": {
+    "dynamic_obstacle_actual": [
+      40,
+      40,
+      235
+    ],
+    "isaac_actual": [
+      255,
+      220,
+      40
+    ],
+    "primary_obstacle": [
+      40,
+      70,
+      245
+    ],
+    "scan_planned": [
+      80,
+      220,
+      80
+    ]
+  },
+  "dynamic_obstacle": {
+    "identity": {
+      "claim_boundary": "official Isaac character, Biped-retarget cache replay, and co-moving physical/sensor proxy integrated for qualification; human appearance and full closed-loop avoidance remain unvalidated until runtime and human review",
+      "collision_enabled": true,
+      "collision_shape": "hidden_capsule",
+      "colour_rgb": null,
+      "crossing_duration_seconds": 3.4999999999999996,
+      "depth_transform_tracking": true,
+      "end_xy_m": [
+        -2.7,
+        4.8
+      ],
+      "gait": {
+        "biped_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/Biped_Setup.usd",
+        "claim": "official Biped graph output replayed on the exact 101-joint official character; runtime gait still requires rendered visual verification",
+        "direct_gpu_animation_graph_used": false,
+        "local_procedural_gait": false,
+        "retarget_cache": {
+          "content_sha256": "76c19b57ebd03e01820e6b9db79bde8f2f3e436302744ef457278af8d17ef5b3",
+          "file_sha256": "ac58a683fe9dd85ec3ad0266c7653b289dc1dd9b256d2abac0cc96ac7e45cfcb",
+          "fps": 30,
+          "idle_frame_count": 60,
+          "joint_count": 101,
+          "path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/results/v8_official_scan_no_contact_preflight03/official_human_retarget_cache.npz",
+          "schema_version": 1,
+          "source": "NVIDIA Biped AnimationGraph ControlRig retarget output",
+          "target_path": "/HumanVisual/OfficialAnimations/Active",
+          "walk_frame_count": 90
+        },
+        "source": "NVIDIA Isaac Sim 5.1 Biped AnimationGraph output after ControlRig retargeting to male_adult_police_04",
+        "status": "official_biped_retarget_cache_replay"
+      },
+      "ground_truth_use": "evidence classification and synchronized clearance only; forbidden from point injection, filtering, command generation, and robot steering",
+      "height_m": 1.7,
+      "hold_fraction": 0.35714285714285715,
+      "hold_seconds": 2.5,
+      "human_asset": {
+        "official_visual": {
+          "biped_retarget_cache": {
+            "content_sha256": "76c19b57ebd03e01820e6b9db79bde8f2f3e436302744ef457278af8d17ef5b3",
+            "file_sha256": "ac58a683fe9dd85ec3ad0266c7653b289dc1dd9b256d2abac0cc96ac7e45cfcb",
+            "fps": 30,
+            "idle_frame_count": 60,
+            "joint_count": 101,
+            "path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/results/v8_official_scan_no_contact_preflight03/official_human_retarget_cache.npz",
+            "schema_version": 1,
+            "source": "NVIDIA Biped AnimationGraph ControlRig retarget output",
+            "target_path": "/HumanVisual/OfficialAnimations/Active",
+            "walk_frame_count": 90
+          },
+          "bytes": 19055,
+          "official_character_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/male_adult_police_04/male_adult_police_04.usd",
+          "path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/results/v8_official_scan_no_contact_preflight03/isaac/official_human_visual.usda",
+          "redistribution": "official NVIDIA content is referenced, not vendored",
+          "sha256": "2925cf7fe1f47876e542f984f82b8edad9b3bec38b2c1bd5e363d3bf919bae9d",
+          "skeleton_path": "/HumanVisual/OfficialCharacter/male_adult_police_04/ManRoot/male_adult_police_04/male_adult_police_04/male_adult_police_04",
+          "source": "visual-only wrapper referencing NVIDIA Isaac Sim 5.1 content",
+          "source_geometry": {
+            "foot_z_m": -1.9355964298028994e-07,
+            "meters_per_unit": 1.0,
+            "source_forward_yaw_radians": -1.5707963267948966,
+            "up_axis": "Z",
+            "visible_top_z_m": 1.7357525825500488
+          }
+        },
+        "physical_and_sensor_proxy": {
+          "bytes": 541,
+          "collision_prim_path": "/Human/CollisionCapsule",
+          "collision_shape": "hidden capsule",
+          "official_biped_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/Biped_Setup.usd",
+          "official_character_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/male_adult_police_04/male_adult_police_04.usd",
+          "path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/results/v8_official_scan_no_contact_preflight03/isaac/official_human_proxy.usda",
+          "radius_m": 0.3,
+          "redistribution": "official NVIDIA content is referenced, not vendored",
+          "sha256": "2654a66e04d84ddf38534f76bd7af9ec3652a9ec1d86a52c7b01bfbb5eb2ab02",
+          "source": "local hidden collision and sensor proxy; no visible character",
+          "total_envelope_height_m": 1.7
+        },
+        "registration": {
+          "physical_runtime_prim": "/World/envs/env_0/DynamicObstacle",
+          "physical_vertical_datum": "capsule centre",
+          "time_xy_heading_owner": "dynamic obstacle schedule",
+          "visual_runtime_prim": "/World/DynamicHumanVisual",
+          "visual_vertical_datum": "official shoe sole"
+        }
+      },
+      "lidar_transform_tracking": true,
+      "name": "v8_official_human_crossing_actor",
+      "planner_input": "rendered sensor hits only",
+      "prim_expr": "{ENV_REGEX_NS}/DynamicObstacle",
+      "radius_m": 0.3,
+      "rigid_body_mode": "kinematic obstacle with scheduled pose writes",
+      "runtime_prim_path": "/World/envs/env_0/DynamicObstacle",
+      "schedule_trigger": "first nonzero accepted body command",
+      "sensor_target_exprs": [
+        "{ENV_REGEX_NS}/DynamicObstacle/CollisionCapsule"
+      ],
+      "shape": "official_skinned_human_plus_capsule",
+      "speed_mps": 0.8,
+      "start_xy_m": [
+        -2.7,
+        2.0
+      ],
+      "terrain_clearance_m": 0.02,
+      "visible_part_names": [
+        "/World/DynamicHumanVisual"
+      ],
+      "wait_seconds": 0.0
+    },
+    "label": "Official human actual",
+    "path_source": "dynamic_obstacle_actual_pos_w PhysX readback",
+    "record_count": 1406,
+    "rendered": true
+  },
+  "input_sha256": {
+    "metrics": "9d65950681bc8dcd0cc5e1326ddce20f1729645ed370e52edb2980c980355a33",
+    "raw_video": "a0a8a72becae97c486840a60777d9518caca1522272b48f57665810ccedca63f",
+    "ros_events": "0b2f71f12885e8b10353a242b45f0d179e544cccca5bfb09d50788efe402ad01",
+    "run_identity": "760587bf7d2b24d205cde14abda8f2dc276fe8914ec193bdd3f6e3b6a7646e7b"
+  },
+  "mapping": {
+    "frame_stride": 3,
+    "frame_to_sim_time": "metrics rows where step modulo video frame_stride equals zero",
+    "maximum_plan_pose_alignment_error_ms": 46.652559,
+    "plan_to_sim_time": "nearest simulator-stamped body_pose receipt"
+  },
+  "output": {
+    "bytes": 2882029,
+    "encoder": "ffmpeg libx264 yuv420p",
+    "fps": 17.0,
+    "frame_count": 469,
+    "path": "closed_loop_review_overlay.mp4",
+    "resolution": [
+      1280,
+      720
+    ],
+    "sha256": "269050178b89e90ffcdeac45d0398666dfe6094d4c54188b5952b53bf67e1636"
+  },
+  "plans": [
+    {
+      "effective_sim_time_seconds": 0.129999997,
+      "receipt_alignment_error_ms": 25.363381,
+      "trajectory_id": 1
+    },
+    {
+      "effective_sim_time_seconds": 0.229999994,
+      "receipt_alignment_error_ms": 11.016435,
+      "trajectory_id": 2
+    },
+    {
+      "effective_sim_time_seconds": 1.32999997,
+      "receipt_alignment_error_ms": 22.951319,
+      "trajectory_id": 3
+    },
+    {
+      "effective_sim_time_seconds": 1.629999963,
+      "receipt_alignment_error_ms": 46.652559,
+      "trajectory_id": 4
+    },
+    {
+      "effective_sim_time_seconds": 1.729999961,
+      "receipt_alignment_error_ms": 6.089647,
+      "trajectory_id": 5
+    }
+  ],
+  "plot_bounds_world_xy_m": [
+    -5.933230972290039,
+    1.4124890327453614,
+    1.0875109672546386,
+    5.712489223480224
+  ],
+  "sample_count_per_trajectory": 160,
+  "schema_version": 2,
+  "trajectory_count": 5,
+  "trajectory_ids": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ]
+}

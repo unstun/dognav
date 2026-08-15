@@ -1045,6 +1045,245 @@ class AcceptanceTest(unittest.TestCase):
                 ]
             )
 
+            geometry_checks["lidar_transform_tracking"] = True
+            geometry_checks["physical_geometry_visibility"] = True
+            geometry_checks.update(
+                {
+                    "official_visual_root_exists": True,
+                    "official_visual_geometry_visible": True,
+                    "official_visual_has_no_collision": True,
+                    "official_visual_has_no_rigid_body": True,
+                    "official_sensor_proxy_is_capsule": True,
+                }
+            )
+            visual_asset = root / "official_human_visual.usda"
+            proxy_asset = root / "official_human_proxy.usda"
+            visual_asset.write_text("#usda 1.0\n# official visual\n", encoding="utf-8")
+            proxy_asset.write_text("#usda 1.0\n# hidden proxy\n", encoding="utf-8")
+            visual_sha = hashlib.sha256(visual_asset.read_bytes()).hexdigest()
+            proxy_sha = hashlib.sha256(proxy_asset.read_bytes()).hexdigest()
+            character_url = (
+                "https://omniverse-content-production.s3-us-west-2.amazonaws.com/"
+                "Assets/Isaac/5.1/Isaac/People/Characters/"
+                "male_adult_police_04/male_adult_police_04.usd"
+            )
+            biped_url = (
+                "https://omniverse-content-production.s3-us-west-2.amazonaws.com/"
+                "Assets/Isaac/5.1/Isaac/People/Characters/Biped_Setup.usd"
+            )
+            cache_sha = "7" * 64
+            del thresholds["v8_human_obstacle"]
+            thresholds["v7_dynamic_obstacle"]["expected_course"] = (
+                "forest_gen_nav_v8_official_human"
+            )
+            thresholds["v7_dynamic_obstacle"]["expected_shape"] = (
+                "official_skinned_human_plus_capsule"
+            )
+            thresholds["v8_official_human_obstacle"] = {
+                "expected_character_url": character_url,
+                "expected_biped_url": biped_url,
+                "expected_visual_asset_filename": "official_human_visual.usda",
+                "expected_proxy_asset_filename": "official_human_proxy.usda",
+                "expected_visual_asset_sha256": visual_sha,
+                "expected_proxy_asset_sha256": proxy_sha,
+                "expected_cache_content_sha256": cache_sha,
+                "expected_joint_count": 101,
+                "expected_animation_fps": 30,
+                "expected_idle_frame_count": 60,
+                "expected_walk_frame_count": 90,
+                "expected_visual_runtime_prim": "/World/DynamicHumanVisual",
+                "expected_overlay_colour_bgr": [40, 40, 235],
+                "minimum_crossing_animation_records": 5,
+                "minimum_distinct_walk_frames": 5,
+                "minimum_idle_animation_records": 5,
+                "minimum_lidar_walk_detections": 1,
+                "minimum_depth_walk_detections": 1,
+                "maximum_visual_root_pose_error_m": 1.0e-6,
+                "maximum_foot_datum_error_m": 1.0e-6,
+            }
+            identity["course"]["name"] = "forest_gen_nav_v8_official_human"
+            identity["dynamic_obstacle"].update(
+                {
+                    "shape": "official_skinned_human_plus_capsule",
+                    "collision_shape": "hidden_capsule",
+                    "visible_part_names": ["/World/DynamicHumanVisual"],
+                    "sensor_target_exprs": [
+                        "{ENV_REGEX_NS}/DynamicObstacle/CollisionCapsule"
+                    ],
+                    "human_asset": {
+                        "official_visual": {
+                            "official_character_url": character_url,
+                            "sha256": visual_sha,
+                        },
+                        "physical_and_sensor_proxy": {"sha256": proxy_sha},
+                    },
+                    "gait": {
+                        "biped_url": biped_url,
+                        "status": "official_biped_retarget_cache_replay",
+                        "local_procedural_gait": False,
+                        "direct_gpu_animation_graph_used": False,
+                        "retarget_cache": {
+                            "content_sha256": cache_sha,
+                            "joint_count": 101,
+                            "fps": 30,
+                            "idle_frame_count": 60,
+                            "walk_frame_count": 90,
+                        },
+                    },
+                }
+            )
+
+            def official_gait(clip, frame_index):
+                return {
+                    "source": (
+                        "NVIDIA Isaac Sim 5.1 Biped AnimationGraph retarget cache"
+                    ),
+                    "clip": clip,
+                    "frame_index": frame_index,
+                    "frame_count": 90 if clip == "walk" else 60,
+                    "fps": 30,
+                    "target_joint_count": 101,
+                    "cache_content_sha256": cache_sha,
+                    "local_procedural_gait": False,
+                    "direct_gpu_animation_graph_used": False,
+                }
+
+            walk_index = 0
+            for row in metrics:
+                if row["dynamic_obstacle_phase"] == "crossing":
+                    row["dynamic_human_gait_angles"] = official_gait(
+                        "walk", walk_index % 90
+                    )
+                    walk_index += 1
+                else:
+                    row["dynamic_human_gait_angles"] = official_gait("idle", 0)
+                row["official_human_visual_pose"] = {
+                    "root_pose_error_m": 0.0,
+                    "foot_to_capsule_bottom_error_m": 0.0,
+                }
+            for rows in (sensor_metrics, depth_metrics):
+                for index, row in enumerate(rows):
+                    row["dynamic_human_gait_angles"] = official_gait(
+                        "walk", index % 90
+                    )
+            official_geometry = {
+                "passed": True,
+                "checks": geometry_checks,
+                "collision_prim_paths": [
+                    "/World/envs/env_0/DynamicObstacle/CollisionCapsule"
+                ],
+                "visible_collision_prim_paths": [],
+                "visible_geometry_prim_paths": [],
+                "official_visual_geometry_prim_paths": [
+                    "/World/DynamicHumanVisual/OfficialCharacter/Body"
+                ],
+                "official_visual_collision_prim_paths": [],
+                "official_visual_runtime_prim": "/World/DynamicHumanVisual",
+            }
+            review_metadata["dynamic_obstacle"]["label"] = (
+                "Official human actual"
+            )
+            review_metadata["colours_bgr"] = {
+                "dynamic_obstacle_actual": [40, 40, 235]
+            }
+            official_report = evaluate_acceptance(
+                thresholds,
+                metrics,
+                sensor_metrics,
+                {
+                    "status": "PASS",
+                    "runtime_error": None,
+                    "command_transport": {"protocol_errors": 0},
+                    "telemetry_transport": {
+                        "protocol_errors": 0,
+                        "reconnects": 1,
+                    },
+                    "video": {
+                        "frame_count": 310,
+                        "encoded_duration_seconds": 12.4,
+                        "sha256": video_sha,
+                    },
+                },
+                identity,
+                self._ros_summary(),
+                video,
+                bag,
+                "final_plan_success=1\nfinal_plan_success=1\n"
+                "[FSM]: from EXEC_TRAJ to WAIT_TARGET\n",
+                "frozen",
+                depth_metrics=depth_metrics,
+                runtime_composition={
+                    "dynamic_obstacle": {"geometry_checks": official_geometry}
+                },
+                depth_artifact_root=root,
+                trajectory_review_metadata=review_metadata,
+                planner_config_text="    grid_map.occupied_decay_updates: 8\n",
+                controller_config_text=(
+                    "    max_tracking_error: 0.10\n"
+                    "    replan_catchup_max_error: 0.40\n"
+                    "    replan_catchup_min_speed: 0.20\n"
+                    "    finish_dist: 0.10\n"
+                ),
+            )
+            self.assertEqual(
+                official_report["status"],
+                "PASS",
+                msg={
+                    name: check
+                    for name, check in official_report["checks"].items()
+                    if not check["passed"]
+                },
+            )
+            self.assertTrue(
+                official_report["checks"]["v8_official_animation"]["passed"]
+            )
+
+            identity["dynamic_obstacle"]["gait"]["retarget_cache"][
+                "content_sha256"
+            ] = "8" * 64
+            cache_mismatch = evaluate_acceptance(
+                thresholds,
+                metrics,
+                sensor_metrics,
+                {
+                    "status": "PASS",
+                    "runtime_error": None,
+                    "command_transport": {"protocol_errors": 0},
+                    "telemetry_transport": {
+                        "protocol_errors": 0,
+                        "reconnects": 1,
+                    },
+                    "video": {
+                        "frame_count": 310,
+                        "encoded_duration_seconds": 12.4,
+                        "sha256": video_sha,
+                    },
+                },
+                identity,
+                self._ros_summary(),
+                video,
+                bag,
+                "final_plan_success=1\nfinal_plan_success=1\n"
+                "[FSM]: from EXEC_TRAJ to WAIT_TARGET\n",
+                "frozen",
+                depth_metrics=depth_metrics,
+                runtime_composition={
+                    "dynamic_obstacle": {"geometry_checks": official_geometry}
+                },
+                depth_artifact_root=root,
+                trajectory_review_metadata=review_metadata,
+                planner_config_text="    grid_map.occupied_decay_updates: 8\n",
+                controller_config_text=(
+                    "    max_tracking_error: 0.10\n"
+                    "    replan_catchup_max_error: 0.40\n"
+                    "    replan_catchup_min_speed: 0.20\n"
+                    "    finish_dist: 0.10\n"
+                ),
+            )
+            self.assertFalse(
+                cache_mismatch["checks"]["v8_official_identity"]["passed"]
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

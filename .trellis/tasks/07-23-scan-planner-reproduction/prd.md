@@ -536,23 +536,23 @@ truth, semantic identity, and commanded motion remain evidence-only.
   and explicitly accepts or rejects obstacle motion and visibility, reactive
   avoidance, planned-versus-actual motion, speed, terrain appearance, and stop
   or goal behavior.
-- [ ] **AC40 — V8 R2 official asset gate:** runtime inspection proves the
+- [x] **AC40 — V8 R2 official asset gate:** runtime inspection proves the
   visible actor is NVIDIA's versioned Isaac Sim 5.1
   `male_adult_police_04`, records its source/version/license evidence, shows no
   procedural-human fallback, and proves the separate hidden collidable capsule
   shares schedule time, XY, and heading without appearing in RGB output.
-- [ ] **AC41 — V8 R2 official animation and sensor gate:** an official Isaac
+- [x] **AC41 — V8 R2 official animation and sensor gate:** an official Isaac
   Biped-retargeted walk is visibly active during crossing and its idle output is
   active outside it; the cache proves exact 101-joint output and non-static
   walk/idle pose arrays. Both simulated sensors observe the co-moving capsule at
   multiple actor positions. Truth remains evidence-only and no points are
   injected into SCAN.
-- [ ] **AC42 — V8 R2 reactive physical result:** under the unchanged V7 schedule,
+- [x] **AC42 — V8 R2 reactive physical result:** under the unchanged V7 schedule,
   planner/controller adaptations, policy, robot, forest, and speed boundary,
   SCAN produces a causally later response and the articulated Lite3 reaches
   the goal or declared safe stop with positive capsule clearance, zero non-foot
   collision, finite state, advancing sensors, and no scripted robot motion.
-- [ ] **AC43 — V8 R2 evidence gate:** one official-human visual preflight accepted
+- [x] **AC43 — V8 R2 evidence gate:** one official-human visual preflight accepted
   by Dr Sun precedes two identical-input passing dry runs and one
   frozen review candidate have complete local/remote hash parity, a decodable
   raw MP4 and official-human overlay, asset manifest and stage audit, animation

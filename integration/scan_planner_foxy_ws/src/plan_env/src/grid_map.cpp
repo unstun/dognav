@@ -1211,6 +1211,11 @@ bool GridMap::odomValid() { return md_.has_ray_pose_; }
 
 bool GridMap::hasDepthObservation() { return md_.has_first_depth_; }
 
+bool GridMap::hasOccupancyObservation()
+{
+  return md_.occupancy_update_sequence_ > 0;
+}
+
 Eigen::Vector3d GridMap::getOrigin() { return mp_.map_origin_; }
 
 // int GridMap::getVoxelNum() {

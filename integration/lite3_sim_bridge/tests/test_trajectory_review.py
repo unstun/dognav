@@ -6,6 +6,7 @@ import unittest
 from lite3_sim_bridge.trajectory_review import (
     associate_bspline_sim_times,
     dynamic_obstacle_color_bgr,
+    dynamic_obstacle_label,
     frame_metric_rows,
     render_trajectory_review,
     sample_uniform_bspline,
@@ -13,7 +14,12 @@ from lite3_sim_bridge.trajectory_review import (
 
 
 class TrajectoryReviewTest(unittest.TestCase):
-    def test_human_dynamic_obstacle_uses_yellow_overlay(self):
+    def test_dynamic_obstacle_overlay_distinguishes_official_human(self):
+        official = {
+            "dynamic_obstacle": {"shape": "official_skinned_human_plus_capsule"}
+        }
+        self.assertEqual(dynamic_obstacle_color_bgr(official), (40, 40, 235))
+        self.assertEqual(dynamic_obstacle_label(official), "Official human actual")
         self.assertEqual(
             dynamic_obstacle_color_bgr(
                 {"dynamic_obstacle": {"shape": "procedural_humanoid"}}
@@ -21,10 +27,20 @@ class TrajectoryReviewTest(unittest.TestCase):
             (0, 215, 255),
         )
         self.assertEqual(
+            dynamic_obstacle_label(
+                {"dynamic_obstacle": {"shape": "procedural_humanoid"}}
+            ),
+            "Procedural human actual",
+        )
+        self.assertEqual(
             dynamic_obstacle_color_bgr(
                 {"dynamic_obstacle": {"shape": "cylinder"}}
             ),
             (0, 120, 255),
+        )
+        self.assertEqual(
+            dynamic_obstacle_label({"dynamic_obstacle": {"shape": "cylinder"}}),
+            "Dynamic obstacle actual",
         )
 
     def test_samples_clamped_cubic_bspline_not_control_polygon(self):

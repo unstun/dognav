@@ -514,7 +514,7 @@ do not commit this candidate as the requested solution.
 - [x] Verify on the exact 5070 Ti runtime that Isaac Sim 5.1 provides
   `male_adult_police_04`, the official Biped graph, and the installed
   People/Replicator Agent extensions.
-- [ ] Record official asset provenance, runtime versions, license boundary, and
+- [x] Record official asset provenance, runtime versions, license boundary, and
   readable server metadata/hashes without vendoring NVIDIA content.
 - [x] Preserve the static official-character preflight and the failed
   AnimationGraph GPU/CPU attempts as negative evidence; remove the crashing
@@ -531,13 +531,14 @@ do not commit this candidate as the requested solution.
   process.
 - [x] Render a short raw visual preflight with the current Lite3, terrain, and
   moving-human path; provide the directly openable MP4/image to Dr Sun.
-- [ ] Stop for explicit human appearance review before full qualification.
+- [x] Stop for explicit human appearance review before full qualification;
+  Dr Sun approved the official animated visual preflight on 2026-08-15.
 
 ## Phase 34 — V8 R2 Closed-Loop Qualification
 
-- [ ] After visual approval, integrate audited sensor occupancy, run the
+- [x] After visual approval, integrate audited sensor occupancy, run the
   no-contact preflight, two identical-input full dry runs, and one frozen run.
-- [ ] Copy evidence locally, verify hash parity and local acceptance, run the
+- [x] Copy evidence locally, verify hash parity and local acceptance, run the
   full task check, then request Dr Sun's final video review for AC44.
 
 **Gate 34:** AC40--AC43 are automated/runtime gates; AC44 remains human-only.

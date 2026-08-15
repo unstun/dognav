@@ -195,6 +195,7 @@ public:
   void publishSlidingMapFrame();
 
   bool hasDepthObservation();
+  bool hasOccupancyObservation();
   bool odomValid();
   void getRegion(Eigen::Vector3d& ori, Eigen::Vector3d& size);
   inline double getResolution();

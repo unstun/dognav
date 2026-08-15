@@ -1,0 +1,207 @@
+{
+  "schema_version": 6,
+  "status": "frozen_after_passing_official_human_no_contact_preflight04",
+  "claim": "single-seed Foxy-SCAN to V12-policy Lite3-Pro-sensor-rig reactive official-human dynamic-obstacle forest simulation candidate",
+  "goal_world_m": [
+    0.5,
+    3,
+    0.85
+  ],
+  "obstacle": {
+    "primary_kind": "Pine",
+    "expected_center_world_xy_m": [
+      -1.8,
+      3
+    ],
+    "detour_x_window_m": [
+      -2.8,
+      -0.8
+    ]
+  },
+  "thresholds": {
+    "minimum_record_count": 1250,
+    "minimum_sim_duration_seconds": 25,
+    "goal_xy_tolerance_m": 0.25,
+    "goal_z_tolerance_m": 0.18,
+    "stop_window_seconds": 2,
+    "stop_command_max_abs": 0.05,
+    "stop_planar_speed_max_mps": 0.15,
+    "minimum_nonzero_command_records": 300,
+    "command_component_max_abs": [
+      1,
+      0.35,
+      1
+    ],
+    "command_bound_epsilon": 0.005,
+    "root_height_range_m": [
+      0.3,
+      1.3
+    ],
+    "maximum_step_displacement_m": 0.06,
+    "minimum_supported_contact_fraction": 0.95,
+    "maximum_nonfoot_contact_n": 75,
+    "minimum_detour_abs_y_m": 0,
+    "policy_rate_hz_range": [
+      45,
+      55
+    ],
+    "sensor_rate_hz_range": [
+      8,
+      12
+    ],
+    "ros_topic_rate_hz_range": [
+      7.5,
+      12
+    ],
+    "minimum_cloud_nonempty_fraction": 0.99,
+    "minimum_cloud_points": 10,
+    "minimum_obstacle_surface_hits": 20,
+    "maximum_unexpected_above_floor_hits": 0,
+    "minimum_sensor_pose_displacement_m": 4,
+    "maximum_sequence_gaps": 0,
+    "maximum_watchdog_events": 0,
+    "maximum_command_age_p95_ms": 100,
+    "minimum_unique_trajectories": 2,
+    "minimum_synchronized_sensor_fraction": 0.95,
+    "maximum_transport_protocol_errors": 0,
+    "maximum_coalesced_command_frames": 50,
+    "maximum_telemetry_reconnects": 1,
+    "minimum_video_frames": 425,
+    "minimum_video_duration_seconds": 25,
+    "minimum_video_bytes": 100000,
+    "minimum_rosbag_bytes": 10000,
+    "minimum_planner_successes": 2,
+    "maximum_planner_failures": 5,
+    "maximum_origin_occupancy_errors": 0
+  },
+  "v3_sensor_rig": {
+    "canonical_urdf_sha256": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80",
+    "isaac_urdf_sha256": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d",
+    "lidar_frame": "mid360_scan_frame",
+    "depth_frame": "d435i_depth_optical_frame",
+    "expected_body_count": 24,
+    "expected_joint_count": 23,
+    "expected_fixed_joint_count": 11,
+    "expected_movable_joint_count": 12,
+    "expected_collision_count": 29,
+    "runtime_mass_range_kg": [
+      13.2817,
+      13.2819
+    ],
+    "minimum_depth_frames": 250,
+    "depth_rate_hz_range": [
+      8,
+      12
+    ],
+    "minimum_depth_nonempty_fraction": 0.99,
+    "minimum_depth_obstacle_pixels": 20,
+    "minimum_depth_pose_displacement_m": 4,
+    "depth_dimensions": [
+      87,
+      58
+    ],
+    "minimum_self_occluded_lidar_hits": 1,
+    "minimum_depth_artifact_count": 3
+  },
+  "forest_navigation": {
+    "goal_world_m": [
+      0.5,
+      3,
+      0.85
+    ],
+    "obstacle_x_window_m": [
+      -2.8,
+      -0.8
+    ],
+    "minimum_filter_enabled_fraction": 1,
+    "minimum_filtered_ground_hits_per_frame": 50,
+    "minimum_filtered_obstacle_hits_per_frame": 10,
+    "maximum_sparse_retained_fraction": 0.75,
+    "minimum_forward_command_mps": 0.9,
+    "minimum_measured_speed_p75_mps": 0.55,
+    "minimum_primary_center_clearance_m": 0.55,
+    "minimum_line_deviation_m": 0.55,
+    "minimum_path_length_excess_m": 0.2,
+    "minimum_base_clearance_m": 0.15,
+    "minimum_terrain_height_range_m": 0.03
+  },
+  "v6_review": {
+    "expected_course": "forest_gen_nav_v8_official_human",
+    "expected_forward_limit_mps": 1,
+    "planner_acceleration_limit_mps2": 0.5,
+    "high_command_minimum_vx_mps": 0.8,
+    "high_command_maximum_abs_yaw_rps": 0.35,
+    "minimum_high_command_sample_count": 20,
+    "minimum_high_command_measured_speed_p75_mps": 0.7,
+    "minimum_rock_terrain_clearance_m": 0.01,
+    "maximum_proxy_bounds_error_m": 0.005,
+    "expected_proxy_render_visible": false,
+    "minimum_complete_bspline_records": 2,
+    "minimum_overlay_video_bytes": 100000,
+    "minimum_overlay_video_frames": 425,
+    "maximum_plan_pose_alignment_error_ms": 150
+  },
+  "v7_dynamic_obstacle": {
+    "expected_course": "forest_gen_nav_v8_official_human",
+    "expected_shape": "official_skinned_human_plus_capsule",
+    "expected_radius_m": 0.3,
+    "expected_height_m": 1.7,
+    "expected_speed_mps": 0.8,
+    "expected_wait_seconds": 0,
+    "expected_hold_fraction": 0.35714285714285715,
+    "expected_hold_seconds": 2.5,
+    "expected_schedule_trigger": "first nonzero accepted body command",
+    "expected_occupied_decay_updates": 8,
+    "expected_controller_strict_tracking_error_m": 0.14,
+    "expected_controller_catchup_max_error_m": 0.75,
+    "expected_controller_catchup_minimum_speed_mps": 0.2,
+    "expected_controller_finish_distance_m": 0.1,
+    "maximum_post_stop_drift_m": 0.35,
+    "minimum_actual_travel_m": 2.65,
+    "maximum_pose_error_m": 0.03,
+    "minimum_terrain_clearance_m": 0.01,
+    "minimum_lidar_hits_per_detection": 2,
+    "minimum_depth_pixels_per_detection": 2,
+    "minimum_lidar_detection_frames": 5,
+    "minimum_depth_detection_frames": 3,
+    "minimum_observed_position_span_m": 0.5,
+    "maximum_nominal_route_distance_m": 0.1,
+    "minimum_post_detection_bspline_records": 1,
+    "maximum_replan_response_seconds": 3,
+    "minimum_synchronized_surface_clearance_m": 0.05,
+    "minimum_overlay_dynamic_records": 425
+  },
+  "v8_official_human_obstacle": {
+    "expected_character_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/male_adult_police_04/male_adult_police_04.usd",
+    "expected_biped_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/Biped_Setup.usd",
+    "expected_visual_asset_filename": "official_human_visual.usda",
+    "expected_proxy_asset_filename": "official_human_proxy.usda",
+    "expected_visual_asset_sha256": "2925cf7fe1f47876e542f984f82b8edad9b3bec38b2c1bd5e363d3bf919bae9d",
+    "expected_proxy_asset_sha256": "2654a66e04d84ddf38534f76bd7af9ec3652a9ec1d86a52c7b01bfbb5eb2ab02",
+    "expected_cache_content_sha256": "76c19b57ebd03e01820e6b9db79bde8f2f3e436302744ef457278af8d17ef5b3",
+    "expected_joint_count": 101,
+    "expected_animation_fps": 30,
+    "expected_idle_frame_count": 60,
+    "expected_walk_frame_count": 90,
+    "expected_visual_runtime_prim": "/World/DynamicHumanVisual",
+    "expected_overlay_colour_bgr": [
+      40,
+      40,
+      235
+    ],
+    "minimum_crossing_animation_records": 50,
+    "minimum_distinct_walk_frames": 15,
+    "minimum_idle_animation_records": 5,
+    "minimum_lidar_walk_detections": 5,
+    "minimum_depth_walk_detections": 3,
+    "maximum_visual_root_pose_error_m": 0.000001,
+    "maximum_foot_datum_error_m": 0.000001
+  },
+  "claim_boundary": [
+    "This frozen file is the sole acceptance configuration for two same-input dry runs and the final review candidate.",
+    "The visible person is NVIDIA Isaac Sim 5.1 male_adult_police_04 with official Biped retarget output replayed from a hashed 101-joint cache.",
+    "A separate hidden capsule owns collision and both ray-sensor targets; the visible official character owns neither collision nor rigid-body physics.",
+    "SCAN reacts to rendered geometry only; simulator-truth pose is forbidden from point injection, command generation, and robot steering.",
+    "Automated PASS cannot replace Dr Sun's complete raw and overlay video review."
+  ]
+}

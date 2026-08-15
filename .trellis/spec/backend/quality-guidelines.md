@@ -872,3 +872,87 @@ expected = expand_isaac_env_regex_ns(
 )
 assert expected in runtime_targets
 ```
+
+## Scenario: Start Preset Navigation Only After Occupancy Is Ready
+
+### 1. Scope / Trigger
+
+Use this contract whenever SCAN preset-waypoint mode starts automatically from
+simulated odometry and point-cloud streams. The first odometry callback may run
+before the map has processed its first cloud; renderer or sensor workload can
+change that ordering without changing any frozen experiment input.
+
+### 2. Signatures
+
+```cpp
+bool GridMap::hasOccupancyObservation();
+```
+
+```cpp
+if (navi_mode_ == NAVI_MODE::PRESET_TARGET && !preset_started_ &&
+    planner_manager_->grid_map_->hasOccupancyObservation()) {
+  preset_started_ = true;
+  planGlobalTrajbyGivenWps();
+}
+```
+
+### 3. Contracts
+
+- `hasOccupancyObservation()` becomes true only after at least one processed
+  occupancy update, not merely after cloud receipt, sensor pose, or odometry.
+- Preset mode may record odometry and publish its robot envelope while waiting,
+  but it must not create or publish a trajectory from an empty map.
+- The readiness gate must not inject points, delay the dynamic actor schedule,
+  alter planner/controller limits, or script robot motion.
+- Log both the waiting state and the transition that starts preset planning so
+  the launch order is auditable from the run evidence.
+- After this race is fixed, preserve the collision-producing run and obtain a
+  no-contact preflight plus two identical-input full passes before promotion.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required behavior |
+|---|---|
+| Odometry arrives before any processed occupancy update | Keep preset mode unstarted and command zero |
+| First occupancy update completes | Start the preset target exactly once |
+| A rendered-load change alters callback timing | Inputs and behavior remain valid; no empty-map plan |
+| Readiness never arrives | Remain fail-closed and fail the bounded run |
+| Frozen collision run already exists | Preserve it and document the causal readiness fix |
+
+### 5. Good / Base / Bad Cases
+
+- **Good:** odometry is live, one occupancy update completes, the preset plan
+  starts once, and later dynamic occupancy causes safety replanning.
+- **Base:** manual goal mode may remain human-triggered after map inspection;
+  it does not prove automatic preset readiness.
+- **Bad:** start from the first odometry callback and rely on thread timing or
+  renderer speed to make a cloud win the race.
+
+### 6. Tests Required
+
+- Build and run the `plan_env` and `scan_planner` test suites after changing
+  the readiness API or preset start condition.
+- Runtime logs must contain the wait and start messages in order, one initial
+  plan only after readiness, and a causally later safety replan when the moving
+  obstacle invalidates that plan.
+- Require positive physical clearance, zero non-foot collision, goal or safe
+  stop, and two passing identical-effective-input full runs.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```cpp
+have_odom_ = true;
+if (!preset_started_) planGlobalTrajbyGivenWps();
+```
+
+#### Correct
+
+```cpp
+have_odom_ = true;
+if (!preset_started_ && grid_map->hasOccupancyObservation()) {
+  preset_started_ = true;
+  planGlobalTrajbyGivenWps();
+}
+```

@@ -414,7 +414,16 @@ namespace scan_planner
     publishSelfInflationMarker();
     if (navi_mode_ == NAVI_MODE::PRESET_TARGET && !preset_started_)
     {
+      if (!planner_manager_->grid_map_->hasOccupancyObservation())
+      {
+        RCLCPP_INFO_THROTTLE(
+            node_->get_logger(), *node_->get_clock(), 1000,
+            "Preset waypoint mode is waiting for the first processed occupancy update");
+        return;
+      }
       preset_started_ = true;
+      RCLCPP_INFO(node_->get_logger(),
+                  "Preset waypoint mode starts after the first processed occupancy update");
       planGlobalTrajbyGivenWps();
     }
   }

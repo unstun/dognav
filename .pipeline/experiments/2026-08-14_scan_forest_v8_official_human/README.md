@@ -1,19 +1,31 @@
 # V8 R2 Official Isaac Human
 
-This directory preserves the official-human visual preflight and later V8 R2
-qualification evidence. NVIDIA character, texture, skeleton, and animation
-content is referenced from the versioned Isaac Sim 5.1 asset root and is not
-vendored in this repository.
+This directory contains the V8 R2 official-human visual preflight, failed and
+passing no-contact preflights, two identical-input full SCAN runs, and one
+frozen review candidate.
 
-`visual_preflight04` and `visual_preflight05` prove that the official character
-can be referenced, rendered, moved with the hidden proxy, and recorded beside
-the Lite3/forest runtime. The character remains in its T-pose, so these are
-negative/incomplete evidence and cannot satisfy AC40--AC44.
+The visible actor references NVIDIA Isaac Sim 5.1
+`male_adult_police_04`; NVIDIA character, texture, skeleton, and source
+animation content is not copied into this repository. The generated local
+USDA files only reference that versioned content. A separately generated
+101-joint retarget cache is retained as experiment evidence. Use and
+redistribution remain subject to the NVIDIA/Omniverse terms accepted by the
+execution environment; this repository does not relicense NVIDIA assets.
 
-The official People graph was then tested with the pinned Isaac Lab runtime.
-Direct-GPU PhysX attempts reproduced CUDA illegal-access failures; an isolated
-CPU-physics attempt completed but moved the character out of the review view
-and reported animation-variable type mismatches. Those attempts are not review
-candidates. The current safe code path therefore references the official model
-without claiming animation; the next implementation must bake or cache the
-official NVIDIA animation outside the Direct-GPU physics loop.
+The final automated disposition is `PASS` for AC40--AC43. AC44 remains an
+explicit human-only gate: Dr Sun must watch both complete candidate videos and
+accept or reject the result.
+
+Direct review files:
+
+- raw simulator video:
+  `results/v8_official_scan_review_candidate01/closed_loop.mp4`;
+- SCAN planned path, Isaac actual path, and official-human actual path overlay:
+  `results/v8_official_scan_review_candidate01/closed_loop_review_overlay.mp4`;
+- automated acceptance:
+  `results/v8_official_scan_review_candidate01/acceptance_report.json`;
+- local deterministic replay:
+  `results/v8_official_scan_review_candidate01/acceptance_report.local_replay.json`.
+
+See `REPORT.md` for the exact failure history, input-parity statement, physical
+metrics, hashes, and remaining claim boundary.

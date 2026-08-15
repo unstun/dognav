@@ -19,15 +19,27 @@ PRIMARY_OBSTACLE_COLOR_BGR = (40, 70, 245)
 OBSTACLE_COLOR_BGR = (145, 145, 145)
 DYNAMIC_OBSTACLE_COLOR_BGR = (0, 120, 255)
 DYNAMIC_HUMAN_COLOR_BGR = (0, 215, 255)
+DYNAMIC_OFFICIAL_HUMAN_COLOR_BGR = (40, 40, 235)
 
 
 def dynamic_obstacle_color_bgr(identity: Mapping[str, object]) -> tuple[int, int, int]:
     dynamic_identity = identity.get("dynamic_obstacle") or {}
-    return (
-        DYNAMIC_HUMAN_COLOR_BGR
-        if dynamic_identity.get("shape") == "procedural_humanoid"
-        else DYNAMIC_OBSTACLE_COLOR_BGR
-    )
+    shape = dynamic_identity.get("shape")
+    if shape == "official_skinned_human_plus_capsule":
+        return DYNAMIC_OFFICIAL_HUMAN_COLOR_BGR
+    if shape == "procedural_humanoid":
+        return DYNAMIC_HUMAN_COLOR_BGR
+    return DYNAMIC_OBSTACLE_COLOR_BGR
+
+
+def dynamic_obstacle_label(identity: Mapping[str, object]) -> str:
+    dynamic_identity = identity.get("dynamic_obstacle") or {}
+    shape = dynamic_identity.get("shape")
+    if shape == "official_skinned_human_plus_capsule":
+        return "Official human actual"
+    if shape == "procedural_humanoid":
+        return "Procedural human actual"
+    return "Dynamic obstacle actual"
 
 
 def _finite_point(point: Sequence[float]) -> tuple[float, float, float]:
@@ -264,6 +276,7 @@ def render_trajectory_review(
     metrics = _load_jsonl(metrics_path)
     identity = json.loads(run_identity_path.read_text(encoding="utf-8"))
     dynamic_color_bgr = dynamic_obstacle_color_bgr(identity)
+    dynamic_label = dynamic_obstacle_label(identity)
     video_identity = identity.get("video", {})
     frame_stride = int(video_identity.get("frame_stride", 0))
     capture = cv2.VideoCapture(str(raw_video))
@@ -452,7 +465,7 @@ def render_trajectory_review(
                 )
                 cv2.putText(
                     frame,
-                    "Dynamic obstacle actual",
+                    dynamic_label,
                     (inset_left + 48, legend_y + 47),
                     cv2.FONT_HERSHEY_SIMPLEX,
                     0.46,
@@ -568,6 +581,7 @@ def render_trajectory_review(
         "plot_bounds_world_xy_m": list(bounds),
         "dynamic_obstacle": {
             "rendered": bool(dynamic_path),
+            "label": dynamic_label,
             "record_count": sum(
                 row.get("dynamic_obstacle_actual_pos_w") is not None
                 for row in metrics

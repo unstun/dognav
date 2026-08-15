@@ -91,6 +91,7 @@ def evaluate_acceptance(
     goal = thresholds["goal_world_m"]
     v7 = thresholds.get("v7_dynamic_obstacle")
     v8 = thresholds.get("v8_human_obstacle")
+    v8_official = thresholds.get("v8_official_human_obstacle")
     checks = {}
 
     def add(name: str, passed: bool, value, expected) -> None:
@@ -265,9 +266,18 @@ def evaluate_acceptance(
     add("command_age_p95", command_age_p95 <= float(limits["maximum_command_age_p95_ms"]), command_age_p95, limits["maximum_command_age_p95_ms"])
 
     monitor_topics = ros_summary["topics"]
+    ros_topic_rate_range = [
+        float(value)
+        for value in limits.get("ros_topic_rate_hz_range", sensor_rate_range)
+    ]
     for topic in ("body_pose", "sensor_pose", "cloud"):
         topic_rate = float(monitor_topics[topic]["rate_hz"])
-        add(f"ros_{topic}_rate", sensor_rate_range[0] <= topic_rate <= sensor_rate_range[1], topic_rate, sensor_rate_range)
+        add(
+            f"ros_{topic}_rate",
+            ros_topic_rate_range[0] <= topic_rate <= ros_topic_rate_range[1],
+            topic_rate,
+            ros_topic_rate_range,
+        )
         add(f"ros_{topic}_timestamps", int(monitor_topics[topic]["nonincreasing_stamp_count"]) == 0, monitor_topics[topic]["nonincreasing_stamp_count"], 0)
     add("ros_trajectories", int(ros_summary["unique_trajectory_count"]) >= int(limits["minimum_unique_trajectories"]), ros_summary["unique_trajectory_count"], limits["minimum_unique_trajectories"])
     add("ros_sensor_sync", float(ros_summary["synchronized_sensor_triplet_fraction"]) >= float(limits["minimum_synchronized_sensor_fraction"]), ros_summary["synchronized_sensor_triplet_fraction"], limits["minimum_synchronized_sensor_fraction"])
@@ -1147,9 +1157,12 @@ def evaluate_acceptance(
             "rigid_object_initialized",
             "kinematic_enabled",
             "collision_enabled",
-            "visible_geometry",
             "lidar_transform_tracking",
             "depth_transform_tracking",
+        )
+        geometry_visibility = dynamic_geometry.get("checks", {}).get(
+            "physical_geometry_visibility",
+            dynamic_geometry.get("checks", {}).get("visible_geometry"),
         )
         add(
             "v7_dynamic_physics_sensor_geometry",
@@ -1157,9 +1170,13 @@ def evaluate_acceptance(
             and all(
                 dynamic_geometry.get("checks", {}).get(name) is True
                 for name in required_geometry_checks
-            ),
+            )
+            and geometry_visibility is True,
             dynamic_geometry,
-            {name: True for name in required_geometry_checks},
+            {
+                **{name: True for name in required_geometry_checks},
+                "physical_geometry_visibility_or_legacy_visible_geometry": True,
+            },
         )
         add(
             "v7_ground_truth_evidence_only",
@@ -1619,6 +1636,336 @@ def evaluate_acceptance(
                 },
             )
 
+        if v8_official is not None:
+            human_asset = dynamic_identity.get("human_asset") or {}
+            official_visual = human_asset.get("official_visual") or {}
+            official_proxy = human_asset.get("physical_and_sensor_proxy") or {}
+            gait_identity = dynamic_identity.get("gait") or {}
+            cache_identity = gait_identity.get("retarget_cache") or {}
+            visual_path = (
+                None
+                if depth_artifact_root is None
+                else depth_artifact_root
+                / str(v8_official["expected_visual_asset_filename"])
+            )
+            proxy_path = (
+                None
+                if depth_artifact_root is None
+                else depth_artifact_root
+                / str(v8_official["expected_proxy_asset_filename"])
+            )
+            visual_sha = (
+                _sha256(visual_path)
+                if visual_path is not None and visual_path.is_file()
+                else None
+            )
+            proxy_sha = (
+                _sha256(proxy_path)
+                if proxy_path is not None and proxy_path.is_file()
+                else None
+            )
+            expected_visual_sha = v8_official.get("expected_visual_asset_sha256")
+            expected_proxy_sha = v8_official.get("expected_proxy_asset_sha256")
+            add(
+                "v8_official_asset_files",
+                visual_sha is not None
+                and proxy_sha is not None
+                and official_visual.get("sha256") == visual_sha
+                and official_proxy.get("sha256") == proxy_sha
+                and (
+                    expected_visual_sha is None or visual_sha == expected_visual_sha
+                )
+                and (expected_proxy_sha is None or proxy_sha == expected_proxy_sha),
+                {
+                    "visual_identity_sha256": official_visual.get("sha256"),
+                    "visual_copied_sha256": visual_sha,
+                    "proxy_identity_sha256": official_proxy.get("sha256"),
+                    "proxy_copied_sha256": proxy_sha,
+                },
+                {
+                    "visual_sha256": expected_visual_sha or "identity/file parity",
+                    "proxy_sha256": expected_proxy_sha or "identity/file parity",
+                },
+            )
+
+            observed_official_identity = {
+                "shape": dynamic_identity.get("shape"),
+                "collision_shape": dynamic_identity.get("collision_shape"),
+                "visible_part_names": dynamic_identity.get("visible_part_names"),
+                "sensor_target_count": len(
+                    dynamic_identity.get("sensor_target_exprs", [])
+                ),
+                "character_url": official_visual.get("official_character_url"),
+                "biped_url": gait_identity.get("biped_url"),
+                "gait_status": gait_identity.get("status"),
+                "local_procedural_gait": gait_identity.get(
+                    "local_procedural_gait"
+                ),
+                "direct_gpu_animation_graph_used": gait_identity.get(
+                    "direct_gpu_animation_graph_used"
+                ),
+                "cache_content_sha256": cache_identity.get("content_sha256"),
+                "cache_joint_count": cache_identity.get("joint_count"),
+                "cache_fps": cache_identity.get("fps"),
+                "cache_idle_frame_count": cache_identity.get("idle_frame_count"),
+                "cache_walk_frame_count": cache_identity.get("walk_frame_count"),
+            }
+            expected_official_identity = {
+                "shape": "official_skinned_human_plus_capsule",
+                "collision_shape": "hidden_capsule",
+                "visible_part_names": [
+                    v8_official["expected_visual_runtime_prim"]
+                ],
+                "sensor_target_count": 1,
+                "character_url": v8_official["expected_character_url"],
+                "biped_url": v8_official["expected_biped_url"],
+                "gait_status": "official_biped_retarget_cache_replay",
+                "local_procedural_gait": False,
+                "direct_gpu_animation_graph_used": False,
+                "cache_content_sha256": v8_official[
+                    "expected_cache_content_sha256"
+                ],
+                "cache_joint_count": int(v8_official["expected_joint_count"]),
+                "cache_fps": int(v8_official["expected_animation_fps"]),
+                "cache_idle_frame_count": int(
+                    v8_official["expected_idle_frame_count"]
+                ),
+                "cache_walk_frame_count": int(
+                    v8_official["expected_walk_frame_count"]
+                ),
+            }
+            add(
+                "v8_official_identity",
+                observed_official_identity == expected_official_identity,
+                observed_official_identity,
+                expected_official_identity,
+            )
+
+            official_checks = dynamic_geometry.get("checks", {})
+            required_official_checks = (
+                "runtime_root_exists",
+                "rigid_object_initialized",
+                "kinematic_enabled",
+                "collision_enabled",
+                "physical_geometry_visibility",
+                "lidar_transform_tracking",
+                "depth_transform_tracking",
+                "human_parts_complete",
+                "human_collision_hidden",
+                "official_visual_root_exists",
+                "official_visual_geometry_visible",
+                "official_visual_has_no_collision",
+                "official_visual_has_no_rigid_body",
+                "official_sensor_proxy_is_capsule",
+            )
+            add(
+                "v8_official_stage_geometry",
+                bool(dynamic_geometry.get("passed"))
+                and all(
+                    official_checks.get(name) is True
+                    for name in required_official_checks
+                )
+                and len(dynamic_geometry.get("collision_prim_paths", [])) == 1
+                and not dynamic_geometry.get("visible_collision_prim_paths")
+                and not dynamic_geometry.get("visible_geometry_prim_paths")
+                and bool(
+                    dynamic_geometry.get("official_visual_geometry_prim_paths")
+                )
+                and not dynamic_geometry.get(
+                    "official_visual_collision_prim_paths"
+                )
+                and dynamic_geometry.get("official_visual_runtime_prim")
+                == v8_official["expected_visual_runtime_prim"],
+                dynamic_geometry,
+                {
+                    **{name: True for name in required_official_checks},
+                    "one_hidden_proxy_collision": True,
+                    "visible_collision_free_official_character": True,
+                },
+            )
+
+            registration_rows = [
+                row.get("official_human_visual_pose")
+                for row in dynamic_rows
+                if isinstance(row.get("official_human_visual_pose"), dict)
+            ]
+            maximum_root_pose_error = max(
+                (
+                    abs(float(row.get("root_pose_error_m", math.inf)))
+                    for row in registration_rows
+                ),
+                default=math.inf,
+            )
+            maximum_foot_datum_error = max(
+                (
+                    abs(
+                        float(
+                            row.get("foot_to_capsule_bottom_error_m", math.inf)
+                        )
+                    )
+                    for row in registration_rows
+                ),
+                default=math.inf,
+            )
+            add(
+                "v8_official_registration",
+                len(registration_rows) == len(dynamic_rows)
+                and maximum_root_pose_error
+                <= float(v8_official["maximum_visual_root_pose_error_m"])
+                and maximum_foot_datum_error
+                <= float(v8_official["maximum_foot_datum_error_m"]),
+                {
+                    "record_count": len(registration_rows),
+                    "dynamic_record_count": len(dynamic_rows),
+                    "maximum_visual_root_pose_error_m": maximum_root_pose_error,
+                    "maximum_foot_datum_error_m": maximum_foot_datum_error,
+                },
+                {
+                    "all_dynamic_records_registered": True,
+                    "maximum_visual_root_pose_error_m": v8_official[
+                        "maximum_visual_root_pose_error_m"
+                    ],
+                    "maximum_foot_datum_error_m": v8_official[
+                        "maximum_foot_datum_error_m"
+                    ],
+                },
+            )
+
+            official_gait_rows = [
+                row
+                for row in dynamic_rows
+                if isinstance(row.get("dynamic_human_gait_angles"), dict)
+            ]
+            crossing_walk = [
+                row["dynamic_human_gait_angles"]
+                for row in official_gait_rows
+                if row.get("dynamic_obstacle_phase") == "crossing"
+                and row["dynamic_human_gait_angles"].get("clip") == "walk"
+            ]
+            idle_animation = [
+                row["dynamic_human_gait_angles"]
+                for row in official_gait_rows
+                if row.get("dynamic_obstacle_phase")
+                in ("waiting", "holding", "parked")
+                and row["dynamic_human_gait_angles"].get("clip") == "idle"
+            ]
+
+            def official_gait_metadata_valid(gait):
+                expected_frames = (
+                    int(v8_official["expected_walk_frame_count"])
+                    if gait.get("clip") == "walk"
+                    else int(v8_official["expected_idle_frame_count"])
+                )
+                return (
+                    gait.get("source")
+                    == "NVIDIA Isaac Sim 5.1 Biped AnimationGraph retarget cache"
+                    and gait.get("cache_content_sha256")
+                    == v8_official["expected_cache_content_sha256"]
+                    and int(gait.get("target_joint_count", -1))
+                    == int(v8_official["expected_joint_count"])
+                    and int(gait.get("fps", -1))
+                    == int(v8_official["expected_animation_fps"])
+                    and int(gait.get("frame_count", -1)) == expected_frames
+                    and gait.get("local_procedural_gait") is False
+                    and gait.get("direct_gpu_animation_graph_used") is False
+                )
+
+            walk_frame_span = len(
+                {int(gait.get("frame_index", -1)) for gait in crossing_walk}
+            )
+            add(
+                "v8_official_animation",
+                len(crossing_walk)
+                >= int(v8_official["minimum_crossing_animation_records"])
+                and walk_frame_span
+                >= int(v8_official["minimum_distinct_walk_frames"])
+                and len(idle_animation)
+                >= int(v8_official["minimum_idle_animation_records"])
+                and len(official_gait_rows) == len(dynamic_rows)
+                and all(
+                    official_gait_metadata_valid(row["dynamic_human_gait_angles"])
+                    for row in official_gait_rows
+                ),
+                {
+                    "crossing_walk_record_count": len(crossing_walk),
+                    "distinct_walk_frame_count": walk_frame_span,
+                    "idle_record_count": len(idle_animation),
+                    "all_dynamic_records_have_official_animation": len(
+                        official_gait_rows
+                    )
+                    == len(dynamic_rows),
+                },
+                {
+                    "minimum_crossing_records": v8_official[
+                        "minimum_crossing_animation_records"
+                    ],
+                    "minimum_distinct_walk_frames": v8_official[
+                        "minimum_distinct_walk_frames"
+                    ],
+                    "minimum_idle_records": v8_official[
+                        "minimum_idle_animation_records"
+                    ],
+                    "official_cache_metadata_on_every_record": True,
+                },
+            )
+
+            def official_walk_detection_count(rows, count_key, minimum_count):
+                return sum(
+                    int(row.get(count_key, 0)) >= int(minimum_count)
+                    and isinstance(row.get("dynamic_human_gait_angles"), dict)
+                    and row["dynamic_human_gait_angles"].get("clip") == "walk"
+                    and official_gait_metadata_valid(
+                        row["dynamic_human_gait_angles"]
+                    )
+                    for row in rows
+                )
+
+            lidar_walk_detections = official_walk_detection_count(
+                sensor_metrics,
+                "dynamic_obstacle_surface_hit_count",
+                v7["minimum_lidar_hits_per_detection"],
+            )
+            depth_walk_detections = official_walk_detection_count(
+                depth_metrics or [],
+                "dynamic_obstacle_surface_pixel_count",
+                v7["minimum_depth_pixels_per_detection"],
+            )
+            expected_overlay_colour = list(
+                v8_official["expected_overlay_colour_bgr"]
+            )
+            review_metadata = trajectory_review_metadata or {}
+            observed_overlay_colour = review_metadata.get("colours_bgr", {}).get(
+                "dynamic_obstacle_actual"
+            )
+            observed_overlay_label = review_metadata.get(
+                "dynamic_obstacle", {}
+            ).get("label")
+            add(
+                "v8_official_sensor_visible_walk_and_overlay",
+                lidar_walk_detections
+                >= int(v8_official["minimum_lidar_walk_detections"])
+                and depth_walk_detections
+                >= int(v8_official["minimum_depth_walk_detections"])
+                and observed_overlay_colour == expected_overlay_colour
+                and observed_overlay_label == "Official human actual",
+                {
+                    "lidar_walk_detection_count": lidar_walk_detections,
+                    "depth_walk_detection_count": depth_walk_detections,
+                    "overlay_colour_bgr": observed_overlay_colour,
+                    "overlay_label": observed_overlay_label,
+                },
+                {
+                    "minimum_lidar_walk_detections": v8_official[
+                        "minimum_lidar_walk_detections"
+                    ],
+                    "minimum_depth_walk_detections": v8_official[
+                        "minimum_depth_walk_detections"
+                    ],
+                    "overlay_colour_bgr": expected_overlay_colour,
+                    "overlay_label": "Official human actual",
+                },
+            )
+
     passed = all(value["passed"] for value in checks.values())
     return {
         "schema_version": 1,
@@ -1637,7 +1984,7 @@ def evaluate_acceptance(
             "rosbag_bytes": bag_bytes,
             "forest_navigation_enabled": forest is not None,
             "dynamic_obstacle_enabled": v7 is not None,
-            "human_obstacle_enabled": v8 is not None,
+            "human_obstacle_enabled": v8 is not None or v8_official is not None,
         },
     }
 

@@ -1,0 +1,2 @@
+ac58a683fe9dd85ec3ad0266c7653b289dc1dd9b256d2abac0cc96ac7e45cfcb  /home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/results/v8_official_scan_no_contact_preflight04/official_human_retarget_cache.npz
+a09580c3bb8203b33073e2ecbf815a3d48d57c42a7836e08cebd441a95352f03  /home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/results/v8_official_scan_no_contact_preflight04/official_human_retarget_cache.json

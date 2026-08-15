@@ -1,0 +1,1507 @@
+{
+  "checks": {
+    "clean_process_exit": {
+      "expected": false,
+      "passed": true,
+      "value": {
+        "keyboard_interrupt": false,
+        "process_has_died": false
+      }
+    },
+    "cloud_nonempty": {
+      "expected": 0.99,
+      "passed": true,
+      "value": 1.0
+    },
+    "cloud_points": {
+      "expected": 10,
+      "passed": true,
+      "value": 226
+    },
+    "coalesced_command_frames": {
+      "expected": 50,
+      "passed": true,
+      "value": 35
+    },
+    "command_age_p95": {
+      "expected": 100.0,
+      "passed": true,
+      "value": 37.0852
+    },
+    "command_bounds": {
+      "expected": [
+        1.0,
+        0.35,
+        1.0
+      ],
+      "passed": true,
+      "value": [
+        0.9065801501274109,
+        0.3499999940395355,
+        0.8913648128509521
+      ]
+    },
+    "contact_support": {
+      "expected": 0.95,
+      "passed": true,
+      "value": 0.9943100995732574
+    },
+    "finite_policy": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "forest_base_clearance": {
+      "expected": 0.15,
+      "passed": true,
+      "value": 0.24885068104074948
+    },
+    "forest_direct_path_blocked": {
+      "expected": "center_to_segment < required_center_clearance",
+      "passed": true,
+      "value": {
+        "center_to_segment_m": 0.0,
+        "required_center_clearance_m": 0.64
+      }
+    },
+    "forest_filter_enabled": {
+      "expected": 1.0,
+      "passed": true,
+      "value": 1.0
+    },
+    "forest_filter_keeps_obstacles": {
+      "expected": 10,
+      "passed": true,
+      "value": 226
+    },
+    "forest_filter_removes_terrain": {
+      "expected": 50,
+      "passed": true,
+      "value": 383
+    },
+    "forest_filter_sparse_fraction": {
+      "expected": 0.75,
+      "passed": true,
+      "value": 0.11363636363636363
+    },
+    "forest_forward_command_speed": {
+      "expected": 0.9,
+      "passed": true,
+      "value": 0.9065801501274109
+    },
+    "forest_geometry_only_planner_input": {
+      "expected": "rendered XYZ geometry filter with all scene-truth inputs forbidden",
+      "passed": true,
+      "value": {
+        "cell_size_m": 0.3,
+        "enabled": true,
+        "forbidden_inputs": [
+          "terrain_height_function",
+          "scene_prim_id",
+          "proxy_bounds",
+          "obstacle_label"
+        ],
+        "height_threshold_m": 0.22,
+        "inputs": [
+          "rendered_hit_xyz_world",
+          "sensor_position_world"
+        ],
+        "minimum_neighbor_cells": 2,
+        "neighbor_cells": 1
+      }
+    },
+    "forest_goal_identity": {
+      "expected": [
+        0.5,
+        3.0,
+        0.85
+      ],
+      "passed": true,
+      "value": [
+        0.5,
+        3.0,
+        0.85
+      ]
+    },
+    "forest_measured_speed_p75": {
+      "expected": 0.55,
+      "passed": true,
+      "value": 0.8336792719812051
+    },
+    "forest_nonflat_terrain": {
+      "expected": 0.03,
+      "passed": true,
+      "value": 0.5101828697994053
+    },
+    "forest_path_length_excess": {
+      "expected": 0.2,
+      "passed": true,
+      "value": 0.9400936469315289
+    },
+    "forest_planner_detour": {
+      "expected": 0.55,
+      "passed": true,
+      "value": 0.9997637271881104
+    },
+    "forest_primary_blocker_clearance": {
+      "expected": 0.55,
+      "passed": true,
+      "value": 0.9423000064762117
+    },
+    "goal_xy": {
+      "expected": {
+        "continuous_stop_window_seconds": 2.0,
+        "goal_xy_tolerance_m": 0.25
+      },
+      "passed": true,
+      "value": {
+        "final_goal_error_m": 0.1825916076063059,
+        "stable_goal_stop_event": {
+          "anchor_position_w_xy_m": [
+            0.4493419826030731,
+            3.004608631134033
+          ],
+          "end_index": 585,
+          "end_sim_time_seconds": 11.729999737814069,
+          "maximum_command_abs": 0.033874429762363434,
+          "maximum_goal_error_m": 0.0509055486106597,
+          "maximum_planar_speed_mps": 0.050023213799338245,
+          "start_index": 484,
+          "start_sim_time_seconds": 9.709999782964587
+        }
+      }
+    },
+    "goal_z": {
+      "expected": 0.18,
+      "passed": true,
+      "value": 0.06495914459228513
+    },
+    "isaac_runtime_error": {
+      "expected": null,
+      "passed": true,
+      "value": null
+    },
+    "isaac_runtime_pass": {
+      "expected": "PASS",
+      "passed": true,
+      "value": "PASS"
+    },
+    "no_base_teleport": {
+      "expected": 0.06,
+      "passed": true,
+      "value": 0.023634415204208302
+    },
+    "no_collision": {
+      "expected": 75.0,
+      "passed": true,
+      "value": 0.0
+    },
+    "no_termination": {
+      "expected": false,
+      "passed": true,
+      "value": false
+    },
+    "nonzero_commands": {
+      "expected": 300,
+      "passed": true,
+      "value": 471
+    },
+    "obstacle_detour": {
+      "expected": 0.0,
+      "passed": true,
+      "value": 3.50616192817688
+    },
+    "obstacle_returns": {
+      "expected": 20,
+      "passed": true,
+      "value": 487
+    },
+    "origin_occupancy_errors": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "planner_failures": {
+      "expected": 5,
+      "passed": true,
+      "value": 0
+    },
+    "planner_successes": {
+      "expected": 2,
+      "passed": true,
+      "value": 5
+    },
+    "planner_wait_target": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "policy_rate": {
+      "expected": [
+        45.0,
+        55.0
+      ],
+      "passed": true,
+      "value": 50.00000111758712
+    },
+    "pose_dependent_sensor": {
+      "expected": 4.0,
+      "passed": true,
+      "value": 5.290702314658731
+    },
+    "record_count": {
+      "expected": 1250,
+      "passed": true,
+      "value": 1406
+    },
+    "root_height": {
+      "expected": [
+        0.3,
+        1.3
+      ],
+      "passed": true,
+      "value": [
+        0.33859771490097046,
+        0.924266517162323
+      ]
+    },
+    "ros_body_pose_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": false,
+      "value": 7.860179072429568
+    },
+    "ros_body_pose_timestamps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "ros_cloud_points": {
+      "expected": 10,
+      "passed": true,
+      "value": 226
+    },
+    "ros_cloud_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": false,
+      "value": 7.860174688738805
+    },
+    "ros_cloud_timestamps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "ros_sensor_pose_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": false,
+      "value": 7.860185572780498
+    },
+    "ros_sensor_pose_timestamps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "ros_sensor_sync": {
+      "expected": 0.95,
+      "passed": true,
+      "value": 1.0
+    },
+    "ros_trajectories": {
+      "expected": 2,
+      "passed": true,
+      "value": 5
+    },
+    "rosbag_bytes": {
+      "expected": 10000,
+      "passed": true,
+      "value": 376832
+    },
+    "rosbag_metadata": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "sensor_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 10.000000223517423
+    },
+    "sequence_gaps": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "sim_duration": {
+      "expected": 25.0,
+      "passed": true,
+      "value": 28.099999371916056
+    },
+    "stopped_command": {
+      "expected": 0.05,
+      "passed": true,
+      "value": 0.0
+    },
+    "stopped_motion": {
+      "expected": 0.15,
+      "passed": true,
+      "value": 0.029625594057018128
+    },
+    "telemetry_reconnects": {
+      "expected": 1,
+      "passed": true,
+      "value": 0
+    },
+    "threshold_identity": {
+      "expected": "cbed56b7012b7ca7f061dfd646f03412929219ad64edda9309d1c34aa64acd63",
+      "passed": true,
+      "value": "cbed56b7012b7ca7f061dfd646f03412929219ad64edda9309d1c34aa64acd63"
+    },
+    "transport_protocol_errors": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "unexpected_returns": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "v3_canonical_urdf_hash": {
+      "expected": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80",
+      "passed": true,
+      "value": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80"
+    },
+    "v3_depth_artifacts": {
+      "expected": 3,
+      "passed": true,
+      "value": {
+        "d435i_depth_frame_m.npy": true,
+        "d435i_depth_frame_mm.png": true,
+        "d435i_depth_preview.png": true
+      }
+    },
+    "v3_depth_dimensions": {
+      "expected": [
+        87,
+        58
+      ],
+      "passed": true,
+      "value": [
+        87,
+        58
+      ]
+    },
+    "v3_depth_finite": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    },
+    "v3_depth_frame": {
+      "expected": "d435i_depth_optical_frame",
+      "passed": true,
+      "value": "d435i_depth_optical_frame"
+    },
+    "v3_depth_nonempty": {
+      "expected": 0.99,
+      "passed": true,
+      "value": 1.0
+    },
+    "v3_depth_obstacle": {
+      "expected": 20,
+      "passed": true,
+      "value": 441
+    },
+    "v3_depth_pose_dependent": {
+      "expected": 4.0,
+      "passed": true,
+      "value": 5.295404765580537
+    },
+    "v3_depth_rate": {
+      "expected": [
+        8.0,
+        12.0
+      ],
+      "passed": true,
+      "value": 10.000000223517423
+    },
+    "v3_depth_records": {
+      "expected": 250,
+      "passed": true,
+      "value": 282
+    },
+    "v3_isaac_urdf_hash": {
+      "expected": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d",
+      "passed": true,
+      "value": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d"
+    },
+    "v3_lidar_frame": {
+      "expected": "mid360_scan_frame",
+      "passed": true,
+      "value": "mid360_scan_frame"
+    },
+    "v3_lidar_self_occlusion": {
+      "expected": 1,
+      "passed": true,
+      "value": 467
+    },
+    "v3_no_silent_default_mass": {
+      "expected": "pass",
+      "passed": true,
+      "value": {
+        "d435i_depth_optical_frame_mass_kg": 9.999999974752427e-07,
+        "expected_frame_mass_kg": 1e-06,
+        "mid360_scan_frame_mass_kg": 9.999999974752427e-07,
+        "status": "pass"
+      }
+    },
+    "v3_runtime_body_count": {
+      "expected": 24,
+      "passed": true,
+      "value": 24
+    },
+    "v3_runtime_collision_count": {
+      "expected": 29,
+      "passed": true,
+      "value": 29
+    },
+    "v3_runtime_fixed_joint_count": {
+      "expected": 11,
+      "passed": true,
+      "value": 11
+    },
+    "v3_runtime_joint_count": {
+      "expected": 23,
+      "passed": true,
+      "value": 23
+    },
+    "v3_runtime_mass": {
+      "expected": [
+        13.2817,
+        13.2819
+      ],
+      "passed": true,
+      "value": 13.281788810606713
+    },
+    "v3_runtime_movable_joint_count": {
+      "expected": 12,
+      "passed": true,
+      "value": 12
+    },
+    "v6_acceleration_limit": {
+      "expected": 0.5,
+      "passed": true,
+      "value": 0.5
+    },
+    "v6_complete_bspline_records": {
+      "expected": 2,
+      "passed": true,
+      "value": 5
+    },
+    "v6_course_identity": {
+      "expected": "forest_gen_nav_v8_official_human",
+      "passed": true,
+      "value": "forest_gen_nav_v8_official_human"
+    },
+    "v6_high_command_measured_speed_p75": {
+      "expected": 0.7,
+      "passed": false,
+      "value": 0.0
+    },
+    "v6_high_command_samples": {
+      "expected": 20,
+      "passed": false,
+      "value": 0
+    },
+    "v6_overlay_hash": {
+      "expected": "269050178b89e90ffcdeac45d0398666dfe6094d4c54188b5952b53bf67e1636",
+      "passed": true,
+      "value": "269050178b89e90ffcdeac45d0398666dfe6094d4c54188b5952b53bf67e1636"
+    },
+    "v6_overlay_input_hashes": {
+      "expected": {
+        "metrics": "9d65950681bc8dcd0cc5e1326ddce20f1729645ed370e52edb2980c980355a33",
+        "raw_video": "a0a8a72becae97c486840a60777d9518caca1522272b48f57665810ccedca63f",
+        "ros_events": "0b2f71f12885e8b10353a242b45f0d179e544cccca5bfb09d50788efe402ad01",
+        "run_identity": "760587bf7d2b24d205cde14abda8f2dc276fe8914ec193bdd3f6e3b6a7646e7b"
+      },
+      "passed": true,
+      "value": {
+        "metrics": "9d65950681bc8dcd0cc5e1326ddce20f1729645ed370e52edb2980c980355a33",
+        "raw_video": "a0a8a72becae97c486840a60777d9518caca1522272b48f57665810ccedca63f",
+        "ros_events": "0b2f71f12885e8b10353a242b45f0d179e544cccca5bfb09d50788efe402ad01",
+        "run_identity": "760587bf7d2b24d205cde14abda8f2dc276fe8914ec193bdd3f6e3b6a7646e7b"
+      }
+    },
+    "v6_overlay_time_alignment": {
+      "expected": 150.0,
+      "passed": true,
+      "value": 46.652559
+    },
+    "v6_overlay_video": {
+      "expected": {
+        "minimum_bytes": 100000,
+        "minimum_frames": 425
+      },
+      "passed": true,
+      "value": {
+        "bytes": 2882029,
+        "frame_count": 469,
+        "regular_file": true
+      }
+    },
+    "v6_proxy_bounds": {
+      "expected": 0.005,
+      "passed": true,
+      "value": 2.2447766490074628e-07
+    },
+    "v6_proxy_review_visibility": {
+      "expected": false,
+      "passed": true,
+      "value": {
+        "forest_proxy_000": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_001": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_002": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_003": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_004": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_005": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_006": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_007": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_008": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_009": {
+          "expected": false,
+          "visible_geometry_count": 0
+        },
+        "forest_proxy_010": {
+          "expected": false,
+          "visible_geometry_count": 0
+        }
+      }
+    },
+    "v6_rock_terrain_clearance": {
+      "expected": 0.01,
+      "passed": true,
+      "value": 0.014999999999999902
+    },
+    "v6_static_geometry_gate": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "v6_synchronized_forward_limits": {
+      "expected": 1.0,
+      "passed": true,
+      "value": {
+        "controller_max_vx_mps": 1.0,
+        "foxy_bridge_effective_max_vx_mps": 1.0,
+        "isaac_receiver_max_vx_mps": 1.0,
+        "scan_manager_max_acc_mps2": 0.5,
+        "scan_manager_max_vel_mps": 1.0,
+        "scan_optimizer_max_vel_mps": 1.0
+      }
+    },
+    "v7_command_relative_schedule_trigger": {
+      "expected": "elapsed stays zero until first accepted command exceeds 0.05",
+      "passed": true,
+      "value": {
+        "pre_trigger_maximum_command_abs": 0.017937306314706802,
+        "pre_trigger_maximum_elapsed_seconds": 0.0,
+        "pre_trigger_record_count": 13,
+        "trigger_command_max_abs": 0.1400689035654068,
+        "trigger_index": 13,
+        "trigger_sim_time_seconds": 0.2699999939650297
+      }
+    },
+    "v7_controller_catchup_limit": {
+      "expected": 0.75,
+      "passed": true,
+      "value": 0.75
+    },
+    "v7_controller_catchup_minimum_speed": {
+      "expected": 0.2,
+      "passed": true,
+      "value": 0.2
+    },
+    "v7_controller_finish_distance": {
+      "expected": 0.1,
+      "passed": true,
+      "value": 0.1
+    },
+    "v7_controller_tracking_window": {
+      "expected": 0.14,
+      "passed": true,
+      "value": 0.14
+    },
+    "v7_course_identity": {
+      "expected": "forest_gen_nav_v8_official_human",
+      "passed": true,
+      "value": "forest_gen_nav_v8_official_human"
+    },
+    "v7_depth_dynamic_observations": {
+      "expected": {
+        "minimum_frames": 3,
+        "minimum_position_span_m": 0.5
+      },
+      "passed": true,
+      "value": {
+        "frame_count": 26,
+        "position_span_m": 1.0
+      }
+    },
+    "v7_dynamic_identity": {
+      "expected": {
+        "height_m": 1.7,
+        "hold_fraction": 0.35714285714285715,
+        "hold_seconds": 2.5,
+        "radius_m": 0.3,
+        "schedule_trigger": "first nonzero accepted body command",
+        "shape": "official_skinned_human_plus_capsule",
+        "speed_mps": 0.8,
+        "wait_seconds": 0.0
+      },
+      "passed": true,
+      "value": {
+        "height_m": 1.7,
+        "hold_fraction": 0.35714285714285715,
+        "hold_seconds": 2.5,
+        "radius_m": 0.3,
+        "schedule_trigger": "first nonzero accepted body command",
+        "shape": "official_skinned_human_plus_capsule",
+        "speed_mps": 0.8,
+        "wait_seconds": 0.0
+      }
+    },
+    "v7_dynamic_motion": {
+      "expected": {
+        "maximum_pose_error_m": 0.03,
+        "minimum_actual_travel_m": 2.65,
+        "phases": [
+          "crossing",
+          "holding",
+          "parked",
+          "waiting"
+        ]
+      },
+      "passed": true,
+      "value": {
+        "actual_travel_m": 2.8062460849487465,
+        "maximum_pose_error_m": 2.4400433036847887e-07,
+        "phases": [
+          "crossing",
+          "holding",
+          "parked",
+          "waiting"
+        ]
+      }
+    },
+    "v7_dynamic_physics_sensor_geometry": {
+      "expected": {
+        "collision_enabled": true,
+        "depth_transform_tracking": true,
+        "kinematic_enabled": true,
+        "lidar_transform_tracking": true,
+        "physical_geometry_visibility_or_legacy_visible_geometry": true,
+        "rigid_object_initialized": true,
+        "runtime_root_exists": true
+      },
+      "passed": true,
+      "value": {
+        "checks": {
+          "collision_enabled": true,
+          "depth_transform_tracking": true,
+          "human_collision_hidden": true,
+          "human_parts_complete": true,
+          "kinematic_enabled": true,
+          "lidar_transform_tracking": true,
+          "official_sensor_proxy_is_capsule": true,
+          "official_visual_geometry_visible": true,
+          "official_visual_has_no_collision": true,
+          "official_visual_has_no_rigid_body": true,
+          "official_visual_root_exists": true,
+          "physical_geometry_visibility": true,
+          "rigid_object_initialized": true,
+          "runtime_root_exists": true
+        },
+        "collision_prim_paths": [
+          "/World/envs/env_0/DynamicObstacle/CollisionCapsule"
+        ],
+        "configured_prim_expr": "/World/envs/env_.*/DynamicObstacle",
+        "depth_targets": [
+          {
+            "prim_expr": "/World/ground",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_000",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_001",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_002",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_003",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_004",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_005",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_006",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_007",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_008",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_009",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_010",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/DynamicObstacle/CollisionCapsule",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/TORSO/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/pro_interface_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/sensor_carrier_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/s410_guard_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/mid360_body_link/visuals",
+            "track_mesh_transforms": true
+          }
+        ],
+        "expected_sensor_target_exprs": [
+          "{ENV_REGEX_NS}/DynamicObstacle/CollisionCapsule"
+        ],
+        "ground_truth_use": "evidence only; never planner input or robot steering",
+        "lidar_targets": [
+          {
+            "prim_expr": "/World/ground",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_000",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_001",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_002",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_003",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_004",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_005",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_006",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_007",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_008",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_009",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_010",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/DynamicObstacle/CollisionCapsule",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/TORSO/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/pro_interface_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/sensor_carrier_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/s410_guard_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/d435i_body_link/visuals",
+            "track_mesh_transforms": true
+          }
+        ],
+        "official_visual_collision_prim_paths": [],
+        "official_visual_geometry_prim_paths": [
+          "/World/DynamicHumanVisual/OfficialCharacter/male_adult_police_04/ManRoot/male_adult_police_04/male_adult_police_04/opaque__plastic__sunglasses",
+          "/World/DynamicHumanVisual/OfficialCharacter/male_adult_police_04/ManRoot/male_adult_police_04/male_adult_police_04/opaque__leather__policeshoes",
+          "/World/DynamicHumanVisual/OfficialCharacter/male_adult_police_04/ManRoot/male_adult_police_04/male_adult_police_04/opaque__fabric__policepants",
+          "/World/DynamicHumanVisual/OfficialCharacter/male_adult_police_04/ManRoot/male_adult_police_04/male_adult_police_04/opaque__fabric__policeshirt",
+          "/World/DynamicHumanVisual/OfficialCharacter/male_adult_police_04/ManRoot/male_adult_police_04/male_adult_police_04/trans__organic__whitemaleskin"
+        ],
+        "official_visual_runtime_prim": "/World/DynamicHumanVisual",
+        "passed": true,
+        "runtime_prim_path": "/World/envs/env_0/DynamicObstacle",
+        "visible_collision_prim_paths": [],
+        "visible_geometry_prim_paths": [],
+        "visible_human_part_names": []
+      }
+    },
+    "v7_dynamic_terrain_clearance": {
+      "expected": 0.01,
+      "passed": true,
+      "value": 0.019999943929540298
+    },
+    "v7_ground_truth_evidence_only": {
+      "expected": "rendered sensor hits only; ground truth forbidden from planner/steering",
+      "passed": true,
+      "value": {
+        "ground_truth_use": "evidence classification and synchronized clearance only; forbidden from point injection, filtering, command generation, and robot steering",
+        "planner_input": "rendered sensor hits only"
+      }
+    },
+    "v7_lidar_dynamic_observations": {
+      "expected": {
+        "minimum_frames": 5,
+        "minimum_position_span_m": 0.5
+      },
+      "passed": true,
+      "value": {
+        "frame_count": 282,
+        "position_span_m": 2.8000001907348633
+      }
+    },
+    "v7_nominal_route_conflict": {
+      "expected": 0.1,
+      "passed": true,
+      "value": 0.008000000000000007
+    },
+    "v7_occupied_freshness_window": {
+      "expected": 8,
+      "passed": true,
+      "value": 8.0
+    },
+    "v7_overlay_dynamic_trace": {
+      "expected": {
+        "minimum_records": 425,
+        "rendered": true
+      },
+      "passed": true,
+      "value": {
+        "identity": {
+          "claim_boundary": "official Isaac character, Biped-retarget cache replay, and co-moving physical/sensor proxy integrated for qualification; human appearance and full closed-loop avoidance remain unvalidated until runtime and human review",
+          "collision_enabled": true,
+          "collision_shape": "hidden_capsule",
+          "colour_rgb": null,
+          "crossing_duration_seconds": 3.4999999999999996,
+          "depth_transform_tracking": true,
+          "end_xy_m": [
+            -2.7,
+            4.8
+          ],
+          "gait": {
+            "biped_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/Biped_Setup.usd",
+            "claim": "official Biped graph output replayed on the exact 101-joint official character; runtime gait still requires rendered visual verification",
+            "direct_gpu_animation_graph_used": false,
+            "local_procedural_gait": false,
+            "retarget_cache": {
+              "content_sha256": "76c19b57ebd03e01820e6b9db79bde8f2f3e436302744ef457278af8d17ef5b3",
+              "file_sha256": "ac58a683fe9dd85ec3ad0266c7653b289dc1dd9b256d2abac0cc96ac7e45cfcb",
+              "fps": 30,
+              "idle_frame_count": 60,
+              "joint_count": 101,
+              "path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/results/v8_official_scan_no_contact_preflight03/official_human_retarget_cache.npz",
+              "schema_version": 1,
+              "source": "NVIDIA Biped AnimationGraph ControlRig retarget output",
+              "target_path": "/HumanVisual/OfficialAnimations/Active",
+              "walk_frame_count": 90
+            },
+            "source": "NVIDIA Isaac Sim 5.1 Biped AnimationGraph output after ControlRig retargeting to male_adult_police_04",
+            "status": "official_biped_retarget_cache_replay"
+          },
+          "ground_truth_use": "evidence classification and synchronized clearance only; forbidden from point injection, filtering, command generation, and robot steering",
+          "height_m": 1.7,
+          "hold_fraction": 0.35714285714285715,
+          "hold_seconds": 2.5,
+          "human_asset": {
+            "official_visual": {
+              "biped_retarget_cache": {
+                "content_sha256": "76c19b57ebd03e01820e6b9db79bde8f2f3e436302744ef457278af8d17ef5b3",
+                "file_sha256": "ac58a683fe9dd85ec3ad0266c7653b289dc1dd9b256d2abac0cc96ac7e45cfcb",
+                "fps": 30,
+                "idle_frame_count": 60,
+                "joint_count": 101,
+                "path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/results/v8_official_scan_no_contact_preflight03/official_human_retarget_cache.npz",
+                "schema_version": 1,
+                "source": "NVIDIA Biped AnimationGraph ControlRig retarget output",
+                "target_path": "/HumanVisual/OfficialAnimations/Active",
+                "walk_frame_count": 90
+              },
+              "bytes": 19055,
+              "official_character_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/male_adult_police_04/male_adult_police_04.usd",
+              "path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/results/v8_official_scan_no_contact_preflight03/isaac/official_human_visual.usda",
+              "redistribution": "official NVIDIA content is referenced, not vendored",
+              "sha256": "2925cf7fe1f47876e542f984f82b8edad9b3bec38b2c1bd5e363d3bf919bae9d",
+              "skeleton_path": "/HumanVisual/OfficialCharacter/male_adult_police_04/ManRoot/male_adult_police_04/male_adult_police_04/male_adult_police_04",
+              "source": "visual-only wrapper referencing NVIDIA Isaac Sim 5.1 content",
+              "source_geometry": {
+                "foot_z_m": -1.9355964298028994e-07,
+                "meters_per_unit": 1.0,
+                "source_forward_yaw_radians": -1.5707963267948966,
+                "up_axis": "Z",
+                "visible_top_z_m": 1.7357525825500488
+              }
+            },
+            "physical_and_sensor_proxy": {
+              "bytes": 541,
+              "collision_prim_path": "/Human/CollisionCapsule",
+              "collision_shape": "hidden capsule",
+              "official_biped_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/Biped_Setup.usd",
+              "official_character_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/male_adult_police_04/male_adult_police_04.usd",
+              "path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/results/v8_official_scan_no_contact_preflight03/isaac/official_human_proxy.usda",
+              "radius_m": 0.3,
+              "redistribution": "official NVIDIA content is referenced, not vendored",
+              "sha256": "2654a66e04d84ddf38534f76bd7af9ec3652a9ec1d86a52c7b01bfbb5eb2ab02",
+              "source": "local hidden collision and sensor proxy; no visible character",
+              "total_envelope_height_m": 1.7
+            },
+            "registration": {
+              "physical_runtime_prim": "/World/envs/env_0/DynamicObstacle",
+              "physical_vertical_datum": "capsule centre",
+              "time_xy_heading_owner": "dynamic obstacle schedule",
+              "visual_runtime_prim": "/World/DynamicHumanVisual",
+              "visual_vertical_datum": "official shoe sole"
+            }
+          },
+          "lidar_transform_tracking": true,
+          "name": "v8_official_human_crossing_actor",
+          "planner_input": "rendered sensor hits only",
+          "prim_expr": "{ENV_REGEX_NS}/DynamicObstacle",
+          "radius_m": 0.3,
+          "rigid_body_mode": "kinematic obstacle with scheduled pose writes",
+          "runtime_prim_path": "/World/envs/env_0/DynamicObstacle",
+          "schedule_trigger": "first nonzero accepted body command",
+          "sensor_target_exprs": [
+            "{ENV_REGEX_NS}/DynamicObstacle/CollisionCapsule"
+          ],
+          "shape": "official_skinned_human_plus_capsule",
+          "speed_mps": 0.8,
+          "start_xy_m": [
+            -2.7,
+            2.0
+          ],
+          "terrain_clearance_m": 0.02,
+          "visible_part_names": [
+            "/World/DynamicHumanVisual"
+          ],
+          "wait_seconds": 0.0
+        },
+        "label": "Official human actual",
+        "path_source": "dynamic_obstacle_actual_pos_w PhysX readback",
+        "record_count": 1406,
+        "rendered": true
+      }
+    },
+    "v7_physical_dynamic_clearance": {
+      "expected": 0.05,
+      "passed": true,
+      "value": 0.10034174197175244
+    },
+    "v7_post_detection_scan_response": {
+      "expected": {
+        "maximum_response_seconds": 3.0,
+        "minimum_records": 1
+      },
+      "passed": true,
+      "value": {
+        "first_lidar_detection_sim_time_seconds": 0.029999999329447746,
+        "post_detection_plan_ids": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "response_latency_seconds": 0.09999999767055226
+      }
+    },
+    "v7_post_stop_drift": {
+      "expected": 0.35,
+      "passed": true,
+      "value": {
+        "final_goal_error_m": 0.1825916076063059,
+        "maximum_drift_m": 0.1366922719270818
+      }
+    },
+    "v7_stable_goal_stop_event": {
+      "expected": {
+        "goal_xy_tolerance_m": 0.25,
+        "stop_command_max_abs": 0.05,
+        "stop_planar_speed_max_mps": 0.15,
+        "stop_window_seconds": 2.0
+      },
+      "passed": true,
+      "value": {
+        "anchor_position_w_xy_m": [
+          0.4493419826030731,
+          3.004608631134033
+        ],
+        "end_index": 585,
+        "end_sim_time_seconds": 11.729999737814069,
+        "maximum_command_abs": 0.033874429762363434,
+        "maximum_goal_error_m": 0.0509055486106597,
+        "maximum_planar_speed_mps": 0.050023213799338245,
+        "start_index": 484,
+        "start_sim_time_seconds": 9.709999782964587
+      }
+    },
+    "v8_official_animation": {
+      "expected": {
+        "minimum_crossing_records": 50,
+        "minimum_distinct_walk_frames": 15,
+        "minimum_idle_records": 5,
+        "official_cache_metadata_on_every_record": true
+      },
+      "passed": true,
+      "value": {
+        "all_dynamic_records_have_official_animation": true,
+        "crossing_walk_record_count": 175,
+        "distinct_walk_frame_count": 68,
+        "idle_record_count": 1231
+      }
+    },
+    "v8_official_asset_files": {
+      "expected": {
+        "proxy_sha256": "identity/file parity",
+        "visual_sha256": "identity/file parity"
+      },
+      "passed": true,
+      "value": {
+        "proxy_copied_sha256": "2654a66e04d84ddf38534f76bd7af9ec3652a9ec1d86a52c7b01bfbb5eb2ab02",
+        "proxy_identity_sha256": "2654a66e04d84ddf38534f76bd7af9ec3652a9ec1d86a52c7b01bfbb5eb2ab02",
+        "visual_copied_sha256": "2925cf7fe1f47876e542f984f82b8edad9b3bec38b2c1bd5e363d3bf919bae9d",
+        "visual_identity_sha256": "2925cf7fe1f47876e542f984f82b8edad9b3bec38b2c1bd5e363d3bf919bae9d"
+      }
+    },
+    "v8_official_identity": {
+      "expected": {
+        "biped_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/Biped_Setup.usd",
+        "cache_content_sha256": "76c19b57ebd03e01820e6b9db79bde8f2f3e436302744ef457278af8d17ef5b3",
+        "cache_fps": 30,
+        "cache_idle_frame_count": 60,
+        "cache_joint_count": 101,
+        "cache_walk_frame_count": 90,
+        "character_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/male_adult_police_04/male_adult_police_04.usd",
+        "collision_shape": "hidden_capsule",
+        "direct_gpu_animation_graph_used": false,
+        "gait_status": "official_biped_retarget_cache_replay",
+        "local_procedural_gait": false,
+        "sensor_target_count": 1,
+        "shape": "official_skinned_human_plus_capsule",
+        "visible_part_names": [
+          "/World/DynamicHumanVisual"
+        ]
+      },
+      "passed": true,
+      "value": {
+        "biped_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/Biped_Setup.usd",
+        "cache_content_sha256": "76c19b57ebd03e01820e6b9db79bde8f2f3e436302744ef457278af8d17ef5b3",
+        "cache_fps": 30,
+        "cache_idle_frame_count": 60,
+        "cache_joint_count": 101,
+        "cache_walk_frame_count": 90,
+        "character_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/male_adult_police_04/male_adult_police_04.usd",
+        "collision_shape": "hidden_capsule",
+        "direct_gpu_animation_graph_used": false,
+        "gait_status": "official_biped_retarget_cache_replay",
+        "local_procedural_gait": false,
+        "sensor_target_count": 1,
+        "shape": "official_skinned_human_plus_capsule",
+        "visible_part_names": [
+          "/World/DynamicHumanVisual"
+        ]
+      }
+    },
+    "v8_official_registration": {
+      "expected": {
+        "all_dynamic_records_registered": true,
+        "maximum_foot_datum_error_m": 1e-06,
+        "maximum_visual_root_pose_error_m": 1e-06
+      },
+      "passed": true,
+      "value": {
+        "dynamic_record_count": 1406,
+        "maximum_foot_datum_error_m": 1.1102230246251565e-16,
+        "maximum_visual_root_pose_error_m": 0.0,
+        "record_count": 1406
+      }
+    },
+    "v8_official_sensor_visible_walk_and_overlay": {
+      "expected": {
+        "minimum_depth_walk_detections": 3,
+        "minimum_lidar_walk_detections": 5,
+        "overlay_colour_bgr": [
+          40,
+          40,
+          235
+        ],
+        "overlay_label": "Official human actual"
+      },
+      "passed": true,
+      "value": {
+        "depth_walk_detection_count": 13,
+        "lidar_walk_detection_count": 35,
+        "overlay_colour_bgr": [
+          40,
+          40,
+          235
+        ],
+        "overlay_label": "Official human actual"
+      }
+    },
+    "v8_official_stage_geometry": {
+      "expected": {
+        "collision_enabled": true,
+        "depth_transform_tracking": true,
+        "human_collision_hidden": true,
+        "human_parts_complete": true,
+        "kinematic_enabled": true,
+        "lidar_transform_tracking": true,
+        "official_sensor_proxy_is_capsule": true,
+        "official_visual_geometry_visible": true,
+        "official_visual_has_no_collision": true,
+        "official_visual_has_no_rigid_body": true,
+        "official_visual_root_exists": true,
+        "one_hidden_proxy_collision": true,
+        "physical_geometry_visibility": true,
+        "rigid_object_initialized": true,
+        "runtime_root_exists": true,
+        "visible_collision_free_official_character": true
+      },
+      "passed": true,
+      "value": {
+        "checks": {
+          "collision_enabled": true,
+          "depth_transform_tracking": true,
+          "human_collision_hidden": true,
+          "human_parts_complete": true,
+          "kinematic_enabled": true,
+          "lidar_transform_tracking": true,
+          "official_sensor_proxy_is_capsule": true,
+          "official_visual_geometry_visible": true,
+          "official_visual_has_no_collision": true,
+          "official_visual_has_no_rigid_body": true,
+          "official_visual_root_exists": true,
+          "physical_geometry_visibility": true,
+          "rigid_object_initialized": true,
+          "runtime_root_exists": true
+        },
+        "collision_prim_paths": [
+          "/World/envs/env_0/DynamicObstacle/CollisionCapsule"
+        ],
+        "configured_prim_expr": "/World/envs/env_.*/DynamicObstacle",
+        "depth_targets": [
+          {
+            "prim_expr": "/World/ground",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_000",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_001",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_002",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_003",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_004",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_005",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_006",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_007",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_008",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_009",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_010",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/DynamicObstacle/CollisionCapsule",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/TORSO/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/pro_interface_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/sensor_carrier_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/s410_guard_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/mid360_body_link/visuals",
+            "track_mesh_transforms": true
+          }
+        ],
+        "expected_sensor_target_exprs": [
+          "{ENV_REGEX_NS}/DynamicObstacle/CollisionCapsule"
+        ],
+        "ground_truth_use": "evidence only; never planner input or robot steering",
+        "lidar_targets": [
+          {
+            "prim_expr": "/World/ground",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_000",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_001",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_002",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_003",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_004",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_005",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_006",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_007",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_008",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_009",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/forest_collision/proxy_010",
+            "track_mesh_transforms": false
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/DynamicObstacle/CollisionCapsule",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/TORSO/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/pro_interface_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/sensor_carrier_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/s410_guard_link/visuals",
+            "track_mesh_transforms": true
+          },
+          {
+            "prim_expr": "/World/envs/env_.*/Robot/d435i_body_link/visuals",
+            "track_mesh_transforms": true
+          }
+        ],
+        "official_visual_collision_prim_paths": [],
+        "official_visual_geometry_prim_paths": [
+          "/World/DynamicHumanVisual/OfficialCharacter/male_adult_police_04/ManRoot/male_adult_police_04/male_adult_police_04/opaque__plastic__sunglasses",
+          "/World/DynamicHumanVisual/OfficialCharacter/male_adult_police_04/ManRoot/male_adult_police_04/male_adult_police_04/opaque__leather__policeshoes",
+          "/World/DynamicHumanVisual/OfficialCharacter/male_adult_police_04/ManRoot/male_adult_police_04/male_adult_police_04/opaque__fabric__policepants",
+          "/World/DynamicHumanVisual/OfficialCharacter/male_adult_police_04/ManRoot/male_adult_police_04/male_adult_police_04/opaque__fabric__policeshirt",
+          "/World/DynamicHumanVisual/OfficialCharacter/male_adult_police_04/ManRoot/male_adult_police_04/male_adult_police_04/trans__organic__whitemaleskin"
+        ],
+        "official_visual_runtime_prim": "/World/DynamicHumanVisual",
+        "passed": true,
+        "runtime_prim_path": "/World/envs/env_0/DynamicObstacle",
+        "visible_collision_prim_paths": [],
+        "visible_geometry_prim_paths": [],
+        "visible_human_part_names": []
+      }
+    },
+    "video_bytes": {
+      "expected": 100000,
+      "passed": true,
+      "value": 12592855
+    },
+    "video_duration": {
+      "expected": 25.0,
+      "passed": true,
+      "value": 27.58823529411765
+    },
+    "video_frames": {
+      "expected": 425,
+      "passed": true,
+      "value": 469
+    },
+    "video_hash": {
+      "expected": "a0a8a72becae97c486840a60777d9518caca1522272b48f57665810ccedca63f",
+      "passed": true,
+      "value": "a0a8a72becae97c486840a60777d9518caca1522272b48f57665810ccedca63f"
+    },
+    "video_regular_file": {
+      "expected": true,
+      "passed": true,
+      "value": true
+    },
+    "watchdog_events": {
+      "expected": 0,
+      "passed": true,
+      "value": 0
+    }
+  },
+  "claim": "single-seed Foxy-SCAN to V12-policy Lite3-Pro-sensor-rig reactive official-human dynamic-obstacle forest simulation candidate",
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "command_age_p95_ms": 37.0852,
+    "detour_min_abs_y_m": 3.50616192817688,
+    "dynamic_obstacle_enabled": true,
+    "final_position_world_m": [
+      0.321833074092865,
+      2.9600470066070557,
+      0.7850408554077148
+    ],
+    "forest_navigation_enabled": true,
+    "goal_xy_error_m": 0.1825916076063059,
+    "human_obstacle_enabled": true,
+    "max_nonfoot_contact_n": 0.0,
+    "policy_rate_hz": 50.00000111758712,
+    "rosbag_bytes": 376832,
+    "sensor_rate_hz": 10.000000223517423,
+    "video_sha256": "a0a8a72becae97c486840a60777d9518caca1522272b48f57665810ccedca63f"
+  }
+}
