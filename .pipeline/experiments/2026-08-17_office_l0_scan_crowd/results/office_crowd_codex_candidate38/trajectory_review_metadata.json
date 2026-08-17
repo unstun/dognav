@@ -1,0 +1,129 @@
+{
+  "claim_boundary": "Derived human-review overlay from the hashed raw SCAN Bspline, Isaac PhysX metrics, run identity, and untouched raw simulator MP4.",
+  "colours_bgr": {
+    "dynamic_obstacle_actual": [
+      0,
+      120,
+      255
+    ],
+    "isaac_actual": [
+      255,
+      220,
+      40
+    ],
+    "primary_obstacle": [
+      40,
+      70,
+      245
+    ],
+    "scan_planned": [
+      80,
+      220,
+      80
+    ]
+  },
+  "dynamic_obstacle": {
+    "identity": null,
+    "label": "Dynamic obstacle actual",
+    "path_source": "dynamic_obstacle_actual_pos_w PhysX readback",
+    "record_count": 0,
+    "rendered": false
+  },
+  "input_sha256": {
+    "metrics": "12065fa278a470ef0e752b3c886f06fe25e8bb487985579a6889a43cbf685656",
+    "raw_video": "010acee0275475a2bd3661f6db7743adb64be25cc4fcaa3e9fe8ac04a00bed31",
+    "ros_events": "7b15be33b15ebfb84a2c2b594114bf365c2cdfa33d7236695b57ae24de346546",
+    "run_identity": "379f5984524cead5fa422f23c0e78c4f47c0bb4bc4d19f6f53626a846b93d047"
+  },
+  "mapping": {
+    "frame_stride": 5,
+    "frame_to_sim_time": "metrics rows where step modulo video frame_stride equals zero",
+    "maximum_plan_pose_alignment_error_ms": 99.999998,
+    "plan_to_sim_time": "bracketed interpolation on simulator-stamped body_pose receipts"
+  },
+  "output": {
+    "bytes": 14183836,
+    "encoder": "ffmpeg libx264 yuv420p",
+    "fps": 12.0,
+    "frame_count": 601,
+    "path": "closed_loop_review_overlay.mp4",
+    "resolution": [
+      1280,
+      720
+    ],
+    "sha256": "38620cc2272f67d713c7115672811b8b4e6dbe4bc504c0fecb4cf3e5d06b9db3"
+  },
+  "plans": [
+    {
+      "effective_sim_time_seconds": 0.13548214036617806,
+      "receipt_alignment_error_ms": 99.999997,
+      "trajectory_id": 1
+    },
+    {
+      "effective_sim_time_seconds": 0.1666118729361618,
+      "receipt_alignment_error_ms": 99.999997,
+      "trajectory_id": 2
+    },
+    {
+      "effective_sim_time_seconds": 8.293474072099482,
+      "receipt_alignment_error_ms": 99.999997,
+      "trajectory_id": 3
+    },
+    {
+      "effective_sim_time_seconds": 15.066267562917833,
+      "receipt_alignment_error_ms": 99.999997,
+      "trajectory_id": 4
+    },
+    {
+      "effective_sim_time_seconds": 24.647342486604536,
+      "receipt_alignment_error_ms": 99.999998,
+      "trajectory_id": 5
+    },
+    {
+      "effective_sim_time_seconds": 25.471584422964,
+      "receipt_alignment_error_ms": 99.999998,
+      "trajectory_id": 6
+    },
+    {
+      "effective_sim_time_seconds": 25.845250858772403,
+      "receipt_alignment_error_ms": 99.999998,
+      "trajectory_id": 7
+    },
+    {
+      "effective_sim_time_seconds": 26.114408684642235,
+      "receipt_alignment_error_ms": 99.999997,
+      "trajectory_id": 8
+    },
+    {
+      "effective_sim_time_seconds": 27.088316452943026,
+      "receipt_alignment_error_ms": 99.999998,
+      "trajectory_id": 9
+    },
+    {
+      "effective_sim_time_seconds": 29.04771975145021,
+      "receipt_alignment_error_ms": 99.999997,
+      "trajectory_id": 10
+    }
+  ],
+  "plot_bounds_world_xy_m": [
+    -17.532568349732138,
+    -5.6678053710814424,
+    -2.5427156819929704,
+    15.02751578320382
+  ],
+  "sample_count_per_trajectory": 160,
+  "schema_version": 1,
+  "trajectory_count": 10,
+  "trajectory_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ]
+}

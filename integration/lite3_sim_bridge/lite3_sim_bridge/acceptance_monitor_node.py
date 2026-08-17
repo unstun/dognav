@@ -13,7 +13,8 @@ from rclpy.qos import qos_profile_sensor_data
 from scan_planner_msgs.msg import Bspline
 from sensor_msgs.msg import PointCloud2
 
-from .monitor_core import AcceptanceAccumulator
+from .monitor_core import AcceptanceAccumulator, should_record_periodic_event
+from .voxel_review import pointcloud2_xyz
 
 
 def _stamp_ns(message) -> int:
@@ -44,6 +45,20 @@ class AcceptanceMonitorNode(Node):
         self._accumulator = AcceptanceAccumulator()
         self._closed = False
         self._started_ns = time.monotonic_ns()
+        self._occupancy_sample_limit = int(
+            self.declare_parameter("occupancy_sample_limit", 5000).value
+        )
+        occupancy_period_seconds = float(
+            self.declare_parameter("occupancy_event_period_seconds", 0.1).value
+        )
+        if self._occupancy_sample_limit <= 0:
+            raise ValueError("occupancy_sample_limit must be positive")
+        if occupancy_period_seconds <= 0.0:
+            raise ValueError("occupancy_event_period_seconds must be positive")
+        self._occupancy_event_period_ns = int(occupancy_period_seconds * 1.0e9)
+        self._last_occupancy_stamp_ns = 0
+        self._latest_body_stamp_ns = 0
+        self._latest_body_receipt_ns = 0
 
         self.create_subscription(
             Odometry, "/quad_0/body_pose", self._body_pose, qos_profile_sensor_data
@@ -56,6 +71,12 @@ class AcceptanceMonitorNode(Node):
         )
         self.create_subscription(Twist, "/quad_0/cmd_vel", self._command, 50)
         self.create_subscription(Bspline, "/planning/bspline", self._bspline, 20)
+        self.create_subscription(
+            PointCloud2,
+            "/grid_map/occupancy_inflate",
+            self._occupancy_inflate,
+            qos_profile_sensor_data,
+        )
         self.get_logger().info(
             f"Acceptance monitor writing {event_path} and {summary_path}"
         )
@@ -67,6 +88,8 @@ class AcceptanceMonitorNode(Node):
     def _body_pose(self, message: Odometry) -> None:
         receipt = time.monotonic_ns()
         stamp = _stamp_ns(message)
+        self._latest_body_stamp_ns = stamp
+        self._latest_body_receipt_ns = receipt
         position = message.pose.pose.position
         values = (position.x, position.y, position.z)
         with self._lock:
@@ -124,6 +147,12 @@ class AcceptanceMonitorNode(Node):
 
     def _bspline(self, message: Bspline) -> None:
         receipt = time.monotonic_ns()
+        simulator_stamp = self._latest_body_stamp_ns
+        simulator_stamp_receipt_age_s = (
+            (receipt - self._latest_body_receipt_ns) * 1.0e-9
+            if self._latest_body_receipt_ns > 0
+            else None
+        )
         start_time_ns = int(message.start_time.sec) * 1_000_000_000 + int(
             message.start_time.nanosec
         )
@@ -137,6 +166,8 @@ class AcceptanceMonitorNode(Node):
                 {
                     "kind": "bspline",
                     "receipt_monotonic_ns": receipt,
+                    "simulator_stamp_ns": simulator_stamp,
+                    "simulator_stamp_receipt_age_s": simulator_stamp_receipt_age_s,
                     "trajectory_id": int(message.traj_id),
                     "start_time_ns": start_time_ns,
                     "order": int(message.order),
@@ -145,6 +176,44 @@ class AcceptanceMonitorNode(Node):
                     "control_point_count": len(control_points),
                     "yaw_points": [float(value) for value in message.yaw_pts],
                     "yaw_dt": float(message.yaw_dt),
+                }
+            )
+
+    def _occupancy_inflate(self, message: PointCloud2) -> None:
+        """Record a bounded sample of SCAN's real inflated occupancy output."""
+
+        receipt = time.monotonic_ns()
+        source_stamp = _stamp_ns(message)
+        simulator_stamp = self._latest_body_stamp_ns
+        if simulator_stamp <= 0:
+            return
+        if not should_record_periodic_event(
+            self._last_occupancy_stamp_ns,
+            simulator_stamp,
+            self._occupancy_event_period_ns,
+        ):
+            return
+        self._last_occupancy_stamp_ns = simulator_stamp
+        points = pointcloud2_xyz(message)
+        source_count = int(len(points))
+        if source_count > self._occupancy_sample_limit:
+            stride = max(1, source_count // self._occupancy_sample_limit)
+            points = points[::stride][: self._occupancy_sample_limit]
+        with self._lock:
+            self._write(
+                {
+                    "kind": "occupancy_inflate",
+                    "receipt_monotonic_ns": receipt,
+                    "stamp_ns": simulator_stamp,
+                    "source_stamp_ns": source_stamp,
+                    "point_count": source_count,
+                    "sample_count": int(len(points)),
+                    "sample_stride": (
+                        1
+                        if source_count <= self._occupancy_sample_limit
+                        else max(1, source_count // self._occupancy_sample_limit)
+                    ),
+                    "points_xyz": points.astype(float, copy=False).tolist(),
                 }
             )
 

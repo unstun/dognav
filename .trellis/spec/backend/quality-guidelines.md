@@ -198,6 +198,146 @@ physical LiDAR hit -> optional bounded shadow at voxel resolution
                    -> independently timed trajectory safety check
 ```
 
+## Scenario: Preview A Large Official Isaac USD Scene
+
+### 1. Scope / Trigger
+
+Use this contract before selecting an official Warehouse, Office, Hospital, or
+other composite USD as a navigation scene. A source URI resolving and a single
+attractive image do not establish that the complete stage is practical on the
+target GPU or physically valid for a quadruped.
+
+### 2. Signatures
+
+```text
+capture_official_scene.py
+  --scene <catalog key>
+  --output-dir <new run directory>
+  [--robot-asset <pinned URDF> --robot-position X Y Z]
+  [--hide-prim <source prim>]
+  [--crop-center X Y --crop-radius R --subset-reference]
+  [--clay]
+  [--camera-eye X Y Z --camera-target X Y Z]
+```
+
+Each output directory contains raw PNGs and `capture_metadata.json` with the
+source URI, runtime bounds, stage counts, source-composition mode, hidden and
+selected source prims, camera poses, optional robot identity, file hashes, and
+claim boundary.
+
+### 3. Contracts
+
+- Keep the official scene URI immutable and record the exact Isaac asset-pack
+  version. Do not copy NVIDIA scene content into the repository.
+- Use a newly created offscreen camera from a recorded eye/target pose. A source
+  Camera prim may be inspected for pose, but must not be assumed to produce an
+  operational Replicator render product.
+- If the source stage packages distant context with the navigation scene,
+  inspect the hierarchy before rendering. A local subset may reference direct
+  source prims individually; it must be labeled a subset and may not be called
+  the complete scene.
+- Treat spatial overlap as a candidate selector, not an allowlist. A large
+  backdrop or instanced context prim can overlap the crop even when it is not
+  part of the navigable interior. Record and review every selected direct-child
+  path, support explicit exclusions, and keep visual background composition
+  separate from later collision and route composition.
+- A complete-source first-frame timeout does not prove that source materials
+  are unusable. Retry a bounded, source-prim subset with source materials before
+  falling back to clay, and retain the complete-source timeout as negative
+  evidence.
+- For a multi-level global tour, derive every declared floor from authored
+  floor-surface bounds. A staircase, elevator shaft, wall, or overall stage
+  height does not establish another floor. Record floor-surface count, XY
+  bounds, floor Z, and visible source prims for every video segment.
+- If ceilings or inactive levels are hidden to expose a floor plan, record the
+  visibility rule and label the result a per-floor global visualization. It is
+  not an unchanged complete-scene camera view or collision-completeness proof.
+- Clay material overrides change appearance only. Record them and never use a
+  clay preview as source-material evidence.
+- A fixed-base Lite3 is a scale reference only. It is not articulated
+  locomotion, contact, sensor, or planner evidence.
+- Bound every first-frame attempt. Preserve timeouts rather than repeatedly
+  extending the limit until an image appears.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required behavior |
+|---|---|
+| Official URI does not resolve | Stop before stage creation |
+| Full scene exceeds the frozen first-frame limit | Preserve the log; classify runtime preparation as failed |
+| Root bounds are dominated by distant context | Inspect children; hide or source-reference a recorded local subset |
+| Spatial crop retains a giant background/context prim | Record the selected path, explicitly exclude or separately classify it, and rerender |
+| Stair height suggests a level with no authored floor surface | Reject the level; preserve the failed attempt and rebuild the floor inventory |
+| Upper floors or ceilings occlude a global floor-plan view | Hide only the recorded inactive-level/ceiling prims and publish per-floor visibility metadata |
+| Direct source Camera render product produces no frame | Recreate an offscreen camera from a recorded pose |
+| Camera is inside a wall, roof, or prop | Preserve the view as rejected and use a new recorded pose |
+| Key obstacle is visible but collider coverage is unknown | Keep the result visual-only; open a collision gate separately |
+| Optional robot is fixed-base | Label visual scale reference; prohibit locomotion claims |
+
+### 5. Good / Base / Bad Cases
+
+- **Good:** complete source Warehouse, source materials, fixed-base Lite3 scale
+  view, decoded PNGs, exact URI, stage inventory, bounded runtime, and hashes.
+- **Base:** a source-prim Office or Hospital subset with clay materials can be
+  used for geometry triage when the complete source scene times out.
+- **Bad:** rendering an unbounded composite stage until it eventually responds,
+  hiding the timeout, and reporting the resulting image as an Isaac Lab
+  navigation integration.
+
+### 6. Tests Required
+
+- Unit-test the scene catalog, URI ordering, bounds validation, and deterministic
+  camera derivation.
+- Decode every selected PNG and verify byte size and SHA-256 against metadata.
+- Assert that subset runs record every selected and hidden source prim and that
+  complete-source and subset labels cannot be confused.
+- Assert that declared excluded context prims are absent from
+  `selected_source_prims`; inspect the selected list before accepting crop
+  bounds as a local navigation region.
+- Exercise source-material subset rendering independently of the
+  complete-source result; a complete timeout must not force clay mode.
+- Unit-test floor assignment and camera interpolation. Runtime metadata must
+  prove each declared floor has at least one source floor mesh and positive XY
+  extent.
+- Decode the complete video, verify codec/rate/resolution/frame count and
+  local/remote hashes, run bounded black-frame detection, and review a regular
+  contact sheet before presenting a global-tour candidate.
+- Assert the optional URDF hash, spawn position, and fixed-base label.
+- Preserve failed logs for viewport capture, complete-scene timeout, bad camera,
+  and over-large crop attempts.
+- Before navigation, run separate collision, articulated locomotion, sensor,
+  and route gates; preview success cannot satisfy them.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```text
+office.usd resolved -> screenshot exists -> Office is ready for Lite3 navigation
+```
+
+#### Correct
+
+```text
+official URI -> bounded hierarchy inspection -> bounded visual preview
+             -> human scene selection
+             -> collision/contact gate -> sensor gate -> route/SCAN gate
+```
+
+```text
+complete source timeout -> bounded source-material subset -> human appearance check
+                        -> clay only if the source-material subset also fails
+```
+
+```text
+stage Z extent or stairs -> assume four floors -> global-tour claim
+```
+
+```text
+source floor-mesh bounds -> admit B1/L0/L1 only -> per-floor visibility record
+                         -> decoded moving-camera video -> human review
+```
+
 ## Scenario: Compose a Pinned Locomotion Policy with a Sensor-Rig URDF
 
 ### 1. Scope / Trigger
@@ -755,6 +895,78 @@ command-relative PhysX body -> transform-tracked sensor hits -> SCAN occupancy
   -> synchronized clearance/contact evidence
 ```
 
+## Scenario: Preview a Run-Start Constant-Velocity Pedestrian
+
+### 1. Scope / Trigger
+
+Use this contract only for an auxiliary visual trial where the pedestrian must
+move independently of the robot command. It is not the frozen reactive-obstacle
+acceptance schedule.
+
+### 2. Signatures
+
+```text
+--dynamic-obstacle-schedule-trigger first_nonzero_body_command|run_start
+SCAN_DYNAMIC_OBSTACLE_SCHEDULE_TRIGGER=first_nonzero_body_command|run_start
+```
+
+### 3. Contracts
+
+- `first_nonzero_body_command` remains the default and the only accepted mode
+  for the frozen V7/V8 reactive-obstacle candidate.
+- `run_start` initializes the pedestrian schedule immediately before the
+  closed-loop stepping loop, independently of the received robot command.
+- An immediate constant-velocity preview sets wait and hold to zero and makes
+  the endpoint far enough that the actor does not park on the robot route
+  during the rendered interval.
+- Run identity, effective input, and per-step metrics record the trigger mode.
+  A `run_start` preview must not produce or consume an acceptance report.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required behavior |
+|---|---|
+| Trigger value is unknown | Reject before Isaac startup |
+| `run_start` is used on a non-dynamic course | Reject before Isaac startup |
+| First pedestrian motion occurs while robot command is zero | Record as expected independent-motion evidence |
+| Crossing speed or lateral coordinate varies | Reject the constant-velocity claim |
+| Short endpoint makes the person park in the robot route | Preserve as a collision negative; extend the preview route rather than hiding the contact |
+| Acceptance is requested with `run_start` | Reject the result as outside the frozen contract |
+
+### 5. Good / Base / Bad Cases
+
+- **Good:** explicit `run_start`, zero wait/hold, constant recorded straight-line
+  speed, long endpoint, zero contact, local evidence, and human-only review.
+- **Base:** command-relative triggering remains the accepted reactive crossing.
+- **Bad:** silently change the default trigger, stop the actor in the robot
+  route, or report a run-start preview as the frozen avoidance candidate.
+
+### 6. Tests Required
+
+- Unit-test both trigger identities and rejection of unknown values.
+- Assert the first nonzero pedestrian velocity precedes the first nonzero robot
+  command, all moving samples have the declared speed, the transverse coordinate
+  is constant, the longitudinal coordinate is monotonic, and hold/park counts
+  are zero for the rendered interval.
+- Preserve a collision-producing short-endpoint run when it informed the final
+  route, and assert the selected preview has zero non-foot contact and positive
+  synchronized clearance.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```text
+run_start + short route -> person parks in front of Lite3 -> collision hidden
+```
+
+#### Correct
+
+```text
+run_start + zero wait/hold + extended straight route
+  -> constant pedestrian motion -> explicit non-acceptance visual preview
+```
+
 ## Scenario: Replace a Dynamic Primitive with an Official Animated Human
 
 ### 1. Scope / Trigger
@@ -955,4 +1167,163 @@ if (!preset_started_ && grid_map->hasOccupancyObservation()) {
   preset_started_ = true;
   planGlobalTrajbyGivenWps();
 }
+```
+
+## Scenario: Office L0 Crowd Simulation and Long-Route Waypoint Sequencing
+
+### 1. Scope / Trigger
+
+Use this contract when deploying the SCAN planner in complex indoor architectural
+USD scenes (such as Office L0) with long routes (>20 m) and multiple moving pedestrians.
+Visual floor geometry in USD assets does not guarantee collision support; long routes
+cannot rely on single-shot global planning across occluded indoor corridors; and dynamic
+crowd obstacles require strict swept-route clearances and map-version gated replanning.
+
+### 2. Signatures
+
+- Preflight route and crowd contract:
+
+  ```python
+  def routes_from_preflight(payload: Mapping[str, object]) -> tuple[OfficePedestrianRoute, ...]
+  def pairwise_clearance_precheck(routes: Sequence[OfficePedestrianRoute], duration_s: float, dt_s: float) -> dict
+  ```
+
+- Physics wrapper and floor qualification:
+
+  ```text
+  office_l0_physics_wrapper01.usda (triangle-mesh collision API on source floor/wall prims)
+  office_l0_floor_drop02.json (static ball-drop and robot-support qualification)
+  ```
+
+- Planner sparse waypoint sequencing:
+
+  ```yaml
+  fsm.navi_mode: 2
+  fsm.waypoints: [-11.625, 10.125, 0.85, -8.375, 10.125, 0.85, -8.375, 6.375, 0.85, -8.375, -0.625, 0.85]
+  fsm.planning_horizon: 8.0
+  grid_map.sliding_map_size_x: 16.0
+  grid_map.sliding_map_size_y: 16.0
+  ```
+
+- Acceptance and repeatability interfaces:
+
+  ```text
+  office_crowd_acceptance.py --run-dir RUN --config CONFIG \
+    --route-preflight ROUTE --planner-config PLANNER --overlay-video MP4
+  office_crowd_repeatability.py --run-a RUN_A --run-b RUN_B \
+    --acceptance-config CONFIG --route-preflight ROUTE --planner-config PLANNER
+  ```
+
+### 3. Contracts
+
+- **Visual Floors Are Not Collision Proof**: Authored indoor USD visual meshes
+  often lack PhysX collision APIs or contain non-collidable display surfaces.
+  Every traversable floor surface must be qualified via explicit triangle-mesh
+  physics wrappers and multi-point drop tests before robot placement.
+- **TerrainImporter Raycast Target Caching**: In scenes with thousands of source
+  prims, ray-cast sensor backends must cache the filtered static mesh acceleration
+  structure at startup rather than querying the full scene graph per frame.
+- **Sparse Waypoint Sequencing for Long Routes**: Dense global paths must never
+  be sent to the local controller or masquerade as planned trajectories. AABB
+  preflight only validates reachability and provides sparse (~7 m) intermediate
+  waypoint goals; SCAN must generate all runtime local B-spline trajectories from
+  sliding-map occupancy and truth pose feedback.
+- **Map-Version Gated Replan Retries**: When moving obstacles temporarily block
+  corridor transitions, A* search failures must trigger bounded retries with updated
+  sliding-map occupancy rather than stale-start cascades or immediate aborts.
+- **Pedestrian Route Margins**: All crossing and background pedestrian endpoints
+  and trajectories must maintain verified static clearance from walls/furniture
+  and pairwise clearance from each other, ensuring crossing endpoints remain outside
+  the robot envelope.
+- **Sensor-Causal Replanning**: A reactive replan requires the same named person
+  to be visible in both LiDAR and depth evidence, to approach the remaining
+  continuous active B-spline, to have an actually captured SCAN inflated-occupancy
+  sample near its position, and to be followed by a same-target B-spline whose
+  geometry changes by the declared threshold. Ground-truth person circles are
+  evaluation overlays only and must be labeled as such.
+- **Simulator-Time Alignment**: Under sub-real-time simulation, map ROS event
+  receipt time to simulator time by bracketing body-pose receipts and interpolating
+  their simulator stamps. Wall-clock distance is not a valid sub-second causal
+  tolerance. Record the bracketing simulator-time span and reject events whose
+  mapping uncertainty exceeds the frozen limit.
+- **Same-Input Repeatability**: Hash the effective acceptance, route, and planner
+  inputs for each run. Compare a normalized run identity that excludes only the
+  run ID, output paths, and identity's own derived hash. Two reports that merely
+  share a scenario name are not same-input evidence.
+- **Remote Copy Parity**: The local bridge source, Isaac execution copy, and Foxy
+  workspace copy must have matching source hashes before a formal run. Rebuilding
+  only one remote copy does not establish which monitor or bridge actually ran.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required behavior |
+|---|---|
+| Floor visual mesh lacks collision API | Generate physics wrapper with triangle-mesh collider; verify drop test |
+| Dense AABB preflight path used as command | Reject; use sparse waypoints only with SCAN B-spline generation |
+| Crossing pedestrian enters active corridor | SCAN updates sliding occupancy and replans/slows reactively |
+| Replan fails temporarily during occupancy shift | Keep active safe trajectory or retry on next map version; do not abort |
+| Person truth is near a plan but no captured SCAN occupancy is near the person | Do not count a causal replan |
+| Event receipt and body pose are aligned only in wall time | Recompute using bracketed simulator stamps or fail the causal gate |
+| Effective input or normalized identity hash differs between repeats | Fail the repeatability gate |
+| Isaac and Foxy execution copies differ from local source | Stop, resync both copies, rebuild, and record hashes |
+| Robot-person conservative clearance < 0.15 m | Fail automated acceptance gate |
+| Watchdog events > 0 or non-foot contact > 75 N | Fail automated acceptance gate |
+
+### 5. Good / Base / Bad Cases
+
+- **Good:** triangle-mesh qualified floor wrapper, sparse waypoint sequencing into
+  SCAN, live sliding-map B-splines, 8 animated pedestrians observed via LiDAR/depth,
+  positive clearance, zero non-foot collisions, and two same-input passing runs.
+- **Base:** static-obstacle corridor navigation without moving pedestrians.
+- **Bad:** feeding precomputed A* waypoints directly into the locomotion controller
+  or claiming social navigation without sensor-causal evidence.
+
+### 6. Tests Required
+
+- Assert the route preflight, SCAN planner YAML, and acceptance config contain
+  exactly the same ordered sparse waypoints.
+- Unit-test per-person LiDAR/depth counts, rate-limited capture of
+  `/grid_map/occupancy_inflate`, remaining continuous B-spline distance, and
+  same-target geometric-difference calculation.
+- Use adversarial causal fixtures: truth-only proximity, sensor-only detection,
+  stale occupancy, a different target, and an unchanged replacement must all fail.
+- Test simulator-time interpolation with deliberately slow wall-clock receipts;
+  the mapped simulator stamp must remain correct and its bracketing simulator
+  span must control acceptance.
+- Assert minimum simulator duration, timestamp advancement, maximum physical
+  step displacement, command bounds, cloud nonempty fraction, terminal command
+  and speed stop windows, video frame count, and collision/watchdog gates.
+- Run two complete closed loops, then assert identical effective-input and
+  normalized-identity hashes, independent goal/collision/clearance success, and
+  at least one causal replacement in each run.
+- Compare SHA-256 for local source, both remote execution copies, configs,
+  reports, raw videos, and review overlays before updating the task criterion.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```text
+person ground-truth pose near sampled polyline + later trajectory publication
+  -> call it pedestrian-caused avoidance
+```
+
+```text
+same scenario label + two PASS reports -> call inputs identical
+```
+
+#### Correct
+
+```text
+named LiDAR/depth detection
+  -> named person approaches remaining continuous active B-spline
+  -> captured SCAN inflated occupancy is near that person
+  -> same-target later B-spline changes geometry
+  -> count one sensor-causal reactive replacement
+```
+
+```text
+hash effective configs + normalize only run/output identity fields
+  -> compare hashes
+  -> require both runs to pass independently
 ```

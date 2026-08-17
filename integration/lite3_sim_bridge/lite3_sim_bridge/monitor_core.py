@@ -5,6 +5,16 @@ import math
 from typing import Dict, Optional, Sequence, Set, Tuple
 
 
+def should_record_periodic_event(
+    previous_receipt_ns: int, receipt_ns: int, period_ns: int
+) -> bool:
+    """Return whether a bounded-rate evidence event is due."""
+
+    if receipt_ns <= 0 or period_ns <= 0 or previous_receipt_ns < 0:
+        raise ValueError("periodic event timestamps and period must be positive")
+    return previous_receipt_ns == 0 or receipt_ns - previous_receipt_ns >= period_ns
+
+
 @dataclass
 class TopicStats:
     count: int = 0

@@ -8,6 +8,7 @@ from lite3_sim_bridge.run_isaac_v12_fallback import (
     OFFICIAL_HUMAN_BIPED_URL,
     OFFICIAL_HUMAN_CHARACTER_URL,
     _load_official_human_animation_cache,
+    _official_human_clip_name,
 )
 
 
@@ -77,3 +78,26 @@ def test_official_human_cache_rejects_non_unit_quaternion(tmp_path):
 
     with pytest.raises(AdapterFailure, match="idle Biped cache quaternions are not unit"):
         _load_official_human_animation_cache(cache_path)
+
+
+@pytest.mark.parametrize(
+    ("phase", "expected"),
+    [
+        ("waiting", "idle"),
+        ("crossing", "walk"),
+        ("holding", "idle"),
+        ("parked", "idle"),
+    ],
+)
+def test_official_human_phase_conditioned_clip_selection(phase, expected):
+    assert _official_human_clip_name(phase, "phase_conditioned") == expected
+
+
+@pytest.mark.parametrize("phase", ["waiting", "crossing", "holding", "parked"])
+def test_official_human_continuous_walk_uses_walk_in_every_phase(phase):
+    assert _official_human_clip_name(phase, "continuous_walk") == "walk"
+
+
+def test_official_human_clip_selection_rejects_unknown_mode():
+    with pytest.raises(AdapterFailure, match="unsupported official human animation mode"):
+        _official_human_clip_name("waiting", "unknown")

@@ -68,7 +68,7 @@ class TrajectoryReviewTest(unittest.TestCase):
                 control_points=((0.0, 0.0, 0.0),) * 4,
             )
 
-    def test_associates_plan_with_nearest_simulator_pose_receipt(self):
+    def test_interpolates_plan_between_simulator_pose_receipts(self):
         events = [
             {
                 "kind": "body_pose",
@@ -95,7 +95,12 @@ class TrajectoryReviewTest(unittest.TestCase):
         plans = associate_bspline_sim_times(events, sample_count=5)
         self.assertEqual(len(plans), 1)
         self.assertEqual(plans[0]["trajectory_id"], 7)
-        self.assertAlmostEqual(plans[0]["effective_sim_time_seconds"], 0.2)
+        self.assertAlmostEqual(plans[0]["effective_sim_time_seconds"], 0.18)
+        self.assertEqual(
+            plans[0]["mapping_method"],
+            "bracketed_simulator_time_interpolation",
+        )
+        self.assertAlmostEqual(plans[0]["receipt_alignment_error_ms"], 100.0)
         self.assertEqual(len(plans[0]["sampled_points"]), 5)
 
     def test_selects_exact_metrics_rows_used_for_video_frames(self):

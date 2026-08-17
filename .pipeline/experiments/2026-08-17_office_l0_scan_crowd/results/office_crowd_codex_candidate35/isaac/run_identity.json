@@ -1,0 +1,951 @@
+{
+  "acceptance_config_sha256": "14955befcf9841f97253c8c7907d173dbb212b70b4e907e5ae131a10de3fbc4d",
+  "candidate": "V12 model_149999 on Lite3 Pro sensor rig SCAN Office L0 eight-person trial",
+  "checkpoint_sha256": "a9d31dce90e6e8c564d955e473d6d3502f893d7ef5a5c1efaf5bb50d6b3d5450",
+  "command_limits": [
+    0.5,
+    0.35,
+    1.0
+  ],
+  "command_schedule": [
+    {
+      "command": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "connected": true,
+      "duration_seconds": 4.0,
+      "name": "office_settle_zero"
+    }
+  ],
+  "config_sha256": "1e5cbb173e79e1d82671682854f3779310307b540812426dae05ad9cb8c84f98",
+  "course": {
+    "name": "office_l0_crowd",
+    "obstacle_center_m": null,
+    "obstacle_size_m": null,
+    "office_goal_xy_m": [
+      -8.375,
+      -0.625
+    ],
+    "office_route_path": "/home/sun/machine-dog-nav-runs/2026-08-17_office_l0_scan_crowd/results/office_l0_route_preflight07.json",
+    "office_route_sha256": "9d5a23b0213de5745514ed0adee8517f7a24efddc57d1652e0428a376d562a1e",
+    "office_start_xy_m": [
+      -15.625,
+      13.125
+    ],
+    "office_usd_path": "/home/sun/machine-dog-nav-runs/2026-08-17_office_l0_scan_crowd/results/office_l0_physics_wrapper01.usda",
+    "office_usd_sha256": "5ac29c16ab94a2a2e6bbde8cd7f3907d1e602164604f998070669fa176d9de47"
+  },
+  "depth_camera": {
+    "backend": "IsaacLab MultiMeshRayCasterCameraCfg",
+    "declared_device": "D435i-like provisional ray-cast depth",
+    "focal_length": 24.0,
+    "height": 58,
+    "horizontal_aperture": 45.55,
+    "intrinsics_status": "provisional; no live D435i depth CameraInfo is available. The recorded color CameraInfo is intentionally not reused.",
+    "maximum_range_m": 5.0,
+    "minimum_range_m": 0.1,
+    "navigation_use": "generated and logged concurrently; not fused into SCAN in this preview",
+    "orientation_convention": "ros optical frame",
+    "parent_frame": "d435i_depth_optical_frame",
+    "period_seconds": 0.1,
+    "raycast_targets": [
+      "/World/ground"
+    ],
+    "rotation_wxyz": [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "self_occlusion_links": [
+      "TORSO",
+      "pro_interface_link",
+      "sensor_carrier_link",
+      "s410_guard_link",
+      "mid360_body_link"
+    ],
+    "self_occlusion_treatment": "Ray-cast against moving rig geometry; replace blocking near-self pixels with the maximum-depth invalid sentinel.",
+    "translation_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "width": 87
+  },
+  "device": "cuda:0",
+  "inference_policy": {
+    "class": "ActorCriticMoECTS",
+    "loader": "direct policy-only strict state_dict load",
+    "source": "modules/actor_critic_moe_cts.py",
+    "source_sha256": "dfad453ef494a82dde1bb3b65d4ad6f9628f4069308371b2b6e393311afb81b0",
+    "vendored_package": "source/rsl_rl/rsl_rl"
+  },
+  "mode": "external",
+  "office_crowd": {
+    "official_visual_asset": {
+      "biped_retarget_cache": {
+        "content_sha256": "76c19b57ebd03e01820e6b9db79bde8f2f3e436302744ef457278af8d17ef5b3",
+        "file_sha256": "ac58a683fe9dd85ec3ad0266c7653b289dc1dd9b256d2abac0cc96ac7e45cfcb",
+        "fps": 30,
+        "idle_frame_count": 60,
+        "joint_count": 101,
+        "path": "/home/sun/machine-dog-nav-runs/2026-08-17_office_l0_scan_crowd/results/office_crowd_codex_candidate35/official_human_retarget_cache.npz",
+        "schema_version": 1,
+        "source": "NVIDIA Biped AnimationGraph ControlRig retarget output",
+        "target_path": "/HumanVisual/OfficialAnimations/Active",
+        "walk_frame_count": 90
+      },
+      "bytes": 19055,
+      "official_character_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/People/Characters/male_adult_police_04/male_adult_police_04.usd",
+      "path": "/home/sun/machine-dog-nav-runs/2026-08-17_office_l0_scan_crowd/results/office_crowd_codex_candidate35/isaac/office_human_visual.usda",
+      "redistribution": "official NVIDIA content is referenced, not vendored",
+      "sha256": "2925cf7fe1f47876e542f984f82b8edad9b3bec38b2c1bd5e363d3bf919bae9d",
+      "skeleton_path": "/HumanVisual/OfficialCharacter/male_adult_police_04/ManRoot/male_adult_police_04/male_adult_police_04/male_adult_police_04",
+      "source": "visual-only wrapper referencing NVIDIA Isaac Sim 5.1 content",
+      "source_geometry": {
+        "foot_z_m": -1.9355964298028994e-07,
+        "meters_per_unit": 1.0,
+        "source_forward_yaw_radians": -1.5707963267948966,
+        "up_axis": "Z",
+        "visible_top_z_m": 1.7357525825500488
+      }
+    },
+    "pairwise_precheck": {
+      "dt_s": 0.05,
+      "duration_s": 50.0,
+      "minimum_pair": [
+        "crossing_1",
+        "background_2"
+      ],
+      "minimum_surface_clearance_m": 0.8577379737113251,
+      "minimum_time_s": 10.8,
+      "passed": true
+    },
+    "pedestrian_count": 8,
+    "physical_proxy": {
+      "height_m": 1.7,
+      "kinematic": true,
+      "radius_m": 0.3,
+      "render_visible": false,
+      "shape": "capsule"
+    },
+    "planner_input": "rendered simulated sensor hits only",
+    "routes": [
+      {
+        "end_xy_m": [
+          -6.375,
+          9.375
+        ],
+        "name": "crossing_1",
+        "radius_m": 0.3,
+        "speed_mps": 0.8,
+        "start_delay_s": 15.0,
+        "start_xy_m": [
+          -10.375,
+          9.375
+        ]
+      },
+      {
+        "end_xy_m": [
+          -6.375,
+          4.875
+        ],
+        "name": "crossing_2",
+        "radius_m": 0.3,
+        "speed_mps": 0.9,
+        "start_delay_s": 26.2777777778,
+        "start_xy_m": [
+          -10.375,
+          4.875
+        ]
+      },
+      {
+        "end_xy_m": [
+          -14.625,
+          18.125
+        ],
+        "name": "background_1",
+        "radius_m": 0.3,
+        "speed_mps": 0.6,
+        "start_delay_s": 0.0,
+        "start_xy_m": [
+          -15.625,
+          15.125
+        ]
+      },
+      {
+        "end_xy_m": [
+          -11.125,
+          8.125
+        ],
+        "name": "background_2",
+        "radius_m": 0.3,
+        "speed_mps": 0.7,
+        "start_delay_s": 6.0,
+        "start_xy_m": [
+          -14.375,
+          8.875
+        ]
+      },
+      {
+        "end_xy_m": [
+          -14.375,
+          -0.625
+        ],
+        "name": "background_3",
+        "radius_m": 0.3,
+        "speed_mps": 0.8,
+        "start_delay_s": 12.0,
+        "start_xy_m": [
+          -10.375,
+          -0.625
+        ]
+      },
+      {
+        "end_xy_m": [
+          -2.375,
+          6.125
+        ],
+        "name": "background_4",
+        "radius_m": 0.3,
+        "speed_mps": 0.9,
+        "start_delay_s": 18.0,
+        "start_xy_m": [
+          -6.375,
+          6.125
+        ]
+      },
+      {
+        "end_xy_m": [
+          -4.375,
+          -3.875
+        ],
+        "name": "background_5",
+        "radius_m": 0.3,
+        "speed_mps": 1.0,
+        "start_delay_s": 24.0,
+        "start_xy_m": [
+          -5.125,
+          -2.625
+        ]
+      },
+      {
+        "end_xy_m": [
+          -1.625,
+          10.375
+        ],
+        "name": "background_6",
+        "radius_m": 0.3,
+        "speed_mps": 1.1,
+        "start_delay_s": 30.0,
+        "start_xy_m": [
+          -4.625,
+          11.375
+        ]
+      }
+    ],
+    "truth_use": "evaluation and synchronized clearance only"
+  },
+  "policy_observation_contract": {
+    "command_history_length": 10,
+    "command_history_offset": 60,
+    "dimension": 450
+  },
+  "robot_asset": {
+    "asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/source/sensor_rig/urdf/lite3_pro_sensor_rig_real_with_interface_isaac.urdf",
+    "asset_sha256": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d",
+    "canonical_asset_path": "/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/source/sensor_rig/urdf/lite3_pro_sensor_rig_real_with_interface.urdf",
+    "canonical_asset_sha256": "d0a1be09f018c0ab31df26f69ad8e700bd88ec06ae5b0f4dfbcc4fddf21cec80",
+    "canonical_urdf_contract": {
+      "collision_count": 29,
+      "collision_count_by_link": {
+        "FL_FOOT": 1,
+        "FL_HIP": 1,
+        "FL_SHANK": 2,
+        "FL_THIGH": 1,
+        "FR_FOOT": 1,
+        "FR_HIP": 1,
+        "FR_SHANK": 2,
+        "FR_THIGH": 1,
+        "HL_FOOT": 1,
+        "HL_HIP": 1,
+        "HL_SHANK": 2,
+        "HL_THIGH": 1,
+        "HR_FOOT": 1,
+        "HR_HIP": 1,
+        "HR_SHANK": 2,
+        "HR_THIGH": 1,
+        "TORSO": 2,
+        "d435i_body_link": 1,
+        "d435i_depth_optical_frame": 0,
+        "mid360_body_link": 1,
+        "mid360_scan_frame": 0,
+        "pro_interface_link": 2,
+        "s410_guard_link": 2,
+        "sensor_carrier_link": 1
+      },
+      "fixed_joint_count": 11,
+      "inertia_by_link_kg_m2": {
+        "FL_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "FL_HIP": {
+          "ixx": 0.0003949,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0004472
+        },
+        "FL_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "FL_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "FR_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "FR_HIP": {
+          "ixx": 0.0004472,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0003949
+        },
+        "FR_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "FR_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "HL_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "HL_HIP": {
+          "ixx": 0.0003949,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0004472
+        },
+        "HL_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "HL_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "HR_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "HR_HIP": {
+          "ixx": 0.0004472,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0003949
+        },
+        "HR_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "HR_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "TORSO": {
+          "ixx": 0.02456,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.05518,
+          "iyz": 0.0,
+          "izz": 0.07016
+        },
+        "d435i_body_link": {
+          "ixx": 5.453125e-05,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 7.8125e-06,
+          "iyz": 0.0,
+          "izz": 5.453125e-05
+        },
+        "mid360_body_link": {
+          "ixx": 0.000171031883333,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.000171031883333,
+          "iyz": 0.0,
+          "izz": 0.0001755572
+        },
+        "pro_interface_link": {
+          "ixx": 0.00101736627509,
+          "ixy": 5.43953197243e-06,
+          "ixz": 0.0,
+          "iyy": 0.00301082812111,
+          "iyz": 0.0,
+          "izz": 0.0036584443962
+        },
+        "s410_guard_link": {
+          "ixx": 2.51961100563e-05,
+          "ixy": -6.6007420766e-10,
+          "ixz": 2.00507891254e-09,
+          "iyy": 3.6203511268e-05,
+          "iyz": -2.4761591556e-10,
+          "izz": 3.64025360506e-05
+        },
+        "sensor_carrier_link": {
+          "ixx": 7.79273597954e-05,
+          "ixy": -2.17571306983e-08,
+          "ixz": 1.06363512756e-05,
+          "iyy": 0.000147850910354,
+          "iyz": 1.03899494504e-08,
+          "izz": 0.000213643326172
+        }
+      },
+      "joint_count": 23,
+      "link_count": 24,
+      "links_without_inertial": [
+        "mid360_scan_frame",
+        "d435i_depth_optical_frame"
+      ],
+      "mass_by_link_kg": {
+        "FL_FOOT": 0.02,
+        "FL_HIP": 0.55,
+        "FL_SHANK": 0.153,
+        "FL_THIGH": 0.86,
+        "FR_FOOT": 0.02,
+        "FR_HIP": 0.55,
+        "FR_SHANK": 0.153,
+        "FR_THIGH": 0.86,
+        "HL_FOOT": 0.02,
+        "HL_HIP": 0.55,
+        "HL_SHANK": 0.153,
+        "HL_THIGH": 0.86,
+        "HR_FOOT": 0.02,
+        "HR_HIP": 0.55,
+        "HR_SHANK": 0.153,
+        "HR_THIGH": 0.86,
+        "TORSO": 5.6056,
+        "d435i_body_link": 0.075,
+        "mid360_body_link": 0.265,
+        "pro_interface_link": 0.8874,
+        "s410_guard_link": 0.0255077059569,
+        "sensor_carrier_link": 0.0912791703219
+      },
+      "movable_joint_count": 12,
+      "referenced_meshes": {
+        "./meshes/carrier-rev-j-print-ready-side.stl": {
+          "bytes": 411384,
+          "sha256": "7dcb46fcf52602d84d21bc08c06161993644c70d0930f96bc8346724116f7e58"
+        },
+        "./meshes/d435i-body-runtime.stl": {
+          "bytes": 1095984,
+          "sha256": "944961e4eb4c60caac4da8d1a7784401e59c9289b96be72537518ce3b870140a"
+        },
+        "./meshes/d435i-optical-runtime.stl": {
+          "bytes": 324284,
+          "sha256": "71c7e43a18c8950d62c9d709a969a94df6d3520cee936c1f69665755ed1c289a"
+        },
+        "./meshes/hip.STL": {
+          "bytes": 326084,
+          "sha256": "3386fa94992dbfc4d3e06c6d9fb110e2c4abd87f94c3ac766fdcce85c43341f3"
+        },
+        "./meshes/mid360-body-runtime.stl": {
+          "bytes": 1340984,
+          "sha256": "883a99cb9c2eee18212257dbd60f51d187e07f31d4f2b4393ff215822a73b5d1"
+        },
+        "./meshes/mid360-optical-runtime.stl": {
+          "bytes": 90184,
+          "sha256": "4a14a259764204a2fc77e3ad6e1cd1b61a8cf5107c09b805b52bd58d72853848"
+        },
+        "./meshes/pro-interface-envelope.stl": {
+          "bytes": 1484,
+          "sha256": "39758a1a3766bcdf7c75aa6056d94678d6589aff12477836f87162196e963604"
+        },
+        "./meshes/s410-guard-access-print-ready-flange-down.stl": {
+          "bytes": 1102484,
+          "sha256": "fdbdc58d4b25a82ce685873764760a932fc276716c46b93b77c59c68077a591e"
+        },
+        "./meshes/shank.STL": {
+          "bytes": 1352184,
+          "sha256": "5410bae3b9b1e9fbc30343041450a80fc609806c2a83418bd2288b0720aec098"
+        },
+        "./meshes/thigh.STL": {
+          "bytes": 499284,
+          "sha256": "f29ea97407a9a30cb4549206d080848350d8b455bf4b9a63441241cdacab1719"
+        },
+        "./meshes/torso.STL": {
+          "bytes": 1318334,
+          "sha256": "6f3f5fc4b9985db56d741ac1b6b93e11d9fb283eb128f8800ad9603772bbcda2"
+        }
+      },
+      "robot_name": "Lite3ProSensorRigRealWithInterfaceV1",
+      "total_declared_mass_kg": 13.2817868762788
+    },
+    "composition_boundary": "Only the V12 robot spawn asset and fixed-joint preservation are changed; checkpoint, policy loader, observations, actions, actuators, default pose, command schedule, and controller remain V12.",
+    "isaac_urdf_contract": {
+      "collision_count": 29,
+      "collision_count_by_link": {
+        "FL_FOOT": 1,
+        "FL_HIP": 1,
+        "FL_SHANK": 2,
+        "FL_THIGH": 1,
+        "FR_FOOT": 1,
+        "FR_HIP": 1,
+        "FR_SHANK": 2,
+        "FR_THIGH": 1,
+        "HL_FOOT": 1,
+        "HL_HIP": 1,
+        "HL_SHANK": 2,
+        "HL_THIGH": 1,
+        "HR_FOOT": 1,
+        "HR_HIP": 1,
+        "HR_SHANK": 2,
+        "HR_THIGH": 1,
+        "TORSO": 2,
+        "d435i_body_link": 1,
+        "d435i_depth_optical_frame": 0,
+        "mid360_body_link": 1,
+        "mid360_scan_frame": 0,
+        "pro_interface_link": 2,
+        "s410_guard_link": 2,
+        "sensor_carrier_link": 1
+      },
+      "fixed_joint_count": 11,
+      "inertia_by_link_kg_m2": {
+        "FL_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "FL_HIP": {
+          "ixx": 0.0003949,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0004472
+        },
+        "FL_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "FL_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "FR_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "FR_HIP": {
+          "ixx": 0.0004472,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0003949
+        },
+        "FR_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "FR_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "HL_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "HL_HIP": {
+          "ixx": 0.0003949,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0004472
+        },
+        "HL_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "HL_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "HR_FOOT": {
+          "ixx": 0.0,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0,
+          "iyz": 0.0,
+          "izz": 0.0
+        },
+        "HR_HIP": {
+          "ixx": 0.0004472,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.0004028,
+          "iyz": 0.0,
+          "izz": 0.0003949
+        },
+        "HR_SHANK": {
+          "ixx": 0.00089039,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00090672,
+          "iyz": 0.0,
+          "izz": 3.1266e-05
+        },
+        "HR_THIGH": {
+          "ixx": 0.005736,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.00496,
+          "iyz": 0.0,
+          "izz": 0.001436
+        },
+        "TORSO": {
+          "ixx": 0.02456,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.05518,
+          "iyz": 0.0,
+          "izz": 0.07016
+        },
+        "d435i_body_link": {
+          "ixx": 5.453125e-05,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 7.8125e-06,
+          "iyz": 0.0,
+          "izz": 5.453125e-05
+        },
+        "d435i_depth_optical_frame": {
+          "ixx": 1e-12,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 1e-12,
+          "iyz": 0.0,
+          "izz": 1e-12
+        },
+        "mid360_body_link": {
+          "ixx": 0.000171031883333,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 0.000171031883333,
+          "iyz": 0.0,
+          "izz": 0.0001755572
+        },
+        "mid360_scan_frame": {
+          "ixx": 1e-12,
+          "ixy": 0.0,
+          "ixz": 0.0,
+          "iyy": 1e-12,
+          "iyz": 0.0,
+          "izz": 1e-12
+        },
+        "pro_interface_link": {
+          "ixx": 0.00101736627509,
+          "ixy": 5.43953197243e-06,
+          "ixz": 0.0,
+          "iyy": 0.00301082812111,
+          "iyz": 0.0,
+          "izz": 0.0036584443962
+        },
+        "s410_guard_link": {
+          "ixx": 2.51961100563e-05,
+          "ixy": -6.6007420766e-10,
+          "ixz": 2.00507891254e-09,
+          "iyy": 3.6203511268e-05,
+          "iyz": -2.4761591556e-10,
+          "izz": 3.64025360506e-05
+        },
+        "sensor_carrier_link": {
+          "ixx": 7.79273597954e-05,
+          "ixy": -2.17571306983e-08,
+          "ixz": 1.06363512756e-05,
+          "iyy": 0.000147850910354,
+          "iyz": 1.03899494504e-08,
+          "izz": 0.000213643326172
+        }
+      },
+      "joint_count": 23,
+      "link_count": 24,
+      "links_without_inertial": [],
+      "mass_by_link_kg": {
+        "FL_FOOT": 0.02,
+        "FL_HIP": 0.55,
+        "FL_SHANK": 0.153,
+        "FL_THIGH": 0.86,
+        "FR_FOOT": 0.02,
+        "FR_HIP": 0.55,
+        "FR_SHANK": 0.153,
+        "FR_THIGH": 0.86,
+        "HL_FOOT": 0.02,
+        "HL_HIP": 0.55,
+        "HL_SHANK": 0.153,
+        "HL_THIGH": 0.86,
+        "HR_FOOT": 0.02,
+        "HR_HIP": 0.55,
+        "HR_SHANK": 0.153,
+        "HR_THIGH": 0.86,
+        "TORSO": 5.6056,
+        "d435i_body_link": 0.075,
+        "d435i_depth_optical_frame": 1e-06,
+        "mid360_body_link": 0.265,
+        "mid360_scan_frame": 1e-06,
+        "pro_interface_link": 0.8874,
+        "s410_guard_link": 0.0255077059569,
+        "sensor_carrier_link": 0.0912791703219
+      },
+      "movable_joint_count": 12,
+      "referenced_meshes": {
+        "./meshes/carrier-rev-j-print-ready-side.stl": {
+          "bytes": 411384,
+          "sha256": "7dcb46fcf52602d84d21bc08c06161993644c70d0930f96bc8346724116f7e58"
+        },
+        "./meshes/d435i-body-runtime.stl": {
+          "bytes": 1095984,
+          "sha256": "944961e4eb4c60caac4da8d1a7784401e59c9289b96be72537518ce3b870140a"
+        },
+        "./meshes/d435i-optical-runtime.stl": {
+          "bytes": 324284,
+          "sha256": "71c7e43a18c8950d62c9d709a969a94df6d3520cee936c1f69665755ed1c289a"
+        },
+        "./meshes/hip.STL": {
+          "bytes": 326084,
+          "sha256": "3386fa94992dbfc4d3e06c6d9fb110e2c4abd87f94c3ac766fdcce85c43341f3"
+        },
+        "./meshes/mid360-body-runtime.stl": {
+          "bytes": 1340984,
+          "sha256": "883a99cb9c2eee18212257dbd60f51d187e07f31d4f2b4393ff215822a73b5d1"
+        },
+        "./meshes/mid360-optical-runtime.stl": {
+          "bytes": 90184,
+          "sha256": "4a14a259764204a2fc77e3ad6e1cd1b61a8cf5107c09b805b52bd58d72853848"
+        },
+        "./meshes/pro-interface-envelope.stl": {
+          "bytes": 1484,
+          "sha256": "39758a1a3766bcdf7c75aa6056d94678d6589aff12477836f87162196e963604"
+        },
+        "./meshes/s410-guard-access-print-ready-flange-down.stl": {
+          "bytes": 1102484,
+          "sha256": "fdbdc58d4b25a82ce685873764760a932fc276716c46b93b77c59c68077a591e"
+        },
+        "./meshes/shank.STL": {
+          "bytes": 1352184,
+          "sha256": "5410bae3b9b1e9fbc30343041450a80fc609806c2a83418bd2288b0720aec098"
+        },
+        "./meshes/thigh.STL": {
+          "bytes": 499284,
+          "sha256": "f29ea97407a9a30cb4549206d080848350d8b455bf4b9a63441241cdacab1719"
+        },
+        "./meshes/torso.STL": {
+          "bytes": 1318334,
+          "sha256": "6f3f5fc4b9985db56d741ac1b6b93e11d9fb283eb128f8800ad9603772bbcda2"
+        }
+      },
+      "robot_name": "Lite3ProSensorRigRealWithInterfaceV1",
+      "total_declared_mass_kg": 13.281788876278798
+    },
+    "merge_fixed_joints": false,
+    "mode": "v12_policy_on_pinned_sensor_rig",
+    "required_links": [
+      "TORSO",
+      "pro_interface_link",
+      "sensor_carrier_link",
+      "s410_guard_link",
+      "mid360_body_link",
+      "mid360_scan_frame",
+      "d435i_body_link",
+      "d435i_depth_optical_frame"
+    ]
+  },
+  "schema_version": 2,
+  "seed": 42,
+  "sensor": {
+    "backend": "IsaacLab MultiMeshRayCaster LidarPatternCfg",
+    "channels": 16,
+    "declared_device": "MID-360-like geometric ray model",
+    "forest_geometry_filter": {
+      "cell_size_m": null,
+      "enabled": false,
+      "forbidden_inputs": [
+        "terrain_height_function",
+        "scene_prim_id",
+        "proxy_bounds",
+        "obstacle_label"
+      ],
+      "height_threshold_m": null,
+      "inputs": [
+        "rendered_hit_xyz_world",
+        "sensor_position_world"
+      ],
+      "minimum_neighbor_cells": null,
+      "neighbor_cells": null
+    },
+    "horizontal_resolution_degrees": 2.0,
+    "maximum_range_m": 12.0,
+    "minimum_range_m": 0.1,
+    "obstacle_return_classification": "finite hit above floor filter inside the only non-ground mesh bounds",
+    "parent_frame": "mid360_scan_frame",
+    "period_seconds": 0.1,
+    "planner_floor_filter": {
+      "enabled": true,
+      "frame": "world",
+      "reason": "SCAN occupancy input excludes the traversable flat floor",
+      "remove_hits_at_or_below_z_m": 0.05
+    },
+    "raycast_targets": [
+      "/World/ground"
+    ],
+    "rotation_wxyz": [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "self_occlusion_links": [
+      "TORSO",
+      "pro_interface_link",
+      "sensor_carrier_link",
+      "s410_guard_link",
+      "d435i_body_link"
+    ],
+    "self_occlusion_treatment": "Ray-cast against moving rig geometry; discard a blocking self hit inside the declared minimum range without allowing the ray to pass through to environment geometry.",
+    "translation_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "truth_pose": true,
+    "vertical_fov_degrees": [
+      -7.0,
+      52.0
+    ]
+  },
+  "source_commit": "8c3fdffa84b85be0704a10ea5b2533817d543822",
+  "task": "Wave-C-Stairs-V12-Lite3-v0",
+  "terrain": "official Isaac Sim 5.1 Office L0 physics wrapper",
+  "video": {
+    "camera_eye_world": [
+      -10.125,
+      7.625,
+      4.5
+    ],
+    "camera_lookat_world": [
+      -15.625,
+      15.125,
+      0.45
+    ],
+    "enabled": true,
+    "filename": "closed_loop.mp4",
+    "fps": 12,
+    "frame_stride": 5,
+    "resolution": [
+      1280,
+      720
+    ]
+  },
+  "watchdog_seconds": 0.25
+}

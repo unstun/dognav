@@ -638,6 +638,85 @@ def point_to_segment_distance_2d(
     return math.hypot(px - closest_x, py - closest_y)
 
 
+def segment_to_aabb_clearance_2d(
+    start: Sequence[float],
+    end: Sequence[float],
+    bounds_min: Sequence[float],
+    bounds_max: Sequence[float],
+    swept_radius_m: float = 0.0,
+) -> float:
+    """Return centre-segment clearance from a 2-D AABB minus swept radius."""
+
+    if any(len(value) != 2 for value in (start, end, bounds_min, bounds_max)):
+        raise ValueError("segment and AABB inputs must be two-dimensional")
+    sx, sy = (float(value) for value in start)
+    ex, ey = (float(value) for value in end)
+    min_x, min_y = (float(value) for value in bounds_min)
+    max_x, max_y = (float(value) for value in bounds_max)
+    radius = float(swept_radius_m)
+    values = (sx, sy, ex, ey, min_x, min_y, max_x, max_y, radius)
+    if not all(math.isfinite(value) for value in values):
+        raise ValueError("segment/AABB clearance inputs must be finite")
+    if min_x > max_x or min_y > max_y:
+        raise ValueError("AABB minimum must not exceed maximum")
+    if radius < 0.0:
+        raise ValueError("swept radius must be non-negative")
+
+    def point_aabb_distance(point_x: float, point_y: float) -> float:
+        dx = max(min_x - point_x, 0.0, point_x - max_x)
+        dy = max(min_y - point_y, 0.0, point_y - max_y)
+        return math.hypot(dx, dy)
+
+    def orientation(ax, ay, bx, by, cx, cy) -> float:
+        return (bx - ax) * (cy - ay) - (by - ay) * (cx - ax)
+
+    def on_segment(ax, ay, bx, by, px, py) -> bool:
+        return (
+            min(ax, bx) - 1.0e-12 <= px <= max(ax, bx) + 1.0e-12
+            and min(ay, by) - 1.0e-12 <= py <= max(ay, by) + 1.0e-12
+        )
+
+    def segments_intersect(a, b, c, d) -> bool:
+        values = (
+            orientation(*a, *b, *c),
+            orientation(*a, *b, *d),
+            orientation(*c, *d, *a),
+            orientation(*c, *d, *b),
+        )
+        if values[0] * values[1] < 0.0 and values[2] * values[3] < 0.0:
+            return True
+        return any(
+            abs(value) <= 1.0e-12 and on_segment(*segment[0], *segment[1], *point)
+            for value, segment, point in (
+                (values[0], (a, b), c),
+                (values[1], (a, b), d),
+                (values[2], (c, d), a),
+                (values[3], (c, d), b),
+            )
+        )
+
+    segment = ((sx, sy), (ex, ey))
+    corners = (
+        (min_x, min_y),
+        (min_x, max_y),
+        (max_x, max_y),
+        (max_x, min_y),
+    )
+    edges = tuple(zip(corners, corners[1:] + corners[:1]))
+    centre_distance = min(point_aabb_distance(sx, sy), point_aabb_distance(ex, ey))
+    if centre_distance > 0.0 and not any(
+        segments_intersect(segment[0], segment[1], edge[0], edge[1])
+        for edge in edges
+    ):
+        centre_distance = min(
+            centre_distance,
+            *(point_to_segment_distance_2d(corner, start, end) for corner in corners),
+        )
+    else:
+        centre_distance = 0.0
+    return centre_distance - radius
+
+
 def assert_command_visible_in_critic(
     critic_observation: Sequence[float],
     command: Sequence[float],

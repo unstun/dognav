@@ -3,7 +3,7 @@
   "name": "scan-planner-reproduction",
   "title": "Integrate SCAN-Planner Foxy with Lite3 Physics Simulation",
   "description": "Port the pinned SCAN ROS 2 planner core to Foxy and validate a versioned TCP closed loop against a pinned Lite3 Isaac policy simulation on the 5070 Ti.",
-  "status": "review",
+  "status": "in_progress",
   "dev_type": "research",
   "scope": "foxy-isaac-closed-loop",
   "package": null,
@@ -23,7 +23,7 @@
   ],
   "parent": null,
   "relatedFiles": [],
-  "notes": "V3 uses the pinned sensor-rig URDF with V12 model_149999 plus live MID-360-like and D435i-like simulated sensors. V4--V6 remain immutable human-change-requested evidence. V7 candidate03 remains immutable with human review pending. The procedural V8 candidate passed automated gates but Dr Sun rejected its hand-authored human representation on 2026-08-14; it is immutable negative evidence and will not be submitted. V8 R2 references NVIDIA Isaac Sim 5.1 male_adult_police_04 and replays a deterministic official 101-joint Biped-retarget cache. A separate hidden 1.70 m x 0.30 m capsule owns collision, clearance, and both sensor targets. Dr Sun approved the animated visual preflight on 2026-08-15. The first full preflight exposed a preset-start race: odometry could trigger planning before the first occupancy update. The readiness fix passed 82 remote C++/ROS tests. No-contact preflight04, two identical-effective-input dry runs, and frozen review candidate01 passed with zero non-foot collision, positive human clearance, sensor-causal SCAN replans, goal stop, complete local evidence, recursive hash parity, and local acceptance replay. AC40--AC43 are satisfied; AC44 and final task completion remain blocked on Dr Sun's direct raw/overlay video decision. No training or real-robot work was authorized or performed.",
+    "notes": "V3 uses the pinned sensor-rig URDF with V12 model_149999 plus live MID-360-like and D435i-like simulated sensors. V4--V6 remain immutable human-change-requested evidence. V7 candidate03 remains immutable with human review pending. The procedural V8 candidate passed automated gates but Dr Sun rejected its hand-authored human representation on 2026-08-14; it is immutable negative evidence and will not be submitted. V8 R2 references NVIDIA Isaac Sim 5.1 male_adult_police_04 and replays a deterministic official 101-joint Biped-retarget cache. A separate hidden 1.70 m x 0.30 m capsule owns collision, clearance, and both sensor targets. Dr Sun approved the animated visual preflight on 2026-08-15. The first full preflight exposed a preset-start race: odometry could trigger planning before the first occupancy update. The readiness fix passed 82 remote C++/ROS tests. No-contact preflight04, two identical-effective-input dry runs, and frozen review candidate01 passed with zero non-foot collision, positive human clearance, sensor-causal SCAN replans, goal stop, complete local evidence, recursive hash parity, and local acceptance replay. AC40--AC43 are satisfied; AC44 and final task completion remain blocked on Dr Sun's direct raw/overlay video decision. Immediate preview05 was rejected because its route penetrated Rock_1 and did not cause a later local plan. Causal preflights 01--03 are preserved negatives; causal preflight04 is the first bounded pass. Long review01 passed but was superseded for low clearance. Long reviews 02 and 03 passed on the same operational input; review03 adds complete endpoint-x input provenance and its 16.29 s local video is ready for Dr Sun's visual review. Native-voxel review now uses the actual SCAN raw/inflated PointCloud2 XYZ data, a true three-axis 1:1 perspective renderer, and locally archived rosbag/snapshots. The rejected 2-D projection prototype and collision negatives remain preserved. Two identical-input 15.2 s 3-D review runs passed with 0.704 m minimum human clearance and zero contact; AC45 remains human-owned. No training or real-robot work was authorized or performed.",
   "meta": {
     "automated_acceptance": "v8_r2_ac40_ac43_pass_local_replay_pass",
     "human_review": "v8_r2_final_raw_overlay_pending",
@@ -58,6 +58,31 @@
       "v8_official_scan_dryrun02"
     ],
     "v8_r2_review_candidate": "v8_official_scan_review_candidate01",
-    "v8_r2_automated_checks": "all_pass"
+    "v8_r2_automated_checks": "all_pass",
+    "v8_r2_continuous_walk_preview": "v8_official_continuous_walk_preview01",
+    "v8_r2_continuous_walk_preview_status": "runtime_complete_human_change_requested_waited_for_robot",
+    "v8_r2_immediate_walk_collision_negative": "v8_official_immediate_walk_preview01",
+    "v8_r2_immediate_walk_short_preview": "v8_official_immediate_walk_preview02",
+    "v8_r2_immediate_walk_long_parked": "v8_official_immediate_walk_preview03_long",
+    "v8_r2_immediate_walk_long_collision_negative": "v8_official_immediate_walk_preview04_long_continuous",
+    "v8_r2_immediate_walk_preview": "v8_official_immediate_walk_preview05_long_safe",
+    "v8_r2_immediate_walk_preview_status": "human_change_requested_static_penetration_and_no_causal_local_replan",
+        "v8_r2_immediate_walk_causal_preview": "v8_official_causal_immediate_review03",
+        "v8_r2_immediate_walk_causal_preview_status": "automated_audit_pass_ready_for_human_review",
+        "v8_r2_voxel_review_runs": [
+          "v8_official_voxel_3d_review02a",
+          "v8_official_voxel_3d_review02b"
+        ],
+        "v8_r2_voxel_review_status": "automated_evidence_pass_ready_for_human_review",
+        "v8_r2_voxel_rviz_status": "robostack_humble_replay_implementation_in_progress",
+        "official_indoor_scene_preview_scope": "warehouse_office_hospital_source_scene_and_lite3_scale_context",
+        "official_indoor_scene_preview_status": "warehouse_visual_ready_office_global_three_floor_tour23_ready_hospital_partial_human_selection_pending",
+        "office_l0_crowd_trial_scope": "lite3_v12_scan_mid360_d435i_eight_official_pedestrians",
+        "office_l0_crowd_trial_status": "remediation_two_same_input_trials_passed_automated_gates_human_visual_review_pending",
+        "office_l0_crowd_same_input_runs": [
+          "office_crowd_dryrun24",
+          "office_crowd_dryrun25"
+        ],
+        "office_l0_crowd_acceptance": "dryrun24_pass_dryrun25_pass_repeatability_pass"
   }
 }

@@ -1,0 +1,76 @@
+{
+  "artifacts": {
+    "depth_metres_npy": {
+      "bytes": 20312,
+      "path": "d435i_depth_frame_m.npy",
+      "sha256": "83981f5bac6c1ed83a4617502ed960d0968bade71c22679d2af2891e914f4020"
+    },
+    "depth_millimetres_png": {
+      "bytes": 1902,
+      "invalid_or_clipped_value_mm": 5000,
+      "path": "d435i_depth_frame_mm.png",
+      "sha256": "919619336a6a813e300c28029a621521319cd91500d5da76c6a6e224d924b743"
+    },
+    "human_preview_png": {
+      "bytes": 795,
+      "display_rule": "nearer valid depth is brighter; invalid is black",
+      "path": "d435i_depth_preview.png",
+      "sha256": "0a28459ba99bffd5677a37fed128e18d9cefa78ee48b68627d144aa4fa54e926"
+    }
+  },
+  "dynamic_human_gait_angles": null,
+  "dynamic_obstacle_actual_pos_w": null,
+  "dynamic_obstacle_surface_pixel_count": 0,
+  "height": 58,
+  "intrinsic_matrix": [
+    [
+      45.83973693847656,
+      0.0,
+      43.5
+    ],
+    [
+      0.0,
+      45.83973693847656,
+      29.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "maximum_valid_depth_m": 0.8006429672241211,
+  "mean_valid_depth_m": 0.5053498148918152,
+  "minimum_valid_depth_m": 0.34435155987739563,
+  "nonfinite_depth_count": 0,
+  "obstacle_surface_pixel_count": 3926,
+  "office_pedestrian_surface_pixel_count": 0,
+  "office_pedestrian_surface_pixel_counts": {
+    "background_1": 0,
+    "background_2": 0,
+    "background_3": 0,
+    "background_4": 0,
+    "background_5": 0,
+    "background_6": 0,
+    "crossing_1": 0,
+    "crossing_2": 0
+  },
+  "official_human_visual_pose": null,
+  "pixel_count": 5046,
+  "self_occluded_pixel_count": 0,
+  "sensor_position_w": [
+    -8.145910263061523,
+    -0.5988125801086426,
+    0.392568439245224
+  ],
+  "sensor_quaternion_wxyz_ros": [
+    0.36277228593826294,
+    -0.46559885144233704,
+    0.6493057012557983,
+    -0.4795999228954315
+  ],
+  "sim_time_seconds": 47.229998944327235,
+  "step": 2360,
+  "valid_depth_pixel_count": 5046,
+  "width": 87
+}

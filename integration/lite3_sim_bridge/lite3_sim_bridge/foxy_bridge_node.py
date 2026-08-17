@@ -46,7 +46,7 @@ class FoxyBridgeNode(Node):
         self._command_host = self.declare_parameter("command_host", "127.0.0.1").value
         self._command_port = int(self.declare_parameter("command_port", 46001).value)
         self._connect_timeout = float(
-            self.declare_parameter("connect_timeout_seconds", 1.0).value
+            self.declare_parameter("connect_timeout_seconds", 5.0).value
         )
         self._reconnect_delay = float(
             self.declare_parameter("reconnect_delay_seconds", 0.2).value

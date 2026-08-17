@@ -1,0 +1,195 @@
+{
+  "candidate": "V12 model_149999 on Lite3 Pro sensor rig SCAN Office L0 eight-person trial",
+  "checks": {
+    "command_connected": true,
+    "commands_received": true,
+    "finite_policy": true,
+    "no_termination": true,
+    "records_present": true,
+    "telemetry_connected": true,
+    "telemetry_sent": true
+  },
+  "claim": "external bridge runtime only; closed-loop goal result evaluated separately",
+  "command_transport": {
+    "accepted_connections": 1,
+    "coalesced_frames": 96,
+    "frames_received": 11061,
+    "frames_sent": 0,
+    "io_errors": 0,
+    "last_protocol_error": null,
+    "protocol_errors": 0,
+    "reconnects": 0
+  },
+  "depth_artifact": {
+    "artifacts": {
+      "depth_metres_npy": {
+        "bytes": 20312,
+        "path": "d435i_depth_frame_m.npy",
+        "sha256": "f80f8a0a2292579f19895e536c879059c761f8d6e2a5f774e6622b1f5d4ecea2"
+      },
+      "depth_millimetres_png": {
+        "bytes": 2649,
+        "invalid_or_clipped_value_mm": 5000,
+        "path": "d435i_depth_frame_mm.png",
+        "sha256": "3941b05cd47d4a4dc62942d6d062374553f481e1fef2fcde2366461069c0763d"
+      },
+      "human_preview_png": {
+        "bytes": 1012,
+        "display_rule": "nearer valid depth is brighter; invalid is black",
+        "path": "d435i_depth_preview.png",
+        "sha256": "e762c06f4169a48bc8ccd6855162fcda44ef64a6803e73e51f0e2e4665cd9184"
+      }
+    },
+    "dynamic_human_gait_angles": null,
+    "dynamic_obstacle_actual_pos_w": null,
+    "dynamic_obstacle_surface_pixel_count": 0,
+    "height": 58,
+    "intrinsic_matrix": [
+      [
+        45.83973693847656,
+        0.0,
+        43.5
+      ],
+      [
+        0.0,
+        45.83973693847656,
+        29.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "maximum_valid_depth_m": 1.6646249294281006,
+    "mean_valid_depth_m": 0.8437240719795227,
+    "minimum_valid_depth_m": 0.4267037510871887,
+    "nonfinite_depth_count": 0,
+    "obstacle_surface_pixel_count": 2344,
+    "office_pedestrian_surface_pixel_count": 0,
+    "office_pedestrian_surface_pixel_counts": {
+      "background_1": 0,
+      "background_2": 0,
+      "background_3": 0,
+      "background_4": 0,
+      "background_5": 0,
+      "background_6": 0,
+      "crossing_1": 0,
+      "crossing_2": 0
+    },
+    "official_human_visual_pose": null,
+    "pixel_count": 5046,
+    "self_occluded_pixel_count": 0,
+    "sensor_position_w": [
+      -15.37286376953125,
+      13.124993324279785,
+      0.41489148139953613
+    ],
+    "sensor_quaternion_wxyz_ros": [
+      0.394758939743042,
+      -0.5866513848304749,
+      0.5866674780845642,
+      -0.3947489559650421
+    ],
+    "sim_time_seconds": 0.029999999329447746,
+    "step": 0,
+    "valid_depth_pixel_count": 5046,
+    "width": 87
+  },
+  "depth_checks": {
+    "finite_depth": true,
+    "frames_present": true,
+    "intrinsics_present": true,
+    "obstacle_returns": true,
+    "pose_dependent_frame": true,
+    "pose_displacement_m_value": 15.542790937024545,
+    "timestamps_advance": true,
+    "valid_depth_returns": true
+  },
+  "dynamic_obstacle_geometry_checks": null,
+  "forest_navigation": null,
+  "record_count": 3001,
+  "runtime_error": null,
+  "runtime_rates": {
+    "physics_hz": 200.0,
+    "policy_hz": 50.0,
+    "sensor_hz": 10.0
+  },
+  "schema_version": 1,
+  "sensor_checks": {
+    "cloud_centroid_displacement_m_value": 1.0918147798215954,
+    "finite": true,
+    "frames_present": true,
+    "ground_returns": true,
+    "nonempty": true,
+    "obstacle_returns": true,
+    "pose_dependent_geometry": true,
+    "pose_displacement_m_value": 15.512181104382897,
+    "timestamps_advance": true
+  },
+  "static_geometry_checks": null,
+  "status": "PASS",
+  "telemetry_transport": {
+    "accepted_connections": 1,
+    "coalesced_frames": 0,
+    "frames_received": 0,
+    "frames_sent": 1202,
+    "io_errors": 0,
+    "last_protocol_error": null,
+    "protocol_errors": 0,
+    "reconnects": 0
+  },
+  "video": {
+    "bytes": 41486738,
+    "camera_occlusion_fallback_frame_count": 42,
+    "camera_occlusion_fallback_sim_times": [
+      0.12999999709427357,
+      0.2299999948590994,
+      0.3299999926239252,
+      1.4299999680370092,
+      1.529999965801835,
+      1.6299999635666609,
+      10.329999769106507,
+      11.529999742284417,
+      15.929999643936753,
+      16.02999964170158,
+      16.129999639466405,
+      16.22999963723123,
+      16.329999634996057,
+      16.429999632760882,
+      16.529999630525708,
+      16.629999628290534,
+      16.72999962605536,
+      16.829999623820186,
+      16.92999962158501,
+      17.029999619349837,
+      17.129999617114663,
+      17.22999961487949,
+      17.329999612644315,
+      17.42999961040914,
+      17.529999608173966,
+      17.629999605938792,
+      17.729999603703618,
+      17.829999601468444,
+      17.92999959923327,
+      18.029999596998096,
+      19.429999565705657,
+      19.529999563470483,
+      19.62999956123531,
+      19.729999559000134,
+      19.82999955676496,
+      19.929999554529786,
+      20.029999552294612,
+      20.129999550059438,
+      20.229999547824264,
+      20.32999954558909,
+      20.429999543353915,
+      20.52999954111874
+    ],
+    "encoded_duration_seconds": 50.083333333333336,
+    "fps": 12,
+    "frame_count": 601,
+    "path": "/home/sun/machine-dog-nav-runs/2026-08-17_office_l0_scan_crowd/results/office_crowd_codex_candidate39/closed_loop.mp4",
+    "sha256": "4553f0384697e41c372d6dcfb77b50373a4d5832d57d5d4187487fb6775063c9"
+  }
+}

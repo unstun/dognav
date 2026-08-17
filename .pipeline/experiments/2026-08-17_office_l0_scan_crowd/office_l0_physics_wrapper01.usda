@@ -1,0 +1,982 @@
+#usda 1.0
+(
+    defaultPrim = "OfficeL0Physics"
+)
+
+def Xform "OfficeL0Physics" (
+    prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Office/office.usd@</Root>
+)
+{
+    over "SM_Floor_6m24"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m25"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m26"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m27"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m_2"
+    {
+        over "SM_Floor_3m"
+        {
+            over "SM_Floor_3m" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+            )
+            {
+                uniform token physics:approximation = "none"
+                bool physics:collisionEnabled = 1
+            }
+        }
+    }
+
+    over "SM_Floor_3m2"
+    {
+        over "SM_Floor_3m"
+        {
+            over "SM_Floor_3m" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+            )
+            {
+                uniform token physics:approximation = "none"
+                bool physics:collisionEnabled = 1
+            }
+        }
+    }
+
+    over "SM_Floor_3m3"
+    {
+        over "SM_Floor_3m"
+        {
+            over "SM_Floor_3m" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+            )
+            {
+                uniform token physics:approximation = "none"
+                bool physics:collisionEnabled = 1
+            }
+        }
+    }
+
+    over "SM_Floor_3m4"
+    {
+        over "SM_Floor_3m"
+        {
+            over "SM_Floor_3m" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+            )
+            {
+                uniform token physics:approximation = "none"
+                bool physics:collisionEnabled = 1
+            }
+        }
+    }
+
+    over "SM_Floor_3m5"
+    {
+        over "SM_Floor_3m"
+        {
+            over "SM_Floor_3m" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+            )
+            {
+                uniform token physics:approximation = "none"
+                bool physics:collisionEnabled = 1
+            }
+        }
+    }
+
+    over "SM_Floor_3m6"
+    {
+        over "SM_Floor_3m"
+        {
+            over "SM_Floor_3m" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+            )
+            {
+                uniform token physics:approximation = "none"
+                bool physics:collisionEnabled = 1
+            }
+        }
+    }
+
+    over "SM_Floor_6m28"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m29"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m30"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m31"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m32"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m33"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m34"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m35"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m36"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m37"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m38"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m39"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m40"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m41"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m42"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m43"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m44"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m45"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m46"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m47"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m48"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m49"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m50"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m51"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m52"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m53"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m54"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m55"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m57"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m7_351"
+    {
+        over "SM_Floor_3m"
+        {
+            over "SM_Floor_3m" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+            )
+            {
+                uniform token physics:approximation = "none"
+                bool physics:collisionEnabled = 1
+            }
+        }
+    }
+
+    over "SM_Floor_3m8"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m9"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m10"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m35_320"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m36_321"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m37_322"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m38_323"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m39_324"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m40_325"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m8"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m9"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m10"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m11"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m12"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m13"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m14"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m15"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m16"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m17"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m18"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m19"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m20"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m21"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m41_335"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m42_336"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m43_337"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m44_338"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m45_339"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m22"
+    {
+        over "SM_Floor_6m"
+        {
+            over "SM_Floor_6m" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+            )
+            {
+                uniform token physics:approximation = "none"
+                bool physics:collisionEnabled = 1
+            }
+        }
+    }
+
+    over "SM_Floor_6m23"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m46_340"
+    {
+        over "SM_Floor_3m"
+        {
+            over "SM_Floor_3m" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+            )
+            {
+                uniform token physics:approximation = "none"
+                bool physics:collisionEnabled = 1
+            }
+        }
+    }
+
+    over "SM_Floor_3m47"
+    {
+        over "SM_Floor_3m"
+        {
+            over "SM_Floor_3m" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+            )
+            {
+                uniform token physics:approximation = "none"
+                bool physics:collisionEnabled = 1
+            }
+        }
+    }
+
+    over "SM_Floor_3m48_341"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m49_342"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m56_355"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m58"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m50_360"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m51"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m52_363"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_6m59"
+    {
+        over "SM_Floor_6m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m53"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m54_364"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m55"
+    {
+        over "SM_Floor_3m" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+        )
+        {
+            uniform token physics:approximation = "none"
+            bool physics:collisionEnabled = 1
+        }
+    }
+
+    over "SM_Floor_3m59"
+    {
+        over "SM_Floor_3m"
+        {
+            over "SM_Floor_3m" (
+                prepend apiSchemas = ["PhysicsCollisionAPI", "PhysicsMeshCollisionAPI", "PhysxTriangleMeshCollisionAPI"]
+            )
+            {
+                uniform token physics:approximation = "none"
+                bool physics:collisionEnabled = 1
+            }
+        }
+    }
+
+    over "GroundPlane"
+    {
+        over "CollisionMesh" (
+            prepend apiSchemas = ["PhysicsCollisionAPI"]
+        )
+        {
+            bool physics:collisionEnabled = 0
+        }
+    }
+
+    over "SM_Buildings"
+    {
+        token visibility = "invisible"
+    }
+}
+

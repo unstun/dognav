@@ -1,0 +1,2 @@
+ac58a683fe9dd85ec3ad0266c7653b289dc1dd9b256d2abac0cc96ac7e45cfcb  /home/sun/machine-dog-nav-runs/2026-08-17_office_l0_scan_crowd/results/office_crowd_codex_candidate35/official_human_retarget_cache.npz
+ea8f1c1bcea99aa8fafc10114c8934bf6b4edbd5d62d03be10dacd764f2f6309  /home/sun/machine-dog-nav-runs/2026-08-17_office_l0_scan_crowd/results/office_crowd_codex_candidate35/official_human_retarget_cache.json

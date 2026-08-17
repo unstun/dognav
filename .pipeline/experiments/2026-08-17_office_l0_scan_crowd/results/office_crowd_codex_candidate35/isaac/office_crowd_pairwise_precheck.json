@@ -1,0 +1,11 @@
+{
+  "dt_s": 0.05,
+  "duration_s": 50.0,
+  "minimum_pair": [
+    "crossing_1",
+    "background_2"
+  ],
+  "minimum_surface_clearance_m": 0.8577379737113251,
+  "minimum_time_s": 10.8,
+  "passed": true
+}

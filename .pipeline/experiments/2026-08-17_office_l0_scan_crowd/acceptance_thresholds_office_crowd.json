@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "status": "frozen_after_simulator_clock_preflight37",
+  "frozen_at": "2026-08-17T15:39:17Z",
+  "frozen_from_dry_run": "office_crowd_codex_preflight37",
+  "claim": "single-scenario Foxy-SCAN to V12-policy Lite3-Pro-sensor-rig reactive moving-occupancy Office L0 eight-person crowd simulation",
+  "scene": {
+    "name": "office_l0_crowd",
+    "physics_wrapper_usda": "office_l0_physics_wrapper01.usda",
+    "physics_wrapper_sha256": "5ac29c16ab94a2a2e6bbde8cd7f3907d1e602164604f998070669fa176d9de47",
+    "route_preflight_json": "office_l0_route_preflight07.json",
+    "route_preflight_sha256": "6e0db6f6803483fba846a515225aa167aaf7182fe645db11a5da02518cccf368"
+  },
+  "start_world_xy_m": [-15.625, 13.125],
+  "goal_world_xy_m": [-8.375, -0.625],
+  "sparse_waypoints_world_xyz_m": [
+    [-11.625, 10.125, 0.85],
+    [-8.375, 10.125, 0.85],
+    [-8.375, 6.375, 0.85],
+    [-8.375, -0.625, 0.85]
+  ],
+  "thresholds": {
+    "goal_xy_tolerance_m": 0.25,
+    "maximum_nonfoot_contact_n": 75.0,
+    "maximum_watchdog_events": 0,
+    "root_height_range_m": [0.25, 0.45],
+    "minimum_conservative_pedestrian_clearance_m": 0.15,
+    "minimum_pairwise_pedestrian_clearance_m": 0.05,
+    "minimum_lidar_pedestrian_hits": 10,
+    "minimum_depth_pedestrian_pixels": 10,
+    "minimum_static_cloud_points": 1000,
+    "minimum_unique_trajectories": 2,
+    "maximum_emergency_stops": 0,
+    "stop_window_seconds": 2.0,
+    "stop_command_max_abs": 0.05,
+    "stop_planar_speed_max_mps": 0.15,
+    "command_component_max_abs": [0.50, 0.35, 1.0],
+    "command_bound_epsilon": 0.005,
+    "maximum_step_displacement_m": 0.06,
+    "minimum_supported_contact_fraction": 0.95,
+    "policy_rate_hz_range": [45.0, 55.0],
+    "sensor_rate_hz_range": [8.0, 12.0],
+    "minimum_cloud_nonempty_fraction": 0.99,
+    "maximum_sequence_gaps": 0,
+    "maximum_transport_protocol_errors": 0,
+    "maximum_telemetry_reconnects": 0,
+    "minimum_video_frames": 500,
+    "minimum_sim_duration_seconds": 50.0
+  },
+  "crowd_contract": {
+    "pedestrian_count": 8,
+    "crossing_count": 2,
+    "background_count": 6,
+    "animation_mode": "continuous_walk"
+  }
+}

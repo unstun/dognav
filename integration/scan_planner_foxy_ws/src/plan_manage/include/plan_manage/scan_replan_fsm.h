@@ -75,6 +75,7 @@ namespace scan_planner
     int continuously_called_times_{0};
     int replan_fail_count_{0};
     int max_replan_fail_count_{1000};
+    int last_failed_map_sequence_{-1};
     rclcpp::Time last_freeze_update_time_;
 
     Eigen::Vector3d odom_pos_, odom_vel_, odom_acc_; // odometry state

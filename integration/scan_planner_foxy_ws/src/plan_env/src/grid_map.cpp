@@ -1216,6 +1216,11 @@ bool GridMap::hasOccupancyObservation()
   return md_.occupancy_update_sequence_ > 0;
 }
 
+int GridMap::occupancyUpdateSequence() const
+{
+  return md_.occupancy_update_sequence_;
+}
+
 Eigen::Vector3d GridMap::getOrigin() { return mp_.map_origin_; }
 
 // int GridMap::getVoxelNum() {

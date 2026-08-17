@@ -1,0 +1,277 @@
+{
+  "checks": {
+    "causal_active_path_replan_audit": {
+      "expected": {
+        "required_reactive_replans": 1
+      },
+      "passed": false,
+      "value": {
+        "alignment_error_s": 0.20461765,
+        "passed": false,
+        "reactive_replans": [],
+        "reason": "B-spline receipt cannot be aligned to simulator time",
+        "trajectory_id": 4
+      }
+    },
+    "cloud_nonempty_fraction": {
+      "expected": {
+        "minimum_fraction": 0.99
+      },
+      "passed": true,
+      "value": 1.0
+    },
+    "command_bounds": {
+      "expected": {
+        "epsilon": 0.005,
+        "maximum_abs": [
+          0.5,
+          0.35,
+          1.0
+        ]
+      },
+      "passed": true,
+      "value": [
+        0.5,
+        0.2519632577896118,
+        1.0
+      ]
+    },
+    "conservative_pedestrian_clearance": {
+      "expected": {
+        "minimum_clearance_m": 0.15
+      },
+      "passed": true,
+      "value": {
+        "closest_pedestrian": "crossing_1",
+        "min_conservative_clearance_m": 0.15162869082403962,
+        "time_s": 16.449999632313848
+      }
+    },
+    "d435i_pedestrian_pixels": {
+      "expected": {
+        "minimum_required": 10
+      },
+      "passed": true,
+      "value": {
+        "max_depth_pedestrian_pixels": 1862
+      }
+    },
+    "finite_policy_and_support": {
+      "expected": {
+        "expected_finite": true,
+        "minimum_support_fraction": 0.95
+      },
+      "passed": true,
+      "value": {
+        "finite_policy": true,
+        "support_fraction": 0.9992003198720512
+      }
+    },
+    "goal_xy_error": {
+      "expected": {
+        "goal": [
+          -8.375,
+          -0.625
+        ],
+        "max_allowed": 0.25
+      },
+      "passed": true,
+      "value": {
+        "final_pos": [
+          -8.34841537475586,
+          -0.5247124433517456
+        ],
+        "goal_xy_error_m": 0.1037513195956959
+      }
+    },
+    "mid360_pedestrian_hits": {
+      "expected": {
+        "minimum_required": 10
+      },
+      "passed": true,
+      "value": {
+        "max_lidar_pedestrian_hits": 476
+      }
+    },
+    "multiple_trajectories": {
+      "expected": {
+        "minimum_required": 2
+      },
+      "passed": true,
+      "value": {
+        "unique_trajectory_count": 6
+      }
+    },
+    "no_scan_emergency_stop": {
+      "expected": {
+        "maximum_allowed": 0
+      },
+      "passed": true,
+      "value": {
+        "emergency_stop_count": 0
+      }
+    },
+    "nonfoot_contact_force": {
+      "expected": {
+        "max_allowed": 75.0
+      },
+      "passed": true,
+      "value": {
+        "max_nonfoot_contact_n": 0.0
+      }
+    },
+    "pedestrian_pairwise_clearance": {
+      "expected": {
+        "minimum_required": 0.05
+      },
+      "passed": true,
+      "value": {
+        "min_surface_clearance_m": 0.8577379737113251
+      }
+    },
+    "rates_nominal": {
+      "expected": {
+        "policy_rate_hz_range": [
+          45.0,
+          55.0
+        ],
+        "sensor_rate_hz_range": [
+          8.0,
+          12.0
+        ]
+      },
+      "passed": true,
+      "value": {
+        "policy_rate_hz": 50.00000111758712,
+        "sensor_rate_hz": 10.000000223517423
+      }
+    },
+    "retained_static_cloud_points": {
+      "expected": {
+        "minimum_required": 1000
+      },
+      "passed": true,
+      "value": {
+        "max_static_points": 2294,
+        "min_static_points": 2078
+      }
+    },
+    "root_z_range": {
+      "expected": {
+        "expected_range": [
+          0.25,
+          0.45
+        ]
+      },
+      "passed": true,
+      "value": {
+        "max_z": 0.35026395320892334,
+        "min_z": 0.28460726141929626
+      }
+    },
+    "simulation_duration": {
+      "expected": {
+        "minimum_seconds": 50.0
+      },
+      "passed": true,
+      "value": 50.02999888174236
+    },
+    "step_displacement_and_no_reset": {
+      "expected": {
+        "maximum_step_displacement_m": 0.06,
+        "termination_count": 0,
+        "timestamps_advance": true
+      },
+      "passed": true,
+      "value": {
+        "maximum_step_displacement_m": 0.012510585011702005,
+        "termination_count": 0,
+        "timestamps_advance": true
+      }
+    },
+    "terminal_stop": {
+      "expected": {
+        "maximum_command_abs": 0.05,
+        "maximum_planar_speed_mps": 0.15,
+        "window_seconds": 2.0
+      },
+      "passed": false,
+      "value": {
+        "terminal_command_max_abs": 0.4999984800815582,
+        "terminal_planar_speed_max_mps": 0.530905015626899
+      }
+    },
+    "transport_clean": {
+      "expected": {
+        "protocol_errors": 0,
+        "reconnects": 0,
+        "sequence_gaps": 0
+      },
+      "passed": true,
+      "value": {
+        "protocol_errors": 0,
+        "reconnects": 0,
+        "sequence_gaps": 0
+      }
+    },
+    "video_quality_and_visibility": {
+      "expected": {
+        "min_height": 360,
+        "min_nonblank_fraction": 0.95,
+        "min_temporal_diff": 1.0,
+        "min_width": 640,
+        "minimum_frame_count": 500
+      },
+      "passed": true,
+      "value": {
+        "frame_count": 501,
+        "mean_temporal_diff": 36.63734584384494,
+        "metadata": {
+          "codec": "h264",
+          "duration_seconds": 41.75,
+          "fps": 12.0,
+          "height": 720,
+          "nb_frames": 501,
+          "size_bytes": 37777668,
+          "width": 1280
+        },
+        "nonblank_fraction": 1.0,
+        "raw_video_path": "/home/sun/machine-dog-nav-runs/2026-08-17_office_l0_scan_crowd/results/office_crowd_codex_candidate35/closed_loop.mp4"
+      }
+    },
+    "watchdog_zero": {
+      "expected": {
+        "maximum_allowed": 0
+      },
+      "passed": true,
+      "value": {
+        "watchdog_events": 0
+      }
+    }
+  },
+  "claim": "single-scenario Foxy-SCAN to V12-policy Lite3-Pro-sensor-rig reactive moving-occupancy Office L0 eight-person crowd simulation",
+  "schema_version": 2,
+  "status": "FAIL",
+  "summary": {
+    "final_position_world_xy_m": [
+      -8.34841537475586,
+      -0.5247124433517456
+    ],
+    "goal_xy_error_m": 0.1037513195956959,
+    "max_depth_pedestrian_pixels": 1862,
+    "max_lidar_pedestrian_hits": 476,
+    "max_nonfoot_contact_n": 0.0,
+    "max_root_z_m": 0.35026395320892334,
+    "min_conservative_pedestrian_clearance_m": 0.15162869082403962,
+    "min_root_z_m": 0.28460726141929626,
+    "overlay_sha256": null,
+    "policy_rate_hz": 50.00000111758712,
+    "reactive_replan_count": 0,
+    "sensor_rate_hz": 10.000000223517423,
+    "unique_trajectory_count": 6,
+    "video_duration_seconds": 41.75,
+    "video_frame_count": 501,
+    "video_sha256": "ea75cd4d4e5e883bce4e40f1daf75494004f7131c40e52cd7747132ac8211d5d",
+    "watchdog_events": 0
+  }
+}

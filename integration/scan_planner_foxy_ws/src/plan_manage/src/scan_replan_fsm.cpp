@@ -582,6 +582,11 @@ namespace scan_planner
 
     case GEN_NEW_TRAJ:
     {
+      const int map_sequence = planner_manager_->grid_map_->occupancyUpdateSequence();
+      if (replan_fail_count_ > 0 && map_sequence == last_failed_map_sequence_)
+      {
+        return;
+      }
       setStartStateFromOdomOrCurrentTraj();
 
       // Eigen::Vector3d rot_x = odom_orient_.toRotationMatrix().block(0, 0, 3, 1);
@@ -599,12 +604,14 @@ namespace scan_planner
       {
 
         replan_fail_count_ = 0;
+        last_failed_map_sequence_ = -1;
         changeFSMExecState(EXEC_TRAJ, "FSM");
         flag_escape_emergency_ = true;
       }
       else
       {
         replan_fail_count_++;
+        last_failed_map_sequence_ = map_sequence;
         changeFSMExecState(GEN_NEW_TRAJ, "FSM");
       }
       break;
@@ -613,14 +620,22 @@ namespace scan_planner
     case REPLAN_TRAJ:
     {
 
+      const int map_sequence = planner_manager_->grid_map_->occupancyUpdateSequence();
+      if (replan_fail_count_ > 0 && map_sequence == last_failed_map_sequence_)
+      {
+        return;
+      }
+
       if (planFromCurrentTraj())
       {
         replan_fail_count_ = 0;
+        last_failed_map_sequence_ = -1;
         changeFSMExecState(EXEC_TRAJ, "FSM");
       }
       else
       {
         replan_fail_count_++;
+        last_failed_map_sequence_ = map_sequence;
         changeFSMExecState(REPLAN_TRAJ, "FSM");
       }
 

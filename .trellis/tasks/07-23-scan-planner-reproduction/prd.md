@@ -153,6 +153,23 @@ from the rendered image.
 SCAN receives only geometry returned by the declared simulated sensors; actor
 truth, semantic identity, and commanded motion remain evidence-only.
 
+## V8 R2 Auxiliary Immediate-Walk Trial Decision
+
+On 2026-08-15, Dr Sun observed that the continuous-walk visual still waited for
+the robot because the physical pedestrian schedule retained the frozen
+command-relative trigger. The requested auxiliary trial starts the pedestrian
+schedule at closed-loop run start, removes the mid-route hold, and keeps a
+constant 0.8 m/s straight-line velocity until the declared endpoint. The
+official walk clip remains continuous. This trial intentionally differs from
+R34/R40 and cannot replace, pass, or modify the frozen V8 R2 candidate or AC44.
+
+Dr Sun rejected preview 05 after observing that the kinematic human crossed a
+source rock and that no SCAN trajectory was published after the human entered
+the active local path. The next auxiliary candidate must therefore pass both a
+static swept-route geometry precheck and a stronger post-run causal local-plan
+replacement audit. Sensor visibility and robot-human clearance alone are not
+sufficient.
+
 ## Requirements
 
 - **R1 — Source provenance.** Preserve the selected SCAN revision as an
@@ -202,6 +219,37 @@ truth, semantic identity, and commanded motion remain evidence-only.
   Elevator-LIO, real MID-360 parity, or real-robot validation.
 - **R12 — Scope control.** Do not start formal training, operate the real robot,
   modify the sibling repository, or alter unrelated dirty worktree paths.
+- **R12a — Immediate-walk trial isolation.** A run-start pedestrian trigger may
+  be exposed only as an explicit, recorded auxiliary mode whose default remains
+  the command-relative trigger. Its run must record zero wait, zero hold,
+  constant crossing speed, phase/velocity samples, and the absence of an
+  acceptance report.
+- **R12b — Immediate-walk geometry and planning causality.** Before rendering,
+  the full pedestrian swept capsule must retain positive declared clearance
+  from every static forest collision proxy, including each registered rock.
+  After rendering, evidence must show sensor detection, the pedestrian entering
+  the then-active SCAN path envelope, and a later distinct B-spline with a
+  measurable geometry change. A pre-existing static-obstacle plan does not
+  satisfy this requirement.
+- **R12c — Native voxel-review evidence.** An auxiliary voxel video must be
+  derived only from SCAN's published `/grid_map/occupancy` and
+  `/grid_map/occupancy_inflate` PointCloud2 messages, with the sliding-map
+  bounds, body pose, and B-spline recorded from the same run. Scene truth,
+  forest proxy bounds, and Isaac obstacle identity may not create or edit a
+  displayed voxel. Preserve the source topics in rosbag, record frame timing
+  and point counts, and keep the raw Isaac video beside the derived voxel MP4.
+  The primary voxel view must render the native XYZ coordinates against labeled
+  X/Y/Z axes with unit vertical scale and a moving perspective camera. A
+  top-down or oblique 2-D projection may be retained only as an explicitly
+  labeled auxiliary inset; it does not satisfy the 3-D review requirement.
+- **R12d — Humble RViz is a replay-only client.** An isolated RoboStack Humble
+  RViz2 environment may run on the Apple Silicon Mac only to replay copied Foxy
+  evidence. SCAN planning, occupancy construction, controller execution, and
+  Foxy--Isaac transport remain in the pinned 5070 Ti runtimes. The replay may
+  expose standard `nav_msgs/Path` topics derived from the recorded B-spline and
+  body odometry, but it may not change points, timestamps, trajectory geometry,
+  or claim cross-distribution DDS integration. Record the exact osx-arm64
+  package set and keep the environment isolated from the project Python tools.
 - **R13 — Pinned physical sensor rig.** V3 uses the canonical sensor-rig URDF
   SHA-256 `d0a1be09...cec80` only through its generated Isaac-safe derivative
   SHA-256 `803d5527...bb9d`. Record imported prim names, topology, mass,
@@ -562,6 +610,73 @@ truth, semantic identity, and commanded motion remain evidence-only.
   videos and explicitly judges human recognizability, gait, sensor-causal
   avoidance, planned-versus-actual motion, terrain appearance, speed, clearance,
   and terminal behavior. Automated PASS cannot satisfy this criterion.
+- [ ] **AC45 — Auxiliary voxel-video review:** one same-scenario run records
+  nonempty raw and inflated SCAN occupancy topics plus the sliding-map bounds,
+  body pose, and B-spline; a deterministic renderer produces a decodable,
+  timestamped MP4 whose source hashes and frame metadata are copied locally.
+  Dr Sun visually reviews the result; this auxiliary artifact does not modify
+  AC40--AC44 or promote the upstream reproduction claim.
+- [ ] **AC46 — Native RViz replay review:** the copied Foxy rosbag or a
+  hash-linked standard-message replay preserves the complete raw and inflated
+  PointCloud2 payloads, 0.05 m voxel resolution, sliding-map bounds, exact
+  sampled SCAN path, and accumulated physical body path. RoboStack Humble RViz2
+  on osx-arm64 renders the data with a recorded configuration and produces a
+  directly decodable screen recording. Automated replay checks do not satisfy
+  Dr Sun's visual decision.
+- [ ] **AC47 — Official indoor scene visual gate:** Warehouse, Office, and
+  Hospital are each loaded from their recorded Isaac Sim 5.1 USD URI on the
+  5070 Ti. Resolver status, stage bounds, prim/collider counts, runtime log,
+  raw multi-view PNGs, source hashes, and remote/local parity are preserved.
+  This gate proves only scene loading and visual appearance.
+- [ ] **AC48 — Lite3 scale-context gate:** the pinned Lite3 sensor-rig URDF is
+  inserted through the recorded Isaac Lab importer path without replacing the
+  source scene, and at least one raw view per scene shows robot scale and
+  placement. A fixed-base visual preview cannot be promoted into articulated
+  locomotion, collision, sensor, or navigation evidence.
+- [ ] **AC49 — Indoor-scene human review:** Dr Sun reviews the Warehouse,
+  Office, and Hospital previews and selects which scene, if any, should enter a
+  separate collision/sensor/route qualification. Automated checks cannot make
+  the selection.
+- [ ] **AC50 — Office global-tour human review:** a locally synchronized H.264
+  video contains actual moving-camera Isaac RGB output for every authored
+  Office floor surface while composing all Office direct children except the
+  separately declared city-background prim. Metadata records the source floor
+  mesh evidence, per-floor bounds and visible prims, frame count, resolution,
+  rate, and output hashes. Black frames, static-image animation, inventing a
+  floor from stair height, and labeling a reception crop as global are
+  forbidden. Dr Sun decides whether the visual tour is acceptable.
+- [x] **AC51 — Office L0 physical-scene gate:** the official L0 floor, walls,
+  doors, desks, tables, and other route-relevant source meshes have recorded
+  collision coverage derived from their source geometry rather than loose
+  hand-authored boxes. A stationary articulated Lite3 with the pinned sensor
+  URDF maintains supported foot contact without non-foot contact, tunnelling,
+  or interpenetration. Visual preview evidence cannot satisfy this gate.
+- [x] **AC52 — Office Lite3/SCAN composition gate:** the pinned V12
+  `model_149999` policy contract, Lite3 sensor-rig URDF, MID-360-like ray model,
+  D435i-like depth model, Foxy TCP bridge, and SCAN planner are unchanged except
+  for a separately hashed Office L0 scenario configuration. A route of at least
+  20 m is planned from sensor-derived occupancy; scene truth may evaluate the
+  run but may not steer the robot or populate SCAN.
+- [x] **AC53 — Eight-pedestrian causal-obstacle gate:** eight NVIDIA official
+  animated characters follow deterministic, source-floor-constrained routes at
+  0.6--1.2 m/s. At least two cross the nominal Lite3 route while six provide
+  background traffic. Each visible character has one co-moving conservative
+  collision/sensor proxy, but character truth and route schedules remain
+  evidence-only. Swept routes must pass static-scene and person-person
+  intersection prechecks before the closed loop starts. Crossing endpoints
+  must remain outside the combined robot/person envelope.
+- [x] **AC54 — Office crowd repeatability gate:** two same-input closed-loop
+  runs use the same Office, policy, planner, sensor, pedestrian, start/goal, and
+  configuration hashes. Each run has zero physical collision, zero protocol or
+  watchdog error, reaches within 0.25 m of the goal, records at least one causal
+  SCAN trajectory replacement after a crossing pedestrian enters sensor view,
+  and preserves planned versus physical trajectories plus per-person clearance.
+  This is reactive moving-occupancy evidence, not predictive social navigation.
+- [ ] **AC55 — Office crowd human review:** a locally synchronized video shows
+  the articulated Lite3, all eight official pedestrians, planned trajectory,
+  actual trajectory, detected dynamic occupancy, and replanning events in the
+  official Office L0 scene. Dr Sun alone decides visual plausibility and whether
+  the trial is acceptable for the project baseline.
 
 ## Stop Conditions
 
@@ -594,5 +709,6 @@ validated closed loop.
   multi-agent intention modeling, or general dynamic-navigation claims beyond
   the single frozen V7/V8 crossing.
 - Human pose estimation, pedestrian intention prediction, semantic person
-  detection, social-navigation cost fields, crowd simulation, or claims about
-  safe operation near real people.
+  detection, social-navigation cost fields, general crowd simulation beyond
+  the fixed eight-person Office trial, or claims about safe operation near real
+  people.

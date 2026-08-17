@@ -747,3 +747,158 @@ walk output, and writes a run-owned cache. The Direct-GPU physics process
 references the official character and replays that cache through one
 `UsdSkelAnimation` slot; it never loads the People graph or a local procedural
 gait.
+
+## 19. Auxiliary Immediate-Walk Variant
+
+Keep the existing dynamic obstacle state evaluator and introduce one trigger
+selection at the runtime boundary. `first_nonzero_body_command` remains the
+default and preserves the frozen acceptance contract. `run_start` initializes
+the same schedule clock immediately before the closed-loop stepping loop, so it
+does not depend on robot commands or simulator asset-loading time. The preview
+wrapper composes `run_start`, zero wait, zero hold, 0.8 m/s speed, and the
+existing `continuous_walk` clip mode. Trigger mode appears in run identity,
+effective input, and per-step evidence. Acceptance is intentionally omitted.
+
+## 20. Immediate-Walk Static and Causal Audit
+
+The simulator evaluates the complete straight pedestrian centre segment against
+the recorded AABBs of all forest collision/sensor proxies before the official
+visual is allowed to run. The declared pedestrian radius plus a positive margin
+defines the swept envelope. Failure stops before video capture and records the
+nearest static object and clearance.
+
+The postprocessor reuses the exact B-spline sampler and plan-to-simulator-time
+association used by the trajectory overlay. For every active-plan interval it
+computes the pedestrian-centre distance to the sampled SCAN path. A causal
+response exists only if the person enters the active path envelope and a later
+trajectory ID is published with a nontrivial sampled-geometry change. Initial
+plans produced before path intrusion, even after generic human sensor detection,
+do not count. The auxiliary wrapper fails unless static clearance, live sensing,
+causal replanning, robot-human clearance, contact, and continuous-speed checks
+all pass.
+
+## 21. Native SCAN Voxel Review
+
+The upstream map already publishes raw occupied voxels as
+`/grid_map/occupancy`, footprint-inflated voxels as
+`/grid_map/occupancy_inflate`, and the local sliding-map boundary as
+`/grid_map/sliding_map_bbox`. The existing runner did not subscribe to or bag
+these topics, so prior videos cannot be retroactively described as SCAN voxel
+evidence.
+
+The voxel-review run adds those native topics to rosbag and starts one Foxy
+subscriber that captures their PointCloud2 payloads without accessing Isaac
+scene truth. A pure rendering core decodes XYZ fields by declared PointCloud2
+offset and validates finite points and dimensions. The primary review frame is
+a labeled X/Y/Z perspective scene with unit vertical scale, equal source
+coordinates for voxels and trajectories, and a 180-degree camera orbit that
+follows the sliding-map bounds. Raw voxel centres remain opaque, inflated
+collision voxels remain translucent, and SCAN B-spline/body traces are drawn in
+the same 3-D coordinate frame. Deterministic point subsampling is permitted only
+for display load and must be recorded separately from complete source counts.
+A small top-down XY inset may aid plan interpretation but is explicitly not the
+voxel view. The rejected top-down plus oblique-projection prototype is preserved
+as a presentation failure and cannot be called a 3-D voxel video.
+
+Each saved snapshot records the source message stamps, voxel counts, trajectory
+identity, body pose, and original XYZ arrays. Encoding happens after the live
+run by zero-order resampling against simulator timestamps. The rosbag, snapshot
+metadata, source hashes, raw Isaac video, voxel-only MP4, and optional
+side-by-side review MP4 return to the local repository. This is derived
+visualization evidence only; it cannot steer the robot or replace the native
+PointCloud2 sources.
+
+## 22. Apple Silicon Humble RViz Replay
+
+The Mac viewer is a fourth, evidence-only layer rather than another runtime in
+the navigation loop:
+
+```text
+5070 Ti Foxy SCAN rosbag + captured XYZ/B-spline/body snapshots
+  -> local hash verification
+  -> standard-message replay adapter (no geometric edits)
+  -> isolated RoboStack Humble RViz2 on osx-arm64
+  -> recorded RViz window + config + package inventory
+```
+
+The original `/grid_map/occupancy` and `/grid_map/occupancy_inflate`
+PointCloud2 messages remain authoritative. RViz displays each centre as a
+0.05 m cube. The replay adapter samples each recorded SCAN B-spline using the
+same de Boor implementation already shared by the trajectory and voxel review,
+publishes that geometry as `nav_msgs/Path`, and accumulates the recorded
+physical body poses into a second `nav_msgs/Path`. The sliding-map marker is
+replayed unchanged. Every derived message retains the source snapshot stamp
+and trajectory ID in a sidecar so the display is traceable to the captured
+evidence.
+
+RoboStack Humble is pinned only because Foxy RViz2 has no osx-arm64 package.
+It does not run SCAN, connect to the live Foxy graph through DDS, change the
+Lite3 deployment boundary, or establish a Humble integration claim. The
+environment, replay conversion, RViz configuration, screen recording, and
+source/output hashes return to the local experiment directory.
+
+## 23. Official Indoor Scene Visual Preflight
+
+Warehouse, Office, and Hospital are evaluated first as source-scene visual
+preflights on the existing 5070 Ti Isaac Sim 5.1 / Isaac Lab 2.3.2 runtime.
+The loader references the official USD through the Isaac asset root, records
+the resolver result and stage statistics, and captures raw viewport images in
+headless mode. It does not edit or re-export NVIDIA scene content.
+
+The first pass loads each source scene without a robot so authored cameras and
+useful world-space views can be identified. A second pass inserts the pinned
+Lite3 sensor-rig URDF through Isaac Lab's URDF importer at an explicitly
+recorded pose. The robot may be fixed-base for this visual scale check. Such a
+preview proves only that the scene and robot can be composed and rendered; it
+does not establish collision completeness, foot contact, policy inference,
+sensor alignment, a 50 m route, or SCAN navigation.
+
+All output is written under
+`.pipeline/experiments/2026-08-16_isaac_indoor_scene_preview/`. Remote results
+are execution copies and become usable evidence only after local sync and hash
+verification. Scene selection remains a human decision before any physical or
+navigation qualification is opened.
+
+The Office visual follow-up first uses a deterministic, smooth camera spline
+around the source-material reception subset and one persistent Replicator
+render product. The camera must settle before frame zero, and sampled contact
+sheets expose startup darkness or wall intersections.
+
+The global follow-up composes all Office direct children except the recorded
+`SM_Buildings` context. Floor levels are admitted only when direct source floor
+meshes exist at that height. For each admitted floor, other levels and ceiling
+prims are hidden so a top-down-to-oblique camera sweep can expose the plan;
+source materials and all selected furniture/wall objects remain unchanged.
+The distant city exclusion and per-floor visibility operation are visual
+composition choices, not collision or navigation qualification.
+
+## 24. Office L0 Lite3 SCAN Crowd Trial
+
+The Office crowd follow-up uses the complete official L0 source-material
+composition, not the reception crop or the visualization-only floor filter.
+Before robot insertion, a collision audit maps every route-relevant floor,
+wall, door, desk, and table visual mesh to a source-geometry collider and
+records uncovered geometry. Collision generation from loose object AABBs is
+not an acceptable substitute. A static support/contact trial must pass before
+policy inference or planning starts.
+
+The robot side reuses the pinned V12 `model_149999`, Lite3 sensor-rig URDF,
+provisional MID-360-like and D435i-like sensor contracts, Foxy transport, and
+SCAN planner from the frozen forest baseline. Only the Office scene, route,
+pedestrian schedule, and view configuration are new. SCAN remains a reactive
+geometric moving-occupancy planner; no human intention or social-cost model is
+added.
+
+Eight official NVIDIA characters are instantiated from pinned Isaac Sim 5.1
+asset URLs and driven by deterministic floor-constrained schedules. Their
+visible animation and conservative co-moving physical/sensor proxy remain
+separate evidence layers. Two routes cross the nominal robot path and six
+remain off-route background traffic. Static swept-route and pairwise swept-route
+prechecks run before the closed loop. Runtime truth records timing, pose, and
+clearance but cannot enter planner input or command generation.
+
+The final evidence synchronizes raw sensor counts, SCAN map/trajectory events,
+commands, policy observations/actions, contacts, physical body pose, all person
+poses, minimum clearances, and a rendered overlay video. Two identical-input
+runs are required before human review; automated passes cannot satisfy the
+visual decision.

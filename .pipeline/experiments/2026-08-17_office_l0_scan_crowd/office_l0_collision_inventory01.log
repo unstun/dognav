@@ -1,0 +1,51 @@
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/sun/ssh/sun/IsaacLab/apps/isaaclab.python.headless.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-08-17_06-26-16.log[0m
+[36m======================================================================================[0m
+
+[33m06:26:16 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+OFFICE_L0_COLLISION_INVENTORY={"mesh_count": 2940, "collision_mesh_count": 2838, "uncovered_mesh_count": 102, "instance_proxy_count": 2838, "prototype_mesh_count": 0, "route_relevant_uncovered_count": 101, "category_mesh_counts": {"Chair": 37, "Desk": 5, "Door": 139, "Elevator": 1, "Floor": 101, "Other": 2290, "Reception": 22, "Stairs": 16, "Table": 150, "Wall": 179}, "category_collision_counts": {"Chair": 37, "Desk": 5, "Door": 138, "Elevator": 1, "Floor": 1, "Other": 2289, "Reception": 22, "Stairs": 16, "Table": 150, "Wall": 179}}
+Loading user config located at: '/home/sun/miniconda3/envs/isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/sun/miniconda3/envs/isaaclab/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260817_062613.log
+2026-08-17T10:26:13Z [74ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-08-17T10:26:13Z [77ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-08-17T10:26:13Z [302ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-08-17T10:26:13Z [306ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-08-17T10:26:14Z [1,830ms] [Warning] [gpu.foundation.plugin] Skipping unsupported non-NVIDIA GPU: AMD Ryzen 7 9700X 8-Core Processor (RADV RAPHAEL_MENDOCINO)
+2026-08-17T10:26:14Z [1,830ms] [Warning] [gpu.foundation.plugin] Skipping unsupported non-NVIDIA GPU: AMD Ryzen 7 9700X 8-Core Processor (RADV RAPHAEL_MENDOCINO)
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 580.126.09    | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA GeForce RTX 5070 Ti       | Yes: 0 |     | 16303   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2c05      | 9a0eb7bb.. |
+|     |                                  |        |     |            | 1         |            |
+|---------------------------------------------------------------------------------------------|
+| 1   | AMD Ryzen 7 9700X 8-Core Proce.. |        |     | 10720   MB | 1002      | 0          |
+|     |                                  |        |     |            | 13c0      | 00000000.. |
+|     |                                  |        |     |            | 11        |            |
+|=============================================================================================|
+| OS: 24.04.3 LTS (Noble Numbat) ubuntu, Version: 24.04.3, Kernel: 6.17.0-22-generic
+| Processor: AMD Ryzen 7 9700X 8-Core Processor
+| Cores: 8 | Logical Cores: 16
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 31137 | Free Memory: 27620
+| Total Page/Swap (MB): 69497 | Free Page/Swap: 69497
+|---------------------------------------------------------------------------------------------|
+2026-08-17T10:26:15Z [1,992ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+2026-08-17T10:26:15Z [1,992ms] [Warning] [gpu.foundation.plugin] Detected IOMMU is enabled. Running CUDA peer-to-peer bandwidth and latency validation.
+Unidirectional P2P=Enabled Bandwidth (P2P Writes) Matrix (GB/s)
+   D\D     0 
+     0 754.47 
+P2P=Enabled Latency (P2P Writes) Matrix (us)
+   GPU     0 
+     0   2.07 
+
+   CPU     0 
+     0   1.66 

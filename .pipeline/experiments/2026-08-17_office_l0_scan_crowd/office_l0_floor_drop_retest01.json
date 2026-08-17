@@ -1,0 +1,157 @@
+{
+  "status": "PASS",
+  "reviewed": false,
+  "prior_result": "/home/sun/machine-dog-nav-runs/2026-08-17_office_l0_scan_crowd/results/office_l0_floor_drop02.json",
+  "prior_drop_pass_count": 82,
+  "retested_floor_count": 2,
+  "retested_floor_pass": {
+    "/World/Environment/SM_Floor_6m35/SM_Floor_6m": true,
+    "/World/Environment/SM_Floor_6m47/SM_Floor_6m": true
+  },
+  "combined_floor_count": 84,
+  "combined_pass_count": 84,
+  "combined_failure_count": 0,
+  "samples": [
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m35/SM_Floor_6m",
+      "start_m": [
+        1.499998996580269,
+        43.499999272551854,
+        0.35
+      ],
+      "final_m": [
+        1.4999990463256836,
+        43.5,
+        0.04999986290931702
+      ],
+      "z_error_m": 1.37090682986174e-07,
+      "xy_drift_m": 7.291470439082948e-07,
+      "speed_mps": 1.6213930198460957e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m35/SM_Floor_6m",
+      "start_m": [
+        4.499999576119753,
+        43.499999272551854,
+        0.35
+      ],
+      "final_m": [
+        4.499999523162842,
+        43.5,
+        0.04999975860118866
+      ],
+      "z_error_m": 2.413988113431076e-07,
+      "xy_drift_m": 7.293731827852879e-07,
+      "speed_mps": 2.9105984289401476e-10,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m35/SM_Floor_6m",
+      "start_m": [
+        1.499998996580269,
+        46.49999998322547,
+        0.35
+      ],
+      "final_m": [
+        1.4999990463256836,
+        46.5,
+        0.04999993368983269
+      ],
+      "z_error_m": 6.631016731539763e-08,
+      "xy_drift_m": 5.249753408946602e-08,
+      "speed_mps": 1.2706913299354028e-10,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m35/SM_Floor_6m",
+      "start_m": [
+        4.499999576119753,
+        46.49999998322547,
+        0.35
+      ],
+      "final_m": [
+        4.499999523162842,
+        46.5,
+        0.04999992996454239
+      ],
+      "z_error_m": 7.003545761385954e-08,
+      "xy_drift_m": 5.555015041933641e-08,
+      "speed_mps": 1.2848745678528672e-10,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m47/SM_Floor_6m",
+      "start_m": [
+        -22.500001003419733,
+        43.499999272551854,
+        0.35
+      ],
+      "final_m": [
+        -22.500001907348633,
+        43.5,
+        0.05000380054116249
+      ],
+      "z_error_m": 3.800541162488069e-06,
+      "xy_drift_m": 1.1602880078362423e-06,
+      "speed_mps": 1.6168520966530764e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m47/SM_Floor_6m",
+      "start_m": [
+        -19.50000042388025,
+        43.499999272551854,
+        0.35
+      ],
+      "final_m": [
+        -19.5,
+        43.5,
+        0.050002023577690125
+      ],
+      "z_error_m": 2.023577690121736e-06,
+      "xy_drift_m": 8.419354311361898e-07,
+      "speed_mps": 1.6175074613045126e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m47/SM_Floor_6m",
+      "start_m": [
+        -22.500001003419733,
+        46.49999998322547,
+        0.35
+      ],
+      "final_m": [
+        -22.500001907348633,
+        46.5,
+        0.05000380054116249
+      ],
+      "z_error_m": 3.800541162488069e-06,
+      "xy_drift_m": 9.040845317634107e-07,
+      "speed_mps": 1.6168520966530764e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m47/SM_Floor_6m",
+      "start_m": [
+        -19.50000042388025,
+        46.49999998322547,
+        0.35
+      ],
+      "final_m": [
+        -19.5,
+        46.5,
+        0.050002023577690125
+      ],
+      "z_error_m": 2.023577690121736e-06,
+      "xy_drift_m": 4.2421203383184647e-07,
+      "speed_mps": 1.6175074613045126e-09,
+      "qualification_pass": true
+    }
+  ],
+  "claim_boundary": [
+    "four inset rigid-sphere drops retest only prior centre-probe failures",
+    "combined result establishes one stable support point per source L0 floor tile",
+    "no full-tile sweep, articulated Lite3, route, sensor, pedestrian, or planning claim"
+  ]
+}

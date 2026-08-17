@@ -1,0 +1,70 @@
+{
+  "claim_boundary": "The project Foxy port of SCAN-Planner is integrated with the pinned Lite3 V12 policy in the declared Isaac Sim Office L0 crowd scenario, and two identical-input automated trials passed the frozen simulation gates. Final visual acceptance remains pending Dr Sun's review.",
+  "differences": {
+    "clearance_diff_m": 0.21232924913433404,
+    "goal_xy_error_diff_m": 0.022154205100930163,
+    "min_root_z_diff_m": 0.006895661354064941,
+    "trajectory_count_diff": 2
+  },
+  "input_identity": {
+    "effective_input_match": true,
+    "effective_input_sha256_run_1": "5def912f529644a8f7e39ebe8ad56b566bccc16cbac701996bfc7e7337f4f09f",
+    "effective_input_sha256_run_2": "5def912f529644a8f7e39ebe8ad56b566bccc16cbac701996bfc7e7337f4f09f",
+    "normalized_run_identity_match": true,
+    "normalized_run_identity_sha256_run_1": "9569438297c3cfa17c39ca92b88e5821e13338ac3b25d31cf46001df8eaa6974",
+    "normalized_run_identity_sha256_run_2": "9569438297c3cfa17c39ca92b88e5821e13338ac3b25d31cf46001df8eaa6974"
+  },
+  "repeatability_checks": {
+    "both_runs_passed_acceptance": true,
+    "goal_error_repeatable": true,
+    "multiple_trajectories_both": true,
+    "reactive_replan_both": true,
+    "safe_clearance_both": true,
+    "safe_contacts_both": true,
+    "same_effective_input": true,
+    "same_normalized_run_identity": true,
+    "zero_watchdog_both": true
+  },
+  "run_1": {
+    "goal_xy_error_m": 0.10864733073234914,
+    "max_depth_pedestrian_pixels": 982,
+    "max_lidar_pedestrian_hits": 281,
+    "max_nonfoot_contact_n": 0.0,
+    "max_root_z_m": 0.35026395320892334,
+    "min_conservative_pedestrian_clearance_m": 0.8543110311625364,
+    "min_root_z_m": 0.2750644087791443,
+    "overlay_sha256": "38620cc2272f67d713c7115672811b8b4e6dbe4bc504c0fecb4cf3e5d06b9db3",
+    "policy_rate_hz": 50.00000111758712,
+    "reactive_replan_count": 5,
+    "run_id": "office_crowd_codex_candidate38",
+    "sensor_rate_hz": 10.000000223517423,
+    "status": "PASS",
+    "unique_trajectory_count": 10,
+    "video_duration_seconds": 50.083333,
+    "video_frame_count": 601,
+    "video_sha256": "010acee0275475a2bd3661f6db7743adb64be25cc4fcaa3e9fe8ac04a00bed31",
+    "watchdog_events": 0
+  },
+  "run_2": {
+    "goal_xy_error_m": 0.1308015358332793,
+    "max_depth_pedestrian_pixels": 933,
+    "max_lidar_pedestrian_hits": 278,
+    "max_nonfoot_contact_n": 0.0,
+    "max_root_z_m": 0.35026395320892334,
+    "min_conservative_pedestrian_clearance_m": 0.6419817820282023,
+    "min_root_z_m": 0.28196007013320923,
+    "overlay_sha256": "13e66c72dd38ac513b071e2b2b4915c2b9db8846cfe2d7362f5b6415667c4ddc",
+    "policy_rate_hz": 50.00000111758712,
+    "reactive_replan_count": 1,
+    "run_id": "office_crowd_codex_candidate39",
+    "sensor_rate_hz": 10.000000223517423,
+    "status": "PASS",
+    "unique_trajectory_count": 12,
+    "video_duration_seconds": 50.083333,
+    "video_frame_count": 601,
+    "video_sha256": "4553f0384697e41c372d6dcfb77b50373a4d5832d57d5d4187487fb6775063c9",
+    "watchdog_events": 0
+  },
+  "schema_version": 1,
+  "status": "PASS"
+}

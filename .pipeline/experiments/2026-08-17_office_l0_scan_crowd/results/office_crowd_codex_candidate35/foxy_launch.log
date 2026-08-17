@@ -1,0 +1,258 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-08-17-15-25-33-348844-ubuntu-47
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [foxy_bridge_node-1]: process started with pid [61]
+[INFO] [scan_planner_node-2]: process started with pid [63]
+[INFO] [closed_loop_controller-3]: process started with pid [65]
+[INFO] [acceptance_monitor_node-4]: process started with pid [67]
+[closed_loop_controller-3] [INFO] [1786980333.379677796] [closed_loop_controller]: Closed-loop controller ready
+[scan_planner_node-2] hit: 1.7346
+[scan_planner_node-2] miss: -0.847298
+[scan_planner_node-2] min log: -1.99243
+[scan_planner_node-2] max: 3.89182
+[scan_planner_node-2] thresh log: 1.38629
+[scan_planner_node-2] [INFO] [1786980333.476580989] [scan_planner_node]: Preset waypoint mode will start after the first odometry message
+[acceptance_monitor_node-4] [INFO] [1786980333.537503719] [lite3_acceptance_monitor]: Acceptance monitor writing /evidence/ros_events.jsonl and /evidence/ros_summary.json
+[foxy_bridge_node-1] [INFO] [1786980333.540458321] [lite3_sim_bridge]: Telemetry stream connected
+[foxy_bridge_node-1] [INFO] [1786980333.540596400] [lite3_sim_bridge]: Command stream connected
+[foxy_bridge_node-1] [INFO] [1786980333.540714672] [lite3_sim_bridge]: Lite3 bridge ready: telemetry 127.0.0.1:46144, command 127.0.0.1:46145
+[scan_planner_node-2] [INFO] [1786980334.234248674] [scan_planner_node]: Preset waypoint mode is waiting for the first processed occupancy update
+[scan_planner_node-2] [INFO] [1786980334.771412805] [scan_planner_node]: Preset waypoint mode starts after the first processed occupancy update
+[scan_planner_node-2] [INFO] [1786980334.771906481] [scan_planner_node]: [navi_mode=2] Planning to waypoint 1/4: [-11.62, 10.12, 0.85]
+[scan_planner_node-2] [TRIG]: from INIT to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------0
+[scan_planner_node-2] start: -15.6  13.1 0.305, 0 0 0
+[scan_planner_node-2] goal:-11.6  10.1  0.85, 0 0 0
+[scan_planner_node-2] [32miter(+1)=1,time(ms)=0.145,total_t(ms)=0.145,cost=0.215
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] total time:[42m0.00376[0m,optimize:0.00273,refine:0.00103
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786980334.780327547] [closed_loop_controller]: Received trajectory 1, duration 10.880s, start error 0.000m, catchup state 0
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------1
+[scan_planner_node-2] start: -15.6  13.1 0.305,   0.00129 -0.000969  0.000176
+[scan_planner_node-2] goal:-11.6  10.1  0.85, 0 0 0
+[scan_planner_node-2] [32miter(+1)=26,time(ms)=2.925,total_t(ms)=2.925,cost=0.136
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] total time:[42m0.0084[0m,optimize:0.0076,refine:0.00082
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [SAFETY]: from EXEC_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786980334.913317942] [closed_loop_controller]: Received trajectory 2, duration 10.880s, start error 0.000m, catchup state 0
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [INFO] [1786980372.923025243] [scan_planner_node]: [navi_mode=2] Planning to waypoint 2/4: [-8.38, 10.12, 0.85]
+[scan_planner_node-2] [FSM]: from EXEC_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------2
+[scan_planner_node-2] start: -12.6  10.7 0.299,   6.6e-05 -4.94e-05  8.98e-06
+[scan_planner_node-2] goal:-8.38  10.1  0.85, 0 0 0
+[scan_planner_node-2] [32miter(+1)=25,time(ms)=2.476,total_t(ms)=2.476,cost=0.056
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] total time:[42m0.0057[0m,optimize:0.005,refine:0.00073
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786980372.931996422] [closed_loop_controller]: Received trajectory 3, duration 9.600s, start error 0.000m, catchup state 0
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------3
+[scan_planner_node-2] start: -12.5  10.7 0.308,   0.519 -0.0239  0.0282
+[scan_planner_node-2] goal:-8.38  10.1  0.85, 0 0 0
+[scan_planner_node-2] iter=23,time(ms)=3,rebound.
+[scan_planner_node-2] [ERROR] [1786980374.860775203] [bspline_opt]: A-star error
+[scan_planner_node-2] iter=6,time(ms)=61,rebound.
+[scan_planner_node-2] [ERROR] [1786980374.861497778] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] [ERROR] [1786980374.862064121] [bspline_opt]: A-star failed; aborting optimization
+[scan_planner_node-2] [32miter(+1)=3,time(ms)=0.283,keep optimizing
+[scan_planner_node-2] [0m[32miter(+1)=3,time(ms)=0.253,keep optimizing
+[scan_planner_node-2] [0miter=5,time(ms)=0.55,rebound.
+[scan_planner_node-2] [32miter(+1)=11,time(ms)=1.012,total_t(ms)=66.342,cost=0.120
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] total time:[42m0.069[0m,optimize:0.069,refine:0.00069
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [SAFETY]: from EXEC_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786980374.864946267] [closed_loop_controller]: Received trajectory 4, duration 9.280s, start error 0.000m, catchup state 0
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [INFO] [1786980402.377656802] [scan_planner_node]: [navi_mode=2] Planning to waypoint 3/4: [-8.38, 6.38, 0.85]
+[scan_planner_node-2] [FSM]: from EXEC_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------4
+[scan_planner_node-2] start: -9.17  9.97   0.3, 0 0 0
+[scan_planner_node-2] goal:-8.38  6.38  0.85, 0 0 0
+[scan_planner_node-2] iter=12,time(ms)=1.5,rebound.
+[scan_planner_node-2] -9.2   10  0.3
+[scan_planner_node-2] -9.2   10  0.3
+[scan_planner_node-2] -9.3  9.9  0.3
+[scan_planner_node-2] -9.5  9.7 0.31
+[scan_planner_node-2] [WARN] [1786980402.431129144] [bspline_opt]: First three control points are in obstacles; t=0.000000
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------5
+[scan_planner_node-2] start: -9.12  9.96 0.294, 0 0 0
+[scan_planner_node-2] goal:-8.38  6.38  0.85, 0 0 0
+[scan_planner_node-2] [ERROR] [1786980402.738797532] [bspline_opt]: The robot is inside an obstacle
+[scan_planner_node-2] iter=20,time(ms)=2.4,rebound.
+[scan_planner_node-2] -9.1   10 0.29
+[scan_planner_node-2] -9.1   10 0.29
+[scan_planner_node-2] -9.2  9.9  0.3
+[scan_planner_node-2] -9.4  9.9  0.3
+[scan_planner_node-2] [WARN] [1786980402.740123679] [bspline_opt]: First three control points are in obstacles; t=0.000000
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------6
+[scan_planner_node-2] start: -9.07  9.97 0.293, 0 0 0
+[scan_planner_node-2] goal:-8.38  6.38  0.85, 0 0 0
+[scan_planner_node-2] -9.1   10 0.29
+[scan_planner_node-2] -9.1   10 0.29
+[scan_planner_node-2] -9.2  9.8 0.29
+[scan_planner_node-2] -9.4  9.6  0.3
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] [WARN] [1786980402.886965502] [bspline_opt]: First three control points are in obstacles; t=0.000000
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------7
+[scan_planner_node-2] start: -9.03  9.99 0.309, 0 0 0
+[scan_planner_node-2] goal:-8.38  6.38  0.85, 0 0 0
+[scan_planner_node-2]   -9   10 0.31
+[scan_planner_node-2]   -9   10 0.31
+[scan_planner_node-2] -9.1   10 0.31
+[scan_planner_node-2] -9.3  9.9 0.32
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] [WARN] [1786980403.328792321] [bspline_opt]: First three control points are in obstacles; t=0.000000
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------8
+[scan_planner_node-2] start: -8.98    10 0.313, 0 0 0
+[scan_planner_node-2] goal:-8.38  6.38  0.85, 0 0 0
+[scan_planner_node-2]   -9   10 0.31
+[scan_planner_node-2]   -9   10 0.31
+[scan_planner_node-2] -9.1  9.9 0.31
+[scan_planner_node-2] -9.3  9.7 0.32
+[scan_planner_node-2] [WARN] [1786980403.485060536] [bspline_opt]: First three control points are in obstacles; t=0.000000
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------9
+[scan_planner_node-2] start: -8.94    10 0.301, 0 0 0
+[scan_planner_node-2] goal:-8.38  6.38  0.85, 0 0 0
+[scan_planner_node-2] -8.9   10  0.3
+[scan_planner_node-2] -8.9   10  0.3
+[scan_planner_node-2]  -9 9.9 0.3
+[scan_planner_node-2] -9.2  9.8 0.31
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] [WARN] [1786980403.839786093] [bspline_opt]: First three control points are in obstacles; t=0.000000
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------10
+[scan_planner_node-2] start: -8.89    10 0.298, 0 0 0
+[scan_planner_node-2] goal:-8.38  6.38  0.85, 0 0 0
+[scan_planner_node-2] -8.9   10  0.3
+[scan_planner_node-2] -8.9   10  0.3
+[scan_planner_node-2]  -9 9.9 0.3
+[scan_planner_node-2] -9.2  9.7  0.3
+[scan_planner_node-2] first_optimize_step_success=0
+[scan_planner_node-2] final_plan_success=0
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] [WARN] [1786980403.986938839] [bspline_opt]: First three control points are in obstacles; t=0.000000
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------11
+[scan_planner_node-2] start: -8.85    10 0.295, 0 0 0
+[scan_planner_node-2] goal:-8.38  6.38  0.85, 0 0 0
+[scan_planner_node-2] [32miter(+1)=24,time(ms)=2.401,total_t(ms)=2.402,cost=0.124
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] Need to reallocate time.
+[scan_planner_node-2] total time:[42m0.014[0m,optimize:0.0063,refine:0.0079
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786980404.399658149] [closed_loop_controller]: Received trajectory 5, duration 10.852s, start error 0.050m, catchup state 0
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [INFO] [1786980434.121538205] [scan_planner_node]: [navi_mode=2] Planning to waypoint 4/4: [-8.38, -0.62, 0.85]
+[scan_planner_node-2] [FSM]: from EXEC_TRAJ to GEN_NEW_TRAJ
+[scan_planner_node-2] 
+[scan_planner_node-2] [rebo replan]: -------------------------------------12
+[scan_planner_node-2] start: -8.39  6.69 0.305, -2.51e-06 -0.000316  3.46e-05
+[scan_planner_node-2] goal: -8.38 -0.625   0.85, 0 0 0
+[scan_planner_node-2] iter=8,time(ms)=2.2,rebound.
+[scan_planner_node-2] [32miter(+1)=54,time(ms)=9.131,total_t(ms)=11.359,cost=0.151
+[scan_planner_node-2] [0mfirst_optimize_step_success=1
+[scan_planner_node-2] Need to reallocate time.
+[scan_planner_node-2] total time:[42m0.038[0m,optimize:0.025,refine:0.013
+[scan_planner_node-2] final_plan_success=1
+[scan_planner_node-2] [FSM]: from GEN_NEW_TRAJ to EXEC_TRAJ
+[closed_loop_controller-3] [INFO] [1786980434.164215658] [closed_loop_controller]: Received trajectory 6, duration 19.254s, start error 0.001m, catchup state 0
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: state: EXEC_TRAJ
+[scan_planner_node-2] [FSM]: from EXEC_TRAJ to WAIT_TARGET
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[foxy_bridge_node-1] [WARN] [1786980514.674983520] [lite3_sim_bridge]: Telemetry stream reset: socket closed with 40 bytes remaining
+[foxy_bridge_node-1] [WARN] [1786980514.694939011] [lite3_sim_bridge]: Command stream reset: [Errno 104] Connection reset by peer
+[scan_planner_node-2] [FSM]: state: WAIT_TARGET
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [acceptance_monitor_node-4]: sending signal 'SIGINT' to process[acceptance_monitor_node-4]
+[INFO] [closed_loop_controller-3]: sending signal 'SIGINT' to process[closed_loop_controller-3]
+[INFO] [scan_planner_node-2]: sending signal 'SIGINT' to process[scan_planner_node-2]
+[INFO] [foxy_bridge_node-1]: sending signal 'SIGINT' to process[foxy_bridge_node-1]
+[closed_loop_controller-3] [INFO] [1786980518.410213388] [rclcpp]: signal_handler(signal_value=2)
+[scan_planner_node-2] [INFO] [1786980518.410358180] [rclcpp]: signal_handler(signal_value=2)
+[INFO] [closed_loop_controller-3]: process has finished cleanly [pid 65]
+[scan_planner_node-2] des manager
+[INFO] [foxy_bridge_node-1]: process has finished cleanly [pid 61]
+[INFO] [acceptance_monitor_node-4]: process has finished cleanly [pid 67]
+[INFO] [scan_planner_node-2]: process has finished cleanly [pid 63]

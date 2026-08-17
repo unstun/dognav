@@ -29,6 +29,7 @@ from .isaac_adapter_core import (
     quaternion_wxyz_to_xyzw,
     schedule_duration,
     schedule_state,
+    segment_to_aabb_clearance_2d,
     terrain_seating_for_mesh_support,
     world_hits_to_sensor_points,
 )
@@ -46,6 +47,11 @@ from .official_human_contract import (
     BIPED_URL as OFFICIAL_HUMAN_BIPED_URL,
     CHARACTER_URL as OFFICIAL_HUMAN_CHARACTER_URL,
     cache_content_sha256 as official_human_cache_content_sha256,
+)
+from .office_crowd_contract import (
+    office_pedestrian_state,
+    pairwise_clearance_precheck,
+    routes_from_preflight,
 )
 from .run_isaac_lite3 import (
     AdapterFailure,
@@ -95,9 +101,14 @@ FOREST_ROCK_SEATING_CLEARANCE_M = 0.015
 FOREST_ROCK_SUPPORT_BAND_M = 0.020
 FOREST_NAVIGATION_GOAL_WORLD_M = (0.5, 3.0, 0.85)
 FOREST_NAVIGATION_PLANNING_RADIUS_M = 0.40
+OFFICE_STATIC_SCHEDULE = (
+    QualificationSegment("office_settle_zero", 4.0, (0.0, 0.0, 0.0)),
+)
 DYNAMIC_OBSTACLE_PRIM_EXPR = "{ENV_REGEX_NS}/DynamicObstacle"
 DYNAMIC_OBSTACLE_RUNTIME_PRIM = "/World/envs/env_0/DynamicObstacle"
 DYNAMIC_HUMAN_VISUAL_RUNTIME_PRIM = "/World/DynamicHumanVisual"
+OFFICE_PEDESTRIAN_PRIM_PREFIX = "OfficePedestrian"
+OFFICE_HUMAN_VISUAL_PREFIX = "/World/OfficeHumanVisual"
 DYNAMIC_OBSTACLE_DEFAULT_X_M = -3.0
 DYNAMIC_OBSTACLE_DEFAULT_START_Y_M = 1.2
 DYNAMIC_OBSTACLE_DEFAULT_END_Y_M = 4.8
@@ -108,6 +119,7 @@ DYNAMIC_OBSTACLE_DEFAULT_HEIGHT_M = 1.50
 DYNAMIC_OBSTACLE_DEFAULT_TERRAIN_CLEARANCE_M = 0.02
 DYNAMIC_OBSTACLE_DEFAULT_HOLD_FRACTION = 0.5
 DYNAMIC_OBSTACLE_DEFAULT_HOLD_SECONDS = 0.0
+DYNAMIC_ROUTE_MIN_STATIC_CLEARANCE_M = 0.15
 DYNAMIC_HUMAN_PART_NAMES = (
     "Head",
     "Torso",
@@ -170,6 +182,21 @@ def _rgb_frame(frame):
     if frame.ndim != 3 or frame.shape[2] not in (3, 4):
         raise AdapterFailure(f"unexpected RGB frame shape: {frame.shape}")
     return np.asarray(frame[:, :, :3], dtype=np.uint8)
+
+
+def _rgb_scene_content(frame, minimum_mean=25.0, minimum_std=12.0):
+    """Detect a camera occlusion frame without changing simulation evidence."""
+    import numpy as np
+
+    rgb = _rgb_frame(frame).astype(np.float32)
+    luma = 0.299 * rgb[:, :, 0] + 0.587 * rgb[:, :, 1] + 0.114 * rgb[:, :, 2]
+    mean = float(luma.mean())
+    std = float(luma.std())
+    return {
+        "passed": mean >= minimum_mean and std >= minimum_std,
+        "luma_mean": mean,
+        "luma_std": std,
+    }
 
 
 def _write_depth_artifacts(output_dir, frame, metadata, maximum_range):
@@ -257,6 +284,14 @@ def _forest_v8_official_enabled(args) -> bool:
     return args.course == "forest_gen_nav_v8_official_human"
 
 
+def _office_enabled(args) -> bool:
+    return args.course in ("office_l0_static", "office_l0_crowd")
+
+
+def _office_crowd_enabled(args) -> bool:
+    return args.course == "office_l0_crowd"
+
+
 def _forest_v8_any_enabled(args) -> bool:
     return _forest_v8_enabled(args) or _forest_v8_official_enabled(args)
 
@@ -270,6 +305,11 @@ def _forest_review_geometry_enabled(args) -> bool:
 
 
 def _dynamic_obstacle_spec(args) -> DynamicObstacleSpec:
+    end_x = (
+        args.dynamic_obstacle_x
+        if args.dynamic_obstacle_end_x is None
+        else args.dynamic_obstacle_end_x
+    )
     return DynamicObstacleSpec(
         name=(
             "v8_official_human_crossing_actor"
@@ -279,7 +319,7 @@ def _dynamic_obstacle_spec(args) -> DynamicObstacleSpec:
             else "v7_crossing_actor"
         ),
         start_xy=(args.dynamic_obstacle_x, args.dynamic_obstacle_start_y),
-        end_xy=(args.dynamic_obstacle_x, args.dynamic_obstacle_end_y),
+        end_xy=(end_x, args.dynamic_obstacle_end_y),
         wait_seconds=args.dynamic_obstacle_wait_seconds,
         speed_mps=args.dynamic_obstacle_speed,
         radius_m=args.dynamic_obstacle_radius,
@@ -288,6 +328,60 @@ def _dynamic_obstacle_spec(args) -> DynamicObstacleSpec:
         hold_fraction=args.dynamic_obstacle_hold_fraction,
         hold_seconds=args.dynamic_obstacle_hold_seconds,
     )
+
+
+def _dynamic_route_static_geometry_checks(
+    forest_layout: Mapping[str, object], spec: DynamicObstacleSpec
+) -> Mapping[str, object]:
+    """Reject a scheduled actor route that sweeps through static forest proxies."""
+
+    records = []
+    for proxy in forest_layout.get("proxies", []):
+        bounds_min = proxy.get("bounds_min_m", [])
+        bounds_max = proxy.get("bounds_max_m", [])
+        if len(bounds_min) < 2 or len(bounds_max) < 2:
+            raise AdapterFailure("forest proxy lacks route-precheck XY bounds")
+        clearance = segment_to_aabb_clearance_2d(
+            spec.start_xy,
+            spec.end_xy,
+            bounds_min[:2],
+            bounds_max[:2],
+            swept_radius_m=spec.radius_m,
+        )
+        records.append(
+            {
+                "name": str(proxy.get("name")),
+                "kind": str(proxy.get("kind")),
+                "prim_path": str(proxy.get("prim_path")),
+                "bounds_min_xy_m": [float(value) for value in bounds_min[:2]],
+                "bounds_max_xy_m": [float(value) for value in bounds_max[:2]],
+                "swept_capsule_clearance_m": clearance,
+            }
+        )
+    if not records:
+        raise AdapterFailure("dynamic route precheck has no static forest proxies")
+    nearest = min(records, key=lambda row: row["swept_capsule_clearance_m"])
+    minimum = float(nearest["swept_capsule_clearance_m"])
+    return {
+        "method": "exact centre-segment to static-proxy AABB distance minus actor radius",
+        "route_start_xy_m": list(spec.start_xy),
+        "route_end_xy_m": list(spec.end_xy),
+        "swept_radius_m": spec.radius_m,
+        "minimum_required_clearance_m": DYNAMIC_ROUTE_MIN_STATIC_CLEARANCE_M,
+        "minimum_static_clearance_m": minimum,
+        "nearest_static_object": nearest,
+        "checked_static_object_count": len(records),
+        "passed": minimum >= DYNAMIC_ROUTE_MIN_STATIC_CLEARANCE_M,
+        "objects": records,
+    }
+
+
+def _dynamic_schedule_trigger_identity(trigger_mode: str) -> str:
+    if trigger_mode == "first_nonzero_body_command":
+        return "first nonzero accepted body command"
+    if trigger_mode == "run_start":
+        return "closed-loop run start"
+    raise AdapterFailure(f"unsupported dynamic schedule trigger: {trigger_mode}")
 
 
 def _dynamic_human_part_exprs() -> tuple[str, ...]:
@@ -603,15 +697,34 @@ def _write_official_human_visual_usd(
     }
 
 
+def _official_human_clip_name(phase: str, animation_mode: str) -> str:
+    """Select an official clip without changing the obstacle schedule."""
+
+    if animation_mode == "continuous_walk":
+        return "walk"
+    if animation_mode == "phase_conditioned":
+        return "walk" if phase == "crossing" else "idle"
+    raise AdapterFailure(
+        f"unsupported official human animation mode: {animation_mode}"
+    )
+
+
 class _OfficialHumanAnimationPlayer:
     """Replay official Biped-retargeted poses without an AnimationGraph."""
 
-    def __init__(self, stage, animation_cache_path: Path):
+    def __init__(
+        self,
+        stage,
+        animation_cache_path: Path,
+        animation_mode: str = "phase_conditioned",
+        visual_root_path: str = DYNAMIC_HUMAN_VISUAL_RUNTIME_PRIM,
+    ):
         from pxr import Usd, UsdSkel
 
         self.stage = stage
+        self.visual_root_path = visual_root_path
         self.cache = _load_official_human_animation_cache(animation_cache_path)
-        visual_root = stage.GetPrimAtPath(DYNAMIC_HUMAN_VISUAL_RUNTIME_PRIM)
+        visual_root = stage.GetPrimAtPath(visual_root_path)
         if not visual_root.IsValid():
             raise AdapterFailure("official human visual root is absent")
         skeleton_prims = [
@@ -632,18 +745,20 @@ class _OfficialHumanAnimationPlayer:
             raise AdapterFailure("runtime official skeleton differs from Biped cache")
         self.target = UsdSkel.Animation(
             stage.GetPrimAtPath(
-                f"{DYNAMIC_HUMAN_VISUAL_RUNTIME_PRIM}/OfficialAnimations/Active"
+                f"{visual_root_path}/OfficialAnimations/Active"
             )
         )
         if not self.target:
             raise AdapterFailure("runtime official animation replay slot is absent")
         self.active_name = None
         self.clip_origin_seconds = 0.0
+        self.animation_mode = animation_mode
+        _official_human_clip_name("waiting", animation_mode)
 
     def update(self, elapsed_seconds: float, phase: str) -> Mapping[str, object]:
         if not math.isfinite(elapsed_seconds) or elapsed_seconds < 0.0:
             raise AdapterFailure("official animation elapsed time is invalid")
-        name = "walk" if phase == "crossing" else "idle"
+        name = _official_human_clip_name(phase, self.animation_mode)
         if self.active_name != name:
             self.active_name = name
             self.clip_origin_seconds = elapsed_seconds
@@ -663,6 +778,7 @@ class _OfficialHumanAnimationPlayer:
             "source": "NVIDIA Isaac Sim 5.1 Biped AnimationGraph retarget cache",
             "clip": name,
             "phase": phase,
+            "animation_mode": self.animation_mode,
             "frame_index": frame_index,
             "frame_count": int(translations.shape[0]),
             "fps": self.cache["fps"],
@@ -674,10 +790,14 @@ class _OfficialHumanAnimationPlayer:
         }
 
 
-def _set_official_human_visual_pose(stage, registered_state) -> Mapping[str, object]:
+def _set_official_human_visual_pose(
+    stage,
+    registered_state,
+    visual_root_path: str = DYNAMIC_HUMAN_VISUAL_RUNTIME_PRIM,
+) -> Mapping[str, object]:
     from pxr import Gf, Usd, UsdGeom
 
-    prim = stage.GetPrimAtPath(DYNAMIC_HUMAN_VISUAL_RUNTIME_PRIM)
+    prim = stage.GetPrimAtPath(visual_root_path)
     if not prim.IsValid():
         raise AdapterFailure("official human visual root is absent during pose update")
     xformable = UsdGeom.Xformable(prim)
@@ -1337,6 +1457,10 @@ def _urdf_contract(path: Path):
 
 
 def _candidate_name(args) -> str:
+    if _office_crowd_enabled(args):
+        return "V12 model_149999 on Lite3 Pro sensor rig SCAN Office L0 eight-person trial"
+    if _office_enabled(args):
+        return "V12 model_149999 on Lite3 Pro sensor rig Office L0 static support"
     if _forest_v8_enabled(args):
         return "V12 model_149999 on Lite3 Pro sensor rig v8 human SCAN forest navigation"
     if _forest_v7_enabled(args):
@@ -1567,7 +1691,26 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
         # complete V12 task configuration and replace only the physical URDF.
         env_cfg.scene.robot.spawn.asset_path = str(args.robot_asset.resolve())
         env_cfg.scene.robot.spawn.merge_fixed_joints = False
-    if args.video_path is not None and forest_layout is None:
+    if _office_enabled(args):
+        start_x, start_y = args.office_start_xy
+        original_z = float(env_cfg.scene.robot.init_state.pos[2])
+        env_cfg.scene.robot.init_state.pos = (start_x, start_y, original_z)
+    if args.video_path is not None and _office_enabled(args):
+        start_x, start_y = args.office_start_xy
+        start_yaw = float(getattr(args, "office_start_yaw", None) or -0.6435)
+        env_cfg.viewer.origin_type = "world"
+        env_cfg.viewer.eye = (
+            start_x - 1.2 * math.cos(start_yaw),
+            start_y - 1.2 * math.sin(start_yaw),
+            1.4,
+        )
+        env_cfg.viewer.lookat = (
+            start_x + 1.5 * math.cos(start_yaw),
+            start_y + 1.5 * math.sin(start_yaw),
+            0.35,
+        )
+        env_cfg.viewer.resolution = VIDEO_RESOLUTION
+    elif args.video_path is not None and forest_layout is None:
         env_cfg.viewer.origin_type = "world"
         env_cfg.viewer.eye = VIDEO_CAMERA_EYE
         env_cfg.viewer.lookat = VIDEO_CAMERA_LOOKAT
@@ -1645,7 +1788,22 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
             command_cfg.terrain_max_command_ranges["flat"]
         )
 
-    if forest_layout is None:
+    if _office_enabled(args):
+        from isaaclab.terrains import TerrainImporterCfg
+
+        command_contract_terrain = env_cfg.scene.terrain.terrain_generator
+        if command_contract_terrain is None:
+            raise AdapterFailure("pinned V12 task has no command-contract terrain generator")
+        env_cfg.scene.terrain = TerrainImporterCfg(
+            prim_path=GROUND_MESH_PRIM,
+            terrain_type="usd",
+            usd_path=str(args.office_usd_path.resolve()),
+            env_spacing=1.0,
+            use_terrain_origins=False,
+            terrain_generator=command_contract_terrain,
+            debug_vis=False,
+        )
+    elif forest_layout is None:
         terrain = env_cfg.scene.terrain.terrain_generator
         if terrain is None or "flat" not in terrain.sub_terrains:
             raise AdapterFailure("pinned V12 task has no flat terrain generator")
@@ -1688,6 +1846,62 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
             ),
             init_state=AssetBaseCfg.InitialStateCfg(pos=COURSE_OBSTACLE_CENTER),
         )
+
+    if _office_enabled(args):
+        import isaaclab.sim as sim_utils
+        from isaaclab.assets import AssetBaseCfg
+
+        env_cfg.scene.office_light = AssetBaseCfg(
+            prim_path="/World/OfficeLight",
+            spawn=sim_utils.DomeLightCfg(intensity=900.0, color=(0.9, 0.9, 0.9)),
+        )
+
+    if _office_crowd_enabled(args):
+        import isaaclab.sim as sim_utils
+        from isaaclab.assets import AssetBaseCfg, RigidObjectCfg
+
+        for index, route in enumerate(args.office_routes):
+            proxy_name = f"office_pedestrian_{index}"
+            visual_name = f"office_human_visual_{index}"
+            proxy_spawn = sim_utils.CapsuleCfg(
+                radius=route.radius_m,
+                height=OFFICIAL_HUMAN_CAPSULE_HEIGHT_M,
+                rigid_props=sim_utils.RigidBodyPropertiesCfg(
+                    kinematic_enabled=True,
+                    disable_gravity=True,
+                ),
+                mass_props=sim_utils.MassPropertiesCfg(mass=20.0),
+                collision_props=sim_utils.CollisionPropertiesCfg(),
+            )
+            proxy_spawn.visible = False
+            setattr(
+                env_cfg.scene,
+                proxy_name,
+                RigidObjectCfg(
+                    prim_path=(
+                        f"{{ENV_REGEX_NS}}/{OFFICE_PEDESTRIAN_PRIM_PREFIX}_{index}"
+                    ),
+                    spawn=proxy_spawn,
+                    init_state=RigidObjectCfg.InitialStateCfg(
+                        pos=(*route.start_xy_m, 0.5 * OFFICIAL_HUMAN_CAPSULE_HEIGHT_M)
+                    ),
+                    collision_group=-1,
+                ),
+            )
+            setattr(
+                env_cfg.scene,
+                visual_name,
+                AssetBaseCfg(
+                    prim_path=f"{OFFICE_HUMAN_VISUAL_PREFIX}_{index}",
+                    spawn=sim_utils.UsdFileCfg(
+                        usd_path=str(args.office_human_visual_usd_path),
+                    ),
+                    init_state=AssetBaseCfg.InitialStateCfg(
+                        pos=(*route.start_xy_m, 0.0)
+                    ),
+                    collision_group=-1,
+                ),
+            )
 
     if forest_layout is not None:
         import isaaclab.sim as sim_utils
@@ -1816,6 +2030,25 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
             proxy["prim_path"] for proxy in forest_layout["proxies"]
         )
     lidar_targets = list(environment_targets)
+    if _office_enabled(args):
+        lidar_targets.append(
+            MultiMeshRayCasterCfg.RaycastTargetCfg(
+                prim_expr=f"{GROUND_MESH_PRIM}/terrain",
+                merge_prim_meshes=True,
+                track_mesh_transforms=False,
+            )
+        )
+    if _office_crowd_enabled(args):
+        lidar_targets.extend(
+            MultiMeshRayCasterCfg.RaycastTargetCfg(
+                prim_expr=(
+                    f"{{ENV_REGEX_NS}}/{OFFICE_PEDESTRIAN_PRIM_PREFIX}_{index}"
+                ),
+                merge_prim_meshes=True,
+                track_mesh_transforms=True,
+            )
+            for index in range(len(args.office_routes))
+        )
     if _dynamic_obstacle_enabled(args):
         dynamic_targets = (
             _official_human_sensor_exprs()
@@ -1870,6 +2103,25 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
     )
     if sensor_rig:
         depth_targets = list(environment_targets)
+        if _office_enabled(args):
+            depth_targets.append(
+                MultiMeshRayCasterCfg.RaycastTargetCfg(
+                    prim_expr=f"{GROUND_MESH_PRIM}/terrain",
+                    merge_prim_meshes=True,
+                    track_mesh_transforms=False,
+                )
+            )
+        if _office_crowd_enabled(args):
+            depth_targets.extend(
+                MultiMeshRayCasterCfg.RaycastTargetCfg(
+                    prim_expr=(
+                        f"{{ENV_REGEX_NS}}/{OFFICE_PEDESTRIAN_PRIM_PREFIX}_{index}"
+                    ),
+                    merge_prim_meshes=True,
+                    track_mesh_transforms=True,
+                )
+                for index in range(len(args.office_routes))
+            )
         if _dynamic_obstacle_enabled(args):
             dynamic_targets = (
                 _official_human_sensor_exprs()
@@ -2532,9 +2784,47 @@ def _run(args) -> int:
     dynamic_spec = (
         _dynamic_obstacle_spec(args) if _dynamic_obstacle_enabled(args) else None
     )
+    dynamic_route_static_checks = None
+    if dynamic_spec is not None and forest_layout is not None:
+        dynamic_route_static_checks = _dynamic_route_static_geometry_checks(
+            forest_layout, dynamic_spec
+        )
+        _write_json(
+            output_dir / "dynamic_route_static_precheck.json",
+            dynamic_route_static_checks,
+        )
+        if not dynamic_route_static_checks["passed"]:
+            nearest = dynamic_route_static_checks["nearest_static_object"]
+            raise AdapterFailure(
+                "dynamic route intersects or approaches static forest geometry: "
+                f"{nearest['name']} clearance="
+                f"{nearest['swept_capsule_clearance_m']:.3f} m"
+            )
     dynamic_human_asset = None
     args.dynamic_human_usd_path = None
     args.dynamic_human_visual_usd_path = None
+    office_routes = ()
+    office_crowd_precheck = None
+    office_human_visual_asset = None
+    args.office_human_visual_usd_path = None
+    if _office_crowd_enabled(args):
+        route_payload = json.loads(args.office_route_path.read_text(encoding="utf-8"))
+        office_routes = routes_from_preflight(route_payload)
+        office_crowd_precheck = pairwise_clearance_precheck(
+            office_routes, args.duration_seconds
+        )
+        _write_json(output_dir / "office_crowd_pairwise_precheck.json", office_crowd_precheck)
+        if not office_crowd_precheck["passed"]:
+            raise AdapterFailure(
+                "Office pedestrian routes fail pairwise clearance precheck: "
+                f"{office_crowd_precheck}"
+            )
+        args.office_routes = office_routes
+        args.office_human_visual_usd_path = output_dir / "office_human_visual.usda"
+        office_human_visual_asset = _write_official_human_visual_usd(
+            args.office_human_visual_usd_path,
+            args.official_human_animation_cache,
+        )
     if _forest_v8_official_enabled(args):
         args.dynamic_human_usd_path = output_dir / "official_human_proxy.usda"
         args.dynamic_human_visual_usd_path = (
@@ -2566,7 +2856,11 @@ def _run(args) -> int:
             dynamic_spec,
         )
     qualification_schedule = (
-        FOREST_PREVIEW_SCHEDULE if _forest_preview_enabled(args) else None
+        OFFICE_STATIC_SCHEDULE
+        if _office_enabled(args)
+        else FOREST_PREVIEW_SCHEDULE
+        if _forest_preview_enabled(args)
+        else None
     )
     sensor_rotation_wxyz = (
         math.cos(math.radians(args.sensor_pitch_degrees) / 2.0),
@@ -2592,7 +2886,11 @@ def _run(args) -> int:
             if _forest_v8_enabled(args)
             else (DYNAMIC_OBSTACLE_PRIM_EXPR,)
         )
-    if forest_layout is None:
+    if _office_enabled(args):
+        start_x, start_y = args.office_start_xy
+        camera_eye = (start_x + 5.5, start_y - 5.5, 4.5)
+        camera_lookat = (start_x, start_y + 2.0, 0.45)
+    elif forest_layout is None:
         camera_eye = VIDEO_CAMERA_EYE
         camera_lookat = VIDEO_CAMERA_LOOKAT
     elif _forest_navigation_enabled(args):
@@ -2630,10 +2928,30 @@ def _run(args) -> int:
         "terrain": (
             "pinned forest_gen native heightmap"
             if forest_layout is not None
+            else "official Isaac Sim 5.1 Office L0 physics wrapper"
+            if _office_enabled(args)
             else "flat at difficulty 0.0"
         ),
         "course": {
             "name": args.course,
+            "office_usd_path": (
+                str(args.office_usd_path.resolve()) if _office_enabled(args) else None
+            ),
+            "office_usd_sha256": (
+                args.office_usd_sha256 if _office_enabled(args) else None
+            ),
+            "office_route_path": (
+                str(args.office_route_path.resolve()) if _office_enabled(args) else None
+            ),
+            "office_route_sha256": (
+                args.office_route_sha256 if _office_enabled(args) else None
+            ),
+            "office_start_xy_m": (
+                list(args.office_start_xy) if _office_enabled(args) else None
+            ),
+            "office_goal_xy_m": (
+                list(args.office_goal_xy) if _office_enabled(args) else None
+            ),
             "obstacle_center_m": (
                 COURSE_OBSTACLE_CENTER if args.course == "single_box" else None
             ),
@@ -2650,7 +2968,11 @@ def _run(args) -> int:
                 "connected": segment.connected,
             }
             for segment in (
-                FOREST_PREVIEW_SCHEDULE if _forest_preview_enabled(args) else ()
+                OFFICE_STATIC_SCHEDULE
+                if _office_enabled(args)
+                else FOREST_PREVIEW_SCHEDULE
+                if _forest_preview_enabled(args)
+                else ()
             )
         ],
         "watchdog_seconds": args.watchdog_seconds,
@@ -2779,10 +3101,14 @@ def _run(args) -> int:
             "crossing_duration_seconds": dynamic_spec.crossing_duration_seconds,
             "hold_fraction": dynamic_spec.hold_fraction,
             "hold_seconds": dynamic_spec.hold_seconds,
-            "schedule_trigger": "first nonzero accepted body command",
+            "schedule_trigger": _dynamic_schedule_trigger_identity(
+                args.dynamic_obstacle_schedule_trigger
+            ),
+            "schedule_trigger_mode": args.dynamic_obstacle_schedule_trigger,
             "radius_m": dynamic_spec.radius_m,
             "height_m": dynamic_spec.height_m,
             "terrain_clearance_m": dynamic_spec.terrain_clearance_m,
+            "static_route_precheck": dynamic_route_static_checks,
             "rigid_body_mode": "kinematic obstacle with scheduled pose writes",
             "collision_enabled": True,
             "lidar_transform_tracking": True,
@@ -2828,6 +3154,12 @@ def _run(args) -> int:
                     "retarget_cache": dynamic_human_asset["official_visual"][
                         "biped_retarget_cache"
                     ],
+                    "animation_mode": args.official_human_animation_mode,
+                    "phase_to_clip": (
+                        "all phases -> walk"
+                        if args.official_human_animation_mode == "continuous_walk"
+                        else "crossing -> walk; waiting/holding/parked -> idle"
+                    ),
                     "local_procedural_gait": False,
                     "direct_gpu_animation_graph_used": False,
                     "claim": (
@@ -2859,6 +3191,32 @@ def _run(args) -> int:
         }
     if forest_layout is not None:
         identity["forest_scene"] = forest_layout["identity"]
+    if _office_crowd_enabled(args):
+        identity["office_crowd"] = {
+            "pedestrian_count": len(office_routes),
+            "routes": [
+                {
+                    "name": route.name,
+                    "start_xy_m": list(route.start_xy_m),
+                    "end_xy_m": list(route.end_xy_m),
+                    "speed_mps": route.speed_mps,
+                    "start_delay_s": route.start_delay_s,
+                    "radius_m": route.radius_m,
+                }
+                for route in office_routes
+            ],
+            "pairwise_precheck": office_crowd_precheck,
+            "official_visual_asset": office_human_visual_asset,
+            "physical_proxy": {
+                "shape": "capsule",
+                "radius_m": OFFICIAL_HUMAN_CAPSULE_RADIUS_M,
+                "height_m": OFFICIAL_HUMAN_CAPSULE_HEIGHT_M,
+                "kinematic": True,
+                "render_visible": False,
+            },
+            "planner_input": "rendered simulated sensor hits only",
+            "truth_use": "evaluation and synchronized clearance only",
+        }
     if sensor_rig:
         identity["depth_camera"] = {
             "backend": "IsaacLab MultiMeshRayCasterCameraCfg",
@@ -2928,11 +3286,15 @@ def _run(args) -> int:
     dropped_frames = 0
     video_writer = None
     video_frame_count = 0
+    video_camera_fallback_sim_times = []
     runtime_rates = {}
     static_forest_geometry_checks = None
     dynamic_obstacle_geometry_checks = None
     official_animation_player = None
     official_visual_pose_evidence = None
+    office_pedestrians = []
+    office_animation_players = []
+    office_visual_pose_evidence = []
     try:
         __import__("robot_lab.tasks")
         env_cfg = load_cfg_from_registry(args.task, "env_cfg_entry_point")
@@ -2966,6 +3328,11 @@ def _run(args) -> int:
             if dynamic_spec is not None
             else None
         )
+        if _office_crowd_enabled(args):
+            office_pedestrians = [
+                base_env.scene[f"office_pedestrian_{index}"]
+                for index in range(len(office_routes))
+            ]
         lidar = base_env.scene.sensors["navigation_lidar"]
         depth_camera = (
             base_env.scene.sensors["navigation_depth_camera"]
@@ -3089,7 +3456,18 @@ def _run(args) -> int:
             official_animation_player = _OfficialHumanAnimationPlayer(
                 stage,
                 args.official_human_animation_cache,
+                args.official_human_animation_mode,
             )
+        if _office_crowd_enabled(args):
+            office_animation_players = [
+                _OfficialHumanAnimationPlayer(
+                    stage,
+                    args.official_human_animation_cache,
+                    "continuous_walk",
+                    visual_root_path=f"{OFFICE_HUMAN_VISUAL_PREFIX}_{index}",
+                )
+                for index in range(len(office_routes))
+            ]
         if forest_layout is not None:
             static_forest_geometry_checks = _inspect_forest_geometry(
                 stage,
@@ -3264,7 +3642,14 @@ def _run(args) -> int:
             if args.mode in ("qualification", "sensor_qualification")
             else args.duration_seconds
         )
-        dynamic_schedule_start_sim_time = None
+        dynamic_schedule_start_sim_time = (
+            float(base_env.sim.current_time)
+            if dynamic_obstacle is not None
+            and args.dynamic_obstacle_schedule_trigger == "run_start"
+            else None
+        )
+        initial_sim_time = float(base_env.sim.current_time)
+        max_wall_seconds = run_seconds * 6.0 + 60.0
         metrics_path = output_dir / "metrics.jsonl"
         sensor_metrics_path = output_dir / "sensor_metrics.jsonl"
         depth_metrics_path = output_dir / "depth_metrics.jsonl"
@@ -3272,7 +3657,7 @@ def _run(args) -> int:
                 sensor_metrics_path.open("w", encoding="utf-8") as sensor_metrics_file, \
                 depth_metrics_path.open("w", encoding="utf-8") as depth_metrics_file:
             step = 0
-            while time.monotonic() - started < run_seconds:
+            while (float(base_env.sim.current_time) - initial_sim_time < run_seconds) and (time.monotonic() - started < max_wall_seconds):
                 tick_started = time.monotonic()
                 if sender is not None and sender.error is not None:
                     raise AdapterFailure(f"fallback command sender failed: {sender.error}")
@@ -3281,11 +3666,96 @@ def _run(args) -> int:
                 if (
                     dynamic_obstacle is not None
                     and dynamic_schedule_start_sim_time is None
+                    and args.dynamic_obstacle_schedule_trigger
+                    == "first_nonzero_body_command"
                     and max(abs(float(value)) for value in command) > 0.05
                 ):
                     dynamic_schedule_start_sim_time = float(base_env.sim.current_time)
                 scheduled_dynamic_state = None
                 dynamic_human_gait = None
+                office_pedestrian_states = []
+                if office_pedestrians:
+                    office_visual_pose_evidence = []
+                    for index, (pedestrian, route, player) in enumerate(
+                        zip(
+                            office_pedestrians,
+                            office_routes,
+                            office_animation_players,
+                            strict=True,
+                        )
+                    ):
+                        pedestrian_state = office_pedestrian_state(
+                            float(base_env.sim.current_time), route
+                        )
+                        x, y = pedestrian_state["xy_m"]
+                        yaw = pedestrian_state["yaw_rad"]
+                        half_yaw = 0.5 * yaw
+                        center_z = 0.5 * OFFICIAL_HUMAN_CAPSULE_HEIGHT_M + 0.02
+                        pose = torch.tensor(
+                            [[x, y, center_z, math.cos(half_yaw), 0.0, 0.0, math.sin(half_yaw)]],
+                            dtype=torch.float32,
+                            device=base_env.device,
+                        )
+                        if pedestrian_state["phase"] == "walking":
+                            distance = route.distance_m
+                            velocity_xy = (
+                                route.speed_mps
+                                * (route.end_xy_m[0] - route.start_xy_m[0])
+                                / distance,
+                                route.speed_mps
+                                * (route.end_xy_m[1] - route.start_xy_m[1])
+                                / distance,
+                            )
+                        else:
+                            velocity_xy = (0.0, 0.0)
+                        velocity = torch.tensor(
+                            [[*velocity_xy, 0.0, 0.0, 0.0, 0.0]],
+                            dtype=torch.float32,
+                            device=base_env.device,
+                        )
+                        pedestrian.write_root_pose_to_sim(pose)
+                        pedestrian.write_root_velocity_to_sim(velocity)
+                        visual_yaw = yaw - OFFICIAL_HUMAN_SOURCE_FORWARD_YAW_RADIANS
+                        visual_half_yaw = 0.5 * visual_yaw
+                        registered = {
+                            "visual_root_xyz_m": (x, y, 0.02 - OFFICIAL_HUMAN_SOURCE_FOOT_Z_M),
+                            "visual_quaternion_wxyz": (
+                                math.cos(visual_half_yaw),
+                                0.0,
+                                0.0,
+                                math.sin(visual_half_yaw),
+                            ),
+                            "visual_yaw_radians": visual_yaw,
+                            "visual_foot_world_z_m": 0.02,
+                            "visual_top_world_z_m": (
+                                0.02
+                                - OFFICIAL_HUMAN_SOURCE_FOOT_Z_M
+                                + OFFICIAL_HUMAN_SOURCE_VISIBLE_TOP_Z_M
+                            ),
+                            "capsule_bottom_world_z_m": 0.02,
+                            "foot_to_capsule_bottom_error_m": 0.0,
+                        }
+                        visual_evidence = _set_official_human_visual_pose(
+                            stage,
+                            registered,
+                            visual_root_path=f"{OFFICE_HUMAN_VISUAL_PREFIX}_{index}",
+                        )
+                        animation_evidence = player.update(
+                            float(base_env.sim.current_time),
+                            "crossing"
+                            if pedestrian_state["phase"] == "walking"
+                            else "waiting",
+                        )
+                        office_visual_pose_evidence.append(visual_evidence)
+                        office_pedestrian_states.append(
+                            {
+                                "name": route.name,
+                                **pedestrian_state,
+                                "center_xyz_m": [x, y, center_z],
+                                "velocity_xy_mps": list(velocity_xy),
+                                "animation": animation_evidence,
+                            }
+                        )
                 if dynamic_obstacle is not None:
                     scheduled_dynamic_state = dynamic_obstacle_state(
                         0.0
@@ -3427,6 +3897,9 @@ def _run(args) -> int:
                         "dynamic_obstacle_schedule_triggered": (
                             dynamic_schedule_start_sim_time is not None
                         ),
+                        "dynamic_obstacle_schedule_trigger_mode": (
+                            args.dynamic_obstacle_schedule_trigger
+                        ),
                         "dynamic_obstacle_trigger_sim_time_seconds": (
                             dynamic_schedule_start_sim_time
                         ),
@@ -3502,6 +3975,8 @@ def _run(args) -> int:
                     "watchdog_events": snapshot.watchdog_events,
                     "sequence_gaps": snapshot.sequence_gaps,
                     "command_age_ms": command_age_ms,
+                    "office_pedestrians": office_pedestrian_states,
+                    "office_human_visual_poses": office_visual_pose_evidence,
                     **dynamic_metrics,
                 }
                 records.append(row)
@@ -3560,6 +4035,8 @@ def _run(args) -> int:
                         & (hits_w[:, 2] <= args.planner_floor_filter_max_z)
                     )
                     obstacle_hits = torch.zeros_like(finite_hits)
+                    office_pedestrian_hits = torch.zeros_like(finite_hits)
+                    office_pedestrian_hit_counts = {}
                     if args.course == "single_box":
                         center = hits_w.new_tensor(COURSE_OBSTACLE_CENTER)
                         half_size = 0.5 * hits_w.new_tensor(COURSE_OBSTACLE_SIZE)
@@ -3578,6 +4055,37 @@ def _run(args) -> int:
                             forest_layout["proxies"],
                             torch,
                         ) & ~self_occluded_hits
+                    elif office_pedestrian_states:
+                        for pedestrian_state, route in zip(
+                            office_pedestrian_states, office_routes, strict=True
+                        ):
+                            center = hits_w.new_tensor(
+                                pedestrian_state["center_xyz_m"]
+                            )
+                            radial = torch.linalg.vector_norm(
+                                hits_w[:, :2] - center[:2], dim=-1
+                            )
+                            pedestrian_hits = (
+                                finite_hits
+                                & ~self_occluded_hits
+                                & (radial <= route.radius_m + 0.02)
+                                & (hits_w[:, 2] >= 0.01)
+                                & (
+                                    hits_w[:, 2]
+                                    <= OFFICIAL_HUMAN_CAPSULE_HEIGHT_M + 0.03
+                                )
+                            )
+                            office_pedestrian_hits |= pedestrian_hits
+                            office_pedestrian_hit_counts[route.name] = int(
+                                pedestrian_hits.sum().item()
+                            )
+                    if _office_enabled(args):
+                        obstacle_hits |= (
+                            finite_hits
+                            & ~self_occluded_hits
+                            & (hits_w[:, 2] > args.planner_floor_filter_max_z)
+                        )
+                        obstacle_hits |= office_pedestrian_hits
                     raw_proxy_hit_counts = {}
                     planner_proxy_hit_counts = {}
                     if forest_layout is not None:
@@ -3677,6 +4185,12 @@ def _run(args) -> int:
                             else 0
                         ),
                         "obstacle_surface_hit_count": int(obstacle_hits.sum().item()),
+                        "office_pedestrian_surface_hit_count": int(
+                            office_pedestrian_hits.sum().item()
+                        ),
+                        "office_pedestrian_surface_hit_counts": (
+                            office_pedestrian_hit_counts
+                        ),
                         "forest_raw_proxy_hit_counts": raw_proxy_hit_counts,
                         "forest_planner_proxy_hit_counts": planner_proxy_hit_counts,
                         "dynamic_obstacle_surface_hit_count": int(
@@ -3732,6 +4246,10 @@ def _run(args) -> int:
                             & (depth_flat < args.depth_max_range)
                         )
                         obstacle_pixels = torch.zeros_like(finite_camera_hits)
+                        office_pedestrian_pixels = torch.zeros_like(
+                            finite_camera_hits
+                        )
+                        office_pedestrian_pixel_counts = {}
                         if args.course == "single_box":
                             center = camera_hits_w.new_tensor(COURSE_OBSTACLE_CENTER)
                             half_size = 0.5 * camera_hits_w.new_tensor(
@@ -3751,6 +4269,40 @@ def _run(args) -> int:
                                 forest_layout["proxies"],
                                 torch,
                             ) & ~self_occluded_pixels
+                        elif office_pedestrian_states:
+                            for pedestrian_state, route in zip(
+                                office_pedestrian_states, office_routes, strict=True
+                            ):
+                                center = camera_hits_w.new_tensor(
+                                    pedestrian_state["center_xyz_m"]
+                                )
+                                radial = torch.linalg.vector_norm(
+                                    camera_hits_w[:, :2] - center[:2], dim=-1
+                                )
+                                pedestrian_pixels = (
+                                    finite_camera_hits
+                                    & ~self_occluded_pixels
+                                    & (radial <= route.radius_m + 0.02)
+                                    & (camera_hits_w[:, 2] >= 0.01)
+                                    & (
+                                        camera_hits_w[:, 2]
+                                        <= OFFICIAL_HUMAN_CAPSULE_HEIGHT_M + 0.03
+                                    )
+                                )
+                                office_pedestrian_pixels |= pedestrian_pixels
+                                office_pedestrian_pixel_counts[route.name] = int(
+                                    pedestrian_pixels.sum().item()
+                                )
+                        if _office_enabled(args):
+                            obstacle_pixels |= (
+                                finite_camera_hits
+                                & ~self_occluded_pixels
+                                & (
+                                    camera_hits_w[:, 2]
+                                    > args.planner_floor_filter_max_z
+                                )
+                            )
+                            obstacle_pixels |= office_pedestrian_pixels
                         dynamic_obstacle_pixels = torch.zeros_like(
                             finite_camera_hits
                         )
@@ -3785,6 +4337,12 @@ def _run(args) -> int:
                             ),
                             "obstacle_surface_pixel_count": int(
                                 obstacle_pixels.sum().item()
+                            ),
+                            "office_pedestrian_surface_pixel_count": int(
+                                office_pedestrian_pixels.sum().item()
+                            ),
+                            "office_pedestrian_surface_pixel_counts": (
+                                office_pedestrian_pixel_counts
                             ),
                             "dynamic_obstacle_surface_pixel_count": int(
                                 dynamic_obstacle_pixels.sum().item()
@@ -3893,7 +4451,50 @@ def _run(args) -> int:
                     )
                     dropped_frames += int(not sent_status)
                 if video_writer is not None and step % args.video_frame_stride == 0:
-                    video_writer.append_data(_rgb_frame(raw_env.render()))
+                    if _office_enabled(args):
+                        root_pos = robot.data.root_pos_w[0]
+                        root_quat = robot.data.root_quat_w[0]
+                        w = float(root_quat[0])
+                        x = float(root_quat[1])
+                        y = float(root_quat[2])
+                        z = float(root_quat[3])
+                        yaw = math.atan2(2.0 * (w * z + x * y), 1.0 - 2.0 * (y * y + z * z))
+                        rx, ry, rz = float(root_pos[0]), float(root_pos[1]), float(root_pos[2])
+                        # A high, offset chase view keeps the complete articulated
+                        # Lite3 in the lower third while retaining the corridor and
+                        # nearby pedestrians.  The former 1.2 m eye offset sat on
+                        # the robot and produced a first-person view with no robot.
+                        cam_eye = (
+                            rx - 2.2 * math.cos(yaw),
+                            ry - 2.2 * math.sin(yaw),
+                            min(max(rz + 1.80, 1.80), 2.40),
+                        )
+                        cam_target = (
+                            rx + 0.60 * math.cos(yaw),
+                            ry + 0.60 * math.sin(yaw),
+                            rz + 0.16,
+                        )
+                        base_env.sim.set_camera_view(eye=cam_eye, target=cam_target)
+                    video_frame = _rgb_frame(raw_env.render())
+                    if _office_enabled(args) and not _rgb_scene_content(video_frame)["passed"]:
+                        # The normal chase camera can enter a wall at a tight
+                        # Office turn. Use a short, high chase view for this
+                        # presentation frame only; robot physics, sensing, and
+                        # planner inputs are unchanged.
+                        fallback_eye = (
+                            rx - 1.2 * math.cos(yaw),
+                            ry - 1.2 * math.sin(yaw),
+                            min(max(rz + 2.40, 2.40), 2.90),
+                        )
+                        fallback_target = (rx, ry, rz + 0.10)
+                        base_env.sim.set_camera_view(
+                            eye=fallback_eye, target=fallback_target
+                        )
+                        video_frame = _rgb_frame(raw_env.render())
+                        video_camera_fallback_sim_times.append(
+                            float(base_env.sim.current_time)
+                        )
+                    video_writer.append_data(video_frame)
                     video_frame_count += 1
                 if done or not finite:
                     raise AdapterFailure("V12 fallback terminated or became non-finite")
@@ -4060,6 +4661,10 @@ def _run(args) -> int:
             "frame_count": video_frame_count,
             "fps": args.video_fps,
             "encoded_duration_seconds": video_frame_count / args.video_fps,
+            "camera_occlusion_fallback_frame_count": len(
+                video_camera_fallback_sim_times
+            ),
+            "camera_occlusion_fallback_sim_times": video_camera_fallback_sim_times,
             "bytes": args.video_path.stat().st_size if args.video_path.is_file() else 0,
             "sha256": _sha256(args.video_path) if args.video_path.is_file() else None,
         }
@@ -4112,9 +4717,25 @@ def _parser() -> argparse.ArgumentParser:
             "forest_gen_nav_v7_dynamic",
             "forest_gen_nav_v8_human",
             "forest_gen_nav_v8_official_human",
+            "office_l0_static",
+            "office_l0_crowd",
         ),
         default="flat",
     )
+    parser.add_argument(
+        "--office-usd-path",
+        type=Path,
+        help="Run-owned Office L0 source-mesh physics wrapper USD.",
+    )
+    parser.add_argument(
+        "--office-usd-sha256",
+        help="Required SHA-256 of --office-usd-path for the Office course.",
+    )
+    parser.add_argument("--office-route-path", type=Path)
+    parser.add_argument("--office-route-sha256")
+    parser.add_argument("--office-start-xy", type=float, nargs=2)
+    parser.add_argument("--office-start-yaw", type=float, default=-0.6435)
+    parser.add_argument("--office-goal-xy", type=float, nargs=2)
     parser.add_argument("--forest-gen-root", type=Path)
     parser.add_argument("--stripe-kit-root", type=Path)
     parser.add_argument("--forest-asset-path", type=Path)
@@ -4126,6 +4747,15 @@ def _parser() -> argparse.ArgumentParser:
             "required only by forest_gen_nav_v8_official_human"
         ),
     )
+    parser.add_argument(
+        "--official-human-animation-mode",
+        choices=("phase_conditioned", "continuous_walk"),
+        default="phase_conditioned",
+        help=(
+            "Official-human clip selection. continuous_walk loops the official "
+            "walk clip even while the physical obstacle is stationary."
+        ),
+    )
     parser.add_argument("--forest-size", type=int, default=FOREST_SIZE_M)
     parser.add_argument("--forest-margin", type=int, default=FOREST_MARGIN_M)
     parser.add_argument("--forest-seed", type=int, default=FOREST_SEED)
@@ -4133,6 +4763,12 @@ def _parser() -> argparse.ArgumentParser:
         "--dynamic-obstacle-x",
         type=float,
         default=DYNAMIC_OBSTACLE_DEFAULT_X_M,
+    )
+    parser.add_argument(
+        "--dynamic-obstacle-end-x",
+        type=float,
+        default=None,
+        help="Optional endpoint x coordinate; omitted preserves a vertical route.",
     )
     parser.add_argument(
         "--dynamic-obstacle-start-y",
@@ -4148,6 +4784,15 @@ def _parser() -> argparse.ArgumentParser:
         "--dynamic-obstacle-wait-seconds",
         type=float,
         default=DYNAMIC_OBSTACLE_DEFAULT_WAIT_SECONDS,
+    )
+    parser.add_argument(
+        "--dynamic-obstacle-schedule-trigger",
+        choices=("first_nonzero_body_command", "run_start"),
+        default="first_nonzero_body_command",
+        help=(
+            "Start the moving-obstacle schedule at the first accepted nonzero "
+            "robot command, or immediately when the closed-loop run begins."
+        ),
     )
     parser.add_argument(
         "--dynamic-obstacle-speed",
@@ -4308,6 +4953,51 @@ def main(argv=None) -> int:
             raise SystemExit(
                 "forest asset path must be the models directory of the pinned forest_gen"
             )
+    if _office_enabled(args):
+        if not _sensor_rig_enabled(args):
+            raise SystemExit("Office L0 requires the pinned V3 sensor-rig URDFs")
+        expected_mode = "external" if _office_crowd_enabled(args) else "qualification"
+        if args.mode != expected_mode:
+            raise SystemExit(f"{args.course} requires {expected_mode} mode")
+        if args.office_usd_path is None or not args.office_usd_path.is_file():
+            raise SystemExit("Office L0 physics wrapper USD is missing")
+        if not args.office_usd_sha256:
+            raise SystemExit("Office L0 physics wrapper SHA-256 is required")
+        if _sha256(args.office_usd_path) != args.office_usd_sha256:
+            raise SystemExit("Office L0 physics wrapper SHA-256 mismatch")
+        if args.office_route_path is None or not args.office_route_path.is_file():
+            raise SystemExit("Office L0 route preflight is missing")
+        if not args.office_route_sha256:
+            raise SystemExit("Office L0 route preflight SHA-256 is required")
+        if _sha256(args.office_route_path) != args.office_route_sha256:
+            raise SystemExit("Office L0 route preflight SHA-256 mismatch")
+        if args.office_start_xy is None or args.office_goal_xy is None:
+            raise SystemExit("Office L0 start and goal coordinates are required")
+        route_contract = json.loads(args.office_route_path.read_text(encoding="utf-8"))
+        if route_contract.get("status") != "office_l0_conservative_route_preflight_pass":
+            raise SystemExit("Office L0 route preflight status is not pass")
+        for name, supplied in (
+            ("start_xy_m", args.office_start_xy),
+            ("goal_xy_m", args.office_goal_xy),
+        ):
+            expected = route_contract.get(name)
+            if expected is None or any(
+                abs(float(expected[index]) - float(supplied[index])) > 1.0e-9
+                for index in range(2)
+            ):
+                raise SystemExit(f"Office L0 {name} does not match the route preflight")
+    elif any(
+        value is not None
+        for value in (
+            args.office_usd_path,
+            args.office_usd_sha256,
+            args.office_route_path,
+            args.office_route_sha256,
+            args.office_start_xy,
+            args.office_goal_xy,
+        )
+    ):
+        raise SystemExit("Office arguments are valid only for office_l0_static")
     if _forest_navigation_enabled(args):
         if (
             not math.isfinite(args.terrain_filter_cell_size)
@@ -4325,6 +5015,10 @@ def main(argv=None) -> int:
             _dynamic_obstacle_spec(args)
         except ValueError as error:
             raise SystemExit(f"invalid dynamic obstacle contract: {error}") from error
+    elif args.dynamic_obstacle_schedule_trigger != "first_nonzero_body_command":
+        raise SystemExit(
+            "--dynamic-obstacle-schedule-trigger is valid only for a dynamic course"
+        )
     if _forest_v8_official_enabled(args) and (
         abs(float(args.dynamic_obstacle_height) - OFFICIAL_HUMAN_CAPSULE_HEIGHT_M)
         > 1.0e-9
@@ -4334,7 +5028,7 @@ def main(argv=None) -> int:
         raise SystemExit(
             "official human requires the frozen 1.70 m x 0.30 m capsule contract"
         )
-    if _forest_v8_official_enabled(args):
+    if _forest_v8_official_enabled(args) or _office_crowd_enabled(args):
         if (
             args.official_human_animation_cache is None
             or not args.official_human_animation_cache.is_file()
@@ -4345,6 +5039,13 @@ def main(argv=None) -> int:
     elif args.official_human_animation_cache is not None:
         raise SystemExit(
             "--official-human-animation-cache is valid only for the official-human course"
+        )
+    if (
+        not (_forest_v8_official_enabled(args) or _office_crowd_enabled(args))
+        and args.official_human_animation_mode != "phase_conditioned"
+    ):
+        raise SystemExit(
+            "--official-human-animation-mode is valid only for the official-human course"
         )
     from isaaclab.app import AppLauncher
 

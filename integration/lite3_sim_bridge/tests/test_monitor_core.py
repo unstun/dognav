@@ -1,9 +1,24 @@
 import unittest
 
-from lite3_sim_bridge.monitor_core import AcceptanceAccumulator, TopicStats
+from lite3_sim_bridge.monitor_core import (
+    AcceptanceAccumulator,
+    TopicStats,
+    should_record_periodic_event,
+)
 
 
 class MonitorCoreTest(unittest.TestCase):
+    def test_periodic_evidence_rate_limit(self):
+        self.assertTrue(should_record_periodic_event(0, 1_000_000_000, 100_000_000))
+        self.assertFalse(
+            should_record_periodic_event(1_000_000_000, 1_099_999_999, 100_000_000)
+        )
+        self.assertTrue(
+            should_record_periodic_event(1_000_000_000, 1_100_000_000, 100_000_000)
+        )
+        with self.assertRaises(ValueError):
+            should_record_periodic_event(0, 1, 0)
+
     def test_topic_rate_and_stamp_regression(self):
         stats = TopicStats()
         stats.observe(1_000_000_000, 100)

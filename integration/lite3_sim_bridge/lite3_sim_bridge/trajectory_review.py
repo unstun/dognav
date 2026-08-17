@@ -20,6 +20,7 @@ OBSTACLE_COLOR_BGR = (145, 145, 145)
 DYNAMIC_OBSTACLE_COLOR_BGR = (0, 120, 255)
 DYNAMIC_HUMAN_COLOR_BGR = (0, 215, 255)
 DYNAMIC_OFFICIAL_HUMAN_COLOR_BGR = (40, 40, 235)
+SCAN_OCCUPANCY_COLOR_BGR = (40, 90, 245)
 
 
 def dynamic_obstacle_color_bgr(identity: Mapping[str, object]) -> tuple[int, int, int]:
@@ -116,7 +117,7 @@ def sample_uniform_bspline(
 def associate_bspline_sim_times(
     events: Sequence[Mapping[str, object]], sample_count: int = 160
 ) -> tuple[Mapping[str, object], ...]:
-    """Associate each plan receipt with the nearest simulator-stamped body pose."""
+    """Interpolate each plan receipt on the simulator-stamped body-pose clock."""
 
     pose_events = sorted(
         (
@@ -135,14 +136,34 @@ def associate_bspline_sim_times(
             continue
         receipt = int(event["receipt_monotonic_ns"])
         insertion = bisect.bisect_left(pose_receipts, receipt)
-        candidates = []
-        if insertion < len(pose_events):
-            candidates.append(pose_events[insertion])
-        if insertion > 0:
-            candidates.append(pose_events[insertion - 1])
-        nearest_receipt, simulator_stamp = min(
-            candidates, key=lambda item: abs(item[0] - receipt)
-        )
+        mapping_method = "nearest_pose_edge_fallback"
+        if 0 < insertion < len(pose_events):
+            left_receipt, left_stamp = pose_events[insertion - 1]
+            right_receipt, right_stamp = pose_events[insertion]
+            receipt_span = right_receipt - left_receipt
+            if receipt_span > 0 and right_stamp >= left_stamp:
+                fraction = (receipt - left_receipt) / receipt_span
+                simulator_stamp = left_stamp + fraction * (
+                    right_stamp - left_stamp
+                )
+                alignment_error_ms = (right_stamp - left_stamp) / 1.0e6
+                nearest_receipt = min(
+                    (left_receipt, right_receipt),
+                    key=lambda value: abs(value - receipt),
+                )
+                mapping_method = "bracketed_simulator_time_interpolation"
+            else:
+                insertion = 0
+        if mapping_method == "nearest_pose_edge_fallback":
+            candidates = []
+            if insertion < len(pose_events):
+                candidates.append(pose_events[insertion])
+            if insertion > 0:
+                candidates.append(pose_events[insertion - 1])
+            nearest_receipt, simulator_stamp = min(
+                candidates, key=lambda item: abs(item[0] - receipt)
+            )
+            alignment_error_ms = abs(nearest_receipt - receipt) / 1.0e6
         sampled = sample_uniform_bspline(
             int(event["order"]),
             event["knots"],
@@ -154,7 +175,8 @@ def associate_bspline_sim_times(
                 "trajectory_id": int(event["trajectory_id"]),
                 "receipt_monotonic_ns": receipt,
                 "nearest_pose_receipt_monotonic_ns": nearest_receipt,
-                "receipt_alignment_error_ms": abs(nearest_receipt - receipt) / 1.0e6,
+                "receipt_alignment_error_ms": alignment_error_ms,
+                "mapping_method": mapping_method,
                 "effective_sim_time_seconds": simulator_stamp / 1.0e9,
                 "start_time_ns": int(event["start_time_ns"]),
                 "sampled_points": sampled,
@@ -291,8 +313,44 @@ def render_trajectory_review(
         raise ValueError("raw video metadata is invalid")
     frame_rows = frame_metric_rows(metrics, frame_stride, frame_count)
     plans = associate_bspline_sim_times(events)
+    occupancy_events = sorted(
+        (
+            {
+                "effective_sim_time_seconds": float(event["stamp_ns"]) / 1.0e9,
+                "points_xyz": event.get("points_xyz") or [],
+                "point_count": int(event.get("point_count", 0)),
+            }
+            for event in events
+            if event.get("kind") == "occupancy_inflate"
+            and int(event.get("stamp_ns", 0)) > 0
+        ),
+        key=lambda value: value["effective_sim_time_seconds"],
+    )
     forest = identity.get("forest_scene", {})
     navigation = forest.get("navigation") or {}
+    course = identity.get("course") or {}
+    if not navigation and isinstance(course, dict) and "office_start_xy_m" in course:
+        navigation = {
+            "start_world_m": course.get("office_start_xy_m"),
+            "goal_world_m": course.get("office_goal_xy_m"),
+        }
+
+    office_routes = []
+    if isinstance(course, dict) and course.get("name") == "office_l0_crowd":
+        route_path_str = course.get("office_route_path")
+        if route_path_str:
+            route_path = Path(route_path_str)
+            if not route_path.is_file():
+                # Fallback to local repo path if on mac
+                route_path = Path(__file__).resolve().parents[3] / ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/office_l0_route_preflight07.json"
+            if route_path.is_file():
+                try:
+                    from .office_crowd_contract import routes_from_preflight
+                    pre_payload = json.loads(route_path.read_text(encoding="utf-8"))
+                    office_routes = list(routes_from_preflight(pre_payload))
+                except Exception:
+                    pass
+
     bounds = _plot_bounds(plans, metrics, navigation)
 
     inset_width = min(430, max(300, width // 3))
@@ -315,6 +373,8 @@ def render_trajectory_review(
     actual_path = []
     dynamic_path = []
     active_plan_index = -1
+    active_occupancy_index = -1
+    replan_banner_until_s = -1.0
     rendered = 0
     try:
         while rendered < frame_count:
@@ -325,12 +385,25 @@ def render_trajectory_review(
                 )
             row = frame_rows[rendered]
             sim_time = float(row["sim_time_seconds"])
+            previous_plan_index = active_plan_index
             while (
                 active_plan_index + 1 < len(plans)
                 and float(plans[active_plan_index + 1]["effective_sim_time_seconds"])
                 <= sim_time
             ):
                 active_plan_index += 1
+            if active_plan_index != previous_plan_index and active_plan_index >= 0:
+                replan_banner_until_s = sim_time + 0.8
+            while (
+                active_occupancy_index + 1 < len(occupancy_events)
+                and float(
+                    occupancy_events[active_occupancy_index + 1][
+                        "effective_sim_time_seconds"
+                    ]
+                )
+                <= sim_time
+            ):
+                active_occupancy_index += 1
             actual_path.append(tuple(float(value) for value in row["root_pos_w"][:2]))
             dynamic_position = row.get("dynamic_obstacle_actual_pos_w")
             if dynamic_position is not None:
@@ -391,6 +464,24 @@ def render_trajectory_review(
                         thickness=3,
                         lineType=cv2.LINE_AA,
                     )
+            if active_occupancy_index >= 0:
+                # These are sampled directly from SCAN's published inflated
+                # occupancy, never from scene or pedestrian schedule truth.
+                for point in occupancy_events[active_occupancy_index]["points_xyz"]:
+                    if len(point) < 2:
+                        continue
+                    pixel = mapper(point)
+                    if (
+                        inset_left <= pixel[0] < inset_left + inset_width
+                        and inset_top <= pixel[1] < inset_top + inset_height
+                    ):
+                        cv2.circle(
+                            frame,
+                            pixel,
+                            1,
+                            SCAN_OCCUPANCY_COLOR_BGR,
+                            thickness=-1,
+                        )
             actual_pixels = _polyline(actual_path, mapper)
             if len(actual_pixels) >= 2:
                 cv2.polylines(
@@ -437,6 +528,19 @@ def render_trajectory_review(
                     dynamic_color_bgr,
                     thickness=-1,
                 )
+            if office_routes:
+                from .office_crowd_contract import office_pedestrian_state
+                for r in office_routes:
+                    p_state = office_pedestrian_state(sim_time, r)
+                    p_xy = p_state["xy_m"]
+                    p_px = mapper(p_xy)
+                    is_crossing = r.name.startswith("crossing")
+                    p_color = (0, 140, 255) if is_crossing else (230, 180, 50)
+                    r_edge_px = mapper((p_xy[0] + r.radius_m, p_xy[1]))
+                    r_px = max(3, abs(r_edge_px[0] - p_px[0]))
+                    cv2.circle(frame, p_px, r_px, p_color, thickness=2)
+                    cv2.circle(frame, p_px, 3, p_color, thickness=-1)
+
             goal = navigation.get("goal_world_m")
             if goal and len(goal) >= 2:
                 cv2.drawMarker(
@@ -454,6 +558,48 @@ def render_trajectory_review(
             cv2.putText(frame, "SCAN planned", (inset_left + 48, legend_y + 23), cv2.FONT_HERSHEY_SIMPLEX, 0.46, (245, 245, 245), 1, cv2.LINE_AA)
             cv2.line(frame, (inset_left + 175, legend_y + 18), (inset_left + 203, legend_y + 18), ACTUAL_COLOR_BGR, 3, cv2.LINE_AA)
             cv2.putText(frame, "Isaac actual", (inset_left + 211, legend_y + 23), cv2.FONT_HERSHEY_SIMPLEX, 0.46, (245, 245, 245), 1, cv2.LINE_AA)
+            cv2.circle(
+                frame,
+                (inset_left + 18, legend_y + 43),
+                3,
+                SCAN_OCCUPANCY_COLOR_BGR,
+                thickness=-1,
+            )
+            cv2.putText(
+                frame,
+                "SCAN inflated occupancy",
+                (inset_left + 29, legend_y + 48),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.42,
+                (245, 245, 245),
+                1,
+                cv2.LINE_AA,
+            )
+            if office_routes:
+                cv2.circle(
+                    frame,
+                    (inset_left + 18, legend_y + 67),
+                    4,
+                    (0, 140, 255),
+                    thickness=2,
+                )
+                cv2.circle(
+                    frame,
+                    (inset_left + 32, legend_y + 67),
+                    4,
+                    (230, 180, 50),
+                    thickness=2,
+                )
+                cv2.putText(
+                    frame,
+                    "GT pedestrian routes (evaluation only)",
+                    (inset_left + 45, legend_y + 72),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.36,
+                    (245, 245, 245),
+                    1,
+                    cv2.LINE_AA,
+                )
             if dynamic_path:
                 cv2.line(
                     frame,
@@ -486,6 +632,17 @@ def render_trajectory_review(
                 2,
                 cv2.LINE_AA,
             )
+            if sim_time <= replan_banner_until_s and active_plan_index >= 0:
+                cv2.putText(
+                    frame,
+                    f"NEW SCAN B-SPLINE  traj={trajectory_id}",
+                    (24, 52),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.72,
+                    SCAN_OCCUPANCY_COLOR_BGR,
+                    2,
+                    cv2.LINE_AA,
+                )
             if dynamic_path:
                 phase = str(row.get("dynamic_obstacle_phase", "unknown"))
                 clearance = float(
@@ -541,7 +698,7 @@ def render_trajectory_review(
     metadata = {
         "schema_version": 2 if identity.get("dynamic_obstacle") else 1,
         "mapping": {
-            "plan_to_sim_time": "nearest simulator-stamped body_pose receipt",
+            "plan_to_sim_time": "bracketed interpolation on simulator-stamped body_pose receipts",
             "frame_to_sim_time": "metrics rows where step modulo video frame_stride equals zero",
             "frame_stride": frame_stride,
             "maximum_plan_pose_alignment_error_ms": max(

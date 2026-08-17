@@ -1,0 +1,568 @@
+{
+  "checks": {
+    "causal_active_path_replan_audit": {
+      "expected": {
+        "required_reactive_replans": 1
+      },
+      "passed": true,
+      "value": {
+        "candidate_diagnostics": [
+          {
+            "geometric_difference_m": 0.11117092397025007,
+            "replan_sim_time_s": 25.471584422964,
+            "route_evidence": [
+              {
+                "latest_depth_pixel_count": 0,
+                "latest_detection_sim_time_s": 24.529999451711774,
+                "latest_lidar_hit_count": 45,
+                "latest_phase": "arrived",
+                "qualifying_detection_count": 10,
+                "route_name": "crossing_1",
+                "scan_occupancy_found": false
+              },
+              {
+                "latest_depth_pixel_count": 183,
+                "latest_detection_sim_time_s": 25.429999431595206,
+                "latest_distance_to_active_path_m": 0.5252111185293469,
+                "latest_lidar_hit_count": 41,
+                "latest_phase": "walking",
+                "qualifying_detection_count": 10,
+                "route_name": "crossing_2",
+                "scan_occupancy_found": true
+              }
+            ],
+            "target_waypoint_index": 3,
+            "trajectory_id": 6
+          },
+          {
+            "geometric_difference_m": 0.12369911505491071,
+            "replan_sim_time_s": 25.845250858772406,
+            "route_evidence": [
+              {
+                "latest_depth_pixel_count": 0,
+                "latest_detection_sim_time_s": 24.929999442771077,
+                "latest_lidar_hit_count": 36,
+                "latest_phase": "arrived",
+                "qualifying_detection_count": 10,
+                "route_name": "crossing_1",
+                "scan_occupancy_found": false
+              },
+              {
+                "latest_depth_pixel_count": 162,
+                "latest_detection_sim_time_s": 25.82999942265451,
+                "latest_distance_to_active_path_m": 0.48575779211341935,
+                "latest_lidar_hit_count": 41,
+                "latest_phase": "walking",
+                "qualifying_detection_count": 10,
+                "route_name": "crossing_2",
+                "scan_occupancy_found": true
+              }
+            ],
+            "target_waypoint_index": 3,
+            "trajectory_id": 7
+          },
+          {
+            "geometric_difference_m": 0.3183421827580008,
+            "replan_sim_time_s": 26.114408684642235,
+            "route_evidence": [
+              {
+                "latest_depth_pixel_count": 0,
+                "latest_detection_sim_time_s": 25.12999943830073,
+                "latest_lidar_hit_count": 33,
+                "latest_phase": "arrived",
+                "qualifying_detection_count": 10,
+                "route_name": "crossing_1",
+                "scan_occupancy_found": false
+              },
+              {
+                "latest_depth_pixel_count": 179,
+                "latest_detection_sim_time_s": 26.02999941818416,
+                "latest_distance_to_active_path_m": 0.3175980168921726,
+                "latest_lidar_hit_count": 38,
+                "latest_phase": "walking",
+                "qualifying_detection_count": 10,
+                "route_name": "crossing_2",
+                "scan_occupancy_found": true
+              }
+            ],
+            "target_waypoint_index": 3,
+            "trajectory_id": 8
+          },
+          {
+            "geometric_difference_m": 0.3578178127060991,
+            "replan_sim_time_s": 27.08831645294303,
+            "route_evidence": [
+              {
+                "latest_depth_pixel_count": 0,
+                "latest_detection_sim_time_s": 26.129999415948987,
+                "latest_lidar_hit_count": 8,
+                "latest_phase": "arrived",
+                "qualifying_detection_count": 10,
+                "route_name": "crossing_1",
+                "scan_occupancy_found": false
+              },
+              {
+                "latest_depth_pixel_count": 144,
+                "latest_detection_sim_time_s": 27.02999939583242,
+                "latest_distance_to_active_path_m": 0.2640774500191173,
+                "latest_lidar_hit_count": 39,
+                "latest_phase": "walking",
+                "qualifying_detection_count": 10,
+                "route_name": "crossing_2",
+                "scan_occupancy_found": true
+              }
+            ],
+            "target_waypoint_index": 3,
+            "trajectory_id": 9
+          },
+          {
+            "geometric_difference_m": 0.5524515893674811,
+            "replan_sim_time_s": 29.047719751450213,
+            "route_evidence": [
+              {
+                "latest_depth_pixel_count": 0,
+                "latest_detection_sim_time_s": 28.129999371245503,
+                "latest_lidar_hit_count": 30,
+                "latest_phase": "arrived",
+                "qualifying_detection_count": 10,
+                "route_name": "crossing_1",
+                "scan_occupancy_found": false
+              },
+              {
+                "latest_depth_pixel_count": 338,
+                "latest_detection_sim_time_s": 28.529999362304807,
+                "latest_distance_to_active_path_m": 1.165336783114076,
+                "latest_lidar_hit_count": 16,
+                "latest_phase": "walking",
+                "qualifying_detection_count": 10,
+                "route_name": "crossing_2",
+                "scan_occupancy_found": true
+              }
+            ],
+            "target_waypoint_index": 3,
+            "trajectory_id": 10
+          }
+        ],
+        "occupancy_event_count": 298,
+        "passed": true,
+        "reactive_replan_count": 5,
+        "reactive_replans": [
+          {
+            "depth_pixel_count": 183,
+            "detection_sim_time_s": 25.429999431595206,
+            "geometric_difference_m": 0.11117092397025007,
+            "lidar_hit_count": 41,
+            "pedestrian_distance_to_path_m": 0.5252111185293469,
+            "replan_sim_time_s": 25.471584422964,
+            "scan_occupancy": {
+              "minimum_distance_m": 0.0369992971651385,
+              "sample_count": 5000,
+              "sim_time_seconds": 25.429999431000002,
+              "source_point_count": 185142
+            },
+            "target_waypoint_index": 3,
+            "trajectory_id": 6,
+            "trigger_pedestrian": "crossing_2"
+          },
+          {
+            "depth_pixel_count": 162,
+            "detection_sim_time_s": 25.82999942265451,
+            "geometric_difference_m": 0.12369911505491071,
+            "lidar_hit_count": 41,
+            "pedestrian_distance_to_path_m": 0.48575779211341935,
+            "replan_sim_time_s": 25.845250858772406,
+            "scan_occupancy": {
+              "minimum_distance_m": 0.05009012927136516,
+              "sample_count": 5000,
+              "sim_time_seconds": 25.829999422,
+              "source_point_count": 184270
+            },
+            "target_waypoint_index": 3,
+            "trajectory_id": 7,
+            "trigger_pedestrian": "crossing_2"
+          },
+          {
+            "depth_pixel_count": 179,
+            "detection_sim_time_s": 26.02999941818416,
+            "geometric_difference_m": 0.3183421827580008,
+            "lidar_hit_count": 38,
+            "pedestrian_distance_to_path_m": 0.3175980168921726,
+            "replan_sim_time_s": 26.114408684642235,
+            "scan_occupancy": {
+              "minimum_distance_m": 0.0230001423302717,
+              "sample_count": 5000,
+              "sim_time_seconds": 26.029999418000003,
+              "source_point_count": 191712
+            },
+            "target_waypoint_index": 3,
+            "trajectory_id": 8,
+            "trigger_pedestrian": "crossing_2"
+          },
+          {
+            "depth_pixel_count": 144,
+            "detection_sim_time_s": 27.02999939583242,
+            "geometric_difference_m": 0.3578178127060991,
+            "lidar_hit_count": 39,
+            "pedestrian_distance_to_path_m": 0.2640774500191173,
+            "replan_sim_time_s": 27.08831645294303,
+            "scan_occupancy": {
+              "minimum_distance_m": 0.38030105988377605,
+              "sample_count": 5000,
+              "sim_time_seconds": 27.029999395,
+              "source_point_count": 175437
+            },
+            "target_waypoint_index": 3,
+            "trajectory_id": 9,
+            "trigger_pedestrian": "crossing_2"
+          },
+          {
+            "depth_pixel_count": 338,
+            "detection_sim_time_s": 28.529999362304807,
+            "geometric_difference_m": 0.5524515893674811,
+            "lidar_hit_count": 16,
+            "pedestrian_distance_to_path_m": 1.165336783114076,
+            "replan_sim_time_s": 29.047719751450213,
+            "scan_occupancy": {
+              "minimum_distance_m": 0.0,
+              "sample_count": 5000,
+              "sim_time_seconds": 29.029999351,
+              "source_point_count": 214672
+            },
+            "target_waypoint_index": 3,
+            "trajectory_id": 10,
+            "trigger_pedestrian": "crossing_2"
+          }
+        ],
+        "required_evidence": {
+          "later_true_bspline_geometry_change": true,
+          "per_person_sensor_detection": true,
+          "remaining_active_bspline_intrusion": true,
+          "scan_inflated_occupancy_near_person": true
+        },
+        "total_trajectories": 10,
+        "trajectory_classifications": [
+          {
+            "classification": "startup_refinement",
+            "mapped_sim_time_s": 0.1354821403661781,
+            "target_waypoint_index": 0,
+            "trajectory_id": 1
+          },
+          {
+            "classification": "startup_refinement",
+            "mapped_sim_time_s": 0.1666118729361618,
+            "target_waypoint_index": 0,
+            "trajectory_id": 2
+          },
+          {
+            "classification": "waypoint_progression",
+            "mapped_sim_time_s": 8.293474072099482,
+            "target_waypoint_index": 1,
+            "trajectory_id": 3
+          },
+          {
+            "classification": "waypoint_progression",
+            "mapped_sim_time_s": 15.066267562917835,
+            "target_waypoint_index": 2,
+            "trajectory_id": 4
+          },
+          {
+            "classification": "waypoint_progression",
+            "mapped_sim_time_s": 24.64734248660454,
+            "target_waypoint_index": 3,
+            "trajectory_id": 5
+          },
+          {
+            "classification": "reactive_obstacle_replan",
+            "mapped_sim_time_s": 25.471584422964,
+            "target_waypoint_index": 3,
+            "trajectory_id": 6
+          },
+          {
+            "classification": "reactive_obstacle_replan",
+            "mapped_sim_time_s": 25.845250858772406,
+            "target_waypoint_index": 3,
+            "trajectory_id": 7
+          },
+          {
+            "classification": "reactive_obstacle_replan",
+            "mapped_sim_time_s": 26.114408684642235,
+            "target_waypoint_index": 3,
+            "trajectory_id": 8
+          },
+          {
+            "classification": "reactive_obstacle_replan",
+            "mapped_sim_time_s": 27.08831645294303,
+            "target_waypoint_index": 3,
+            "trajectory_id": 9
+          },
+          {
+            "classification": "reactive_obstacle_replan",
+            "mapped_sim_time_s": 29.047719751450213,
+            "target_waypoint_index": 3,
+            "trajectory_id": 10
+          }
+        ]
+      }
+    },
+    "cloud_nonempty_fraction": {
+      "expected": {
+        "minimum_fraction": 0.99
+      },
+      "passed": true,
+      "value": 1.0
+    },
+    "command_bounds": {
+      "expected": {
+        "epsilon": 0.005,
+        "maximum_abs": [
+          0.5,
+          0.35,
+          1.0
+        ]
+      },
+      "passed": true,
+      "value": [
+        0.5,
+        0.2476871758699417,
+        1.0
+      ]
+    },
+    "conservative_pedestrian_clearance": {
+      "expected": {
+        "minimum_clearance_m": 0.15
+      },
+      "passed": true,
+      "value": {
+        "closest_pedestrian": "background_2",
+        "min_conservative_clearance_m": 0.8543110311625364,
+        "time_s": 21.169999526813626
+      }
+    },
+    "d435i_pedestrian_pixels": {
+      "expected": {
+        "minimum_required": 10
+      },
+      "passed": true,
+      "value": {
+        "max_depth_pedestrian_pixels": 982
+      }
+    },
+    "finite_policy_and_support": {
+      "expected": {
+        "expected_finite": true,
+        "minimum_support_fraction": 0.95
+      },
+      "passed": true,
+      "value": {
+        "finite_policy": true,
+        "support_fraction": 0.9993335554815062
+      }
+    },
+    "goal_xy_error": {
+      "expected": {
+        "goal": [
+          -8.375,
+          -0.625
+        ],
+        "max_allowed": 0.25
+      },
+      "passed": true,
+      "value": {
+        "final_pos": [
+          -8.355367660522461,
+          -0.5181411504745483
+        ],
+        "goal_xy_error_m": 0.10864733073234914
+      }
+    },
+    "mid360_pedestrian_hits": {
+      "expected": {
+        "minimum_required": 10
+      },
+      "passed": true,
+      "value": {
+        "max_lidar_pedestrian_hits": 281
+      }
+    },
+    "multiple_trajectories": {
+      "expected": {
+        "minimum_required": 2
+      },
+      "passed": true,
+      "value": {
+        "unique_trajectory_count": 10
+      }
+    },
+    "no_scan_emergency_stop": {
+      "expected": {
+        "maximum_allowed": 0
+      },
+      "passed": true,
+      "value": {
+        "emergency_stop_count": 0
+      }
+    },
+    "nonfoot_contact_force": {
+      "expected": {
+        "max_allowed": 75.0
+      },
+      "passed": true,
+      "value": {
+        "max_nonfoot_contact_n": 0.0
+      }
+    },
+    "pedestrian_pairwise_clearance": {
+      "expected": {
+        "minimum_required": 0.05
+      },
+      "passed": true,
+      "value": {
+        "min_surface_clearance_m": 0.8577379737113251
+      }
+    },
+    "rates_nominal": {
+      "expected": {
+        "policy_rate_hz_range": [
+          45.0,
+          55.0
+        ],
+        "sensor_rate_hz_range": [
+          8.0,
+          12.0
+        ]
+      },
+      "passed": true,
+      "value": {
+        "policy_rate_hz": 50.00000111758712,
+        "sensor_rate_hz": 10.000000223517423
+      }
+    },
+    "retained_static_cloud_points": {
+      "expected": {
+        "minimum_required": 1000
+      },
+      "passed": true,
+      "value": {
+        "max_static_points": 2275,
+        "min_static_points": 2074
+      }
+    },
+    "root_z_range": {
+      "expected": {
+        "expected_range": [
+          0.25,
+          0.45
+        ]
+      },
+      "passed": true,
+      "value": {
+        "max_z": 0.35026395320892334,
+        "min_z": 0.2750644087791443
+      }
+    },
+    "simulation_duration": {
+      "expected": {
+        "minimum_seconds": 50.0
+      },
+      "passed": true,
+      "value": 60.02999865822494
+    },
+    "step_displacement_and_no_reset": {
+      "expected": {
+        "maximum_step_displacement_m": 0.06,
+        "termination_count": 0,
+        "timestamps_advance": true
+      },
+      "passed": true,
+      "value": {
+        "maximum_step_displacement_m": 0.013452421165105047,
+        "termination_count": 0,
+        "timestamps_advance": true
+      }
+    },
+    "terminal_stop": {
+      "expected": {
+        "maximum_command_abs": 0.05,
+        "maximum_planar_speed_mps": 0.15,
+        "window_seconds": 2.0
+      },
+      "passed": true,
+      "value": {
+        "terminal_command_max_abs": 0.0,
+        "terminal_planar_speed_max_mps": 0.05246213603023816
+      }
+    },
+    "transport_clean": {
+      "expected": {
+        "protocol_errors": 0,
+        "reconnects": 0,
+        "sequence_gaps": 0
+      },
+      "passed": true,
+      "value": {
+        "protocol_errors": 0,
+        "reconnects": 0,
+        "sequence_gaps": 0
+      }
+    },
+    "video_quality_and_visibility": {
+      "expected": {
+        "min_height": 360,
+        "min_nonblank_fraction": 0.95,
+        "min_temporal_diff": 1.0,
+        "min_width": 640,
+        "minimum_frame_count": 500
+      },
+      "passed": true,
+      "value": {
+        "frame_count": 601,
+        "mean_temporal_diff": 36.19384135140313,
+        "metadata": {
+          "codec": "h264",
+          "duration_seconds": 50.083333,
+          "fps": 12.0,
+          "height": 720,
+          "nb_frames": 601,
+          "size_bytes": 42044068,
+          "width": 1280
+        },
+        "nonblank_fraction": 1.0,
+        "raw_video_path": "/home/sun/machine-dog-nav-runs/2026-08-17_office_l0_scan_crowd/results/office_crowd_codex_candidate38/closed_loop.mp4"
+      }
+    },
+    "watchdog_zero": {
+      "expected": {
+        "maximum_allowed": 0
+      },
+      "passed": true,
+      "value": {
+        "watchdog_events": 0
+      }
+    }
+  },
+  "claim": "single-scenario Foxy-SCAN to V12-policy Lite3-Pro-sensor-rig reactive moving-occupancy Office L0 eight-person crowd simulation",
+  "schema_version": 2,
+  "status": "PASS",
+  "summary": {
+    "final_position_world_xy_m": [
+      -8.355367660522461,
+      -0.5181411504745483
+    ],
+    "goal_xy_error_m": 0.10864733073234914,
+    "max_depth_pedestrian_pixels": 982,
+    "max_lidar_pedestrian_hits": 281,
+    "max_nonfoot_contact_n": 0.0,
+    "max_root_z_m": 0.35026395320892334,
+    "min_conservative_pedestrian_clearance_m": 0.8543110311625364,
+    "min_root_z_m": 0.2750644087791443,
+    "overlay_sha256": "38620cc2272f67d713c7115672811b8b4e6dbe4bc504c0fecb4cf3e5d06b9db3",
+    "policy_rate_hz": 50.00000111758712,
+    "reactive_replan_count": 5,
+    "sensor_rate_hz": 10.000000223517423,
+    "unique_trajectory_count": 10,
+    "video_duration_seconds": 50.083333,
+    "video_frame_count": 601,
+    "video_sha256": "010acee0275475a2bd3661f6db7743adb64be25cc4fcaa3e9fe8ac04a00bed31",
+    "watchdog_events": 0
+  }
+}

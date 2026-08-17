@@ -327,7 +327,7 @@ class CommandReceiverServer:
 class FrameStreamClient:
     """Foxy-side reconnectable client for one framed stream."""
 
-    def __init__(self, host: str, port: int, timeout_seconds: float = 1.0) -> None:
+    def __init__(self, host: str, port: int, timeout_seconds: float = 5.0) -> None:
         self._host = host
         self._port = port
         self._timeout_seconds = timeout_seconds

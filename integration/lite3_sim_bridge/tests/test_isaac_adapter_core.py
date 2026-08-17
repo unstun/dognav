@@ -18,6 +18,7 @@ from lite3_sim_bridge.isaac_adapter_core import (
     rotation_matrix_from_wxyz,
     schedule_duration,
     schedule_state,
+    segment_to_aabb_clearance_2d,
     terrain_seating_for_bounds,
     terrain_seating_for_mesh_support,
     world_hits_to_sensor_points,
@@ -178,6 +179,39 @@ class IsaacAdapterCoreTest(unittest.TestCase):
         )
         with self.assertRaisesRegex(ValueError, "radii"):
             circle_surface_clearance_2d((0.0, 0.0), (1.0, 0.0), -0.1, 0.3)
+
+    def test_segment_to_aabb_clearance_catches_swept_penetration(self):
+        self.assertAlmostEqual(
+            segment_to_aabb_clearance_2d(
+                (-2.7, 0.0),
+                (-2.7, 16.0),
+                (-2.9364, 0.6520),
+                (-1.4019, 1.9152),
+                swept_radius_m=0.30,
+            ),
+            -0.30,
+        )
+        self.assertAlmostEqual(
+            segment_to_aabb_clearance_2d(
+                (-4.0, 1.6),
+                (-4.0, 16.0),
+                (-2.9364, 0.6520),
+                (-1.4019, 1.9152),
+                swept_radius_m=0.30,
+            ),
+            0.7636,
+            places=4,
+        )
+        self.assertAlmostEqual(
+            segment_to_aabb_clearance_2d(
+                (0.0, 0.0), (1.0, 0.0), (2.0, -1.0), (3.0, 1.0), 0.25
+            ),
+            0.75,
+        )
+        with self.assertRaisesRegex(ValueError, "minimum"):
+            segment_to_aabb_clearance_2d(
+                (0.0, 0.0), (1.0, 0.0), (2.0, 1.0), (1.0, 2.0)
+            )
 
     def test_schedule_boundaries_and_disconnect(self):
         first, elapsed = schedule_state(0.25)

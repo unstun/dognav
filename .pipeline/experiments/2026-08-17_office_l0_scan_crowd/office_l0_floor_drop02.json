@@ -1,0 +1,2629 @@
+{
+  "status": "FAIL",
+  "reviewed": false,
+  "office_uri": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Office/office.usd",
+  "floor_level": "L0",
+  "ground_plane_collision_disabled_for_test": true,
+  "probe_type": "0.05_m_radius_0.05_kg_dynamic_sphere",
+  "simulation_steps": 360,
+  "simulation_dt_s": 0.008333333333333333,
+  "floor_mesh_count": 84,
+  "generated_floor_collider_count": 84,
+  "drop_pass_count": 82,
+  "drop_failure_count": 2,
+  "drop_failure_paths": [
+    "/World/Environment/SM_Floor_6m35/SM_Floor_6m",
+    "/World/Environment/SM_Floor_6m47/SM_Floor_6m"
+  ],
+  "floor_rows": [
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m24/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -6.000001293189473,
+        11.999998917215047,
+        -3.496911007514348e-07,
+        -1.3411050581169093e-07,
+        18.000000338562284,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -3.0000007136499893,
+        14.999999627888666,
+        0.35
+      ],
+      "probe_final_m": [
+        -3.0000007152557373,
+        15.0,
+        0.05000031739473343
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552738824299297e-10,
+        0.0,
+        -1.517036829490337e-09
+      ],
+      "z_error_m": 3.173947334261795e-07,
+      "xy_drift_m": 3.721147983203483e-07,
+      "speed_mps": 1.6154658721845294e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m25/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -1.2931894727293338e-06,
+        11.999998917215047,
+        -3.496911007514348e-07,
+        5.999999865889494,
+        18.000000338562284,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        2.9999992863500107,
+        14.999999627888666,
+        0.35
+      ],
+      "probe_final_m": [
+        2.9999992847442627,
+        15.0,
+        0.049999844282865524
+      ],
+      "probe_final_linear_velocity_mps": [
+        9.195844086207217e-11,
+        4.2674197509029455e-16,
+        -1.4551913493643376e-11
+      ],
+      "z_error_m": 1.5571713447848357e-07,
+      "xy_drift_m": 3.721147983203483e-07,
+      "speed_mps": 9.310269916129599e-11,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m26/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -6.000001293189473,
+        17.999998917215045,
+        -3.496911007514348e-07,
+        -1.3411050581169093e-07,
+        24.000000338562284,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -3.0000007136499893,
+        20.999999627888663,
+        0.35
+      ],
+      "probe_final_m": [
+        -3.0000007152557373,
+        21.0,
+        0.05000031739473343
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552738824299297e-10,
+        0.0,
+        -1.517036829490337e-09
+      ],
+      "z_error_m": 3.173947334261795e-07,
+      "xy_drift_m": 3.7211480187302893e-07,
+      "speed_mps": 1.6154658721845294e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m27/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -1.2931894727293338e-06,
+        17.999998917215045,
+        -3.496911007514348e-07,
+        5.999999865889494,
+        24.000000338562284,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        2.9999992863500107,
+        20.999999627888663,
+        0.35
+      ],
+      "probe_final_m": [
+        2.9999992847442627,
+        21.0,
+        0.049999844282865524
+      ],
+      "probe_final_linear_velocity_mps": [
+        9.195844086207217e-11,
+        4.2674197509029455e-16,
+        -1.4551913493643376e-11
+      ],
+      "z_error_m": 1.5571713447848357e-07,
+      "xy_drift_m": 3.7211480187302893e-07,
+      "speed_mps": 9.310269916129599e-11,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m_2/SM_Floor_3m/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -7.980000207428107,
+        20.999999923706056,
+        0.0019999035133745307,
+        -4.980000067055226,
+        23.999999932944775,
+        0.002000122070325114
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -6.4800001372416665,
+        22.499999928325416,
+        0.35
+      ],
+      "probe_final_m": [
+        -6.480000019073486,
+        22.5,
+        0.0520000159740448
+      ],
+      "probe_final_linear_velocity_mps": [
+        4.225128691359714e-09,
+        -8.450257382719428e-09,
+        2.3234925268511564e-12
+      ],
+      "z_error_m": 0.002000015974044797,
+      "xy_drift_m": 1.3820624029684088e-07,
+      "speed_mps": 9.447675530793731e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m2/SM_Floor_3m/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -7.980000207428107,
+        17.999999923706056,
+        0.0019999014272119634,
+        -4.980000067055226,
+        20.999999932944775,
+        0.0020001199841625465
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -6.4800001372416665,
+        19.499999928325416,
+        0.35
+      ],
+      "probe_final_m": [
+        -6.480000019073486,
+        19.5,
+        0.0520000122487545
+      ],
+      "probe_final_linear_velocity_mps": [
+        4.223544181058969e-09,
+        -8.447088362117938e-09,
+        2.3234916594894184e-12
+      ],
+      "z_error_m": 0.0020000122487544986,
+      "xy_drift_m": 1.3820624029684088e-07,
+      "speed_mps": 9.444131698899128e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m3/SM_Floor_3m/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -10.980000207428107,
+        20.999999923706056,
+        0.0019999014272119634,
+        -7.980000067055226,
+        23.999999932944775,
+        0.0020001199841625465
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -9.480000137241667,
+        22.499999928325416,
+        0.35
+      ],
+      "probe_final_m": [
+        -9.480000495910645,
+        22.5,
+        0.0520000122487545
+      ],
+      "probe_final_linear_velocity_mps": [
+        -1.2942114047120867e-10,
+        -5.536640785895085e-18,
+        4.3388611566523333e-16
+      ],
+      "z_error_m": 0.0020000122487544986,
+      "xy_drift_m": 3.657604151035994e-07,
+      "speed_mps": 1.2942114047120867e-10,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m4/SM_Floor_3m/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -10.980000207428107,
+        17.999999923706056,
+        0.0019999014272119634,
+        -7.980000067055226,
+        20.999999932944775,
+        0.0020001199841625465
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -9.480000137241667,
+        19.499999928325416,
+        0.35
+      ],
+      "probe_final_m": [
+        -9.480000495910645,
+        19.5,
+        0.0520000122487545
+      ],
+      "probe_final_linear_velocity_mps": [
+        -1.2942114047120867e-10,
+        -5.536640785895085e-18,
+        4.3388611566523333e-16
+      ],
+      "z_error_m": 0.0020000122487544986,
+      "xy_drift_m": 3.657604151035994e-07,
+      "speed_mps": 1.2942114047120867e-10,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m5/SM_Floor_3m/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -13.980000207428107,
+        20.999999923706056,
+        0.0019999014272119634,
+        -10.980000067055226,
+        23.999999932944775,
+        0.0020001199841625465
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -12.480000137241667,
+        22.499999928325416,
+        0.35
+      ],
+      "probe_final_m": [
+        -12.480000495910645,
+        22.5,
+        0.0520000122487545
+      ],
+      "probe_final_linear_velocity_mps": [
+        -1.2942114047120867e-10,
+        -5.536640785895085e-18,
+        4.3388611566523333e-16
+      ],
+      "z_error_m": 0.0020000122487544986,
+      "xy_drift_m": 3.657604151035994e-07,
+      "speed_mps": 1.2942114047120867e-10,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m6/SM_Floor_3m/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -13.980000207428107,
+        17.999999923706056,
+        0.0019999014272119634,
+        -10.980000067055226,
+        20.999999932944775,
+        0.0020001199841625465
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -12.480000137241667,
+        19.499999928325416,
+        0.35
+      ],
+      "probe_final_m": [
+        -12.480000495910645,
+        19.5,
+        0.0520000122487545
+      ],
+      "probe_final_linear_velocity_mps": [
+        -1.2942114047120867e-10,
+        -5.536640785895085e-18,
+        4.3388611566523333e-16
+      ],
+      "z_error_m": 0.0020000122487544986,
+      "xy_drift_m": 3.657604151035994e-07,
+      "speed_mps": 1.2942114047120867e-10,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m28/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -6.000001293189473,
+        23.999998917215045,
+        -3.496911007514348e-07,
+        -1.3411050581169093e-07,
+        30.000000338562284,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -3.0000007136499893,
+        26.999999627888663,
+        0.35
+      ],
+      "probe_final_m": [
+        -3.0000007152557373,
+        27.0,
+        0.05000031739473343
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552738824299297e-10,
+        0.0,
+        -1.517036829490337e-09
+      ],
+      "z_error_m": 3.173947334261795e-07,
+      "xy_drift_m": 3.7211480187302893e-07,
+      "speed_mps": 1.6154658721845294e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m29/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -1.2931894727293338e-06,
+        23.999998917215045,
+        -3.496911007514348e-07,
+        5.999999865889494,
+        30.000000338562284,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        2.9999992863500107,
+        26.999999627888663,
+        0.35
+      ],
+      "probe_final_m": [
+        2.9999992847442627,
+        27.0,
+        0.049999844282865524
+      ],
+      "probe_final_linear_velocity_mps": [
+        9.195844086207217e-11,
+        4.2674197509029455e-16,
+        -1.4551913493643376e-11
+      ],
+      "z_error_m": 1.5571713447848357e-07,
+      "xy_drift_m": 3.7211480187302893e-07,
+      "speed_mps": 9.310269916129599e-11,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m30/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -6.000001293189473,
+        29.999998917215045,
+        -3.496911007514348e-07,
+        -1.3411050581169093e-07,
+        36.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -3.0000007136499893,
+        32.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -3.0000007152557373,
+        33.0,
+        0.05000031739473343
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552738824299297e-10,
+        0.0,
+        -1.517036829490337e-09
+      ],
+      "z_error_m": 3.173947334261795e-07,
+      "xy_drift_m": 3.7211480187302893e-07,
+      "speed_mps": 1.6154658721845294e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m31/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -1.2931894727293338e-06,
+        29.999998917215045,
+        -3.496911007514348e-07,
+        5.999999865889494,
+        36.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        2.9999992863500107,
+        32.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        2.9999992847442627,
+        33.0,
+        0.049999844282865524
+      ],
+      "probe_final_linear_velocity_mps": [
+        9.195844086207217e-11,
+        4.2674197509029455e-16,
+        -1.4551913493643376e-11
+      ],
+      "z_error_m": 1.5571713447848357e-07,
+      "xy_drift_m": 3.7211480187302893e-07,
+      "speed_mps": 9.310269916129599e-11,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m32/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -6.000001293189473,
+        35.999998917215045,
+        -3.496911007514348e-07,
+        -1.3411050581169093e-07,
+        42.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -3.0000007136499893,
+        38.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -3.0000007152557373,
+        39.0,
+        0.05000031739473343
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552738824299297e-10,
+        0.0,
+        -1.517036829490337e-09
+      ],
+      "z_error_m": 3.173947334261795e-07,
+      "xy_drift_m": 3.7211480187302893e-07,
+      "speed_mps": 1.6154658721845294e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m33/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -1.2931894727293338e-06,
+        35.999998917215045,
+        -3.496911007514348e-07,
+        5.999999865889494,
+        42.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        2.9999992863500107,
+        38.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        2.9999992847442627,
+        39.0,
+        0.049999844282865524
+      ],
+      "probe_final_linear_velocity_mps": [
+        9.195844086207217e-11,
+        4.2674197509029455e-16,
+        -1.4551913493643376e-11
+      ],
+      "z_error_m": 1.5571713447848357e-07,
+      "xy_drift_m": 3.7211480187302893e-07,
+      "speed_mps": 9.310269916129599e-11,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m34/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -6.000001293189473,
+        41.999998917215045,
+        -3.496911007514348e-07,
+        -1.3411050581169093e-07,
+        48.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -3.0000007136499893,
+        44.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -3.0000007152557373,
+        45.0,
+        0.05000031739473343
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552738824299297e-10,
+        0.0,
+        -1.517036829490337e-09
+      ],
+      "z_error_m": 3.173947334261795e-07,
+      "xy_drift_m": 3.7211480187302893e-07,
+      "speed_mps": 1.6154658721845294e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m35/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -1.2931894727293338e-06,
+        41.999998917215045,
+        -3.496911007514348e-07,
+        5.999999865889494,
+        48.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        2.9999992863500107,
+        44.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        2.9999992847442627,
+        45.0,
+        0.33905529975891113
+      ],
+      "probe_final_linear_velocity_mps": [
+        2.9835366816000075e-11,
+        8.306119680945301e-11,
+        1.5169384637303551e-09
+      ],
+      "z_error_m": 0.28905529975891114,
+      "xy_drift_m": 3.7211480187302893e-07,
+      "speed_mps": 1.519503745051054e-09,
+      "qualification_pass": false
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m36/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -18.000001293189474,
+        23.999998917215045,
+        -3.496911007514348e-07,
+        -12.000000134110508,
+        30.000000338562284,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -15.00000071364999,
+        26.999999627888663,
+        0.35
+      ],
+      "probe_final_m": [
+        -15.000000953674316,
+        27.0,
+        0.050001032650470734
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.547654002846514e-10,
+        0.0,
+        -1.5211466530828943e-09
+      ],
+      "z_error_m": 1.032650470730867e-06,
+      "xy_drift_m": 4.4280754769692926e-07,
+      "speed_mps": 1.61915159058168e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m37/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -12.000001293189472,
+        23.999998917215045,
+        -3.496911007514348e-07,
+        -6.000000134110505,
+        30.000000338562284,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -9.000000713649989,
+        26.999999627888663,
+        0.35
+      ],
+      "probe_final_m": [
+        -9.000000953674316,
+        27.0,
+        0.050001442432403564
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.558000171212996e-10,
+        0.0,
+        -1.5133990727278501e-09
+      ],
+      "z_error_m": 1.4424324035616776e-06,
+      "xy_drift_m": 4.4280754865980545e-07,
+      "speed_mps": 1.612231459446889e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m38/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -24.000001293189474,
+        23.999998917215045,
+        -3.496911007514348e-07,
+        -18.000000134110508,
+        30.000000338562284,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -21.00000071364999,
+        26.999999627888663,
+        0.35
+      ],
+      "probe_final_m": [
+        -21.0,
+        27.0,
+        0.05000196024775505
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.531772262479251e-10,
+        0.0,
+        -1.5309244982830705e-09
+      ],
+      "z_error_m": 1.9602477550478836e-06,
+      "xy_drift_m": 8.048373462862525e-07,
+      "speed_mps": 1.6278006720327198e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m39/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -18.000001293189474,
+        29.999998917215045,
+        -3.496911007514348e-07,
+        -12.000000134110508,
+        36.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -15.00000071364999,
+        32.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -15.000000953674316,
+        33.0,
+        0.050001032650470734
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.547654002846514e-10,
+        0.0,
+        -1.5211466530828943e-09
+      ],
+      "z_error_m": 1.032650470730867e-06,
+      "xy_drift_m": 4.4280754769692926e-07,
+      "speed_mps": 1.61915159058168e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m40/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -12.000001293189472,
+        29.999998917215045,
+        -3.496911007514348e-07,
+        -6.000000134110505,
+        36.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -9.000000713649989,
+        32.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -9.000000953674316,
+        33.0,
+        0.050001442432403564
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.558000171212996e-10,
+        0.0,
+        -1.5133990727278501e-09
+      ],
+      "z_error_m": 1.4424324035616776e-06,
+      "xy_drift_m": 4.4280754865980545e-07,
+      "speed_mps": 1.612231459446889e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m41/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -24.000001293189474,
+        29.999998917215045,
+        -3.496911007514348e-07,
+        -18.000000134110508,
+        36.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -21.00000071364999,
+        32.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -21.0,
+        33.0,
+        0.05000196024775505
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.531772262479251e-10,
+        0.0,
+        -1.5309244982830705e-09
+      ],
+      "z_error_m": 1.9602477550478836e-06,
+      "xy_drift_m": 8.048373462862525e-07,
+      "speed_mps": 1.6278006720327198e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m42/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -18.000001293189474,
+        35.999998917215045,
+        -3.496911007514348e-07,
+        -12.000000134110508,
+        42.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -15.00000071364999,
+        38.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -15.000000953674316,
+        39.0,
+        0.050001032650470734
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.547654002846514e-10,
+        0.0,
+        -1.5211466530828943e-09
+      ],
+      "z_error_m": 1.032650470730867e-06,
+      "xy_drift_m": 4.4280754769692926e-07,
+      "speed_mps": 1.61915159058168e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m43/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -12.000001293189472,
+        35.999998917215045,
+        -3.496911007514348e-07,
+        -6.000000134110505,
+        42.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -9.000000713649989,
+        38.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -9.000000953674316,
+        39.0,
+        0.050001442432403564
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.558000171212996e-10,
+        0.0,
+        -1.5133990727278501e-09
+      ],
+      "z_error_m": 1.4424324035616776e-06,
+      "xy_drift_m": 4.4280754865980545e-07,
+      "speed_mps": 1.612231459446889e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m44/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -24.000001293189474,
+        35.999998917215045,
+        -3.496911007514348e-07,
+        -18.000000134110508,
+        42.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -21.00000071364999,
+        38.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -21.0,
+        39.0,
+        0.05000196024775505
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.531772262479251e-10,
+        0.0,
+        -1.5309244982830705e-09
+      ],
+      "z_error_m": 1.9602477550478836e-06,
+      "xy_drift_m": 8.048373462862525e-07,
+      "speed_mps": 1.6278006720327198e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m45/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -18.000001293189474,
+        41.999998917215045,
+        -3.496911007514348e-07,
+        -12.000000134110508,
+        48.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -15.00000071364999,
+        44.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -15.000000953674316,
+        45.0,
+        0.050001032650470734
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.547654002846514e-10,
+        0.0,
+        -1.5211466530828943e-09
+      ],
+      "z_error_m": 1.032650470730867e-06,
+      "xy_drift_m": 4.4280754769692926e-07,
+      "speed_mps": 1.61915159058168e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m46/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -12.000001293189472,
+        41.999998917215045,
+        -3.496911007514348e-07,
+        -6.000000134110505,
+        48.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -9.000000713649989,
+        44.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -9.000000953674316,
+        45.0,
+        0.050001442432403564
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.558000171212996e-10,
+        0.0,
+        -1.5133990727278501e-09
+      ],
+      "z_error_m": 1.4424324035616776e-06,
+      "xy_drift_m": 4.4280754865980545e-07,
+      "speed_mps": 1.612231459446889e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m47/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -24.000001293189474,
+        41.999998917215045,
+        -3.496911007514348e-07,
+        -18.000000134110508,
+        48.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -21.00000071364999,
+        44.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -20.879491806030273,
+        44.204917907714844,
+        0.050002507865428925
+      ],
+      "probe_final_linear_velocity_mps": [
+        0.04050509259104729,
+        -0.2672785818576813,
+        -1.5137109343754673e-09
+      ],
+      "z_error_m": 2.507865428921785e-06,
+      "xy_drift_m": 0.8041625075631517,
+      "speed_mps": 0.27033036947250366,
+      "qualification_pass": false
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m48/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -6.000001293189473,
+        47.999998917215045,
+        -3.496911007514348e-07,
+        -1.3411050581169093e-07,
+        54.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -3.0000007136499893,
+        50.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -3.0000007152557373,
+        51.0,
+        0.05000031739473343
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552738824299297e-10,
+        0.0,
+        -1.517036829490337e-09
+      ],
+      "z_error_m": 3.173947334261795e-07,
+      "xy_drift_m": 3.7211480187302893e-07,
+      "speed_mps": 1.6154658721845294e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m49/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -1.2931894727293338e-06,
+        47.999998917215045,
+        -3.496911007514348e-07,
+        5.999999865889494,
+        54.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        2.9999992863500107,
+        50.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        2.9999992847442627,
+        51.0,
+        0.049999844282865524
+      ],
+      "probe_final_linear_velocity_mps": [
+        9.195844086207217e-11,
+        4.2674197509029455e-16,
+        -1.4551913493643376e-11
+      ],
+      "z_error_m": 1.5571713447848357e-07,
+      "xy_drift_m": 3.7211480187302893e-07,
+      "speed_mps": 9.310269916129599e-11,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m50/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -18.000001293189474,
+        47.999998917215045,
+        -3.496911007514348e-07,
+        -12.000000134110508,
+        54.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -15.00000071364999,
+        50.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -14.998101234436035,
+        50.95800018310547,
+        0.05000217258930206
+      ],
+      "probe_final_linear_velocity_mps": [
+        1.3149382027677348e-07,
+        5.476841238305497e-07,
+        -1.513482561499302e-09
+      ],
+      "z_error_m": 2.1725893020602127e-06,
+      "xy_drift_m": 0.04204237604347317,
+      "speed_mps": 5.63250239338231e-07,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m51/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -12.000001293189472,
+        47.999998917215045,
+        -3.496911007514348e-07,
+        -6.000000134110505,
+        54.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -9.000000713649989,
+        50.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -9.000000953674316,
+        51.0,
+        0.050001442432403564
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.558000171212996e-10,
+        0.0,
+        -1.5133990727278501e-09
+      ],
+      "z_error_m": 1.4424324035616776e-06,
+      "xy_drift_m": 4.4280754865980545e-07,
+      "speed_mps": 1.612231459446889e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m52/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -24.000001293189474,
+        47.999998917215045,
+        -3.496911007514348e-07,
+        -18.000000134110508,
+        54.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -21.00000071364999,
+        50.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -20.99809455871582,
+        50.95800018310547,
+        0.05000181123614311
+      ],
+      "probe_final_linear_velocity_mps": [
+        -4.8870109736753875e-08,
+        3.15959169938651e-08,
+        -1.4818136717664743e-09
+      ],
+      "z_error_m": 1.811236143109407e-06,
+      "xy_drift_m": 0.04204267818217118,
+      "speed_mps": 5.821327420107991e-08,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m53/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -6.000001293189473,
+        53.999998917215045,
+        -3.496911007514348e-07,
+        -1.3411050581169093e-07,
+        60.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -3.0000007136499893,
+        56.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -3.0000007152557373,
+        57.0,
+        0.05000031739473343
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552738824299297e-10,
+        0.0,
+        -1.517036829490337e-09
+      ],
+      "z_error_m": 3.173947334261795e-07,
+      "xy_drift_m": 3.7211480187302893e-07,
+      "speed_mps": 1.6154658721845294e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m54/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -1.2931894727293338e-06,
+        53.999998917215045,
+        -3.496911007514348e-07,
+        5.999999865889494,
+        60.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        2.9999992863500107,
+        56.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        2.9999992847442627,
+        57.0,
+        0.049999844282865524
+      ],
+      "probe_final_linear_velocity_mps": [
+        9.195844086207217e-11,
+        4.2674197509029455e-16,
+        -1.4551913493643376e-11
+      ],
+      "z_error_m": 1.5571713447848357e-07,
+      "xy_drift_m": 3.7211480187302893e-07,
+      "speed_mps": 9.310269916129599e-11,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m55/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -18.000001293189474,
+        53.999998917215045,
+        -3.496911007514348e-07,
+        -12.000000134110508,
+        60.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -15.00000071364999,
+        56.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -15.000000953674316,
+        57.0,
+        0.050001032650470734
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.547654002846514e-10,
+        0.0,
+        -1.5211466530828943e-09
+      ],
+      "z_error_m": 1.032650470730867e-06,
+      "xy_drift_m": 4.4280754769692926e-07,
+      "speed_mps": 1.61915159058168e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m57/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -24.000001293189474,
+        53.999998917215045,
+        -3.496911007514348e-07,
+        -18.000000134110508,
+        60.00000033856228,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -21.00000071364999,
+        56.99999962788866,
+        0.35
+      ],
+      "probe_final_m": [
+        -21.0,
+        57.0,
+        0.05000196024775505
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.531772262479251e-10,
+        0.0,
+        -1.5309244982830705e-09
+      ],
+      "z_error_m": 1.9602477550478836e-06,
+      "xy_drift_m": 8.048373462862525e-07,
+      "speed_mps": 1.6278006720327198e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m7_351/SM_Floor_3m/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -9.000000684741709,
+        53.999999458607526,
+        -2.1855693796964676e-07,
+        -6.000000067055245,
+        57.00000020742812,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -7.500000375898477,
+        55.499999833017824,
+        0.35
+      ],
+      "probe_final_m": [
+        -7.500000476837158,
+        55.5,
+        0.05000044032931328
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.519071311077539e-10,
+        0.0,
+        -1.5163718058985864e-09
+      ],
+      "z_error_m": 4.403293132754227e-07,
+      "xy_drift_m": 1.9511961558917954e-07,
+      "speed_mps": 1.6136867397875676e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m8/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -9.000000684741709,
+        56.999999458607526,
+        -2.1855693796964676e-07,
+        -6.000000067055245,
+        60.00000020742812,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -7.500000375898477,
+        58.499999833017824,
+        0.35
+      ],
+      "probe_final_m": [
+        -7.500000476837158,
+        58.5,
+        0.05000044032931328
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.519071311077539e-10,
+        0.0,
+        -1.5163718058985864e-09
+      ],
+      "z_error_m": 4.403293132754227e-07,
+      "xy_drift_m": 1.9511961558917954e-07,
+      "speed_mps": 1.6136867397875676e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m9/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -12.000000684741709,
+        56.999999458607526,
+        -2.1855693796964676e-07,
+        -9.000000067055245,
+        60.00000020742812,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -10.500000375898477,
+        58.499999833017824,
+        0.35
+      ],
+      "probe_final_m": [
+        -10.5,
+        58.5,
+        0.05000152438879013
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.544868453277729e-10,
+        0.0,
+        -1.5279492115993776e-09
+      ],
+      "z_error_m": 1.5243887901278397e-06,
+      "xy_drift_m": 4.1131826100377305e-07,
+      "speed_mps": 1.6254489976219588e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m10/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -12.000000684741709,
+        53.999999458607526,
+        -2.1855693796964676e-07,
+        -9.000000067055245,
+        57.00000020742812,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -10.500000375898477,
+        55.499999833017824,
+        0.35
+      ],
+      "probe_final_m": [
+        -10.5,
+        55.5,
+        0.05000152438879013
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.544868453277729e-10,
+        0.0,
+        -1.5279492115993776e-09
+      ],
+      "z_error_m": 1.5243887901278397e-06,
+      "xy_drift_m": 4.1131826100377305e-07,
+      "speed_mps": 1.6254489976219588e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m35_320/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -18.000000684741707,
+        -12.000000541392478,
+        -2.1855693796964676e-07,
+        -15.000000067055245,
+        -8.999999792571877,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -16.500000375898477,
+        -10.500000166982177,
+        0.35
+      ],
+      "probe_final_m": [
+        -16.5,
+        -10.5,
+        0.050003137439489365
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.529519064850774e-10,
+        0.0,
+        -1.5133981845494304e-09
+      ],
+      "z_error_m": 3.1374394893618485e-06,
+      "xy_drift_m": 4.1131826172491763e-07,
+      "speed_mps": 1.6112510214938425e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m36_321/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -15.000000684741709,
+        -12.000000541392478,
+        -2.1855693796964676e-07,
+        -12.000000067055245,
+        -8.999999792571877,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -13.500000375898477,
+        -10.500000166982177,
+        0.35
+      ],
+      "probe_final_m": [
+        -13.5,
+        -10.5,
+        0.050001319497823715
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552144854981123e-10,
+        0.0,
+        -1.4388373825724443e-09
+      ],
+      "z_error_m": 1.3194978237124344e-06,
+      "xy_drift_m": 4.1131826172491763e-07,
+      "speed_mps": 1.5422438881529388e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m37_322/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -15.000000684741709,
+        -9.000000541392478,
+        -2.1855693796964676e-07,
+        -12.000000067055245,
+        -5.999999792571878,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -13.500000375898477,
+        -7.500000166982177,
+        0.35
+      ],
+      "probe_final_m": [
+        -13.5,
+        -7.5,
+        0.050001319497823715
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552144854981123e-10,
+        0.0,
+        -1.4388373825724443e-09
+      ],
+      "z_error_m": 1.3194978237124344e-06,
+      "xy_drift_m": 4.1131826172491763e-07,
+      "speed_mps": 1.5422438881529388e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m38_323/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -15.000000684741709,
+        -6.000000541392477,
+        -2.1855693796964676e-07,
+        -12.000000067055245,
+        -2.999999792571878,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -13.500000375898477,
+        -4.500000166982177,
+        0.35
+      ],
+      "probe_final_m": [
+        -13.5,
+        -4.5,
+        0.050001319497823715
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552144854981123e-10,
+        0.0,
+        -1.4388373825724443e-09
+      ],
+      "z_error_m": 1.3194978237124344e-06,
+      "xy_drift_m": 4.1131826172491763e-07,
+      "speed_mps": 1.5422438881529388e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m39_324/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -15.000000684741709,
+        -3.0000005413924775,
+        -2.1855693796964676e-07,
+        -12.000000067055245,
+        2.0742812186260802e-07,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -13.500000375898477,
+        -1.5000001669821779,
+        0.35
+      ],
+      "probe_final_m": [
+        -13.5,
+        -1.5000001192092896,
+        0.050001319497823715
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552144854981123e-10,
+        0.0,
+        -1.4388373825724443e-09
+      ],
+      "z_error_m": 1.3194978237124344e-06,
+      "xy_drift_m": 3.789220417323448e-07,
+      "speed_mps": 1.5422438881529388e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m40_325/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -15.000000684741709,
+        -5.413924774603543e-07,
+        -2.1855693796964676e-07,
+        -12.000000067055245,
+        3.000000207428122,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -13.500000375898477,
+        1.4999998330178221,
+        0.35
+      ],
+      "probe_final_m": [
+        -13.5,
+        1.4999998807907104,
+        0.050001319497823715
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552144854981123e-10,
+        0.0,
+        -1.4388373825724443e-09
+      ],
+      "z_error_m": 1.3194978237124344e-06,
+      "xy_drift_m": 3.789220417323448e-07,
+      "speed_mps": 1.5422438881529388e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m8/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -12.000001293189472,
+        -12.000001082784953,
+        -3.496911007514348e-07,
+        -6.000000134110505,
+        -5.999999661437716,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -9.000000713649989,
+        -9.000000372111334,
+        0.35
+      ],
+      "probe_final_m": [
+        -9.000000953674316,
+        -9.0,
+        0.050001442432403564
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.558000171212996e-10,
+        0.0,
+        -1.5133990727278501e-09
+      ],
+      "z_error_m": 1.4424324035616776e-06,
+      "xy_drift_m": 4.4280754567429844e-07,
+      "speed_mps": 1.612231459446889e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m9/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -6.000001293189473,
+        -12.000001082784953,
+        -3.496911007514348e-07,
+        -1.3411050581169093e-07,
+        -5.999999661437716,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -3.0000007136499893,
+        -9.000000372111334,
+        0.35
+      ],
+      "probe_final_m": [
+        -3.0000007152557373,
+        -9.0,
+        0.05000031739473343
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552738824299297e-10,
+        0.0,
+        -1.517036829490337e-09
+      ],
+      "z_error_m": 3.173947334261795e-07,
+      "xy_drift_m": 3.721147983203483e-07,
+      "speed_mps": 1.6154658721845294e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m10/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -1.2931894727293338e-06,
+        -12.000001082784953,
+        -3.496911007514348e-07,
+        5.999999865889494,
+        -5.999999661437716,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        2.9999992863500107,
+        -9.000000372111334,
+        0.35
+      ],
+      "probe_final_m": [
+        2.9999992847442627,
+        -9.0,
+        0.049999844282865524
+      ],
+      "probe_final_linear_velocity_mps": [
+        9.195844086207217e-11,
+        4.2674197509029455e-16,
+        -1.4551913493643376e-11
+      ],
+      "z_error_m": 1.5571713447848357e-07,
+      "xy_drift_m": 3.721147983203483e-07,
+      "speed_mps": 9.310269916129599e-11,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m11/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -12.000001293189472,
+        -6.000001082784955,
+        -3.496911007514348e-07,
+        -6.000000134110505,
+        3.385622846443934e-07,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -9.000000713649989,
+        -3.000000372111335,
+        0.35
+      ],
+      "probe_final_m": [
+        -9.000000953674316,
+        -3.000000476837158,
+        0.050001442432403564
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.558000171212996e-10,
+        0.0,
+        -1.5133990727278501e-09
+      ],
+      "z_error_m": 1.4424324035616776e-06,
+      "xy_drift_m": 2.6187626053691613e-07,
+      "speed_mps": 1.612231459446889e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m12/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -6.000001293189473,
+        -6.000001082784955,
+        -3.496911007514348e-07,
+        -1.3411050581169093e-07,
+        3.385622846443934e-07,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -3.0000007136499893,
+        -3.000000372111335,
+        0.35
+      ],
+      "probe_final_m": [
+        -3.0000007152557373,
+        -3.000000476837158,
+        0.05000031739473343
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552738824299297e-10,
+        0.0,
+        -1.517036829490337e-09
+      ],
+      "z_error_m": 3.173947334261795e-07,
+      "xy_drift_m": 1.0473813276785281e-07,
+      "speed_mps": 1.6154658721845294e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m13/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -1.2931894727293338e-06,
+        -6.000001082784955,
+        -3.496911007514348e-07,
+        5.999999865889494,
+        3.385622846443934e-07,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        2.9999992863500107,
+        -3.000000372111335,
+        0.35
+      ],
+      "probe_final_m": [
+        2.9999992847442627,
+        -3.000000476837158,
+        0.049999844282865524
+      ],
+      "probe_final_linear_velocity_mps": [
+        9.195844086207217e-11,
+        4.2674197509029455e-16,
+        -1.4551913493643376e-11
+      ],
+      "z_error_m": 1.5571713447848357e-07,
+      "xy_drift_m": 1.0473813276785281e-07,
+      "speed_mps": 9.310269916129599e-11,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m14/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -12.000001293189472,
+        -1.0827849549207086e-06,
+        -3.496911007514348e-07,
+        -6.000000134110505,
+        6.000000338562284,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -9.000000713649989,
+        2.9999996278886645,
+        0.35
+      ],
+      "probe_final_m": [
+        -9.000000953674316,
+        2.999999523162842,
+        0.050001442432403564
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.558000171212996e-10,
+        0.0,
+        -1.5133990727278501e-09
+      ],
+      "z_error_m": 1.4424324035616776e-06,
+      "xy_drift_m": 2.618762603593223e-07,
+      "speed_mps": 1.612231459446889e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m15/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -6.000001293189473,
+        -1.0827849549207086e-06,
+        -3.496911007514348e-07,
+        -1.3411050581169093e-07,
+        6.000000338562284,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -3.0000007136499893,
+        2.9999996278886645,
+        0.35
+      ],
+      "probe_final_m": [
+        -3.0000007152557373,
+        2.999999523162842,
+        0.05000031739473343
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552738824299297e-10,
+        0.0,
+        -1.517036829490337e-09
+      ],
+      "z_error_m": 3.173947334261795e-07,
+      "xy_drift_m": 1.047381323238158e-07,
+      "speed_mps": 1.6154658721845294e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m16/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -1.2931894727293338e-06,
+        -1.0827849549207086e-06,
+        -3.496911007514348e-07,
+        5.999999865889494,
+        6.000000338562284,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        2.9999992863500107,
+        2.9999996278886645,
+        0.35
+      ],
+      "probe_final_m": [
+        2.9999992847442627,
+        2.999999523162842,
+        0.049999844282865524
+      ],
+      "probe_final_linear_velocity_mps": [
+        9.195844086207217e-11,
+        4.2674197509029455e-16,
+        -1.4551913493643376e-11
+      ],
+      "z_error_m": 1.5571713447848357e-07,
+      "xy_drift_m": 1.047381323238158e-07,
+      "speed_mps": 9.310269916129599e-11,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m17/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -12.000001293189472,
+        5.999998917215045,
+        -3.496911007514348e-07,
+        -6.000000134110505,
+        12.000000338562286,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -9.000000713649989,
+        8.999999627888666,
+        0.35
+      ],
+      "probe_final_m": [
+        -9.000000953674316,
+        9.0,
+        0.050001442432403564
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.558000171212996e-10,
+        0.0,
+        -1.5133990727278501e-09
+      ],
+      "z_error_m": 1.4424324035616776e-06,
+      "xy_drift_m": 4.4280754567429844e-07,
+      "speed_mps": 1.612231459446889e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m18/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -6.000001293189473,
+        5.999998917215045,
+        -3.496911007514348e-07,
+        -1.3411050581169093e-07,
+        12.000000338562286,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -3.0000007136499893,
+        8.999999627888666,
+        0.35
+      ],
+      "probe_final_m": [
+        -3.0000007152557373,
+        9.0,
+        0.05000031739473343
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552738824299297e-10,
+        0.0,
+        -1.517036829490337e-09
+      ],
+      "z_error_m": 3.173947334261795e-07,
+      "xy_drift_m": 3.721147983203483e-07,
+      "speed_mps": 1.6154658721845294e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m19/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -1.2931894727293338e-06,
+        5.999998917215045,
+        -3.496911007514348e-07,
+        5.999999865889494,
+        12.000000338562286,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        2.9999992863500107,
+        8.999999627888666,
+        0.35
+      ],
+      "probe_final_m": [
+        2.9999992847442627,
+        9.0,
+        0.049999844282865524
+      ],
+      "probe_final_linear_velocity_mps": [
+        9.195844086207217e-11,
+        4.2674197509029455e-16,
+        -1.4551913493643376e-11
+      ],
+      "z_error_m": 1.5571713447848357e-07,
+      "xy_drift_m": 3.721147983203483e-07,
+      "speed_mps": 9.310269916129599e-11,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m20/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -24.000001293189474,
+        5.999998917215045,
+        -3.496911007514348e-07,
+        -18.000000134110508,
+        12.000000338562286,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -21.00000071364999,
+        8.999999627888666,
+        0.35
+      ],
+      "probe_final_m": [
+        -21.0,
+        9.0,
+        0.05000196024775505
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.531772262479251e-10,
+        0.0,
+        -1.5309244982830705e-09
+      ],
+      "z_error_m": 1.9602477550478836e-06,
+      "xy_drift_m": 8.048373446436784e-07,
+      "speed_mps": 1.6278006720327198e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m21/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -18.000001293189474,
+        5.999998917215045,
+        -3.496911007514348e-07,
+        -12.000000134110508,
+        12.000000338562286,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -15.00000071364999,
+        8.999999627888666,
+        0.35
+      ],
+      "probe_final_m": [
+        -15.000000953674316,
+        9.0,
+        0.050001032650470734
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.547654002846514e-10,
+        0.0,
+        -1.5211466530828943e-09
+      ],
+      "z_error_m": 1.032650470730867e-06,
+      "xy_drift_m": 4.4280754471142225e-07,
+      "speed_mps": 1.61915159058168e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m41_335/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -12.000000684741709,
+        -15.000000541392478,
+        -2.1855693796964676e-07,
+        -9.000000067055245,
+        -11.999999792571877,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -10.500000375898477,
+        -13.500000166982177,
+        0.35
+      ],
+      "probe_final_m": [
+        -10.5,
+        -13.5,
+        0.05000152438879013
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.544868453277729e-10,
+        0.0,
+        -1.5279492115993776e-09
+      ],
+      "z_error_m": 1.5243887901278397e-06,
+      "xy_drift_m": 4.1131826172491763e-07,
+      "speed_mps": 1.6254489976219588e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m42_336/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -12.000000684741709,
+        -18.000000541392478,
+        -2.1855693796964676e-07,
+        -9.000000067055245,
+        -14.999999792571877,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -10.500000375898477,
+        -16.500000166982176,
+        0.35
+      ],
+      "probe_final_m": [
+        -10.5,
+        -16.5,
+        0.05000152438879013
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.544868453277729e-10,
+        0.0,
+        -1.5279492115993776e-09
+      ],
+      "z_error_m": 1.5243887901278397e-06,
+      "xy_drift_m": 4.1131826100377305e-07,
+      "speed_mps": 1.6254489976219588e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m43_337/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -12.000000684741709,
+        -21.000000541392478,
+        -2.1855693796964676e-07,
+        -9.000000067055245,
+        -17.99999979257188,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -10.500000375898477,
+        -19.50000016698218,
+        0.35
+      ],
+      "probe_final_m": [
+        -10.5,
+        -19.5,
+        0.05000152438879013
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.544868453277729e-10,
+        0.0,
+        -1.5279492115993776e-09
+      ],
+      "z_error_m": 1.5243887901278397e-06,
+      "xy_drift_m": 4.1131826244606216e-07,
+      "speed_mps": 1.6254489976219588e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m44_338/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -12.000000684741709,
+        -24.000000541392478,
+        -2.1855693796964676e-07,
+        -9.000000067055245,
+        -20.99999979257188,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -10.500000375898477,
+        -22.50000016698218,
+        0.35
+      ],
+      "probe_final_m": [
+        -10.5,
+        -22.5,
+        0.05000152438879013
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.544868453277729e-10,
+        0.0,
+        -1.5279492115993776e-09
+      ],
+      "z_error_m": 1.5243887901278397e-06,
+      "xy_drift_m": 4.1131826244606216e-07,
+      "speed_mps": 1.6254489976219588e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m45_339/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -12.000000684741709,
+        -27.000000541392478,
+        -2.1855693796964676e-07,
+        -9.000000067055245,
+        -23.99999979257188,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -10.500000375898477,
+        -25.50000016698218,
+        0.35
+      ],
+      "probe_final_m": [
+        -10.5,
+        -25.5,
+        0.05000152438879013
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.544868453277729e-10,
+        0.0,
+        -1.5279492115993776e-09
+      ],
+      "z_error_m": 1.5243887901278397e-06,
+      "xy_drift_m": 4.1131826244606216e-07,
+      "speed_mps": 1.6254489976219588e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m22/SM_Floor_6m/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -9.000001293189472,
+        -18.000001082784955,
+        -3.496911007514348e-07,
+        -3.000000134110505,
+        -11.999999661437714,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -6.000000713649989,
+        -15.000000372111334,
+        0.35
+      ],
+      "probe_final_m": [
+        -6.000000476837158,
+        -15.0,
+        0.05000102147459984
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.553279502912289e-10,
+        0.0,
+        -1.5169181466490045e-09
+      ],
+      "z_error_m": 1.0214745998354813e-06,
+      "xy_drift_m": 4.410750066330663e-07,
+      "speed_mps": 1.6153729465173683e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m23/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -9.000001293189472,
+        -24.000001082784955,
+        -3.496911007514348e-07,
+        -3.000000134110505,
+        -17.999999661437716,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -6.000000713649989,
+        -21.000000372111337,
+        0.35
+      ],
+      "probe_final_m": [
+        -6.000000476837158,
+        -21.0,
+        0.05000102147459984
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.553279502912289e-10,
+        0.0,
+        -1.5169181466490045e-09
+      ],
+      "z_error_m": 1.0214745998354813e-06,
+      "xy_drift_m": 4.410750096303004e-07,
+      "speed_mps": 1.6153729465173683e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m46_340/SM_Floor_3m/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -3.0000006847417082,
+        -15.000000541392478,
+        -2.1855693796964676e-07,
+        -6.705524491223969e-08,
+        -11.999999792571877,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -1.5000003758984766,
+        -13.500000166982177,
+        0.35
+      ],
+      "probe_final_m": [
+        -1.5000003576278687,
+        -13.5,
+        0.05000018700957298
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.54812362718593e-10,
+        0.0,
+        -1.5170386058471763e-09
+      ],
+      "z_error_m": 1.8700957298001253e-07,
+      "xy_drift_m": 1.6797875666007283e-07,
+      "speed_mps": 1.6153088866488474e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m47/SM_Floor_3m/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -3.0000006847417082,
+        -18.000000541392478,
+        -2.1855693796964676e-07,
+        -6.705524491223969e-08,
+        -14.999999792571877,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -1.5000003758984766,
+        -16.500000166982176,
+        0.35
+      ],
+      "probe_final_m": [
+        -1.5000003576278687,
+        -16.5,
+        0.05000018700957298
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.54812362718593e-10,
+        0.0,
+        -1.5170386058471763e-09
+      ],
+      "z_error_m": 1.8700957298001253e-07,
+      "xy_drift_m": 1.6797875489425472e-07,
+      "speed_mps": 1.6153088866488474e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m48_341/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -3.0000006847417082,
+        -21.000000541392478,
+        -2.1855693796964676e-07,
+        -6.705524491223969e-08,
+        -17.99999979257188,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -1.5000003758984766,
+        -19.50000016698218,
+        0.35
+      ],
+      "probe_final_m": [
+        -1.5000003576278687,
+        -19.5,
+        0.05000018700957298
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.54812362718593e-10,
+        0.0,
+        -1.5170386058471763e-09
+      ],
+      "z_error_m": 1.8700957298001253e-07,
+      "xy_drift_m": 1.6797875842589097e-07,
+      "speed_mps": 1.6153088866488474e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m49_342/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -3.0000006847417082,
+        -24.000000541392478,
+        -2.1855693796964676e-07,
+        -6.705524491223969e-08,
+        -20.99999979257188,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -1.5000003758984766,
+        -22.50000016698218,
+        0.35
+      ],
+      "probe_final_m": [
+        -1.5000003576278687,
+        -22.5,
+        0.05000018700957298
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.54812362718593e-10,
+        0.0,
+        -1.5170386058471763e-09
+      ],
+      "z_error_m": 1.8700957298001253e-07,
+      "xy_drift_m": 1.6797875842589097e-07,
+      "speed_mps": 1.6153088866488474e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m56_355/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -18.000001293189474,
+        11.999998917215047,
+        -3.496911007514348e-07,
+        -12.000000134110508,
+        18.000000338562284,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -15.00000071364999,
+        14.999999627888666,
+        0.35
+      ],
+      "probe_final_m": [
+        -15.000000953674316,
+        15.0,
+        0.050001032650470734
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.547654002846514e-10,
+        0.0,
+        -1.5211466530828943e-09
+      ],
+      "z_error_m": 1.032650470730867e-06,
+      "xy_drift_m": 4.4280754471142225e-07,
+      "speed_mps": 1.61915159058168e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m58/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -18.000001293189474,
+        17.999998917215045,
+        -3.496911007514348e-07,
+        -12.000000134110508,
+        24.000000338562284,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -15.00000071364999,
+        20.999999627888663,
+        0.35
+      ],
+      "probe_final_m": [
+        -15.000000953674316,
+        21.0,
+        0.050001032650470734
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.547654002846514e-10,
+        0.0,
+        -1.5211466530828943e-09
+      ],
+      "z_error_m": 1.032650470730867e-06,
+      "xy_drift_m": 4.4280754769692926e-07,
+      "speed_mps": 1.61915159058168e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m50_360/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -15.000000684741709,
+        2.9999994586075225,
+        -2.1855693796964676e-07,
+        -12.000000067055245,
+        6.000000207428122,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -13.500000375898477,
+        4.499999833017823,
+        0.35
+      ],
+      "probe_final_m": [
+        -13.5,
+        4.5,
+        0.050001319497823715
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.552144854981123e-10,
+        0.0,
+        -1.4388373825724443e-09
+      ],
+      "z_error_m": 1.3194978237124344e-06,
+      "xy_drift_m": 4.1131826172491763e-07,
+      "speed_mps": 1.5422438881529388e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m51/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -21.000000684741707,
+        11.999999458607522,
+        -2.1855693796964676e-07,
+        -18.000000067055243,
+        15.000000207428123,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -19.500000375898473,
+        13.499999833017823,
+        0.35
+      ],
+      "probe_final_m": [
+        -19.5,
+        13.5,
+        0.05000186711549759
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.53272261338833e-10,
+        0.0,
+        -1.4633937395203134e-09
+      ],
+      "z_error_m": 1.8671154975863358e-06,
+      "xy_drift_m": 4.1131825847813823e-07,
+      "speed_mps": 1.5644907591649826e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m52_363/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -24.000000684741707,
+        11.999999458607522,
+        -2.1855693796964676e-07,
+        -21.000000067055243,
+        15.000000207428123,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -22.500000375898473,
+        13.499999833017823,
+        0.35
+      ],
+      "probe_final_m": [
+        -22.5,
+        13.5,
+        0.0500032939016819
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.54679135955638e-10,
+        0.0,
+        -1.5118243323897218e-09
+      ],
+      "z_error_m": 3.293901681897249e-06,
+      "xy_drift_m": 4.1131825847813823e-07,
+      "speed_mps": 1.6103669508993335e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_6m59/SM_Floor_6m",
+      "bounds_xyzxyz_m": [
+        -24.000001293189474,
+        14.999998917215047,
+        -3.496911007514348e-07,
+        -18.000000134110508,
+        21.000000338562284,
+        1.2797255373641862e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -21.00000071364999,
+        17.999999627888666,
+        0.35
+      ],
+      "probe_final_m": [
+        -21.0,
+        18.0,
+        0.05000196024775505
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.531772262479251e-10,
+        0.0,
+        -1.5309244982830705e-09
+      ],
+      "z_error_m": 1.9602477550478836e-06,
+      "xy_drift_m": 8.048373446436784e-07,
+      "speed_mps": 1.6278006720327198e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m53/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -21.000000684741707,
+        20.999999458607522,
+        -2.1855693796964676e-07,
+        -18.000000067055243,
+        24.00000020742812,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -19.500000375898473,
+        22.49999983301782,
+        0.35
+      ],
+      "probe_final_m": [
+        -19.5,
+        22.5,
+        0.05000186711549759
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.53272261338833e-10,
+        0.0,
+        -1.4633937395203134e-09
+      ],
+      "z_error_m": 1.8671154975863358e-06,
+      "xy_drift_m": 4.113182591992828e-07,
+      "speed_mps": 1.5644907591649826e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m54_364/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -24.000000684741707,
+        20.999999458607522,
+        -2.1855693796964676e-07,
+        -21.000000067055243,
+        24.00000020742812,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -22.500000375898473,
+        22.49999983301782,
+        0.35
+      ],
+      "probe_final_m": [
+        -22.5,
+        22.5,
+        0.0500032939016819
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.54679135955638e-10,
+        0.0,
+        -1.5118243323897218e-09
+      ],
+      "z_error_m": 3.293901681897249e-06,
+      "xy_drift_m": 4.113182591992828e-07,
+      "speed_mps": 1.6103669508993335e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m55/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -9.000000684741709,
+        -27.000000541392478,
+        -2.1855693796964676e-07,
+        -6.000000067055245,
+        -23.99999979257188,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -7.500000375898477,
+        -25.50000016698218,
+        0.35
+      ],
+      "probe_final_m": [
+        -7.500000476837158,
+        -25.5,
+        0.05000044032931328
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.519071311077539e-10,
+        0.0,
+        -1.5163718058985864e-09
+      ],
+      "z_error_m": 4.403293132754227e-07,
+      "xy_drift_m": 1.9511961862957022e-07,
+      "speed_mps": 1.6136867397875676e-09,
+      "qualification_pass": true
+    },
+    {
+      "floor_path": "/World/Environment/SM_Floor_3m59/SM_Floor_3m/SM_Floor_3m",
+      "bounds_xyzxyz_m": [
+        -21.000000684741707,
+        -12.000000541392478,
+        -2.1855693796964676e-07,
+        -18.000000067055243,
+        -8.999999792571877,
+        1.2613557919461428e-14
+      ],
+      "authored_collision_api": false,
+      "probe_start_m": [
+        -19.500000375898473,
+        -10.500000166982177,
+        0.35
+      ],
+      "probe_final_m": [
+        -19.5,
+        -10.5,
+        0.05000186711549759
+      ],
+      "probe_final_linear_velocity_mps": [
+        -5.53272261338833e-10,
+        0.0,
+        -1.4633937395203134e-09
+      ],
+      "z_error_m": 1.8671154975863358e-06,
+      "xy_drift_m": 4.1131825847813823e-07,
+      "speed_mps": 1.5644907591649826e-09,
+      "qualification_pass": true
+    }
+  ],
+  "claim_boundary": [
+    "source floor visual triangles receive run-stage static triangle-mesh collision",
+    "rigid spheres establish tile-centre physical support only",
+    "no full-tile sweep, articulated Lite3, route, sensor, pedestrian, or planning claim"
+  ]
+}

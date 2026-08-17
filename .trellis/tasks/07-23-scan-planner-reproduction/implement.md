@@ -543,6 +543,176 @@ do not commit this candidate as the requested solution.
 
 **Gate 34:** AC40--AC43 are automated/runtime gates; AC44 remains human-only.
 
+## Phase 35 — Auxiliary Continuous-Walk Visual Trial
+
+- [x] Add an explicit `continuous_walk` official-human animation mode while
+  preserving the phase-conditioned default, physical schedule, hidden capsule,
+  sensor targets, SCAN inputs, Lite3 URDF, and V12 policy.
+- [x] Run a separate 5070 Ti preview with no acceptance invocation, copy all
+  evidence locally, and prove every waiting/crossing/holding/parked runtime row
+  selected the official walk clip.
+- [x] Record Dr Sun's change request that physical motion still waited on the
+  robot trigger; do not replace the frozen V8 R2 candidate or change AC44.
+
+**Gate 35:** `v8_official_continuous_walk_preview01` is visual-trial evidence
+only. The task remains in `review` and AC44 remains human-only.
+
+## Phase 36 — Auxiliary Immediate Constant-Velocity Trial
+
+- [x] Add a recorded `run_start` dynamic-schedule trigger while preserving the
+  command-relative default and frozen V8 R2 behavior.
+- [x] Compose the existing preview wrapper with continuous official walk, zero
+  wait, zero hold, and 0.8 m/s straight-line pedestrian motion.
+- [x] Preserve the short-endpoint collision negative, extend the endpoint, run
+  a second bounded 5070 Ti SCAN preview, copy both runs locally, and verify
+  independent constant-velocity motion with zero contact in preview 02.
+- [x] Deliver raw/overlay MP4s for Dr Sun's visual decision; acceptance was not
+  run and AC44 was not modified.
+- [x] After the short-video change request, preserve the long parked and
+  collision variants, then select preview 05: 19.59 s, continuous 0.8 m/s
+  crossing, zero parked rows, zero non-foot contact, and local hash parity.
+- [ ] Obtain Dr Sun's visual decision on long preview 05.
+
+**Gate 36:** auxiliary visual evidence only; human review remains required.
+
+## Phase 37 — Reject Penetration and Prove Local Replanning
+
+- [x] Record preview 05 as human change-requested: its route intersects Rock_1
+  and its last SCAN trajectory predates the human's active-path intrusion.
+- [x] Add a tested swept-capsule versus static-proxy precheck that fails before
+  rendering and records the nearest-object clearance.
+- [x] Add a tested auxiliary evidence audit that requires sensor detection,
+  active-path intrusion, a causally later distinct B-spline, geometry change,
+  continuous 0.8 m/s motion, positive robot-human clearance, and zero contact.
+- [x] Select a fixed straight route with positive static clearance, run a
+  bounded causal preflight on the 5070 Ti, then produce a long raw/overlay video
+  only if the causal audit passes. Preflight 04 first passed all automated gates
+  but was only 8.00 s. Long review 01 passed but retained only 0.034 m of
+  synchronized robot-human clearance. Long reviews 02 and 03 then passed on the
+  same operational input. Review 03 is the selected complete-evidence candidate:
+  16.29 s of continuous motion, 0.345 m static clearance, a causal SCAN
+  trajectory 2 -> 3 replacement, 0.031 m robot-human clearance, zero non-foot
+  contact, and an effective-input record that includes both route endpoints.
+- [x] Copy all evidence locally and request Dr Sun's visual review; do not alter
+  the frozen V8 R2 acceptance record.
+- [ ] Obtain Dr Sun's visual decision on long causal review 03.
+
+**Gate 37:** both static geometry and causal local-planning audits must pass
+before another immediate-walk video is offered for review.
+
+## Phase 38 — Record and Render Native SCAN Voxels
+
+- [x] Confirm the upstream publishes raw occupancy, inflated occupancy, and
+  sliding-map bounds for RViz but has no built-in MP4 recorder; preserve this
+  surveyed boundary.
+- [x] Add the three native map topics to the same-run rosbag and require their
+  presence before a voxel-review artifact can pass.
+- [x] Add a tested PointCloud2 decoder and deterministic headless renderer that
+  consumes only ROS map/pose/B-spline/bounds messages and records frame metadata.
+- [x] Run the same official-human immediate-walk scenario on the 5070 Ti,
+  encode voxel-only and synchronized side-by-side MP4s, and preserve failures.
+- [x] Copy the full evidence locally, verify message counts, hashes, video
+  decode, and representative frames, then request Dr Sun's visual decision.
+
+**Gate 38:** native raw and inflated voxel messages, reproducible rendering,
+and local evidence parity must pass before the video is offered for review;
+AC45 remains human-owned.
+
+## Phase 39 — Replay Native Voxels in Humble RViz on Apple Silicon
+
+- [x] Verify live package indexes: legacy RoboStack Foxy RViz2 has no macOS
+  build, while RoboStack Humble supplies `ros-humble-rviz2` for osx-arm64.
+- [ ] Create an isolated, recorded RoboStack Humble viewer environment without
+  changing the Foxy planner or the project Python environment.
+- [ ] Add tested replay-only standard-message projections for the exact sampled
+  SCAN B-spline and accumulated physical body path; reuse the existing shared
+  sampler and captured native XYZ arrays.
+- [ ] Create an RViz configuration showing raw and inflated 0.05 m voxels,
+  sliding bounds, planned path, actual path, and clear source labels.
+- [ ] Replay the selected same-input passing run, record the native RViz window,
+  copy package/config/video/hash evidence locally, and request Dr Sun's visual
+  decision.
+
+**Gate 39:** Humble remains a viewer only; native PointCloud2 hashes and path
+geometry must survive replay, the screen recording must decode, and AC46 stays
+human-owned.
+
+## Phase 40 — Official Indoor Scene Visual Preflight
+
+- [x] Import the external ChatGPT scene shortlist as unverified leads and
+  preserve the active Foxy-to-Isaac TCP boundary.
+- [x] Add a deterministic headless loader that records the exact official USD
+  URI, resolver result, stage bounds, prim/collider inventory, authored camera
+  list, raw PNGs, runtime identity, and output hashes.
+- [x] Run Warehouse, Office, and Hospital individually on the 5070 Ti; preserve
+  failures and adjust only camera selection or source-verified asset URI.
+- [ ] Insert the pinned Lite3 sensor-rig URDF at a recorded pose and capture a
+  scale-context view for each source scene without claiming physical motion.
+- [ ] Sync all artifacts locally, verify hashes and image decoding, then ask Dr
+  Sun to choose a scene before starting collision, sensor, route, or SCAN work.
+- [x] Capture two same-input Office reception tours from a persistent moving
+  Isaac camera, reject the black-start candidate, preserve the complete-source
+  first-frame failure, and select the logged rerun only after contact-sheet,
+  codec, duration, frame-count, and hash checks.
+- [x] Record the reception tour as superseded after Dr Sun rejected its limited
+  scope; do not call it a complete-office panorama or navigation result.
+- [x] Replace the reception-only candidate with a global Office composition,
+  inventory source floor meshes, reject the nonexistent fourth-floor attempt,
+  and capture B1/L0/L1 from the same full interior stage while excluding only
+  the separately recorded city-background prim.
+- [ ] Ask Dr Sun to review global tour 23; keep automated video checks separate
+  from the human decision and from collision/sensor/navigation claims.
+
+**Gate 40:** AC47--AC48 are evidence gates; AC49 remains human-owned. A scene
+that merely looks realistic is not collision- or navigation-qualified.
+
+Warehouse completed the full-source visual composition with fixed-base Lite3.
+Office was rerun after human rejection of the clay preview: a 4 m reception
+subset now renders the official source materials, with separate city-context,
+interior-background, and fixed-base Lite3 views. The 8 m Office expansion
+stalled before its first selected frame and remains negative evidence. Hospital
+completed a 4 m source-prim subset without Lite3; its larger Lite3 attempt
+exceeded the 10-minute first-frame bound. Therefore AC47--AC49 remain open and
+the partial results cannot be promoted into full-scene or navigation evidence.
+Reception tour 20 is superseded by global tour 23. The selected global video
+contains 216 source-material RGB frames at 960x540 and 12 FPS, covers the three
+source-evidenced floor surfaces, decodes fully, contains no detected black
+interval, and matches the remote hash. AC50 remains open until Dr Sun reviews
+the local MP4.
+
+## Phase 41 — Office L0 Lite3 SCAN Crowd Trial
+
+- [x] Freeze the default scope as Office L0, pinned Lite3 sensor-rig URDF,
+  pinned V12 `model_149999`, existing Foxy/SCAN loop, and eight official NVIDIA
+  animated pedestrians; record that this is reactive occupancy rather than
+  predictive social navigation.
+- [x] Audit source-geometry collision coverage for L0 floors, walls, doors,
+  desks, tables, and the candidate 20 m route. Stop if a credible mesh-derived
+  physical scene cannot be established.
+- [x] Run static Lite3 support/contact and sensor-visibility gates in the Office
+  scene before enabling policy commands.
+- [x] Define eight deterministic floor-constrained pedestrian routes, including
+  two route crossings and six off-route background routes, and pass static swept-route plus pairwise-person
+  prechecks without wall, furniture, or person-person penetration.
+- [x] Integrate the unchanged V12 policy, MID-360-like and D435i-like sensors,
+  Foxy transport, and SCAN planner with the Office scenario; prohibit scene or
+  person truth from planner input.
+- [x] Run two same-input closed loops and verify collision, protocol, watchdog,
+  goal, causal replanning, path-versus-body trace, and per-person clearance
+  gates.
+- [x] Synchronize all inputs and outputs locally, decode the overlay video, and
+  ask Dr Sun for the AC55 visual decision without promoting the trial to real
+  crowd safety.
+- [ ] Obtain Dr Sun's visual decision on Office crowd trial (AC55).
+
+**Gate 41:** AC51--AC54 are automated evidence gates. AC54 passed in
+`office_crowd_codex_candidate38` and `office_crowd_codex_candidate39` after
+local artifact synchronization, SHA-256 parity, full video decode, identical
+effective-input and normalized-identity hashes, and independent sensor-causal
+replan audits. `candidate35` remains a frozen failed diagnostic; `dryrun24/25`
+are superseded because their evaluator did not require per-person detections
+plus actual SCAN inflated occupancy. AC55 remains human-owned and unchecked.
+
 ## Planned Validation Matrix
 
 | Layer | Required evidence | Failure response |

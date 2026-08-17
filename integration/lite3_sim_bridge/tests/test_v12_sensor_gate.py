@@ -1,14 +1,38 @@
 from pathlib import Path
 import tempfile
+from types import SimpleNamespace
 import unittest
 
 from lite3_sim_bridge.run_isaac_v12_fallback import (
     FOREST_PREVIEW_SCHEDULE,
+    OFFICE_STATIC_SCHEDULE,
+    _candidate_name,
     _depth_gate,
     _forest_preview_report,
+    _office_enabled,
+    _rgb_scene_content,
     _sensor_gate,
     _urdf_contract,
 )
+
+
+class OfficeCourseContractTest(unittest.TestCase):
+    def test_office_course_is_static_and_has_distinct_candidate_identity(self):
+        args = SimpleNamespace(course="office_l0_static")
+        self.assertTrue(_office_enabled(args))
+        self.assertEqual(len(OFFICE_STATIC_SCHEDULE), 1)
+        self.assertEqual(OFFICE_STATIC_SCHEDULE[0].command, (0.0, 0.0, 0.0))
+        self.assertIn("Office L0 static support", _candidate_name(args))
+
+    def test_camera_content_gate_rejects_wall_occlusion(self):
+        import numpy as np
+
+        wall = np.full((16, 16, 3), 18, dtype=np.uint8)
+        scene = wall.copy()
+        scene[:, 8:, :] = 180
+
+        self.assertFalse(_rgb_scene_content(wall)["passed"])
+        self.assertTrue(_rgb_scene_content(scene)["passed"])
 
 
 class V12SensorGateTest(unittest.TestCase):
