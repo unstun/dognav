@@ -141,9 +141,9 @@ namespace scan_planner
     sphere.id = id;
 
     sphere.pose.orientation.w = 1.0;
-    sphere.color.r = 1.0;
-    sphere.color.g = 1.0;
-    sphere.color.b = 1.0;
+    sphere.color.r = color(0);
+    sphere.color.g = color(1);
+    sphere.color.b = color(2);
     sphere.color.a = color(3);
     sphere.scale.x = scale;
     sphere.scale.y = scale;

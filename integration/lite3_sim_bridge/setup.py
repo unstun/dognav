@@ -15,9 +15,14 @@ setup(
             "share/" + PACKAGE_NAME + "/config",
             [
                 "config/foxy_bridge.yaml",
+                "config/foxy_native_scan_review.rviz",
                 "config/humble_voxel_replay.rviz",
                 "config/voxel_rosbag_qos.yaml",
             ],
+        ),
+        (
+            "share/" + PACKAGE_NAME + "/launch",
+            ["launch/native_rviz_review.launch.py"],
         ),
     ],
     install_requires=["setuptools"],

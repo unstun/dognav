@@ -7,7 +7,11 @@ import tempfile
 import numpy as np
 import pytest
 
-from lite3_sim_bridge.voxel_review import pointcloud2_xyz, render_voxel_review
+from lite3_sim_bridge.voxel_review import (
+    pointcloud2_xyz,
+    render_voxel_review,
+    transform_sensor_points,
+)
 
 
 def _field(name, offset, datatype=7, count=1):
@@ -60,6 +64,17 @@ def test_pointcloud2_xyz_rejects_malformed_contract():
     message.fields = [_field("x", 0), _field("y", 4)]
     with pytest.raises(ValueError, match="lacks XYZ"):
         pointcloud2_xyz(message)
+
+
+def test_transform_sensor_points_applies_normalized_pose():
+    points = np.asarray([(1.0, 0.0, 0.0)], dtype=np.float32)
+    half = np.sqrt(0.5)
+    transformed = transform_sensor_points(
+        points,
+        np.asarray((10.0, 20.0, 30.0)),
+        np.asarray((0.0, 0.0, half * 2.0, half * 2.0)),
+    )
+    np.testing.assert_allclose(transformed, [(10.0, 21.0, 30.0)], atol=1.0e-6)
     message = _cloud([[(1.0, 2.0, 3.0)]])
     message.data = b"short"
     with pytest.raises(ValueError, match="shorter"):
@@ -94,6 +109,7 @@ def test_render_voxel_review_produces_hashed_native_topic_video():
             name = f"frame_{index:06d}.npz"
             np.savez(
                 snapshots / name,
+                live_points=raw + np.asarray((0.0, 0.0, 0.1)),
                 raw_points=raw,
                 inflated_points=inflated,
                 body_position=np.asarray((-1.0 + index * 0.2, 0.0, 0.4)),
@@ -113,6 +129,7 @@ def test_render_voxel_review_produces_hashed_native_topic_video():
                     "snapshot_file": name,
                     "body_stamp_ns": index * 250_000_000,
                     "raw_point_count": len(raw),
+                    "live_point_count": len(raw),
                     "inflated_point_count": len(inflated),
                     "body_position": [-1.0 + index * 0.2, 0.0, 0.4],
                 }
@@ -161,11 +178,12 @@ def test_render_voxel_review_produces_hashed_native_topic_video():
             "spatial_dimensions": ["x", "y", "z"],
             "dimension_count": 3,
             "projection": "matplotlib_mplot3d_perspective",
-            "camera": "sliding-map-following 180-degree azimuth orbit",
+            "camera": "sliding-map-following fixed RViz-style isometric view",
             "vertical_scale": 1.0,
-            "raw_display_point_limit": 12_000,
+            "raw_display_point_limit": 50_000,
             "inflated_display_point_limit": 30_000,
-            "display_sampling": "deterministic evenly spaced source indices",
+            "live_display_point_limit": 18_000,
+            "display_sampling": "live and raw local layers complete; deterministic inflation subsampling only",
             "xy_inset_role": "auxiliary planning correlation only",
         }
         assert result["trajectory_ids"] == [2]

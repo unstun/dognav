@@ -8,6 +8,7 @@ from lite3_sim_bridge.protocol import (
     HEADER_STRUCT,
     MAX_PAYLOAD_BYTES,
     CommandV1,
+    JointStateV1,
     MessageType,
     ProtocolError,
     SequenceTracker,
@@ -17,10 +18,12 @@ from lite3_sim_bridge.protocol import (
     decode_command_payload,
     decode_frame,
     decode_header,
+    decode_joint_state_payload,
     decode_sensor_payload,
     decode_status_payload,
     encode_command_payload,
     encode_frame,
+    encode_joint_state_payload,
     encode_sensor_payload,
     encode_status_payload,
     pack_xyz_points,
@@ -161,6 +164,34 @@ class ProtocolTest(unittest.TestCase):
                 [:-len(points)]
                 + nan_points
             )
+
+    def test_joint_state_payload_round_trip_and_validation(self):
+        joints = JointStateV1(
+            names=("FL_HipX_joint", "FL_HipY_joint"),
+            positions=(0.1, -0.8),
+            velocities=(1.25, -2.5),
+        )
+        decoded = decode_joint_state_payload(encode_joint_state_payload(joints))
+        self.assertEqual(decoded.names, joints.names)
+        for actual, expected in zip(decoded.positions, joints.positions):
+            self.assertAlmostEqual(actual, expected)
+        for actual, expected in zip(decoded.velocities, joints.velocities):
+            self.assertAlmostEqual(actual, expected)
+
+        invalid = (
+            JointStateV1((), (), ()),
+            JointStateV1(("same", "same"), (0.0, 0.0), (0.0, 0.0)),
+            JointStateV1(("joint",), (float("nan"),), (0.0,)),
+            JointStateV1(("joint",), (0.0, 1.0), (0.0,)),
+        )
+        for value in invalid:
+            with self.subTest(value=value), self.assertRaises(ProtocolError):
+                encode_joint_state_payload(value)
+        encoded = encode_joint_state_payload(joints)
+        with self.assertRaises(ProtocolError):
+            decode_joint_state_payload(encoded[:-1])
+        with self.assertRaises(ProtocolError):
+            decode_joint_state_payload(encoded + b"x")
 
     def test_command_payload_rejects_invalid_values_and_length(self):
         decoded = decode_command_payload(encode_command_payload(CommandV1(0.1, -0.2, 0.3)))

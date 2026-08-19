@@ -54,23 +54,62 @@ FOXY_PROTOCOL_SOURCE=$FOXY_WORKSPACE/src/lite3_sim_bridge/lite3_sim_bridge/proto
 FOXY_COMMAND_STATE_SOURCE=$FOXY_WORKSPACE/src/lite3_sim_bridge/lite3_sim_bridge/command_state.py
 FOXY_MONITOR_SOURCE=$FOXY_WORKSPACE/src/lite3_sim_bridge/lite3_sim_bridge/acceptance_monitor_node.py
 FOXY_VOXEL_CAPTURE_SOURCE=$FOXY_WORKSPACE/src/lite3_sim_bridge/lite3_sim_bridge/voxel_capture_node.py
+FOXY_RVIZ_REPLAY_SOURCE=$FOXY_WORKSPACE/src/lite3_sim_bridge/lite3_sim_bridge/rviz_replay_node.py
+FOXY_RVIZ_REPLAY_CORE_SOURCE=$FOXY_WORKSPACE/src/lite3_sim_bridge/lite3_sim_bridge/rviz_replay_core.py
+FOXY_NATIVE_RVIZ_LAUNCH=$FOXY_WORKSPACE/src/lite3_sim_bridge/launch/native_rviz_review.launch.py
 FOXY_VOXEL_ROSBAG_QOS=$FOXY_WORKSPACE/src/lite3_sim_bridge/config/voxel_rosbag_qos.yaml
 TRAJECTORY_REVIEW_SOURCE=$BRIDGE/lite3_sim_bridge/trajectory_review.py
 VOXEL_REVIEW_SOURCE=$BRIDGE/lite3_sim_bridge/voxel_review.py
 ISAAC_ADAPTER_CORE_SOURCE=$BRIDGE/lite3_sim_bridge/isaac_adapter_core.py
 OFFICIAL_HUMAN_BAKER_SOURCE=$BRIDGE/lite3_sim_bridge/bake_official_human_animation.py
 OFFICIAL_HUMAN_CONTRACT_SOURCE=$BRIDGE/lite3_sim_bridge/official_human_contract.py
+MID360_PATTERN_SOURCE=$BRIDGE/lite3_sim_bridge/mid360_pattern.py
 CONTAINER_NAME=scan-foxy-$RUN_ID
-ROS_RUNTIME_SECONDS=$((DURATION_SECONDS * 6 + 120))
+CONTAINER_IMAGE=localhost/machine-dog-nav/foxy-scan:20260813
+ROS_RUNTIME_SECONDS=${SCAN_ROS_RUNTIME_SECONDS:-$((DURATION_SECONDS * 6 + 120))}
 VIDEO_FPS=${SCAN_VIDEO_FPS:-25}
 VIDEO_FRAME_STRIDE=${SCAN_VIDEO_FRAME_STRIDE:-2}
+OFFICE_REVIEW_ENABLED=${SCAN_OFFICE_REVIEW_ENABLED:-0}
+OFFICE_REVIEW_CAMERA_SIDE=${SCAN_OFFICE_REVIEW_CAMERA_SIDE:-left}
+OFFICE_REVIEW_CAMERA_LATERAL_DISTANCE=${SCAN_OFFICE_REVIEW_CAMERA_LATERAL_DISTANCE:-3.0}
+OFFICE_REVIEW_CAMERA_TRAILING_BIAS=${SCAN_OFFICE_REVIEW_CAMERA_TRAILING_BIAS:-1.5}
+OFFICE_REVIEW_CAMERA_HEIGHT=${SCAN_OFFICE_REVIEW_CAMERA_HEIGHT:-2.0}
+OFFICE_REVIEW_CAMERA_FOCAL_LENGTH_MM=${SCAN_OFFICE_REVIEW_CAMERA_FOCAL_LENGTH_MM:-18.14756}
+OFFICE_REVIEW_CAMERA_LOOK_AHEAD=${SCAN_OFFICE_REVIEW_CAMERA_LOOK_AHEAD:-1.0}
+OFFICE_REVIEW_CAMERA_LOOK_HEIGHT_OFFSET=${SCAN_OFFICE_REVIEW_CAMERA_LOOK_HEIGHT_OFFSET:-0.15}
+OFFICE_REVIEW_CAMERA_SMOOTHING_RATE=${SCAN_OFFICE_REVIEW_CAMERA_SMOOTHING_RATE:-4.0}
+OFFICE_REVIEW_CAMERA_MAX_EYE_SPEED=${SCAN_OFFICE_REVIEW_CAMERA_MAX_EYE_SPEED:-8.0}
+OFFICE_REVIEW_CAMERA_MAX_TARGET_SPEED=${SCAN_OFFICE_REVIEW_CAMERA_MAX_TARGET_SPEED:-8.0}
+OFFICE_REVIEW_OVERVIEW_DISTANCE=${SCAN_OFFICE_REVIEW_OVERVIEW_DISTANCE:-6.5}
+OFFICE_REVIEW_OVERVIEW_AZIMUTH=${SCAN_OFFICE_REVIEW_OVERVIEW_AZIMUTH:-35.0}
+OFFICE_REVIEW_OVERVIEW_HEIGHT=${SCAN_OFFICE_REVIEW_OVERVIEW_HEIGHT:-4.5}
+OFFICE_REVIEW_OVERVIEW_LOOK_AHEAD=${SCAN_OFFICE_REVIEW_OVERVIEW_LOOK_AHEAD:-2.0}
+OFFICE_REVIEW_OVERVIEW_LOOK_HEIGHT_OFFSET=${SCAN_OFFICE_REVIEW_OVERVIEW_LOOK_HEIGHT_OFFSET:-0.20}
+OFFICE_REVIEW_OVERVIEW_SMOOTHING_RATE=${SCAN_OFFICE_REVIEW_OVERVIEW_SMOOTHING_RATE:-3.0}
+OFFICE_REVIEW_OVERVIEW_MAX_EYE_SPEED=${SCAN_OFFICE_REVIEW_OVERVIEW_MAX_EYE_SPEED:-6.0}
+OFFICE_REVIEW_OVERVIEW_MAX_TARGET_SPEED=${SCAN_OFFICE_REVIEW_OVERVIEW_MAX_TARGET_SPEED:-6.0}
+OFFICE_REVIEW_LIGHTING_PROFILE=${SCAN_OFFICE_REVIEW_LIGHTING_PROFILE:-high_contrast}
+OFFICE_REVIEW_DOME_LIGHT_INTENSITY=${SCAN_OFFICE_REVIEW_DOME_LIGHT_INTENSITY:-1000.0}
+OFFICE_REVIEW_EXPOSURE=${SCAN_OFFICE_REVIEW_EXPOSURE:-0.0}
 MAX_VX=${SCAN_MAX_VX:-0.75}
 PLANNER_FLOOR_FILTER_MAX_Z=${SCAN_PLANNER_FLOOR_FILTER_MAX_Z:-0.05}
+LIDAR_PATTERN_MODE=${SCAN_LIDAR_PATTERN_MODE:-uniform}
+LIDAR_PATTERN_CSV=${SCAN_LIDAR_PATTERN_CSV:-}
+LIDAR_MIN_RANGE=${SCAN_LIDAR_MIN_RANGE:-0.10}
+LIDAR_MAX_RANGE=${SCAN_LIDAR_MAX_RANGE:-12.0}
+LIDAR_ARGS=(
+  --lidar-pattern-mode "$LIDAR_PATTERN_MODE"
+  --lidar-min-range "$LIDAR_MIN_RANGE"
+  --lidar-max-range "$LIDAR_MAX_RANGE"
+)
+LIDAR_INPUTS=()
 ROBOT_ARGS=()
 ROBOT_INPUTS=()
 FOREST_ARGS=()
 DYNAMIC_ARGS=()
 OFFICE_ARGS=()
+OFFICE_REVIEW_ARGS=()
+OFFICE_REVIEW_INPUTS=()
 FOREST_PYTHONPATH=
 TERRAIN_FILTER_CELL_SIZE=
 TERRAIN_FILTER_HEIGHT_THRESHOLD=
@@ -91,21 +130,118 @@ DYNAMIC_OBSTACLE_SCHEDULE_TRIGGER=${SCAN_DYNAMIC_OBSTACLE_SCHEDULE_TRIGGER:-firs
 OFFICIAL_HUMAN_CACHE=
 OFFICIAL_HUMAN_CACHE_CONTENT_SHA256=
 OFFICIAL_HUMAN_ANIMATION_MODE=${SCAN_OFFICIAL_HUMAN_ANIMATION_MODE:-phase_conditioned}
+OFFICE_PEDESTRIAN_MOTION_MODE=${SCAN_OFFICE_PEDESTRIAN_MOTION_MODE:-single_pass}
+OFFICE_PEDESTRIAN_TURNAROUND_HOLD_SECONDS=${SCAN_OFFICE_PEDESTRIAN_TURNAROUND_HOLD_SECONDS:-0.6}
 ENABLE_VOXEL_CAPTURE=${SCAN_ENABLE_VOXEL_CAPTURE:-0}
 VOXEL_CAPTURE_PERIOD_SECONDS=${SCAN_VOXEL_CAPTURE_PERIOD_SECONDS:-0.1}
+VISUAL_REVIEW_ONLY=${SCAN_VISUAL_REVIEW_ONLY:-0}
+RECORD_ROSBAG=${SCAN_RECORD_ROSBAG:-1}
+NATIVE_RVIZ_ENABLED=${SCAN_NATIVE_RVIZ_ENABLED:-0}
+NATIVE_RVIZ_DISPLAY=${SCAN_NATIVE_RVIZ_DISPLAY:-:0}
+NATIVE_RVIZ_XAUTHORITY=${SCAN_NATIVE_RVIZ_XAUTHORITY:-/run/user/1000/gdm/Xauthority}
+NATIVE_RVIZ_IMAGE=${SCAN_NATIVE_RVIZ_IMAGE:-localhost/machine-dog-nav/foxy-scan-rviz:20260818}
+NATIVE_RVIZ_CONFIG_REL=${SCAN_NATIVE_RVIZ_CONFIG_REL:-src/plan_manage/launch/default.rviz}
+NATIVE_RVIZ_CONFIG=$FOXY_WORKSPACE/$NATIVE_RVIZ_CONFIG_REL
+NATIVE_RVIZ_ROBOT_ASSET=${SCAN_CANONICAL_ROBOT_ASSET:-}
+NATIVE_RVIZ_ROBOT_ASSET_ROOT=
+NATIVE_RVIZ_ROBOT_ASSET_CONTAINER=
+NATIVE_RVIZ_INPUTS=()
+NATIVE_RVIZ_PODMAN_ARGS=()
 if [[ ! $MAX_VX =~ ^([0-9]+([.][0-9]*)?|[.][0-9]+)$ ]] \
   || ! awk -v value="$MAX_VX" 'BEGIN { exit !(value > 0.0) }'; then
   echo "SCAN_MAX_VX must be a positive decimal" >&2
+  exit 64
+fi
+case "$LIDAR_PATTERN_MODE" in
+  uniform)
+    if [[ -n $LIDAR_PATTERN_CSV ]]; then
+      echo "SCAN_LIDAR_PATTERN_CSV is valid only for livox_mid360 mode" >&2
+      exit 64
+    fi
+    ;;
+  livox_mid360)
+    if [[ -z $LIDAR_PATTERN_CSV || ! -f $LIDAR_PATTERN_CSV ]]; then
+      echo "livox_mid360 requires a regular SCAN_LIDAR_PATTERN_CSV file" >&2
+      exit 66
+    fi
+    LIDAR_ARGS+=(--lidar-pattern-csv "$LIDAR_PATTERN_CSV")
+    LIDAR_INPUTS+=("$LIDAR_PATTERN_CSV")
+    ;;
+  *)
+    echo "unsupported SCAN_LIDAR_PATTERN_MODE: $LIDAR_PATTERN_MODE" >&2
+    exit 64
+    ;;
+esac
+if [[ $OFFICE_REVIEW_ENABLED != 0 && $OFFICE_REVIEW_ENABLED != 1 ]]; then
+  echo "SCAN_OFFICE_REVIEW_ENABLED must be 0 or 1" >&2
   exit 64
 fi
 if [[ $ENABLE_VOXEL_CAPTURE != 0 && $ENABLE_VOXEL_CAPTURE != 1 ]]; then
   echo "SCAN_ENABLE_VOXEL_CAPTURE must be 0 or 1" >&2
   exit 64
 fi
+if [[ $VISUAL_REVIEW_ONLY != 0 && $VISUAL_REVIEW_ONLY != 1 ]]; then
+  echo "SCAN_VISUAL_REVIEW_ONLY must be 0 or 1" >&2
+  exit 64
+fi
+if [[ $RECORD_ROSBAG != 0 && $RECORD_ROSBAG != 1 ]]; then
+  echo "SCAN_RECORD_ROSBAG must be 0 or 1" >&2
+  exit 64
+fi
+if [[ $RECORD_ROSBAG == 0 && $VISUAL_REVIEW_ONLY != 1 ]]; then
+  echo "SCAN_RECORD_ROSBAG=0 is allowed only with SCAN_VISUAL_REVIEW_ONLY=1" >&2
+  exit 64
+fi
+if [[ $VISUAL_REVIEW_ONLY == 1 ]] \
+  && [[ $OFFICE_REVIEW_ENABLED != 1 || $RECORD_ROSBAG != 0 ]]; then
+  echo "visual-review-only mode requires Office review and SCAN_RECORD_ROSBAG=0" >&2
+  exit 64
+fi
+if [[ $NATIVE_RVIZ_ENABLED != 0 && $NATIVE_RVIZ_ENABLED != 1 ]]; then
+  echo "SCAN_NATIVE_RVIZ_ENABLED must be 0 or 1" >&2
+  exit 64
+fi
 if [[ ! $VOXEL_CAPTURE_PERIOD_SECONDS =~ ^([0-9]+([.][0-9]*)?|[.][0-9]+)$ ]] \
   || ! awk -v value="$VOXEL_CAPTURE_PERIOD_SECONDS" 'BEGIN { exit !(value > 0.0) }'; then
   echo "SCAN_VOXEL_CAPTURE_PERIOD_SECONDS must be a positive decimal" >&2
   exit 64
+fi
+if [[ $NATIVE_RVIZ_ENABLED == 1 ]]; then
+  for required in "$NATIVE_RVIZ_XAUTHORITY" /tmp/.X11-unix/X0 \
+    "$NATIVE_RVIZ_CONFIG" "$NATIVE_RVIZ_ROBOT_ASSET" \
+    "$FOXY_RVIZ_REPLAY_SOURCE" "$FOXY_RVIZ_REPLAY_CORE_SOURCE" \
+    "$FOXY_NATIVE_RVIZ_LAUNCH"; do
+    if [[ ! -e $required ]]; then
+      echo "native RViz input is missing: $required" >&2
+      exit 66
+    fi
+  done
+  if ! podman image exists "$NATIVE_RVIZ_IMAGE"; then
+    echo "native RViz image is missing: $NATIVE_RVIZ_IMAGE" >&2
+    exit 66
+  fi
+  CONTAINER_IMAGE=$NATIVE_RVIZ_IMAGE
+  NATIVE_RVIZ_ROBOT_ASSET_ROOT=$(dirname "$(dirname "$NATIVE_RVIZ_ROBOT_ASSET")")
+  NATIVE_RVIZ_ROBOT_ASSET_CONTAINER=/robot_asset/urdf/$(basename "$NATIVE_RVIZ_ROBOT_ASSET")
+  NATIVE_RVIZ_INPUTS+=(
+    "$NATIVE_RVIZ_CONFIG"
+    "$NATIVE_RVIZ_ROBOT_ASSET"
+    "$FOXY_RVIZ_REPLAY_SOURCE"
+    "$FOXY_RVIZ_REPLAY_CORE_SOURCE"
+    "$FOXY_NATIVE_RVIZ_LAUNCH"
+  )
+  NATIVE_RVIZ_PODMAN_ARGS+=(
+    -e ENABLE_NATIVE_RVIZ=1
+    -e NATIVE_RVIZ_CONFIG_CONTAINER="/workspace/$NATIVE_RVIZ_CONFIG_REL"
+    -e NATIVE_RVIZ_ROBOT_ASSET_CONTAINER="$NATIVE_RVIZ_ROBOT_ASSET_CONTAINER"
+    -e DISPLAY="$NATIVE_RVIZ_DISPLAY"
+    -e XAUTHORITY=/tmp/.Xauthority
+    -e QT_X11_NO_MITSHM=1
+    -e LIBGL_ALWAYS_SOFTWARE=1
+    -v /tmp/.X11-unix:/tmp/.X11-unix:rw
+    -v "$NATIVE_RVIZ_XAUTHORITY:/tmp/.Xauthority:ro"
+    -v "$NATIVE_RVIZ_ROBOT_ASSET_ROOT:/robot_asset:ro"
+  )
 fi
 if [[ -n ${SCAN_ROBOT_ASSET:-} || -n ${SCAN_CANONICAL_ROBOT_ASSET:-} ]]; then
   if [[ -z ${SCAN_ROBOT_ASSET:-} || -z ${SCAN_CANONICAL_ROBOT_ASSET:-} ]]; then
@@ -139,7 +275,46 @@ case "$COURSE" in
       --office-route-sha256 "$SCAN_OFFICE_ROUTE_SHA256"
       --office-start-xy "$SCAN_OFFICE_START_X" "$SCAN_OFFICE_START_Y"
       --office-goal-xy "$SCAN_OFFICE_GOAL_X" "$SCAN_OFFICE_GOAL_Y"
+      --office-pedestrian-motion-mode "$OFFICE_PEDESTRIAN_MOTION_MODE"
+      --office-pedestrian-turnaround-hold-seconds "$OFFICE_PEDESTRIAN_TURNAROUND_HOLD_SECONDS"
     )
+    if [[ $OFFICE_REVIEW_ENABLED == 1 ]]; then
+      OFFICE_REVIEW_INPUTS=("$BRIDGE/lite3_sim_bridge/office_review_presentation.py")
+      OFFICE_REVIEW_ARGS=(
+        --office-review-presentation
+        --office-review-material
+        --office-review-third-person-side-video-path "$OUTPUT_DIR/closed_loop_third_person_side.mp4"
+        --office-review-overview-video-path "$OUTPUT_DIR/closed_loop_overview.mp4"
+        --office-review-camera-trace-path "$OUTPUT_DIR/camera_trace.jsonl"
+        --office-review-material-audit-path "$OUTPUT_DIR/office_review_material_audit.json"
+        --office-review-dashboard-video-path "$OUTPUT_DIR/office_review_dashboard.mp4"
+        --office-review-dashboard-metadata-path "$OUTPUT_DIR/office_review_dashboard_metadata.json"
+        --office-review-validation-report-path "$OUTPUT_DIR/office_review_validation_report.json"
+        --office-review-effective-input-path "$OUTPUT_DIR/effective_input.txt"
+        --office-review-launcher-path "$ENTRYPOINT"
+        --office-review-camera-side "$OFFICE_REVIEW_CAMERA_SIDE"
+        --office-review-camera-lateral-distance "$OFFICE_REVIEW_CAMERA_LATERAL_DISTANCE"
+        --office-review-camera-trailing-bias "$OFFICE_REVIEW_CAMERA_TRAILING_BIAS"
+        --office-review-camera-height "$OFFICE_REVIEW_CAMERA_HEIGHT"
+        --office-review-camera-focal-length-mm "$OFFICE_REVIEW_CAMERA_FOCAL_LENGTH_MM"
+        --office-review-camera-look-ahead "$OFFICE_REVIEW_CAMERA_LOOK_AHEAD"
+        --office-review-camera-look-height-offset "$OFFICE_REVIEW_CAMERA_LOOK_HEIGHT_OFFSET"
+        --office-review-camera-smoothing-rate "$OFFICE_REVIEW_CAMERA_SMOOTHING_RATE"
+        --office-review-camera-max-eye-speed "$OFFICE_REVIEW_CAMERA_MAX_EYE_SPEED"
+        --office-review-camera-max-target-speed "$OFFICE_REVIEW_CAMERA_MAX_TARGET_SPEED"
+        --office-review-overview-distance "$OFFICE_REVIEW_OVERVIEW_DISTANCE"
+        --office-review-overview-azimuth-offset-deg "$OFFICE_REVIEW_OVERVIEW_AZIMUTH"
+        --office-review-overview-height "$OFFICE_REVIEW_OVERVIEW_HEIGHT"
+        --office-review-overview-look-ahead "$OFFICE_REVIEW_OVERVIEW_LOOK_AHEAD"
+        --office-review-overview-look-height-offset "$OFFICE_REVIEW_OVERVIEW_LOOK_HEIGHT_OFFSET"
+        --office-review-overview-smoothing-rate "$OFFICE_REVIEW_OVERVIEW_SMOOTHING_RATE"
+        --office-review-overview-max-eye-speed "$OFFICE_REVIEW_OVERVIEW_MAX_EYE_SPEED"
+        --office-review-overview-max-target-speed "$OFFICE_REVIEW_OVERVIEW_MAX_TARGET_SPEED"
+        --office-review-lighting-profile "$OFFICE_REVIEW_LIGHTING_PROFILE"
+        --office-review-dome-light-intensity "$OFFICE_REVIEW_DOME_LIGHT_INTENSITY"
+        --office-review-exposure "$OFFICE_REVIEW_EXPOSURE"
+      )
+    fi
     ;;
   forest_gen|forest_gen_nav|forest_gen_nav_v6|forest_gen_nav_v7_dynamic|forest_gen_nav_v8_human|forest_gen_nav_v8_official_human)
     FOREST_GEN_ROOT=${SCAN_FOREST_GEN_ROOT:-}
@@ -212,6 +387,29 @@ case "$COURSE" in
     ;;
 esac
 
+if [[ $OFFICE_REVIEW_ENABLED == 1 && $COURSE != office_l0_crowd ]]; then
+  echo "SCAN_OFFICE_REVIEW_ENABLED=1 is only valid for office_l0_crowd" >&2
+  exit 64
+fi
+if [[ $COURSE == office_l0_crowd ]]; then
+  if [[ $OFFICE_PEDESTRIAN_MOTION_MODE != single_pass \
+    && $OFFICE_PEDESTRIAN_MOTION_MODE != background_ping_pong \
+    && $OFFICE_PEDESTRIAN_MOTION_MODE != ping_pong ]]; then
+    echo "unsupported SCAN_OFFICE_PEDESTRIAN_MOTION_MODE: $OFFICE_PEDESTRIAN_MOTION_MODE" >&2
+    exit 64
+  fi
+  if [[ ! $OFFICE_PEDESTRIAN_TURNAROUND_HOLD_SECONDS =~ ^([0-9]+([.][0-9]*)?|[.][0-9]+)$ ]] \
+    || ! awk -v value="$OFFICE_PEDESTRIAN_TURNAROUND_HOLD_SECONDS" 'BEGIN { exit !(value > 0.0) }'; then
+    echo "SCAN_OFFICE_PEDESTRIAN_TURNAROUND_HOLD_SECONDS must be a positive decimal" >&2
+    exit 64
+  fi
+  if [[ $OFFICE_PEDESTRIAN_MOTION_MODE != single_pass \
+    && $OFFICIAL_HUMAN_ANIMATION_MODE != phase_conditioned ]]; then
+    echo "ping-pong Office pedestrians require phase-conditioned animation" >&2
+    exit 64
+  fi
+fi
+
 for required in \
   "$FOXY_WORKSPACE/install/setup.bash" \
   "$ENTRYPOINT" \
@@ -240,6 +438,9 @@ for required in \
   "$ISAAC_ADAPTER_CORE_SOURCE" \
   "$OFFICIAL_HUMAN_BAKER_SOURCE" \
   "$OFFICIAL_HUMAN_CONTRACT_SOURCE" \
+  "$MID360_PATTERN_SOURCE" \
+  "${LIDAR_INPUTS[@]}" \
+  "${OFFICE_REVIEW_INPUTS[@]}" \
   "${ROBOT_INPUTS[@]}" \
   "$FOXY_WORKSPACE/build/plan_env/libplan_env.a" \
   "$FOXY_WORKSPACE/build/scan_planner/scan_planner_node" \
@@ -296,6 +497,7 @@ fi
 
 {
   printf 'duration_seconds=%s\n' "$DURATION_SECONDS"
+  printf 'ros_runtime_seconds=%s\n' "$ROS_RUNTIME_SECONDS"
   printf 'course=%s\n' "$COURSE"
   printf 'planner_config_rel=%s\n' "$PLANNER_CONFIG_REL"
   printf 'controller_config_rel=%s\n' "$CONTROLLER_CONFIG_REL"
@@ -318,11 +520,46 @@ fi
   printf 'dynamic_obstacle_schedule_trigger=%s\n' "$DYNAMIC_OBSTACLE_SCHEDULE_TRIGGER"
   printf 'official_human_cache_content_sha256=%s\n' "$OFFICIAL_HUMAN_CACHE_CONTENT_SHA256"
   printf 'official_human_animation_mode=%s\n' "$OFFICIAL_HUMAN_ANIMATION_MODE"
+  printf 'lidar_pattern_mode=%s\n' "$LIDAR_PATTERN_MODE"
+  printf 'lidar_pattern_csv=%s\n' "$LIDAR_PATTERN_CSV"
+  printf 'lidar_min_range_m=%s\n' "$LIDAR_MIN_RANGE"
+  printf 'lidar_max_range_m=%s\n' "$LIDAR_MAX_RANGE"
+  printf 'office_pedestrian_motion_mode=%s\n' "$OFFICE_PEDESTRIAN_MOTION_MODE"
+  printf 'office_pedestrian_turnaround_hold_seconds=%s\n' "$OFFICE_PEDESTRIAN_TURNAROUND_HOLD_SECONDS"
   printf 'video_fps=%s\n' "$VIDEO_FPS"
   printf 'video_frame_stride=%s\n' "$VIDEO_FRAME_STRIDE"
+  printf 'office_review_enabled=%s\n' "$OFFICE_REVIEW_ENABLED"
+  printf 'office_review_camera_side=%s\n' "$OFFICE_REVIEW_CAMERA_SIDE"
+  printf 'office_review_camera_lateral_distance=%s\n' "$OFFICE_REVIEW_CAMERA_LATERAL_DISTANCE"
+  printf 'office_review_camera_trailing_bias=%s\n' "$OFFICE_REVIEW_CAMERA_TRAILING_BIAS"
+  printf 'office_review_camera_height=%s\n' "$OFFICE_REVIEW_CAMERA_HEIGHT"
+  printf 'office_review_camera_focal_length_mm=%s\n' "$OFFICE_REVIEW_CAMERA_FOCAL_LENGTH_MM"
+  printf 'office_review_camera_look_ahead=%s\n' "$OFFICE_REVIEW_CAMERA_LOOK_AHEAD"
+  printf 'office_review_camera_look_height_offset=%s\n' "$OFFICE_REVIEW_CAMERA_LOOK_HEIGHT_OFFSET"
+  printf 'office_review_camera_smoothing_rate=%s\n' "$OFFICE_REVIEW_CAMERA_SMOOTHING_RATE"
+  printf 'office_review_camera_max_eye_speed=%s\n' "$OFFICE_REVIEW_CAMERA_MAX_EYE_SPEED"
+  printf 'office_review_camera_max_target_speed=%s\n' "$OFFICE_REVIEW_CAMERA_MAX_TARGET_SPEED"
+  printf 'office_review_overview_distance=%s\n' "$OFFICE_REVIEW_OVERVIEW_DISTANCE"
+  printf 'office_review_overview_azimuth=%s\n' "$OFFICE_REVIEW_OVERVIEW_AZIMUTH"
+  printf 'office_review_overview_height=%s\n' "$OFFICE_REVIEW_OVERVIEW_HEIGHT"
+  printf 'office_review_overview_look_ahead=%s\n' "$OFFICE_REVIEW_OVERVIEW_LOOK_AHEAD"
+  printf 'office_review_overview_look_height_offset=%s\n' "$OFFICE_REVIEW_OVERVIEW_LOOK_HEIGHT_OFFSET"
+  printf 'office_review_overview_smoothing_rate=%s\n' "$OFFICE_REVIEW_OVERVIEW_SMOOTHING_RATE"
+  printf 'office_review_overview_max_eye_speed=%s\n' "$OFFICE_REVIEW_OVERVIEW_MAX_EYE_SPEED"
+  printf 'office_review_overview_max_target_speed=%s\n' "$OFFICE_REVIEW_OVERVIEW_MAX_TARGET_SPEED"
+  printf 'office_review_lighting_profile=%s\n' "$OFFICE_REVIEW_LIGHTING_PROFILE"
+  printf 'office_review_dome_light_intensity=%s\n' "$OFFICE_REVIEW_DOME_LIGHT_INTENSITY"
+  printf 'office_review_exposure=%s\n' "$OFFICE_REVIEW_EXPOSURE"
   printf 'max_vx=%s\n' "$MAX_VX"
   printf 'enable_voxel_capture=%s\n' "$ENABLE_VOXEL_CAPTURE"
   printf 'voxel_capture_period_seconds=%s\n' "$VOXEL_CAPTURE_PERIOD_SECONDS"
+  printf 'visual_review_only=%s\n' "$VISUAL_REVIEW_ONLY"
+  printf 'record_rosbag=%s\n' "$RECORD_ROSBAG"
+  printf 'native_rviz_enabled=%s\n' "$NATIVE_RVIZ_ENABLED"
+  printf 'native_rviz_display=%s\n' "$NATIVE_RVIZ_DISPLAY"
+  printf 'native_rviz_image=%s\n' "$CONTAINER_IMAGE"
+  printf 'native_rviz_config_rel=%s\n' "$NATIVE_RVIZ_CONFIG_REL"
+  printf 'native_rviz_robot_asset=%s\n' "$NATIVE_RVIZ_ROBOT_ASSET"
 } >"$OUTPUT_DIR/effective_input.txt"
 
 sha256sum \
@@ -340,9 +577,12 @@ sha256sum \
   "$OCCLUSION_SHADOW_SOURCE" \
   "$FOXY_LAUNCH_SOURCE" \
   "$BRIDGE/lite3_sim_bridge/run_isaac_v12_fallback.py" \
+  "${OFFICE_REVIEW_INPUTS[@]}" \
   "$ISAAC_ADAPTER_CORE_SOURCE" \
   "$OFFICIAL_HUMAN_BAKER_SOURCE" \
   "$OFFICIAL_HUMAN_CONTRACT_SOURCE" \
+  "$MID360_PATTERN_SOURCE" \
+  "${LIDAR_INPUTS[@]}" \
   "$BRIDGE/lite3_sim_bridge/acceptance.py" \
   "$BRIDGE/lite3_sim_bridge/command_state.py" \
   "$BRIDGE/lite3_sim_bridge/transport.py" \
@@ -359,6 +599,7 @@ sha256sum \
   "$FOXY_VOXEL_CAPTURE_SOURCE" \
   "$FOXY_VOXEL_ROSBAG_QOS" \
   "${ROBOT_INPUTS[@]}" \
+  "${NATIVE_RVIZ_INPUTS[@]}" \
   "$FOXY_WORKSPACE/build/scan_planner/scan_planner_node" \
   "$FOXY_WORKSPACE/build/scan_planner/closed_loop_controller" \
   "$FOXY_WORKSPACE/build/plan_env/libplan_env.a" \
@@ -378,7 +619,7 @@ fi
 nvidia-smi --query-gpu=name,driver_version,memory.total \
   --format=csv,noheader >"$OUTPUT_DIR/gpu_identity.txt"
 podman image inspect --format '{{.Id}}' \
-  localhost/machine-dog-nav/foxy-scan:20260813 \
+  "$CONTAINER_IMAGE" \
   >"$OUTPUT_DIR/container_image_id.txt"
 
 ISAAC_PID=
@@ -405,6 +646,8 @@ python -u -m lite3_sim_bridge.run_isaac_v12_fallback \
   "${FOREST_ARGS[@]}" \
   "${DYNAMIC_ARGS[@]}" \
   "${OFFICE_ARGS[@]}" \
+  "${OFFICE_REVIEW_ARGS[@]}" \
+  "${LIDAR_ARGS[@]}" \
   --source-commit 8c3fdffa84b85be0704a10ea5b2533817d543822 \
   --telemetry-port "$TELEMETRY_PORT" \
   --command-port "$COMMAND_PORT" \
@@ -447,9 +690,12 @@ podman run --rm --name "$CONTAINER_NAME" \
   -e BRIDGE_MAX_VX="$MAX_VX" \
   -e ENABLE_VOXEL_CAPTURE="$ENABLE_VOXEL_CAPTURE" \
   -e VOXEL_CAPTURE_PERIOD_SECONDS="$VOXEL_CAPTURE_PERIOD_SECONDS" \
+  -e VISUAL_REVIEW_ONLY="$VISUAL_REVIEW_ONLY" \
+  -e RECORD_ROSBAG="$RECORD_ROSBAG" \
   -v "$FOXY_WORKSPACE:/workspace" \
   -v "$OUTPUT_DIR:/evidence" \
-  localhost/machine-dog-nav/foxy-scan:20260813 \
+  "${NATIVE_RVIZ_PODMAN_ARGS[@]}" \
+  "$CONTAINER_IMAGE" \
   bash -lc '
     set +u
     source /opt/ros/foxy/setup.bash
@@ -479,6 +725,26 @@ podman run --rm --name "$CONTAINER_NAME" \
       wait "$target_pid"
     }
 
+    RVIZ_PID=
+    REVIEW_PID=
+    if [[ ${ENABLE_NATIVE_RVIZ:-0} == 1 ]]; then
+      export XDG_RUNTIME_DIR=/tmp/runtime-root
+      mkdir -p "$XDG_RUNTIME_DIR"
+      chmod 700 "$XDG_RUNTIME_DIR"
+      (
+        trap - INT TERM
+        exec ros2 launch lite3_sim_bridge native_rviz_review.launch.py \
+          robot_urdf_path:="$NATIVE_RVIZ_ROBOT_ASSET_CONTAINER" \
+          audit_path:=/evidence/native_rviz_review_audit.json
+      ) >/evidence/native_rviz_robot_state.log 2>&1 &
+      REVIEW_PID=$!
+      (
+        trap - INT TERM
+        exec rviz2 -d "$NATIVE_RVIZ_CONFIG_CONTAINER"
+      ) >/evidence/native_scan_rviz3d_rviz.log 2>&1 &
+      RVIZ_PID=$!
+    fi
+
     CAPTURE_PID=
     CAPTURE_CODE=0
     if [[ $ENABLE_VOXEL_CAPTURE == 1 ]]; then
@@ -493,26 +759,36 @@ podman run --rm --name "$CONTAINER_NAME" \
       CAPTURE_PID=$!
     fi
 
-    BAG_TOPICS=(
-      /quad_0/body_pose /quad_0/lidar_pose /quad_0/cloud
-      /quad_0/cmd_vel /planning/bspline
-    )
-    BAG_OPTIONS=()
-    if [[ $ENABLE_VOXEL_CAPTURE == 1 ]]; then
-      BAG_TOPICS+=(
-        /grid_map/occupancy /grid_map/occupancy_inflate
-        /grid_map/sliding_map_bbox
+    BAG_PID=
+    BAG_CODE=0
+    if [[ $RECORD_ROSBAG == 1 ]]; then
+      BAG_TOPICS=(
+        /quad_0/body_pose /quad_0/lidar_pose /quad_0/cloud
+        /quad_0/cmd_vel /quad_0/joint_states /planning/bspline
+        /review/scan_planned_path /review/lite3_actual_path
+        /review/lite3_current_pose /robot_description /tf /tf_static
       )
-      BAG_OPTIONS+=(
-        --qos-profile-overrides-path
-        /workspace/src/lite3_sim_bridge/config/voxel_rosbag_qos.yaml
-      )
+      BAG_OPTIONS=()
+      if [[ $ENABLE_VOXEL_CAPTURE == 1 ]]; then
+        BAG_TOPICS+=(
+          /grid_map/occupancy /grid_map/occupancy_inflate
+          /grid_map/sliding_map_bbox
+        )
+        BAG_OPTIONS+=(
+          --qos-profile-overrides-path
+          /workspace/src/lite3_sim_bridge/config/voxel_rosbag_qos.yaml
+        )
+      fi
+      (
+        trap - INT TERM
+        exec ros2 bag record "${BAG_OPTIONS[@]}" -o /evidence/rosbag "${BAG_TOPICS[@]}"
+      ) >/evidence/rosbag_stdout.log 2>&1 &
+      BAG_PID=$!
+    else
+      printf "%s\n" \
+        "visual_review_only=1; rosbag intentionally disabled; not formal acceptance evidence" \
+        >/evidence/rosbag.disabled.txt
     fi
-    (
-      trap - INT TERM
-      exec ros2 bag record "${BAG_OPTIONS[@]}" -o /evidence/rosbag "${BAG_TOPICS[@]}"
-    ) >/evidence/rosbag_stdout.log 2>&1 &
-    BAG_PID=$!
 
     (
       trap - INT TERM
@@ -544,22 +820,43 @@ podman run --rm --name "$CONTAINER_NAME" \
       stop_with_int "$CAPTURE_PID"
       CAPTURE_CODE=$?
     fi
-    stop_with_int "$BAG_PID"
-    BAG_CODE=$?
+    if [[ -n $BAG_PID ]]; then
+      stop_with_int "$BAG_PID"
+      BAG_CODE=$?
+    fi
+    if [[ -n $RVIZ_PID ]]; then
+      kill -TERM "$RVIZ_PID" 2>/dev/null || true
+      wait "$RVIZ_PID" 2>/dev/null || true
+    fi
+    if [[ -n $REVIEW_PID ]]; then
+      stop_with_int "$REVIEW_PID" >/dev/null 2>&1 || true
+    fi
     printf "%s" "$LAUNCH_CODE" >/evidence/foxy_launch.exit
-    printf "%s" "$BAG_CODE" >/evidence/rosbag.exit
+    if [[ $RECORD_ROSBAG == 1 ]]; then
+      printf "%s" "$BAG_CODE" >/evidence/rosbag.exit
+    fi
     if [[ $ENABLE_VOXEL_CAPTURE == 1 ]]; then
       printf "%s" "$CAPTURE_CODE" >/evidence/voxel_capture.exit
-      ros2 bag info /evidence/rosbag >/evidence/voxel_rosbag_info.txt
+      if [[ $RECORD_ROSBAG == 1 ]]; then
+        ros2 bag info /evidence/rosbag >/evidence/voxel_rosbag_info.txt
+      fi
       python3 -c '"'"'import json; assert json.load(open("/evidence/voxel_capture_summary.json"))["status"] == "PASS"'"'"'
     fi
+    if [[ ${ENABLE_NATIVE_RVIZ:-0} == 1 ]]; then
+      test -s /evidence/native_rviz_review_audit.json
+      python3 -c '"'"'import json; audit=json.load(open("/evidence/native_rviz_review_audit.json")); assert audit["status"] == "PASS"; assert audit["source_mode"] == "live"; assert audit["checks"]["root_transform_matches_body_path"]'"'"'
+    fi
     test -f /evidence/ros_summary.json
-    test -f /evidence/rosbag/metadata.yaml
+    if [[ $RECORD_ROSBAG == 1 ]]; then
+      test -f /evidence/rosbag/metadata.yaml
+    else
+      test -s /evidence/rosbag.disabled.txt
+    fi
     if (( LAUNCH_CODE != 0 )); then
       echo "ROS launch exited unexpectedly: $LAUNCH_CODE" >&2
       exit 1
     fi
-    if (( BAG_CODE != 0 && BAG_CODE != 2 )); then
+    if [[ $RECORD_ROSBAG == 1 ]] && (( BAG_CODE != 0 && BAG_CODE != 2 )); then
       echo "rosbag recorder exited unexpectedly: $BAG_CODE" >&2
       exit 1
     fi
@@ -580,4 +877,35 @@ printf 'container=%s isaac=%s\n' "$container_code" "$isaac_code"
 
 if (( container_code != 0 || isaac_code != 0 )); then
   exit 1
+fi
+
+if ! python3 - "$OUTPUT_DIR/isaac/qualification_report.json" <<'PY'
+import json
+import sys
+
+report_path = sys.argv[1]
+with open(report_path, encoding="utf-8") as handle:
+    report = json.load(handle)
+if report.get("status") != "PASS":
+    raise SystemExit(
+        f"Isaac qualification report is not PASS: {report.get('status')!r}"
+    )
+PY
+then
+  echo "Isaac qualification report rejected the run" >&2
+  exit 1
+fi
+
+if [[ $OFFICE_REVIEW_ENABLED == 1 ]]; then
+  sha256sum \
+    "$OUTPUT_DIR/closed_loop.mp4" \
+    "$OUTPUT_DIR/closed_loop_third_person_side.mp4" \
+    "$OUTPUT_DIR/closed_loop_overview.mp4" \
+    "$OUTPUT_DIR/office_review_dashboard.mp4" \
+    "$OUTPUT_DIR/camera_trace.jsonl" \
+    "$OUTPUT_DIR/office_review_material_audit.json" \
+    "$OUTPUT_DIR/office_review_dashboard_metadata.json" \
+    "$OUTPUT_DIR/office_review_validation_report.json" \
+    "$OUTPUT_DIR/office_review_ros_events_snapshot.jsonl" \
+    >"$OUTPUT_DIR/office_review_output_sha256.txt"
 fi

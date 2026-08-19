@@ -1,6 +1,7 @@
 import socket
 import time
 import unittest
+from unittest import mock
 
 from lite3_sim_bridge.command_state import CommandLimits, LatestCommandState
 from lite3_sim_bridge.protocol import (
@@ -49,6 +50,18 @@ class TransportTest(unittest.TestCase):
         self.assertEqual(second_client.receive().header.sequence, 3)
         self.assertGreaterEqual(server.stats().frames_sent, 2)
         second_client.close()
+        server.stop()
+
+    def test_telemetry_accepts_joint_state_frame(self):
+        server = TelemetryPublisherServer(port=0, io_timeout_seconds=0.05)
+        server.start()
+        client = FrameStreamClient(*server.endpoint, timeout_seconds=0.5)
+        client.connect()
+        wait_until(lambda: server.stats().accepted_connections == 1)
+        frame = encode_frame(MessageType.JOINT_STATE_V1, 1, 10, b"joint-bytes")
+        self.assertTrue(server.publish(frame))
+        self.assertEqual(client.receive().header.message_type, MessageType.JOINT_STATE_V1)
+        client.close()
         server.stop()
 
     def test_command_receive_disconnect_and_reconnect(self):
@@ -142,6 +155,28 @@ class TransportTest(unittest.TestCase):
         self.assertEqual(server.stats().coalesced_frames, 4)
         client.close()
         server.stop()
+
+    def test_command_receive_treats_closed_socket_select_race_as_eof(self):
+        state = LatestCommandState(CommandLimits())
+        server = CommandReceiverServer(state, port=0, io_timeout_seconds=0.05)
+        receiver, sender = socket.socketpair()
+        try:
+            sender.sendall(
+                encode_frame(
+                    MessageType.CMD_VEL_V1,
+                    1,
+                    time.monotonic_ns(),
+                    encode_command_payload(CommandV1(0.1, 0.0, 0.0)),
+                )
+            )
+            with mock.patch(
+                "lite3_sim_bridge.transport.select.select",
+                side_effect=ValueError("file descriptor cannot be negative"),
+            ):
+                server._receive_connection(receiver)
+        finally:
+            receiver.close()
+            sender.close()
 
 
 if __name__ == "__main__":

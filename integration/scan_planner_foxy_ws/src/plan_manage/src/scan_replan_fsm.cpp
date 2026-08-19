@@ -108,7 +108,13 @@ namespace scan_planner
 
     for (size_t i = 0; i < wps.size(); i++)
     {
-      visualization_->displayGoalPoint(wps[i], Eigen::Vector4d(0, 0.5, 0.5, 1), 0.3, i);
+      const bool is_final = i + 1 == wps.size();
+      visualization_->displayGoalPoint(
+          wps[i],
+          is_final ? Eigen::Vector4d(1.0, 0.1, 0.1, 1.0)
+                   : Eigen::Vector4d(1.0, 0.8, 0.0, 1.0),
+          is_final ? 0.42 : 0.20,
+          i);
     }
 
     active_waypoints_ = wps;
@@ -166,7 +172,7 @@ namespace scan_planner
     if (success)
       success = adjustGlobalTargetIfOccupied();
 
-    visualization_->displayGoalPoint(end_pt_, Eigen::Vector4d(0, 0.5, 0.5, 1), 0.3, 0);
+    visualization_->displayGoalPoint(end_pt_, Eigen::Vector4d(1.0, 0.1, 0.1, 1.0), 0.42, 0);
 
     if (success)
     {
@@ -211,7 +217,13 @@ namespace scan_planner
 
     for (size_t i = 0; i < waypoints.size(); i++)
     {
-      visualization_->displayGoalPoint(waypoints[i], Eigen::Vector4d(0, 0.5, 0.5, 1), 0.3, i);
+      const bool is_final = i + 1 == waypoints.size();
+      visualization_->displayGoalPoint(
+          waypoints[i],
+          is_final ? Eigen::Vector4d(1.0, 0.1, 0.1, 1.0)
+                   : Eigen::Vector4d(1.0, 0.8, 0.0, 1.0),
+          is_final ? 0.42 : 0.20,
+          i);
     }
 
     bool success = planner_manager_->planGlobalTrajWaypoints(
@@ -243,7 +255,7 @@ namespace scan_planner
     have_target_ = true;
     have_new_target_ = true;
     visualization_->displayGlobalPathList(gloabl_traj, 0.1, 0);
-    visualization_->displayGoalPoint(end_pt_, Eigen::Vector4d(0, 0.5, 0.5, 1), 0.3, static_cast<int>(waypoints.size()) - 1);
+    visualization_->displayGoalPoint(end_pt_, Eigen::Vector4d(1.0, 0.1, 0.1, 1.0), 0.42, static_cast<int>(waypoints.size()) - 1);
 
     return true;
   }
@@ -289,7 +301,13 @@ namespace scan_planner
     have_target_ = true;
     have_new_target_ = true;
     visualization_->displayGlobalPathList(gloabl_traj, 0.1, 0);
-    visualization_->displayGoalPoint(end_pt_, Eigen::Vector4d(0, 0.5, 0.5, 1), 0.3, current_wp_);
+    const bool is_final = current_wp_ + 1 == static_cast<int>(active_waypoints_.size());
+    visualization_->displayGoalPoint(
+        end_pt_,
+        is_final ? Eigen::Vector4d(1.0, 0.1, 0.1, 1.0)
+                 : Eigen::Vector4d(1.0, 0.8, 0.0, 1.0),
+        is_final ? 0.42 : 0.20,
+        current_wp_);
     RCLCPP_INFO(node_->get_logger(), "[navi_mode=%d] Planning to waypoint %d/%zu: [%.2f, %.2f, %.2f]",
                 navi_mode_, current_wp_ + 1, active_waypoints_.size(), end_pt_(0), end_pt_(1), end_pt_(2));
 

@@ -6,11 +6,12 @@ import hashlib
 import inspect
 import json
 import math
+import os
 from pathlib import Path
 import random
 import subprocess
 import time
-from typing import Mapping
+from typing import Mapping, Optional, Union
 import xml.etree.ElementTree as ET
 
 from .command_state import CommandLimits, LatestCommandState
@@ -33,12 +34,22 @@ from .isaac_adapter_core import (
     terrain_seating_for_mesh_support,
     world_hits_to_sensor_points,
 )
+from .mid360_pattern import (
+    MID360_MAX_RANGE_M,
+    MID360_MIN_RANGE_M,
+    MID360_POINTS_PER_SCAN,
+    MID360_SCAN_HZ,
+    Mid360PatternError,
+    load_mid360_pattern,
+)
 from .protocol import (
+    JointStateV1,
     MessageType,
     SensorFrameV1,
     StatusFlag,
     StatusV1,
     encode_frame,
+    encode_joint_state_payload,
     encode_sensor_payload,
     encode_status_payload,
     pack_xyz_points,
@@ -247,6 +258,49 @@ def _sensor_rig_enabled(args) -> bool:
     return args.robot_asset is not None
 
 
+def _official_mid360_enabled(args) -> bool:
+    return getattr(args, "lidar_pattern_mode", "uniform") == "livox_mid360"
+
+
+def _mid360_pattern_cfg(patterns, pattern_table):
+    """Build an Isaac pattern config without importing Isaac in unit tests."""
+
+    def initial_pattern(_cfg, device):
+        import torch
+
+        directions, _ = pattern_table.scan_window(0)
+        ray_directions = torch.as_tensor(
+            directions.copy(), dtype=torch.float32, device=device
+        )
+        return torch.zeros_like(ray_directions), ray_directions
+
+    return patterns.PatternBaseCfg(func=initial_pattern)
+
+
+def _set_mid360_scan_window(lidar, pattern_table, scan_index, torch):
+    """Install one ordered slice and acquire it at the current Isaac pose.
+
+    IsaacLab's public ``update(force_recompute=True)`` still requires the
+    sensor's outdated bit. Its public reset operation marks that bit before the
+    zero-dt update, making pose and rays come from the same physics step. This
+    ray caster has zero configured drift, so reset does not perturb geometry.
+    """
+
+    directions, window = pattern_table.scan_window(scan_index)
+    expected_shape = (1, pattern_table.points_per_scan, 3)
+    if tuple(lidar.ray_directions.shape) != expected_shape:
+        raise AdapterFailure(
+            "MID-360 ray buffer shape mismatch: "
+            f"expected {expected_shape}, got {tuple(lidar.ray_directions.shape)}"
+        )
+    lidar.ray_directions[0].copy_(
+        torch.as_tensor(directions.copy(), dtype=torch.float32, device=lidar.device)
+    )
+    lidar.reset()
+    lidar.update(dt=0.0, force_recompute=True)
+    return window
+
+
 def _forest_enabled(args) -> bool:
     return args.course in (
         "forest_gen",
@@ -290,6 +344,36 @@ def _office_enabled(args) -> bool:
 
 def _office_crowd_enabled(args) -> bool:
     return args.course == "office_l0_crowd"
+
+
+def _office_review_side_video_path(args) -> Optional[Path]:
+    return getattr(args, "office_review_third_person_side_video_path", None) or getattr(args, "office_review_third_person_video_path", None)
+
+
+def _office_review_overview_video_path(args) -> Optional[Path]:
+    return getattr(args, "office_review_overview_video_path", None)
+
+
+def _office_review_quality_profile():
+    from .office_review_presentation import frozen_quality_profile
+
+    return frozen_quality_profile()
+
+
+def _office_review_presentation_enabled(args) -> bool:
+    return bool(
+        getattr(args, "office_review_presentation", False)
+        or getattr(args, "office_review_material", False)
+        or _office_review_side_video_path(args) is not None
+        or _office_review_overview_video_path(args) is not None
+        or getattr(args, "office_review_camera_trace_path", None) is not None
+        or getattr(args, "office_review_material_audit_path", None) is not None
+        or getattr(args, "office_review_dashboard_video_path", None) is not None
+        or getattr(args, "office_review_dashboard_metadata_path", None) is not None
+        or getattr(args, "office_review_validation_report_path", None) is not None
+        or getattr(args, "office_review_effective_input_path", None) is not None
+        or getattr(args, "office_review_launcher_path", None) is not None
+    )
 
 
 def _forest_v8_any_enabled(args) -> bool:
@@ -1709,7 +1793,14 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
             start_y + 1.5 * math.sin(start_yaw),
             0.35,
         )
-        env_cfg.viewer.resolution = VIDEO_RESOLUTION
+        if _office_review_presentation_enabled(args):
+            quality = _office_review_quality_profile()
+            env_cfg.viewer.resolution = (
+                int(quality["resolution_width"]),
+                int(quality["resolution_height"]),
+            )
+        else:
+            env_cfg.viewer.resolution = VIDEO_RESOLUTION
     elif args.video_path is not None and forest_layout is None:
         env_cfg.viewer.origin_type = "world"
         env_cfg.viewer.eye = VIDEO_CAMERA_EYE
@@ -1851,9 +1942,13 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
         import isaaclab.sim as sim_utils
         from isaaclab.assets import AssetBaseCfg
 
+        review_lighting = _office_review_presentation_enabled(args) and args.office_review_lighting_profile == "high_contrast"
         env_cfg.scene.office_light = AssetBaseCfg(
             prim_path="/World/OfficeLight",
-            spawn=sim_utils.DomeLightCfg(intensity=900.0, color=(0.9, 0.9, 0.9)),
+            spawn=sim_utils.DomeLightCfg(
+                intensity=(args.office_review_dome_light_intensity if review_lighting else 900.0),
+                color=((1.0, 0.96, 0.90) if review_lighting else (0.9, 0.9, 0.9)),
+            ),
         )
 
     if _office_crowd_enabled(args):
@@ -2075,6 +2170,16 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
             )
             for link in MID360_SELF_OCCLUSION_LINKS
         )
+    lidar_pattern_cfg = (
+        _mid360_pattern_cfg(patterns, args.mid360_pattern_table)
+        if _official_mid360_enabled(args)
+        else patterns.LidarPatternCfg(
+            channels=args.lidar_channels,
+            vertical_fov_range=(args.lidar_vertical_min, args.lidar_vertical_max),
+            horizontal_fov_range=(-180.0, 180.0),
+            horizontal_res=args.lidar_horizontal_resolution,
+        )
+    )
     env_cfg.scene.navigation_lidar = MultiMeshRayCasterCfg(
         prim_path=(
             f"{{ENV_REGEX_NS}}/Robot/{MID360_FRAME}"
@@ -2087,12 +2192,7 @@ def _configure_environment(env_cfg, args, forest_layout=None) -> None:
             rot=(1.0, 0.0, 0.0, 0.0) if sensor_rig else sensor_rotation_wxyz,
         ),
         ray_alignment="base",
-        pattern_cfg=patterns.LidarPatternCfg(
-            channels=args.lidar_channels,
-            vertical_fov_range=(args.lidar_vertical_min, args.lidar_vertical_max),
-            horizontal_fov_range=(-180.0, 180.0),
-            horizontal_res=args.lidar_horizontal_resolution,
-        ),
+        pattern_cfg=lidar_pattern_cfg,
         max_distance=args.lidar_max_range,
         # Keep the obstacle as a distinct target. The terrain height scanner
         # already caches /World/ground before this sensor initializes, so using
@@ -2809,7 +2909,11 @@ def _run(args) -> int:
     args.office_human_visual_usd_path = None
     if _office_crowd_enabled(args):
         route_payload = json.loads(args.office_route_path.read_text(encoding="utf-8"))
-        office_routes = routes_from_preflight(route_payload)
+        office_routes = routes_from_preflight(
+            route_payload,
+            motion_mode=args.office_pedestrian_motion_mode,
+            turnaround_hold_s=args.office_pedestrian_turnaround_hold_seconds,
+        )
         office_crowd_precheck = pairwise_clearance_precheck(
             office_routes, args.duration_seconds
         )
@@ -3001,18 +3105,53 @@ def _run(args) -> int:
             "source_sha256": _sha256(expected_policy_source),
         },
         "sensor": {
-            "backend": "IsaacLab MultiMeshRayCaster LidarPatternCfg",
+            "backend": (
+                "IsaacLab MultiMeshRayCaster with ordered Livox MID-360 pattern"
+                if _official_mid360_enabled(args)
+                else "IsaacLab MultiMeshRayCaster LidarPatternCfg"
+            ),
             "truth_pose": True,
-            "declared_device": "MID-360-like geometric ray model" if sensor_rig else None,
+            "declared_device": (
+                "Livox MID-360 source-backed geometric snapshot"
+                if _official_mid360_enabled(args)
+                else "MID-360-like uniform geometric ray model"
+                if sensor_rig
+                else None
+            ),
             "parent_frame": MID360_FRAME if sensor_rig else "TORSO",
             "translation_m": lidar_translation,
             "rotation_wxyz": lidar_rotation,
-            "channels": args.lidar_channels,
-            "vertical_fov_degrees": [args.lidar_vertical_min, args.lidar_vertical_max],
-            "horizontal_resolution_degrees": args.lidar_horizontal_resolution,
+            "pattern_mode": args.lidar_pattern_mode,
+            "pattern": (
+                args.mid360_pattern_table.identity()
+                if _official_mid360_enabled(args)
+                else None
+            ),
+            "channels": None if _official_mid360_enabled(args) else args.lidar_channels,
+            "vertical_fov_degrees": (
+                None
+                if _official_mid360_enabled(args)
+                else [args.lidar_vertical_min, args.lidar_vertical_max]
+            ),
+            "horizontal_resolution_degrees": (
+                None
+                if _official_mid360_enabled(args)
+                else args.lidar_horizontal_resolution
+            ),
+            "rays_per_scan": (
+                args.mid360_pattern_table.points_per_scan
+                if _official_mid360_enabled(args)
+                else args.lidar_channels
+                * int(round(360.0 / args.lidar_horizontal_resolution))
+            ),
             "minimum_range_m": args.lidar_min_range,
             "maximum_range_m": args.lidar_max_range,
             "period_seconds": args.sensor_period,
+            "pose_and_frame_stamp_alignment": (
+                "public RayCaster reset plus same-step zero-dt update before publish"
+                if _official_mid360_enabled(args)
+                else "legacy sensor-period scheduling"
+            ),
             "planner_floor_filter": {
                 "frame": "world",
                 "enabled": forest_layout is None,
@@ -3194,6 +3333,11 @@ def _run(args) -> int:
     if _office_crowd_enabled(args):
         identity["office_crowd"] = {
             "pedestrian_count": len(office_routes),
+            "pedestrian_motion_mode": args.office_pedestrian_motion_mode,
+            "pedestrian_turnaround_hold_s": (
+                args.office_pedestrian_turnaround_hold_seconds
+            ),
+            "official_human_animation_mode": args.official_human_animation_mode,
             "routes": [
                 {
                     "name": route.name,
@@ -3202,6 +3346,8 @@ def _run(args) -> int:
                     "speed_mps": route.speed_mps,
                     "start_delay_s": route.start_delay_s,
                     "radius_m": route.radius_m,
+                    "motion_mode": route.motion_mode,
+                    "turnaround_hold_s": route.turnaround_hold_s,
                 }
                 for route in office_routes
             ],
@@ -3246,6 +3392,107 @@ def _run(args) -> int:
                 "generated and logged concurrently; not fused into SCAN in this preview"
             ),
         }
+    if _office_review_presentation_enabled(args):
+        from .office_review_presentation import (
+            PRESERVED_FIRST_VIEW_CAMERA_MODEL,
+            REVIEW_MATERIAL_LIMB_RGB,
+            REVIEW_MATERIAL_TORSO_RGB,
+            SIDE_VIEW_CAMERA_MODEL,
+            frozen_quality_profile,
+            review_film_iso,
+            validate_overview_camera_config,
+            validate_side_camera_config,
+        )
+        validated_cam = validate_side_camera_config({
+            "side": args.office_review_camera_side,
+            "lateral_distance_m": args.office_review_camera_lateral_distance,
+            "trailing_bias_m": args.office_review_camera_trailing_bias,
+            "height_m": args.office_review_camera_height,
+            "focal_length_mm": args.office_review_camera_focal_length_mm,
+            "look_ahead_m": args.office_review_camera_look_ahead,
+            "look_height_offset_m": args.office_review_camera_look_height_offset,
+            "smoothing_rate": args.office_review_camera_smoothing_rate,
+            "max_eye_speed_mps": args.office_review_camera_max_eye_speed,
+            "max_target_speed_mps": args.office_review_camera_max_target_speed,
+        })
+        validated_overview = validate_overview_camera_config({
+            "distance_m": args.office_review_overview_distance,
+            "azimuth_offset_deg": args.office_review_overview_azimuth_offset_deg,
+            "height_m": args.office_review_overview_height,
+            "look_ahead_m": args.office_review_overview_look_ahead,
+            "look_height_offset_m": args.office_review_overview_look_height_offset,
+            "smoothing_rate": args.office_review_overview_smoothing_rate,
+            "max_eye_speed_mps": args.office_review_overview_max_eye_speed,
+            "max_target_speed_mps": args.office_review_overview_max_target_speed,
+        })
+        quality_profile = frozen_quality_profile()
+        quality_profile["fps"] = float(args.video_fps)
+        quality_profile["exposure"] = float(args.office_review_exposure)
+        quality_profile["renderer_film_iso"] = review_film_iso(
+            args.office_review_exposure,
+            quality_profile["renderer_base_film_iso"],
+        )
+        pres_module_path = Path(__file__).parent / "office_review_presentation.py"
+        identity["office_review_presentation"] = {
+            "enabled": True,
+            "first_view_model": PRESERVED_FIRST_VIEW_CAMERA_MODEL,
+            "first_view": {
+                "camera_model": PRESERVED_FIRST_VIEW_CAMERA_MODEL,
+                "frame": "world_root_relative_chase",
+                "render_modality": "simulated_rgb_from_preserved_chase_pose",
+                "eye_equation": ["rx-2.2*cos(yaw)", "ry-2.2*sin(yaw)", "clamp(rz+1.8,1.8,2.4)"],
+                "target_equation": ["rx+0.6*cos(yaw)", "ry+0.6*sin(yaw)", "rz+0.16"],
+                "claim_boundary": (
+                    "Exact preserved Office chase-camera geometry called first view "
+                    "by Dr Sun; not a D435i or robot-mounted optical view"
+                ),
+            },
+            "side_view_model": SIDE_VIEW_CAMERA_MODEL,
+            "camera_render_cutaway": {
+                "scope": "all_review_camera_views_render_only",
+                "selection_rule": (
+                    "L0 per-floor view: hide ceiling/light actors, non-L0 floor "
+                    "actors, and actor roots wholly above z=2.85 m"
+                ),
+                "restore_before_next_view_and_physics_step": True,
+                "navigation_sensor_and_planner_inputs_unchanged": True,
+            },
+            "side_camera_config": validated_cam,
+            "overview_camera_config": validated_overview,
+            "quality_profile": quality_profile,
+            "lighting": {
+                "profile": args.office_review_lighting_profile,
+                "dome_light_intensity": args.office_review_dome_light_intensity,
+                "dome_light_color_rgb": [1.0, 0.96, 0.90],
+                "exposure": args.office_review_exposure,
+                "tone_mapping": quality_profile["tone_mapping"],
+                "motion_blur": quality_profile["motion_blur"],
+            },
+            "output_paths": {
+                "first_video": str(args.video_path),
+                "side_video": str(_office_review_side_video_path(args)),
+                "overview_video": str(_office_review_overview_video_path(args)),
+                "camera_trace": str(args.office_review_camera_trace_path),
+                "material_audit": str(args.office_review_material_audit_path),
+                "dashboard_video": str(args.office_review_dashboard_video_path),
+                "dashboard_metadata": str(args.office_review_dashboard_metadata_path),
+                "validation_report": str(args.office_review_validation_report_path),
+            },
+            "material_override": {
+                "applied": True,
+                "torso_linear_rgb": list(REVIEW_MATERIAL_TORSO_RGB),
+                "limb_linear_rgb": list(REVIEW_MATERIAL_LIMB_RGB),
+                "opacity": 1.0,
+                "emission": 0.0,
+            },
+            "source_hashes": {
+                "runner": _sha256(Path(__file__)),
+                "presentation_module": _sha256(pres_module_path) if pres_module_path.is_file() else None,
+                "launcher": _sha256(args.office_review_launcher_path),
+                "effective_input": _sha256(args.office_review_effective_input_path),
+                "acceptance_config": _sha256(args.acceptance_config),
+            },
+        }
     config_sha256 = canonical_config_sha256(identity)
     identity["config_sha256"] = config_sha256.hex()
     _write_json(output_dir / "run_identity.json", identity)
@@ -3279,6 +3526,7 @@ def _run(args) -> int:
     runtime_error = None
     records = []
     sensor_records = []
+    mid360_scan_index = 0
     depth_records = []
     best_depth_frame = None
     best_depth_metadata = None
@@ -3287,6 +3535,17 @@ def _run(args) -> int:
     video_writer = None
     video_frame_count = 0
     video_camera_fallback_sim_times = []
+    third_person_video_writer = None
+    overview_video_writer = None
+    review_viewport_camera = None
+    review_default_focal_length_mm = None
+    review_default_horizontal_aperture_mm = None
+    camera_trace_handle = None
+    camera_trace_rows = []
+    third_person_eye = None
+    third_person_target = None
+    overview_eye = None
+    overview_target = None
     runtime_rates = {}
     static_forest_geometry_checks = None
     dynamic_obstacle_geometry_checks = None
@@ -3295,6 +3554,80 @@ def _run(args) -> int:
     office_pedestrians = []
     office_animation_players = []
     office_visual_pose_evidence = []
+    review_capture_profile = None
+    review_side_camera_cfg = None
+    review_overview_camera_cfg = None
+    review_side_desired_pose = None
+    review_overview_desired_pose = None
+    review_smooth_pose_bounded = None
+    review_first_view_pose = None
+    review_camera_trace_row = None
+    review_state_snapshot_identity = None
+    review_writer_type = None
+    review_actor_root_paths = None
+    review_floor_root_paths = None
+    review_cutaway_root_paths = None
+    review_cutaway_imageables = []
+    review_cutaway_audit = None
+    review_renderer_runtime_settings = None
+    review_render_frame = None
+    if _office_review_presentation_enabled(args):
+        from .office_review_presentation import (
+            DirectH264Writer,
+            camera_trace_row,
+            frozen_quality_profile,
+            office_actor_root_paths,
+            office_floor_root_paths,
+            office_l0_cutaway_root_paths,
+            overview_desired_pose,
+            preserved_first_view_pose,
+            render_temporally_settled_frame,
+            review_film_iso,
+            side_follow_desired_pose,
+            smooth_pose_bounded,
+            state_snapshot_identity,
+            validate_overview_camera_config,
+            validate_side_camera_config,
+        )
+        review_capture_profile = frozen_quality_profile()
+        review_capture_profile["fps"] = float(args.video_fps)
+        review_capture_profile["exposure"] = float(args.office_review_exposure)
+        review_capture_profile["renderer_film_iso"] = review_film_iso(
+            args.office_review_exposure,
+            review_capture_profile["renderer_base_film_iso"],
+        )
+        review_side_camera_cfg = validate_side_camera_config({
+            "side": args.office_review_camera_side,
+            "lateral_distance_m": args.office_review_camera_lateral_distance,
+            "trailing_bias_m": args.office_review_camera_trailing_bias,
+            "height_m": args.office_review_camera_height,
+            "focal_length_mm": args.office_review_camera_focal_length_mm,
+            "look_ahead_m": args.office_review_camera_look_ahead,
+            "look_height_offset_m": args.office_review_camera_look_height_offset,
+            "smoothing_rate": args.office_review_camera_smoothing_rate,
+            "max_eye_speed_mps": args.office_review_camera_max_eye_speed,
+            "max_target_speed_mps": args.office_review_camera_max_target_speed,
+        })
+        review_overview_camera_cfg = validate_overview_camera_config({
+            "distance_m": args.office_review_overview_distance,
+            "azimuth_offset_deg": args.office_review_overview_azimuth_offset_deg,
+            "height_m": args.office_review_overview_height,
+            "look_ahead_m": args.office_review_overview_look_ahead,
+            "look_height_offset_m": args.office_review_overview_look_height_offset,
+            "smoothing_rate": args.office_review_overview_smoothing_rate,
+            "max_eye_speed_mps": args.office_review_overview_max_eye_speed,
+            "max_target_speed_mps": args.office_review_overview_max_target_speed,
+        })
+        review_writer_type = DirectH264Writer
+        review_actor_root_paths = office_actor_root_paths
+        review_floor_root_paths = office_floor_root_paths
+        review_cutaway_root_paths = office_l0_cutaway_root_paths
+        review_camera_trace_row = camera_trace_row
+        review_side_desired_pose = side_follow_desired_pose
+        review_overview_desired_pose = overview_desired_pose
+        review_smooth_pose_bounded = smooth_pose_bounded
+        review_first_view_pose = preserved_first_view_pose
+        review_state_snapshot_identity = state_snapshot_identity
     try:
         __import__("robot_lab.tasks")
         env_cfg = load_cfg_from_registry(args.task, "env_cfg_entry_point")
@@ -3309,6 +3642,65 @@ def _run(args) -> int:
             render_mode="rgb_array" if args.video_path is not None else None,
         )
         base_env = raw_env.unwrapped
+        if _office_review_presentation_enabled(args):
+            import carb
+
+            renderer_settings = carb.settings.get_settings()
+            renderer_settings.set(
+                "/rtx/post/aa/op",
+                int(review_capture_profile["renderer_anti_aliasing_mode"]),
+            )
+            renderer_settings.set(
+                "/rtx-transient/dlssg/enabled",
+                bool(review_capture_profile["renderer_dlss_frame_generation"]),
+            )
+            renderer_settings.set(
+                "/rtx/post/histogram/enabled",
+                bool(review_capture_profile["renderer_auto_exposure"]),
+            )
+            renderer_settings.set(
+                "/rtx/post/tonemap/filmIso",
+                float(review_capture_profile["renderer_film_iso"]),
+            )
+            review_renderer_runtime_settings = {
+                "anti_aliasing_path": "/rtx/post/aa/op",
+                "anti_aliasing_mode": int(
+                    renderer_settings.get("/rtx/post/aa/op")
+                ),
+                "dlss_frame_generation_path": "/rtx-transient/dlssg/enabled",
+                "dlss_frame_generation": bool(
+                    renderer_settings.get("/rtx-transient/dlssg/enabled")
+                ),
+                "auto_exposure_path": "/rtx/post/histogram/enabled",
+                "auto_exposure": bool(
+                    renderer_settings.get("/rtx/post/histogram/enabled")
+                ),
+                "film_iso_path": "/rtx/post/tonemap/filmIso",
+                "film_iso": float(
+                    renderer_settings.get("/rtx/post/tonemap/filmIso")
+                ),
+                "settle_render_count": int(
+                    review_capture_profile["renderer_settle_render_count"]
+                ),
+            }
+            if (
+                review_renderer_runtime_settings["anti_aliasing_mode"]
+                != int(review_capture_profile["renderer_anti_aliasing_mode"])
+                or review_renderer_runtime_settings["dlss_frame_generation"]
+                is not bool(
+                    review_capture_profile["renderer_dlss_frame_generation"]
+                )
+                or review_renderer_runtime_settings["auto_exposure"]
+                is not bool(review_capture_profile["renderer_auto_exposure"])
+                or abs(
+                    review_renderer_runtime_settings["film_iso"]
+                    - float(review_capture_profile["renderer_film_iso"])
+                )
+                > 1.0e-4
+            ):
+                raise AdapterFailure(
+                    "Office review renderer quality settings did not apply"
+                )
         runtime_rates = {
             "physics_hz": 1.0 / float(base_env.physics_dt),
             "policy_hz": 1.0 / float(base_env.step_dt),
@@ -3380,7 +3772,7 @@ def _run(args) -> int:
         imported_geometry_prim_records = []
         if sensor_rig:
             import omni.usd
-            from pxr import Usd, UsdPhysics
+            from pxr import Usd, UsdGeom, UsdPhysics
 
             stage = omni.usd.get_context().get_stage()
             robot_prim_prefix = "/World/envs/env_0/Robot"
@@ -3452,6 +3844,101 @@ def _run(args) -> int:
                         f"{frame_name} received an unexpected runtime mass: "
                         f"{runtime_mass_by_link[frame_name]}"
                     )
+            if _office_review_presentation_enabled(args) or args.office_review_material:
+                from .office_review_presentation import apply_office_review_material_usd
+                referenced_mesh_hashes = {
+                    name: record["sha256"]
+                    for name, record in asset_identity["isaac_urdf_contract"]["referenced_meshes"].items()
+                }
+                apply_office_review_material_usd(
+                    stage=stage,
+                    robot_prim_path=robot_prim_prefix,
+                    audit_output_path=args.office_review_material_audit_path,
+                    robot_asset_sha256=_sha256(args.robot_asset) if args.robot_asset else "",
+                    referenced_mesh_sha256=referenced_mesh_hashes,
+                )
+            if _office_review_presentation_enabled(args):
+                stage_paths = [str(prim.GetPath()) for prim in stage.Traverse()]
+                ceiling_cutaway_paths = review_cutaway_root_paths(stage_paths)
+                floor_paths = review_floor_root_paths(stage_paths)
+                known_actor_roots = sorted(
+                    set(ceiling_cutaway_paths) | set(floor_paths)
+                )
+                actor_paths = review_actor_root_paths(stage_paths, known_actor_roots)
+                if not ceiling_cutaway_paths or not floor_paths or not actor_paths:
+                    raise AdapterFailure(
+                        "Office L0 high-oblique review could not inventory floor actors"
+                    )
+                bbox_cache = UsdGeom.BBoxCache(
+                    Usd.TimeCode.Default(),
+                    [
+                        UsdGeom.Tokens.default_,
+                        UsdGeom.Tokens.render,
+                        UsdGeom.Tokens.proxy,
+                    ],
+                    useExtentsHint=True,
+                )
+                upper_actor_paths = []
+                non_l0_floor_paths = []
+                for actor_path in actor_paths:
+                    actor_prim = stage.GetPrimAtPath(actor_path)
+                    if not actor_prim.IsValid():
+                        continue
+                    aligned = bbox_cache.ComputeWorldBound(
+                        actor_prim
+                    ).ComputeAlignedRange()
+                    minimum = aligned.GetMin()
+                    maximum = aligned.GetMax()
+                    bounds = [float(value) for value in (*minimum, *maximum)]
+                    if not all(math.isfinite(value) for value in bounds):
+                        continue
+                    z_min = bounds[2]
+                    z_max = bounds[5]
+                    actor_name = actor_path.rsplit("/", 1)[-1]
+                    if actor_name.startswith(("SM_Floor_", "SM_Floor")):
+                        floor_center_z = 0.5 * (z_min + z_max)
+                        if abs(floor_center_z) > 0.20:
+                            non_l0_floor_paths.append(actor_path)
+                    elif z_min > 2.85:
+                        upper_actor_paths.append(actor_path)
+                cutaway_paths = sorted(
+                    set(ceiling_cutaway_paths)
+                    | set(non_l0_floor_paths)
+                    | set(upper_actor_paths)
+                )
+                for cutaway_path in cutaway_paths:
+                    cutaway_prim = stage.GetPrimAtPath(cutaway_path)
+                    if not cutaway_prim.IsValid() or not cutaway_prim.IsA(
+                        UsdGeom.Imageable
+                    ):
+                        raise AdapterFailure(
+                            f"Office cutaway root is not imageable: {cutaway_path}"
+                        )
+                    imageable = UsdGeom.Imageable(cutaway_prim)
+                    review_cutaway_imageables.append(
+                        (cutaway_path, imageable, imageable.GetVisibilityAttr().Get())
+                    )
+                cutaway_paths_sha256 = hashlib.sha256(
+                    json.dumps(
+                        cutaway_paths, sort_keys=True, separators=(",", ":")
+                    ).encode("utf-8")
+                ).hexdigest()
+                review_cutaway_audit = {
+                    "mode": "office_l0_per_floor_global_cutaway_v2",
+                    "scope": "all_review_camera_views_render_only",
+                    "prim_count": len(cutaway_paths),
+                    "ceiling_and_light_prim_count": len(ceiling_cutaway_paths),
+                    "non_l0_floor_prim_count": len(non_l0_floor_paths),
+                    "upper_actor_prim_count": len(upper_actor_paths),
+                    "upper_actor_min_z_threshold_m": 2.85,
+                    "prim_paths_sha256": cutaway_paths_sha256,
+                    "selection_rule": (
+                        "L0 per-floor view: hide ceiling/light actors, non-L0 floor "
+                        "actors, and actor roots wholly above z=2.85 m"
+                    ),
+                    "restore_before_next_view_and_physics_step": True,
+                    "navigation_sensor_and_planner_inputs_unchanged": True,
+                }
         if _forest_v8_official_enabled(args):
             official_animation_player = _OfficialHumanAnimationPlayer(
                 stage,
@@ -3463,7 +3950,7 @@ def _run(args) -> int:
                 _OfficialHumanAnimationPlayer(
                     stage,
                     args.official_human_animation_cache,
-                    "continuous_walk",
+                    args.official_human_animation_mode,
                     visual_root_path=f"{OFFICE_HUMAN_VISUAL_PREFIX}_{index}",
                 )
                 for index in range(len(office_routes))
@@ -3580,6 +4067,15 @@ def _run(args) -> int:
                     ),
                 }
             ),
+            "office_review_presentation": (
+                {
+                    **identity.get("office_review_presentation", {}),
+                    "camera_render_cutaway_runtime": review_cutaway_audit,
+                    "renderer_runtime_settings": review_renderer_runtime_settings,
+                }
+                if _office_review_presentation_enabled(args)
+                else None
+            ),
         }
         _write_json(output_dir / "runtime_composition.json", runtime_composition)
         if (
@@ -3595,18 +4091,117 @@ def _run(args) -> int:
         previous_actions = torch.zeros((1, 12), device=base_env.device)
         sensor_stride = max(1, int(round(args.sensor_period / float(base_env.step_dt))))
         if args.video_path is not None:
-            import imageio
-
             args.video_path.parent.mkdir(parents=True, exist_ok=True)
             for _ in range(8):
                 _rgb_frame(raw_env.render())
-            video_writer = imageio.get_writer(
-                str(args.video_path),
-                fps=args.video_fps,
-                codec="libx264",
-                quality=8,
-                macro_block_size=16,
-            )
+            side_v_path = _office_review_side_video_path(args)
+            over_v_path = _office_review_overview_video_path(args)
+            if _office_review_presentation_enabled(args):
+                import omni.usd
+                from pxr import Usd, UsdGeom
+
+                viewport_stage = omni.usd.get_context().get_stage()
+                viewport_camera_prim = viewport_stage.GetPrimAtPath(
+                    "/OmniverseKit_Persp"
+                )
+                if not viewport_camera_prim.IsValid() or not viewport_camera_prim.IsA(
+                    UsdGeom.Camera
+                ):
+                    raise AdapterFailure(
+                        "Office review viewport camera /OmniverseKit_Persp is missing"
+                    )
+                review_viewport_camera = UsdGeom.Camera(viewport_camera_prim)
+                review_default_focal_length_mm = float(
+                    review_viewport_camera.GetFocalLengthAttr().Get()
+                )
+                review_default_horizontal_aperture_mm = float(
+                    review_viewport_camera.GetHorizontalApertureAttr().Get()
+                )
+                if (
+                    not math.isfinite(review_default_focal_length_mm)
+                    or review_default_focal_length_mm <= 0.0
+                ):
+                    raise AdapterFailure(
+                        "Office review viewport camera has invalid focal length"
+                    )
+                if (
+                    not math.isfinite(review_default_horizontal_aperture_mm)
+                    or review_default_horizontal_aperture_mm <= 0.0
+                ):
+                    raise AdapterFailure(
+                        "Office review viewport camera has invalid horizontal aperture"
+                    )
+
+                def _render_camera_with_shared_cutaway():
+                    if not review_cutaway_imageables or review_cutaway_audit is None:
+                        raise AdapterFailure(
+                            "Office shared review-camera cutaway was not initialized"
+                        )
+                    try:
+                        with Usd.EditContext(
+                            viewport_stage, viewport_stage.GetSessionLayer()
+                        ):
+                            for _, imageable, _ in review_cutaway_imageables:
+                                if not imageable.GetVisibilityAttr().Set(
+                                    UsdGeom.Tokens.invisible
+                                ):
+                                    raise AdapterFailure(
+                                        "Office shared cutaway visibility could not be authored"
+                                    )
+                        return _rgb_frame(
+                            render_temporally_settled_frame(
+                                raw_env.render,
+                                int(
+                                    review_capture_profile[
+                                        "renderer_settle_render_count"
+                                    ]
+                                ),
+                            )
+                        )
+                    finally:
+                        with Usd.EditContext(
+                            viewport_stage, viewport_stage.GetSessionLayer()
+                        ):
+                            for (
+                                _,
+                                imageable,
+                                original_visibility,
+                            ) in review_cutaway_imageables:
+                                restore_token = (
+                                    original_visibility
+                                    if original_visibility is not None
+                                    else UsdGeom.Tokens.inherited
+                                )
+                                if not imageable.GetVisibilityAttr().Set(restore_token):
+                                    raise AdapterFailure(
+                                        "Office shared cutaway visibility could not be restored"
+                                    )
+
+                review_render_frame = _render_camera_with_shared_cutaway
+                exact_capture_fps = 1.0 / (float(base_env.step_dt) * args.video_frame_stride)
+                if abs(exact_capture_fps - float(args.video_fps)) > 1e-9:
+                    raise AdapterFailure(
+                        f"review capture cadence is {exact_capture_fps} fps, not declared {args.video_fps} fps"
+                    )
+                video_writer = review_writer_type(args.video_path, args.video_fps, review_capture_profile)
+                third_person_video_writer = review_writer_type(side_v_path, args.video_fps, review_capture_profile)
+                overview_video_writer = review_writer_type(over_v_path, args.video_fps, review_capture_profile)
+            else:
+                import imageio
+                video_writer = imageio.get_writer(
+                    str(args.video_path), fps=args.video_fps, codec="libx264",
+                    quality=8, macro_block_size=16,
+                )
+            if (
+                _office_enabled(args)
+                and args.office_review_camera_trace_path is not None
+            ):
+                args.office_review_camera_trace_path.parent.mkdir(
+                    parents=True, exist_ok=True
+                )
+                camera_trace_handle = args.office_review_camera_trace_path.open(
+                    "x", encoding="utf-8"
+                )
         # Expose the TCP endpoints only after the scene, policy, sensor, and
         # optional renderer are ready. Otherwise a Foxy client can accumulate
         # commands that become stale during simulator initialization.
@@ -3650,6 +4245,30 @@ def _run(args) -> int:
         )
         initial_sim_time = float(base_env.sim.current_time)
         max_wall_seconds = run_seconds * 6.0 + 60.0
+        max_step_wall_seconds = float(args.max_step_wall_seconds)
+        if _office_review_presentation_enabled(args):
+            # The presentation capture renders three 2K observer views and
+            # deliberately settles temporal lighting history before encoding
+            # each frame.  The legacy 6x wall-clock allowance can therefore
+            # truncate a nominal 10 s simulator run even though it exits
+            # cleanly.  Budget from the declared view/settle workload, with a
+            # conservative per-render allowance for RTX shader/cache variance.
+            review_view_count = 3
+            settle_render_count = int(
+                review_capture_profile["renderer_settle_render_count"]
+            )
+            review_wall_seconds = (
+                run_seconds
+                * review_view_count
+                * settle_render_count
+                * 4.0
+                + 120.0
+            )
+            max_wall_seconds = max(max_wall_seconds, review_wall_seconds)
+            max_step_wall_seconds = max(
+                max_step_wall_seconds,
+                review_view_count * settle_render_count * 2.0 + 5.0,
+            )
         metrics_path = output_dir / "metrics.jsonl"
         sensor_metrics_path = output_dir / "sensor_metrics.jsonl"
         depth_metrics_path = output_dir / "depth_metrics.jsonl"
@@ -3696,18 +4315,7 @@ def _run(args) -> int:
                             dtype=torch.float32,
                             device=base_env.device,
                         )
-                        if pedestrian_state["phase"] == "walking":
-                            distance = route.distance_m
-                            velocity_xy = (
-                                route.speed_mps
-                                * (route.end_xy_m[0] - route.start_xy_m[0])
-                                / distance,
-                                route.speed_mps
-                                * (route.end_xy_m[1] - route.start_xy_m[1])
-                                / distance,
-                            )
-                        else:
-                            velocity_xy = (0.0, 0.0)
+                        velocity_xy = pedestrian_state["velocity_xy_mps"]
                         velocity = torch.tensor(
                             [[*velocity_xy, 0.0, 0.0, 0.0, 0.0]],
                             dtype=torch.float32,
@@ -3984,10 +4592,26 @@ def _run(args) -> int:
                 metrics_file.flush()
 
                 if step % sensor_stride == 0:
-                    lidar.update(dt=0.0, force_recompute=True)
+                    mid360_window = None
+                    if _official_mid360_enabled(args):
+                        mid360_window = _set_mid360_scan_window(
+                            lidar,
+                            args.mid360_pattern_table,
+                            mid360_scan_index,
+                            torch,
+                        )
+                    else:
+                        lidar.update(dt=0.0, force_recompute=True)
                     hits_w = lidar.data.ray_hits_w[0]
                     sensor_position = lidar.data.pos_w[0]
                     sensor_quaternion_wxyz_tensor = lidar.data.quat_w[0]
+                    sensor_timestamp_ns = int(
+                        float(base_env.sim.current_time) * 1.0e9
+                    )
+                    body_position_values = _tensor_list(robot.data.root_pos_w[0])
+                    body_quaternion_wxyz_values = _tensor_list(
+                        robot.data.root_quat_w[0]
+                    )
                     sensor_position_values = _tensor_list(sensor_position)
                     sensor_quaternion_values = _tensor_list(
                         sensor_quaternion_wxyz_tensor
@@ -4028,6 +4652,23 @@ def _run(args) -> int:
                     self_occluded_hits = finite_hits & (
                         hit_ranges < args.lidar_min_range
                     )
+                    environment_hit_ranges = hit_ranges[
+                        finite_hits & ~self_occluded_hits
+                    ]
+                    raw_environment_hit_range_min_m = (
+                        None
+                        if environment_hit_ranges.numel() == 0
+                        else float(environment_hit_ranges.min().item())
+                    )
+                    raw_environment_hit_range_max_m = (
+                        None
+                        if environment_hit_ranges.numel() == 0
+                        else float(environment_hit_ranges.max().item())
+                    )
+                    planner_point_ranges = [
+                        math.sqrt(sum(coordinate * coordinate for coordinate in point))
+                        for point in points
+                    ]
                     floor_filtered_hits = (
                         torch.zeros_like(finite_hits)
                         if forest_layout is not None
@@ -4132,11 +4773,42 @@ def _run(args) -> int:
                     sensor_row = {
                         "step": step,
                         "sim_time_seconds": float(base_env.sim.current_time),
+                        "scan_reference_timestamp_ns": sensor_timestamp_ns,
+                        "body_position_w": body_position_values,
+                        "body_quaternion_wxyz": body_quaternion_wxyz_values,
                         "sensor_position_w": sensor_position_values,
                         "sensor_quaternion_wxyz": sensor_quaternion_values,
+                        "lidar_pattern_mode": args.lidar_pattern_mode,
+                        "pattern_window": (
+                            None
+                            if mid360_window is None
+                            else mid360_window.as_dict()
+                        ),
+                        "intra_scan_motion_distortion": (
+                            "not_modeled_simultaneous_same_step_snapshot"
+                            if mid360_window is not None
+                            else "legacy_uniform_snapshot"
+                        ),
+                        "raw_ray_count": int(hits_w.shape[0]),
                         "point_count": point_count,
                         "finite_point_count": point_count,
                         "raw_finite_hit_count": int(finite_hits.sum().item()),
+                        "raw_environment_hit_range_min_m": (
+                            raw_environment_hit_range_min_m
+                        ),
+                        "raw_environment_hit_range_max_m": (
+                            raw_environment_hit_range_max_m
+                        ),
+                        "planner_point_range_min_m": (
+                            None
+                            if not planner_point_ranges
+                            else min(planner_point_ranges)
+                        ),
+                        "planner_point_range_max_m": (
+                            None
+                            if not planner_point_ranges
+                            else max(planner_point_ranges)
+                        ),
                         "self_occluded_hit_count": int(
                             self_occluded_hits.sum().item()
                         ),
@@ -4396,9 +5068,9 @@ def _run(args) -> int:
                             best_depth_metadata = dict(depth_row)
                     sensor_payload = encode_sensor_payload(
                         SensorFrameV1(
-                            body_position=tuple(_tensor_list(robot.data.root_pos_w[0])),
+                            body_position=tuple(body_position_values),
                             body_quaternion_xyzw=quaternion_wxyz_to_xyzw(
-                                _tensor_list(robot.data.root_quat_w[0])
+                                body_quaternion_wxyz_values
                             ),
                             sensor_position=tuple(sensor_position_values),
                             sensor_quaternion_xyzw=quaternion_wxyz_to_xyzw(
@@ -4414,11 +5086,30 @@ def _run(args) -> int:
                         encode_frame(
                             MessageType.SENSOR_FRAME_V1,
                             telemetry_sequence,
-                            int(float(base_env.sim.current_time) * 1.0e9),
+                            sensor_timestamp_ns,
                             sensor_payload,
                         )
                     )
                     dropped_frames += int(not sent_sensor)
+                    if mid360_window is not None:
+                        mid360_scan_index += 1
+                    joint_state_payload = encode_joint_state_payload(
+                        JointStateV1(
+                            names=tuple(str(name) for name in robot.joint_names),
+                            positions=tuple(_tensor_list(robot.data.joint_pos[0])),
+                            velocities=tuple(_tensor_list(robot.data.joint_vel[0])),
+                        )
+                    )
+                    telemetry_sequence += 1
+                    sent_joint_state = telemetry_server.publish(
+                        encode_frame(
+                            MessageType.JOINT_STATE_V1,
+                            telemetry_sequence,
+                            sensor_timestamp_ns,
+                            joint_state_payload,
+                        )
+                    )
+                    dropped_frames += int(not sent_joint_state)
                     flags = 0
                     if contact_count >= 2:
                         flags |= int(StatusFlag.CONTACT_SUPPORTED)
@@ -4451,6 +5142,7 @@ def _run(args) -> int:
                     )
                     dropped_frames += int(not sent_status)
                 if video_writer is not None and step % args.video_frame_stride == 0:
+                    first_fallback_reason = None
                     if _office_enabled(args):
                         root_pos = robot.data.root_pos_w[0]
                         root_quat = robot.data.root_quat_w[0]
@@ -4460,27 +5152,42 @@ def _run(args) -> int:
                         z = float(root_quat[3])
                         yaw = math.atan2(2.0 * (w * z + x * y), 1.0 - 2.0 * (y * y + z * z))
                         rx, ry, rz = float(root_pos[0]), float(root_pos[1]), float(root_pos[2])
-                        # A high, offset chase view keeps the complete articulated
-                        # Lite3 in the lower third while retaining the corridor and
-                        # nearby pedestrians.  The former 1.2 m eye offset sat on
-                        # the robot and produced a first-person view with no robot.
-                        cam_eye = (
-                            rx - 2.2 * math.cos(yaw),
-                            ry - 2.2 * math.sin(yaw),
-                            min(max(rz + 1.80, 1.80), 2.40),
-                        )
-                        cam_target = (
-                            rx + 0.60 * math.cos(yaw),
-                            ry + 0.60 * math.sin(yaw),
-                            rz + 0.16,
+                        if review_first_view_pose is None:
+                            raise AdapterFailure(
+                                "Office preserved first-view pose is unavailable"
+                            )
+                        cam_eye, cam_target = review_first_view_pose(
+                            rx, ry, rz, yaw
                         )
                         base_env.sim.set_camera_view(eye=cam_eye, target=cam_target)
-                    video_frame = _rgb_frame(raw_env.render())
+                    if review_viewport_camera is not None:
+                        with Usd.EditContext(
+                            viewport_stage, viewport_stage.GetSessionLayer()
+                        ):
+                            focal_applied = review_viewport_camera.GetFocalLengthAttr().Set(
+                                review_default_focal_length_mm
+                            )
+                            aperture_applied = (
+                                review_viewport_camera.GetHorizontalApertureAttr().Set(
+                                    review_default_horizontal_aperture_mm
+                                )
+                            )
+                        if not focal_applied or not aperture_applied:
+                            raise AdapterFailure(
+                                "Office preserved first-view lens could not be authored"
+                            )
+                        first_observed_focal_length_mm = float(
+                            review_viewport_camera.GetFocalLengthAttr().Get()
+                        )
+                        first_observed_horizontal_aperture_mm = float(
+                            review_viewport_camera.GetHorizontalApertureAttr().Get()
+                        )
+                    if review_render_frame is None:
+                        raise AdapterFailure("Office shared review renderer is unavailable")
+                    video_frame = review_render_frame()
+                    first_view_eye = cam_eye if _office_enabled(args) else None
+                    first_view_target = cam_target if _office_enabled(args) else None
                     if _office_enabled(args) and not _rgb_scene_content(video_frame)["passed"]:
-                        # The normal chase camera can enter a wall at a tight
-                        # Office turn. Use a short, high chase view for this
-                        # presentation frame only; robot physics, sensing, and
-                        # planner inputs are unchanged.
                         fallback_eye = (
                             rx - 1.2 * math.cos(yaw),
                             ry - 1.2 * math.sin(yaw),
@@ -4490,32 +5197,286 @@ def _run(args) -> int:
                         base_env.sim.set_camera_view(
                             eye=fallback_eye, target=fallback_target
                         )
-                        video_frame = _rgb_frame(raw_env.render())
+                        video_frame = review_render_frame()
+                        if not _rgb_scene_content(video_frame)["passed"]:
+                            import cv2
+
+                            rejected_frame_path = (
+                                args.office_review_camera_trace_path.parent
+                                / "first_view_rejected_frame.png"
+                            )
+                            if not rejected_frame_path.exists() and not rejected_frame_path.is_symlink():
+                                cv2.imwrite(
+                                    str(rejected_frame_path),
+                                    cv2.cvtColor(video_frame, cv2.COLOR_RGB2BGR),
+                                )
+                            raise AdapterFailure(
+                                "preserved first-view content gate failed; "
+                                f"evidence={rejected_frame_path}"
+                            )
+                        first_fallback_reason = "content_gate_high_chase"
+                        first_view_eye = fallback_eye
+                        first_view_target = fallback_target
                         video_camera_fallback_sim_times.append(
                             float(base_env.sim.current_time)
                         )
                     video_writer.append_data(video_frame)
+                    # --- Multi-Camera External Observers (same step, no env.step()) ---
+                    sim_dt = float(base_env.step_dt) * args.video_frame_stride
+                    side_desired_eye = (0.0, 0.0, 0.0)
+                    side_desired_target = (0.0, 0.0, 0.0)
+                    side_eye_disp = 0.0
+                    side_tgt_disp = 0.0
+                    side_max_allowed_eye = 0.0
+                    side_max_allowed_tgt = 0.0
+                    side_camera_cfg = review_side_camera_cfg or {}
+                    if third_person_video_writer is not None and _office_enabled(args):
+                        side_desired_eye, side_desired_target = review_side_desired_pose(
+                            rx, ry, rz, yaw, side_camera_cfg,
+                        )
+                        if third_person_eye is None:
+                            third_person_eye = side_desired_eye
+                            third_person_target = side_desired_target
+                            side_eye_disp = 0.0
+                            side_tgt_disp = 0.0
+                            side_max_allowed_eye = 0.0
+                            side_max_allowed_tgt = 0.0
+                        else:
+                            (
+                                third_person_eye,
+                                third_person_target,
+                                side_eye_disp,
+                                side_tgt_disp,
+                                side_max_allowed_eye,
+                                side_max_allowed_tgt,
+                            ) = review_smooth_pose_bounded(
+                                third_person_eye,
+                                third_person_target,
+                                side_desired_eye,
+                                side_desired_target,
+                                dt=sim_dt,
+                                smoothing_rate=float(side_camera_cfg["smoothing_rate"]),
+                                max_eye_speed=float(side_camera_cfg["max_eye_speed_mps"]),
+                                max_target_speed=float(side_camera_cfg["max_target_speed_mps"]),
+                            )
+                        # Render without advancing simulation. Ceiling actors
+                        # are hidden only for this high-oblique presentation
+                        # frame, then restored before any other view or step.
+                        if review_viewport_camera is None:
+                            raise AdapterFailure("Office side camera lens is unavailable")
+                        base_env.sim.set_camera_view(
+                            eye=third_person_eye, target=third_person_target
+                        )
+                        with Usd.EditContext(
+                            viewport_stage, viewport_stage.GetSessionLayer()
+                        ):
+                            focal_applied = review_viewport_camera.GetFocalLengthAttr().Set(
+                                float(side_camera_cfg["focal_length_mm"])
+                            )
+                            aperture_applied = (
+                                review_viewport_camera.GetHorizontalApertureAttr().Set(
+                                    review_default_horizontal_aperture_mm
+                                )
+                            )
+                        if not focal_applied or not aperture_applied:
+                            raise AdapterFailure(
+                                "Office side camera lens could not be authored"
+                            )
+                        side_observed_focal_length_mm = float(
+                            review_viewport_camera.GetFocalLengthAttr().Get()
+                        )
+                        if abs(
+                            side_observed_focal_length_mm
+                            - float(side_camera_cfg["focal_length_mm"])
+                        ) > 1.0e-2:
+                            raise AdapterFailure(
+                                "Office side camera focal length did not apply: "
+                                f"requested={side_camera_cfg['focal_length_mm']}, "
+                                f"observed={side_observed_focal_length_mm}"
+                            )
+                        tp_frame = review_render_frame()
+                        side_content = _rgb_scene_content(tp_frame)
+                        if not side_content["passed"]:
+                            import cv2
+
+                            rejected_frame_path = (
+                                args.office_review_camera_trace_path.parent
+                                / "side_render_rejected_frame.png"
+                            )
+                            if rejected_frame_path.exists() or rejected_frame_path.is_symlink():
+                                raise AdapterFailure(
+                                    f"Office rejected-frame evidence already exists: {rejected_frame_path}"
+                                )
+                            if not cv2.imwrite(
+                                str(rejected_frame_path),
+                                cv2.cvtColor(tp_frame, cv2.COLOR_RGB2BGR),
+                            ):
+                                raise AdapterFailure(
+                                    "Office rejected side frame could not be written"
+                                )
+                            side_content["rejected_frame_path"] = str(
+                                rejected_frame_path
+                            )
+                            raise AdapterFailure(
+                                f"side-follow camera content gate failed: {side_content}"
+                            )
+                        third_person_video_writer.append_data(tp_frame)
+
+                    overview_desired_eye = (0.0, 0.0, 0.0)
+                    overview_desired_target = (0.0, 0.0, 0.0)
+                    overview_eye_disp = 0.0
+                    overview_tgt_disp = 0.0
+                    overview_max_allowed_eye = 0.0
+                    overview_max_allowed_tgt = 0.0
+                    overview_camera_cfg = review_overview_camera_cfg or {}
+                    if overview_video_writer is not None and _office_enabled(args):
+                        overview_desired_eye, overview_desired_target = review_overview_desired_pose(
+                            rx, ry, rz, yaw, overview_camera_cfg,
+                        )
+                        if overview_eye is None:
+                            overview_eye = overview_desired_eye
+                            overview_target = overview_desired_target
+                            overview_eye_disp = 0.0
+                            overview_tgt_disp = 0.0
+                            overview_max_allowed_eye = 0.0
+                            overview_max_allowed_tgt = 0.0
+                        else:
+                            (
+                                overview_eye,
+                                overview_target,
+                                overview_eye_disp,
+                                overview_tgt_disp,
+                                overview_max_allowed_eye,
+                                overview_max_allowed_tgt,
+                            ) = review_smooth_pose_bounded(
+                                overview_eye,
+                                overview_target,
+                                overview_desired_eye,
+                                overview_desired_target,
+                                dt=sim_dt,
+                                smoothing_rate=float(overview_camera_cfg["smoothing_rate"]),
+                                max_eye_speed=float(overview_camera_cfg["max_eye_speed_mps"]),
+                                max_target_speed=float(overview_camera_cfg["max_target_speed_mps"]),
+                            )
+                        # Restore the original viewport lens for the overview.
+                        if review_viewport_camera is None:
+                            raise AdapterFailure("Office overview camera lens is unavailable")
+                        base_env.sim.set_camera_view(
+                            eye=overview_eye, target=overview_target
+                        )
+                        with Usd.EditContext(
+                            viewport_stage, viewport_stage.GetSessionLayer()
+                        ):
+                            focal_applied = review_viewport_camera.GetFocalLengthAttr().Set(
+                                review_default_focal_length_mm
+                            )
+                            aperture_applied = (
+                                review_viewport_camera.GetHorizontalApertureAttr().Set(
+                                    review_default_horizontal_aperture_mm
+                                )
+                            )
+                        if not focal_applied or not aperture_applied:
+                            raise AdapterFailure(
+                                "Office overview camera lens could not be authored"
+                            )
+                        overview_observed_focal_length_mm = float(
+                            review_viewport_camera.GetFocalLengthAttr().Get()
+                        )
+                        over_frame = review_render_frame()
+                        overview_content = _rgb_scene_content(over_frame)
+                        if not overview_content["passed"]:
+                            raise AdapterFailure(
+                                f"overview camera content gate failed: {overview_content}"
+                            )
+                        overview_video_writer.append_data(over_frame)
+
+                    # Record multi-view camera trace
+                    if camera_trace_handle is not None and _office_enabled(args):
+                        run_id_val = identity["config_sha256"]
+                        snapshot_id = review_state_snapshot_identity(
+                            step,
+                            float(base_env.sim.current_time),
+                            [rx, ry, rz],
+                            [w, x, y, z],
+                        )
+                        trace_data = review_camera_trace_row(
+                            frame_index=video_frame_count,
+                            step=step,
+                            sim_time_seconds=float(base_env.sim.current_time),
+                            run_identity=run_id_val,
+                            root_pos_w=[rx, ry, rz],
+                            root_quat_w=[w, x, y, z],
+                            first_eye=list(first_view_eye) if first_view_eye else [0, 0, 0],
+                            first_target=list(first_view_target) if first_view_target else [0, 0, 0],
+                            side_desired_eye=list(side_desired_eye),
+                            side_desired_target=list(side_desired_target),
+                            side_realized_eye=list(third_person_eye) if third_person_eye else [0, 0, 0],
+                            side_realized_target=list(third_person_target) if third_person_target else [0, 0, 0],
+                            side_config=side_camera_cfg,
+                            overview_desired_eye=list(overview_desired_eye),
+                            overview_desired_target=list(overview_desired_target),
+                            overview_realized_eye=list(overview_eye) if overview_eye else [0, 0, 0],
+                            overview_realized_target=list(overview_target) if overview_target else [0, 0, 0],
+                            overview_config=overview_camera_cfg,
+                            dt=sim_dt,
+                            side_eye_displacement=side_eye_disp,
+                            side_target_displacement=side_tgt_disp,
+                            side_max_allowed_eye_displacement=side_max_allowed_eye,
+                            side_max_allowed_target_displacement=side_max_allowed_tgt,
+                            overview_eye_displacement=overview_eye_disp,
+                            overview_target_displacement=overview_tgt_disp,
+                            overview_max_allowed_eye_displacement=overview_max_allowed_eye,
+                            overview_max_allowed_target_displacement=overview_max_allowed_tgt,
+                            first_fallback_reason=first_fallback_reason,
+                            renderer_settings=review_capture_profile,
+                            snapshot_identity=snapshot_id,
+                        )
+                        trace_data["first_view"]["focal_length_mm"] = float(
+                            first_observed_focal_length_mm
+                        )
+                        trace_data["first_view"]["horizontal_aperture_mm"] = float(
+                            first_observed_horizontal_aperture_mm
+                        )
+                        trace_data["first_view"]["horizontal_fov_degrees"] = math.degrees(
+                            2.0
+                            * math.atan(
+                                first_observed_horizontal_aperture_mm
+                                / (2.0 * first_observed_focal_length_mm)
+                            )
+                        )
+                        trace_data["first_view"]["render_cutaway"] = dict(
+                            review_cutaway_audit or {}
+                        )
+                        trace_data["side_follow"]["focal_length_mm"] = float(
+                            side_observed_focal_length_mm
+                        )
+                        trace_data["side_follow"]["render_cutaway"] = dict(
+                            review_cutaway_audit or {}
+                        )
+                        trace_data["overview"]["focal_length_mm"] = float(
+                            overview_observed_focal_length_mm
+                        )
+                        trace_data["overview"]["render_cutaway"] = dict(
+                            review_cutaway_audit or {}
+                        )
+                        camera_trace_handle.write(
+                            json.dumps(trace_data) + "\n"
+                        )
+                        camera_trace_handle.flush()
                     video_frame_count += 1
                 if done or not finite:
                     raise AdapterFailure("V12 fallback terminated or became non-finite")
                 step += 1
                 next_tick += float(base_env.step_dt)
                 time.sleep(max(0.0, next_tick - time.monotonic()))
-                if time.monotonic() - tick_started > args.max_step_wall_seconds:
+                if time.monotonic() - tick_started > max_step_wall_seconds:
                     raise AdapterFailure("V12 simulation step exceeded wall-time safety limit")
     except BaseException as error:
         runtime_error = error
     finally:
         if sender is not None:
             sender.stop()
-        # End live transport at the simulation boundary. Video encoding and
-        # simulator teardown can take longer than the command freshness limit;
-        # leaving the receiver active would classify queued shutdown traffic as
-        # a stale protocol frame even though no further policy step consumes it.
         command_server.stop()
-        # Signal the qualification client before closing its server-side stream.
-        # Otherwise the client can correctly observe EOF during normal shutdown
-        # but race with its stop event and misclassify teardown as a run error.
         if sink is not None:
             sink.stop()
         telemetry_server.stop()
@@ -4525,6 +5486,23 @@ def _run(args) -> int:
             except BaseException as error:
                 if runtime_error is None:
                     runtime_error = error
+        if third_person_video_writer is not None:
+            try:
+                third_person_video_writer.close()
+            except BaseException as error:
+                if runtime_error is None:
+                    runtime_error = error
+        if overview_video_writer is not None:
+            try:
+                overview_video_writer.close()
+            except BaseException as error:
+                if runtime_error is None:
+                    runtime_error = error
+        if camera_trace_handle is not None:
+            try:
+                camera_trace_handle.close()
+            except BaseException:  # noqa: BLE001
+                pass
         if wrapped_env is not None:
             wrapped_env.close()
         elif raw_env is not None:
@@ -4668,6 +5646,191 @@ def _run(args) -> int:
             "bytes": args.video_path.stat().st_size if args.video_path.is_file() else 0,
             "sha256": _sha256(args.video_path) if args.video_path.is_file() else None,
         }
+    side_v_path = _office_review_side_video_path(args)
+    over_v_path = _office_review_overview_video_path(args)
+    ros_events_snapshot_path = None
+
+    if _office_review_presentation_enabled(args):
+        from .office_review_presentation import (
+            render_office_review_dashboard,
+            validate_office_review_presentation,
+            write_text_exclusive,
+        )
+        if (
+            args.video_path is not None
+            and args.video_path.is_file()
+            and side_v_path is not None
+            and side_v_path.is_file()
+            and over_v_path is not None
+            and over_v_path.is_file()
+            and args.office_review_camera_trace_path is not None
+            and args.office_review_camera_trace_path.is_file()
+            and args.office_review_material_audit_path is not None
+            and args.office_review_material_audit_path.is_file()
+            and args.office_review_dashboard_video_path is not None
+            and args.office_review_dashboard_metadata_path is not None
+        ):
+            try:
+                ros_events_file = output_dir.parent / "ros_events.jsonl"
+                ros_events_live = ros_events_file if ros_events_file.is_file() else (output_dir / "ros_events.jsonl")
+                if not ros_events_live.is_file():
+                    raise FileNotFoundError(f"live ROS event evidence is missing: {ros_events_live}")
+                # The ROS monitor remains alive until qualification_report.json
+                # appears, so its live JSONL can be flushed after dashboard
+                # encoding. Freeze complete event rows first and use only this
+                # immutable run-owned snapshot for rendering and validation.
+                live_text = ros_events_live.read_text(encoding="utf-8")
+                complete_lines = live_text.splitlines()
+                if live_text and not live_text.endswith("\n"):
+                    complete_lines = complete_lines[:-1]
+                snapshot_rows = []
+                for line_number, line in enumerate(complete_lines, 1):
+                    if not line.strip():
+                        continue
+                    try:
+                        snapshot_rows.append(json.loads(line))
+                    except json.JSONDecodeError as exc:
+                        raise ValueError(
+                            f"ROS event row {line_number} is malformed during snapshot"
+                        ) from exc
+                if not snapshot_rows:
+                    raise ValueError("ROS event snapshot cannot be empty")
+                ros_events_snapshot_path = output_dir.parent / "office_review_ros_events_snapshot.jsonl"
+                write_text_exclusive(
+                    ros_events_snapshot_path,
+                    "".join(json.dumps(row, sort_keys=True) + "\n" for row in snapshot_rows),
+                )
+                ros_events_target = ros_events_snapshot_path
+                metrics_target = output_dir / "metrics.jsonl"
+                run_identity_target = output_dir / "run_identity.json"
+
+                render_office_review_dashboard(
+                    first_video_path=args.video_path,
+                    side_video_path=side_v_path,
+                    overview_video_path=over_v_path,
+                    camera_trace_path=args.office_review_camera_trace_path,
+                    material_audit_path=args.office_review_material_audit_path,
+                    ros_events_path=ros_events_target,
+                    metrics_path=metrics_target,
+                    run_identity_path=run_identity_target,
+                    effective_input_path=args.office_review_effective_input_path,
+                    acceptance_config_path=args.acceptance_config,
+                    output_dashboard_video_path=args.office_review_dashboard_video_path,
+                    output_dashboard_metadata_path=args.office_review_dashboard_metadata_path,
+                )
+                val_res = validate_office_review_presentation(
+                    first_video_path=args.video_path,
+                    side_video_path=side_v_path,
+                    overview_video_path=over_v_path,
+                    camera_trace_path=args.office_review_camera_trace_path,
+                    material_audit_path=args.office_review_material_audit_path,
+                    dashboard_video_path=args.office_review_dashboard_video_path,
+                    dashboard_metadata_path=args.office_review_dashboard_metadata_path,
+                    ros_events_path=ros_events_target,
+                    metrics_path=metrics_target,
+                    run_identity_path=run_identity_target,
+                    effective_input_path=args.office_review_effective_input_path,
+                    acceptance_config_path=args.acceptance_config,
+                )
+                write_text_exclusive(
+                    args.office_review_validation_report_path,
+                    json.dumps(val_res, indent=2),
+                )
+                report["office_review_presentation"] = {
+                    "rendered": True,
+                    "validated": val_res["passed"],
+                    "validation_report": val_res,
+                }
+                if not val_res["passed"]:
+                    report["status"] = "FAIL"
+            except Exception as e:
+                failure_validation = {
+                    "passed": False,
+                    "issues": [f"presentation packaging exception: {type(e).__name__}: {e}"],
+                    "checks": {},
+                }
+                if (
+                    args.office_review_validation_report_path is not None
+                    and not os.path.lexists(args.office_review_validation_report_path)
+                ):
+                    write_text_exclusive(
+                        args.office_review_validation_report_path,
+                        json.dumps(failure_validation, indent=2),
+                    )
+                report["office_review_presentation"] = {
+                    "rendered": False,
+                    "validated": False,
+                    "error": str(e),
+                    "validation_report": failure_validation,
+                }
+                report["status"] = "FAIL"
+
+    # Multi-view video and metadata report entries
+    if side_v_path is not None and side_v_path.is_file():
+        report["third_person_side_video"] = {
+            "path": str(side_v_path),
+            "frame_count": video_frame_count,
+            "fps": args.video_fps,
+            "encoded_duration_seconds": video_frame_count / args.video_fps,
+            "bytes": side_v_path.stat().st_size,
+            "sha256": _sha256(side_v_path),
+        }
+    if over_v_path is not None and over_v_path.is_file():
+        report["overview_video"] = {
+            "path": str(over_v_path),
+            "frame_count": video_frame_count,
+            "fps": args.video_fps,
+            "encoded_duration_seconds": video_frame_count / args.video_fps,
+            "bytes": over_v_path.stat().st_size,
+            "sha256": _sha256(over_v_path),
+        }
+    if (
+        args.office_review_camera_trace_path is not None
+        and args.office_review_camera_trace_path.is_file()
+    ):
+        report["camera_trace"] = {
+            "path": str(args.office_review_camera_trace_path),
+            "frame_count": video_frame_count,
+            "sha256": _sha256(args.office_review_camera_trace_path),
+        }
+    if (
+        getattr(args, "office_review_material_audit_path", None) is not None
+        and args.office_review_material_audit_path.is_file()
+    ):
+        report["material_audit"] = {
+            "path": str(args.office_review_material_audit_path),
+            "sha256": _sha256(args.office_review_material_audit_path),
+        }
+    if (
+        getattr(args, "office_review_dashboard_video_path", None) is not None
+        and args.office_review_dashboard_video_path.is_file()
+    ):
+        report["dashboard_video"] = {
+            "path": str(args.office_review_dashboard_video_path),
+            "bytes": args.office_review_dashboard_video_path.stat().st_size,
+            "sha256": _sha256(args.office_review_dashboard_video_path),
+        }
+    if (
+        getattr(args, "office_review_dashboard_metadata_path", None) is not None
+        and args.office_review_dashboard_metadata_path.is_file()
+    ):
+        report["dashboard_metadata"] = {
+            "path": str(args.office_review_dashboard_metadata_path),
+            "sha256": _sha256(args.office_review_dashboard_metadata_path),
+        }
+    if (
+        getattr(args, "office_review_validation_report_path", None) is not None
+        and args.office_review_validation_report_path.is_file()
+    ):
+        report["presentation_validation_report"] = {
+            "path": str(args.office_review_validation_report_path),
+            "sha256": _sha256(args.office_review_validation_report_path),
+        }
+    if ros_events_snapshot_path is not None and ros_events_snapshot_path.is_file():
+        report["presentation_ros_events_snapshot"] = {
+            "path": str(ros_events_snapshot_path),
+            "sha256": _sha256(ros_events_snapshot_path),
+        }
     if args.mode == "sensor_qualification" and not sensor_passed:
         report["status"] = "FAIL"
     if sensor_rig and (not sensor_passed or not depth_passed):
@@ -4733,6 +5896,22 @@ def _parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--office-route-path", type=Path)
     parser.add_argument("--office-route-sha256")
+    parser.add_argument(
+        "--office-pedestrian-motion-mode",
+        choices=("single_pass", "background_ping_pong", "ping_pong"),
+        default="single_pass",
+        help=(
+            "Office crowd root-motion schedule. background_ping_pong keeps the "
+            "two route-crossing events single-pass while repeating only the six "
+            "background routes; ping_pong repeats every frozen route."
+        ),
+    )
+    parser.add_argument(
+        "--office-pedestrian-turnaround-hold-seconds",
+        type=float,
+        default=0.0,
+        help="Idle interval used to turn smoothly at each ping-pong endpoint.",
+    )
     parser.add_argument("--office-start-xy", type=float, nargs=2)
     parser.add_argument("--office-start-yaw", type=float, default=-0.6435)
     parser.add_argument("--office-goal-xy", type=float, nargs=2)
@@ -4838,6 +6017,17 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--sensor-period", type=float, default=0.10)
     parser.add_argument("--sensor-translation", type=float, nargs=3, default=(0.182399336, 0.0, 0.108541081))
     parser.add_argument("--sensor-pitch-degrees", type=float, default=15.0)
+    parser.add_argument(
+        "--lidar-pattern-mode",
+        choices=("uniform", "livox_mid360"),
+        default="uniform",
+        help="Opt-in source-backed Livox pattern; uniform preserves legacy runs.",
+    )
+    parser.add_argument(
+        "--lidar-pattern-csv",
+        type=Path,
+        help="Pinned Livox mid360.csv; required only for livox_mid360 mode.",
+    )
     parser.add_argument("--lidar-channels", type=int, default=16)
     parser.add_argument("--lidar-vertical-min", type=float, default=-7.0)
     parser.add_argument("--lidar-vertical-max", type=float, default=52.0)
@@ -4863,6 +6053,217 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--video-path", type=Path)
     parser.add_argument("--video-fps", type=int, default=25)
     parser.add_argument("--video-frame-stride", type=int, default=2)
+    parser.add_argument(
+        "--office-review-presentation",
+        action="store_true",
+        default=False,
+        help="Enable full 4-panel 3D review presentation pipeline for Office L0.",
+    )
+    parser.add_argument(
+        "--office-review-third-person-side-video-path",
+        type=Path,
+        default=None,
+        help="Opt-in path for external side-follow third-person video (closed_loop_third_person_side.mp4).",
+    )
+    parser.add_argument(
+        "--office-review-third-person-video-path",
+        type=Path,
+        default=None,
+        help="Backward-compatible alias for --office-review-third-person-side-video-path.",
+    )
+    parser.add_argument(
+        "--office-review-overview-video-path",
+        type=Path,
+        default=None,
+        help="Opt-in path for elevated wide-overview video (closed_loop_overview.mp4).",
+    )
+    parser.add_argument(
+        "--office-review-camera-trace-path",
+        type=Path,
+        default=None,
+        help=(
+            "Path for camera_trace.jsonl recording multi-view poses per frame. "
+            "Required when presentation or multi-view video is enabled."
+        ),
+    )
+    parser.add_argument(
+        "--office-review-material-audit-path",
+        type=Path,
+        default=None,
+        help=(
+            "Path for office_review_material_audit.json recording USD material override audit."
+        ),
+    )
+    parser.add_argument(
+        "--office-review-dashboard-video-path",
+        type=Path,
+        default=None,
+        help=(
+            "Path for 1920x1080 office_review_dashboard.mp4 review video."
+        ),
+    )
+    parser.add_argument(
+        "--office-review-dashboard-metadata-path",
+        type=Path,
+        default=None,
+        help=(
+            "Path for office_review_dashboard_metadata.json recording 3D projection info and SHA-256 digests."
+        ),
+    )
+    parser.add_argument(
+        "--office-review-validation-report-path",
+        type=Path,
+        default=None,
+        help="Fresh output path for the structured presentation validation report.",
+    )
+    parser.add_argument(
+        "--office-review-effective-input-path",
+        type=Path,
+        default=None,
+        help="Launcher-written effective_input.txt bound into review provenance.",
+    )
+    parser.add_argument(
+        "--office-review-launcher-path",
+        type=Path,
+        default=None,
+        help="Task-owned launcher source hashed into review run identity.",
+    )
+    parser.add_argument(
+        "--office-review-material",
+        action="store_true",
+        default=False,
+        help=(
+            "Apply a high-contrast review-only material override to the Lite3 "
+            "visual meshes for Office human review. Does not change URDF, "
+            "collision, mass, inertia, joints, or sensors."
+        ),
+    )
+    parser.add_argument(
+        "--office-review-camera-side",
+        choices=("left", "right"),
+        default="left",
+        help="Side of the robot for the side-observer camera (left or right).",
+    )
+    parser.add_argument(
+        "--office-review-camera-lateral-distance",
+        type=float,
+        default=3.0,
+        help="Lateral offset of side-observer camera from robot heading (m).",
+    )
+    parser.add_argument(
+        "--office-review-camera-trailing-bias",
+        type=float,
+        default=1.5,
+        help="Distance behind robot for side-observer camera (m).",
+    )
+    parser.add_argument(
+        "--office-review-camera-height",
+        type=float,
+        default=2.0,
+        help="Height above ground for side-observer camera (m).",
+    )
+    parser.add_argument(
+        "--office-review-camera-focal-length-mm",
+        type=float,
+        default=18.14756,
+        help="Viewport focal length used only for the side-observer render (mm).",
+    )
+    parser.add_argument(
+        "--office-review-camera-look-ahead",
+        type=float,
+        default=1.0,
+        help="Look-at target distance ahead of robot heading (m).",
+    )
+    parser.add_argument(
+        "--office-review-camera-look-height-offset",
+        type=float,
+        default=0.15,
+        help="Look-at target height offset above robot root (m).",
+    )
+    parser.add_argument(
+        "--office-review-camera-smoothing-rate",
+        type=float,
+        default=4.0,
+        help="Exponential smoothing rate (1/s) for side-observer camera.",
+    )
+    parser.add_argument(
+        "--office-review-camera-max-eye-speed",
+        type=float,
+        default=8.0,
+        help="Maximum translation speed (m/s) for camera eye position.",
+    )
+    parser.add_argument(
+        "--office-review-camera-max-target-speed",
+        type=float,
+        default=8.0,
+        help="Maximum translation speed (m/s) for camera look-at target.",
+    )
+    parser.add_argument(
+        "--office-review-overview-distance",
+        type=float,
+        default=6.5,
+        help="Horizontal follow distance (m) for wide-overview camera.",
+    )
+    parser.add_argument(
+        "--office-review-overview-azimuth-offset-deg",
+        type=float,
+        default=35.0,
+        help="Azimuth angle offset (deg) relative to robot heading for overview camera.",
+    )
+    parser.add_argument(
+        "--office-review-overview-height",
+        type=float,
+        default=4.5,
+        help="Height above ground (m) for wide-overview camera.",
+    )
+    parser.add_argument(
+        "--office-review-overview-look-ahead",
+        type=float,
+        default=2.0,
+        help="Look-ahead distance (m) along robot heading for overview camera.",
+    )
+    parser.add_argument(
+        "--office-review-overview-look-height-offset",
+        type=float,
+        default=0.20,
+        help="Look-height offset (m) for overview camera.",
+    )
+    parser.add_argument(
+        "--office-review-overview-smoothing-rate",
+        type=float,
+        default=3.0,
+        help="Exponential smoothing rate (1/s) for overview camera.",
+    )
+    parser.add_argument(
+        "--office-review-overview-max-eye-speed",
+        type=float,
+        default=6.0,
+        help="Maximum translation speed (m/s) for overview eye.",
+    )
+    parser.add_argument(
+        "--office-review-overview-max-target-speed",
+        type=float,
+        default=6.0,
+        help="Maximum translation speed (m/s) for overview target.",
+    )
+    parser.add_argument(
+        "--office-review-lighting-profile",
+        choices=("default", "high_contrast"),
+        default="high_contrast",
+        help="Lighting preset for Office human review legibility.",
+    )
+    parser.add_argument(
+        "--office-review-dome-light-intensity",
+        type=float,
+        default=1000.0,
+        help="Dome light intensity for Office review.",
+    )
+    parser.add_argument(
+        "--office-review-exposure",
+        type=float,
+        default=0.0,
+        help="Camera exposure compensation for Office review.",
+    )
     parser.add_argument("--acceptance-config", type=Path)
     parser.add_argument("--contact-force-threshold", type=float, default=5.0)
     parser.add_argument("--collision-force-threshold", type=float, default=75.0)
@@ -4873,6 +6274,7 @@ def _parser() -> argparse.ArgumentParser:
 
 def main(argv=None) -> int:
     args = _parser().parse_args(argv)
+    args.mid360_pattern_table = None
     if not args.checkpoint.is_file():
         raise SystemExit(f"required immutable checkpoint is missing: {args.checkpoint}")
     if not (args.vendored_rsl_rl / "rsl_rl" / "env" / "vec_env.py").is_file():
@@ -4886,6 +6288,31 @@ def main(argv=None) -> int:
     if (args.robot_asset is None) != (args.canonical_robot_asset is None):
         raise SystemExit(
             "--robot-asset and --canonical-robot-asset must be supplied together"
+        )
+    if _official_mid360_enabled(args):
+        if not _sensor_rig_enabled(args):
+            raise SystemExit(
+                "livox_mid360 requires the pinned Lite3 MID-360 sensor-rig URDF"
+            )
+        if args.lidar_pattern_csv is None:
+            raise SystemExit("livox_mid360 requires --lidar-pattern-csv")
+        if abs(float(args.sensor_period) - 1.0 / MID360_SCAN_HZ) > 1.0e-9:
+            raise SystemExit("livox_mid360 requires a 0.1 s sensor period")
+        if abs(float(args.lidar_min_range) - MID360_MIN_RANGE_M) > 1.0e-9:
+            raise SystemExit("livox_mid360 requires the 0.1 m blind-zone filter")
+        if abs(float(args.lidar_max_range) - MID360_MAX_RANGE_M) > 1.0e-9:
+            raise SystemExit("livox_mid360 requires the conservative 40 m range")
+        try:
+            args.mid360_pattern_table = load_mid360_pattern(args.lidar_pattern_csv)
+        except Mid360PatternError as error:
+            raise SystemExit(f"invalid livox_mid360 pattern: {error}") from error
+        if args.mid360_pattern_table.points_per_scan != MID360_POINTS_PER_SCAN:
+            raise SystemExit(
+                "livox_mid360 pattern does not produce exactly 20,000 rays per scan"
+            )
+    elif args.lidar_pattern_csv is not None:
+        raise SystemExit(
+            "--lidar-pattern-csv is valid only with --lidar-pattern-mode livox_mid360"
         )
     if _sensor_rig_enabled(args):
         if args.task != DEFAULT_TASK:
@@ -4986,6 +6413,22 @@ def main(argv=None) -> int:
                 for index in range(2)
             ):
                 raise SystemExit(f"Office L0 {name} does not match the route preflight")
+        if not math.isfinite(args.office_pedestrian_turnaround_hold_seconds):
+            raise SystemExit("Office pedestrian turnaround hold must be finite")
+        if (
+            args.office_pedestrian_motion_mode != "single_pass"
+            and args.office_pedestrian_turnaround_hold_seconds <= 0.0
+        ):
+            raise SystemExit(
+                "ping-pong Office pedestrians require a positive turnaround hold"
+            )
+        if (
+            args.office_pedestrian_motion_mode != "single_pass"
+            and args.official_human_animation_mode != "phase_conditioned"
+        ):
+            raise SystemExit(
+                "ping-pong Office pedestrians require phase-conditioned animation"
+            )
     elif any(
         value is not None
         for value in (
@@ -4998,6 +6441,13 @@ def main(argv=None) -> int:
         )
     ):
         raise SystemExit("Office arguments are valid only for office_l0_static")
+    if not _office_crowd_enabled(args) and (
+        args.office_pedestrian_motion_mode != "single_pass"
+        or args.office_pedestrian_turnaround_hold_seconds != 0.0
+    ):
+        raise SystemExit(
+            "Office pedestrian motion arguments are valid only for office_l0_crowd"
+        )
     if _forest_navigation_enabled(args):
         if (
             not math.isfinite(args.terrain_filter_cell_size)
@@ -5047,6 +6497,88 @@ def main(argv=None) -> int:
         raise SystemExit(
             "--official-human-animation-mode is valid only for the official-human course"
         )
+    if _office_review_presentation_enabled(args):
+        if not _office_enabled(args):
+            raise SystemExit("Office review presentation is valid only for Office L0 courses")
+        side_video_target = _office_review_side_video_path(args)
+        overview_video_target = _office_review_overview_video_path(args)
+        presentation_paths = {
+            "--video-path": args.video_path,
+            "--office-review-third-person-side-video-path": side_video_target,
+            "--office-review-overview-video-path": overview_video_target,
+            "--office-review-camera-trace-path": args.office_review_camera_trace_path,
+            "--office-review-material-audit-path": args.office_review_material_audit_path,
+            "--office-review-dashboard-video-path": args.office_review_dashboard_video_path,
+            "--office-review-dashboard-metadata-path": args.office_review_dashboard_metadata_path,
+            "--office-review-validation-report-path": args.office_review_validation_report_path,
+        }
+        for flag_name, path_val in presentation_paths.items():
+            if path_val is None:
+                raise SystemExit(f"Office review presentation requires {flag_name}")
+            p_str = str(path_val.resolve(strict=False)).lower()
+            if "candidate38" in p_str or "candidate39" in p_str:
+                raise SystemExit(f"Office review presentation output {flag_name}={path_val} cannot target immutable candidate38/39")
+            if os.path.lexists(path_val):
+                raise SystemExit(f"Office review presentation output {flag_name}={path_val} already exists")
+
+        review_inputs = {
+            "--office-review-effective-input-path": args.office_review_effective_input_path,
+            "--office-review-launcher-path": args.office_review_launcher_path,
+            "--acceptance-config": args.acceptance_config,
+            "--robot-asset": args.robot_asset,
+        }
+        for flag_name, path_val in review_inputs.items():
+            if path_val is None or not path_val.is_file() or path_val.is_symlink():
+                raise SystemExit(f"Office review presentation requires regular input {flag_name}")
+
+        # Verify all output paths are distinct
+        resolved = [p.resolve() for p in presentation_paths.values()]
+        if len(set(resolved)) != len(resolved):
+            raise SystemExit("Office review presentation output paths must all be distinct")
+        input_resolved = {path.resolve() for path in review_inputs.values()}
+        if any(path in input_resolved for path in resolved):
+            raise SystemExit("Office review presentation outputs must not alias mandatory inputs")
+        if args.video_fps < 25:
+            raise SystemExit("Office review presentation requires --video-fps >= 25")
+        if args.office_review_lighting_profile == "high_contrast" and (
+            not math.isfinite(args.office_review_dome_light_intensity)
+            or not 100.0 <= args.office_review_dome_light_intensity <= 1200.0
+        ):
+            raise SystemExit("Office review dome-light intensity must be within [100, 1200]")
+        if not math.isfinite(args.office_review_exposure) or not -4.0 <= args.office_review_exposure <= 4.0:
+            raise SystemExit("Office review exposure must be within [-4, 4]")
+
+        # Validate side and overview camera configs
+        from .office_review_presentation import (
+            validate_overview_camera_config,
+            validate_side_camera_config,
+        )
+        try:
+            validate_side_camera_config({
+                "side": args.office_review_camera_side,
+                "lateral_distance_m": args.office_review_camera_lateral_distance,
+                "trailing_bias_m": args.office_review_camera_trailing_bias,
+                "height_m": args.office_review_camera_height,
+                "focal_length_mm": args.office_review_camera_focal_length_mm,
+                "look_ahead_m": args.office_review_camera_look_ahead,
+                "look_height_offset_m": args.office_review_camera_look_height_offset,
+                "smoothing_rate": args.office_review_camera_smoothing_rate,
+                "max_eye_speed_mps": args.office_review_camera_max_eye_speed,
+                "max_target_speed_mps": args.office_review_camera_max_target_speed,
+            })
+            validate_overview_camera_config({
+                "distance_m": args.office_review_overview_distance,
+                "azimuth_offset_deg": args.office_review_overview_azimuth_offset_deg,
+                "height_m": args.office_review_overview_height,
+                "look_ahead_m": args.office_review_overview_look_ahead,
+                "look_height_offset_m": args.office_review_overview_look_height_offset,
+                "smoothing_rate": args.office_review_overview_smoothing_rate,
+                "max_eye_speed_mps": args.office_review_overview_max_eye_speed,
+                "max_target_speed_mps": args.office_review_overview_max_target_speed,
+            })
+        except ValueError as err:
+            raise SystemExit(f"invalid Office review camera configuration: {err}") from err
+
     from isaaclab.app import AppLauncher
 
     launcher_kwargs = {

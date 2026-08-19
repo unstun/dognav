@@ -19,6 +19,8 @@ MAX_PAYLOAD_BYTES = 16 * 1024 * 1024
 MAX_POINT_COUNT = 1_000_000
 POINT_STRIDE_BYTES = 12
 POINT_FORMAT_XYZ_F32_BE = 1
+MAX_JOINT_COUNT = 64
+MAX_JOINT_NAME_BYTES = 255
 
 # magic, version, message type, flags, header bytes, payload bytes, sequence,
 # timestamp ns, reserved, payload crc32
@@ -27,6 +29,9 @@ HEADER_SIZE = HEADER_STRUCT.size
 SENSOR_PREFIX_STRUCT = struct.Struct("!14d32sIHBB")
 COMMAND_STRUCT = struct.Struct("!3f")
 STATUS_STRUCT = struct.Struct("!4fIIIII")
+JOINT_STATE_HEADER_STRUCT = struct.Struct("!HH")
+JOINT_NAME_LENGTH_STRUCT = struct.Struct("!B")
+JOINT_STATE_VALUE_STRUCT = struct.Struct("!2f")
 
 
 class MessageType(IntEnum):
@@ -34,6 +39,7 @@ class MessageType(IntEnum):
     STATUS_V1 = 2
     CMD_VEL_V1 = 3
     HEARTBEAT_V1 = 4
+    JOINT_STATE_V1 = 5
 
 
 class StatusFlag(IntEnum):
@@ -107,6 +113,13 @@ class SensorFrameV1:
     config_sha256: bytes
     point_count: int
     points_xyz_f32_be: bytes
+
+
+@dataclass(frozen=True)
+class JointStateV1:
+    names: Tuple[str, ...]
+    positions: Tuple[float, ...]
+    velocities: Tuple[float, ...]
 
 
 @dataclass(frozen=True)
@@ -397,6 +410,90 @@ def decode_sensor_payload(payload: bytes) -> SensorFrameV1:
         point_count=point_count,
         points_xyz_f32_be=point_bytes,
     )
+
+
+def _checked_joint_state(joints: JointStateV1):
+    names = tuple(joints.names)
+    positions = _require_finite("joint positions", joints.positions)
+    velocities = _require_finite("joint velocities", joints.velocities)
+    if not names or len(names) > MAX_JOINT_COUNT:
+        raise ProtocolError(
+            "joint state count must be within [1, {}]".format(MAX_JOINT_COUNT)
+        )
+    if len(positions) != len(names) or len(velocities) != len(names):
+        raise ProtocolError("joint names, positions, and velocities must have equal length")
+    encoded_names = []
+    for name in names:
+        if not isinstance(name, str) or not name or "\x00" in name:
+            raise ProtocolError("joint names must be non-empty strings without NUL")
+        encoded = name.encode("utf-8")
+        if len(encoded) > MAX_JOINT_NAME_BYTES:
+            raise ProtocolError("joint name exceeds encoded byte limit")
+        encoded_names.append(encoded)
+    if len(set(names)) != len(names):
+        raise ProtocolError("joint names must be unique")
+    return names, positions, velocities, tuple(encoded_names)
+
+
+def encode_joint_state_payload(joints: JointStateV1) -> bytes:
+    """Encode named measured joint positions and velocities for RViz/TF."""
+
+    names, positions, velocities, encoded_names = _checked_joint_state(joints)
+    chunks = [JOINT_STATE_HEADER_STRUCT.pack(len(names), 0)]
+    for encoded_name, position, velocity in zip(
+        encoded_names, positions, velocities
+    ):
+        chunks.append(JOINT_NAME_LENGTH_STRUCT.pack(len(encoded_name)))
+        chunks.append(encoded_name)
+        chunks.append(JOINT_STATE_VALUE_STRUCT.pack(position, velocity))
+    payload = b"".join(chunks)
+    if len(payload) > MAX_PAYLOAD_BYTES:
+        raise ProtocolError("joint state payload exceeds v1 limit")
+    return payload
+
+
+def decode_joint_state_payload(payload: bytes) -> JointStateV1:
+    """Decode one complete named joint-state payload and reject trailing bytes."""
+
+    if len(payload) < JOINT_STATE_HEADER_STRUCT.size:
+        raise ProtocolError("truncated joint state payload")
+    joint_count, reserved = JOINT_STATE_HEADER_STRUCT.unpack(
+        payload[: JOINT_STATE_HEADER_STRUCT.size]
+    )
+    if reserved != 0:
+        raise ProtocolError("reserved joint state field must be zero")
+    if joint_count == 0 or joint_count > MAX_JOINT_COUNT:
+        raise ProtocolError("joint state count is outside the supported range")
+    offset = JOINT_STATE_HEADER_STRUCT.size
+    names = []
+    positions = []
+    velocities = []
+    for _ in range(joint_count):
+        if offset + JOINT_NAME_LENGTH_STRUCT.size > len(payload):
+            raise ProtocolError("truncated joint name length")
+        (name_length,) = JOINT_NAME_LENGTH_STRUCT.unpack_from(payload, offset)
+        offset += JOINT_NAME_LENGTH_STRUCT.size
+        value_end = offset + name_length + JOINT_STATE_VALUE_STRUCT.size
+        if name_length == 0 or value_end > len(payload):
+            raise ProtocolError("truncated or empty joint state record")
+        name_bytes = payload[offset : offset + name_length]
+        offset += name_length
+        try:
+            name = name_bytes.decode("utf-8")
+        except UnicodeDecodeError as error:
+            raise ProtocolError("joint name is not valid UTF-8") from error
+        position, velocity = JOINT_STATE_VALUE_STRUCT.unpack_from(payload, offset)
+        offset += JOINT_STATE_VALUE_STRUCT.size
+        names.append(name)
+        positions.append(position)
+        velocities.append(velocity)
+    if offset != len(payload):
+        raise ProtocolError("joint state payload contains trailing bytes")
+    joints = JointStateV1(tuple(names), tuple(positions), tuple(velocities))
+    checked_names, checked_positions, checked_velocities, _ = _checked_joint_state(
+        joints
+    )
+    return JointStateV1(checked_names, checked_positions, checked_velocities)
 
 
 def encode_command_payload(command: CommandV1) -> bytes:

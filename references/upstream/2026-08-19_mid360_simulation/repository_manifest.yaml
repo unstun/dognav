@@ -1,0 +1,59 @@
+schema_version: 1
+topic: livox-mid360-simulation-pattern
+acquired_at: "2026-08-19"
+canonical_url: https://github.com/Livox-SDK/livox_laser_simulation
+branch: main
+commit: 1cce1073633a062b92e30243a4c2920e45551bb5
+source_tree:
+  path: source/livox_laser_simulation
+  file_count: 35
+  git_status: clean_detached_head
+  normalized_digest_method: "find . -type f -not -path './.git/*' -print0 | sort -z | xargs -0 shasum -a 256 | shasum -a 256"
+  normalized_sha256: 61ed0d5acabd84e92f89260fc084a8154dbe28543ed25058307332b74adf545e
+acquisition_route:
+  method: git_clone_then_detached_checkout
+  command: "git clone https://github.com/Livox-SDK/livox_laser_simulation.git && git checkout 1cce1073633a062b92e30243a4c2920e45551bb5"
+license:
+  repository_spdx: MIT
+  license_path: source/livox_laser_simulation/LICENSE
+  license_sha256: 4846843fe86275ad7a08915992fe69019608aebb783b3fb84e35a68d4611ad26
+upstream_environment:
+  os: Ubuntu 18.04
+  ros_distribution: Melodic
+  simulator: Gazebo 9
+original_commands:
+  build: "catkin_make"
+  launch: "roslaunch livox_laser_simulation livox_simulation.launch"
+selected_inputs:
+  - path: source/livox_laser_simulation/scan_mode/mid360.csv
+    sha256: aa1fc08b6a4400608dbd6ee832b7ea3a9c3c37197e734f60f58fe5abf762269a
+    size_bytes: 16809997
+    rows_excluding_header: 800000
+    use: ordered_azimuth_zenith_pattern
+  - path: source/livox_laser_simulation/src/livox_points_plugin.cpp
+    use: coordinate_conversion_and_ordering_reference
+  - path: source/livox_laser_simulation/urdf/livox_mid360.xacro
+    sha256: 983ec402fae8c8b2bdc600de097432fe13555f9b18e7812a4b91bd486318d404
+    use: update_rate_and_simulator_noise_reference_only
+  - path: source/livox_laser_simulation/README.md
+    sha256: 1cc507282af3580ebce59b1c65951742c719d93109200a41adf1b17c1bc4da8f
+    use: upstream_run_and_parameter_boundary
+integration:
+  local_module: integration/lite3_sim_bridge/lite3_sim_bridge/mid360_pattern.py
+  mode: opt_in_livox_mid360
+  copied_upstream_source_code: false
+  runtime_pattern_file: source/livox_laser_simulation/scan_mode/mid360.csv
+  physical_contract_source: https://www.livoxtech.com/cn/mid-360/specs
+  minimum_range_m: 0.1
+  conservative_maximum_range_m: 40.0
+  scan_hz: 10
+  points_per_second: 200000
+  rays_per_scan: 20000
+reproduction_status: upstream_gazebo_not_run
+evidence_status: acquired_inspected_and_isaac_preflight_checks_passed
+claim_boundary: >-
+  The repository and exact MID-360 pattern are pinned and inspected. The
+  original Gazebo demo has not been reproduced. The local source-backed
+  geometric implementation passed a sensor qualification and a new five-second
+  Office plus SCAN integration preflight. This is not a complete navigation run,
+  a formal candidate, or human AC55 evidence.

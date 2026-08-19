@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "protocol_version": "office-change-control-v1",
+  "experiment_id": "office-l0-scan-crowd",
+  "updated_at": "2026-08-19",
+  "source_of_truth": ".pipeline/experiments/2026-08-17_office_l0_scan_crowd",
+  "version_format": "office-rMAJOR.MINOR.PATCH[-qualifier]",
+  "accepted_revision": null,
+  "formal_candidate": null,
+  "human_gate": {
+    "gate": "AC55",
+    "owner": "Dr Sun",
+    "status": "pending"
+  },
+  "current_working_revision": {
+    "revision": "office-r2.0.0-preflight",
+    "normalization_baseline": true,
+    "parent_revision": null,
+    "status": "human_preflight_review_pending",
+    "source_commit": "c17e9da0f8ef658f8f19e1448f32235a842c6c67",
+    "source_commit_state": "detached_dirty_uncommitted",
+    "change_group": "Normalization snapshot of accumulated Office R2 work; all later revisions must declare exactly one change group.",
+    "claim_boundary": "Working visual preflight revision only; not a frozen source release, formal candidate, AC54 rerun, or AC55 decision.",
+    "component_contracts": {
+      "presentation": {
+        "version": "office-dualview-v1.0.0",
+        "status": "user_selected_frozen_template",
+        "contract": "High external third-person at left plus simulator-time-synchronized native 5070 Ti RViz at right, 1920 x 1080 per panel."
+      },
+      "lidar": {
+        "version": "livox-mid360-geometric-v1.0.0",
+        "status": "source_and_runtime_smoke_checks_passed",
+        "contract": "Pinned ordered Livox MID-360 pattern, 0.1-40 m, 10 Hz, 20000 rays per scan, same-step sensor/body/cloud stamp."
+      },
+      "pedestrians": {
+        "version": "office-safe-mixed-motion-v1.0.0",
+        "status": "full_preflight_checks_passed",
+        "contract": "Two crossing actors single-pass; six background actors ping-pong with 0.6 s idle turns and phase-conditioned animation."
+      },
+      "navigation_acceptance": {
+        "version": "candidate38-candidate39-ac54-baseline",
+        "status": "historical_automated_baseline_not_reusable_for_mid360",
+        "contract": "Candidate38 and candidate39 retain AC54 PASS under their original immutable inputs; MID-360 requires fresh automated runs."
+      }
+    },
+    "frozen_invariants": [
+      "candidate38 and candidate39 evidence is immutable",
+      "Lite3 policy and pinned robot asset are unchanged",
+      "SCAN planning behavior, Office route endpoints, and frozen thresholds are unchanged",
+      "AC55 remains human-owned and unchecked"
+    ]
+  },
+  "automated_baseline_runs": [
+    {
+      "run_id": "office_crowd_codex_candidate38",
+      "status": "AC54_PASS_AC55_PENDING",
+      "immutable": true,
+      "details": "REPORT.md#candidate-38"
+    },
+    {
+      "run_id": "office_crowd_codex_candidate39",
+      "status": "AC54_PASS_AC55_PENDING",
+      "immutable": true,
+      "details": "REPORT.md#candidate-39"
+    }
+  ],
+  "runs": [
+    {
+      "run_id": "office_crowd_mid360_dualview_preflight01",
+      "revision": "pre-normalization-unversioned",
+      "legacy_unversioned": true,
+      "stage": "preflight",
+      "status": "failed",
+      "immutable": true,
+      "location": "remote execution copy",
+      "result": "The 10-second entity recordings completed, but the full-duration pedestrian fraction gate was incorrectly applied and failed before composition. The run remains preserved."
+    },
+    {
+      "run_id": "office_crowd_mid360_dualview_preflight02",
+      "revision": "office-r2.0.0-preflight",
+      "stage": "preflight",
+      "status": "human_preflight_review_pending",
+      "immutable": true,
+      "duration_seconds": 10.04,
+      "full_route": false,
+      "formal_evidence": false,
+      "automated_results": {
+        "combined_video": "PASS",
+        "native_rviz_live_audit": "PASS",
+        "short_motion_coherence": "PASS",
+        "terminal_goal_stop": "SKIPPED",
+        "full_duration_motion_fraction": "NOT_GATED"
+      },
+      "claim_boundary": "Short golden dual-view MID-360 visual preflight only; no goal arrival, complete terminal stop, formal AC54 rerun, or AC55 decision.",
+      "evidence": [
+        {
+          "path": "results/office_crowd_mid360_dualview_preflight02/office_review_third_person_rviz_4k.mp4",
+          "sha256": "30a4d63712dce4a3bcf5e465acb8df739805665471d0b10af2fac56d21b6f87c"
+        },
+        {
+          "path": "results/office_crowd_mid360_dualview_preflight02/office_review_third_person_rviz_4k_validation.json",
+          "sha256": "50283288fe514debc8268f20fb4cdff275b424b9279a24aba5a063f7988d113e"
+        },
+        {
+          "path": "results/office_crowd_mid360_dualview_preflight02/native_rviz_review_audit.json",
+          "sha256": "963ea279ed0edfe7d5134781f74e95c5067f29aebb435b96000dd7b4f7a08347"
+        },
+        {
+          "path": "results/office_crowd_mid360_dualview_preflight02/office_pedestrian_motion_audit.json",
+          "sha256": "d218ebd89b444e906aaf34c2a7602f1ca95a37eb7818d73eb4bb6f240d33aab3"
+        },
+        {
+          "path": "results/office_crowd_mid360_dualview_preflight02/office_review_terminal_validation.json",
+          "sha256": "291ee9890f515002700786610b2b8619ec747c6fceeff38dff35dddb03bb248c"
+        },
+        {
+          "path": "results/office_crowd_mid360_dualview_preflight02/isaac/run_identity.json",
+          "sha256": "d19ea46972279521ef4163d0b48ad252eae5791a99a40b5254b625e9d13ff0be"
+        }
+      ]
+    }
+  ],
+  "next_action": {
+    "action": "wait_for_dr_sun_visual_preflight_decision",
+    "full_run_authorized": false,
+    "formal_candidate_authorized": false,
+    "allowed_without_new_authorization": [
+      "read-only evidence inspection",
+      "version-ledger correction",
+      "local validation of already-owned changes"
+    ]
+  }
+}

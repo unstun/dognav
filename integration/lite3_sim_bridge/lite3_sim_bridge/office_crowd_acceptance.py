@@ -94,6 +94,58 @@ def _runtime_gate_metrics(
     }
 
 
+def _pedestrian_motion_fidelity(
+    metrics_rows: Sequence[Mapping[str, Any]],
+    moving_speed_threshold_mps: float = 0.05,
+) -> Dict[str, Any]:
+    """Measure whether visible walk clips agree with pedestrian root motion."""
+
+    samples = []
+    timeline_motion = []
+    names = set()
+    for row in metrics_rows:
+        row_moving = False
+        for pedestrian in row.get("office_pedestrians", []):
+            names.add(str(pedestrian.get("name", "")))
+            velocity = pedestrian.get("velocity_xy_mps", (0.0, 0.0))
+            speed = math.hypot(float(velocity[0]), float(velocity[1]))
+            moving = speed >= moving_speed_threshold_mps
+            walk_clip = pedestrian.get("animation", {}).get("clip") == "walk"
+            samples.append((moving, walk_clip))
+            row_moving = row_moving or moving
+        timeline_motion.append(row_moving)
+
+    sample_count = len(samples)
+    timeline_count = len(timeline_motion)
+    moving_count = sum(moving for moving, _ in samples)
+    walk_count = sum(walk for _, walk in samples)
+    in_place_walk_count = sum(
+        walk and not moving for moving, walk in samples
+    )
+    idle_while_moving_count = sum(
+        moving and not walk for moving, walk in samples
+    )
+
+    def fraction(count: int, total: int) -> float:
+        return 0.0 if total == 0 else count / total
+
+    return {
+        "sample_count": sample_count,
+        "timeline_sample_count": timeline_count,
+        "pedestrian_names": sorted(name for name in names if name),
+        "root_moving_fraction": fraction(moving_count, sample_count),
+        "walk_clip_fraction": fraction(walk_count, sample_count),
+        "in_place_walk_fraction": fraction(in_place_walk_count, sample_count),
+        "idle_while_moving_fraction": fraction(
+            idle_while_moving_count, sample_count
+        ),
+        "timeline_any_root_motion_fraction": fraction(
+            sum(timeline_motion), timeline_count
+        ),
+        "moving_speed_threshold_mps": moving_speed_threshold_mps,
+    }
+
+
 def probe_video_stream(video_path: Path) -> Dict[str, Any]:
     """Inspect video file metadata using ffprobe."""
     if not video_path.is_file():
@@ -755,11 +807,44 @@ def evaluate_office_acceptance(
     add("root_z_range", z_min >= z_range_expected[0] and z_max <= z_range_expected[1], {"min_z": z_min, "max_z": z_max}, {"expected_range": z_range_expected})
 
     # 5. Pairwise pedestrian precheck
-    routes = routes_from_preflight(preflight_payload)
+    office_identity = run_identity.get("office_crowd", {})
+    pedestrian_motion_mode = str(
+        office_identity.get("pedestrian_motion_mode", "single_pass")
+    )
+    pedestrian_turnaround_hold_s = float(
+        office_identity.get("pedestrian_turnaround_hold_s", 0.0)
+    )
+    routes = routes_from_preflight(
+        preflight_payload,
+        motion_mode=pedestrian_motion_mode,
+        turnaround_hold_s=pedestrian_turnaround_hold_s,
+    )
     pair_check = pairwise_clearance_precheck(routes, duration_s=float(metrics_rows[-1]["sim_time_seconds"]))
     min_pair_clearance = float(pair_check["minimum_surface_clearance_m"])
     min_pair_limit = float(limits.get("minimum_pairwise_pedestrian_clearance_m", limits.get("pedestrian_pairwise_clearance_m", 0.05)))
     add("pedestrian_pairwise_clearance", min_pair_clearance >= min_pair_limit, {"min_surface_clearance_m": min_pair_clearance}, {"minimum_required": min_pair_limit})
+
+    if pedestrian_motion_mode in ("background_ping_pong", "ping_pong"):
+        motion_fidelity = _pedestrian_motion_fidelity(metrics_rows)
+        motion_fidelity_passed = (
+            len(motion_fidelity["pedestrian_names"]) == 8
+            and motion_fidelity["root_moving_fraction"] >= 0.50
+            and motion_fidelity["timeline_any_root_motion_fraction"] >= 0.95
+            and motion_fidelity["in_place_walk_fraction"] <= 0.01
+            and motion_fidelity["idle_while_moving_fraction"] <= 0.01
+        )
+        add(
+            "pedestrian_motion_fidelity",
+            motion_fidelity_passed,
+            motion_fidelity,
+            {
+                "pedestrian_count": 8,
+                "minimum_root_moving_fraction": 0.50,
+                "minimum_timeline_any_root_motion_fraction": 0.95,
+                "maximum_in_place_walk_fraction": 0.01,
+                "maximum_idle_while_moving_fraction": 0.01,
+            },
+        )
 
     # 6. Conservative pedestrian clearance
     min_robot_person_clearance = math.inf

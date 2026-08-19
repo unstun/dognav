@@ -6,19 +6,22 @@ from typing import Optional
 
 import rclpy
 from builtin_interfaces.msg import Time
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import TransformStamped, Twist
 from nav_msgs.msg import Odometry
 from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
-from sensor_msgs.msg import PointCloud2, PointField
+from sensor_msgs.msg import JointState, PointCloud2, PointField
+from tf2_ros import TransformBroadcaster
 
 from .command_state import CommandLimits
 from .protocol import (
     CommandV1,
+    JointStateV1,
     MessageType,
     ProtocolError,
     SequenceTracker,
     decode_sensor_payload,
+    decode_joint_state_payload,
     decode_status_payload,
     xyz_f32_be_to_le,
 )
@@ -74,6 +77,9 @@ class FoxyBridgeNode(Node):
             "sensor_pose_topic", "/quad_0/lidar_pose"
         ).value
         cloud_topic = self.declare_parameter("cloud_topic", "/quad_0/cloud").value
+        joint_state_topic = self.declare_parameter(
+            "joint_state_topic", "/quad_0/joint_states"
+        ).value
         cmd_vel_topic = self.declare_parameter(
             "cmd_vel_topic", "/quad_0/cmd_vel"
         ).value
@@ -87,12 +93,17 @@ class FoxyBridgeNode(Node):
         self._cloud_publisher = self.create_publisher(
             PointCloud2, cloud_topic, qos_profile_sensor_data
         )
+        self._joint_state_publisher = self.create_publisher(
+            JointState, joint_state_topic, 20
+        )
+        self._transform_broadcaster = TransformBroadcaster(self)
         self._command_subscription = self.create_subscription(
             Twist, cmd_vel_topic, self._on_twist, 20
         )
 
         self._latest_lock = threading.Lock()
         self._latest_sensor = None
+        self._latest_joint_state = None  # type: Optional[tuple]
         self._latest_status = None
         self._latest_command = self.ZERO
         self._latest_command_monotonic_ns = None  # type: Optional[int]
@@ -157,6 +168,10 @@ class FoxyBridgeNode(Node):
                     decoded_status = decode_status_payload(frame.payload)
                     with self._latest_lock:
                         self._latest_status = (frame.header, decoded_status)
+                elif frame.header.message_type == MessageType.JOINT_STATE_V1:
+                    decoded_joints = decode_joint_state_payload(frame.payload)
+                    with self._latest_lock:
+                        self._latest_joint_state = (frame.header, decoded_joints)
                 elif frame.header.message_type != MessageType.HEARTBEAT_V1:
                     raise ProtocolError("unexpected telemetry message type")
             except (EOFError, OSError, ProtocolError) as error:
@@ -208,6 +223,8 @@ class FoxyBridgeNode(Node):
             self._latest_sensor = None
             latest_status = self._latest_status
             self._latest_status = None
+            latest_joint_state = self._latest_joint_state
+            self._latest_joint_state = None
         if latest_sensor is not None:
             header, sensor = latest_sensor
             stamp = _time_message(header.timestamp_ns)
@@ -219,8 +236,15 @@ class FoxyBridgeNode(Node):
                     sensor.body_quaternion_xyzw,
                 )
             )
-            self._sensor_pose_publisher.publish(
-                self._odometry_message(
+            sensor_odometry = self._odometry_message(
+                stamp,
+                self._sensor_frame,
+                sensor.sensor_position,
+                sensor.sensor_quaternion_xyzw,
+            )
+            self._sensor_pose_publisher.publish(sensor_odometry)
+            self._transform_broadcaster.sendTransform(
+                self._transform_message(
                     stamp,
                     self._sensor_frame,
                     sensor.sensor_position,
@@ -228,6 +252,11 @@ class FoxyBridgeNode(Node):
                 )
             )
             self._cloud_publisher.publish(self._cloud_message(stamp, sensor))
+        if latest_joint_state is not None:
+            header, joints = latest_joint_state
+            self._joint_state_publisher.publish(
+                self._joint_state_message(_time_message(header.timestamp_ns), joints)
+            )
         if latest_status is not None:
             _, status = latest_status
             if status.flags:
@@ -252,6 +281,20 @@ class FoxyBridgeNode(Node):
         message.pose.pose.orientation.w = quaternion[3]
         return message
 
+    def _transform_message(self, stamp, child_frame, position, quaternion):
+        message = TransformStamped()
+        message.header.stamp = stamp
+        message.header.frame_id = self._world_frame
+        message.child_frame_id = child_frame
+        message.transform.translation.x = position[0]
+        message.transform.translation.y = position[1]
+        message.transform.translation.z = position[2]
+        message.transform.rotation.x = quaternion[0]
+        message.transform.rotation.y = quaternion[1]
+        message.transform.rotation.z = quaternion[2]
+        message.transform.rotation.w = quaternion[3]
+        return message
+
     def _cloud_message(self, stamp, sensor):
         message = PointCloud2()
         message.header.stamp = stamp
@@ -270,6 +313,15 @@ class FoxyBridgeNode(Node):
         message.row_step = sensor.point_count * 12
         message.data = xyz_f32_be_to_le(sensor.points_xyz_f32_be)
         message.is_dense = True
+        return message
+
+    @staticmethod
+    def _joint_state_message(stamp, joints: JointStateV1) -> JointState:
+        message = JointState()
+        message.header.stamp = stamp
+        message.name = list(joints.names)
+        message.position = list(joints.positions)
+        message.velocity = list(joints.velocities)
         return message
 
     def destroy_node(self):

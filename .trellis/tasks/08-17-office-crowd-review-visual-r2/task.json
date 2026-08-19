@@ -1,0 +1,33 @@
+{
+  "id": "office-crowd-review-visual-r2",
+  "name": "office-crowd-review-visual-r2",
+  "title": "Revise Office Crowd Human-Review Visualization",
+  "description": "Create a new immutable Office L0 crowd review candidate with corrected Lite3 appearance, the preserved current video view plus a synchronized external side-observer camera, and truthful 3D planned-versus-actual trajectory evidence; Gemini executes only after Dr Sun approves the final plan, and Codex independently verifies the result.",
+  "status": "in_progress",
+  "dev_type": null,
+  "scope": "office-crowd-review-visual-r2",
+  "package": null,
+  "priority": "P2",
+  "creator": "sun",
+  "assignee": "sun",
+  "createdAt": "2026-08-17",
+  "completedAt": null,
+  "branch": "codex/scan-foxy-isaac",
+  "base_branch": "main",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [],
+  "parent": "07-23-scan-planner-reproduction",
+  "relatedFiles": [],
+  "notes": "",
+  "meta": {
+    "human_gate": "AC55_pending_Dr_Sun",
+    "immutable_inputs": "candidate38_candidate39",
+    "third_view": "smooth_external_side_follow",
+    "mid360_gate": "AC14_pass_short_preflight_only",
+    "execution_owner": "external_Antigravity_Gemini_then_Codex_inline_repair",
+    "verifier": "Codex_then_Dr_Sun"
+  }
+}

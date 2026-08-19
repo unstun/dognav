@@ -17,12 +17,14 @@ import numpy as np
 
 RAW_VOXEL_COLOR_BGR = (210, 225, 235)
 INFLATED_VOXEL_COLOR_BGR = (50, 80, 245)
+LIVE_CLOUD_COLOR_BGR = (255, 190, 40)
 PLAN_COLOR_BGR = (80, 220, 80)
 ACTUAL_COLOR_BGR = (255, 220, 40)
 GOAL_COLOR_BGR = (210, 80, 230)
 BOUND_COLOR_BGR = (230, 180, 60)
-RAW_DISPLAY_POINT_LIMIT = 12_000
+RAW_DISPLAY_POINT_LIMIT = 50_000
 INFLATED_DISPLAY_POINT_LIMIT = 30_000
+LIVE_DISPLAY_POINT_LIMIT = 18_000
 
 
 def _stamp_ns(message) -> int:
@@ -79,6 +81,35 @@ def pointcloud2_xyz(message) -> np.ndarray:
         rows.append(np.column_stack((row["x"], row["y"], row["z"])))
     points = np.concatenate(rows, axis=0).astype(np.float32, copy=False)
     return points[np.isfinite(points).all(axis=1)]
+
+
+def transform_sensor_points(
+    points: np.ndarray, position: np.ndarray, quaternion_xyzw: np.ndarray
+) -> np.ndarray:
+    """Transform an XYZ sensor-frame cloud into the shared world frame."""
+
+    points = np.asarray(points, dtype=np.float32)
+    position = np.asarray(position, dtype=np.float64)
+    quaternion = np.asarray(quaternion_xyzw, dtype=np.float64)
+    if points.ndim != 2 or points.shape[1:] != (3,):
+        raise ValueError("sensor points must be finite Nx3 values")
+    if position.shape != (3,) or quaternion.shape != (4,):
+        raise ValueError("sensor pose must contain XYZ and XYZW values")
+    if not np.isfinite(points).all() or not np.isfinite(position).all() or not np.isfinite(quaternion).all():
+        raise ValueError("sensor cloud transform inputs must be finite")
+    norm = float(np.linalg.norm(quaternion))
+    if norm <= 1.0e-9:
+        raise ValueError("sensor quaternion norm must be positive")
+    x, y, z, w = quaternion / norm
+    rotation = np.asarray(
+        [
+            [1.0 - 2.0 * (y * y + z * z), 2.0 * (x * y - z * w), 2.0 * (x * z + y * w)],
+            [2.0 * (x * y + z * w), 1.0 - 2.0 * (x * x + z * z), 2.0 * (y * z - x * w)],
+            [2.0 * (x * z - y * w), 2.0 * (y * z + x * w), 1.0 - 2.0 * (x * x + y * y)],
+        ],
+        dtype=np.float64,
+    )
+    return (points.astype(np.float64) @ rotation.T + position).astype(np.float32)
 
 
 def _sha256(path: Path) -> str:
@@ -300,7 +331,6 @@ def render_voxel_review(
     output_path.parent.mkdir(parents=True, exist_ok=True)
     if output_path.exists() or sidecar_path.exists():
         raise FileExistsError("voxel review output already exists")
-    temporary = output_path.with_name(output_path.stem + ".mp4v.tmp.mp4")
     source_stamps = [int(record["body_stamp_ns"]) for record in records]
     if any(left >= right for left, right in zip(source_stamps, source_stamps[1:])):
         raise ValueError("voxel snapshot simulator stamps must increase strictly")
@@ -326,11 +356,26 @@ def render_voxel_review(
     from matplotlib.figure import Figure
     from matplotlib.lines import Line2D
 
-    writer = cv2.VideoWriter(
-        str(temporary), cv2.VideoWriter_fourcc(*"mp4v"), fps, (width, height)
+    ffmpeg = shutil.which("ffmpeg")
+    if ffmpeg is None:
+        raise RuntimeError("ffmpeg is required for native SCAN voxel review encoding")
+    encoder = subprocess.Popen(
+        [
+            ffmpeg,
+            "-hide_banner", "-loglevel", "error", "-n",
+            "-f", "rawvideo", "-vcodec", "rawvideo",
+            "-s", f"{width}x{height}", "-pix_fmt", "bgr24",
+            "-r", str(float(fps)), "-i", "-", "-an",
+            "-c:v", "libx264", "-profile:v", "high",
+            "-preset", "medium", "-crf", "16", "-pix_fmt", "yuv420p",
+            "-color_range", "tv", "-color_primaries", "bt709",
+            "-color_trc", "bt709", "-colorspace", "bt709",
+            "-bsf:v", "h264_metadata=colour_primaries=1:transfer_characteristics=1:matrix_coefficients=1",
+            "-movflags", "+faststart", str(output_path),
+        ],
+        stdin=subprocess.PIPE,
+        stderr=subprocess.PIPE,
     )
-    if not writer.isOpened():
-        raise RuntimeError("OpenCV could not open the voxel video writer")
 
     background_rgb = (24 / 255.0, 29 / 255.0, 34 / 255.0)
     figure = Figure(
@@ -353,7 +398,7 @@ def render_voxel_review(
     figure.text(
         0.025,
         0.915,
-        "True 3D coordinates | perspective camera orbit | Z scale 1:1 | no scene-truth voxels",
+        "Live LiDAR + complete SCAN local fused occupancy (not global SLAM) + inflated collision voxels | XYZ scale 1:1",
         color=(0.75, 0.80, 0.84),
         fontsize=8.5,
         va="top",
@@ -370,10 +415,19 @@ def render_voxel_review(
         Line2D(
             [0],
             [0],
+            marker=".",
+            linestyle="",
+            color=_rgb(LIVE_CLOUD_COLOR_BGR),
+            label="live LiDAR scan",
+            markersize=5,
+        ),
+        Line2D(
+            [0],
+            [0],
             marker="s",
             linestyle="",
             color=_rgb(RAW_VOXEL_COLOR_BGR),
-            label="raw occupied voxel centres",
+            label="complete local fused occupancy",
             markersize=6,
         ),
         Line2D(
@@ -402,7 +456,7 @@ def render_voxel_review(
         handles=legend_handles,
         loc="lower center",
         bbox_to_anchor=(0.5, 0.012),
-        ncol=5,
+        ncol=6,
         frameon=False,
         labelcolor=(0.88, 0.90, 0.92),
         fontsize=7.5,
@@ -421,6 +475,12 @@ def render_voxel_review(
             if source_index != cached_source_index:
                 with np.load(snapshot_path, allow_pickle=False) as snapshot:
                     cached_snapshot = {
+                        "live": np.asarray(
+                            snapshot["live_points"]
+                            if "live_points" in snapshot
+                            else np.empty((0, 3), dtype=np.float32),
+                            dtype=np.float32,
+                        ),
                         "raw": np.asarray(snapshot["raw_points"], dtype=np.float32),
                         "inflated": np.asarray(
                             snapshot["inflated_points"], dtype=np.float32
@@ -432,6 +492,7 @@ def render_voxel_review(
                         "trajectory_id": int(snapshot["trajectory_id"]),
                     }
                 cached_source_index = source_index
+            live = cached_snapshot["live"]
             raw = cached_snapshot["raw"]
             inflated = cached_snapshot["inflated"]
             body = cached_snapshot["body"]
@@ -441,6 +502,8 @@ def render_voxel_review(
             trajectory_id = cached_snapshot["trajectory_id"]
             if raw.ndim != 2 or raw.shape[1:] != (3,) or len(raw) == 0:
                 raise ValueError("raw voxel snapshot is empty or malformed")
+            if live.ndim != 2 or live.shape[1:] != (3,):
+                raise ValueError("live sensor cloud snapshot is malformed")
             if inflated.ndim != 2 or inflated.shape[1:] != (3,) or len(inflated) == 0:
                 raise ValueError("inflated voxel snapshot is empty or malformed")
             if plan.ndim != 2 or plan.shape[1:] != (3,):
@@ -449,16 +512,18 @@ def render_voxel_review(
                 record["inflated_point_count"]
             ) != len(inflated):
                 raise ValueError("voxel metadata point counts do not match snapshot")
+            if "live_point_count" in record and int(record["live_point_count"]) != len(live):
+                raise ValueError("live cloud metadata point count does not match snapshot")
+            if len(live) > LIVE_DISPLAY_POINT_LIMIT:
+                raise ValueError("live cloud exceeds the complete-display point limit")
+            if len(raw) > RAW_DISPLAY_POINT_LIMIT:
+                raise ValueError("local fused occupancy exceeds the complete-display point limit")
             if trajectory_id >= 0:
                 trajectory_ids.add(trajectory_id)
             bounds = _plan_bounds(bbox, raw, body)
             elapsed = (target_stamps[frame_index] - first_stamp_ns) / 1.0e9
-            orbit_fraction = (
-                elapsed / source_duration_seconds
-                if source_duration_seconds > 1.0e-9
-                else 0.0
-            )
             min_x, min_y, min_z, max_x, max_y, max_z = bounds
+            live_display = _display_sample(live, LIVE_DISPLAY_POINT_LIMIT)
             raw_display = _display_sample(raw, RAW_DISPLAY_POINT_LIMIT)
             inflated_display = _display_sample(
                 inflated, INFLATED_DISPLAY_POINT_LIMIT
@@ -469,7 +534,7 @@ def render_voxel_review(
             axis.computed_zorder = False
             axis.set_facecolor(background_rgb)
             axis.set_proj_type("persp", focal_length=0.9)
-            axis.view_init(elev=28.0, azim=-70.0 + 180.0 * orbit_fraction)
+            axis.view_init(elev=30.0, azim=-62.0)
             axis.scatter(
                 inflated_display[:, 0],
                 inflated_display[:, 1],
@@ -482,12 +547,25 @@ def render_voxel_review(
                 depthshade=False,
                 zorder=1,
             )
+            if len(live_display):
+                axis.scatter(
+                    live_display[:, 0],
+                    live_display[:, 1],
+                    live_display[:, 2],
+                    marker=".",
+                    s=2.2,
+                    c=[_rgb(LIVE_CLOUD_COLOR_BGR)],
+                    alpha=0.75,
+                    linewidths=0.0,
+                    depthshade=True,
+                    zorder=3,
+                )
             axis.scatter(
                 raw_display[:, 0],
                 raw_display[:, 1],
                 raw_display[:, 2],
                 marker="s",
-                s=7.0,
+                s=2.5,
                 c=[_rgb(RAW_VOXEL_COLOR_BGR)],
                 alpha=0.94,
                 linewidths=0.0,
@@ -566,7 +644,7 @@ def render_voxel_review(
             axis.tick_params(colors=(0.72, 0.76, 0.80), labelsize=6, pad=0)
             axis.grid(True, color=(0.35, 0.39, 0.43), alpha=0.45)
             axis.set_title(
-                f"3D voxel space — camera azimuth {-70.0 + 180.0 * orbit_fraction:5.1f}°",
+                "RViz-style fixed 3D frame — live scan / fused map / collision inflation",
                 color=(0.88, 0.91, 0.94),
                 fontsize=10,
                 pad=4,
@@ -583,6 +661,16 @@ def render_voxel_review(
                 alpha=0.18,
                 linewidths=0.0,
             )
+            if len(live_display):
+                inset.scatter(
+                    live_display[:, 0],
+                    live_display[:, 1],
+                    marker=".",
+                    s=0.5,
+                    c=[_rgb(LIVE_CLOUD_COLOR_BGR)],
+                    alpha=0.65,
+                    linewidths=0.0,
+                )
             inset.scatter(
                 raw_display[:, 0],
                 raw_display[:, 1],
@@ -632,10 +720,10 @@ def render_voxel_review(
             for spine in inset.spines.values():
                 spine.set_edgecolor((0.35, 0.40, 0.45))
 
-            header.set_text("Native SCAN XYZ voxel map")
+            header.set_text("Native SCAN 3D navigation view")
             status_text.set_text(
-                f"t={elapsed:5.2f}s | source raw={len(raw)} inflated={len(inflated)} | "
-                f"display raw={len(raw_display)} inflated={len(inflated_display)} | "
+                f"t={elapsed:5.2f}s | live scan(all)={len(live)} | local fused(all)={len(raw)} | "
+                f"inflated={len(inflated)} | "
                 f"SCAN trajectory={trajectory_id if trajectory_id >= 0 else 'pending'}"
             )
             canvas.draw()
@@ -643,54 +731,46 @@ def render_voxel_review(
             frame = cv2.cvtColor(rgba[:, :, :3], cv2.COLOR_RGB2BGR)
             if frame.shape[:2] != (height, width):
                 raise RuntimeError("matplotlib rendered an unexpected voxel frame size")
-            writer.write(frame)
+            if encoder.stdin is None:
+                raise RuntimeError("native SCAN voxel encoder stdin is unavailable")
+            encoder.stdin.write(np.ascontiguousarray(frame).tobytes())
     finally:
-        writer.release()
-
-    ffmpeg = shutil.which("ffmpeg")
-    codec = "mp4v"
-    if ffmpeg:
-        subprocess.run(
-            [
-                ffmpeg,
-                "-y",
-                "-loglevel",
-                "error",
-                "-i",
-                str(temporary),
-                "-c:v",
-                "libx264",
-                "-pix_fmt",
-                "yuv420p",
-                str(output_path),
-            ],
-            check=True,
+        if encoder.stdin is not None and not encoder.stdin.closed:
+            encoder.stdin.close()
+        stderr = (
+            encoder.stderr.read().decode("utf-8", "replace")
+            if encoder.stderr is not None
+            else ""
         )
-        temporary.unlink()
-        codec = "h264"
-    else:
-        temporary.replace(output_path)
+        return_code = encoder.wait()
+    if return_code != 0:
+        raise RuntimeError(
+            f"native SCAN voxel encoder exited {return_code}: {stderr.strip()}"
+        )
     metadata = {
-        "schema_version": 2,
+        "schema_version": 3,
         "claim_boundary": (
-            "true XYZ visualization of native SCAN occupancy topics; "
+            "true XYZ visualization of live LiDAR and native SCAN occupancy topics; "
             "deterministic display subsampling only; no scene-truth voxels"
         ),
         "render_geometry": {
             "spatial_dimensions": ["x", "y", "z"],
             "dimension_count": 3,
             "projection": "matplotlib_mplot3d_perspective",
-            "camera": "sliding-map-following 180-degree azimuth orbit",
+            "camera": "sliding-map-following fixed RViz-style isometric view",
             "vertical_scale": 1.0,
             "raw_display_point_limit": RAW_DISPLAY_POINT_LIMIT,
             "inflated_display_point_limit": INFLATED_DISPLAY_POINT_LIMIT,
-            "display_sampling": "deterministic evenly spaced source indices",
+            "live_display_point_limit": LIVE_DISPLAY_POINT_LIMIT,
+            "display_sampling": "live and raw local layers complete; deterministic inflation subsampling only",
             "xy_inset_role": "auxiliary planning correlation only",
         },
         "sources": {
             "topics": [
                 "/grid_map/occupancy",
                 "/grid_map/occupancy_inflate",
+                "/quad_0/cloud",
+                "/quad_0/lidar_pose",
                 "/grid_map/sliding_map_bbox",
                 "/quad_0/body_pose",
                 "/planning/bspline",
@@ -703,7 +783,7 @@ def render_voxel_review(
         "output": {
             "path": str(output_path),
             "sha256": _sha256(output_path),
-            "codec": codec,
+            "codec": "h264_high_crf16_bt709_direct",
             "frame_count": output_frame_count,
             "source_snapshot_count": len(records),
             "fps": fps,
@@ -721,6 +801,10 @@ def render_voxel_review(
             "minimum": min(int(row["inflated_point_count"]) for row in records),
             "maximum": max(int(row["inflated_point_count"]) for row in records),
         },
+        "live_point_count": {
+            "minimum": min(int(row.get("live_point_count", 0)) for row in records),
+            "maximum": max(int(row.get("live_point_count", 0)) for row in records),
+        },
     }
     sidecar_path.write_text(
         json.dumps(metadata, indent=2, sort_keys=True) + "\n", encoding="utf-8"
@@ -737,6 +821,8 @@ def main(argv=None) -> int:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--sidecar", type=Path, required=True)
     parser.add_argument("--fps", type=float, default=10.0)
+    parser.add_argument("--width", type=int, default=1280)
+    parser.add_argument("--height", type=int, default=720)
     args = parser.parse_args(argv)
     metadata = render_voxel_review(
         args.snapshot_dir,
@@ -746,6 +832,7 @@ def main(argv=None) -> int:
         args.output,
         args.sidecar,
         fps=args.fps,
+        frame_size=(args.width, args.height),
     )
     print(json.dumps({"status": "PASS", "output": metadata["output"]}))
     return 0

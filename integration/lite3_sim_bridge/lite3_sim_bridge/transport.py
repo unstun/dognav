@@ -144,6 +144,7 @@ class TelemetryPublisherServer:
             MessageType.SENSOR_FRAME_V1,
             MessageType.STATUS_V1,
             MessageType.HEARTBEAT_V1,
+            MessageType.JOINT_STATE_V1,
         ):
             raise ProtocolError("telemetry stream received a command frame")
         with self._connection_lock:
@@ -265,7 +266,11 @@ class CommandReceiverServer:
             except ProtocolError as error:
                 self._stats.record_protocol_error(error)
                 return
-            except (EOFError, OSError):
+            except (EOFError, OSError, ValueError):
+                # stop() closes the active socket from the owner thread.  A
+                # concurrent select() can then observe fileno() == -1 and
+                # raises ValueError instead of OSError; treat that close race
+                # exactly like EOF so shutdown cannot strand the outer run.
                 return
             updates = []
             try:

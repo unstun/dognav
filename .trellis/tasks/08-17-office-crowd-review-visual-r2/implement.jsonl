@@ -1,0 +1,7 @@
+{"file":".trellis/tasks/08-17-office-crowd-review-visual-r2/prd.md","reason":"Defines the approved human-review outcome, immutable evidence boundary, and observable acceptance criteria."}
+{"file":".trellis/tasks/08-17-office-crowd-review-visual-r2/design.md","reason":"Defines the opt-in dual-camera, review-material, 3D provenance, compatibility, and remote-gate design."}
+{"file":".trellis/tasks/08-17-office-crowd-review-visual-r2/research/verified-current-behavior.md","reason":"Provides targeted source anchors for current appearance, camera, XYZ trajectory, quality, and remote evidence contracts."}
+{"file":".pipeline/experiments/2026-08-17_office_l0_scan_crowd/REPORT.md","reason":"Freezes candidate38/39 evidence, current automated results, claim boundary, and pending AC55 ownership."}
+{"file":".pipeline/experiments/2026-08-13_scan_foxy_isaac_closed_loop/execution_manifest.yaml","reason":"Records the 5070 Ti execution-copy identity, Foxy isolation, sync gate, and credential boundary."}
+{"file":".pipeline/experiments/2026-08-13_scan_foxy_isaac_closed_loop/run_remote_closed_loop.sh","reason":"Provides the opt-in same-container native Foxy RViz path while preserving the default headless execution path."}
+{"file":".pipeline/experiments/2026-08-17_office_l0_scan_crowd/run_remote_office_crowd_native_rviz.sh","reason":"Records the fail-closed 5070 Ti display capture, native occupancy readiness gate, and artifact hashes."}

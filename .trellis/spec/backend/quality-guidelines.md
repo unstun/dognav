@@ -1235,6 +1235,12 @@ crowd obstacles require strict swept-route clearances and map-version gated repl
   and trajectories must maintain verified static clearance from walls/furniture
   and pairwise clearance from each other, ensuring crossing endpoints remain outside
   the robot envelope.
+- **Phase-Conditioned Pedestrian Motion**: A rendered walk cycle is permitted only
+  while the scheduled root has nonzero planar velocity. Crossing actors use
+  `single_pass` and idle at their endpoints; only background actors may use
+  `ping_pong`, with a positive idle/turnaround hold between directions. Repeating
+  every route blindly is forbidden because a crossing actor can re-enter the robot
+  corridor after the original safety preflight window.
 - **Sensor-Causal Replanning**: A reactive replan requires the same named person
   to be visible in both LiDAR and depth evidence, to approach the remaining
   continuous active B-spline, to have an actually captured SCAN inflated-occupancy
@@ -1268,6 +1274,8 @@ crowd obstacles require strict swept-route clearances and map-version gated repl
 | Isaac and Foxy execution copies differ from local source | Stop, resync both copies, rebuild, and record hashes |
 | Robot-person conservative clearance < 0.15 m | Fail automated acceptance gate |
 | Watchdog events > 0 or non-foot contact > 75 N | Fail automated acceptance gate |
+| Walk animation is active while root velocity is zero | Fail pedestrian-motion fidelity; preserve the run |
+| A crossing actor reverses into the robot corridor | Fail the schedule/safety preflight; create a new run ID |
 
 ### 5. Good / Base / Bad Cases
 
@@ -1298,6 +1306,11 @@ crowd obstacles require strict swept-route clearances and map-version gated repl
   at least one causal replacement in each run.
 - Compare SHA-256 for local source, both remote execution copies, configs,
   reports, raw videos, and review overlays before updating the task criterion.
+- For a repeating crowd preview, assert eight named actors, root-moving samples
+  cover at least 50% of actor-samples, some root motion exists during at least
+  95% of the timeline, and both walk-while-stationary and idle-while-moving
+  fractions are at most 1%. Re-run conservative robot/person and pairwise swept
+  clearance across the complete requested duration.
 
 ### 7. Wrong vs Correct
 
@@ -1310,6 +1323,11 @@ person ground-truth pose near sampled polyline + later trajectory publication
 
 ```text
 same scenario label + two PASS reports -> call inputs identical
+```
+
+```text
+play every walk clip continuously + ping-pong every route
+  -> stationary foot cycling and crossing-person corridor re-entry
 ```
 
 #### Correct
@@ -1326,4 +1344,355 @@ named LiDAR/depth detection
 hash effective configs + normalize only run/output identity fields
   -> compare hashes
   -> require both runs to pass independently
+```
+
+```text
+crossing routes: single pass -> endpoint idle
+background routes: forward walk -> idle turn -> reverse walk -> idle turn
+  -> phase-conditioned clip follows scheduled root velocity
+  -> full-duration swept-clearance gate before rendering
+```
+
+## Scenario: Bind Office Human Animation to Physical Root Motion
+
+### 1. Scope / Trigger
+
+Use this contract whenever an Office crowd review keeps pedestrians visibly
+active for a long video. It changes the route-to-animation-to-physics contract
+and therefore requires a fresh safety preflight; it is not a cosmetic video edit.
+
+### 2. Signatures
+
+```text
+--office-pedestrian-motion-mode single_pass|background_ping_pong|ping_pong
+--office-pedestrian-turnaround-hold-seconds <non-negative seconds>
+--official-human-animation-mode phase_conditioned|continuous_walk
+
+SCAN_OFFICE_PEDESTRIAN_MOTION_MODE=<same enum>
+SCAN_OFFICE_PEDESTRIAN_TURNAROUND_HOLD_SECONDS=<seconds>
+SCAN_OFFICIAL_HUMAN_ANIMATION_MODE=<same enum>
+```
+
+```python
+OfficePedestrianRoute.motion_mode: str
+OfficePedestrianRoute.turnaround_hold_s: float
+office_pedestrian_state(route, sim_time_s) -> OfficePedestrianState
+```
+
+### 3. Contracts
+
+- `single_pass` preserves the original wait/walk/arrive schedule and returns
+  zero velocity at the endpoint.
+- `background_ping_pong` assigns `single_pass` to the two crossing routes and
+  `ping_pong` to background routes. `ping_pong` repeats forward walk, stationary
+  turnaround, reverse walk, and stationary turnaround using the recorded route
+  speed and hold duration.
+- The hidden physical capsule, visible human root, truth record, sensor proxy,
+  heading, and animation clip all consume the same state. `walk` requires
+  nonzero scheduled root velocity; waiting, turning, and arrived states require
+  `idle`.
+- The run identity records scenario mode, turnaround hold, animation mode, and
+  each route's effective mode. `office_pedestrian_motion_audit.json` records
+  the corresponding runtime fidelity measurements.
+- Changing any route mode or hold invalidates previous swept-clearance evidence.
+  Evaluate the full requested duration against both the robot trace and every
+  pedestrian pair. Preserve a failing run and use a new run ID after repair.
+- RViz window startup is an instrumentation timeout independent of simulated
+  duration. `SCAN_RVIZ_STARTUP_TIMEOUT_SECONDS` must be a positive integer and
+  long enough for the first bounded RTX/asset preparation on the execution host.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required behavior |
+|---|---|
+| Motion mode is unknown | Reject before Isaac startup |
+| A repeating mode has a non-positive turnaround hold | Reject before runtime |
+| Repeating motion uses `continuous_walk` | Reject the review run |
+| Root moves while clip is idle, or root stops while clip is walk | Fail motion-fidelity acceptance |
+| Crossing route reverses in `background_ping_pong` | Fail identity/schedule validation |
+| Full-duration swept clearance fails | Preserve the result and create a new preflight |
+| RViz window is absent before its startup timeout | Classify as instrumentation failure, not navigation failure |
+
+### 5. Good / Base / Bad Cases
+
+- **Good:** crossing people walk once and wait safely; background people visibly
+  traverse, pause while turning, and traverse back; animation and root velocity
+  agree; full-duration safety remains positive.
+- **Base:** `single_pass` is valid for the frozen crowd experiment even though
+  people eventually stand at their endpoints.
+- **Bad:** loop a walk clip on stationary roots, or ping-pong crossing people
+  after checking clearance only for their first pass.
+
+### 6. Tests Required
+
+- Unit-test every wait/walk/turn/reverse/arrive boundary, cycle index, heading,
+  signed velocity, and per-route mode assignment.
+- Acceptance tests must detect walk-while-stationary and idle-while-moving
+  samples and verify the frozen 50%/95%/1%/1% fidelity thresholds.
+- Before remote rendering, sample the complete duration and assert conservative
+  robot/person clearance, pedestrian pairwise surface clearance, and that
+  crossing routes never reverse.
+- Runtime evidence must show exact visible-root readback, matching moving/walk
+  name sets, zero non-foot collision, no hidden termination, and complete goal
+  arrival before composition.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```text
+continuous walk animation + stationary endpoint
+all eight routes ping-pong after a short clearance check
+```
+
+#### Correct
+
+```text
+one schedule state -> visible root + collision capsule + sensors + truth + clip
+crossings single-pass; backgrounds ping-pong with stationary turn holds
+  -> full-duration clearance -> runtime motion audit -> human video review
+```
+
+## Scenario: Record a Complete, Combined Office Human-Review Video Without a ROS Bag
+
+### 1. Scope / Trigger
+
+Use this contract only when an Office review preflight must show the complete
+route through goal arrival and terminal stop, but the execution host cannot
+safely store another full point-cloud ROS bag. This is a supplemental visual
+run, not formal acceptance evidence and not a replacement for any frozen
+candidate. A requested number of seconds alone is not completion evidence.
+
+### 2. Signatures
+
+```text
+SCAN_OFFICE_REVIEW_ENABLED=1
+SCAN_VISUAL_REVIEW_ONLY=1
+SCAN_RECORD_ROSBAG=0
+run_remote_office_crowd_native_rviz.sh RUN_ID DURATION TELEMETRY_PORT COMMAND_PORT
+```
+
+The new run directory must contain:
+
+```text
+effective_input.txt          # records visual_review_only=1 and record_rosbag=0
+rosbag.disabled.txt          # explicit non-formal-evidence marker
+closed_loop.mp4
+closed_loop_third_person_side.mp4
+native_scan_rviz3d_5070ti_sim_time.mp4
+office_review_terminal_validation.json
+office_pedestrian_motion_audit.json
+office_review_third_person_rviz_4k.mp4
+office_review_third_person_rviz_4k_validation.json
+```
+
+### 3. Contracts
+
+- ROS bag recording remains enabled by default. `SCAN_RECORD_ROSBAG=0` is
+  accepted only together with `SCAN_VISUAL_REVIEW_ONLY=1` and Office review.
+- The run still executes the live simulator, SCAN planner, voxel capture,
+  native RViz replay, synchronized video validation, and machine-readable
+  runtime audits. Only durable ROS bag writing is omitted.
+- Write `rosbag.disabled.txt` and the two effective-input fields so the missing
+  bag cannot be mistaken for accidental evidence loss.
+- Before composing the review video, reuse the frozen Office goal and terminal
+  runtime thresholds. The final pose must be within `0.25 m` of the declared
+  goal, and the last continuous `2.0 s` must satisfy both maximum command
+  magnitude `0.05` and planar speed `0.15 m/s`.
+- Preserve the full-resolution high external side view and native 5070 Ti RViz
+  entity videos. Additionally encode one `3840x1080`, 25 fps, H.264/YUV420p
+  review video with two `1920x1080` panels: high external side view and
+  simulator-time-synchronized native 5070 Ti RViz.
+- The combined video frame count must equal `camera_trace.jsonl`; do not align
+  quadrants by wall-clock duration or pad an incomplete route with frozen
+  frames.
+- Always use a new run ID and new output directory. Never overwrite, relink,
+  re-encode, delete, or relabel a frozen candidate or an earlier preflight.
+- Describe the result as supplemental visual evidence only. It cannot satisfy
+  automated acceptance, repeatability, formal reproduction, or human AC55
+  until the named reviewer explicitly records the visual decision.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required behavior |
+|---|---|
+| `SCAN_RECORD_ROSBAG=0` without visual-only mode | Reject before runtime with exit 64 |
+| Visual-only mode without Office review | Reject before runtime with exit 64 |
+| Visual-only mode while ROS bag recording is enabled | Reject the ambiguous configuration with exit 64 |
+| Output directory or any output file already exists | Fail closed; choose a new run ID |
+| `rosbag.disabled.txt` is missing or empty | Fail the run |
+| Requested duration ends before goal tolerance or continuous terminal stop | Preserve the run, fail before composition, and rerun under a new ID with evidence-based duration |
+| Combined resolution, rate, codec, or frame count differs from the contract | Fail the combined artifact and preserve all entity videos |
+| Any synchronized video, live RViz audit, or duration gate fails | Preserve the run unchanged and create a new preflight after repair |
+| Visual-only run is cited as AC54 or formal evidence | Reject the claim and use the frozen recorded evidence instead |
+
+### 5. Good / Base / Bad Cases
+
+- **Good:** a new 60-second run reaches the Office goal, remains stopped for
+  the frozen two-second window, has two decoded simulator-time-synchronized
+  entity videos plus a validated 4K-wide two-view composition, retains live RViz
+  plan/actual/current/URDF content and explicit visual-only markers, and
+  remains pending human review.
+- **Base:** a normal review run records its ROS bag by default and may proceed
+  through the existing evidence gates.
+- **Bad:** silently omit the ROS bag, reuse a candidate directory, then report
+  the longer video as a formal replacement or mark AC55 automatically.
+
+### 6. Tests Required
+
+- Shell syntax and ShellCheck must pass for the shared and Office launchers.
+- Entrypoint wiring tests must assert the two environment keys, the disabled
+  marker, and the fail-closed dependency between them.
+- Run the full local bridge test suite before remote execution.
+- After the remote run, assert the effective-input fields and marker content;
+  decode both delivered entity videos and verify resolution, frame rate, frame count, and
+  requested simulator duration; validate the native RViz live audit.
+- Validate `office_review_terminal_validation.json` against the frozen goal,
+  command, speed, and stop-window thresholds before encoding the composition.
+- Decode the 4K-wide composition and assert `3840x1080`, 25 fps, H.264/YUV420p, and
+  exact frame-count equality with the shared camera trace.
+- Re-hash the frozen candidate acceptance and ROS-event files before and after
+  the new run. Leave AC55 pending until the named reviewer decides.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```text
+choose 30 seconds -> robot is still mid-route -> pad/freeze frames -> deliver MP4
+```
+
+#### Correct
+
+```text
+new run ID + evidence-based 60 seconds + explicit visual-only/no-bag markers
+  -> live synchronized external-view plus native-RViz run
+  -> frozen goal and continuous-stop checks
+  -> 3840x1080 two-panel composition with trace-matched frame count
+  -> automated video/audit checks -> supplemental delivery
+  -> named human reviewer decides AC55
+```
+
+## Scenario: Version and Promote Navigation Review Revisions
+
+### 1. Scope / Trigger
+
+Use this contract whenever a reviewed navigation experiment changes source,
+configuration, scenario inputs, validation behavior, packaging, or its frozen
+presentation contract. It prevents a sequence of ad hoc preflights from being
+mistaken for one stable version and keeps automated evidence separate from the
+named human decision.
+
+### 2. Signatures
+
+```text
+.pipeline/experiments/<experiment>/CHANGE_CONTROL.md
+.pipeline/experiments/<experiment>/revision_ledger.json
+python3 .pipeline/experiments/<experiment>/validate_revision_ledger.py \
+  --ledger .pipeline/experiments/<experiment>/revision_ledger.json \
+  --repository-root REPOSITORY_ROOT
+```
+
+```text
+revision: office-rMAJOR.MINOR.PATCH[-qualifier]
+new run: office_crowd_r<major>_<minor>_<patch>_<purpose>_<stage><NN>
+stage: smoke | preflight | dryrun | candidate
+```
+
+Required ledger fields include `protocol_version`, `experiment_id`,
+`current_working_revision`, `accepted_revision`, `formal_candidate`,
+`human_gate`, `runs`, and `next_action`. Each run records its revision, stage,
+status, immutable flag, claim boundary, and available evidence hashes.
+
+### 3. Contracts
+
+- A revision, run ID, formal candidate, automated gate, human decision, and
+  presentation template are different identities. Never use one field or name
+  as a substitute for another.
+- One new revision declares exactly one change group. `MAJOR` changes the claim
+  or core interface; `MINOR` changes one planned behavior; `PATCH` repairs one
+  instrumentation, validation, packaging, or presentation behavior without
+  changing navigation inputs.
+- Retrying identical revision inputs creates a new immutable run ID but not a
+  new revision. Any source, config, scenario, validation, or presentation
+  contract change creates a new revision before another execution.
+- The first ledger created for accumulated historical work may declare itself
+  a normalization baseline. It must not fabricate a one-change history for old
+  edits. Earlier runs whose exact source revision cannot be reconstructed are
+  marked `legacy_unversioned`, not retroactively assigned to the normalization
+  snapshot. The one-change rule applies to every later revision.
+- A dirty or detached source state may be labeled only as a working/preflight
+  revision and must pin the base commit plus source/evidence hashes. It cannot
+  become a formal or accepted version until reviewed source is frozen under a
+  clean commit and all required gates are rerun.
+- Failed, rejected, and superseded runs are immutable. Do not overwrite their
+  directories, remove their ledger rows, reuse their run IDs, or relabel their
+  claims after repairing a later revision.
+- Freezing a golden presentation template controls layout and rendering only.
+  It does not accept navigation behavior, satisfy a formal automated gate, or
+  decide AC55.
+- Before editing, the ledger states the parent, one change group, allowed
+  components, frozen invariants, planned validation, claim boundary, and next
+  authorized action. After execution, it records the result and exact evidence
+  hashes before another change begins.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required behavior |
+|---|---|
+| A new edit has no declared parent/change group | Stop before editing and create the revision card |
+| One revision mixes independent sensor, camera, planner, and gate changes | Split the work into ordered revisions |
+| Same inputs are retried after an infrastructure failure | Keep the revision; allocate a new run ID |
+| Source/config/gate behavior changes after a failed run | Create a new revision and a new run ID |
+| Run ID or result directory already exists | Fail closed; never overwrite or relink it |
+| Ledger evidence is missing or its SHA-256 differs | Fail ledger validation and stop promotion |
+| Working tree is dirty/detached but status says formal or accepted | Reject the version claim |
+| Automated PASS exists but named human gate is pending | Keep human state pending |
+| Golden template is approved but the run is incomplete | Freeze only the presentation contract; do not promote the run |
+| Full/formal execution has no fresh authorization | Stop at read-only inspection and local validation |
+
+### 5. Good / Base / Bad Cases
+
+- **Good:** one declared revision changes only the MID-360 input, pins its
+  parent and invariants, validates locally, uses fresh immutable run IDs, records
+  failed and passing evidence separately, and waits for the declared human gate.
+- **Base:** an identical-input rerun receives a new run ID under the same
+  revision because only transient infrastructure failed.
+- **Bad:** repeatedly edit camera, sensor, pedestrian schedule, and validation
+  thresholds under one informal `latest` label, then call the newest video the
+  accepted version.
+
+### 6. Tests Required
+
+- Parse the ledger as JSON and validate revision grammar, allowed stages and
+  statuses, unique run IDs, nonempty change group/invariants/claim boundary,
+  and explicit human ownership.
+- Recompute every locally available evidence SHA-256 and compare it with the
+  ledger before remote execution or promotion.
+- Assert that `accepted_revision` and `formal_candidate` remain null during a
+  preflight-only task, and that unauthorized full/formal flags remain false.
+- Before formal promotion, require a clean reviewed commit, local/remote source
+  hash parity, required full dry runs, formal automated acceptance, complete
+  artifact sync, and the named human decision.
+- Recheck protected historical candidate hashes before and after every new
+  remote run.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```text
+edit several subsystems -> run preflight42 -> newest video looks best
+  -> rename it golden/latest -> assume AC55 and version completion
+```
+
+#### Correct
+
+```text
+parent revision + exactly one change group + frozen invariants
+  -> local validation -> unique immutable run ID -> evidence hashes
+  -> automated status and human status recorded separately
+  -> fresh authorization for full/formal work
+  -> clean frozen source + complete gates + Dr Sun decision
+  -> accepted revision
 ```

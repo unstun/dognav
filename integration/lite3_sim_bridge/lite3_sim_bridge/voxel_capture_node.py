@@ -17,7 +17,7 @@ from sensor_msgs.msg import PointCloud2
 from visualization_msgs.msg import Marker
 
 from .trajectory_review import sample_uniform_bspline
-from .voxel_review import _stamp_ns, pointcloud2_xyz
+from .voxel_review import _stamp_ns, pointcloud2_xyz, transform_sensor_points
 
 
 def _yaw_from_odometry(message: Odometry) -> float:
@@ -60,6 +60,10 @@ class VoxelCaptureNode(Node):
         self._raw_points = None
         self._raw_stamp_ns = None
         self._raw_receipt_ns = None
+        self._live_points_world = None
+        self._live_stamp_ns = None
+        self._sensor_position = None
+        self._sensor_quaternion_xyzw = None
         self._body_position = None
         self._body_yaw_rad = 0.0
         self._body_stamp_ns = None
@@ -70,11 +74,18 @@ class VoxelCaptureNode(Node):
         self._frame_count = 0
         self._raw_counts = []
         self._inflated_counts = []
+        self._live_counts = []
         self._body_stamps = []
         self._trajectory_ids = set()
         self._decode_errors = 0
         self._closed = False
 
+        self.create_subscription(
+            PointCloud2, "/quad_0/cloud", self._live_cloud, qos_profile_sensor_data
+        )
+        self.create_subscription(
+            Odometry, "/quad_0/lidar_pose", self._sensor_pose, qos_profile_sensor_data
+        )
         self.create_subscription(
             PointCloud2,
             "/grid_map/occupancy",
@@ -106,6 +117,35 @@ class VoxelCaptureNode(Node):
         except ValueError as error:
             self._decode_errors += 1
             self.get_logger().error(f"Reject raw occupancy cloud: {error}")
+
+    def _sensor_pose(self, message: Odometry) -> None:
+        position = message.pose.pose.position
+        orientation = message.pose.pose.orientation
+        self._sensor_position = np.asarray(
+            [float(position.x), float(position.y), float(position.z)], dtype=np.float64
+        )
+        self._sensor_quaternion_xyzw = np.asarray(
+            [
+                float(orientation.x),
+                float(orientation.y),
+                float(orientation.z),
+                float(orientation.w),
+            ],
+            dtype=np.float64,
+        )
+
+    def _live_cloud(self, message: PointCloud2) -> None:
+        if self._sensor_position is None or self._sensor_quaternion_xyzw is None:
+            return
+        try:
+            points = pointcloud2_xyz(message)
+            self._live_points_world = transform_sensor_points(
+                points, self._sensor_position, self._sensor_quaternion_xyzw
+            )
+            self._live_stamp_ns = _stamp_ns(message)
+        except ValueError as error:
+            self._decode_errors += 1
+            self.get_logger().error(f"Reject live sensor cloud: {error}")
 
     def _inflated_occupancy(self, message: PointCloud2) -> None:
         try:
@@ -160,6 +200,8 @@ class VoxelCaptureNode(Node):
     ) -> None:
         if (
             self._raw_points is None
+            or self._live_points_world is None
+            or len(self._live_points_world) == 0
             or len(self._raw_points) == 0
             or len(inflated) == 0
             or self._body_position is None
@@ -182,6 +224,7 @@ class VoxelCaptureNode(Node):
         np.savez(
             snapshot_path,
             raw_points=self._raw_points.astype(np.float32, copy=False),
+            live_points=self._live_points_world.astype(np.float32, copy=False),
             inflated_points=inflated.astype(np.float32, copy=False),
             body_position=self._body_position,
             body_yaw_rad=np.asarray(self._body_yaw_rad, dtype=np.float64),
@@ -190,10 +233,11 @@ class VoxelCaptureNode(Node):
             trajectory_id=np.asarray(self._trajectory_id, dtype=np.int64),
             body_stamp_ns=np.asarray(self._body_stamp_ns, dtype=np.int64),
             raw_stamp_ns=np.asarray(self._raw_stamp_ns, dtype=np.int64),
+            live_stamp_ns=np.asarray(self._live_stamp_ns, dtype=np.int64),
             inflated_stamp_ns=np.asarray(inflated_stamp_ns, dtype=np.int64),
         )
         record = {
-            "schema_version": 1,
+            "schema_version": 2,
             "frame_index": self._frame_count,
             "snapshot_file": snapshot_name,
             "body_stamp_ns": self._body_stamp_ns,
@@ -202,6 +246,7 @@ class VoxelCaptureNode(Node):
             "raw_receipt_monotonic_ns": self._raw_receipt_ns,
             "inflated_receipt_monotonic_ns": inflated_receipt_ns,
             "raw_point_count": len(self._raw_points),
+            "live_point_count": len(self._live_points_world),
             "inflated_point_count": len(inflated),
             "bbox_point_count": len(self._bbox_points),
             "trajectory_id": self._trajectory_id,
@@ -212,6 +257,7 @@ class VoxelCaptureNode(Node):
         self._metadata.write(json.dumps(record, sort_keys=True) + "\n")
         self._metadata.flush()
         self._raw_counts.append(len(self._raw_points))
+        self._live_counts.append(len(self._live_points_world))
         self._inflated_counts.append(len(inflated))
         self._body_stamps.append(self._body_stamp_ns)
         self._last_saved_body_stamp_ns = self._body_stamp_ns
@@ -224,6 +270,7 @@ class VoxelCaptureNode(Node):
         checks = {
             "captured_frames": self._frame_count > 0,
             "raw_occupancy_nonempty": bool(self._raw_counts) and min(self._raw_counts) > 0,
+            "live_sensor_cloud_nonempty": bool(self._live_counts) and min(self._live_counts) > 0,
             "inflated_occupancy_nonempty": bool(self._inflated_counts)
             and min(self._inflated_counts) > 0,
             "body_time_advances": len(set(self._body_stamps)) > 1,
@@ -231,14 +278,16 @@ class VoxelCaptureNode(Node):
             "decode_errors_zero": self._decode_errors == 0,
         }
         summary = {
-            "schema_version": 1,
+            "schema_version": 2,
             "status": "PASS" if all(checks.values()) else "FAIL",
             "claim_boundary": (
-                "native SCAN PointCloud2 voxel capture; no Isaac scene-truth voxels"
+                "native live sensor cloud plus SCAN PointCloud2 occupancy capture; no Isaac scene-truth voxels"
             ),
             "topics": [
                 "/grid_map/occupancy",
                 "/grid_map/occupancy_inflate",
+                "/quad_0/cloud",
+                "/quad_0/lidar_pose",
                 "/grid_map/sliding_map_bbox",
                 "/quad_0/body_pose",
                 "/planning/bspline",
@@ -250,6 +299,8 @@ class VoxelCaptureNode(Node):
             "last_body_stamp_ns": max(self._body_stamps, default=None),
             "raw_point_count_min": min(self._raw_counts, default=None),
             "raw_point_count_max": max(self._raw_counts, default=None),
+            "live_point_count_min": min(self._live_counts, default=None),
+            "live_point_count_max": max(self._live_counts, default=None),
             "inflated_point_count_min": min(self._inflated_counts, default=None),
             "inflated_point_count_max": max(self._inflated_counts, default=None),
             "trajectory_ids": sorted(self._trajectory_ids),

@@ -1,4 +1,5 @@
 import json
+import math
 from pathlib import Path
 import unittest
 
@@ -56,6 +57,74 @@ class OfficeCrowdContractTest(unittest.TestCase):
         self.assertEqual(office_pedestrian_state(0.5, route)["phase"], "waiting")
         self.assertEqual(office_pedestrian_state(2.0, route)["xy_m"], (1.0, 0.0))
         self.assertEqual(office_pedestrian_state(5.0, route)["phase"], "arrived")
+
+    def test_ping_pong_route_walks_turns_and_returns(self):
+        route = OfficePedestrianRoute(
+            "person",
+            (0.0, 0.0),
+            (2.0, 0.0),
+            1.0,
+            1.0,
+            motion_mode="ping_pong",
+            turnaround_hold_s=0.5,
+        )
+
+        forward = office_pedestrian_state(2.0, route)
+        end_turn = office_pedestrian_state(3.25, route)
+        reverse = office_pedestrian_state(4.0, route)
+        start_turn = office_pedestrian_state(5.75, route)
+        next_forward = office_pedestrian_state(6.25, route)
+
+        self.assertEqual(forward["phase"], "walking")
+        self.assertEqual(forward["direction"], "forward")
+        self.assertEqual(forward["velocity_xy_mps"], (1.0, 0.0))
+        self.assertEqual(end_turn["phase"], "turning")
+        self.assertAlmostEqual(end_turn["yaw_rad"], math.pi / 2.0)
+        self.assertEqual(reverse["direction"], "reverse")
+        self.assertEqual(reverse["velocity_xy_mps"], (-1.0, -0.0))
+        self.assertEqual(start_turn["phase"], "turning")
+        self.assertAlmostEqual(start_turn["yaw_rad"], 1.5 * math.pi)
+        self.assertEqual(next_forward["cycle_index"], 1)
+        self.assertEqual(next_forward["direction"], "forward")
+
+    def test_office_ping_pong_routes_keep_pairwise_clearance(self):
+        root = Path(__file__).resolve().parents[3]
+        route_payload = json.loads(
+            (
+                root
+                / ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/office_l0_route_preflight07.json"
+            ).read_text()
+        )
+        routes = routes_from_preflight(
+            route_payload,
+            motion_mode="ping_pong",
+            turnaround_hold_s=0.6,
+        )
+
+        result = pairwise_clearance_precheck(routes, 65.0)
+
+        self.assertTrue(result["passed"])
+        self.assertGreaterEqual(result["minimum_surface_clearance_m"], 0.85)
+
+    def test_background_ping_pong_keeps_crossings_single_pass(self):
+        root = Path(__file__).resolve().parents[3]
+        route_payload = json.loads(
+            (
+                root
+                / ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/office_l0_route_preflight07.json"
+            ).read_text()
+        )
+        routes = routes_from_preflight(
+            route_payload,
+            motion_mode="background_ping_pong",
+            turnaround_hold_s=0.6,
+        )
+
+        self.assertEqual([route.motion_mode for route in routes[:2]], ["single_pass"] * 2)
+        self.assertEqual([route.motion_mode for route in routes[2:]], ["ping_pong"] * 6)
+        result = pairwise_clearance_precheck(routes, 65.0)
+        self.assertTrue(result["passed"])
+        self.assertGreaterEqual(result["minimum_surface_clearance_m"], 0.64)
 
     def test_pairwise_precheck_rejects_intersection(self):
         routes = (

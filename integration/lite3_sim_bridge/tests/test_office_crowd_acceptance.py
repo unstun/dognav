@@ -8,6 +8,7 @@ import pytest
 
 from lite3_sim_bridge.office_crowd_acceptance import (
     _mapped_event_time,
+    _pedestrian_motion_fidelity,
     _runtime_gate_metrics,
     audit_active_path_causal_replans,
     verify_video_quality,
@@ -21,8 +22,8 @@ def dryrun11_dir() -> Path:
         ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/"
         "results/office_crowd_dryrun11"
     )
-    if not path.is_dir():
-        pytest.skip(f"dryrun11 directory not found at {path}")
+    if not path.is_dir() or not (path / "closed_loop.mp4").is_file():
+        pytest.skip(f"complete dryrun11 video fixture not found at {path}")
     return path
 
 
@@ -78,6 +79,25 @@ def test_runtime_gate_metrics_preserve_terminal_and_step_evidence() -> None:
     assert result["cloud_nonempty_fraction"] == 0.5
     assert result["timestamps_advance"] is True
     assert result["termination_count"] == 0
+
+
+def test_pedestrian_motion_fidelity_detects_in_place_walk() -> None:
+    rows = [
+        {
+            "office_pedestrians": [
+                {
+                    "name": "person",
+                    "velocity_xy_mps": [0.0, 0.0],
+                    "animation": {"clip": "walk"},
+                }
+            ]
+        }
+    ]
+
+    result = _pedestrian_motion_fidelity(rows)
+
+    assert result["in_place_walk_fraction"] == 1.0
+    assert result["root_moving_fraction"] == 0.0
 
 
 def test_bspline_uses_recent_monitor_captured_simulator_stamp() -> None:

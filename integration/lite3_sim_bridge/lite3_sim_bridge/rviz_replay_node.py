@@ -9,7 +9,7 @@ from pathlib import Path
 import numpy as np
 import rclpy
 from builtin_interfaces.msg import Time
-from geometry_msgs.msg import Point, PoseStamped
+from geometry_msgs.msg import Point, PoseStamped, TransformStamped
 from nav_msgs.msg import Odometry, Path as NavPath
 from rclpy.node import Node
 from rclpy.qos import (
@@ -22,6 +22,7 @@ from rclpy.qos import (
 from scan_planner_msgs.msg import Bspline
 from sensor_msgs.msg import PointCloud2, PointField
 from visualization_msgs.msg import Marker
+from tf2_ros import TransformBroadcaster
 
 from .rviz_replay_core import ReplayAuditState
 from .trajectory_review import sample_uniform_bspline
@@ -72,9 +73,21 @@ class RvizReplayNode(Node):
     def __init__(self) -> None:
         super().__init__("lite3_humble_rviz_replay")
         self._frame_id = str(self.declare_parameter("frame_id", "world").value)
+        self._source_mode = str(
+            self.declare_parameter("source_mode", "replay").value
+        )
+        self._robot_root_frame = str(
+            self.declare_parameter("robot_root_frame", "").value
+        )
         self._sample_count = int(self.declare_parameter("sample_count", 160).value)
         if not self._frame_id:
             raise ValueError("frame_id must not be empty")
+        if self._source_mode not in ("replay", "live"):
+            raise ValueError("source_mode must be replay or live")
+        if self._robot_root_frame == self._frame_id:
+            raise ValueError("robot_root_frame must differ from frame_id")
+        if self._source_mode == "live" and not self._robot_root_frame:
+            raise ValueError("live source_mode requires robot_root_frame")
         if self._sample_count < 2:
             raise ValueError("sample_count must be at least two")
         audit_value = str(self.declare_parameter("audit_path", "").value)
@@ -93,7 +106,16 @@ class RvizReplayNode(Node):
         self._preload_first_snapshot = bool(
             self.declare_parameter("preload_first_snapshot", True).value
         )
-        self._audit = ReplayAuditState(sample_count=self._sample_count)
+        self._require_live_lidar = bool(
+            self.declare_parameter("require_live_lidar", False).value
+        )
+        self._audit = ReplayAuditState(
+            sample_count=self._sample_count,
+            source_mode=self._source_mode,
+            require_live_lidar=self._require_live_lidar,
+            require_voxel_snapshots=self._source_mode == "replay",
+            require_root_transform=bool(self._robot_root_frame),
+        )
         self._actual_path = NavPath()
         self._actual_path.header.frame_id = self._frame_id
         self._closed = False
@@ -110,11 +132,20 @@ class RvizReplayNode(Node):
         self._actual_path_publisher = self.create_publisher(
             NavPath, "/review/lite3_actual_path", review_qos
         )
+        self._current_pose_publisher = self.create_publisher(
+            PoseStamped, "/review/lite3_current_pose", review_qos
+        )
+        self._transform_broadcaster = (
+            TransformBroadcaster(self) if self._robot_root_frame else None
+        )
         self._bbox_publisher = self.create_publisher(
             Marker, "/review/sliding_map_bbox", review_qos
         )
         self._raw_voxel_publisher = self.create_publisher(
             PointCloud2, "/review/occupancy", review_qos
+        )
+        self._live_lidar_publisher = self.create_publisher(
+            PointCloud2, "/review/live_lidar", review_qos
         )
         self._inflated_voxel_publisher = self.create_publisher(
             PointCloud2, "/review/occupancy_inflate", review_qos
@@ -131,7 +162,8 @@ class RvizReplayNode(Node):
             self._publish_snapshot_file(first_snapshot_file, None)
             self._audit.record_preloaded_snapshot(first_snapshot_file)
         self.get_logger().info(
-            "Humble replay adapter ready; it republishes paths but does not plan"
+            f"{self._source_mode} visualization adapter ready; "
+            "it republishes paths and robot pose but does not plan"
         )
 
     def _load_bbox_records(self) -> tuple[tuple[int, str], ...]:
@@ -175,6 +207,22 @@ class RvizReplayNode(Node):
         self._actual_path.header.stamp = message.header.stamp
         self._actual_path.poses.append(pose)
         self._actual_path_publisher.publish(self._actual_path)
+        self._current_pose_publisher.publish(pose)
+        root_transform_published = False
+        if self._transform_broadcaster is not None:
+            transform = TransformStamped()
+            transform.header = message.header
+            transform.header.frame_id = self._frame_id
+            transform.child_frame_id = self._robot_root_frame
+            transform.transform.translation.x = message.pose.pose.position.x
+            transform.transform.translation.y = message.pose.pose.position.y
+            transform.transform.translation.z = message.pose.pose.position.z
+            transform.transform.rotation = message.pose.pose.orientation
+            self._transform_broadcaster.sendTransform(transform)
+            root_transform_published = True
+        self._audit.accept_current_pose(
+            root_transform_published=root_transform_published
+        )
         self._publish_snapshot(stamp_ns, message.header.stamp)
 
     def _publish_snapshot(self, body_stamp_ns: int, header_stamp) -> None:
@@ -196,11 +244,22 @@ class RvizReplayNode(Node):
     def _publish_snapshot_file(self, snapshot_file: str, header_stamp) -> None:
         snapshot_path = self._voxel_snapshot_dir / snapshot_file
         with np.load(snapshot_path) as snapshot:
+            live_points = np.asarray(
+                snapshot["live_points"]
+                if "live_points" in snapshot
+                else np.empty((0, 3), dtype=np.float32),
+                dtype=np.float32,
+            )
             raw_points = np.asarray(snapshot["raw_points"], dtype=np.float32)
             inflated_points = np.asarray(
                 snapshot["inflated_points"], dtype=np.float32
             )
             bbox_points = np.asarray(snapshot["bbox_points"], dtype=np.float64)
+            live_stamp_ns = int(
+                snapshot["live_stamp_ns"]
+                if "live_stamp_ns" in snapshot
+                else snapshot["raw_stamp_ns"]
+            )
             raw_stamp_ns = int(snapshot["raw_stamp_ns"])
             inflated_stamp_ns = int(snapshot["inflated_stamp_ns"])
         if (
@@ -214,6 +273,10 @@ class RvizReplayNode(Node):
         self._raw_voxel_publisher.publish(
             _pointcloud2_xyz(raw_points, raw_stamp_ns, self._frame_id)
         )
+        if len(live_points) > 0:
+            self._live_lidar_publisher.publish(
+                _pointcloud2_xyz(live_points, live_stamp_ns, self._frame_id)
+            )
         self._inflated_voxel_publisher.publish(
             _pointcloud2_xyz(inflated_points, inflated_stamp_ns, self._frame_id)
         )
@@ -240,7 +303,10 @@ class RvizReplayNode(Node):
         self._bbox_publisher.publish(marker)
         self._audit.accept_bbox_snapshot(snapshot_file)
         self._audit.accept_voxel_snapshot(
-            snapshot_file, len(raw_points), len(inflated_points)
+            snapshot_file,
+            len(raw_points),
+            len(inflated_points),
+            len(live_points),
         )
         self._last_bbox_snapshot = snapshot_file
 

@@ -144,3 +144,230 @@ AC55 remains unchecked. Dr Sun must review the synchronized overlay videos and
 decide whether the articulated motion, eight official pedestrians, planned and
 actual paths, dynamic occupancy, replanning annotations, camera framing, and
 overall scene plausibility are acceptable for the project baseline.
+
+## 8. Supplemental visual preflight after AC55 feedback
+
+`office_crowd_review_native_rviz_preflight01` is a supplemental visual run; it
+does not replace candidate38/39 and is not promoted into AC54. It responds to
+human feedback by using an 8 m high-oblique global camera, retaining the direct
+H.264 first-person presentation stream, and recording the upstream
+`plan_manage/launch/default.rviz` view on the 5070 Ti display. RViz runs inside
+the same Foxy container as SCAN-Planner, rather than subscribing across a
+separate DDS container boundary.
+
+The Office presentation validator reports `passed: true` with no issues. The
+native voxel capture reports PASS for 50 frames; live sensor cloud, raw
+occupancy, and inflated occupancy are all nonempty. The RViz recording is a
+direct 1920x1080, 25 fps H.264 High capture of display `:0`, not a locally
+reconstructed dashboard.
+
+- `results/office_crowd_review_native_rviz_preflight01/closed_loop.mp4` —
+  `44d20e0acf829bc5202adb08c21f6b0c74d1981623870a21ea621a7f3d6cf66a`
+- `results/office_crowd_review_native_rviz_preflight01/closed_loop_third_person_side.mp4` —
+  `6593f1a48086b756c6470956a206ef6735edbffd38cbf74cf60f8a521782296c`
+- `results/office_crowd_review_native_rviz_preflight01/closed_loop_overview.mp4` —
+  `a3ae3aeec1509e11b4fc29e3a434d6c22905e89b199b69ff21e14f26bd6b615b`
+- `results/office_crowd_review_native_rviz_preflight01/native_scan_rviz3d_5070ti.mp4` —
+  `6412487fc079fa4896b1df96513f14bb9b4ee3be3330e2254ffe2a78ada24ae6`
+- `results/office_crowd_review_native_rviz_preflight01/office_review_validation_report.json` —
+  `63b593ff3d252c7533031652693da45adc50bf6e8d89409db1327394d1522a43`
+- `results/office_crowd_review_native_rviz_preflight01/voxel_capture_summary.json` —
+  `b1e8df49fb14b47583d444093379eb9f57dec3d10be4bf4a377560e5c424f729`
+
+Two negative attempts remain preserved and are not evidence for AC55:
+
+- `office_crowd_review_preflight36` rejected a decimal duration before creating
+  a result directory.
+- `office_crowd_review_preflight37` completed the Office run, but the separate
+  RViz container did not receive occupancy over the cross-container DDS
+  boundary, so the capture gate refused to create an empty RViz video.
+
+AC55 remains human-owned and unchecked after this supplemental run.
+
+## 9. Clarified first view and simulator-time native RViz revision
+
+Dr Sun subsequently clarified that the original 2.2 m root-relative chase
+camera is the requested first view. The problem was inconsistent image quality,
+material, and lighting relative to the accepted high global third-person
+composition; it was not a request for a robot-mounted or D435i optical camera.
+Accordingly, `office_crowd_review_native_rviz_preflight02` and `preflight03`
+remain preserved intermediate visual attempts produced from that
+misinterpretation and are not submitted for AC55.
+
+`office_crowd_review_native_rviz_preflight06` restores the exact preserved
+chase-camera equations, retains the 8 m high-oblique external view, and applies
+the same render-only Office cutaway, lighting, renderer settings, and pure-white
+opaque non-emissive Lite3 material to all three camera views. It records direct
+H.264 High, YUV420p, BT.709 streams at 2560x1440, 25 fps, 251 frames, and 10.04 s.
+The presentation validator reports `passed: true` with no issues, and the Isaac
+qualification report is PASS with no runtime error.
+
+The native SCAN RViz source is recorded directly from display `:0` on the 5070
+Ti as a 1920x1080, 25 fps, 4,103-frame screen capture. A monotonic-clock observer
+associates every camera-trace row with its wall-clock observation during the
+same run. The submitted 251-frame, 10.04 s RViz entity selects the corresponding
+native source frame for each simulator-time camera frame. It does not synthesize
+or replay point clouds, occupancy, or planner paths. The worst source-frame
+capture quantization error is 0.019916 s; the RViz log contains no unknown-frame
+or message-filter-drop diagnostics.
+
+- `results/office_crowd_review_native_rviz_preflight06/closed_loop.mp4` —
+  `c06e12303b81e17f4e5c90a71189c04d95684bd0f7c6ab26b40218645403d2db`
+- `results/office_crowd_review_native_rviz_preflight06/closed_loop_third_person_side.mp4` —
+  `08747a3b75ebd7c02e42487bcd258fc9ea142ff43cd8c527e15cdcfe8a9b7ee3`
+- `results/office_crowd_review_native_rviz_preflight06/closed_loop_overview.mp4` —
+  `748e46db9d5c45dc8a28dd4963e63a5e5e0d253a7c90297ac817ccf5732310e6`
+- `results/office_crowd_review_native_rviz_preflight06/native_scan_rviz3d_5070ti.mp4` —
+  `244ffa4ce836577c458f09cb0dfbd73898cc5f4accbc2c503d5e51007509c3f4`
+- `results/office_crowd_review_native_rviz_preflight06/native_scan_rviz3d_5070ti_sim_time.mp4` —
+  `d191f6eec8de094aedcea566c42b504803451c8696612e962640abec3045f665`
+- `results/office_crowd_review_native_rviz_preflight06/native_scan_rviz3d_sim_time_metadata.json` —
+  `e0cedd6ef7923444929aefddc10e479c7ac132bf57ba5aaee499777701dd0887`
+- `results/office_crowd_review_native_rviz_preflight06/office_review_validation_report.json` —
+  `8493449e79b8d4a6d5885773e42ebd3be25f7a91952c8e9df8f38dad25f1b10b`
+
+Two failed synchronization preflights are retained on the remote execution
+copy and cannot be promoted: `preflight04` exposed a backward system-clock jump;
+`preflight05` exposed a concurrently read partial JSONL row. `preflight06` uses
+the monotonic clock and waits for complete newline-terminated rows.
+
+This remains supplemental visual evidence. It does not replace or modify
+candidate38/39, does not alter AC54, and cannot satisfy AC55 without Dr Sun's
+explicit visual decision.
+
+## 10. Same-run planned/actual/current pose and Lite3 URDF preflight
+
+After the camera presentation was judged basically satisfactory, Dr Sun asked
+for the native RViz entity to add the live SCAN plan, measured Lite3 path,
+current location, and Lite3 URDF. `office_crowd_review_native_rviz_preflight07`
+is retained as the first implementation of those layers. Its later evidence
+inspection confirmed that the complete RobotModel and all required paths were
+present; the repeated missing-frame diagnostics were confined to RViz startup
+before the first measured joint frame. It was not submitted because the current
+position depended mainly on the small TORSO axes and the path lines were too
+thin for convenient review.
+
+`office_crowd_review_native_rviz_preflight08` is the current supplemental
+human-review preflight. It preserves the preflight06 camera geometry and
+materials. The native 5070 Ti Foxy RViz adds a yellow Pose arrow for
+`/review/lite3_current_pose`, a thicker orange SCAN B-spline Path, a thicker
+green accumulated body Path, the TORSO axes, and the canonical Lite3 URDF
+RobotModel. The URDF is driven by same-run Isaac joint names and positions; no
+GO2 gait, post-video overlay, synthetic route, or second run is used.
+
+The live RViz audit is PASS. It records 70 measured body poses, 70 current-pose
+publications, 70 matching `world -> TORSO` transforms, and two SCAN trajectory
+messages sampled at 160 points each. The rosbag independently contains 70
+`/quad_0/joint_states`, 70 actual-Path messages, 70 current-pose messages, two
+planned-Path messages, and one transient-local `/robot_description`. The three
+camera entities are 2560x1440 and the synchronized RViz entity is 1920x1080;
+all four are H.264/YUV420p, 25 fps, 251 frames, and 10.04 s. Every video fully
+decodes locally and its local hash matches the remote 5070 Ti entity. The
+presentation validator reports `passed: true`, while the Isaac qualification
+report is limited to the bridge-runtime claim and reports PASS.
+
+- `results/office_crowd_review_native_rviz_preflight08/closed_loop.mp4` —
+  `29c07e14c66e40d9c0afddcc9992faa09c54c0379099619c97286c6eaa72dbf0`
+- `results/office_crowd_review_native_rviz_preflight08/closed_loop_third_person_side.mp4` —
+  `384e5394989e70d13ff736ff21776f932105741a535077b45793f1de9f47c1d3`
+- `results/office_crowd_review_native_rviz_preflight08/closed_loop_overview.mp4` —
+  `e4efae19912ba08c06c10e0e7d466b5105b74aae6873a4e089cd42fc4b9f97ba`
+- `results/office_crowd_review_native_rviz_preflight08/native_scan_rviz3d_5070ti_sim_time.mp4` —
+  `2154f58e09eab7ac6db3dcd931b528149916dbe147b183047e9255469eefa17a`
+- `results/office_crowd_review_native_rviz_preflight08/native_rviz_review_audit.json` —
+  `54ed144b5bd96fccfac9b2b8d79ca1f6391e70ca347cfb9af3aee619e5c29901`
+- `results/office_crowd_review_native_rviz_preflight08/native_scan_rviz3d_sim_time_metadata.json` —
+  `e6d3fd8797532a5e234c496017ea389686a005585f3478d356b39926fc301478`
+- `results/office_crowd_review_native_rviz_preflight08/office_review_validation_report.json` —
+  `c44275a1a3271b02d3a6ef57f12cb7847fc725616651837b68a8d7cebad11b66`
+
+This is still a short visual preflight, not a replacement formal candidate and
+not a new AC54 run. Candidate38/39 remain immutable. AC55 remains unchecked and
+exclusively owned by Dr Sun.
+
+## 11. Fixed-exposure temporal-lighting preflight
+
+Dr Sun clarified that the remaining defect was full-frame illumination
+flicker, not the preserved first-view geometry. The Office review renderer now
+keeps histogram auto exposure disabled, derives a fixed film ISO from the
+declared exposure, and renders three unchanged-state RTX/DLAA frames after
+each review-camera switch while encoding only the final settled frame. Camera
+equations, Office materials, 2K resolution, and the native RViz layout are not
+changed by this repair.
+
+`office_crowd_review_native_rviz_preflight13` is the complete supplemental
+result. All three simulator views and the simulator-time synchronized native
+RViz entity fully decode as H.264 High/YUV420p at 25 fps and contain 251 frames
+over 10.04 s. The trace ends at 10.03 simulator seconds. The strict presentation
+validator, Isaac bridge qualification, and live native-RViz audit all report
+PASS. The RViz audit records 99 measured body poses, 99 current-pose
+publications, 99 matching `world -> TORSO` transforms, and two SCAN B-splines
+sampled at 160 points each.
+
+As a diagnostic only, after frame 100 (past the preserved first-view content
+fallback interval), the robust 24-tile inter-frame luminance-change p99 falls
+from 1.395 in `preflight08` to 0.378 in `preflight13`; the maximum falls from
+1.589 to 0.550. The overview p99 falls from 0.794 to 0.293. This metric supports
+the temporal-lighting repair but does not replace Dr Sun's visual judgment.
+
+- `results/office_crowd_review_native_rviz_preflight13/closed_loop.mp4` —
+  `ef89b7e67fffc6c8a1c1016d02e752ec6385d3c4fce20abf3c29ca12d119bef9`
+- `results/office_crowd_review_native_rviz_preflight13/closed_loop_third_person_side.mp4` —
+  `1b7a1990d0135f7d119437633f17710c32787f7fbcdfd3ced2151cd9dda0153c`
+- `results/office_crowd_review_native_rviz_preflight13/closed_loop_overview.mp4` —
+  `a669fa8620b32e332094175a61a572e205968818682c50f74efa868bba88f89b`
+- `results/office_crowd_review_native_rviz_preflight13/native_scan_rviz3d_5070ti_sim_time.mp4` —
+  `b3a280eece682249f61d7d76338b69d3fceb0520b9826eadc586c1f93df6dd81`
+- `results/office_crowd_review_native_rviz_preflight13/office_review_validation_report.json` —
+  `4b616251c4465b69ca4d223685d4f9427609c7bb428e2e07cf3d58a7a09c028e`
+- `results/office_crowd_review_native_rviz_preflight13/native_rviz_review_audit.json` —
+  `6e61de0d2bafba50bc4ea43e743c8716a50b27a0f8aba6bd580a06c6dd233985`
+
+`preflight09`, `preflight10`, `preflight11`, and `preflight12` remain preserved
+diagnostic failures or incomplete attempts and are not promoted. The repaired
+validator now rejects a shortened video even when all produced streams have
+matching frame counts. This remains supplemental human-review evidence;
+candidate38/39 are unchanged and AC55 remains pending Dr Sun's explicit visual
+decision.
+
+## 12. Normalized MID-360 golden dual-view working revision
+
+The accumulated Office R2 work is now recorded as the explicit working
+revision `office-r2.0.0-preflight`. This is a normalization snapshot anchored
+to source commit `c17e9da0f8ef658f8f19e1448f32235a842c6c67` plus the current
+dirty source/evidence hashes; it is not a clean, committed, accepted, or formal
+release. `CHANGE_CONTROL.md` defines the revision/run/candidate distinction and
+`revision_ledger.json` records the current component contracts and next
+authorized action.
+
+The golden presentation contract is frozen separately as
+`office-dualview-v1.0.0`: high external third-person at left and the same-run,
+simulator-time-synchronized native 5070 Ti RViz at right, 1920 x 1080 per
+panel. Freezing this layout does not accept the navigation candidate shown
+inside it.
+
+`office_crowd_mid360_dualview_preflight01` remains an immutable failed
+preflight. Its ten-second recordings completed, but the full-duration
+pedestrian fraction gate was incorrectly applied to a short visual preview and
+stopped composition. The result was not overwritten or relabeled.
+
+`office_crowd_mid360_dualview_preflight02` is the current ten-second visual
+preflight for the source-backed MID-360 and golden dual-view template. The
+combined validator, live native-RViz audit, and short motion-coherence checks
+report PASS. The terminal goal/stop gate is explicitly `SKIPPED`, and the
+full-duration pedestrian fractions are recorded but not gated. The combined
+video is 3840 x 1080, H.264/YUV420p, 25 fps, 251 frames, and 10.04 s.
+
+- `results/office_crowd_mid360_dualview_preflight02/office_review_third_person_rviz_4k.mp4` —
+  `30a4d63712dce4a3bcf5e465acb8df739805665471d0b10af2fac56d21b6f87c`
+- `results/office_crowd_mid360_dualview_preflight02/office_review_third_person_rviz_4k_validation.json` —
+  `50283288fe514debc8268f20fb4cdff275b424b9279a24aba5a063f7988d113e`
+- `results/office_crowd_mid360_dualview_preflight02/native_rviz_review_audit.json` —
+  `963ea279ed0edfe7d5134781f74e95c5067f29aebb435b96000dd7b4f7a08347`
+- `results/office_crowd_mid360_dualview_preflight02/isaac/run_identity.json` —
+  `d19ea46972279521ef4163d0b48ad252eae5791a99a40b5254b625e9d13ff0be`
+
+This run does not reach the Office goal, does not rerun AC54 under the new
+sensor input, does not authorize full dry runs or a formal candidate, and
+cannot satisfy AC55. The next action is to wait for Dr Sun's visual-preflight
+decision.
