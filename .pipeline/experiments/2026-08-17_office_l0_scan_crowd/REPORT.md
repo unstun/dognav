@@ -333,12 +333,12 @@ decision.
 ## 12. Normalized MID-360 golden dual-view working revision
 
 The accumulated Office R2 work is now recorded as the explicit working
-revision `office-r2.0.0-preflight`. This is a normalization snapshot anchored
-to source commit `c17e9da0f8ef658f8f19e1448f32235a842c6c67` plus the current
-dirty source/evidence hashes; it is not a clean, committed, accepted, or formal
-release. `CHANGE_CONTROL.md` defines the revision/run/candidate distinction and
-`revision_ledger.json` records the current component contracts and next
-authorized action.
+revision `office-r2.0.0-preflight`. The source snapshot is backed by commit
+`f320db3c356a2c2fe980e812172fa6ea57929861` on branch
+`codex/office-r2-mid360-preflight-archive`; runtime artifacts remain local, and
+the revision is not accepted or formal. `CHANGE_CONTROL.md` defines the
+revision/run/candidate distinction and `revision_ledger.json` records the
+current component contracts and next authorized action.
 
 The golden presentation contract is frozen separately as
 `office-dualview-v1.0.0`: high external third-person at left and the same-run,

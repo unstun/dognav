@@ -17,8 +17,8 @@
     "normalization_baseline": true,
     "parent_revision": null,
     "status": "human_preflight_review_pending",
-    "source_commit": "c17e9da0f8ef658f8f19e1448f32235a842c6c67",
-    "source_commit_state": "detached_dirty_uncommitted",
+    "source_commit": "f320db3c356a2c2fe980e812172fa6ea57929861",
+    "source_commit_state": "branch_backed_preflight_snapshot_with_local_runtime_artifacts",
     "change_group": "Normalization snapshot of accumulated Office R2 work; all later revisions must declare exactly one change group.",
     "claim_boundary": "Working visual preflight revision only; not a frozen source release, formal candidate, AC54 rerun, or AC55 decision.",
     "component_contracts": {
