@@ -1,0 +1,29 @@
+display=:0
+rviz_window_id=0x3200014
+capture_x=132
+capture_y=69
+capture_width=2428
+capture_height=1364
+
+xwininfo: Window id: 0x3200014 "/workspace/src/lite3_sim_bridge/config/foxy_native_scan_review.rviz - RViz"
+
+  Absolute upper-left X:  132
+  Absolute upper-left Y:  69
+  Relative upper-left X:  14
+  Relative upper-left Y:  49
+  Width: 2428
+  Height: 1371
+  Depth: 24
+  Visual: 0x2c
+  Visual Class: TrueColor
+  Border width: 0
+  Class: InputOutput
+  Colormap: 0x3200013 (not installed)
+  Bit Gravity State: NorthWestGravity
+  Window Gravity State: NorthWestGravity
+  Backing Store State: NotUseful
+  Save Under State: no
+  Map State: IsViewable
+  Override Redirect State: no
+  Corners:  +132+69  -0+69  -0-0  +132-0
+  -geometry 2428x1371--14--17

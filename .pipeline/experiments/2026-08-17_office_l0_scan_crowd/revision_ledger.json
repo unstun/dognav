@@ -18,7 +18,10 @@
     "parent_revision": null,
     "status": "human_preflight_review_pending",
     "source_commit": "f320db3c356a2c2fe980e812172fa6ea57929861",
-    "source_commit_state": "branch_backed_preflight_snapshot_with_local_runtime_artifacts",
+    "source_commit_state": "canonical_branch_backed_preflight_snapshot_with_canonical_local_runtime_artifacts",
+    "canonical_branch": "codex/scan-foxy-isaac",
+    "archive_commit": "6dba7c2",
+    "artifact_state": "canonical_local_paths_recursively_hash_verified",
     "change_group": "Normalization snapshot of accumulated Office R2 work; all later revisions must declare exactly one change group.",
     "claim_boundary": "Working visual preflight revision only; not a frozen source release, formal candidate, AC54 rerun, or AC55 decision.",
     "component_contracts": {

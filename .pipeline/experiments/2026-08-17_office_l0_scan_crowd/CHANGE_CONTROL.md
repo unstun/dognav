@@ -88,6 +88,11 @@ presentation-contract change creates a new revision first.
   right, 1920 x 1080 per panel.
 - Current working revision: `office-r2.0.0-preflight`, containing the
   source-backed MID-360 input and the frozen dual-view presentation contract.
+- Canonical archive: source snapshot `f320db3c356a`, state archive `6dba7c2`,
+  branch `codex/scan-foxy-isaac`. The referenced result directories are present
+  at their canonical local paths and hash-verified; large binary entities remain
+  local-only under repository policy while their hashes and textual evidence
+  are Git-backed.
 - Latest run: `office_crowd_mid360_dualview_preflight02`, a 10-second visual
   preflight only. It did not reach the goal, did not run the full-duration
   pedestrian fraction gate, did not rerun AC54, and cannot satisfy AC55.

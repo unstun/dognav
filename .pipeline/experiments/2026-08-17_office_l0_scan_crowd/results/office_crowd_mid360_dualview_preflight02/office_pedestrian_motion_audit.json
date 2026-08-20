@@ -1,0 +1,36 @@
+{
+  "checks": {
+    "eight_people_observed": true,
+    "no_idle_sliding": true,
+    "no_in_place_walk": true,
+    "phase_conditioned_animation": true,
+    "safe_background_ping_pong_root_motion": true
+  },
+  "claim_boundary": "Short dual-view visual preflight only. Full-duration root-motion fractions are recorded but not gated; formal Office acceptance and human AC55 review are not evaluated by this run.",
+  "fidelity": {
+    "idle_while_moving_fraction": 0.0,
+    "in_place_walk_fraction": 0.0,
+    "moving_speed_threshold_mps": 0.05,
+    "pedestrian_names": [
+      "background_1",
+      "background_2",
+      "background_3",
+      "background_4",
+      "background_5",
+      "background_6",
+      "crossing_1",
+      "crossing_2"
+    ],
+    "root_moving_fraction": 0.16766467065868262,
+    "sample_count": 4008,
+    "timeline_any_root_motion_fraction": 0.9401197604790419,
+    "timeline_sample_count": 501,
+    "walk_clip_fraction": 0.16766467065868262
+  },
+  "non_gating_duration_observations": {
+    "continuous_crowd_motion": false,
+    "root_motion_fraction": false
+  },
+  "schema_version": 1,
+  "status": "PASS"
+}

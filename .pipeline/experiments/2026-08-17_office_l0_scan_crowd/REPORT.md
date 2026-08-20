@@ -1,10 +1,15 @@
 # Office L0 Lite3 + SCAN-Planner + Eight-Pedestrian Closed Loop
 
-> Date: 2026-08-17
+> Record opened: 2026-08-17; latest update: 2026-08-19
 > Branch: `codex/scan-foxy-isaac`
-> Task: `.trellis/tasks/07-23-scan-planner-reproduction`
+> Archive commit: `6dba7c2`
+> Tasks: `.trellis/tasks/07-23-scan-planner-reproduction` and child
+> `.trellis/tasks/08-17-office-crowd-review-visual-r2`
 > Stage: `experiment + analysis`
-> Status: candidates 38 and 39 pass the frozen automated gate with identical effective inputs; AC55 remains pending Dr Sun's visual review.
+> Status: candidates 38 and 39 retain AC54 PASS under their immutable old
+> inputs. The current source-backed MID-360 result is golden dual-view short
+> preflight02 only; it has not rerun AC54, AC55 remains pending, and no accepted
+> revision or formal candidate exists.
 
 ## 1. Result
 
@@ -334,11 +339,16 @@ decision.
 
 The accumulated Office R2 work is now recorded as the explicit working
 revision `office-r2.0.0-preflight`. The source snapshot is backed by commit
-`f320db3c356a2c2fe980e812172fa6ea57929861` on branch
-`codex/office-r2-mid360-preflight-archive`; runtime artifacts remain local, and
-the revision is not accepted or formal. `CHANGE_CONTROL.md` defines the
-revision/run/candidate distinction and `revision_ledger.json` records the
-current component contracts and next authorized action.
+`f320db3c356a2c2fe980e812172fa6ea57929861`, and the state archive is commit
+`6dba7c2` on the canonical branch `codex/scan-foxy-isaac`. The MID-360 smoke,
+Office preflight, and golden dual-view result directories have been copied into
+the canonical project checkout at their ledger paths and recursively verified
+against the originating worktree. Large videos remain local-only under the
+repository's binary-artifact policy; their hashes and textual evidence are the
+Git-backed provenance. The revision is not accepted or formal.
+`CHANGE_CONTROL.md` defines the revision/run/candidate distinction and
+`revision_ledger.json` records the current component contracts and next
+authorized action.
 
 The golden presentation contract is frozen separately as
 `office-dualview-v1.0.0`: high external third-person at left and the same-run,

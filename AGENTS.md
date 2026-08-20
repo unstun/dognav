@@ -108,10 +108,15 @@ Existing repository conventions remain active:
 
 ## Current Boundary
 
-As of 2026-07-23, the repository has research material but no verified
-navigation implementation, simulator task, checkpoint, or runtime result.
-The first implementation task must follow a separate upstream code survey and
-reproducibility review.
+As of 2026-08-19, the repository has a project-integrated Foxy SCAN-Planner to
+Lite3 V12 Isaac closed loop. Immutable Office L0 candidates 38 and 39 passed
+their declared automated AC54 gate under their original inputs. The current
+MID-360 working revision is `office-r2.0.0-preflight`, and its golden
+third-person plus same-run native-RViz dual-view result is only a 10.04-second
+human-review preflight. It has not rerun full AC54, AC55 remains pending Dr
+Sun, and both `accepted_revision` and `formal_candidate` remain null. This is
+not an upstream SCAN reproduction, real-robot validation, or completed Office
+navigation task.
 
 <!-- TRELLIS:START -->
 # Trellis Instructions

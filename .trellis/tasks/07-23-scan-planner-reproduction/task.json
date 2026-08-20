@@ -19,7 +19,8 @@
   "pr_url": null,
   "subtasks": [],
   "children": [
-    "07-24-lite3-pro-parametric-model"
+    "07-24-lite3-pro-parametric-model",
+    "08-17-office-crowd-review-visual-r2"
   ],
   "parent": null,
   "relatedFiles": [],
@@ -78,11 +79,17 @@
         "official_indoor_scene_preview_scope": "warehouse_office_hospital_source_scene_and_lite3_scale_context",
         "official_indoor_scene_preview_status": "warehouse_visual_ready_office_global_three_floor_tour23_ready_hospital_partial_human_selection_pending",
         "office_l0_crowd_trial_scope": "lite3_v12_scan_mid360_d435i_eight_official_pedestrians",
-        "office_l0_crowd_trial_status": "remediation_two_same_input_trials_passed_automated_gates_human_visual_review_pending",
+        "office_l0_crowd_trial_status": "candidate38_candidate39_old_input_ac54_pass_mid360_golden_dualview_short_preflight_pending_human_review",
         "office_l0_crowd_same_input_runs": [
-          "office_crowd_dryrun24",
-          "office_crowd_dryrun25"
+          "office_crowd_codex_candidate38",
+          "office_crowd_codex_candidate39"
         ],
-        "office_l0_crowd_acceptance": "dryrun24_pass_dryrun25_pass_repeatability_pass"
+        "office_l0_crowd_acceptance": "candidate38_pass_candidate39_pass_repeatability_pass_old_input_only",
+        "office_l0_current_working_revision": "office-r2.0.0-preflight",
+        "office_l0_current_run": "office_crowd_mid360_dualview_preflight02",
+        "office_l0_presentation_contract": "office-dualview-v1.0.0",
+        "office_l0_current_artifact_state": "canonical_local_hash_verified",
+        "office_l0_accepted_revision": null,
+        "office_l0_formal_candidate": null
   }
 }

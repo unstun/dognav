@@ -1,0 +1,56 @@
+{
+  "bbox_publish_count": 0,
+  "bbox_snapshot_files": [],
+  "body_pose_count": 83,
+  "checks": {
+    "all_bspline_paths_use_declared_sample_count": true,
+    "body_path_has_multiple_poses": true,
+    "body_stamps_strictly_increase": true,
+    "bspline_observed": true,
+    "bspline_sampling_errors_zero": true,
+    "current_pose_matches_body_path": true,
+    "root_transform_matches_body_path": true
+  },
+  "claim_boundary": "ROS 2 Foxy live visualization adapter; the SCAN planned path is sampled from each received /planning/bspline message, while the actual path, current pose, and robot-root transform come from /quad_0/body_pose in the same run; no planning, simulator stepping, or post-render path drawing is performed",
+  "current_pose_publish_count": 83,
+  "first_body_stamp_ns": 129999997,
+  "last_body_stamp_ns": 10029999775,
+  "live_lidar_publish_count": 0,
+  "preloaded_snapshot_file": null,
+  "published_topics": [
+    "/review/lite3_actual_path",
+    "/review/lite3_current_pose",
+    "/review/scan_planned_path",
+    "/review/sliding_map_bbox",
+    "/review/occupancy",
+    "/review/occupancy_inflate",
+    "/tf:world_to_TORSO"
+  ],
+  "rejected_body_pose_count": 0,
+  "rejected_bspline_count": 0,
+  "require_live_lidar": false,
+  "root_transform_publish_count": 83,
+  "sample_count_per_trajectory": 160,
+  "schema_version": 2,
+  "source_mode": "live",
+  "source_topics": [
+    "/quad_0/cloud",
+    "/quad_0/body_pose",
+    "/planning/bspline"
+  ],
+  "status": "PASS",
+  "trajectory_ids": [
+    1,
+    2
+  ],
+  "trajectory_point_counts": {
+    "1": 160,
+    "2": 160
+  },
+  "trajectory_start_stamps_ns": {
+    "1": 1787131366047171850,
+    "2": 1787131450041145561
+  },
+  "voxel_point_counts": {},
+  "voxel_publish_count": 0
+}

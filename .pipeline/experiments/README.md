@@ -15,8 +15,10 @@ human gate owned by Dr Sun. The current working revision is
 `office-r2.0.0-preflight`, its presentation template is
 `office-dualview-v1.0.0`, and both `accepted_revision` and `formal_candidate`
 remain null. The source snapshot is backed by commit `f320db3c356a` on branch
-`codex/office-r2-mid360-preflight-archive`; runtime artifacts remain local and
-the revision is neither accepted nor formal.
+`codex/scan-foxy-isaac`; archive commit `6dba7c2` and the canonical local
+experiment paths now contain the MID-360 and golden dual-view evidence. Large
+videos remain local-only by repository policy, with hashes and textual evidence
+kept in Git. The revision is neither accepted nor formal.
 
 The source-backed MID-360 sensor qualification and
 `office_crowd_mid360_dualview_preflight02` are limited smoke/preflight evidence.
