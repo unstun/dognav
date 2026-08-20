@@ -87,23 +87,38 @@ presentation-contract change creates a new revision first.
   third-person at left and simulator-time synchronized native 5070 Ti RViz at
   right, 1920 x 1080 per panel. The current instrumentation/delivery patch is
   `office-dualview-v1.0.1`; it does not change that layout.
-- Current working revision: `office-r2.0.1-preflight`, parent
-  `office-r2.0.0-preflight`, with the single change group
-  `golden_dualview_delivery_reliability`.
+- Current working revision: `office-v2.0.1-go2-geometry-preflight`, parent
+  `office-r2.0.1-preflight`, with the single change group
+  `dual_cloud_transport_and_upstream_go2_geometry_reference`. The system
+  version remains `v2.0.1`; the `v` spelling identifies this new build and
+  does not rewrite the historical `r2.0.1` archive.
 - Canonical archive: source snapshot `f320db3c356a`, state archive `6dba7c2`,
   branch `codex/scan-foxy-isaac`. The referenced result directories are present
   at their canonical local paths and hash-verified; large binary entities remain
   local-only under repository policy while their hashes and textual evidence
   are Git-backed.
-- Latest run: `office_crowd_r2_0_1_live_cloud_transfer_preflight06`, a
-  10.04-second automated visual-delivery preflight. Its live-cloud continuity,
-  delivered-frame visibility, and CRF-selected transfer entity pass their
-  declared automated gates. Attempts 01--05 remain immutable failures.
+- First new-profile run `office_v2_0_1_go2_geometry_preflight01` is an
+  immutable failed short preflight: its 1 s telemetry receive timeout caused
+  reconnects and missing Foxy scan audits, and the full-duration pedestrian
+  gate was incorrectly applied to a 10 s preview. Run
+  `office_v2_0_1_go2_geometry_preflight02` is the first flat 10.04 s short
+  preflight with 101 generated and 101 audited dual-cloud scans. Its original
+  postprocessor failed because it imported a stale module; both failed retries
+  are preserved and the corrected retry records PASS without rerunning or
+  overwriting the simulation.
 - The navigation inputs are unchanged: MID-360 stays at 10 Hz simulator time,
   20,000 ordered rays per scan, 0.1--40 m, with the pinned pattern and same-step
-  stamp. The repair retains the latest genuine `/quad_0/cloud` sample in RViz
-  until the next real message; it does not increase, duplicate, or synthesize
-  sensor data.
+  stamp. Each scan now yields ground-inclusive `/quad_0/cloud_raw` for Decay-0
+  RViz and geometry-filtered `/quad_0/cloud` for SCAN. No scan is replayed,
+  duplicated, interpolated, or classified with scene labels.
+- The separate `upstream_go2_reference` profile borrows only radius 0.25 m,
+  offset 0.18 m, body height 0.40 m, and 0.10 m z inflation above and below
+  from SCAN-Planner commit `348e8a590a50a5a6bbab8d8c6dcfd171f009be26`.
+  These are Go2 reference values, not Lite3 calibration. Go2's 0.75 m/s speed
+  was not copied; Lite3 remains at 0.50 m/s.
 - `accepted_revision` and `formal_candidate` remain null. AC54 was not rerun,
   AC55 remains pending, and full dry runs/formal-candidate work require fresh
   explicit authorization after Dr Sun reviews the short transfer video.
+- Non-flat simulation remains separately unauthorized. Static slope, step, and
+  sparse-cloud tests plus SCAN route-height GTests do not validate Lite3 complex
+  terrain capability.

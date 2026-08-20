@@ -1,0 +1,96 @@
+{
+  "claim_boundary": "Ten-second flat Office geometry and delivery preflight only; not AC54, AC55, formal candidate, real robot, or complex-terrain validation.",
+  "gates": {
+    "combined_video": "PASS",
+    "isaac": "PASS",
+    "native_rviz": "PASS",
+    "raw_cloud_continuity_retry": "PASS",
+    "short_pedestrian": "PASS",
+    "transfer_video": "PASS",
+    "voxel": "PASS"
+  },
+  "nonflat_simulation_executed": false,
+  "preserved_failures": [
+    {
+      "artifact": "live_pointcloud_continuity_audit.json",
+      "reason": "postprocessor imported historical /quad_0/cloud constant"
+    },
+    {
+      "artifact": "live_pointcloud_continuity_audit_retry01.log",
+      "reason": "system Python lacked numpy"
+    }
+  ],
+  "run_id": "office_v2_0_1_go2_geometry_preflight02",
+  "scan_audit": {
+    "conservative_retained_point_count": {
+      "max": 287,
+      "median": 30,
+      "min": 5
+    },
+    "filtered_ground_point_count": {
+      "max": 6923,
+      "median": 4979,
+      "min": 3641
+    },
+    "first_scan_id": 1,
+    "generated_count": 101,
+    "last_scan_id": 101,
+    "overwrite_max": 0,
+    "planning_point_count": {
+      "max": 13122,
+      "median": 11861,
+      "min": 9894
+    },
+    "published_count": 101,
+    "raw_point_count": {
+      "max": 16882,
+      "median": 16831,
+      "min": 16704
+    }
+  },
+  "schema_version": 1,
+  "simulation_executed": true,
+  "status": "PASS_WITH_PRESERVED_POSTPROCESS_RETRIES",
+  "successful_recovery_audit": "live_pointcloud_continuity_audit_retry02.json",
+  "videos": {
+    "compression_manifest": "video_compression_manifest.json",
+    "master": {
+      "bytes": 55960853,
+      "path": "office_review_third_person_rviz_4k.mp4",
+      "sha256": "4e36e06eeb80c3b0d924633af89f61f47b05ca640296b46972c0bc0080618a65"
+    },
+    "transfer": {
+      "bytes": 10664891,
+      "path": "office_review_third_person_rviz_4k_transfer.mp4",
+      "sha256": "03a9b05b308a323747db782e95c763a6829c9f9b259e989574a88f318339f665"
+    },
+    "transfer_validation": {
+      "checks": {
+        "bt709": true,
+        "duration_matches_master": true,
+        "frame_count_matches_master": true,
+        "frame_rate_25fps": true,
+        "full_decode_matches_master": true,
+        "h264_high": true,
+        "resolution_3840x1080": true,
+        "size_reduction_at_least_0_50": true,
+        "ssim_at_least_minimum": true,
+        "yuv420p": true
+      },
+      "layout": {
+        "left": "high external side third-person view",
+        "right": "same-run native 5070 Ti RViz synchronized to simulator time"
+      },
+      "manual_review": "pending direct contact-sheet and video inspection",
+      "minimum_ssim": 0.97,
+      "size_reduction_fraction": 0.8094222938310107,
+      "ssim": 0.975306,
+      "status": "PASS",
+      "vmaf": {
+        "available": false,
+        "reason": "libvmaf filter unavailable",
+        "score": null
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/sun/machine-dog-nav-runs/2026-08-20_office_v2_0_1_go2_geometry_preflight/foxy_ws/src/lite3_sim_bridge/lite3_sim_bridge/delivery_reliability.py", line 18, in <module>
+    import numpy as np
+ModuleNotFoundError: No module named 'numpy'

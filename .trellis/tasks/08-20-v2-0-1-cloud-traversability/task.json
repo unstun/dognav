@@ -1,0 +1,40 @@
+{
+  "id": "v2-0-1-cloud-traversability",
+  "name": "v2-0-1-cloud-traversability",
+  "title": "v2.0.1 live point cloud and SCAN traversability repair",
+  "description": "Implement and validate the v2.0.1 split between truthful raw MID-360 visualization and SCAN occupancy input, with bounded borrowed-Go2 geometry and a separately authorized non-flat probe.",
+  "status": "in_progress",
+  "dev_type": null,
+  "scope": "v2.0.1 raw-versus-planner MID-360 clouds, bounded SCAN geometric traversability, flat short-regression evidence, and preserved historical display/compression evidence; non-flat execution remains separately gated",
+  "package": null,
+  "priority": "P2",
+  "creator": "sun",
+  "assignee": "sun",
+  "createdAt": "2026-08-20",
+  "completedAt": null,
+  "branch": "codex/scan-foxy-isaac",
+  "base_branch": "main",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [],
+  "parent": "08-17-office-crowd-review-visual-r2",
+  "relatedFiles": [
+    "integration/lite3_sim_bridge/lite3_sim_bridge/run_isaac_v12_fallback.py",
+    "integration/lite3_sim_bridge/lite3_sim_bridge/isaac_adapter_core.py",
+    "integration/lite3_sim_bridge/lite3_sim_bridge/foxy_bridge_node.py",
+    "integration/lite3_sim_bridge/config/foxy_bridge.yaml",
+    "integration/lite3_sim_bridge/config/foxy_native_scan_review.rviz",
+    "integration/scan_planner_foxy_ws/src/plan_manage/src/scan_replan_fsm.cpp",
+    "integration/scan_planner_foxy_ws/src/bspline_opt/src/bspline_optimizer.cpp",
+    "integration/scan_planner_foxy_ws/src/plan_manage/config/foxy_isaac_office_crowd_planner.yaml",
+    ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/revision_ledger.json"
+  ],
+  "notes": "",
+  "meta": {
+    "release_version": "v2.0.1",
+    "stage": "experiment + analysis",
+    "preserved_completed_task": "08-20-office-r2-0-1-live-cloud-transfer"
+  }
+}

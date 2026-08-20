@@ -7,7 +7,7 @@ import re
 from pathlib import Path
 
 
-REVISION_PATTERN = re.compile(r"^office-r\d+\.\d+\.\d+(?:-[a-z0-9-]+)?$")
+REVISION_PATTERN = re.compile(r"^office-[rv]\d+\.\d+\.\d+(?:-[a-z0-9-]+)?$")
 RUN_STAGE_VALUES = {"smoke", "preflight", "dryrun", "candidate"}
 RUN_STATUS_VALUES = {
     "failed",
@@ -23,6 +23,16 @@ REQUIRED_PLANNED_REVISION_FIELDS = {
     "automated_gates",
     "unauthorized_actions",
 }
+GO2_REFERENCE_REVISION = "office-v2.0.1-go2-geometry-preflight"
+GO2_REFERENCE_CHANGE_GROUP = "dual_cloud_transport_and_upstream_go2_geometry_reference"
+GO2_REFERENCE_COMMIT = "348e8a590a50a5a6bbab8d8c6dcfd171f009be26"
+GO2_REFERENCE_VALUES = {
+    "grid_map.double_cylinder_radius": 0.25,
+    "grid_map.double_cylinder_offset": 0.18,
+    "grid_map.body_height": 0.4,
+    "grid_map.obstacles_inflation_z_up": 0.1,
+    "grid_map.obstacles_inflation_z_down": 0.1,
+}
 
 
 def _sha256(path: Path) -> str:
@@ -33,11 +43,18 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _canonical_sha256(value: object) -> str:
+    encoded = (json.dumps(value, sort_keys=True, separators=(",", ":")) + "\n").encode(
+        "utf-8"
+    )
+    return hashlib.sha256(encoded).hexdigest()
+
+
 def validate(ledger_path: Path, repository_root: Path) -> None:
     payload = json.loads(ledger_path.read_text(encoding="utf-8"))
-    if payload.get("schema_version") != 2:
-        raise ValueError("schema_version must be 2")
-    if payload.get("protocol_version") != "office-change-control-v2":
+    if payload.get("schema_version") != 3:
+        raise ValueError("schema_version must be 3")
+    if payload.get("protocol_version") != "office-change-control-v3":
         raise ValueError("unexpected protocol_version")
 
     revision_history = payload.get("revision_history")
@@ -81,9 +98,15 @@ def validate(ledger_path: Path, repository_root: Path) -> None:
         ]:
             raise ValueError(f"revision {record_revision}.frozen_invariants must be nonempty")
         if not is_baseline:
-            if record.get("change_group") != "golden_dualview_delivery_reliability":
+            expected_change_group = (
+                GO2_REFERENCE_CHANGE_GROUP
+                if record_revision == GO2_REFERENCE_REVISION
+                else "golden_dualview_delivery_reliability"
+            )
+            if record.get("change_group") != expected_change_group:
                 raise ValueError(
-                    f"revision {record_revision} must declare exactly the authorized change group"
+                    f"revision {record_revision} must declare change_group "
+                    f"{expected_change_group!r}"
                 )
             if not record.get("planned_run_id"):
                 raise ValueError(f"revision {record_revision}.planned_run_id is required")
@@ -92,21 +115,45 @@ def validate(ledger_path: Path, repository_root: Path) -> None:
             for key in REQUIRED_PLANNED_REVISION_FIELDS:
                 if not isinstance(record.get(key), list) or not record[key]:
                     raise ValueError(f"revision {record_revision}.{key} must be nonempty")
+            if record_revision == GO2_REFERENCE_REVISION:
+                for key in (
+                    "allowed_files",
+                    "frozen_parameters",
+                    "borrowed_parameters",
+                    "historical_evidence_baseline",
+                    "failure_retention",
+                ):
+                    if not record.get(key):
+                        raise ValueError(f"revision {record_revision}.{key} is required")
+                borrowed = record["borrowed_parameters"]
+                if borrowed.get("profile") != "upstream_go2_reference":
+                    raise ValueError("Go2 reference profile name drifted")
+                if borrowed.get("official_commit") != GO2_REFERENCE_COMMIT:
+                    raise ValueError("Go2 official source commit drifted")
+                if borrowed.get("values") != GO2_REFERENCE_VALUES:
+                    raise ValueError("Go2 borrowed parameter inventory drifted")
+                frozen = record["frozen_parameters"]
+                expected_frozen = {
+                    "manager_max_vel_mps": 0.5,
+                    "manager_max_acc_mps2": 0.5,
+                    "manager_max_jerk_mps3": 4.0,
+                    "office_map_size_m": [16.0, 16.0, 5.0],
+                    "office_local_update_range_m": [6.0, 6.0, 2.5],
+                    "office_planning_horizon_m": 8.0,
+                    "mid360_hz": 10.0,
+                    "mid360_rays_per_scan": 20000,
+                    "mid360_range_m": [0.1, 40.0],
+                }
+                for key, expected in expected_frozen.items():
+                    if frozen.get(key) != expected:
+                        raise ValueError(f"frozen parameter {key} drifted")
         revision_ids.append(record_revision)
 
     current = payload.get("current_working_revision")
-    if not isinstance(current, dict):
-        raise ValueError("current_working_revision must be an object")
-    if current != revision_history[-1]:
-        raise ValueError("current_working_revision must equal the final revision_history entry")
-    revision = current.get("revision")
-    if not isinstance(revision, str) or REVISION_PATTERN.fullmatch(revision) is None:
+    if current != revision_ids[-1]:
+        raise ValueError("current_working_revision must name the final revision_history entry")
+    if not isinstance(current, str) or REVISION_PATTERN.fullmatch(current) is None:
         raise ValueError("current revision does not match the Office revision format")
-    for key in ("status", "source_commit", "source_commit_state", "change_group", "claim_boundary"):
-        if not current.get(key):
-            raise ValueError(f"current_working_revision.{key} is required")
-    if not isinstance(current.get("frozen_invariants"), list) or not current["frozen_invariants"]:
-        raise ValueError("current_working_revision.frozen_invariants must be nonempty")
 
     human_gate = payload.get("human_gate")
     if human_gate != {"gate": "AC55", "owner": "Dr Sun", "status": "pending"}:
@@ -115,6 +162,47 @@ def validate(ledger_path: Path, repository_root: Path) -> None:
         raise ValueError("this preflight ledger cannot name an accepted revision or formal candidate")
 
     experiment_root = repository_root / payload["source_of_truth"]
+    go2_record = revision_history[-1]
+    if go2_record.get("revision") != GO2_REFERENCE_REVISION:
+        raise ValueError("the Go2 reference revision must remain the history tail")
+    baseline = go2_record["historical_evidence_baseline"]
+    if _canonical_sha256(revision_history[:-1]) != baseline.get(
+        "revision_history_before_canonical_sha256"
+    ):
+        raise ValueError("historical revision_history prefix drifted")
+    runs = payload.get("runs", [])
+    historical_run_count = baseline.get("runs_before_count")
+    if not isinstance(historical_run_count, int) or historical_run_count < 0:
+        raise ValueError("historical run count is missing or invalid")
+    if len(runs) < historical_run_count:
+        raise ValueError("historical run records were removed")
+    if _canonical_sha256(runs[:historical_run_count]) != baseline.get(
+        "runs_before_canonical_sha256"
+    ):
+        raise ValueError("historical run records drifted")
+
+    protected_files = {
+        "r2_0_1_revision_markdown_sha256": experiment_root
+        / "revisions/office-r2.0.1-preflight.md",
+        "r2_0_1_revision_manifest_sha256": experiment_root
+        / "revisions/office-r2.0.1-preflight.manifest.json",
+        "r2_0_1_recursive_manifest_sha256": experiment_root
+        / "revisions/office-r2.0.1-preflight.local-recursive-sha256.txt",
+        "r2_0_1_master_video_sha256": experiment_root
+        / "results/office_crowd_r2_0_1_live_cloud_transfer_preflight06/office_review_third_person_rviz_4k.mp4",
+        "r2_0_1_transfer_video_sha256": experiment_root
+        / "results/office_crowd_r2_0_1_live_cloud_transfer_preflight06/office_review_third_person_rviz_4k_transfer.mp4",
+    }
+    for baseline_key, path in protected_files.items():
+        expected = baseline.get(baseline_key)
+        if not isinstance(expected, str) or len(expected) != 64:
+            raise ValueError(f"historical evidence baseline {baseline_key} is malformed")
+        if not path.is_file():
+            raise ValueError(f"missing protected historical evidence: {path}")
+        actual = _sha256(path)
+        if actual != expected:
+            raise ValueError(f"protected historical evidence drifted: {path}")
+
     run_ids: set[str] = set()
     for run in payload.get("runs", []):
         run_id = run.get("run_id")
@@ -157,6 +245,10 @@ def validate(ledger_path: Path, repository_root: Path) -> None:
         raise ValueError("full_run_authorized must remain false before fresh approval")
     if next_action.get("formal_candidate_authorized") is not False:
         raise ValueError("formal_candidate_authorized must remain false before fresh approval")
+    if next_action.get("flat_short_regression_authorized") is not True:
+        raise ValueError("flat_short_regression_authorized must reflect Dr Sun approval")
+    if next_action.get("nonflat_preflight_authorized") is not False:
+        raise ValueError("nonflat_preflight_authorized must remain false before fresh approval")
 
 
 def main() -> int:

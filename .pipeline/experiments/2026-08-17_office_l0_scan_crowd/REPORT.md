@@ -431,3 +431,66 @@ This remains a 10.04-second automated visual-delivery preflight pending Dr
 Sun's review. It is not a full route, AC54 rerun, AC55 decision, accepted
 revision, formal candidate, upstream SCAN reproduction, or real-robot result.
 Candidate38/39 and every earlier Office run remain unchanged.
+
+## 14. v2.0.1 dual-cloud and upstream-Go2 geometry preflight
+
+The former native-RViz view could not show the floor because the system built
+one planner-oriented cloud, removed returns at the floor before serialization,
+and sent that same `/quad_0/cloud` to both RViz and SCAN. This build keeps one
+physical MID-360 acquisition but transports two atomic representations. The
+ground-inclusive finite in-range cloud is published as `/quad_0/cloud_raw` for
+native RViz with Decay 0. The locally geometry-filtered `/quad_0/cloud` removes
+continuous ground, preserves obstacles and sparse unknown returns, and remains
+SCAN's only occupancy input. Both messages have one timestamp, frame,
+configuration hash, and monotonically increasing scan ID; no scene labels,
+replay, interpolation, or copied historical cloud are used.
+
+The independent `upstream_go2_reference` configuration borrows exactly five
+values from SCAN-Planner commit
+`348e8a590a50a5a6bbab8d8c6dcfd171f009be26`: double-cylinder radius 0.25 m,
+offset 0.18 m, body height 0.40 m, and obstacle inflation 0.10 m above and below.
+They are upstream Go2 reference values, not Lite3 calibration. The Go2 speed of
+0.75 m/s was not copied. Lite3 remains at 0.50 m/s, and acceleration, jerk,
+Office map/horizon, MID-360, V12 policy/checkpoint, controller/TCP interface,
+pedestrians, scene, and prior acceptance thresholds remain unchanged.
+
+Local Python discovery ran 153 tests successfully with two environment-based
+skips. In the Foxy execution image, all four SCAN CTest targets passed,
+including six existing trajectory and three new reference-height GTests, and
+the targeted bridge suite passed 25 tests. A full bridge-package collection did
+not pass because that Foxy image lacks `torch`, required by the existing
+MID-360 pattern test; this environmental failure is retained and is not called
+validated. Static fixtures cover flat, inclined, step-like, obstacle, sparse,
+and unknown point sets. Reference-path height handling is directly GTested, but
+was not exercised by the flat Office preset-mode run.
+
+`office_v2_0_1_go2_geometry_preflight01` is retained as a failed run. A 1 s
+receive timeout caused repeated telemetry reconnects, so only 87 of 101 scans
+reached the Foxy audit, and the wrapper incorrectly applied a full-duration
+pedestrian gate to the 10 s preview. The source and thresholds were not hidden
+or overwritten.
+
+`office_v2_0_1_go2_geometry_preflight02` is the first successful flat 10.04 s
+short preflight. It generated and audited 101/101 monotonically paired scans
+without reconnects. Its last recorded scan contains 16,821 raw, 4,842 ground,
+11,979 planner, and 14 conservative-retention points. The initial continuity
+postprocessor imported a stale module and failed; a system-Python retry then
+failed for missing NumPy. Both attempts are retained. The conda/PYTHONPATH
+retry passed with `/quad_0/cloud_raw`, 1.0 generated/audited coverage, and 1.0
+delivered-video visibility, without rerunning the simulation.
+
+The master video is 55,960,853 bytes, 3840 x 1080, 25 fps, 251 frames, 10.04 s,
+and has SHA-256
+`4e36e06eeb80c3b0d924633af89f61f47b05ca640296b46972c0bc0080618a65`.
+The fully decoded H.264 High/YUV420p/BT.709 transfer video is 10,664,891 bytes
+with the same media timing and SHA-256
+`03a9b05b308a323747db782e95c763a6829c9f9b259e989574a88f318339f665`.
+This is an 80.94% size reduction (5.25x master-to-transfer ratio). The exact
+encoder command and ffmpeg 6.1.1 identity are stored with the run.
+
+Only the flat Office short regression was simulated. No non-flat simulation,
+AC54, AC55, full candidate, training, or real-robot actuation was run. Synthetic
+slope/step tests and route-height GTests therefore do not establish a Lite3
+terrain limit or complex-terrain capability. A non-flat short preflight remains
+blocked on a separate explicit Dr Sun approval. `accepted_revision` and
+`formal_candidate` remain null.

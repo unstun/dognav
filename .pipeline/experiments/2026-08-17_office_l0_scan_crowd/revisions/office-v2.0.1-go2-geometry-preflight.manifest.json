@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "system_version": "v2.0.1",
+  "revision": "office-v2.0.1-go2-geometry-preflight",
+  "parent_revision": "office-r2.0.1-preflight",
+  "profile": "upstream_go2_reference",
+  "status": "flat_short_preflight_passed_human_and_nonflat_gates_pending",
+  "official_scan_commit": "348e8a590a50a5a6bbab8d8c6dcfd171f009be26",
+  "borrowed_values": {
+    "grid_map.double_cylinder_radius": 0.25,
+    "grid_map.double_cylinder_offset": 0.18,
+    "grid_map.body_height": 0.4,
+    "grid_map.obstacles_inflation_z_up": 0.1,
+    "grid_map.obstacles_inflation_z_down": 0.1
+  },
+  "frozen_values": {
+    "manager_max_vel_mps": 0.5,
+    "office_map_size_m": [16.0, 16.0, 5.0],
+    "office_planning_horizon_m": 8.0,
+    "mid360_hz": 10.0,
+    "mid360_rays_per_scan": 20000,
+    "mid360_range_m": [0.1, 40.0]
+  },
+  "topics": {
+    "rviz_raw": "/quad_0/cloud_raw",
+    "scan_planner": "/quad_0/cloud"
+  },
+  "runs": [
+    {
+      "run_id": "office_v2_0_1_go2_geometry_preflight01",
+      "status": "failed_preserved",
+      "generated_scans": 101,
+      "audited_scans": 87,
+      "remote_complete_tree_manifest_sha256": "f8d1a311f883389bf30066dec6dbfdf3aa32641d18c193365e60bafb6edd68c9",
+      "local_subset_manifest_sha256": "90abed0e5dd6f17b508c9c2f626ee8da7c5da32edf39c7c54b1deb9abca0168a"
+    },
+    {
+      "run_id": "office_v2_0_1_go2_geometry_preflight02",
+      "status": "flat_short_preflight_pass_with_preserved_postprocess_retries",
+      "duration_seconds": 10.04,
+      "generated_scans": 101,
+      "audited_scans": 101,
+      "master_sha256": "4e36e06eeb80c3b0d924633af89f61f47b05ca640296b46972c0bc0080618a65",
+      "transfer_sha256": "03a9b05b308a323747db782e95c763a6829c9f9b259e989574a88f318339f665",
+      "remote_complete_tree_manifest_sha256": "97dd9c511fcdc697edb17ae03c716a254b6115e461346f96b0467645307946c3",
+      "local_subset_manifest_sha256": "6f2da1d7dd7cc58a3f34c03f6dc65f90601729f52a9892952b70cb9e1f17d9c4"
+    }
+  ],
+  "direct_test_boundary": {
+    "local_python": "153 passed, 2 skipped",
+    "foxy_scan": "4 CTest targets passed",
+    "foxy_bridge_targeted": "25 passed",
+    "foxy_bridge_full": "not passed: image missing torch",
+    "flat_office_short_simulation": "passed after preserved postprocess recovery",
+    "nonflat_simulation": "not run; separate Dr Sun approval required",
+    "ac54": "not run",
+    "ac55": "pending",
+    "real_robot": "not run"
+  },
+  "accepted_revision": null,
+  "formal_candidate": null,
+  "runtime_commit": "2259afe1964db1495206d67f97e134a9bdf6d5b9",
+  "rollback_command": "git revert 2259afe1964db1495206d67f97e134a9bdf6d5b9"
+}

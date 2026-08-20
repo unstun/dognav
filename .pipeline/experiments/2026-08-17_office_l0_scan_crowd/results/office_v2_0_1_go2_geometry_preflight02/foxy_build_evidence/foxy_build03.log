@@ -1,0 +1,67 @@
+Starting >>> lite3_sim_bridge
+running develop
+running egg_info
+writing lite3_sim_bridge.egg-info/PKG-INFO
+writing dependency_links to lite3_sim_bridge.egg-info/dependency_links.txt
+writing entry points to lite3_sim_bridge.egg-info/entry_points.txt
+writing requirements to lite3_sim_bridge.egg-info/requires.txt
+writing top-level names to lite3_sim_bridge.egg-info/top_level.txt
+reading manifest file 'lite3_sim_bridge.egg-info/SOURCES.txt'
+writing manifest file 'lite3_sim_bridge.egg-info/SOURCES.txt'
+running build_ext
+Creating /workspace/install/lite3_sim_bridge/lib/python3.8/site-packages/lite3-sim-bridge.egg-link (link to .)
+Installing acceptance_monitor_node script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing compare_office_crowd_repeatability script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing compare_v12_asset_qualification script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing evaluate_acceptance script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing evaluate_office_acceptance script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing foxy_bridge_node script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing probe_rtx_lidar script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing render_voxel_review script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing run_isaac_lite3 script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing run_isaac_v12_fallback script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing rviz_replay_node script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing voxel_capture_node script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+
+Installed /workspace/build/lite3_sim_bridge
+running install_data
+Finished <<< lite3_sim_bridge [0.35s]
+Starting >>> scan_planner
+[ 21%] Built target gtest_main
+[ 28%] Built target gtest
+[ 50%] Built target test_reference_path_height
+[ 57%] Built target test_trajectory_progress
+[ 71%] Built target closed_loop_controller
+[100%] Built target scan_planner_node
+-- Install configuration: "Release"
+-- Execute custom install script
+-- Up-to-date symlink: /workspace/install/scan_planner/lib/scan_planner/scan_planner_node
+-- Up-to-date symlink: /workspace/install/scan_planner/lib/scan_planner/closed_loop_controller
+-- Up-to-date symlink: /workspace/install/scan_planner/include/plan_manage/plan_container.hpp
+-- Up-to-date symlink: /workspace/install/scan_planner/include/plan_manage/planner_manager.h
+-- Up-to-date symlink: /workspace/install/scan_planner/include/plan_manage/reference_path_height.h
+-- Up-to-date symlink: /workspace/install/scan_planner/include/plan_manage/scan_replan_fsm.h
+-- Up-to-date symlink: /workspace/install/scan_planner/include/plan_manage/trajectory_progress.h
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/launch/foxy_isaac_closed_loop.launch.py
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/config/foxy_isaac_planner.yaml
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/config/foxy_isaac_forest_v5_planner.yaml
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/config/foxy_isaac_office_crowd_upstream_go2_reference.yaml
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/config/foxy_isaac_controller.yaml
+-- Up-to-date symlink: /workspace/install/scan_planner/share/ament_index/resource_index/package_run_dependencies/scan_planner
+-- Up-to-date symlink: /workspace/install/scan_planner/share/ament_index/resource_index/parent_prefix_path/scan_planner
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/environment/path.sh
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/environment/path.dsv
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/local_setup.bash
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/local_setup.sh
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/local_setup.zsh
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/local_setup.dsv
+-- Symlinking: /workspace/install/scan_planner/share/scan_planner/package.dsv
+-- Up-to-date symlink: /workspace/install/scan_planner/share/ament_index/resource_index/packages/scan_planner
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/cmake/scan_plannerConfig.cmake
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/cmake/scan_plannerConfig-version.cmake
+-- Up-to-date symlink: /workspace/install/scan_planner/share/scan_planner/package.xml
+Finished <<< scan_planner [0.10s]
+
+Summary: 2 packages finished [0.49s]

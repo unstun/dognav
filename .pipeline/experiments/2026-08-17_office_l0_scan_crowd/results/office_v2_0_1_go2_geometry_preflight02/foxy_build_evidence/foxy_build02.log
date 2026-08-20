@@ -1,0 +1,21 @@
+Starting >>> lite3_sim_bridge
+[0.138s] ERROR:colcon.colcon_core.shell:Exception in shell extension 'sh': Expected ['.', '/run/foxy_ws/build/lite3_sim_bridge/colcon_command_prefix_setup_py.sh', '&&', 'env'] to pass: The build time path "/workspace/install/scan_planner_msgs" doesn't exist. Either source a script for a different shell or set the environment variable "COLCON_CURRENT_PREFIX" explicitly.
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/colcon_core/shell/__init__.py", line 302, in get_command_environment
+    return await extension.generate_command_environment(
+  File "/usr/lib/python3/dist-packages/colcon_core/shell/sh.py", line 154, in generate_command_environment
+    env = await get_environment_variables(cmd, cwd=str(build_base))
+  File "/usr/lib/python3/dist-packages/colcon_core/shell/__init__.py", line 338, in get_environment_variables
+    output = await check_output(cmd, cwd=cwd, shell=shell)
+  File "/usr/lib/python3/dist-packages/colcon_core/subprocess.py", line 128, in check_output
+    assert not rc, f'Expected {args} to pass: {stderr_data}'
+AssertionError: Expected ['.', '/run/foxy_ws/build/lite3_sim_bridge/colcon_command_prefix_setup_py.sh', '&&', 'env'] to pass: The build time path "/workspace/install/scan_planner_msgs" doesn't exist. Either source a script for a different shell or set the environment variable "COLCON_CURRENT_PREFIX" explicitly.
+
+
+[0.138s] ERROR:colcon.colcon_ros.task.ament_python.build:Could not find a shell extension for the command environment
+Failed   <<< lite3_sim_bridge [0.01s, exited with code 1]
+
+Summary: 0 packages finished [0.06s]
+  1 package failed: lite3_sim_bridge
+  1 package not processed

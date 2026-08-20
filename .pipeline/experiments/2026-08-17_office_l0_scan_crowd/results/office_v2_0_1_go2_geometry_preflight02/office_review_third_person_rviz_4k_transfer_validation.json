@@ -1,0 +1,28 @@
+{
+  "checks": {
+    "bt709": true,
+    "duration_matches_master": true,
+    "frame_count_matches_master": true,
+    "frame_rate_25fps": true,
+    "full_decode_matches_master": true,
+    "h264_high": true,
+    "resolution_3840x1080": true,
+    "size_reduction_at_least_0_50": true,
+    "ssim_at_least_minimum": true,
+    "yuv420p": true
+  },
+  "layout": {
+    "left": "high external side third-person view",
+    "right": "same-run native 5070 Ti RViz synchronized to simulator time"
+  },
+  "manual_review": "pending direct contact-sheet and video inspection",
+  "minimum_ssim": 0.97,
+  "size_reduction_fraction": 0.8094222938310107,
+  "ssim": 0.975306,
+  "status": "PASS",
+  "vmaf": {
+    "available": false,
+    "reason": "libvmaf filter unavailable",
+    "score": null
+  }
+}

@@ -21,7 +21,16 @@ snapshot is backed by commit `f320db3c356a` on branch
 `codex/scan-foxy-isaac`; archive commit `6dba7c2` and the canonical local
 experiment paths now contain the MID-360 and golden dual-view evidence. Large
 videos remain local-only by repository policy, with hashes and textual evidence
-kept in Git. The revision is neither accepted nor formal.
+kept in Git. The historical revision is neither accepted nor formal.
+
+The current unaccepted build is `office-v2.0.1-go2-geometry-preflight`, with
+the independent `upstream_go2_reference` profile. It splits each genuine scan
+into `/quad_0/cloud_raw` for persistent RViz display and `/quad_0/cloud` for
+SCAN, and borrows only the five pinned Go2 collision-envelope values. Flat
+short-preflight run 01 is retained as failed; run 02 produced 101/101 paired
+scan audits and verified master/transfer videos after preserving two
+postprocessing failures. Non-flat simulation still requires Dr Sun's separate
+approval, so the result is not complex-terrain validation.
 
 The source-backed MID-360 sensor qualification and
 `office_crowd_mid360_dualview_preflight02` are limited smoke/preflight evidence.

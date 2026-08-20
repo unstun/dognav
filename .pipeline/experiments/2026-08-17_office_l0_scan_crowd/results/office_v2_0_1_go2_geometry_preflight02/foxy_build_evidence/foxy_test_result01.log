@@ -1,0 +1,7 @@
+build/lite3_sim_bridge/pytest.xml: 1 test, 1 error, 0 failures, 0 skipped
+- lite3_sim_bridge
+  <<< error message
+    collection failure
+  >>>
+
+Summary: 23 tests, 1 error, 0 failures, 0 skipped

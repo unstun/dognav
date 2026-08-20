@@ -1,0 +1,30 @@
+Starting >>> lite3_sim_bridge
+running develop
+running egg_info
+writing lite3_sim_bridge.egg-info/PKG-INFO
+writing dependency_links to lite3_sim_bridge.egg-info/dependency_links.txt
+writing entry points to lite3_sim_bridge.egg-info/entry_points.txt
+writing requirements to lite3_sim_bridge.egg-info/requires.txt
+writing top-level names to lite3_sim_bridge.egg-info/top_level.txt
+reading manifest file 'lite3_sim_bridge.egg-info/SOURCES.txt'
+writing manifest file 'lite3_sim_bridge.egg-info/SOURCES.txt'
+running build_ext
+Creating /workspace/install/lite3_sim_bridge/lib/python3.8/site-packages/lite3-sim-bridge.egg-link (link to .)
+Installing acceptance_monitor_node script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing compare_office_crowd_repeatability script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing compare_v12_asset_qualification script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing evaluate_acceptance script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing evaluate_office_acceptance script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing foxy_bridge_node script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing probe_rtx_lidar script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing render_voxel_review script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing run_isaac_lite3 script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing run_isaac_v12_fallback script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing rviz_replay_node script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+Installing voxel_capture_node script to /workspace/install/lite3_sim_bridge/lib/lite3_sim_bridge
+
+Installed /workspace/build/lite3_sim_bridge
+running install_data
+Finished <<< lite3_sim_bridge [0.38s]
+
+Summary: 1 package finished [0.44s]

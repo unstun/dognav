@@ -1,0 +1,522 @@
+{
+  "bbox_publish_count": 0,
+  "bbox_snapshot_files": [],
+  "body_pose_count": 87,
+  "checks": {
+    "all_bspline_paths_use_declared_sample_count": true,
+    "all_received_live_lidar_nonempty": true,
+    "body_path_has_multiple_poses": true,
+    "body_stamps_strictly_increase": true,
+    "bspline_observed": true,
+    "bspline_sampling_errors_zero": true,
+    "current_pose_matches_body_path": true,
+    "live_lidar_audit_enabled": true,
+    "live_lidar_observed_when_required": true,
+    "live_lidar_simulator_gap_max_le_0_2_seconds": true,
+    "live_lidar_stamps_strictly_increase": true,
+    "root_transform_matches_body_path": true
+  },
+  "claim_boundary": "ROS 2 Foxy live visualization adapter; the SCAN planned path is sampled from each received /planning/bspline message, while the actual path, current pose, and robot-root transform come from /quad_0/body_pose in the same run; no planning, simulator stepping, or post-render path drawing is performed",
+  "current_pose_publish_count": 87,
+  "first_body_stamp_ns": 29999999,
+  "last_body_stamp_ns": 10029999775,
+  "live_lidar_empty_count": 0,
+  "live_lidar_first_stamp_ns": 29999999,
+  "live_lidar_last_stamp_ns": 10029999775,
+  "live_lidar_nonempty_count": 87,
+  "live_lidar_observations": [
+    {
+      "point_count": 16830,
+      "stamp_ns": 29999999,
+      "wall_time_ns": 29160529267684
+    },
+    {
+      "point_count": 16873,
+      "stamp_ns": 129999997,
+      "wall_time_ns": 29163585122672
+    },
+    {
+      "point_count": 16793,
+      "stamp_ns": 229999994,
+      "wall_time_ns": 29165707579470
+    },
+    {
+      "point_count": 16771,
+      "stamp_ns": 329999992,
+      "wall_time_ns": 29168256300248
+    },
+    {
+      "point_count": 16847,
+      "stamp_ns": 429999990,
+      "wall_time_ns": 29170406772700
+    },
+    {
+      "point_count": 16816,
+      "stamp_ns": 629999985,
+      "wall_time_ns": 29174648383857
+    },
+    {
+      "point_count": 16860,
+      "stamp_ns": 829999981,
+      "wall_time_ns": 29178946451027
+    },
+    {
+      "point_count": 16835,
+      "stamp_ns": 929999979,
+      "wall_time_ns": 29181576401499
+    },
+    {
+      "point_count": 16837,
+      "stamp_ns": 1029999976,
+      "wall_time_ns": 29183655956896
+    },
+    {
+      "point_count": 16717,
+      "stamp_ns": 1129999974,
+      "wall_time_ns": 29185745802183
+    },
+    {
+      "point_count": 16859,
+      "stamp_ns": 1229999972,
+      "wall_time_ns": 29187606289751
+    },
+    {
+      "point_count": 16795,
+      "stamp_ns": 1329999970,
+      "wall_time_ns": 29189706650065
+    },
+    {
+      "point_count": 16881,
+      "stamp_ns": 1429999968,
+      "wall_time_ns": 29191817152193
+    },
+    {
+      "point_count": 16705,
+      "stamp_ns": 1529999965,
+      "wall_time_ns": 29194456486903
+    },
+    {
+      "point_count": 16857,
+      "stamp_ns": 1629999963,
+      "wall_time_ns": 29196276677384
+    },
+    {
+      "point_count": 16817,
+      "stamp_ns": 1729999961,
+      "wall_time_ns": 29198745750180
+    },
+    {
+      "point_count": 16839,
+      "stamp_ns": 1829999959,
+      "wall_time_ns": 29200579183504
+    },
+    {
+      "point_count": 16821,
+      "stamp_ns": 2029999954,
+      "wall_time_ns": 29204696333256
+    },
+    {
+      "point_count": 16840,
+      "stamp_ns": 2129999952,
+      "wall_time_ns": 29207257872449
+    },
+    {
+      "point_count": 16852,
+      "stamp_ns": 2229999950,
+      "wall_time_ns": 29209097044330
+    },
+    {
+      "point_count": 16817,
+      "stamp_ns": 2429999945,
+      "wall_time_ns": 29213216541097
+    },
+    {
+      "point_count": 16813,
+      "stamp_ns": 2529999943,
+      "wall_time_ns": 29215735527246
+    },
+    {
+      "point_count": 16861,
+      "stamp_ns": 2629999941,
+      "wall_time_ns": 29217835365638
+    },
+    {
+      "point_count": 16831,
+      "stamp_ns": 2829999936,
+      "wall_time_ns": 29221967808606
+    },
+    {
+      "point_count": 16840,
+      "stamp_ns": 3029999932,
+      "wall_time_ns": 29226036206155
+    },
+    {
+      "point_count": 16784,
+      "stamp_ns": 3129999930,
+      "wall_time_ns": 29228057747950
+    },
+    {
+      "point_count": 16813,
+      "stamp_ns": 3229999927,
+      "wall_time_ns": 29229618237037
+    },
+    {
+      "point_count": 16813,
+      "stamp_ns": 3329999925,
+      "wall_time_ns": 29231635233140
+    },
+    {
+      "point_count": 16846,
+      "stamp_ns": 3429999923,
+      "wall_time_ns": 29233152353957
+    },
+    {
+      "point_count": 16765,
+      "stamp_ns": 3629999918,
+      "wall_time_ns": 29236966270262
+    },
+    {
+      "point_count": 16830,
+      "stamp_ns": 3829999914,
+      "wall_time_ns": 29240796677555
+    },
+    {
+      "point_count": 16831,
+      "stamp_ns": 3929999912,
+      "wall_time_ns": 29242794799617
+    },
+    {
+      "point_count": 16832,
+      "stamp_ns": 4029999909,
+      "wall_time_ns": 29244324611025
+    },
+    {
+      "point_count": 16876,
+      "stamp_ns": 4129999907,
+      "wall_time_ns": 29246264767045
+    },
+    {
+      "point_count": 16795,
+      "stamp_ns": 4229999905,
+      "wall_time_ns": 29247795755840
+    },
+    {
+      "point_count": 16854,
+      "stamp_ns": 4429999900,
+      "wall_time_ns": 29251884941424
+    },
+    {
+      "point_count": 16846,
+      "stamp_ns": 4529999898,
+      "wall_time_ns": 29253865177048
+    },
+    {
+      "point_count": 16816,
+      "stamp_ns": 4629999896,
+      "wall_time_ns": 29255428396988
+    },
+    {
+      "point_count": 16733,
+      "stamp_ns": 4729999894,
+      "wall_time_ns": 29257457200816
+    },
+    {
+      "point_count": 16865,
+      "stamp_ns": 4829999892,
+      "wall_time_ns": 29259035904904
+    },
+    {
+      "point_count": 16839,
+      "stamp_ns": 4929999889,
+      "wall_time_ns": 29261016076830
+    },
+    {
+      "point_count": 16839,
+      "stamp_ns": 5029999887,
+      "wall_time_ns": 29262815914254
+    },
+    {
+      "point_count": 16718,
+      "stamp_ns": 5129999885,
+      "wall_time_ns": 29264814855273
+    },
+    {
+      "point_count": 16858,
+      "stamp_ns": 5229999883,
+      "wall_time_ns": 29266657689994
+    },
+    {
+      "point_count": 16795,
+      "stamp_ns": 5329999880,
+      "wall_time_ns": 29268645128367
+    },
+    {
+      "point_count": 16880,
+      "stamp_ns": 5429999878,
+      "wall_time_ns": 29270194324086
+    },
+    {
+      "point_count": 16705,
+      "stamp_ns": 5529999876,
+      "wall_time_ns": 29272167191492
+    },
+    {
+      "point_count": 16859,
+      "stamp_ns": 5629999874,
+      "wall_time_ns": 29273684347226
+    },
+    {
+      "point_count": 16818,
+      "stamp_ns": 5729999871,
+      "wall_time_ns": 29275634880239
+    },
+    {
+      "point_count": 16839,
+      "stamp_ns": 5829999869,
+      "wall_time_ns": 29277176210492
+    },
+    {
+      "point_count": 16738,
+      "stamp_ns": 5929999867,
+      "wall_time_ns": 29279136078831
+    },
+    {
+      "point_count": 16822,
+      "stamp_ns": 6029999865,
+      "wall_time_ns": 29280655984646
+    },
+    {
+      "point_count": 16853,
+      "stamp_ns": 6229999860,
+      "wall_time_ns": 29284666853500
+    },
+    {
+      "point_count": 16730,
+      "stamp_ns": 6329999858,
+      "wall_time_ns": 29286665837690
+    },
+    {
+      "point_count": 16817,
+      "stamp_ns": 6429999856,
+      "wall_time_ns": 29288235806619
+    },
+    {
+      "point_count": 16860,
+      "stamp_ns": 6629999851,
+      "wall_time_ns": 29291996552557
+    },
+    {
+      "point_count": 16733,
+      "stamp_ns": 6729999849,
+      "wall_time_ns": 29293975834874
+    },
+    {
+      "point_count": 16832,
+      "stamp_ns": 6829999847,
+      "wall_time_ns": 29295517003536
+    },
+    {
+      "point_count": 16840,
+      "stamp_ns": 7029999842,
+      "wall_time_ns": 29299325242999
+    },
+    {
+      "point_count": 16784,
+      "stamp_ns": 7129999840,
+      "wall_time_ns": 29301295642641
+    },
+    {
+      "point_count": 16812,
+      "stamp_ns": 7229999838,
+      "wall_time_ns": 29302846108942
+    },
+    {
+      "point_count": 16845,
+      "stamp_ns": 7429999833,
+      "wall_time_ns": 29306579451847
+    },
+    {
+      "point_count": 16845,
+      "stamp_ns": 7529999831,
+      "wall_time_ns": 29308565559384
+    },
+    {
+      "point_count": 16765,
+      "stamp_ns": 7629999829,
+      "wall_time_ns": 29310105400998
+    },
+    {
+      "point_count": 16841,
+      "stamp_ns": 7729999827,
+      "wall_time_ns": 29312064711313
+    },
+    {
+      "point_count": 16829,
+      "stamp_ns": 7829999824,
+      "wall_time_ns": 29313898265001
+    },
+    {
+      "point_count": 16834,
+      "stamp_ns": 7929999822,
+      "wall_time_ns": 29315874963073
+    },
+    {
+      "point_count": 16833,
+      "stamp_ns": 8029999820,
+      "wall_time_ns": 29317404486611
+    },
+    {
+      "point_count": 16876,
+      "stamp_ns": 8129999818,
+      "wall_time_ns": 29319356499156
+    },
+    {
+      "point_count": 16795,
+      "stamp_ns": 8229999816,
+      "wall_time_ns": 29320905655657
+    },
+    {
+      "point_count": 16774,
+      "stamp_ns": 8329999813,
+      "wall_time_ns": 29322858151281
+    },
+    {
+      "point_count": 16852,
+      "stamp_ns": 8429999811,
+      "wall_time_ns": 29324388901803
+    },
+    {
+      "point_count": 16845,
+      "stamp_ns": 8529999809,
+      "wall_time_ns": 29326605720072
+    },
+    {
+      "point_count": 16818,
+      "stamp_ns": 8629999807,
+      "wall_time_ns": 29328167570313
+    },
+    {
+      "point_count": 16863,
+      "stamp_ns": 8829999802,
+      "wall_time_ns": 29331977254958
+    },
+    {
+      "point_count": 16839,
+      "stamp_ns": 8929999800,
+      "wall_time_ns": 29333936547766
+    },
+    {
+      "point_count": 16839,
+      "stamp_ns": 9029999798,
+      "wall_time_ns": 29335496428753
+    },
+    {
+      "point_count": 16718,
+      "stamp_ns": 9129999795,
+      "wall_time_ns": 29337445685990
+    },
+    {
+      "point_count": 16859,
+      "stamp_ns": 9229999793,
+      "wall_time_ns": 29338969271828
+    },
+    {
+      "point_count": 16795,
+      "stamp_ns": 9329999791,
+      "wall_time_ns": 29340915933645
+    },
+    {
+      "point_count": 16881,
+      "stamp_ns": 9429999789,
+      "wall_time_ns": 29342455367493
+    },
+    {
+      "point_count": 16704,
+      "stamp_ns": 9529999786,
+      "wall_time_ns": 29344404949936
+    },
+    {
+      "point_count": 16859,
+      "stamp_ns": 9629999784,
+      "wall_time_ns": 29346217154014
+    },
+    {
+      "point_count": 16815,
+      "stamp_ns": 9729999782,
+      "wall_time_ns": 29348417722521
+    },
+    {
+      "point_count": 16839,
+      "stamp_ns": 9829999780,
+      "wall_time_ns": 29349936187673
+    },
+    {
+      "point_count": 16739,
+      "stamp_ns": 9929999778,
+      "wall_time_ns": 29351927834536
+    },
+    {
+      "point_count": 16823,
+      "stamp_ns": 10029999775,
+      "wall_time_ns": 29353456230000
+    }
+  ],
+  "live_lidar_point_count": {
+    "max": 16881,
+    "median": 16832,
+    "min": 16704
+  },
+  "live_lidar_publish_count": 87,
+  "live_lidar_publish_count_semantics": "legacy handled-source-message count; no live cloud is republished",
+  "live_lidar_received_count": 87,
+  "live_lidar_simulator_time_gap": {
+    "max_seconds": 0.199999996,
+    "median_seconds": 0.099999998,
+    "min_seconds": 0.099999997,
+    "p95_seconds": 0.199999995
+  },
+  "live_lidar_stamp_regression_count": 0,
+  "live_lidar_wall_time_arrival_gap": {
+    "max_seconds": 4.29806717,
+    "median_seconds": 1.9747827390000001,
+    "min_seconds": 1.517120817,
+    "p95_seconds": 4.11015871
+  },
+  "preloaded_snapshot_file": null,
+  "published_topics": [
+    "/review/lite3_actual_path",
+    "/review/lite3_current_pose",
+    "/review/scan_planned_path",
+    "/review/sliding_map_bbox",
+    "/review/occupancy",
+    "/review/occupancy_inflate",
+    "/tf:world_to_TORSO"
+  ],
+  "rejected_body_pose_count": 0,
+  "rejected_bspline_count": 0,
+  "require_live_lidar": true,
+  "root_transform_publish_count": 87,
+  "sample_count_per_trajectory": 160,
+  "schema_version": 2,
+  "source_mode": "live",
+  "source_topics": [
+    "/quad_0/cloud_raw",
+    "/quad_0/body_pose",
+    "/planning/bspline"
+  ],
+  "status": "PASS",
+  "trajectory_ids": [
+    1,
+    2
+  ],
+  "trajectory_point_counts": {
+    "1": 160,
+    "2": 160
+  },
+  "trajectory_start_stamps_ns": {
+    "1": 1787229887221478659,
+    "2": 1787229936937339369
+  },
+  "voxel_point_counts": {},
+  "voxel_publish_count": 0
+}

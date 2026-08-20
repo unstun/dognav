@@ -10,6 +10,17 @@ and next authorized action are recorded in `revision_ledger.json`. Run
 not promote candidate38/39, mark AC55, or turn a visual preflight into formal
 evidence.
 
+The active build is `office-v2.0.1-go2-geometry-preflight` with profile
+`upstream_go2_reference`. One MID-360 scan is represented atomically as
+ground-inclusive `/quad_0/cloud_raw` for native RViz and geometry-filtered
+`/quad_0/cloud` for SCAN. The profile borrows exactly five collision-envelope
+values from the pinned upstream Go2 configuration while keeping Lite3 speed at
+0.50 m/s and preserving the Office map, sensor, policy, controller, crowd, and
+acceptance contracts. Flat 10.04 s run `office_v2_0_1_go2_geometry_preflight02`
+has 101/101 same-scan audits and directly openable master/transfer videos. The
+first run and two postprocessing failures remain preserved. No non-flat run,
+AC54, AC55, formal candidate, training, or real-robot execution was performed.
+
 This experiment evaluates whether the official Isaac Sim 5.1 Office L0 scene
 can support the pinned Lite3 V12/SCAN closed loop with eight official animated
 pedestrians. The local repository is the source of truth. The RTX 5070 Ti

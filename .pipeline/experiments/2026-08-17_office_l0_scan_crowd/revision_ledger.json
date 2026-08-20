@@ -1,6 +1,6 @@
 {
-  "schema_version": 2,
-  "protocol_version": "office-change-control-v2",
+  "schema_version": 3,
+  "protocol_version": "office-change-control-v3",
   "experiment_id": "office-l0-scan-crowd",
   "updated_at": "2026-08-20",
   "source_of_truth": ".pipeline/experiments/2026-08-17_office_l0_scan_crowd",
@@ -141,96 +141,204 @@
         "preserve_evidence": true,
         "notes": "Restore r2.0.0 display/audit/transfer behavior without deleting any r2.0.1 run, archive, candidate38, or candidate39 evidence."
       }
+    },
+    {
+      "revision": "office-v2.0.1-go2-geometry-preflight",
+      "normalization_baseline": false,
+      "parent_revision": "office-r2.0.1-preflight",
+      "status": "flat_short_preflight_passed_human_and_nonflat_gates_pending",
+      "source_commit": "1213f1e23592f939b969ca7d173b0d5c790bd5c3",
+      "source_commit_state": "pre_edit_commit_with_unrelated_dirty_worktree_and_clean_owned_runtime_paths",
+      "canonical_branch": "codex/scan-foxy-isaac",
+      "runtime_commit": "2259afe1964db1495206d67f97e134a9bdf6d5b9",
+      "archive_commit": null,
+      "artifact_state": "flat_run01_failure_and_flat_run02_success_preserved_nonflat_not_run",
+      "change_group": "dual_cloud_transport_and_upstream_go2_geometry_reference",
+      "rationale": "Separate truthful ground-inclusive MID-360 visualization from SCAN occupancy input and connect the original upstream Go2 collision geometry as a clearly borrowed simulation reference without changing the Lite3 V12 locomotion contract.",
+      "confirmed_root_cause": "The Office path serializes one planner cloud after removing hits at or below planner_floor_filter_max_z, and both native RViz and SCAN consume that same /quad_0/cloud representation; the display therefore cannot show the observed floor while sending the ground-inclusive cloud to SCAN would occupy the floor.",
+      "claim_boundary": "Authorized implementation and flat short-regression preflight only; not Lite3 geometry calibration, general complex-terrain capability, learned traversability, foothold planning, locomotion qualification, AC54/AC55, a formal candidate, training, or real-robot validation.",
+      "component_contracts": {
+        "presentation": {
+          "version": "office-dualview-v1.0.1",
+          "status": "frozen_layout_new_raw_cloud_source_planned",
+          "contract": "Keep the existing dual-view layout and Decay 0 persistence; native RViz changes only its live point-cloud source from planner /quad_0/cloud to same-scan raw /quad_0/cloud_raw."
+        },
+        "lidar": {
+          "version": "livox-mid360-geometric-v1.0.0",
+          "status": "frozen_sensor_new_dual_representation_planned",
+          "contract": "One pinned 10 Hz, 20000-ray, 0.1-40 m MID-360 scan yields raw and geometry-filtered planner clouds with one timestamp, frame, configuration hash, and monotonically increasing scan ID."
+        },
+        "planner_geometry": {
+          "profile": "upstream_go2_reference",
+          "status": "borrowed_upstream_go2_not_lite3_qualified",
+          "contract": "Borrow exactly five upstream collision geometry values while preserving Office map/horizon and Lite3 speed, acceleration, jerk, controller, policy, sensor, scene, pedestrian, and acceptance values."
+        }
+      },
+      "allowed_components": [
+        "append-only revision ledger, validator, provenance, report, indexes, Trellis, and project bigmemory records",
+        "atomic raw/planner telemetry protocol and legacy SENSOR_FRAME_V1 compatibility",
+        "same-scan geometry-only terrain separation and per-scan count audit",
+        "Foxy /quad_0/cloud_raw and /quad_0/cloud publication and observation",
+        "separate upstream_go2_reference SCAN configuration and reference-path height audit",
+        "Decay 0 raw-cloud RViz display and dual-topic rosbag/voxel/video evidence",
+        "unit, synthetic, bridge, Foxy build/test, and one flat Office short regression"
+      ],
+      "allowed_files": [
+        ".pipeline/experiments/2026-08-13_scan_foxy_isaac_closed_loop/run_remote_closed_loop.sh",
+        ".pipeline/experiments/README.md",
+        ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/CHANGE_CONTROL.md",
+        ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/README.md",
+        ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/REPORT.md",
+        ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/run_remote_office_crowd.sh",
+        ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/revision_ledger.json",
+        ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/validate_revision_ledger.py",
+        ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/run_remote_office_crowd_native_rviz.sh",
+        ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/revisions/office-v2.0.1-go2-geometry-preflight.*",
+        ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/results/office_v2_0_1_go2_geometry_preflight*/**",
+        ".trellis/tasks/08-20-v2-0-1-cloud-traversability/**",
+        "bigmemory/热区/状态简报.md",
+        "bigmemory/热区/近期改动.md",
+        "bigmemory/热区/未关闭决策.md",
+        "bigmemory/冷区/*/2026-08-20-office-v2.0.1-go2-geometry-preflight.md",
+        "bigmemory/冷区/改动记录/2026-08-20.md",
+        "bigmemory/冷区/踩坑记录/2026-08-20.md",
+        "bigmemory/冷区/调研记录/2026-08-20.md",
+        "bigmemory/冷区/心路历程/2026-08-20.md",
+        "integration/lite3_sim_bridge/README.md",
+        "integration/lite3_sim_bridge/setup.py",
+        "integration/lite3_sim_bridge/config/foxy_bridge_upstream_go2_reference.yaml",
+        "integration/lite3_sim_bridge/config/foxy_native_scan_review.rviz",
+        "integration/lite3_sim_bridge/config/voxel_rosbag_qos.yaml",
+        "integration/lite3_sim_bridge/launch/native_rviz_review.launch.py",
+        "integration/lite3_sim_bridge/lite3_sim_bridge/delivery_reliability.py",
+        "integration/lite3_sim_bridge/lite3_sim_bridge/foxy_bridge_node.py",
+        "integration/lite3_sim_bridge/lite3_sim_bridge/isaac_adapter_core.py",
+        "integration/lite3_sim_bridge/lite3_sim_bridge/office_review_presentation.py",
+        "integration/lite3_sim_bridge/lite3_sim_bridge/protocol.py",
+        "integration/lite3_sim_bridge/lite3_sim_bridge/run_isaac_v12_fallback.py",
+        "integration/lite3_sim_bridge/lite3_sim_bridge/rviz_replay_core.py",
+        "integration/lite3_sim_bridge/lite3_sim_bridge/rviz_replay_node.py",
+        "integration/lite3_sim_bridge/lite3_sim_bridge/transport.py",
+        "integration/lite3_sim_bridge/lite3_sim_bridge/voxel_capture_node.py",
+        "integration/lite3_sim_bridge/lite3_sim_bridge/voxel_review.py",
+        "integration/lite3_sim_bridge/tests/test_delivery_reliability.py",
+        "integration/lite3_sim_bridge/tests/test_isaac_adapter_core.py",
+        "integration/lite3_sim_bridge/tests/test_office_review_presentation.py",
+        "integration/lite3_sim_bridge/tests/test_office_revision_ledger.py",
+        "integration/lite3_sim_bridge/tests/test_protocol.py",
+        "integration/lite3_sim_bridge/tests/test_transport.py",
+        "integration/lite3_sim_bridge/tests/test_v12_sensor_gate.py",
+        "integration/lite3_sim_bridge/tests/test_voxel_review.py",
+        "integration/scan_planner_foxy_ws/src/plan_manage/CMakeLists.txt",
+        "integration/scan_planner_foxy_ws/src/plan_manage/config/foxy_isaac_office_crowd_upstream_go2_reference.yaml",
+        "integration/scan_planner_foxy_ws/src/plan_manage/include/plan_manage/reference_path_height.h",
+        "integration/scan_planner_foxy_ws/src/plan_manage/include/plan_manage/scan_replan_fsm.h",
+        "integration/scan_planner_foxy_ws/src/plan_manage/launch/foxy_isaac_closed_loop.launch.py",
+        "integration/scan_planner_foxy_ws/src/plan_manage/src/scan_replan_fsm.cpp",
+        "integration/scan_planner_foxy_ws/src/plan_manage/test/test_reference_path_height.cpp",
+        "integration/scan_planner_foxy_ws/src/plan_manage/test/test_waypoint_parameters.py"
+      ],
+      "allowed_files_amendment": {
+        "timestamp": "2026-08-20T05:29:24-07:00",
+        "added_before_edit": [
+          "integration/lite3_sim_bridge/setup.py",
+          ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/run_remote_office_crowd.sh"
+        ],
+        "reason": "The independently selectable bridge profile must be installed into the Foxy package and the existing Office wrapper must expose the already-ledgered profile switches; the original preflight list included the new YAML and shared driver but accidentally omitted these two registries. No runtime semantics are broadened by this amendment."
+      },
+      "frozen_parameters": {
+        "system_version": "v2.0.1",
+        "manager_max_vel_mps": 0.5,
+        "manager_max_acc_mps2": 0.5,
+        "manager_max_jerk_mps3": 4.0,
+        "office_map_size_m": [16.0, 16.0, 5.0],
+        "office_local_update_range_m": [6.0, 6.0, 2.5],
+        "office_planning_horizon_m": 8.0,
+        "mid360_hz": 10.0,
+        "mid360_rays_per_scan": 20000,
+        "mid360_range_m": [0.1, 40.0],
+        "lite3_policy": "V12 unchanged",
+        "controller_and_tcp_interface": "unchanged",
+        "office_scene_pedestrians_and_acceptance_thresholds": "unchanged"
+      },
+      "borrowed_parameters": {
+        "profile": "upstream_go2_reference",
+        "label": "borrowed upstream Go2 parameters; not Lite3-qualified",
+        "official_commit": "348e8a590a50a5a6bbab8d8c6dcfd171f009be26",
+        "official_permalink": "https://github.com/wuyi2121/SCAN-Planner/blob/348e8a590a50a5a6bbab8d8c6dcfd171f009be26/src/planner/plan_manage/launch/advanced_param.xml",
+        "values": {
+          "grid_map.double_cylinder_radius": 0.25,
+          "grid_map.double_cylinder_offset": 0.18,
+          "grid_map.body_height": 0.4,
+          "grid_map.obstacles_inflation_z_up": 0.1,
+          "grid_map.obstacles_inflation_z_down": 0.1
+        }
+      },
+      "frozen_invariants": [
+        "office-r2.0.1-preflight, its six run records/directories, failures, master video, transfer video, hashes, and revision files are byte-preserved",
+        "candidate38 and candidate39 evidence is immutable",
+        "the existing Office planner profile is not overwritten; upstream_go2_reference is separate",
+        "raw and planner clouds derive from one genuine scan without replay, old-cloud copying, interpolation, synthesis, or scene-label classification",
+        "SCAN subscribes only to /quad_0/cloud and native RViz displays /quad_0/cloud_raw with Decay 0",
+        "Lite3 V12 policy, checkpoint, controller, TCP interface, speed, acceleration, jerk, Office map/horizon, MID-360, pedestrians, scene, and acceptance thresholds remain unchanged",
+        "accepted_revision and formal_candidate remain null; AC55 remains human-owned and pending",
+        "non-flat simulation requires a separate later Dr Sun approval"
+      ],
+    "historical_evidence_baseline": {
+      "ledger_before_sha256": "6e773837444b0bc80b06ac31282809306241deb976615366b1238c34c94389d7",
+      "revision_history_before_canonical_sha256": "82044933aa26ffce27b6c1a5d2f2676af7096b6cd7a9acfcd58f491245ae6e48",
+      "runs_before_count": 8,
+      "runs_before_canonical_sha256": "5668ce9064ce994aa5c99165826575c76d6ffd1a14be37fc90d836c66316d26c",
+        "r2_0_1_revision_markdown_sha256": "912e84670281e7a8bf08caa538f3ead00dd67ad7d39872e54f2de3ffe5e05b83",
+        "r2_0_1_revision_manifest_sha256": "54e97f6b0534dd797279a1f6efe3a079f323e96580a299c9fcf65f191bd040a6",
+        "r2_0_1_recursive_manifest_sha256": "a2bffd7c2aa9dc7174c4993e5365d1e27735fc8aaba3ad2372c273b798d333ba",
+        "r2_0_1_master_video_sha256": "f3da239ddab98816efba855b83d1bbf30d645688eb5987c63f47405c3e9bb27f",
+        "r2_0_1_transfer_video_sha256": "d0d8cbb3e2ed1347e91f3ecec732b47a3f4614cbdd0c3d579a5a3b0408f3591d"
+      },
+      "planned_run_id": "office_v2_0_1_go2_geometry_preflight01",
+      "expected_artifacts": [
+        "dual-cloud per-scan audit with raw, ground, planner, and conservative-retention counts",
+        "raw/planner PointCloud2 same-stamp and scan-ID parity evidence",
+        "machine-readable borrowed/frozen parameter provenance",
+        "flat Office short-regression inputs, logs, routes, commands, and validation reports",
+        "directly openable third-person plus native-RViz master MP4 when submitted for human review",
+        "verified compressed transfer MP4 with encoder, media, decode, size, ratio, and SHA-256 evidence",
+        "complete remote and canonical local recursive SHA-256 manifests"
+      ],
+      "automated_gates": [
+        "dual-cloud protocol and legacy V1 tests pass, including all declared malformed inputs and scan-ID monotonicity",
+        "same-scan raw/planner identity, counts, ground exclusion, obstacle retention, and sparse unknown tests pass",
+        "exactly five borrowed Go2 values match the pinned source while Lite3 speed and Office map/horizon do not drift",
+        "reference-path height and planned/actual/local-ground residual audits pass",
+        "RViz Decay 0 uses /quad_0/cloud_raw and SCAN subscribes only to /quad_0/cloud",
+        "unit/synthetic, full bridge, Foxy build/test, compile, JSON, shell, diff, Trellis, and ledger gates pass before flat regression",
+        "flat Office short regression preserves all frozen contracts",
+        "historical ledger prefix and r2.0.1 evidence hashes remain unchanged"
+      ],
+      "unauthorized_actions": [
+        "non-flat simulation before a separate Dr Sun approval",
+        "formal training or policy/checkpoint modification",
+        "real-robot actuation",
+        "full-duration formal candidate or AC54/AC55 execution/promotion",
+        "accepted_revision or formal_candidate assignment",
+        "Go2 0.75 m/s speed, Go2 map/horizon, or any unlisted upstream parameter import",
+        "learned traversability, foothold planning, friction estimation, slip prediction, or gait selection",
+        "editing, deleting, renaming, overwriting, replaying, or reinterpreting historical evidence"
+      ],
+      "failure_retention": {
+        "policy": "Every failed build, test, flat run, encoding attempt, and later separately authorized non-flat run receives immutable evidence and a unique ID; no failed run ID or artifact path is reused.",
+        "first_run_id_reuse_forbidden": true
+      },
+      "rollback": {
+        "pre_edit_tree": "1213f1e23592f939b969ca7d173b0d5c790bd5c3",
+        "pre_commit_method": "Verify recorded pre-edit hashes and restore only exact task-owned allowed_files from pre_edit_tree; delete only new task-owned files listed in the final manifest; never touch unrelated dirty paths or historical evidence.",
+        "final_command_contract": "git revert 2259afe1964db1495206d67f97e134a9bdf6d5b9",
+        "preserve_evidence": true,
+        "profile_disable_fallback": "Select the unchanged legacy Office bridge/planner profile to return to prior v2.0.1 behavior."
+      }
     }
   ],
-  "current_working_revision": {
-    "revision": "office-r2.0.1-preflight",
-    "normalization_baseline": false,
-    "parent_revision": "office-r2.0.0-preflight",
-    "status": "human_preflight_review_pending",
-    "source_commit": "a4efd0ea3cb9e13f70d2b279291916229d09cdc6",
-    "source_commit_state": "single_task_owned_fix_commit_to_be_resolved_from_canonical_git_history",
-    "canonical_branch": "codex/scan-foxy-isaac",
-    "archive_commit": null,
-    "artifact_state": "preflight06_automated_pass_complete_128_file_8_6_gib_remote_local_tree_sha256_verified",
-    "change_group": "golden_dualview_delivery_reliability",
-    "rationale": "Retain each genuine 10 Hz simulator-time MID-360 cloud in RViz until the next real arrival, close the zero-live-count audit blind spot, and provide a verified smaller transfer copy without changing navigation inputs.",
-    "confirmed_root_cause": "The simulator produces nonempty MID-360 scans at 10 Hz simulator time, but the approximately 0.051 real-time factor yields wall-clock gaps much longer than the RViz 0.4-second decay. The display expires between genuine messages, while live auditing is disabled and can pass with zero live-cloud observations.",
-    "claim_boundary": "Instrumentation and delivery-reliability preflight only; not an AC54 rerun, AC55 decision, accepted revision, formal candidate, full Office run, upstream SCAN reproduction, or real-robot validation.",
-    "component_contracts": {
-      "presentation": {
-        "version": "office-dualview-v1.0.1",
-        "status": "automated_short_preflight_pass_human_review_pending",
-        "contract": "The office-dualview-v1.0.0 layout is unchanged; the native 5070 Ti RViz panel persistently displays the latest genuine same-run /quad_0/cloud message and the package includes a separately verified transfer encode."
-      },
-      "lidar": {
-        "version": "livox-mid360-geometric-v1.0.0",
-        "status": "frozen_unchanged",
-        "contract": "Pinned ordered Livox MID-360 pattern, 0.1-40 m, 10 Hz, 20000 rays per scan, same-step sensor/body/cloud stamp."
-      },
-      "pedestrians": {
-        "version": "office-safe-mixed-motion-v1.0.0",
-        "status": "frozen_unchanged",
-        "contract": "Two crossing actors single-pass; six background actors ping-pong with 0.6 s idle turns and phase-conditioned animation."
-      },
-      "navigation_acceptance": {
-        "version": "candidate38-candidate39-ac54-baseline",
-        "status": "historical_automated_baseline_not_reusable_for_mid360",
-        "contract": "Candidate38 and candidate39 retain AC54 PASS under their original immutable inputs; this short preflight does not rerun or inherit AC54."
-      }
-    },
-    "allowed_components": [
-      "native RViz live-cloud display persistence",
-      "observation-only same-run /quad_0/cloud continuity audit",
-      "short-preflight evidence validation and packaging",
-      "CRF 22/24/26 transfer-video comparison and selection",
-      "Office revision ledger, validator, tests, report, indexes, Trellis, and memory archives"
-    ],
-    "frozen_invariants": [
-      "MID-360 remains 10 Hz simulator time, 20000 rays per scan, pinned pattern, 0.1-40 m, and same-step stamped",
-      "SCAN planning behavior and parameters are unchanged",
-      "Lite3 V12 policy and robot assets are unchanged",
-      "Office route, pedestrians, and acceptance thresholds are unchanged",
-      "candidate38, candidate39, office-r2.0.0-preflight, and all existing run directories are immutable",
-      "AC54 is not rerun or inherited; AC55 remains human-owned and pending",
-      "accepted_revision and formal_candidate remain null"
-    ],
-    "planned_run_id": "office_crowd_r2_0_1_live_cloud_transfer_preflight01",
-    "expected_artifacts": [
-      "live_pointcloud_continuity_audit.json",
-      "office_review_third_person_rviz_4k.mp4",
-      "office_review_third_person_rviz_4k_transfer.mp4",
-      "office_review_third_person_rviz_4k_transfer_ffprobe.json",
-      "office_review_third_person_rviz_4k_transfer_validation.json",
-      "office_review_third_person_rviz_4k_transfer_sha256.txt",
-      "video_compression_manifest.json",
-      "complete source, runtime, media, and recursive local/remote SHA-256 evidence"
-    ],
-    "automated_gates": [
-      "generated MID-360 scan frequency remains approximately 10 Hz simulator time",
-      "received/generated coverage is at least 0.95 and every received cloud is nonempty",
-      "ROS stamps strictly increase and maximum simulator-time gap is at most 0.2 seconds",
-      "require_live_lidar is true and received live-cloud count is nonzero",
-      "post-warm-up cloud-visible frame ratio is at least 0.98 and longest blank run is at most two frames",
-      "transfer video preserves media/layout/frame/duration contracts, decodes completely, and is at least 50 percent smaller",
-      "targeted and full local test suites plus syntax, compile, JSON, ledger, Trellis, and diff checks pass",
-      "remote and canonical local artifact trees are recursively SHA-256 identical"
-    ],
-    "unauthorized_actions": [
-      "full-duration dry run",
-      "formal candidate execution or promotion",
-      "AC54 or AC55 promotion",
-      "accepted_revision or formal_candidate assignment",
-      "MID-360, SCAN, policy, robot, route, pedestrian, or acceptance-threshold change",
-      "training or real-robot actuation"
-    ],
-    "rollback": {
-      "preferred_command": "git revert <office-r2.0.1-fix-commit>",
-      "rviz_live_cloud_decay_restore_seconds": 0.4000000059604645,
-      "preserve_evidence": true,
-      "notes": "Restore r2.0.0 display/audit/transfer behavior without deleting any r2.0.1 run, archive, candidate38, or candidate39 evidence."
-    }
-  },
+  "current_working_revision": "office-v2.0.1-go2-geometry-preflight",
   "automated_baseline_runs": [
     {
       "run_id": "office_crowd_codex_candidate38",
@@ -381,16 +489,164 @@
       },
       "claim_boundary": "Automated 10.04-second Office R2.0.1 visual preflight only; pending Dr Sun review, with no AC54 rerun, AC55 decision, goal/terminal gate, accepted revision, or formal candidate.",
       "evidence_scope": "The complete 128-file, 8.6 GiB run is preserved at matching remote and canonical local paths. Sorted recursive SHA-256 manifests are byte-identical with SHA-256 a2bffd7c2aa9dc7174c4993e5365d1e27735fc8aaba3ad2372c273b798d333ba."
+    },
+    {
+      "run_id": "office_v2_0_1_go2_geometry_preflight01",
+      "revision": "office-v2.0.1-go2-geometry-preflight",
+      "stage": "preflight",
+      "status": "failed",
+      "immutable": true,
+      "duration_seconds": 10.04,
+      "full_route": false,
+      "formal_evidence": false,
+      "why_run": "First flat Office short regression for the registered dual-cloud and borrowed-Go2 geometry build.",
+      "effective_input": "The canonical effective_input.txt records upstream_go2_reference, required dual cloud, pinned MID-360, 0.50 m/s Lite3 limit, Office scene/crowd, and ports 46820/46821.",
+      "failure_reason": "A 1 s wall-clock receive timeout caused 108 telemetry reconnects, 14 I/O errors, and only 87 of 101 Foxy scan audits; the wrapper also incorrectly applied the full-duration pedestrian motion gate to the 10 s preview.",
+      "automated_results": {
+        "isaac_qualification": "PASS",
+        "dual_cloud_scan_pairing": "FAIL_87_OF_101",
+        "short_pedestrian_scope": "FAIL_WRONG_FULL_DURATION_GATE",
+        "combined_video": "NOT_PRODUCED",
+        "transfer_video": "NOT_PRODUCED"
+      },
+      "measurements": {
+        "generated_scans": 101,
+        "foxy_audited_scans": 87,
+        "missing_scan_ids": 14,
+        "telemetry_accepted_connections": 123,
+        "telemetry_reconnects": 108,
+        "telemetry_io_errors": 14,
+        "root_moving_fraction": 0.16766467065868262,
+        "timeline_any_root_motion_fraction": 0.9401197604790419
+      },
+      "claim_boundary": "Immutable failed flat short preflight; not repaired in place, not human-review delivery, not non-flat, AC54, AC55, formal, training, or real robot evidence.",
+      "remote_complete_tree_manifest_sha256": "f8d1a311f883389bf30066dec6dbfdf3aa32641d18c193365e60bafb6edd68c9",
+      "local_delivery_subset_manifest_sha256": "90abed0e5dd6f17b508c9c2f626ee8da7c5da32edf39c7c54b1deb9abca0168a",
+      "evidence_scope": "The complete approximately 2.9 GiB run, including rosbag and voxel snapshots, remains remote. The local 60-file subset excludes only rosbag and voxel snapshots and passed every hash in transfer_recursive_sha256.txt.",
+      "evidence": [
+        {
+          "path": "results/office_v2_0_1_go2_geometry_preflight01/dual_cloud_scan_audit.jsonl",
+          "sha256": "ceaaa665588cedf177bce5aac2be46b9d429febf25971ca89e07555296937819"
+        },
+        {
+          "path": "results/office_v2_0_1_go2_geometry_preflight01/isaac/qualification_report.json",
+          "sha256": "34a954159015de174ac47b9ba11b23246dc93014cadff06044a0cf37d48be120"
+        },
+        {
+          "path": "results/office_v2_0_1_go2_geometry_preflight01/office_pedestrian_motion_audit.json",
+          "sha256": "b73e76138328f27fbe8b4aa75de26f3be522d107fe3995a501381ce758a6eae2"
+        },
+        {
+          "path": "results/office_v2_0_1_go2_geometry_preflight01/transfer_recursive_sha256.txt",
+          "sha256": "90abed0e5dd6f17b508c9c2f626ee8da7c5da32edf39c7c54b1deb9abca0168a"
+        }
+      ]
+    },
+    {
+      "run_id": "office_v2_0_1_go2_geometry_preflight02",
+      "revision": "office-v2.0.1-go2-geometry-preflight",
+      "stage": "preflight",
+      "status": "human_preflight_review_pending",
+      "immutable": true,
+      "duration_seconds": 10.04,
+      "full_route": false,
+      "formal_evidence": false,
+      "why_run": "New immutable flat retry after separating the telemetry receive timeout and correctly disabling full-duration gates for a declared short preview.",
+      "effective_input": "The canonical effective_input.txt records upstream_go2_reference, required dual cloud, pinned MID-360, 0.50 m/s Lite3 limit, Office scene/crowd, and ports 46822/46823.",
+      "preserved_failures": [
+        "The original continuity postprocessor imported the historical /quad_0/cloud constant and its FAIL JSON remains unchanged.",
+        "retry01 used system Python without NumPy and its failure log remains unchanged."
+      ],
+      "automated_results": {
+        "isaac_qualification": "PASS",
+        "dual_cloud_scan_pairing": "PASS_101_OF_101",
+        "native_rviz": "PASS",
+        "raw_cloud_continuity_retry02": "PASS",
+        "short_pedestrian_scope": "PASS",
+        "combined_video": "PASS",
+        "transfer_video": "PASS",
+        "reference_path_height_runtime": "NOT_RUN_FLAT_PRESET_MODE",
+        "nonflat_simulation": "NOT_RUN"
+      },
+      "measurements": {
+        "generated_scans": 101,
+        "foxy_audited_scans": 101,
+        "first_scan_id": 1,
+        "last_scan_id": 101,
+        "telemetry_reconnects": 0,
+        "telemetry_io_errors": 0,
+        "raw_point_count_min_median_max": [16704, 16831, 16882],
+        "ground_point_count_min_median_max": [3641, 4979, 6923],
+        "planner_point_count_min_median_max": [9894, 11861, 13122],
+        "conservative_point_count_min_median_max": [5, 30, 287],
+        "video_visible_frames": 251,
+        "video_total_frames": 251,
+        "master_size_bytes": 55960853,
+        "transfer_size_bytes": 10664891,
+        "size_reduction_fraction": 0.8094222938310107,
+        "master_to_transfer_ratio": 5.247203464151673,
+        "transfer_ssim": 0.975306
+      },
+      "video": {
+        "master": "office_review_third_person_rviz_4k.mp4",
+        "master_sha256": "4e36e06eeb80c3b0d924633af89f61f47b05ca640296b46972c0bc0080618a65",
+        "transfer": "office_review_third_person_rviz_4k_transfer.mp4",
+        "transfer_sha256": "03a9b05b308a323747db782e95c763a6829c9f9b259e989574a88f318339f665",
+        "media": "3840x1080, 25 fps, 251 frames, 10.04 s, H.264 High, yuv420p, BT.709",
+        "encoder": "ffmpeg 6.1.1; exact libx264 CRF command is in video_compression_manifest.json",
+        "complete_decode": "PASS"
+      },
+      "claim_boundary": "Automated flat 10.04-second Office dual-cloud geometry and delivery preflight pending Dr Sun review; not non-flat, complex-terrain, AC54, AC55, formal, training, or real robot evidence.",
+      "remote_complete_tree_manifest_sha256": "97dd9c511fcdc697edb17ae03c716a254b6115e461346f96b0467645307946c3",
+      "local_delivery_subset_manifest_sha256": "6f2da1d7dd7cc58a3f34c03f6dc65f90601729f52a9892952b70cb9e1f17d9c4",
+      "evidence_scope": "The complete approximately 2.9 GiB run remains remote. The local human-review/log delivery subset contains 68 hashed files including both required video entities; rosbag, voxel snapshots, and auxiliary intermediate videos remain remote.",
+      "evidence": [
+        {
+          "path": "results/office_v2_0_1_go2_geometry_preflight02/dual_cloud_scan_audit.jsonl",
+          "sha256": "bd5e1a73ea29d2da504b9384903c13a110362737845d233ac93100bf6844bf5c"
+        },
+        {
+          "path": "results/office_v2_0_1_go2_geometry_preflight02/live_pointcloud_continuity_audit.json",
+          "sha256": "e1a4510653e0575fd81d415b88d5e8e55c4529b0822755039bd4727a63aae0a9"
+        },
+        {
+          "path": "results/office_v2_0_1_go2_geometry_preflight02/live_pointcloud_continuity_audit_retry02.json",
+          "sha256": "d824e9ab7082943953340ec6418f359eda955f73c6071372637bd848bd2386af"
+        },
+        {
+          "path": "results/office_v2_0_1_go2_geometry_preflight02/postprocess_recovery_manifest.json",
+          "sha256": "6581df64d5c7d8af377cf97e1d7f2e4dd9c985b60b6fb0bc11d74c0f7f794dc5"
+        },
+        {
+          "path": "results/office_v2_0_1_go2_geometry_preflight02/office_review_third_person_rviz_4k.mp4",
+          "sha256": "4e36e06eeb80c3b0d924633af89f61f47b05ca640296b46972c0bc0080618a65"
+        },
+        {
+          "path": "results/office_v2_0_1_go2_geometry_preflight02/office_review_third_person_rviz_4k_transfer.mp4",
+          "sha256": "03a9b05b308a323747db782e95c763a6829c9f9b259e989574a88f318339f665"
+        },
+        {
+          "path": "results/office_v2_0_1_go2_geometry_preflight02/office_review_third_person_rviz_4k_transfer_validation.json",
+          "sha256": "f4b174f8528ae06cd0b9b99e5130ba21aef7048752bca7f2019333cfcbb800c9"
+        },
+        {
+          "path": "results/office_v2_0_1_go2_geometry_preflight02/delivery_recursive_sha256.txt",
+          "sha256": "6f2da1d7dd7cc58a3f34c03f6dc65f90601729f52a9892952b70cb9e1f17d9c4"
+        }
+      ]
     }
   ],
   "next_action": {
-    "action": "wait_for_dr_sun_visual_review_of_preflight06",
+    "action": "await_Dr_Sun_review_and_separate_nonflat_short_preflight_authorization",
+    "flat_short_regression_authorized": true,
+    "nonflat_preflight_authorized": false,
     "full_run_authorized": false,
     "formal_candidate_authorized": false,
     "allowed_without_new_authorization": [
-      "read-only evidence review and reporting",
-      "version-ledger, archive, report, Trellis, and memory closeout",
-      "task-owned commit and canonical-branch push"
+      "task-owned local implementation and tests within allowed_files",
+      "Foxy build and tests after Python gates pass",
+      "one flat Office short regression after all local gates pass",
+      "failure preservation, local evidence recovery, reporting, Trellis, and project bigmemory updates"
     ]
   }
 }
