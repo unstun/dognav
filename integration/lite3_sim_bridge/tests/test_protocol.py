@@ -8,21 +8,26 @@ from lite3_sim_bridge.protocol import (
     HEADER_STRUCT,
     MAX_PAYLOAD_BYTES,
     CommandV1,
+    DUAL_CLOUD_SENSOR_PREFIX_STRUCT,
+    DualCloudSensorFrameV1,
     JointStateV1,
     MessageType,
     ProtocolError,
+    ScanIdTracker,
     SequenceTracker,
     SensorFrameV1,
     StatusFlag,
     StatusV1,
     decode_command_payload,
     decode_frame,
+    decode_dual_cloud_sensor_payload,
     decode_header,
     decode_joint_state_payload,
     decode_sensor_payload,
     decode_status_payload,
     encode_command_payload,
     encode_frame,
+    encode_dual_cloud_sensor_payload,
     encode_joint_state_payload,
     encode_sensor_payload,
     encode_status_payload,
@@ -35,6 +40,28 @@ from lite3_sim_bridge.protocol import (
 
 
 class ProtocolTest(unittest.TestCase):
+    def _dual_sensor(self, **overrides):
+        raw_count, raw_bytes = pack_xyz_points(
+            ((0.0, 0.0, 0.0), (1.0, 0.0, 0.4), (2.0, 0.0, 0.0))
+        )
+        planner_count, planner_bytes = pack_xyz_points(((1.0, 0.0, 0.4),))
+        values = dict(
+            body_position=(0.0, 0.0, 0.4),
+            body_quaternion_xyzw=(0.0, 0.0, 0.0, 1.0),
+            sensor_position=(0.0, 0.0, 0.7),
+            sensor_quaternion_xyzw=(0.0, 0.0, 0.0, 1.0),
+            config_sha256=b"d" * 32,
+            scan_id=11,
+            raw_point_count=raw_count,
+            raw_points_xyz_f32_be=raw_bytes,
+            planner_point_count=planner_count,
+            planner_points_xyz_f32_be=planner_bytes,
+            filtered_ground_point_count=2,
+            conservative_retained_point_count=0,
+        )
+        values.update(overrides)
+        return DualCloudSensorFrameV1(**values)
+
     def test_sequence_tracker_rejects_regression_and_counts_gaps(self):
         tracker = SequenceTracker()
         self.assertEqual(tracker.observe(4), 0)
@@ -42,6 +69,83 @@ class ProtocolTest(unittest.TestCase):
         self.assertEqual(tracker.gap_count, 2)
         with self.assertRaises(ProtocolError):
             tracker.observe(7)
+
+    def test_scan_id_tracker_rejects_duplicate_and_regression(self):
+        tracker = ScanIdTracker()
+        tracker.observe(4)
+        tracker.observe(6)
+        with self.assertRaisesRegex(ProtocolError, "scan ID is not increasing"):
+            tracker.observe(6)
+        with self.assertRaisesRegex(ProtocolError, "scan ID is not increasing"):
+            tracker.observe(5)
+
+    def test_dual_cloud_sensor_payload_round_trip(self):
+        sensor = self._dual_sensor()
+        timestamp_ns = 123456789
+        wire = encode_frame(
+            MessageType.SENSOR_FRAME_DUAL_CLOUD_V1,
+            9,
+            timestamp_ns,
+            encode_dual_cloud_sensor_payload(sensor),
+        )
+        frame = decode_frame(wire)
+        decoded = decode_dual_cloud_sensor_payload(frame.payload)
+        self.assertEqual(decoded, sensor)
+        self.assertEqual(frame.header.timestamp_ns, timestamp_ns)
+        self.assertEqual(
+            unpack_xyz_points(decoded.raw_point_count, decoded.raw_points_xyz_f32_be)[0],
+            (0.0, 0.0, 0.0),
+        )
+
+    def test_dual_cloud_rejects_count_length_partition_and_nonfinite(self):
+        sensor = self._dual_sensor()
+        invalid = (
+            self._dual_sensor(raw_point_count=-1),
+            self._dual_sensor(raw_point_count=2),
+            self._dual_sensor(filtered_ground_point_count=1),
+            self._dual_sensor(conservative_retained_point_count=2),
+            self._dual_sensor(raw_points_xyz_f32_be=sensor.raw_points_xyz_f32_be[:-1]),
+            self._dual_sensor(
+                planner_points_xyz_f32_be=struct.pack("!3f", float("inf"), 0.0, 0.0)
+            ),
+        )
+        for value in invalid:
+            with self.subTest(value=value), self.assertRaises(ProtocolError):
+                encode_dual_cloud_sensor_payload(value)
+
+        payload = bytearray(encode_dual_cloud_sensor_payload(sensor))
+        fields = list(
+            DUAL_CLOUD_SENSOR_PREFIX_STRUCT.unpack(
+                payload[: DUAL_CLOUD_SENSOR_PREFIX_STRUCT.size]
+            )
+        )
+        fields[20] -= 12
+        malformed = (
+            DUAL_CLOUD_SENSOR_PREFIX_STRUCT.pack(*fields)
+            + payload[DUAL_CLOUD_SENSOR_PREFIX_STRUCT.size :]
+        )
+        with self.assertRaisesRegex(ProtocolError, "raw point byte length"):
+            decode_dual_cloud_sensor_payload(malformed)
+
+    def test_dual_cloud_requires_both_structural_cloud_sections(self):
+        sensor = self._dual_sensor()
+        payload = encode_dual_cloud_sensor_payload(sensor)
+        with self.assertRaises(ProtocolError):
+            decode_dual_cloud_sensor_payload(payload[:-12])
+
+    def test_dual_cloud_rejects_combined_payload_over_protocol_limit(self):
+        count = 700_000
+        points = b"\x00" * (count * 12)
+        sensor = self._dual_sensor(
+            raw_point_count=count,
+            raw_points_xyz_f32_be=points,
+            planner_point_count=count,
+            planner_points_xyz_f32_be=points,
+            filtered_ground_point_count=0,
+        )
+        with self.assertRaisesRegex(ProtocolError, "exceeds v1 limit"):
+            encode_dual_cloud_sensor_payload(sensor)
+
 
     def test_frame_round_trip(self):
         encoded = encode_frame(MessageType.CMD_VEL_V1, 7, 1000, b"payload")

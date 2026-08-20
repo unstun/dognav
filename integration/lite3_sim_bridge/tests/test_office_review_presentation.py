@@ -586,7 +586,7 @@ class EntrypointWiringTest(unittest.TestCase):
         ).read_text()
         for topic in (
             "/map_generator/global_cloud",
-            "/quad_0/cloud",
+            "/quad_0/cloud_raw",
             "/grid_map/occupancy",
             "/grid_map/occupancy_inflate",
             "/review/lite3_actual_path",

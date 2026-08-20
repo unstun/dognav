@@ -62,6 +62,8 @@ namespace scan_planner
     double self_inflation_z_up_, self_inflation_z_down_;
     double self_double_cylinder_radius_, self_double_cylinder_offset_;
     double body_height_;
+    double reference_path_max_ground_step_;
+    double reference_path_height_tolerance_;
     std::string self_inflation_frame_id_;
 
     /* planning data */

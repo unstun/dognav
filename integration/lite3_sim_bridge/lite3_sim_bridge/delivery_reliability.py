@@ -19,7 +19,7 @@ import numpy as np
 import yaml
 
 
-LIVE_CLOUD_TOPIC = "/quad_0/cloud"
+LIVE_CLOUD_TOPIC = "/quad_0/cloud_raw"
 LIVE_CLOUD_DISPLAY = "Live LiDAR Cloud"
 LIVE_CLOUD_RGB = (80, 225, 255)
 RVIZ_FOXY_DECAY_SOURCE = (
@@ -275,7 +275,7 @@ def build_live_pointcloud_continuity_audit(
         ) > 0,
         "live_lidar_received_count_nonzero": len(observations) > 0,
         "source_mode_live": native_audit.get("source_mode") == "live",
-        "source_topic_is_quad_0_cloud": display_contract.get("source_topic")
+        "source_topic_is_quad_0_cloud_raw": display_contract.get("source_topic")
         == LIVE_CLOUD_TOPIC,
         "rviz_retains_latest_until_replaced": display_contract.get(
             "retains_latest_until_replaced"
@@ -299,7 +299,7 @@ def build_live_pointcloud_continuity_audit(
         "schema_version": 1,
         "status": "PASS" if all(checks.values()) else "FAIL",
         "claim_boundary": (
-            "Same-run observation-only live /quad_0/cloud continuity and delivered-video "
+            "Same-run observation-only live /quad_0/cloud_raw continuity and delivered-video "
             "visibility audit for one Office R2.0.1 short preflight; no cloud is "
             "republished, replayed, synthesized, or post-rendered, and this does not "
             "satisfy AC54 or AC55."

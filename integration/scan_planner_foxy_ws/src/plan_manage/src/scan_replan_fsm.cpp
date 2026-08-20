@@ -1,6 +1,7 @@
 
 #include <plan_manage/scan_replan_fsm.h>
 #include <plan_manage/trajectory_progress.h>
+#include <plan_manage/reference_path_height.h>
 #include <cmath>
 #include <stdexcept>
 
@@ -48,6 +49,10 @@ namespace scan_planner
     self_double_cylinder_radius_ = load_parameter<double>(node_, "grid_map.double_cylinder_radius", 0.0);
     self_double_cylinder_offset_ = load_parameter<double>(node_, "grid_map.double_cylinder_offset", 0.0);
     body_height_ = load_parameter<double>(node_, "grid_map.body_height", 0.4);
+    reference_path_max_ground_step_ =
+        load_parameter<double>(node_, "fsm.reference_path_max_ground_step", 0.35);
+    reference_path_height_tolerance_ =
+        load_parameter<double>(node_, "fsm.reference_path_height_tolerance", 0.15);
     self_inflation_frame_id_ = load_parameter<std::string>(node_, "grid_map.frame_id", "world");
 
     if (navi_mode_ == NAVI_MODE::PRESET_TARGET)
@@ -369,19 +374,47 @@ namespace scan_planner
       return;
     }
 
-    trigger_ = true;
-
-    std::vector<Eigen::Vector3d> waypoints;
-    waypoints.reserve(msg->poses.size());
-
+    std::vector<ReferencePathGroundSample> ground_samples;
+    ground_samples.reserve(msg->poses.size());
     for (const auto& pose_stamped : msg->poses)
     {
-      Eigen::Vector3d wp;
-      wp(0) = pose_stamped.pose.position.x;
-      wp(1) = pose_stamped.pose.position.y;
-      wp(2) = pose_stamped.pose.position.z + body_height_; // Adjust for body height
-      waypoints.push_back(wp);
+      ground_samples.push_back({pose_stamped.pose.position.x,
+                                pose_stamped.pose.position.y,
+                                pose_stamped.pose.position.z});
     }
+    std::vector<Eigen::Vector3d> waypoints;
+    std::string height_error;
+    if (!buildReferencePathBodyWaypoints(
+            ground_samples, body_height_, reference_path_max_ground_step_,
+            &waypoints, &height_error))
+    {
+      RCLCPP_ERROR(node_->get_logger(), "Reference path rejected: %s", height_error.c_str());
+      return;
+    }
+    if (!have_odom_)
+    {
+      RCLCPP_ERROR(node_->get_logger(),
+                   "Reference path rejected: body odometry is unavailable for height audit");
+      return;
+    }
+    {
+      const std::size_t nearest = nearestReferencePathSample(ground_samples, odom_pos_);
+      const double local_ground_z = ground_samples[nearest].ground_z;
+      const double planned_body_z = local_ground_z + body_height_;
+      const double height_error_m = odom_pos_.z() - planned_body_z;
+      RCLCPP_INFO(node_->get_logger(),
+                  "REFERENCE_PATH_HEIGHT_AUDIT planned_body_z_m=%.6f true_body_z_m=%.6f local_ground_z_m=%.6f error_m=%.6f",
+                  planned_body_z, odom_pos_.z(), local_ground_z, height_error_m);
+      if (!std::isfinite(height_error_m) ||
+          std::abs(height_error_m) > reference_path_height_tolerance_)
+      {
+        RCLCPP_ERROR(node_->get_logger(),
+                     "Reference path rejected: body/ground height error %.6f exceeds %.6f m",
+                     height_error_m, reference_path_height_tolerance_);
+        return;
+      }
+    }
+    trigger_ = true;
     bool success = planGlobalTrajByWaypoints(waypoints);
 
     if (success)

@@ -81,7 +81,7 @@ class VoxelCaptureNode(Node):
         self._closed = False
 
         self.create_subscription(
-            PointCloud2, "/quad_0/cloud", self._live_cloud, qos_profile_sensor_data
+            PointCloud2, "/quad_0/cloud_raw", self._live_cloud, qos_profile_sensor_data
         )
         self.create_subscription(
             Odometry, "/quad_0/lidar_pose", self._sensor_pose, qos_profile_sensor_data
@@ -286,7 +286,7 @@ class VoxelCaptureNode(Node):
             "topics": [
                 "/grid_map/occupancy",
                 "/grid_map/occupancy_inflate",
-                "/quad_0/cloud",
+                "/quad_0/cloud_raw",
                 "/quad_0/lidar_pose",
                 "/grid_map/sliding_map_bbox",
                 "/quad_0/body_pose",

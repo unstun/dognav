@@ -20,13 +20,16 @@ def generate_launch_description():
     controller_config_default = os.path.join(
         scan_share, "config", "foxy_isaac_controller.yaml"
     )
-    bridge_config = os.path.join(bridge_share, "config", "foxy_bridge.yaml")
+    bridge_config_default = os.path.join(bridge_share, "config", "foxy_bridge.yaml")
 
     telemetry_host = LaunchConfiguration("telemetry_host")
     telemetry_port = LaunchConfiguration("telemetry_port")
     command_host = LaunchConfiguration("command_host")
     command_port = LaunchConfiguration("command_port")
     bridge_max_vx = LaunchConfiguration("bridge_max_vx")
+    bridge_config = LaunchConfiguration("bridge_config")
+    require_dual_cloud = LaunchConfiguration("require_dual_cloud_sensor_frame")
+    scan_audit_path = LaunchConfiguration("scan_audit_path")
     planner_config = LaunchConfiguration("planner_config")
     controller_config = LaunchConfiguration("controller_config")
     enable_monitor = LaunchConfiguration("enable_monitor")
@@ -40,6 +43,11 @@ def generate_launch_description():
             DeclareLaunchArgument("command_host", default_value="127.0.0.1"),
             DeclareLaunchArgument("command_port", default_value="46001"),
             DeclareLaunchArgument("bridge_max_vx", default_value="0.75"),
+            DeclareLaunchArgument("bridge_config", default_value=bridge_config_default),
+            DeclareLaunchArgument(
+                "require_dual_cloud_sensor_frame", default_value="false"
+            ),
+            DeclareLaunchArgument("scan_audit_path", default_value=""),
             DeclareLaunchArgument(
                 "planner_config", default_value=planner_config_default
             ),
@@ -70,6 +78,10 @@ def generate_launch_description():
                         "command_host": command_host,
                         "command_port": ParameterValue(command_port, value_type=int),
                         "max_vx": ParameterValue(bridge_max_vx, value_type=float),
+                        "require_dual_cloud_sensor_frame": ParameterValue(
+                            require_dual_cloud, value_type=bool
+                        ),
+                        "scan_audit_path": scan_audit_path,
                     },
                 ],
             ),

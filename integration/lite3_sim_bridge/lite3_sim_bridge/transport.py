@@ -142,6 +142,7 @@ class TelemetryPublisherServer:
         frame = decode_frame(frame_bytes)
         if frame.header.message_type not in (
             MessageType.SENSOR_FRAME_V1,
+            MessageType.SENSOR_FRAME_DUAL_CLOUD_V1,
             MessageType.STATUS_V1,
             MessageType.HEARTBEAT_V1,
             MessageType.JOINT_STATE_V1,

@@ -1,5 +1,7 @@
 """Qualify the one allowed V12 model_149999 fallback in its pinned runtime."""
 
+from __future__ import annotations
+
 import argparse
 import copy
 import hashlib
@@ -31,6 +33,7 @@ from .isaac_adapter_core import (
     schedule_duration,
     schedule_state,
     segment_to_aabb_clearance_2d,
+    split_geometry_cloud_points,
     terrain_seating_for_mesh_support,
     world_hits_to_sensor_points,
 )
@@ -43,12 +46,14 @@ from .mid360_pattern import (
     load_mid360_pattern,
 )
 from .protocol import (
+    DualCloudSensorFrameV1,
     JointStateV1,
     MessageType,
     SensorFrameV1,
     StatusFlag,
     StatusV1,
     encode_frame,
+    encode_dual_cloud_sensor_payload,
     encode_joint_state_payload,
     encode_sensor_payload,
     encode_status_payload,
@@ -260,6 +265,10 @@ def _sensor_rig_enabled(args) -> bool:
 
 def _official_mid360_enabled(args) -> bool:
     return getattr(args, "lidar_pattern_mode", "uniform") == "livox_mid360"
+
+
+def _dual_cloud_geometry_enabled(args) -> bool:
+    return getattr(args, "cloud_profile", "legacy_planner_v1") == "upstream_go2_reference"
 
 
 def _mid360_pattern_cfg(patterns, pattern_table):
@@ -3064,6 +3073,7 @@ def _run(args) -> int:
             ),
         },
         "command_limits": [args.max_vx, args.max_vy, args.max_wz],
+        "cloud_profile": args.cloud_profile,
         "command_schedule": [
             {
                 "name": segment.name,
@@ -3154,14 +3164,16 @@ def _run(args) -> int:
             ),
             "planner_floor_filter": {
                 "frame": "world",
-                "enabled": forest_layout is None,
+                "enabled": forest_layout is None and not _dual_cloud_geometry_enabled(args),
                 "remove_hits_at_or_below_z_m": (
                     None
-                    if forest_layout is not None
+                    if forest_layout is not None or _dual_cloud_geometry_enabled(args)
                     else args.planner_floor_filter_max_z
                 ),
                 "reason": (
-                    "replaced by the geometry-only local terrain filter in V5"
+                    "replaced by the geometry-only local terrain filter for dual-cloud telemetry"
+                    if _dual_cloud_geometry_enabled(args)
+                    else "replaced by the geometry-only local terrain filter in V5"
                     if _forest_navigation_enabled(args)
                     else "disabled for the terrain-only V4 preview; SCAN is not connected"
                     if forest_layout is not None
@@ -3169,7 +3181,7 @@ def _run(args) -> int:
                 ),
             },
             "forest_geometry_filter": {
-                "enabled": _forest_navigation_enabled(args),
+                "enabled": _forest_navigation_enabled(args) or _dual_cloud_geometry_enabled(args),
                 "inputs": ["rendered_hit_xyz_world", "sensor_position_world"],
                 "forbidden_inputs": [
                     "terrain_height_function",
@@ -3179,22 +3191,22 @@ def _run(args) -> int:
                 ],
                 "cell_size_m": (
                     args.terrain_filter_cell_size
-                    if _forest_navigation_enabled(args)
+                    if _forest_navigation_enabled(args) or _dual_cloud_geometry_enabled(args)
                     else None
                 ),
                 "height_threshold_m": (
                     args.terrain_filter_height_threshold
-                    if _forest_navigation_enabled(args)
+                    if _forest_navigation_enabled(args) or _dual_cloud_geometry_enabled(args)
                     else None
                 ),
                 "neighbor_cells": (
                     args.terrain_filter_neighbor_cells
-                    if _forest_navigation_enabled(args)
+                    if _forest_navigation_enabled(args) or _dual_cloud_geometry_enabled(args)
                     else None
                 ),
                 "minimum_neighbor_cells": (
                     args.terrain_filter_minimum_neighbor_cells
-                    if _forest_navigation_enabled(args)
+                    if _forest_navigation_enabled(args) or _dual_cloud_geometry_enabled(args)
                     else None
                 ),
             },
@@ -4619,7 +4631,20 @@ def _run(args) -> int:
                     world_hit_values = hits_w.detach().cpu().tolist()
                     geometry_filter_stats = None
                     planner_world_hits = world_hit_values
-                    if _forest_navigation_enabled(args):
+                    raw_points = None
+                    if _dual_cloud_geometry_enabled(args):
+                        raw_points, points, geometry_filter_stats = split_geometry_cloud_points(
+                            world_hit_values,
+                            sensor_position_values,
+                            sensor_quaternion_values,
+                            args.lidar_min_range,
+                            args.lidar_max_range,
+                            args.terrain_filter_cell_size,
+                            args.terrain_filter_height_threshold,
+                            args.terrain_filter_neighbor_cells,
+                            args.terrain_filter_minimum_neighbor_cells,
+                        )
+                    elif _forest_navigation_enabled(args):
                         planner_world_hits, geometry_filter_stats = (
                             local_minimum_obstacle_hits(
                                 world_hit_values,
@@ -4632,19 +4657,36 @@ def _run(args) -> int:
                                 args.terrain_filter_minimum_neighbor_cells,
                             )
                         )
-                    points = world_hits_to_sensor_points(
-                        planner_world_hits,
-                        sensor_position_values,
-                        sensor_quaternion_values,
-                        args.lidar_min_range,
-                        args.lidar_max_range,
-                        minimum_world_z=(
-                            None
-                            if forest_layout is not None
-                            else args.planner_floor_filter_max_z
-                        ),
-                    )
+                    else:
+                        points = world_hits_to_sensor_points(
+                            planner_world_hits,
+                            sensor_position_values,
+                            sensor_quaternion_values,
+                            args.lidar_min_range,
+                            args.lidar_max_range,
+                            minimum_world_z=(
+                                None
+                                if forest_layout is not None
+                                else args.planner_floor_filter_max_z
+                            ),
+                        )
+                    if _forest_navigation_enabled(args) and not _dual_cloud_geometry_enabled(args):
+                        points = world_hits_to_sensor_points(
+                            planner_world_hits,
+                            sensor_position_values,
+                            sensor_quaternion_values,
+                            args.lidar_min_range,
+                            args.lidar_max_range,
+                            minimum_world_z=None,
+                        )
                     point_count, point_bytes = pack_xyz_points(points)
+                    raw_point_count = None
+                    raw_point_bytes = None
+                    if _dual_cloud_geometry_enabled(args):
+                        assert raw_points is not None
+                        raw_point_count, raw_point_bytes = pack_xyz_points(raw_points)
+                        if geometry_filter_stats is None:
+                            raise AdapterFailure("dual-cloud geometry filter stats are missing")
                     finite_hits = torch.isfinite(hits_w).all(dim=-1)
                     hit_ranges = torch.linalg.vector_norm(
                         hits_w - sensor_position.unsqueeze(0), dim=-1
@@ -4790,6 +4832,23 @@ def _run(args) -> int:
                             else "legacy_uniform_snapshot"
                         ),
                         "raw_ray_count": int(hits_w.shape[0]),
+                        "scan_id": (
+                            mid360_scan_index + 1
+                            if _dual_cloud_geometry_enabled(args)
+                            else None
+                        ),
+                        "raw_cloud_point_count": raw_point_count,
+                        "planning_cloud_point_count": point_count,
+                        "filtered_ground_point_count": (
+                            None
+                            if geometry_filter_stats is None
+                            else geometry_filter_stats["filtered_ground_hit_count"]
+                        ),
+                        "conservative_retained_point_count": (
+                            None
+                            if geometry_filter_stats is None
+                            else geometry_filter_stats["sparse_retained_hit_count"]
+                        ),
                         "point_count": point_count,
                         "finite_point_count": point_count,
                         "raw_finite_hit_count": int(finite_hits.sum().item()),
@@ -5066,8 +5125,37 @@ def _run(args) -> int:
                         ):
                             best_depth_frame = raw_depth.detach().cpu().clone()
                             best_depth_metadata = dict(depth_row)
-                    sensor_payload = encode_sensor_payload(
-                        SensorFrameV1(
+                    if _dual_cloud_geometry_enabled(args):
+                        assert raw_point_count is not None
+                        assert raw_point_bytes is not None
+                        assert geometry_filter_stats is not None
+                        sensor_payload = encode_dual_cloud_sensor_payload(
+                            DualCloudSensorFrameV1(
+                                body_position=tuple(body_position_values),
+                                body_quaternion_xyzw=quaternion_wxyz_to_xyzw(
+                                    body_quaternion_wxyz_values
+                                ),
+                                sensor_position=tuple(sensor_position_values),
+                                sensor_quaternion_xyzw=quaternion_wxyz_to_xyzw(
+                                    sensor_quaternion_values
+                                ),
+                                config_sha256=config_sha256,
+                                scan_id=mid360_scan_index + 1,
+                                raw_point_count=raw_point_count,
+                                raw_points_xyz_f32_be=raw_point_bytes,
+                                planner_point_count=point_count,
+                                planner_points_xyz_f32_be=point_bytes,
+                                filtered_ground_point_count=geometry_filter_stats[
+                                    "filtered_ground_hit_count"
+                                ],
+                                conservative_retained_point_count=geometry_filter_stats[
+                                    "sparse_retained_hit_count"
+                                ],
+                            )
+                        )
+                        sensor_message_type = MessageType.SENSOR_FRAME_DUAL_CLOUD_V1
+                    else:
+                        sensor_payload = encode_sensor_payload(SensorFrameV1(
                             body_position=tuple(body_position_values),
                             body_quaternion_xyzw=quaternion_wxyz_to_xyzw(
                                 body_quaternion_wxyz_values
@@ -5079,12 +5167,12 @@ def _run(args) -> int:
                             config_sha256=config_sha256,
                             point_count=point_count,
                             points_xyz_f32_be=point_bytes,
-                        )
-                    )
+                        ))
+                        sensor_message_type = MessageType.SENSOR_FRAME_V1
                     telemetry_sequence += 1
                     sent_sensor = telemetry_server.publish(
                         encode_frame(
-                            MessageType.SENSOR_FRAME_V1,
+                            sensor_message_type,
                             telemetry_sequence,
                             sensor_timestamp_ns,
                             sensor_payload,
@@ -6010,6 +6098,12 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--command-port", type=int, default=46001)
     parser.add_argument("--telemetry-host", default="127.0.0.1")
     parser.add_argument("--telemetry-port", type=int, default=46000)
+    parser.add_argument(
+        "--cloud-profile",
+        choices=("legacy_planner_v1", "upstream_go2_reference"),
+        default="legacy_planner_v1",
+        help="Select legacy single-cloud or atomic raw/planning cloud telemetry.",
+    )
     parser.add_argument("--max-vx", type=float, default=0.75)
     parser.add_argument("--max-vy", type=float, default=0.35)
     parser.add_argument("--max-wz", type=float, default=1.0)
@@ -6448,7 +6542,7 @@ def main(argv=None) -> int:
         raise SystemExit(
             "Office pedestrian motion arguments are valid only for office_l0_crowd"
         )
-    if _forest_navigation_enabled(args):
+    if _forest_navigation_enabled(args) or _dual_cloud_geometry_enabled(args):
         if (
             not math.isfinite(args.terrain_filter_cell_size)
             or args.terrain_filter_cell_size <= 0.0
@@ -6457,7 +6551,14 @@ def main(argv=None) -> int:
             or args.terrain_filter_neighbor_cells < 0
             or args.terrain_filter_minimum_neighbor_cells <= 0
         ):
-            raise SystemExit("forest navigation terrain-filter parameters are invalid")
+            raise SystemExit("geometry terrain-filter parameters are invalid")
+    if _dual_cloud_geometry_enabled(args):
+        if not _official_mid360_enabled(args):
+            raise SystemExit("upstream_go2_reference requires the pinned MID-360 pattern")
+        if not _sensor_rig_enabled(args):
+            raise SystemExit("upstream_go2_reference requires the pinned sensor rig")
+        if abs(float(args.max_vx) - 0.50) > 1.0e-9:
+            raise SystemExit("upstream_go2_reference requires the frozen 0.50 m/s Lite3 limit")
     if _forest_review_geometry_enabled(args) and abs(float(args.max_vx) - 1.0) > 1.0e-9:
         raise SystemExit("V6/V7/V8 requires the Isaac forward command limit to equal 1.0 m/s")
     if _dynamic_obstacle_enabled(args):

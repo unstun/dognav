@@ -39,12 +39,15 @@ ACCEPTANCE_CONFIG=${SCAN_ACCEPTANCE_CONFIG:-$RUN_ROOT/acceptance_thresholds.json
 COURSE=${SCAN_COURSE:-single_box}
 PLANNER_CONFIG_REL=${SCAN_PLANNER_CONFIG_REL:-src/plan_manage/config/foxy_isaac_planner.yaml}
 CONTROLLER_CONFIG_REL=${SCAN_CONTROLLER_CONFIG_REL:-src/plan_manage/config/foxy_isaac_controller.yaml}
+BRIDGE_CONFIG_REL=${SCAN_BRIDGE_CONFIG_REL:-src/lite3_sim_bridge/config/foxy_bridge.yaml}
 PLANNER_CONFIG=$FOXY_WORKSPACE/$PLANNER_CONFIG_REL
 CONTROLLER_CONFIG=$FOXY_WORKSPACE/$CONTROLLER_CONFIG_REL
+BRIDGE_CONFIG=$FOXY_WORKSPACE/$BRIDGE_CONFIG_REL
 CONTROLLER_SOURCE=$FOXY_WORKSPACE/src/plan_manage/src/closed_loop_controller.cpp
 PROGRESS_SOURCE=$FOXY_WORKSPACE/src/plan_manage/include/plan_manage/trajectory_progress.h
 FSM_SOURCE=$FOXY_WORKSPACE/src/plan_manage/src/scan_replan_fsm.cpp
 FSM_HEADER=$FOXY_WORKSPACE/src/plan_manage/include/plan_manage/scan_replan_fsm.h
+REFERENCE_PATH_HEIGHT_HEADER=$FOXY_WORKSPACE/src/plan_manage/include/plan_manage/reference_path_height.h
 GRID_MAP_SOURCE=$FOXY_WORKSPACE/src/plan_env/src/grid_map.cpp
 OCCLUSION_SHADOW_SOURCE=$FOXY_WORKSPACE/src/plan_env/include/plan_env/occlusion_shadow.h
 FOXY_LAUNCH_SOURCE=$FOXY_WORKSPACE/src/plan_manage/launch/foxy_isaac_closed_loop.launch.py
@@ -92,6 +95,8 @@ OFFICE_REVIEW_LIGHTING_PROFILE=${SCAN_OFFICE_REVIEW_LIGHTING_PROFILE:-high_contr
 OFFICE_REVIEW_DOME_LIGHT_INTENSITY=${SCAN_OFFICE_REVIEW_DOME_LIGHT_INTENSITY:-1000.0}
 OFFICE_REVIEW_EXPOSURE=${SCAN_OFFICE_REVIEW_EXPOSURE:-0.0}
 MAX_VX=${SCAN_MAX_VX:-0.75}
+CLOUD_PROFILE=${SCAN_CLOUD_PROFILE:-legacy_planner_v1}
+REQUIRE_DUAL_CLOUD=${SCAN_REQUIRE_DUAL_CLOUD:-false}
 PLANNER_FLOOR_FILTER_MAX_Z=${SCAN_PLANNER_FLOOR_FILTER_MAX_Z:-0.05}
 LIDAR_PATTERN_MODE=${SCAN_LIDAR_PATTERN_MODE:-uniform}
 LIDAR_PATTERN_CSV=${SCAN_LIDAR_PATTERN_CSV:-}
@@ -152,6 +157,20 @@ if [[ ! $MAX_VX =~ ^([0-9]+([.][0-9]*)?|[.][0-9]+)$ ]] \
   || ! awk -v value="$MAX_VX" 'BEGIN { exit !(value > 0.0) }'; then
   echo "SCAN_MAX_VX must be a positive decimal" >&2
   exit 64
+fi
+if [[ $CLOUD_PROFILE != legacy_planner_v1 && $CLOUD_PROFILE != upstream_go2_reference ]]; then
+  echo "unsupported SCAN_CLOUD_PROFILE: $CLOUD_PROFILE" >&2
+  exit 64
+fi
+if [[ $REQUIRE_DUAL_CLOUD != true && $REQUIRE_DUAL_CLOUD != false ]]; then
+  echo "SCAN_REQUIRE_DUAL_CLOUD must be true or false" >&2
+  exit 64
+fi
+if [[ $CLOUD_PROFILE == upstream_go2_reference ]]; then
+  if [[ $REQUIRE_DUAL_CLOUD != true || $MAX_VX != 0.50 ]]; then
+    echo "upstream_go2_reference requires SCAN_REQUIRE_DUAL_CLOUD=true and SCAN_MAX_VX=0.50" >&2
+    exit 64
+  fi
 fi
 case "$LIDAR_PATTERN_MODE" in
   uniform)
@@ -428,10 +447,12 @@ for required in \
   "$BRIDGE/lite3_sim_bridge/transport.py" \
   "$PLANNER_CONFIG" \
   "$CONTROLLER_CONFIG" \
+  "$BRIDGE_CONFIG" \
   "$CONTROLLER_SOURCE" \
   "$PROGRESS_SOURCE" \
   "$FSM_SOURCE" \
   "$FSM_HEADER" \
+  "$REFERENCE_PATH_HEIGHT_HEADER" \
   "$GRID_MAP_SOURCE" \
   "$OCCLUSION_SHADOW_SOURCE" \
   "$FOXY_LAUNCH_SOURCE" \
@@ -560,6 +581,9 @@ fi
   printf 'office_review_dome_light_intensity=%s\n' "$OFFICE_REVIEW_DOME_LIGHT_INTENSITY"
   printf 'office_review_exposure=%s\n' "$OFFICE_REVIEW_EXPOSURE"
   printf 'max_vx=%s\n' "$MAX_VX"
+  printf 'cloud_profile=%s\n' "$CLOUD_PROFILE"
+  printf 'require_dual_cloud=%s\n' "$REQUIRE_DUAL_CLOUD"
+  printf 'bridge_config_rel=%s\n' "$BRIDGE_CONFIG_REL"
   printf 'enable_voxel_capture=%s\n' "$ENABLE_VOXEL_CAPTURE"
   printf 'voxel_capture_period_seconds=%s\n' "$VOXEL_CAPTURE_PERIOD_SECONDS"
   printf 'visual_review_only=%s\n' "$VISUAL_REVIEW_ONLY"
@@ -579,10 +603,12 @@ sha256sum \
   "$ACCEPTANCE_CONFIG" \
   "$PLANNER_CONFIG" \
   "$CONTROLLER_CONFIG" \
+  "$BRIDGE_CONFIG" \
   "$CONTROLLER_SOURCE" \
   "$PROGRESS_SOURCE" \
   "$FSM_SOURCE" \
   "$FSM_HEADER" \
+  "$REFERENCE_PATH_HEIGHT_HEADER" \
   "$GRID_MAP_SOURCE" \
   "$OCCLUSION_SHADOW_SOURCE" \
   "$FOXY_LAUNCH_SOURCE" \
@@ -661,6 +687,7 @@ python -u -m lite3_sim_bridge.run_isaac_v12_fallback \
   --source-commit 8c3fdffa84b85be0704a10ea5b2533817d543822 \
   --telemetry-port "$TELEMETRY_PORT" \
   --command-port "$COMMAND_PORT" \
+  --cloud-profile "$CLOUD_PROFILE" \
   --planner-floor-filter-max-z "$PLANNER_FLOOR_FILTER_MAX_Z" \
   --max-vx "$MAX_VX" \
   --acceptance-config "$ACCEPTANCE_CONFIG" \
@@ -701,7 +728,9 @@ podman run --rm --name "$CONTAINER_NAME" \
   -e ROS_RUNTIME_SECONDS="$ROS_RUNTIME_SECONDS" \
   -e PLANNER_CONFIG_CONTAINER="/workspace/$PLANNER_CONFIG_REL" \
   -e CONTROLLER_CONFIG_CONTAINER="/workspace/$CONTROLLER_CONFIG_REL" \
+  -e BRIDGE_CONFIG_CONTAINER="/workspace/$BRIDGE_CONFIG_REL" \
   -e BRIDGE_MAX_VX="$MAX_VX" \
+  -e REQUIRE_DUAL_CLOUD="$REQUIRE_DUAL_CLOUD" \
   -e ENABLE_VOXEL_CAPTURE="$ENABLE_VOXEL_CAPTURE" \
   -e VOXEL_CAPTURE_PERIOD_SECONDS="$VOXEL_CAPTURE_PERIOD_SECONDS" \
   -e VISUAL_REVIEW_ONLY="$VISUAL_REVIEW_ONLY" \
@@ -777,7 +806,7 @@ podman run --rm --name "$CONTAINER_NAME" \
     BAG_CODE=0
     if [[ $RECORD_ROSBAG == 1 ]]; then
       BAG_TOPICS=(
-        /quad_0/body_pose /quad_0/lidar_pose /quad_0/cloud
+        /quad_0/body_pose /quad_0/lidar_pose /quad_0/cloud /quad_0/cloud_raw
         /quad_0/cmd_vel /quad_0/joint_states /planning/bspline
         /review/scan_planned_path /review/lite3_actual_path
         /review/lite3_current_pose /robot_description /tf /tf_static
@@ -811,7 +840,10 @@ podman run --rm --name "$CONTAINER_NAME" \
         command_port:="$COMMAND_PORT" \
         planner_config:="$PLANNER_CONFIG_CONTAINER" \
         controller_config:="$CONTROLLER_CONFIG_CONTAINER" \
+        bridge_config:="$BRIDGE_CONFIG_CONTAINER" \
         bridge_max_vx:="$BRIDGE_MAX_VX" \
+        require_dual_cloud_sensor_frame:="$REQUIRE_DUAL_CLOUD" \
+        scan_audit_path:=/evidence/dual_cloud_scan_audit.jsonl \
         enable_monitor:=true \
         monitor_event_log:=/evidence/ros_events.jsonl \
         monitor_summary:=/evidence/ros_summary.json
@@ -888,7 +920,7 @@ if [[ $NATIVE_RVIZ_PRESTART_GATE == 1 ]]; then
       && podman exec "$CONTAINER_NAME" bash -lc '
         source /opt/ros/foxy/setup.bash
         ros2 node list 2>/dev/null | grep -qx /lite3_native_rviz_review
-        ros2 topic info /quad_0/cloud 2>/dev/null \
+        ros2 topic info /quad_0/cloud_raw 2>/dev/null \
           | grep -Eq "Subscription count: [1-9][0-9]*"
       '; then
       prestart_ready=1
@@ -903,7 +935,7 @@ if [[ $NATIVE_RVIZ_PRESTART_GATE == 1 ]]; then
   {
     printf 'prestart_gate=1\n'
     printf 'subscription_ready=%s\n' "$prestart_ready"
-    printf 'source_topic=/quad_0/cloud\n'
+    printf 'source_topic=/quad_0/cloud_raw\n'
     printf 'source_mode=live\n'
   } >"$OUTPUT_DIR/native_rviz_prestart_gate.txt"
   kill -CONT "$ISAAC_PID" 2>/dev/null || true

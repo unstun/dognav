@@ -1,5 +1,7 @@
 """ROS 2 Foxy adapter for the versioned Lite3 simulation transport."""
 
+import json
+from pathlib import Path
 import threading
 import time
 from typing import Optional
@@ -19,9 +21,11 @@ from .protocol import (
     JointStateV1,
     MessageType,
     ProtocolError,
+    ScanIdTracker,
     SequenceTracker,
-    decode_sensor_payload,
+    decode_dual_cloud_sensor_payload,
     decode_joint_state_payload,
+    decode_sensor_payload,
     decode_status_payload,
     xyz_f32_be_to_le,
 )
@@ -51,6 +55,9 @@ class FoxyBridgeNode(Node):
         self._connect_timeout = float(
             self.declare_parameter("connect_timeout_seconds", 5.0).value
         )
+        self._telemetry_receive_timeout = float(
+            self.declare_parameter("telemetry_receive_timeout_seconds", 10.0).value
+        )
         self._reconnect_delay = float(
             self.declare_parameter("reconnect_delay_seconds", 0.2).value
         )
@@ -58,8 +65,13 @@ class FoxyBridgeNode(Node):
         source_timeout_seconds = float(
             self.declare_parameter("source_command_timeout_seconds", 0.25).value
         )
-        if command_rate_hz <= 0.0 or source_timeout_seconds <= 0.0:
-            raise ValueError("command rate and source timeout must be positive")
+        if (
+            command_rate_hz <= 0.0
+            or source_timeout_seconds <= 0.0
+            or self._connect_timeout <= 0.0
+            or self._telemetry_receive_timeout <= 0.0
+        ):
+            raise ValueError("bridge rates and timeouts must be positive")
         self._command_period = 1.0 / command_rate_hz
         self._source_timeout_ns = int(source_timeout_seconds * 1_000_000_000)
         self._limits = CommandLimits(
@@ -77,6 +89,15 @@ class FoxyBridgeNode(Node):
             "sensor_pose_topic", "/quad_0/lidar_pose"
         ).value
         cloud_topic = self.declare_parameter("cloud_topic", "/quad_0/cloud").value
+        raw_cloud_topic = self.declare_parameter(
+            "raw_cloud_topic", "/quad_0/cloud_raw"
+        ).value
+        self._require_dual_cloud = bool(
+            self.declare_parameter("require_dual_cloud_sensor_frame", False).value
+        )
+        scan_audit_path = self.declare_parameter("scan_audit_path", "").value
+        if not cloud_topic or not raw_cloud_topic or cloud_topic == raw_cloud_topic:
+            raise ValueError("raw and planning cloud topics must be distinct and non-empty")
         joint_state_topic = self.declare_parameter(
             "joint_state_topic", "/quad_0/joint_states"
         ).value
@@ -93,6 +114,9 @@ class FoxyBridgeNode(Node):
         self._cloud_publisher = self.create_publisher(
             PointCloud2, cloud_topic, qos_profile_sensor_data
         )
+        self._raw_cloud_publisher = self.create_publisher(
+            PointCloud2, raw_cloud_topic, qos_profile_sensor_data
+        )
         self._joint_state_publisher = self.create_publisher(
             JointState, joint_state_topic, 20
         )
@@ -108,7 +132,14 @@ class FoxyBridgeNode(Node):
         self._latest_command = self.ZERO
         self._latest_command_monotonic_ns = None  # type: Optional[int]
         self._telemetry_tracker = SequenceTracker()
+        self._scan_id_tracker = ScanIdTracker()
         self._telemetry_overwrites = 0
+        self._scan_audit_lock = threading.Lock()
+        self._scan_audit_file = None
+        if scan_audit_path:
+            audit_path = Path(scan_audit_path).expanduser()
+            audit_path.parent.mkdir(parents=True, exist_ok=True)
+            self._scan_audit_file = audit_path.open("a", encoding="utf-8")
         self._stop_event = threading.Event()
         self._telemetry_thread = threading.Thread(
             target=self._telemetry_loop,
@@ -143,7 +174,9 @@ class FoxyBridgeNode(Node):
 
     def _telemetry_loop(self) -> None:
         client = FrameStreamClient(
-            self._telemetry_host, self._telemetry_port, self._connect_timeout
+            self._telemetry_host,
+            self._telemetry_port,
+            self._telemetry_receive_timeout,
         )
         connected = False
         while not self._stop_event.is_set():
@@ -159,10 +192,24 @@ class FoxyBridgeNode(Node):
                 frame = client.receive()
                 self._telemetry_tracker.observe(frame.header.sequence)
                 if frame.header.message_type == MessageType.SENSOR_FRAME_V1:
+                    if self._require_dual_cloud:
+                        raise ProtocolError("dual-cloud sensor frame is required")
                     decoded = decode_sensor_payload(frame.payload)
                     with self._latest_lock:
                         if self._latest_sensor is not None:
                             self._telemetry_overwrites += 1
+                        self._latest_sensor = (frame.header, decoded)
+                elif frame.header.message_type == MessageType.SENSOR_FRAME_DUAL_CLOUD_V1:
+                    decoded = decode_dual_cloud_sensor_payload(frame.payload)
+                    self._scan_id_tracker.observe(decoded.scan_id)
+                    with self._latest_lock:
+                        if self._latest_sensor is not None:
+                            self._telemetry_overwrites += 1
+                            old_header, old_sensor = self._latest_sensor
+                            if hasattr(old_sensor, "scan_id"):
+                                self._write_scan_audit(
+                                    old_header, old_sensor, "overwritten_before_publish"
+                                )
                         self._latest_sensor = (frame.header, decoded)
                 elif frame.header.message_type == MessageType.STATUS_V1:
                     decoded_status = decode_status_payload(frame.payload)
@@ -251,7 +298,26 @@ class FoxyBridgeNode(Node):
                     sensor.sensor_quaternion_xyzw,
                 )
             )
-            self._cloud_publisher.publish(self._cloud_message(stamp, sensor))
+            if hasattr(sensor, "scan_id"):
+                raw_cloud = self._cloud_message(
+                    stamp, sensor.raw_point_count, sensor.raw_points_xyz_f32_be
+                )
+                planner_cloud = self._cloud_message(
+                    stamp,
+                    sensor.planner_point_count,
+                    sensor.planner_points_xyz_f32_be,
+                )
+                # Both messages come from this one decoded payload and share the
+                # exact stamp/frame. ROS publication itself remains sequential.
+                self._raw_cloud_publisher.publish(raw_cloud)
+                self._cloud_publisher.publish(planner_cloud)
+                self._write_scan_audit(header, sensor, "published_sequentially")
+            else:
+                self._cloud_publisher.publish(
+                    self._cloud_message(
+                        stamp, sensor.point_count, sensor.points_xyz_f32_be
+                    )
+                )
         if latest_joint_state is not None:
             header, joints = latest_joint_state
             self._joint_state_publisher.publish(
@@ -295,12 +361,12 @@ class FoxyBridgeNode(Node):
         message.transform.rotation.w = quaternion[3]
         return message
 
-    def _cloud_message(self, stamp, sensor):
+    def _cloud_message(self, stamp, point_count, point_bytes):
         message = PointCloud2()
         message.header.stamp = stamp
         message.header.frame_id = self._sensor_frame
         message.height = 1
-        message.width = sensor.point_count
+        message.width = point_count
         message.fields = [
             PointField(name="x", offset=0, datatype=PointField.FLOAT32, count=1),
             PointField(name="y", offset=4, datatype=PointField.FLOAT32, count=1),
@@ -310,10 +376,28 @@ class FoxyBridgeNode(Node):
         # for the x86 Foxy/PCL boundary instead of relying on implicit swapping.
         message.is_bigendian = False
         message.point_step = 12
-        message.row_step = sensor.point_count * 12
-        message.data = xyz_f32_be_to_le(sensor.points_xyz_f32_be)
+        message.row_step = point_count * 12
+        message.data = xyz_f32_be_to_le(point_bytes)
         message.is_dense = True
         return message
+
+    def _write_scan_audit(self, header, sensor, outcome) -> None:
+        if self._scan_audit_file is None:
+            return
+        row = {
+            "scan_id": sensor.scan_id,
+            "timestamp_ns": header.timestamp_ns,
+            "frame_id": self._sensor_frame,
+            "raw_point_count": sensor.raw_point_count,
+            "filtered_ground_point_count": sensor.filtered_ground_point_count,
+            "planning_point_count": sensor.planner_point_count,
+            "conservative_retained_point_count": sensor.conservative_retained_point_count,
+            "outcome": outcome,
+            "telemetry_overwrite_count": self._telemetry_overwrites,
+        }
+        with self._scan_audit_lock:
+            self._scan_audit_file.write(json.dumps(row, sort_keys=True) + "\n")
+            self._scan_audit_file.flush()
 
     @staticmethod
     def _joint_state_message(stamp, joints: JointStateV1) -> JointState:
@@ -328,6 +412,9 @@ class FoxyBridgeNode(Node):
         self._stop_event.set()
         self._telemetry_thread.join(timeout=2.0)
         self._command_thread.join(timeout=2.0)
+        if self._scan_audit_file is not None:
+            self._scan_audit_file.close()
+            self._scan_audit_file = None
         return super().destroy_node()
 
 

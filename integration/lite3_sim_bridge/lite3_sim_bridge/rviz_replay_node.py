@@ -161,7 +161,7 @@ class RvizReplayNode(Node):
         if self._source_mode == "live":
             self.create_subscription(
                 PointCloud2,
-                "/quad_0/cloud",
+                "/quad_0/cloud_raw",
                 self._live_lidar,
                 qos_profile_sensor_data,
             )

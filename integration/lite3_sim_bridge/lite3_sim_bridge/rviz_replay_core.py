@@ -292,7 +292,7 @@ class ReplayAuditState:
             "claim_boundary": claim_boundary,
             "source_mode": self.source_mode,
             "source_topics": [
-                "/quad_0/cloud",
+                "/quad_0/cloud_raw",
                 "/quad_0/body_pose",
                 "/planning/bspline",
             ],

@@ -54,6 +54,7 @@ install(FILES
 install(FILES
   config/foxy_isaac_planner.yaml
   config/foxy_isaac_forest_v5_planner.yaml
+  config/foxy_isaac_office_crowd_upstream_go2_reference.yaml
   config/foxy_isaac_controller.yaml
   DESTINATION share/${PROJECT_NAME}/config)
 
@@ -63,6 +64,9 @@ if(BUILD_TESTING)
   ament_add_gtest(test_trajectory_progress test/test_trajectory_progress.cpp)
   target_include_directories(test_trajectory_progress PRIVATE include)
   target_link_libraries(test_trajectory_progress Eigen3::Eigen)
+  ament_add_gtest(test_reference_path_height test/test_reference_path_height.cpp)
+  target_include_directories(test_reference_path_height PRIVATE include)
+  target_link_libraries(test_reference_path_height Eigen3::Eigen)
   add_launch_test(test/test_planner_startup.py TIMEOUT 30)
   add_launch_test(test/test_waypoint_parameters.py TIMEOUT 30)
 endif()

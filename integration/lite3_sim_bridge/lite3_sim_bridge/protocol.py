@@ -27,6 +27,9 @@ MAX_JOINT_NAME_BYTES = 255
 HEADER_STRUCT = struct.Struct("!4sBBHIIQQII")
 HEADER_SIZE = HEADER_STRUCT.size
 SENSOR_PREFIX_STRUCT = struct.Struct("!14d32sIHBB")
+# poses, config hash, scan id, four audit counts, two explicit byte lengths,
+# point stride, point format, reserved
+DUAL_CLOUD_SENSOR_PREFIX_STRUCT = struct.Struct("!14d32sQIIIIIIHBB")
 COMMAND_STRUCT = struct.Struct("!3f")
 STATUS_STRUCT = struct.Struct("!4fIIIII")
 JOINT_STATE_HEADER_STRUCT = struct.Struct("!HH")
@@ -40,6 +43,7 @@ class MessageType(IntEnum):
     CMD_VEL_V1 = 3
     HEARTBEAT_V1 = 4
     JOINT_STATE_V1 = 5
+    SENSOR_FRAME_DUAL_CLOUD_V1 = 6
 
 
 class StatusFlag(IntEnum):
@@ -81,6 +85,23 @@ class SequenceTracker:
         return gap
 
 
+class ScanIdTracker:
+    """Validate a scan identity independently of transport reconnects/sequences."""
+
+    def __init__(self) -> None:
+        self._last_scan_id = None  # type: Optional[int]
+
+    @property
+    def last_scan_id(self):  # type: () -> Optional[int]
+        return self._last_scan_id
+
+    def observe(self, scan_id: int) -> None:
+        _require_uint("scan_id", scan_id, 64)
+        if self._last_scan_id is not None and scan_id <= self._last_scan_id:
+            raise ProtocolError("scan ID is not increasing")
+        self._last_scan_id = scan_id
+
+
 @dataclass(frozen=True)
 class Header:
     message_type: MessageType
@@ -113,6 +134,22 @@ class SensorFrameV1:
     config_sha256: bytes
     point_count: int
     points_xyz_f32_be: bytes
+
+
+@dataclass(frozen=True)
+class DualCloudSensorFrameV1:
+    body_position: Tuple[float, float, float]
+    body_quaternion_xyzw: Tuple[float, float, float, float]
+    sensor_position: Tuple[float, float, float]
+    sensor_quaternion_xyzw: Tuple[float, float, float, float]
+    config_sha256: bytes
+    scan_id: int
+    raw_point_count: int
+    raw_points_xyz_f32_be: bytes
+    planner_point_count: int
+    planner_points_xyz_f32_be: bytes
+    filtered_ground_point_count: int
+    conservative_retained_point_count: int
 
 
 @dataclass(frozen=True)
@@ -409,6 +446,132 @@ def decode_sensor_payload(payload: bytes) -> SensorFrameV1:
         config_sha256=config_sha256,
         point_count=point_count,
         points_xyz_f32_be=point_bytes,
+    )
+
+
+def _checked_dual_cloud_sensor(sensor: DualCloudSensorFrameV1):
+    body_position, body_quaternion = _require_pose(
+        sensor.body_position, sensor.body_quaternion_xyzw, "body"
+    )
+    sensor_position, sensor_quaternion = _require_pose(
+        sensor.sensor_position, sensor.sensor_quaternion_xyzw, "sensor"
+    )
+    if not isinstance(sensor.config_sha256, bytes) or len(sensor.config_sha256) != 32:
+        raise ProtocolError("config_sha256 must contain 32 raw bytes")
+    _require_uint("scan_id", sensor.scan_id, 64)
+    for name, value in (
+        ("raw_point_count", sensor.raw_point_count),
+        ("planner_point_count", sensor.planner_point_count),
+        ("filtered_ground_point_count", sensor.filtered_ground_point_count),
+        ("conservative_retained_point_count", sensor.conservative_retained_point_count),
+    ):
+        _require_uint(name, value, 32)
+        if value > MAX_POINT_COUNT:
+            raise ProtocolError("{} exceeds v1 limit".format(name))
+    if sensor.raw_point_count != (
+        sensor.filtered_ground_point_count + sensor.planner_point_count
+    ):
+        raise ProtocolError("raw count must equal filtered ground plus planner count")
+    if sensor.conservative_retained_point_count > sensor.planner_point_count:
+        raise ProtocolError("conservative retained count exceeds planner count")
+    _validate_xyz_point_bytes(sensor.raw_point_count, sensor.raw_points_xyz_f32_be)
+    _validate_xyz_point_bytes(
+        sensor.planner_point_count, sensor.planner_points_xyz_f32_be
+    )
+    return body_position, body_quaternion, sensor_position, sensor_quaternion
+
+
+def encode_dual_cloud_sensor_payload(sensor: DualCloudSensorFrameV1) -> bytes:
+    """Encode two required point clouds produced by one audited scan."""
+
+    body_position, body_quaternion, sensor_position, sensor_quaternion = (
+        _checked_dual_cloud_sensor(sensor)
+    )
+    raw_byte_length = len(sensor.raw_points_xyz_f32_be)
+    planner_byte_length = len(sensor.planner_points_xyz_f32_be)
+    prefix = DUAL_CLOUD_SENSOR_PREFIX_STRUCT.pack(
+        *(body_position + body_quaternion + sensor_position + sensor_quaternion),
+        sensor.config_sha256,
+        sensor.scan_id,
+        sensor.raw_point_count,
+        sensor.planner_point_count,
+        sensor.filtered_ground_point_count,
+        sensor.conservative_retained_point_count,
+        raw_byte_length,
+        planner_byte_length,
+        POINT_STRIDE_BYTES,
+        POINT_FORMAT_XYZ_F32_BE,
+        0,
+    )
+    payload = prefix + sensor.raw_points_xyz_f32_be + sensor.planner_points_xyz_f32_be
+    if len(payload) > MAX_PAYLOAD_BYTES:
+        raise ProtocolError("dual-cloud sensor payload exceeds v1 limit")
+    return payload
+
+
+def decode_dual_cloud_sensor_payload(payload: bytes) -> DualCloudSensorFrameV1:
+    """Decode one atomic dual-cloud payload and reject ambiguous boundaries."""
+
+    if len(payload) > MAX_PAYLOAD_BYTES:
+        raise ProtocolError("dual-cloud sensor payload exceeds v1 limit")
+    if len(payload) < DUAL_CLOUD_SENSOR_PREFIX_STRUCT.size:
+        raise ProtocolError("truncated dual-cloud sensor payload")
+    unpacked = DUAL_CLOUD_SENSOR_PREFIX_STRUCT.unpack(
+        payload[: DUAL_CLOUD_SENSOR_PREFIX_STRUCT.size]
+    )
+    pose_values = unpacked[:14]
+    config_sha256 = unpacked[14]
+    scan_id = unpacked[15]
+    raw_count, planner_count, ground_count, conservative_count = unpacked[16:20]
+    raw_byte_length, planner_byte_length = unpacked[20:22]
+    point_stride, point_format, reserved = unpacked[22:25]
+    if point_stride != POINT_STRIDE_BYTES:
+        raise ProtocolError("unsupported point stride")
+    if point_format != POINT_FORMAT_XYZ_F32_BE:
+        raise ProtocolError("unsupported point format")
+    if reserved != 0:
+        raise ProtocolError("reserved dual-cloud sensor field must be zero")
+    if raw_byte_length != raw_count * POINT_STRIDE_BYTES:
+        raise ProtocolError("raw point byte length does not match raw point count")
+    if planner_byte_length != planner_count * POINT_STRIDE_BYTES:
+        raise ProtocolError("planner point byte length does not match planner point count")
+    expected_length = (
+        DUAL_CLOUD_SENSOR_PREFIX_STRUCT.size + raw_byte_length + planner_byte_length
+    )
+    if len(payload) != expected_length:
+        raise ProtocolError("dual-cloud sensor payload length mismatch")
+    raw_start = DUAL_CLOUD_SENSOR_PREFIX_STRUCT.size
+    planner_start = raw_start + raw_byte_length
+    sensor = DualCloudSensorFrameV1(
+        body_position=pose_values[0:3],
+        body_quaternion_xyzw=pose_values[3:7],
+        sensor_position=pose_values[7:10],
+        sensor_quaternion_xyzw=pose_values[10:14],
+        config_sha256=config_sha256,
+        scan_id=scan_id,
+        raw_point_count=raw_count,
+        raw_points_xyz_f32_be=payload[raw_start:planner_start],
+        planner_point_count=planner_count,
+        planner_points_xyz_f32_be=payload[planner_start:],
+        filtered_ground_point_count=ground_count,
+        conservative_retained_point_count=conservative_count,
+    )
+    body_position, body_quaternion, sensor_position, sensor_quaternion = (
+        _checked_dual_cloud_sensor(sensor)
+    )
+    return DualCloudSensorFrameV1(
+        body_position=body_position,
+        body_quaternion_xyzw=body_quaternion,
+        sensor_position=sensor_position,
+        sensor_quaternion_xyzw=sensor_quaternion,
+        config_sha256=config_sha256,
+        scan_id=scan_id,
+        raw_point_count=raw_count,
+        raw_points_xyz_f32_be=sensor.raw_points_xyz_f32_be,
+        planner_point_count=planner_count,
+        planner_points_xyz_f32_be=sensor.planner_points_xyz_f32_be,
+        filtered_ground_point_count=ground_count,
+        conservative_retained_point_count=conservative_count,
     )
 
 

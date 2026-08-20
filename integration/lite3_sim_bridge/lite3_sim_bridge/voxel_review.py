@@ -769,7 +769,7 @@ def render_voxel_review(
             "topics": [
                 "/grid_map/occupancy",
                 "/grid_map/occupancy_inflate",
-                "/quad_0/cloud",
+                "/quad_0/cloud_raw",
                 "/quad_0/lidar_pose",
                 "/grid_map/sliding_map_bbox",
                 "/quad_0/body_pose",

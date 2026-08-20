@@ -480,6 +480,53 @@ def local_minimum_obstacle_hits(
     return tuple(obstacle_hits), stats
 
 
+def split_geometry_cloud_points(
+    world_hits: Iterable[Sequence[float]],
+    sensor_position_world: Sequence[float],
+    sensor_quaternion_wxyz: Sequence[float],
+    minimum_range: float,
+    maximum_range: float,
+    cell_size: float,
+    height_threshold: float,
+    neighbor_cells: int = 1,
+    minimum_neighbor_cells: int = 2,
+):
+    """Create raw and terrain-filtered sensor-frame clouds from one scan."""
+
+    materialized_hits = tuple(world_hits)
+    raw_points = world_hits_to_sensor_points(
+        materialized_hits,
+        sensor_position_world,
+        sensor_quaternion_wxyz,
+        minimum_range,
+        maximum_range,
+        minimum_world_z=None,
+    )
+    planner_world_hits, stats = local_minimum_obstacle_hits(
+        materialized_hits,
+        sensor_position_world,
+        minimum_range,
+        maximum_range,
+        cell_size,
+        height_threshold,
+        neighbor_cells,
+        minimum_neighbor_cells,
+    )
+    planner_points = world_hits_to_sensor_points(
+        planner_world_hits,
+        sensor_position_world,
+        sensor_quaternion_wxyz,
+        minimum_range,
+        maximum_range,
+        minimum_world_z=None,
+    )
+    if len(raw_points) != stats["finite_in_range_hit_count"]:
+        raise ValueError("raw cloud count does not match geometry-filter input")
+    if len(raw_points) != len(planner_points) + stats["filtered_ground_hit_count"]:
+        raise ValueError("raw/planning geometry partition is inconsistent")
+    return raw_points, planner_points, stats
+
+
 def terrain_seating_for_bounds(
     origin_xy: Sequence[float],
     local_bounds_min: Sequence[float],

@@ -33,11 +33,14 @@ if [[ $REQUIRE_PEDESTRIAN_MOTION_GATE != 0 && $REQUIRE_PEDESTRIAN_MOTION_GATE !=
 fi
 
 RUN_ROOT=/home/sun/machine-dog-nav-runs/2026-08-17_office_l0_scan_crowd
-FOXY_WORKSPACE=/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/foxy_ws
+FOXY_WORKSPACE=${SCAN_FOXY_WORKSPACE:-/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human/foxy_ws}
+OFFICE_DRIVER=${SCAN_OFFICE_DRIVER:-$RUN_ROOT/run_remote_office_crowd.sh}
 RESULT_DIR=$RUN_ROOT/results/$RUN_ID
 DISPLAY_NAME=${SCAN_RVIZ_DISPLAY:-:0}
 XAUTHORITY_PATH=${SCAN_RVIZ_XAUTHORITY:-/run/user/1000/gdm/Xauthority}
 RVIZ_IMAGE=${SCAN_RVIZ_IMAGE:-localhost/machine-dog-nav/foxy-scan-rviz:20260818}
+BRIDGE_ROOT=${SCAN_BRIDGE:-$RUN_ROOT/integration/lite3_sim_bridge}
+export PYTHONPATH=$BRIDGE_ROOT${PYTHONPATH:+:$PYTHONPATH}
 RVIZ_CONFIG=$FOXY_WORKSPACE/src/lite3_sim_bridge/config/foxy_native_scan_review.rviz
 CAPTURE_PATH=$RESULT_DIR/native_scan_rviz3d_5070ti.mp4
 SYNC_CAPTURE_PATH=$RESULT_DIR/native_scan_rviz3d_5070ti_sim_time.mp4
@@ -55,11 +58,11 @@ COMPRESSION_MANIFEST_PATH=$RESULT_DIR/video_compression_manifest.json
 LIVE_POINTCLOUD_AUDIT_PATH=$RESULT_DIR/live_pointcloud_continuity_audit.json
 CAPTURE_TIMELINE_PATH=$RESULT_DIR/native_scan_rviz3d_capture_timeline.jsonl
 REVIEW_AUDIT_PATH=$RESULT_DIR/native_rviz_review_audit.json
-DELIVERY_RELIABILITY_SOURCE=$RUN_ROOT/integration/lite3_sim_bridge/lite3_sim_bridge/delivery_reliability.py
+DELIVERY_RELIABILITY_SOURCE=$BRIDGE_ROOT/lite3_sim_bridge/delivery_reliability.py
 RUN_DRIVER_LOG=$RUN_ROOT/results/${RUN_ID}.driver.log
 
 for required in \
-  "$RUN_ROOT/run_remote_office_crowd.sh" \
+  "$OFFICE_DRIVER" \
   "$RUN_ROOT/acceptance_thresholds_office_crowd.json" \
   "$RUN_ROOT/integration/lite3_sim_bridge/lite3_sim_bridge/rviz_time_sync.py" \
   "$DELIVERY_RELIABILITY_SOURCE" \
@@ -113,7 +116,7 @@ SCAN_NATIVE_RVIZ_CONFIG_REL=src/lite3_sim_bridge/config/foxy_native_scan_review.
 SCAN_OFFICIAL_HUMAN_ANIMATION_MODE=phase_conditioned \
 SCAN_OFFICE_PEDESTRIAN_MOTION_MODE=background_ping_pong \
 SCAN_OFFICE_PEDESTRIAN_TURNAROUND_HOLD_SECONDS=0.6 \
-bash "$RUN_ROOT/run_remote_office_crowd.sh" \
+bash "$OFFICE_DRIVER" \
   "$RUN_ID" "$DURATION_SECONDS" "$TELEMETRY_PORT" "$COMMAND_PORT" \
   >"$RUN_DRIVER_LOG" 2>&1 &
 run_pid=$!

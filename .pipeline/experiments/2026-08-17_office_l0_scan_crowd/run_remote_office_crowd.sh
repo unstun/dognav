@@ -17,19 +17,23 @@ fi
 
 RUN_ROOT=/home/sun/machine-dog-nav-runs/2026-08-17_office_l0_scan_crowd
 V8_ROOT=/home/sun/machine-dog-nav-runs/2026-08-14_scan_forest_v8_human
+CLOSED_LOOP_SCRIPT=${SCAN_CLOSED_LOOP_SCRIPT:-$RUN_ROOT/run_remote_closed_loop.sh}
 
 export SCAN_RUN_ROOT=$RUN_ROOT
-export SCAN_ENTRYPOINT=$RUN_ROOT/run_remote_office_crowd.sh
-export SCAN_FOXY_WORKSPACE=$V8_ROOT/foxy_ws
+export SCAN_ENTRYPOINT=${SCAN_ENTRYPOINT:-$0}
+export SCAN_FOXY_WORKSPACE=${SCAN_FOXY_WORKSPACE:-$V8_ROOT/foxy_ws}
 export SCAN_V12_RUNTIME=$V8_ROOT/source/locomotion_v12/runtime_20260718_recovered
 export SCAN_CHECKPOINT=$V8_ROOT/source/locomotion_v12/checkpoint/model_149999.pt
-export SCAN_BRIDGE=$RUN_ROOT/integration/lite3_sim_bridge
+export SCAN_BRIDGE=${SCAN_BRIDGE:-$RUN_ROOT/integration/lite3_sim_bridge}
 export SCAN_ACCEPTANCE_CONFIG=$RUN_ROOT/acceptance_thresholds_office_crowd.json
 export SCAN_ROBOT_ASSET=$V8_ROOT/source/sensor_rig/urdf/lite3_pro_sensor_rig_real_with_interface_isaac.urdf
 export SCAN_CANONICAL_ROBOT_ASSET=$V8_ROOT/source/sensor_rig/urdf/lite3_pro_sensor_rig_real_with_interface.urdf
 export SCAN_COURSE=office_l0_crowd
-export SCAN_PLANNER_CONFIG_REL=src/plan_manage/config/foxy_isaac_office_crowd_planner.yaml
+export SCAN_PLANNER_CONFIG_REL=${SCAN_PLANNER_CONFIG_REL:-src/plan_manage/config/foxy_isaac_office_crowd_planner.yaml}
 export SCAN_CONTROLLER_CONFIG_REL=src/plan_manage/config/foxy_isaac_office_crowd_controller.yaml
+export SCAN_BRIDGE_CONFIG_REL=${SCAN_BRIDGE_CONFIG_REL:-src/lite3_sim_bridge/config/foxy_bridge.yaml}
+export SCAN_CLOUD_PROFILE=${SCAN_CLOUD_PROFILE:-legacy_planner_v1}
+export SCAN_REQUIRE_DUAL_CLOUD=${SCAN_REQUIRE_DUAL_CLOUD:-false}
 export SCAN_OFFICE_USD_PATH=$RUN_ROOT/results/office_l0_physics_wrapper01.usda
 export SCAN_OFFICE_USD_SHA256=5ac29c16ab94a2a2e6bbde8cd7f3907d1e602164604f998070669fa176d9de47
 export SCAN_OFFICE_ROUTE_PATH=$RUN_ROOT/results/office_l0_route_preflight07.json
@@ -78,7 +82,7 @@ export SCAN_VOXEL_CAPTURE_PERIOD_SECONDS=0.1
 export SCAN_VISUAL_REVIEW_ONLY=${SCAN_VISUAL_REVIEW_ONLY:-0}
 export SCAN_RECORD_ROSBAG=${SCAN_RECORD_ROSBAG:-1}
 
-bash "$RUN_ROOT/run_remote_closed_loop.sh" "$@"
+bash "$CLOSED_LOOP_SCRIPT" "$@"
 
 RESULT_DIR=$RUN_ROOT/results/$RUN_ID
 for required in \

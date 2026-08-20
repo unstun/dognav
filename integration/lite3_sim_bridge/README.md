@@ -5,7 +5,8 @@ Foxy SCAN planner and the Isaac Sim Lite3 runtime.
 
 The transport uses two localhost-only TCP streams:
 
-- telemetry: Isaac to Foxy (`SENSOR_FRAME_V1` and `STATUS_V1`);
+- telemetry: Isaac to Foxy (`SENSOR_FRAME_V1`,
+  `SENSOR_FRAME_DUAL_CLOUD_V1`, and `STATUS_V1`);
 - command: Foxy to Isaac (`CMD_VEL_V1`).
 
 The wire envelope is network byte order and contains a magic value, protocol
@@ -17,6 +18,21 @@ The pure-Python protocol and command-state modules use only the standard
 library and support Python 3.8, which is the Ubuntu 20.04 / ROS 2 Foxy baseline.
 ROS and Isaac adapters import these modules rather than reimplementing the wire
 contract.
+
+`SENSOR_FRAME_DUAL_CLOUD_V1` atomically transports one genuine MID-360 scan as
+two representations with one timestamp, frame, configuration hash, and
+monotonic scan ID. `/quad_0/cloud_raw` contains all finite in-range returns and
+is the Decay-0 native-RViz source. `/quad_0/cloud` applies the local geometric
+terrain separation and remains the only SCAN occupancy input. The independent
+`upstream_go2_reference` profile requires this dual message and fails closed if
+either cloud is absent; legacy configurations continue to accept
+`SENSOR_FRAME_V1`.
+
+The five collision-envelope values in `upstream_go2_reference` are borrowed
+from SCAN-Planner's pinned Go2 configuration, not calibrated Lite3 values:
+radius 0.25 m, offset 0.18 m, body height 0.40 m, and 0.10 m inflation both
+above and below. Lite3 speed remains 0.50 m/s and the Office map, sensor,
+controller, policy, pedestrians, and acceptance thresholds remain unchanged.
 
 This directory is project code. It is not part of the SCAN upstream snapshot.
 

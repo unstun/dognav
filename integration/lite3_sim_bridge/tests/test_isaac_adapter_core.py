@@ -12,6 +12,7 @@ from lite3_sim_bridge.isaac_adapter_core import (
     official_human_registered_state,
     retarget_joint_indices,
     local_minimum_obstacle_hits,
+    split_geometry_cloud_points,
     point_to_segment_distance_2d,
     procedural_human_gait_angles,
     quaternion_wxyz_to_xyzw,
@@ -309,6 +310,61 @@ class IsaacAdapterCoreTest(unittest.TestCase):
         self.assertNotIn((0.90, 0.30, 0.26), obstacles)
         self.assertGreater(stats["filtered_ground_hit_count"], 10)
         self.assertEqual(stats["obstacle_hit_count"], 2)
+
+    def test_local_minimum_filter_removes_continuous_flat_ground(self):
+        flat = tuple(
+            (0.05 + 0.30 * x, 0.05 + 0.30 * y, 0.0)
+            for x in range(4)
+            for y in range(4)
+        )
+        planner, stats = local_minimum_obstacle_hits(
+            flat, (-1.0, 0.0, 1.0), 0.1, 5.0, 0.30, 0.22
+        )
+        self.assertEqual(planner, ())
+        self.assertEqual(stats["filtered_ground_hit_count"], len(flat))
+        self.assertEqual(
+            stats["finite_in_range_hit_count"],
+            stats["filtered_ground_hit_count"] + stats["obstacle_hit_count"],
+        )
+
+    def test_local_minimum_filter_keeps_step_riser_as_geometry(self):
+        ground = [
+            (0.05 + 0.30 * x, 0.05 + 0.30 * y, 0.0)
+            for x in range(4)
+            for y in range(3)
+        ]
+        step_riser = (0.65, 0.35, 0.30)
+        planner, stats = local_minimum_obstacle_hits(
+            tuple(ground) + (step_riser,),
+            (-1.0, 0.0, 1.0),
+            0.1,
+            5.0,
+            0.30,
+            0.22,
+        )
+        self.assertIn(step_riser, planner)
+        self.assertGreater(stats["filtered_ground_hit_count"], 0)
+
+    def test_dual_cloud_split_keeps_flat_ground_raw_and_obstacle_planning(self):
+        flat = tuple(
+            (0.05 + 0.30 * x, 0.05 + 0.30 * y, 0.0)
+            for x in range(4)
+            for y in range(4)
+        )
+        obstacle = (0.65, 0.35, 0.50)
+        raw, planner, stats = split_geometry_cloud_points(
+            flat + (obstacle,),
+            (-1.0, 0.0, 1.0),
+            (1.0, 0.0, 0.0, 0.0),
+            0.1,
+            5.0,
+            0.30,
+            0.22,
+        )
+        self.assertEqual(len(raw), len(flat) + 1)
+        self.assertEqual(len(planner), 1)
+        self.assertEqual(stats["filtered_ground_hit_count"], len(flat))
+        self.assertEqual(stats["obstacle_hit_count"], 1)
 
     def test_local_minimum_filter_retains_sparse_hit_conservatively(self):
         obstacles, stats = local_minimum_obstacle_hits(

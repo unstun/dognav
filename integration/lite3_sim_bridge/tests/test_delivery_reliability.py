@@ -149,7 +149,7 @@ class DeliveryReliabilityTests(unittest.TestCase):
     def test_wrong_source_topic_fails_even_with_persistent_display(self) -> None:
         self.display["source_topic"] = "/review/live_lidar"
         audit = self._audit()
-        self.assertFalse(audit["checks"]["source_topic_is_quad_0_cloud"])
+        self.assertFalse(audit["checks"]["source_topic_is_quad_0_cloud_raw"])
         self.assertEqual(audit["status"], "FAIL")
 
     def test_transfer_validation_and_selection_are_fail_closed(self) -> None:

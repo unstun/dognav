@@ -15,6 +15,7 @@ setup(
             "share/" + PACKAGE_NAME + "/config",
             [
                 "config/foxy_bridge.yaml",
+                "config/foxy_bridge_upstream_go2_reference.yaml",
                 "config/foxy_native_scan_review.rviz",
                 "config/humble_voxel_replay.rviz",
                 "config/voxel_rosbag_qos.yaml",
