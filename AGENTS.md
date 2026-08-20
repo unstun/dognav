@@ -87,11 +87,7 @@ navigation code and project state.
    - claim boundary if the run is incomplete.
 8. Store research PDFs, source snapshots, run logs, configurations, models, and
    evaluation artifacts inside the project using date/topic/purpose paths.
-9. Before transferring any human-review video, preserve the high-quality master
-   and create a separate transfer copy strictly smaller than 10,000,000 bytes.
-   The transfer copy must open directly and pass full decode, frame-count,
-   duration, media-property, encoder-version, and SHA-256 checks. Never overwrite
-   the master or an earlier transfer artifact.
+9. Before transferring any video, preserve the master and validate a separate, directly playable transfer copy strictly smaller than 10,000,000 bytes without overwriting earlier artifacts.
 
 ## Project State Layout
 
