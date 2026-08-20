@@ -117,7 +117,9 @@ fails.
 - [x] Produce directly openable master and compressed transfer videos for Dr
   Sun's review for every successful run that is submitted for human viewing.
   Record encoder command/version, media properties, complete decode, size and
-  ratio, both SHA-256 values, and recursive remote/local hash parity.
+  ratio, both SHA-256 values, and recursive remote/local hash parity. Before any
+  future transfer, create a separate copy strictly below 10,000,000 bytes; keep
+  the master and all earlier transfer artifacts immutable.
 
 **Gate G:** automated PASS remains a preflight pending Dr Sun; AC54/AC55,
 accepted revision, and formal candidate stay unchanged.
@@ -153,7 +155,9 @@ PYTHONPATH=integration/lite3_sim_bridge python3 -m unittest discover \
 
 python3 ./.trellis/scripts/task.py validate \
   08-20-v2-0-1-cloud-traversability
-python3 .pipeline/experiments/2026-08-17_office_l0_scan_crowd/validate_revision_ledger.py
+python3 .pipeline/experiments/2026-08-17_office_l0_scan_crowd/validate_revision_ledger.py \
+  --ledger .pipeline/experiments/2026-08-17_office_l0_scan_crowd/revision_ledger.json \
+  --repository-root .
 python3 -m compileall -q integration/lite3_sim_bridge
 bash -n .pipeline/experiments/2026-08-17_office_l0_scan_crowd/run_remote_office_crowd_native_rviz.sh
 git diff --check

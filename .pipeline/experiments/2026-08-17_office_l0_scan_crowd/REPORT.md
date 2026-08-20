@@ -488,6 +488,17 @@ with the same media timing and SHA-256
 This is an 80.94% size reduction (5.25x master-to-transfer ratio). The exact
 encoder command and ffmpeg 6.1.1 identity are stored with the run.
 
+For the new project-wide transfer limit, a separate CRF 27 local review copy
+was produced without overwriting either artifact above. It is 9,515,787 bytes
+(strictly below 10,000,000), preserves 3840 x 1080, 25 fps, 251 frames, and
+10.04 s, and passed complete decode with SSIM 0.972493 against the master. Its
+SHA-256 is
+`2b6009e80ba12c109fd6aee7fadfa2eb190e4d8e0369ac495d02152c246400be`;
+the encoder command, local ffmpeg 8.1 identity, media probe, and claim boundary
+are recorded in `office_review_third_person_rviz_4k_transfer_under10mb_validation.json`.
+All future human-review video transfers must use a separately validated copy
+strictly below 10,000,000 bytes while retaining the high-quality master.
+
 Only the flat Office short regression was simulated. No non-flat simulation,
 AC54, AC55, full candidate, training, or real-robot actuation was run. Synthetic
 slope/step tests and route-height GTests therefore do not establish a Lite3
