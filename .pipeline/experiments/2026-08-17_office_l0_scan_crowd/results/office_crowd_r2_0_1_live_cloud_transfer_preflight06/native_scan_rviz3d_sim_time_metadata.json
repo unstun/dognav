@@ -1,0 +1,2283 @@
+{
+  "claim_boundary": "Each output frame is selected from the native 5070 Ti RViz screen capture at the wall-clock observation of the matching camera-trace simulator state; no point cloud, occupancy, or planned path is synthesized or replayed.",
+  "fps": 25.0,
+  "frame_count": 251,
+  "frame_mapping": [
+    {
+      "capture_elapsed_seconds": 2.517000657,
+      "capture_quantization_error_seconds": 0.002999342999999932,
+      "frame_index": 0,
+      "sim_time_seconds": 0.029999999329447746,
+      "source_rviz_frame_index": 63,
+      "source_rviz_time_seconds": 2.52,
+      "step": 0
+    },
+    {
+      "capture_elapsed_seconds": 3.123275777,
+      "capture_quantization_error_seconds": 0.003275776999999813,
+      "frame_index": 1,
+      "sim_time_seconds": 0.06999999843537807,
+      "source_rviz_frame_index": 78,
+      "source_rviz_time_seconds": 3.12,
+      "step": 2
+    },
+    {
+      "capture_elapsed_seconds": 3.617572339,
+      "capture_quantization_error_seconds": 0.017572338999999992,
+      "frame_index": 2,
+      "sim_time_seconds": 0.1099999975413084,
+      "source_rviz_frame_index": 90,
+      "source_rviz_time_seconds": 3.6,
+      "step": 4
+    },
+    {
+      "capture_elapsed_seconds": 4.875681362,
+      "capture_quantization_error_seconds": 0.004318637999999986,
+      "frame_index": 3,
+      "sim_time_seconds": 0.14999999664723873,
+      "source_rviz_frame_index": 122,
+      "source_rviz_time_seconds": 4.88,
+      "step": 6
+    },
+    {
+      "capture_elapsed_seconds": 5.491576331,
+      "capture_quantization_error_seconds": 0.011576330999999662,
+      "frame_index": 4,
+      "sim_time_seconds": 0.18999999575316906,
+      "source_rviz_frame_index": 137,
+      "source_rviz_time_seconds": 5.48,
+      "step": 8
+    },
+    {
+      "capture_elapsed_seconds": 6.739876939,
+      "capture_quantization_error_seconds": 0.019876939000000426,
+      "frame_index": 5,
+      "sim_time_seconds": 0.2299999948590994,
+      "source_rviz_frame_index": 168,
+      "source_rviz_time_seconds": 6.72,
+      "step": 10
+    },
+    {
+      "capture_elapsed_seconds": 7.372048391,
+      "capture_quantization_error_seconds": 0.012048390999999548,
+      "frame_index": 6,
+      "sim_time_seconds": 0.2699999939650297,
+      "source_rviz_frame_index": 184,
+      "source_rviz_time_seconds": 7.36,
+      "step": 12
+    },
+    {
+      "capture_elapsed_seconds": 8.005768997,
+      "capture_quantization_error_seconds": 0.005768997000000553,
+      "frame_index": 7,
+      "sim_time_seconds": 0.30999999307096004,
+      "source_rviz_frame_index": 200,
+      "source_rviz_time_seconds": 8.0,
+      "step": 14
+    },
+    {
+      "capture_elapsed_seconds": 9.245011729,
+      "capture_quantization_error_seconds": 0.005011728999999576,
+      "frame_index": 8,
+      "sim_time_seconds": 0.3499999921768904,
+      "source_rviz_frame_index": 231,
+      "source_rviz_time_seconds": 9.24,
+      "step": 16
+    },
+    {
+      "capture_elapsed_seconds": 9.874035222,
+      "capture_quantization_error_seconds": 0.005964778000000948,
+      "frame_index": 9,
+      "sim_time_seconds": 0.3899999912828207,
+      "source_rviz_frame_index": 247,
+      "source_rviz_time_seconds": 9.88,
+      "step": 18
+    },
+    {
+      "capture_elapsed_seconds": 10.993442116,
+      "capture_quantization_error_seconds": 0.006557883999999348,
+      "frame_index": 10,
+      "sim_time_seconds": 0.42999999038875103,
+      "source_rviz_frame_index": 275,
+      "source_rviz_time_seconds": 11.0,
+      "step": 20
+    },
+    {
+      "capture_elapsed_seconds": 11.483533633,
+      "capture_quantization_error_seconds": 0.0035336329999999805,
+      "frame_index": 11,
+      "sim_time_seconds": 0.46999998949468136,
+      "source_rviz_frame_index": 287,
+      "source_rviz_time_seconds": 11.48,
+      "step": 22
+    },
+    {
+      "capture_elapsed_seconds": 11.983748051,
+      "capture_quantization_error_seconds": 0.01625194900000082,
+      "frame_index": 12,
+      "sim_time_seconds": 0.5099999886006117,
+      "source_rviz_frame_index": 300,
+      "source_rviz_time_seconds": 12.0,
+      "step": 24
+    },
+    {
+      "capture_elapsed_seconds": 13.196436348,
+      "capture_quantization_error_seconds": 0.0035636519999986405,
+      "frame_index": 13,
+      "sim_time_seconds": 0.549999987706542,
+      "source_rviz_frame_index": 330,
+      "source_rviz_time_seconds": 13.2,
+      "step": 26
+    },
+    {
+      "capture_elapsed_seconds": 13.701437825,
+      "capture_quantization_error_seconds": 0.018562175000001346,
+      "frame_index": 14,
+      "sim_time_seconds": 0.5899999868124723,
+      "source_rviz_frame_index": 343,
+      "source_rviz_time_seconds": 13.72,
+      "step": 28
+    },
+    {
+      "capture_elapsed_seconds": 14.816905369,
+      "capture_quantization_error_seconds": 0.016905368999999837,
+      "frame_index": 15,
+      "sim_time_seconds": 0.6299999859184027,
+      "source_rviz_frame_index": 370,
+      "source_rviz_time_seconds": 14.8,
+      "step": 30
+    },
+    {
+      "capture_elapsed_seconds": 15.317286665,
+      "capture_quantization_error_seconds": 0.002713335000001038,
+      "frame_index": 16,
+      "sim_time_seconds": 0.669999985024333,
+      "source_rviz_frame_index": 383,
+      "source_rviz_time_seconds": 15.32,
+      "step": 32
+    },
+    {
+      "capture_elapsed_seconds": 15.819236621,
+      "capture_quantization_error_seconds": 0.019236620999999232,
+      "frame_index": 17,
+      "sim_time_seconds": 0.7099999841302633,
+      "source_rviz_frame_index": 395,
+      "source_rviz_time_seconds": 15.8,
+      "step": 34
+    },
+    {
+      "capture_elapsed_seconds": 16.938774997,
+      "capture_quantization_error_seconds": 0.01877499699999774,
+      "frame_index": 18,
+      "sim_time_seconds": 0.7499999832361937,
+      "source_rviz_frame_index": 423,
+      "source_rviz_time_seconds": 16.92,
+      "step": 36
+    },
+    {
+      "capture_elapsed_seconds": 17.450421934,
+      "capture_quantization_error_seconds": 0.010421934000000022,
+      "frame_index": 19,
+      "sim_time_seconds": 0.789999982342124,
+      "source_rviz_frame_index": 436,
+      "source_rviz_time_seconds": 17.44,
+      "step": 38
+    },
+    {
+      "capture_elapsed_seconds": 18.597490211,
+      "capture_quantization_error_seconds": 0.0025097890000012057,
+      "frame_index": 20,
+      "sim_time_seconds": 0.8299999814480543,
+      "source_rviz_frame_index": 465,
+      "source_rviz_time_seconds": 18.6,
+      "step": 40
+    },
+    {
+      "capture_elapsed_seconds": 19.250865991,
+      "capture_quantization_error_seconds": 0.01086599100000285,
+      "frame_index": 21,
+      "sim_time_seconds": 0.8699999805539846,
+      "source_rviz_frame_index": 481,
+      "source_rviz_time_seconds": 19.24,
+      "step": 42
+    },
+    {
+      "capture_elapsed_seconds": 19.767868125,
+      "capture_quantization_error_seconds": 0.007868124999998116,
+      "frame_index": 22,
+      "sim_time_seconds": 0.909999979659915,
+      "source_rviz_frame_index": 494,
+      "source_rviz_time_seconds": 19.76,
+      "step": 44
+    },
+    {
+      "capture_elapsed_seconds": 21.186299643,
+      "capture_quantization_error_seconds": 0.01370035699999761,
+      "frame_index": 23,
+      "sim_time_seconds": 0.9499999787658453,
+      "source_rviz_frame_index": 530,
+      "source_rviz_time_seconds": 21.2,
+      "step": 46
+    },
+    {
+      "capture_elapsed_seconds": 21.691271793,
+      "capture_quantization_error_seconds": 0.011271792999998809,
+      "frame_index": 24,
+      "sim_time_seconds": 0.9899999778717756,
+      "source_rviz_frame_index": 542,
+      "source_rviz_time_seconds": 21.68,
+      "step": 48
+    },
+    {
+      "capture_elapsed_seconds": 22.867816934,
+      "capture_quantization_error_seconds": 0.012183065999998632,
+      "frame_index": 25,
+      "sim_time_seconds": 1.029999976977706,
+      "source_rviz_frame_index": 572,
+      "source_rviz_time_seconds": 22.88,
+      "step": 50
+    },
+    {
+      "capture_elapsed_seconds": 23.380682571,
+      "capture_quantization_error_seconds": 0.019317428999997333,
+      "frame_index": 26,
+      "sim_time_seconds": 1.0699999760836363,
+      "source_rviz_frame_index": 585,
+      "source_rviz_time_seconds": 23.4,
+      "step": 52
+    },
+    {
+      "capture_elapsed_seconds": 23.893397019,
+      "capture_quantization_error_seconds": 0.013397018999999233,
+      "frame_index": 27,
+      "sim_time_seconds": 1.1099999751895666,
+      "source_rviz_frame_index": 597,
+      "source_rviz_time_seconds": 23.88,
+      "step": 54
+    },
+    {
+      "capture_elapsed_seconds": 24.993018333,
+      "capture_quantization_error_seconds": 0.006981667000001579,
+      "frame_index": 28,
+      "sim_time_seconds": 1.149999974295497,
+      "source_rviz_frame_index": 625,
+      "source_rviz_time_seconds": 25.0,
+      "step": 56
+    },
+    {
+      "capture_elapsed_seconds": 25.631813506,
+      "capture_quantization_error_seconds": 0.008186494000000266,
+      "frame_index": 29,
+      "sim_time_seconds": 1.1899999734014273,
+      "source_rviz_frame_index": 641,
+      "source_rviz_time_seconds": 25.64,
+      "step": 58
+    },
+    {
+      "capture_elapsed_seconds": 26.903784743,
+      "capture_quantization_error_seconds": 0.01621525700000248,
+      "frame_index": 30,
+      "sim_time_seconds": 1.2299999725073576,
+      "source_rviz_frame_index": 673,
+      "source_rviz_time_seconds": 26.92,
+      "step": 60
+    },
+    {
+      "capture_elapsed_seconds": 27.541982562,
+      "capture_quantization_error_seconds": 0.018017437999997554,
+      "frame_index": 31,
+      "sim_time_seconds": 1.269999971613288,
+      "source_rviz_frame_index": 689,
+      "source_rviz_time_seconds": 27.56,
+      "step": 62
+    },
+    {
+      "capture_elapsed_seconds": 28.045212835,
+      "capture_quantization_error_seconds": 0.005212835000001803,
+      "frame_index": 32,
+      "sim_time_seconds": 1.3099999707192183,
+      "source_rviz_frame_index": 701,
+      "source_rviz_time_seconds": 28.04,
+      "step": 64
+    },
+    {
+      "capture_elapsed_seconds": 29.152847465,
+      "capture_quantization_error_seconds": 0.00715253499999946,
+      "frame_index": 33,
+      "sim_time_seconds": 1.3499999698251486,
+      "source_rviz_frame_index": 729,
+      "source_rviz_time_seconds": 29.16,
+      "step": 66
+    },
+    {
+      "capture_elapsed_seconds": 29.653085044,
+      "capture_quantization_error_seconds": 0.013085044000000323,
+      "frame_index": 34,
+      "sim_time_seconds": 1.389999968931079,
+      "source_rviz_frame_index": 741,
+      "source_rviz_time_seconds": 29.64,
+      "step": 68
+    },
+    {
+      "capture_elapsed_seconds": 30.732828727,
+      "capture_quantization_error_seconds": 0.01282872700000226,
+      "frame_index": 35,
+      "sim_time_seconds": 1.4299999680370092,
+      "source_rviz_frame_index": 768,
+      "source_rviz_time_seconds": 30.72,
+      "step": 70
+    },
+    {
+      "capture_elapsed_seconds": 31.235986622,
+      "capture_quantization_error_seconds": 0.00401337799999979,
+      "frame_index": 36,
+      "sim_time_seconds": 1.4699999671429396,
+      "source_rviz_frame_index": 781,
+      "source_rviz_time_seconds": 31.24,
+      "step": 72
+    },
+    {
+      "capture_elapsed_seconds": 31.754819147,
+      "capture_quantization_error_seconds": 0.005180853000002372,
+      "frame_index": 37,
+      "sim_time_seconds": 1.50999996624887,
+      "source_rviz_frame_index": 794,
+      "source_rviz_time_seconds": 31.76,
+      "step": 74
+    },
+    {
+      "capture_elapsed_seconds": 32.768392033,
+      "capture_quantization_error_seconds": 0.008392032999999799,
+      "frame_index": 38,
+      "sim_time_seconds": 1.5499999653548002,
+      "source_rviz_frame_index": 819,
+      "source_rviz_time_seconds": 32.76,
+      "step": 76
+    },
+    {
+      "capture_elapsed_seconds": 33.270000549,
+      "capture_quantization_error_seconds": 0.009999450999998771,
+      "frame_index": 39,
+      "sim_time_seconds": 1.5899999644607306,
+      "source_rviz_frame_index": 832,
+      "source_rviz_time_seconds": 33.28,
+      "step": 78
+    },
+    {
+      "capture_elapsed_seconds": 34.359693507,
+      "capture_quantization_error_seconds": 0.0003064929999965216,
+      "frame_index": 40,
+      "sim_time_seconds": 1.6299999635666609,
+      "source_rviz_frame_index": 859,
+      "source_rviz_time_seconds": 34.36,
+      "step": 80
+    },
+    {
+      "capture_elapsed_seconds": 34.877222484,
+      "capture_quantization_error_seconds": 0.0027775160000018673,
+      "frame_index": 41,
+      "sim_time_seconds": 1.6699999626725912,
+      "source_rviz_frame_index": 872,
+      "source_rviz_time_seconds": 34.88,
+      "step": 82
+    },
+    {
+      "capture_elapsed_seconds": 35.528487351,
+      "capture_quantization_error_seconds": 0.008487350999999421,
+      "frame_index": 42,
+      "sim_time_seconds": 1.7099999617785215,
+      "source_rviz_frame_index": 888,
+      "source_rviz_time_seconds": 35.52,
+      "step": 84
+    },
+    {
+      "capture_elapsed_seconds": 36.72600743,
+      "capture_quantization_error_seconds": 0.006007430000003922,
+      "frame_index": 43,
+      "sim_time_seconds": 1.7499999608844519,
+      "source_rviz_frame_index": 918,
+      "source_rviz_time_seconds": 36.72,
+      "step": 86
+    },
+    {
+      "capture_elapsed_seconds": 37.356571512,
+      "capture_quantization_error_seconds": 0.0034284879999972873,
+      "frame_index": 44,
+      "sim_time_seconds": 1.7899999599903822,
+      "source_rviz_frame_index": 934,
+      "source_rviz_time_seconds": 37.36,
+      "step": 88
+    },
+    {
+      "capture_elapsed_seconds": 38.764888528,
+      "capture_quantization_error_seconds": 0.004888528000002168,
+      "frame_index": 45,
+      "sim_time_seconds": 1.8299999590963125,
+      "source_rviz_frame_index": 969,
+      "source_rviz_time_seconds": 38.76,
+      "step": 90
+    },
+    {
+      "capture_elapsed_seconds": 39.2717448,
+      "capture_quantization_error_seconds": 0.008255200000000684,
+      "frame_index": 46,
+      "sim_time_seconds": 1.8699999582022429,
+      "source_rviz_frame_index": 982,
+      "source_rviz_time_seconds": 39.28,
+      "step": 92
+    },
+    {
+      "capture_elapsed_seconds": 39.777749458,
+      "capture_quantization_error_seconds": 0.01774945800000438,
+      "frame_index": 47,
+      "sim_time_seconds": 1.9099999573081732,
+      "source_rviz_frame_index": 994,
+      "source_rviz_time_seconds": 39.76,
+      "step": 94
+    },
+    {
+      "capture_elapsed_seconds": 40.859982437,
+      "capture_quantization_error_seconds": 0.01998243699999591,
+      "frame_index": 48,
+      "sim_time_seconds": 1.9499999564141035,
+      "source_rviz_frame_index": 1021,
+      "source_rviz_time_seconds": 40.84,
+      "step": 96
+    },
+    {
+      "capture_elapsed_seconds": 41.36155847,
+      "capture_quantization_error_seconds": 0.0015584699999990903,
+      "frame_index": 49,
+      "sim_time_seconds": 1.9899999555200338,
+      "source_rviz_frame_index": 1034,
+      "source_rviz_time_seconds": 41.36,
+      "step": 98
+    },
+    {
+      "capture_elapsed_seconds": 42.477833966,
+      "capture_quantization_error_seconds": 0.0021660339999982625,
+      "frame_index": 50,
+      "sim_time_seconds": 2.029999954625964,
+      "source_rviz_frame_index": 1062,
+      "source_rviz_time_seconds": 42.48,
+      "step": 100
+    },
+    {
+      "capture_elapsed_seconds": 42.989276677,
+      "capture_quantization_error_seconds": 0.010723323000000562,
+      "frame_index": 51,
+      "sim_time_seconds": 2.0699999537318945,
+      "source_rviz_frame_index": 1075,
+      "source_rviz_time_seconds": 43.0,
+      "step": 102
+    },
+    {
+      "capture_elapsed_seconds": 43.940228173,
+      "capture_quantization_error_seconds": 0.019771826999999575,
+      "frame_index": 52,
+      "sim_time_seconds": 2.109999952837825,
+      "source_rviz_frame_index": 1099,
+      "source_rviz_time_seconds": 43.96,
+      "step": 104
+    },
+    {
+      "capture_elapsed_seconds": 45.115839375,
+      "capture_quantization_error_seconds": 0.004160624999997253,
+      "frame_index": 53,
+      "sim_time_seconds": 2.149999951943755,
+      "source_rviz_frame_index": 1128,
+      "source_rviz_time_seconds": 45.12,
+      "step": 106
+    },
+    {
+      "capture_elapsed_seconds": 45.658747638,
+      "capture_quantization_error_seconds": 0.018747638000000677,
+      "frame_index": 54,
+      "sim_time_seconds": 2.1899999510496855,
+      "source_rviz_frame_index": 1141,
+      "source_rviz_time_seconds": 45.64,
+      "step": 108
+    },
+    {
+      "capture_elapsed_seconds": 47.065717175,
+      "capture_quantization_error_seconds": 0.014282824999995114,
+      "frame_index": 55,
+      "sim_time_seconds": 2.229999950155616,
+      "source_rviz_frame_index": 1177,
+      "source_rviz_time_seconds": 47.08,
+      "step": 110
+    },
+    {
+      "capture_elapsed_seconds": 47.603257327,
+      "capture_quantization_error_seconds": 0.003257327000000032,
+      "frame_index": 56,
+      "sim_time_seconds": 2.269999949261546,
+      "source_rviz_frame_index": 1190,
+      "source_rviz_time_seconds": 47.6,
+      "step": 112
+    },
+    {
+      "capture_elapsed_seconds": 48.133090862,
+      "capture_quantization_error_seconds": 0.013090862000005643,
+      "frame_index": 57,
+      "sim_time_seconds": 2.3099999483674765,
+      "source_rviz_frame_index": 1203,
+      "source_rviz_time_seconds": 48.12,
+      "step": 114
+    },
+    {
+      "capture_elapsed_seconds": 49.277123227,
+      "capture_quantization_error_seconds": 0.002876773000004107,
+      "frame_index": 58,
+      "sim_time_seconds": 2.349999947473407,
+      "source_rviz_frame_index": 1232,
+      "source_rviz_time_seconds": 49.28,
+      "step": 116
+    },
+    {
+      "capture_elapsed_seconds": 50.11462009,
+      "capture_quantization_error_seconds": 0.005379909999994936,
+      "frame_index": 59,
+      "sim_time_seconds": 2.389999946579337,
+      "source_rviz_frame_index": 1253,
+      "source_rviz_time_seconds": 50.12,
+      "step": 118
+    },
+    {
+      "capture_elapsed_seconds": 51.458061435,
+      "capture_quantization_error_seconds": 0.018061434999999904,
+      "frame_index": 60,
+      "sim_time_seconds": 2.4299999456852674,
+      "source_rviz_frame_index": 1286,
+      "source_rviz_time_seconds": 51.44,
+      "step": 120
+    },
+    {
+      "capture_elapsed_seconds": 51.978323383,
+      "capture_quantization_error_seconds": 0.018323383000002025,
+      "frame_index": 61,
+      "sim_time_seconds": 2.4699999447911978,
+      "source_rviz_frame_index": 1299,
+      "source_rviz_time_seconds": 51.96,
+      "step": 122
+    },
+    {
+      "capture_elapsed_seconds": 52.740121978,
+      "capture_quantization_error_seconds": 0.019878022000000328,
+      "frame_index": 62,
+      "sim_time_seconds": 2.509999943897128,
+      "source_rviz_frame_index": 1319,
+      "source_rviz_time_seconds": 52.76,
+      "step": 124
+    },
+    {
+      "capture_elapsed_seconds": 53.88625981,
+      "capture_quantization_error_seconds": 0.00625980999999598,
+      "frame_index": 63,
+      "sim_time_seconds": 2.5499999430030584,
+      "source_rviz_frame_index": 1347,
+      "source_rviz_time_seconds": 53.88,
+      "step": 126
+    },
+    {
+      "capture_elapsed_seconds": 54.860639282,
+      "capture_quantization_error_seconds": 0.019360718000001498,
+      "frame_index": 64,
+      "sim_time_seconds": 2.5899999421089888,
+      "source_rviz_frame_index": 1372,
+      "source_rviz_time_seconds": 54.88,
+      "step": 128
+    },
+    {
+      "capture_elapsed_seconds": 56.110681626,
+      "capture_quantization_error_seconds": 0.0093183739999958,
+      "frame_index": 65,
+      "sim_time_seconds": 2.629999941214919,
+      "source_rviz_frame_index": 1403,
+      "source_rviz_time_seconds": 56.12,
+      "step": 130
+    },
+    {
+      "capture_elapsed_seconds": 56.775474536,
+      "capture_quantization_error_seconds": 0.015474535999999262,
+      "frame_index": 66,
+      "sim_time_seconds": 2.6699999403208494,
+      "source_rviz_frame_index": 1419,
+      "source_rviz_time_seconds": 56.76,
+      "step": 132
+    },
+    {
+      "capture_elapsed_seconds": 57.714571269,
+      "capture_quantization_error_seconds": 0.005428731000002074,
+      "frame_index": 67,
+      "sim_time_seconds": 2.7099999394267797,
+      "source_rviz_frame_index": 1443,
+      "source_rviz_time_seconds": 57.72,
+      "step": 134
+    },
+    {
+      "capture_elapsed_seconds": 58.985994644,
+      "capture_quantization_error_seconds": 0.014005355999998415,
+      "frame_index": 68,
+      "sim_time_seconds": 2.74999993853271,
+      "source_rviz_frame_index": 1475,
+      "source_rviz_time_seconds": 59.0,
+      "step": 136
+    },
+    {
+      "capture_elapsed_seconds": 59.655104152,
+      "capture_quantization_error_seconds": 0.01510415199999926,
+      "frame_index": 69,
+      "sim_time_seconds": 2.7899999376386404,
+      "source_rviz_frame_index": 1491,
+      "source_rviz_time_seconds": 59.64,
+      "step": 138
+    },
+    {
+      "capture_elapsed_seconds": 61.538605107,
+      "capture_quantization_error_seconds": 0.018605106999999066,
+      "frame_index": 70,
+      "sim_time_seconds": 2.8299999367445707,
+      "source_rviz_frame_index": 1538,
+      "source_rviz_time_seconds": 61.52,
+      "step": 140
+    },
+    {
+      "capture_elapsed_seconds": 62.090538226,
+      "capture_quantization_error_seconds": 0.010538226000001316,
+      "frame_index": 71,
+      "sim_time_seconds": 2.869999935850501,
+      "source_rviz_frame_index": 1552,
+      "source_rviz_time_seconds": 62.08,
+      "step": 142
+    },
+    {
+      "capture_elapsed_seconds": 62.618242541,
+      "capture_quantization_error_seconds": 0.018242540999999335,
+      "frame_index": 72,
+      "sim_time_seconds": 2.9099999349564314,
+      "source_rviz_frame_index": 1565,
+      "source_rviz_time_seconds": 62.6,
+      "step": 144
+    },
+    {
+      "capture_elapsed_seconds": 63.74310692,
+      "capture_quantization_error_seconds": 0.016893079999995564,
+      "frame_index": 73,
+      "sim_time_seconds": 2.9499999340623617,
+      "source_rviz_frame_index": 1594,
+      "source_rviz_time_seconds": 63.76,
+      "step": 146
+    },
+    {
+      "capture_elapsed_seconds": 64.264445074,
+      "capture_quantization_error_seconds": 0.015554926000007185,
+      "frame_index": 74,
+      "sim_time_seconds": 2.989999933168292,
+      "source_rviz_frame_index": 1607,
+      "source_rviz_time_seconds": 64.28,
+      "step": 148
+    },
+    {
+      "capture_elapsed_seconds": 65.410328595,
+      "capture_quantization_error_seconds": 0.01032859499999006,
+      "frame_index": 75,
+      "sim_time_seconds": 3.0299999322742224,
+      "source_rviz_frame_index": 1635,
+      "source_rviz_time_seconds": 65.4,
+      "step": 150
+    },
+    {
+      "capture_elapsed_seconds": 65.951988,
+      "capture_quantization_error_seconds": 0.00801199999999369,
+      "frame_index": 76,
+      "sim_time_seconds": 3.0699999313801527,
+      "source_rviz_frame_index": 1649,
+      "source_rviz_time_seconds": 65.96,
+      "step": 152
+    },
+    {
+      "capture_elapsed_seconds": 66.484978236,
+      "capture_quantization_error_seconds": 0.00497823599999947,
+      "frame_index": 77,
+      "sim_time_seconds": 3.109999930486083,
+      "source_rviz_frame_index": 1662,
+      "source_rviz_time_seconds": 66.48,
+      "step": 154
+    },
+    {
+      "capture_elapsed_seconds": 67.750660414,
+      "capture_quantization_error_seconds": 0.009339586000010058,
+      "frame_index": 78,
+      "sim_time_seconds": 3.1499999295920134,
+      "source_rviz_frame_index": 1694,
+      "source_rviz_time_seconds": 67.76,
+      "step": 156
+    },
+    {
+      "capture_elapsed_seconds": 68.277982809,
+      "capture_quantization_error_seconds": 0.0020171910000073012,
+      "frame_index": 79,
+      "sim_time_seconds": 3.1899999286979437,
+      "source_rviz_frame_index": 1707,
+      "source_rviz_time_seconds": 68.28,
+      "step": 158
+    },
+    {
+      "capture_elapsed_seconds": 69.465160273,
+      "capture_quantization_error_seconds": 0.014839727000008907,
+      "frame_index": 80,
+      "sim_time_seconds": 3.229999927803874,
+      "source_rviz_frame_index": 1737,
+      "source_rviz_time_seconds": 69.48,
+      "step": 160
+    },
+    {
+      "capture_elapsed_seconds": 70.002862263,
+      "capture_quantization_error_seconds": 0.002862262999997256,
+      "frame_index": 81,
+      "sim_time_seconds": 3.2699999269098043,
+      "source_rviz_frame_index": 1750,
+      "source_rviz_time_seconds": 70.0,
+      "step": 162
+    },
+    {
+      "capture_elapsed_seconds": 70.530041186,
+      "capture_quantization_error_seconds": 0.010041186000009361,
+      "frame_index": 82,
+      "sim_time_seconds": 3.3099999260157347,
+      "source_rviz_frame_index": 1763,
+      "source_rviz_time_seconds": 70.52,
+      "step": 164
+    },
+    {
+      "capture_elapsed_seconds": 71.685904692,
+      "capture_quantization_error_seconds": 0.005904691999987222,
+      "frame_index": 83,
+      "sim_time_seconds": 3.349999925121665,
+      "source_rviz_frame_index": 1792,
+      "source_rviz_time_seconds": 71.68,
+      "step": 166
+    },
+    {
+      "capture_elapsed_seconds": 72.340990072,
+      "capture_quantization_error_seconds": 0.019009928000002674,
+      "frame_index": 84,
+      "sim_time_seconds": 3.3899999242275953,
+      "source_rviz_frame_index": 1809,
+      "source_rviz_time_seconds": 72.36,
+      "step": 168
+    },
+    {
+      "capture_elapsed_seconds": 73.511179027,
+      "capture_quantization_error_seconds": 0.008820972999998844,
+      "frame_index": 85,
+      "sim_time_seconds": 3.4299999233335257,
+      "source_rviz_frame_index": 1838,
+      "source_rviz_time_seconds": 73.52,
+      "step": 170
+    },
+    {
+      "capture_elapsed_seconds": 74.15544906,
+      "capture_quantization_error_seconds": 0.004550940000001447,
+      "frame_index": 86,
+      "sim_time_seconds": 3.469999922439456,
+      "source_rviz_frame_index": 1854,
+      "source_rviz_time_seconds": 74.16,
+      "step": 172
+    },
+    {
+      "capture_elapsed_seconds": 74.804040444,
+      "capture_quantization_error_seconds": 0.004040443999997478,
+      "frame_index": 87,
+      "sim_time_seconds": 3.5099999215453863,
+      "source_rviz_frame_index": 1870,
+      "source_rviz_time_seconds": 74.8,
+      "step": 174
+    },
+    {
+      "capture_elapsed_seconds": 75.937675373,
+      "capture_quantization_error_seconds": 0.017675373000002992,
+      "frame_index": 88,
+      "sim_time_seconds": 3.5499999206513166,
+      "source_rviz_frame_index": 1898,
+      "source_rviz_time_seconds": 75.92,
+      "step": 176
+    },
+    {
+      "capture_elapsed_seconds": 76.74193129,
+      "capture_quantization_error_seconds": 0.018068710000008537,
+      "frame_index": 89,
+      "sim_time_seconds": 3.589999919757247,
+      "source_rviz_frame_index": 1919,
+      "source_rviz_time_seconds": 76.76,
+      "step": 178
+    },
+    {
+      "capture_elapsed_seconds": 77.836077801,
+      "capture_quantization_error_seconds": 0.003922199000001569,
+      "frame_index": 90,
+      "sim_time_seconds": 3.6299999188631773,
+      "source_rviz_frame_index": 1946,
+      "source_rviz_time_seconds": 77.84,
+      "step": 180
+    },
+    {
+      "capture_elapsed_seconds": 78.496050678,
+      "capture_quantization_error_seconds": 0.016050677999999152,
+      "frame_index": 91,
+      "sim_time_seconds": 3.6699999179691076,
+      "source_rviz_frame_index": 1962,
+      "source_rviz_time_seconds": 78.48,
+      "step": 182
+    },
+    {
+      "capture_elapsed_seconds": 79.015920621,
+      "capture_quantization_error_seconds": 0.015920621000006463,
+      "frame_index": 92,
+      "sim_time_seconds": 3.709999917075038,
+      "source_rviz_frame_index": 1975,
+      "source_rviz_time_seconds": 79.0,
+      "step": 184
+    },
+    {
+      "capture_elapsed_seconds": 80.281069837,
+      "capture_quantization_error_seconds": 0.001069837000002849,
+      "frame_index": 93,
+      "sim_time_seconds": 3.7499999161809683,
+      "source_rviz_frame_index": 2007,
+      "source_rviz_time_seconds": 80.28,
+      "step": 186
+    },
+    {
+      "capture_elapsed_seconds": 80.81176889,
+      "capture_quantization_error_seconds": 0.011768889999999033,
+      "frame_index": 94,
+      "sim_time_seconds": 3.7899999152868986,
+      "source_rviz_frame_index": 2020,
+      "source_rviz_time_seconds": 80.8,
+      "step": 188
+    },
+    {
+      "capture_elapsed_seconds": 81.757138751,
+      "capture_quantization_error_seconds": 0.002861249000005728,
+      "frame_index": 95,
+      "sim_time_seconds": 3.829999914392829,
+      "source_rviz_frame_index": 2044,
+      "source_rviz_time_seconds": 81.76,
+      "step": 190
+    },
+    {
+      "capture_elapsed_seconds": 82.273490194,
+      "capture_quantization_error_seconds": 0.006509805999996843,
+      "frame_index": 96,
+      "sim_time_seconds": 3.8699999134987593,
+      "source_rviz_frame_index": 2057,
+      "source_rviz_time_seconds": 82.28,
+      "step": 192
+    },
+    {
+      "capture_elapsed_seconds": 82.794355716,
+      "capture_quantization_error_seconds": 0.005644283999998834,
+      "frame_index": 97,
+      "sim_time_seconds": 3.9099999126046896,
+      "source_rviz_frame_index": 2070,
+      "source_rviz_time_seconds": 82.8,
+      "step": 194
+    },
+    {
+      "capture_elapsed_seconds": 83.738021003,
+      "capture_quantization_error_seconds": 0.0180210030000012,
+      "frame_index": 98,
+      "sim_time_seconds": 3.94999991171062,
+      "source_rviz_frame_index": 2093,
+      "source_rviz_time_seconds": 83.72,
+      "step": 196
+    },
+    {
+      "capture_elapsed_seconds": 84.265097253,
+      "capture_quantization_error_seconds": 0.014902747000007821,
+      "frame_index": 99,
+      "sim_time_seconds": 3.9899999108165503,
+      "source_rviz_frame_index": 2107,
+      "source_rviz_time_seconds": 84.28,
+      "step": 198
+    },
+    {
+      "capture_elapsed_seconds": 85.183274414,
+      "capture_quantization_error_seconds": 0.016725586000006842,
+      "frame_index": 100,
+      "sim_time_seconds": 4.029999909922481,
+      "source_rviz_frame_index": 2130,
+      "source_rviz_time_seconds": 85.2,
+      "step": 200
+    },
+    {
+      "capture_elapsed_seconds": 85.695736958,
+      "capture_quantization_error_seconds": 0.015736957999990864,
+      "frame_index": 101,
+      "sim_time_seconds": 4.069999909028411,
+      "source_rviz_frame_index": 2142,
+      "source_rviz_time_seconds": 85.68,
+      "step": 202
+    },
+    {
+      "capture_elapsed_seconds": 86.207758874,
+      "capture_quantization_error_seconds": 0.007758874000003857,
+      "frame_index": 102,
+      "sim_time_seconds": 4.109999908134341,
+      "source_rviz_frame_index": 2155,
+      "source_rviz_time_seconds": 86.2,
+      "step": 204
+    },
+    {
+      "capture_elapsed_seconds": 87.140868213,
+      "capture_quantization_error_seconds": 0.019131786999992073,
+      "frame_index": 103,
+      "sim_time_seconds": 4.149999907240272,
+      "source_rviz_frame_index": 2179,
+      "source_rviz_time_seconds": 87.16,
+      "step": 206
+    },
+    {
+      "capture_elapsed_seconds": 87.655754761,
+      "capture_quantization_error_seconds": 0.01575476099999662,
+      "frame_index": 104,
+      "sim_time_seconds": 4.189999906346202,
+      "source_rviz_frame_index": 2191,
+      "source_rviz_time_seconds": 87.64,
+      "step": 208
+    },
+    {
+      "capture_elapsed_seconds": 88.612851594,
+      "capture_quantization_error_seconds": 0.012851594000011346,
+      "frame_index": 105,
+      "sim_time_seconds": 4.229999905452132,
+      "source_rviz_frame_index": 2215,
+      "source_rviz_time_seconds": 88.6,
+      "step": 210
+    },
+    {
+      "capture_elapsed_seconds": 89.133196169,
+      "capture_quantization_error_seconds": 0.013196168999996871,
+      "frame_index": 106,
+      "sim_time_seconds": 4.2699999045580626,
+      "source_rviz_frame_index": 2228,
+      "source_rviz_time_seconds": 89.12,
+      "step": 212
+    },
+    {
+      "capture_elapsed_seconds": 89.649235876,
+      "capture_quantization_error_seconds": 0.009235876000005305,
+      "frame_index": 107,
+      "sim_time_seconds": 4.309999903663993,
+      "source_rviz_frame_index": 2241,
+      "source_rviz_time_seconds": 89.64,
+      "step": 214
+    },
+    {
+      "capture_elapsed_seconds": 90.561898366,
+      "capture_quantization_error_seconds": 0.0018983659999918245,
+      "frame_index": 108,
+      "sim_time_seconds": 4.349999902769923,
+      "source_rviz_frame_index": 2264,
+      "source_rviz_time_seconds": 90.56,
+      "step": 216
+    },
+    {
+      "capture_elapsed_seconds": 91.072955145,
+      "capture_quantization_error_seconds": 0.007044855000003736,
+      "frame_index": 109,
+      "sim_time_seconds": 4.3899999018758535,
+      "source_rviz_frame_index": 2277,
+      "source_rviz_time_seconds": 91.08,
+      "step": 218
+    },
+    {
+      "capture_elapsed_seconds": 91.998555411,
+      "capture_quantization_error_seconds": 0.0014445890000018835,
+      "frame_index": 110,
+      "sim_time_seconds": 4.429999900981784,
+      "source_rviz_frame_index": 2300,
+      "source_rviz_time_seconds": 92.0,
+      "step": 220
+    },
+    {
+      "capture_elapsed_seconds": 92.504869337,
+      "capture_quantization_error_seconds": 0.01513066299999366,
+      "frame_index": 111,
+      "sim_time_seconds": 4.469999900087714,
+      "source_rviz_frame_index": 2313,
+      "source_rviz_time_seconds": 92.52,
+      "step": 222
+    },
+    {
+      "capture_elapsed_seconds": 93.016424247,
+      "capture_quantization_error_seconds": 0.016424247000003334,
+      "frame_index": 112,
+      "sim_time_seconds": 4.5099998991936445,
+      "source_rviz_frame_index": 2325,
+      "source_rviz_time_seconds": 93.0,
+      "step": 224
+    },
+    {
+      "capture_elapsed_seconds": 93.949577802,
+      "capture_quantization_error_seconds": 0.010422198000000549,
+      "frame_index": 113,
+      "sim_time_seconds": 4.549999898299575,
+      "source_rviz_frame_index": 2349,
+      "source_rviz_time_seconds": 93.96,
+      "step": 226
+    },
+    {
+      "capture_elapsed_seconds": 94.455669209,
+      "capture_quantization_error_seconds": 0.015669209000009232,
+      "frame_index": 114,
+      "sim_time_seconds": 4.589999897405505,
+      "source_rviz_frame_index": 2361,
+      "source_rviz_time_seconds": 94.44,
+      "step": 228
+    },
+    {
+      "capture_elapsed_seconds": 95.676726704,
+      "capture_quantization_error_seconds": 0.0032732960000032563,
+      "frame_index": 115,
+      "sim_time_seconds": 4.6299998965114355,
+      "source_rviz_frame_index": 2392,
+      "source_rviz_time_seconds": 95.68,
+      "step": 230
+    },
+    {
+      "capture_elapsed_seconds": 96.182499641,
+      "capture_quantization_error_seconds": 0.017500358999996024,
+      "frame_index": 116,
+      "sim_time_seconds": 4.669999895617366,
+      "source_rviz_frame_index": 2405,
+      "source_rviz_time_seconds": 96.2,
+      "step": 232
+    },
+    {
+      "capture_elapsed_seconds": 96.68881004,
+      "capture_quantization_error_seconds": 0.008810040000000186,
+      "frame_index": 117,
+      "sim_time_seconds": 4.709999894723296,
+      "source_rviz_frame_index": 2417,
+      "source_rviz_time_seconds": 96.68,
+      "step": 234
+    },
+    {
+      "capture_elapsed_seconds": 97.622656456,
+      "capture_quantization_error_seconds": 0.017343543999999156,
+      "frame_index": 118,
+      "sim_time_seconds": 4.7499998938292265,
+      "source_rviz_frame_index": 2441,
+      "source_rviz_time_seconds": 97.64,
+      "step": 236
+    },
+    {
+      "capture_elapsed_seconds": 98.130750026,
+      "capture_quantization_error_seconds": 0.010750025999996637,
+      "frame_index": 119,
+      "sim_time_seconds": 4.789999892935157,
+      "source_rviz_frame_index": 2453,
+      "source_rviz_time_seconds": 98.12,
+      "step": 238
+    },
+    {
+      "capture_elapsed_seconds": 99.051814957,
+      "capture_quantization_error_seconds": 0.011814956999998572,
+      "frame_index": 120,
+      "sim_time_seconds": 4.829999892041087,
+      "source_rviz_frame_index": 2476,
+      "source_rviz_time_seconds": 99.04,
+      "step": 240
+    },
+    {
+      "capture_elapsed_seconds": 99.55270724,
+      "capture_quantization_error_seconds": 0.007292759999998566,
+      "frame_index": 121,
+      "sim_time_seconds": 4.8699998911470175,
+      "source_rviz_frame_index": 2489,
+      "source_rviz_time_seconds": 99.56,
+      "step": 242
+    },
+    {
+      "capture_elapsed_seconds": 100.06284747,
+      "capture_quantization_error_seconds": 0.017152530000004163,
+      "frame_index": 122,
+      "sim_time_seconds": 4.909999890252948,
+      "source_rviz_frame_index": 2502,
+      "source_rviz_time_seconds": 100.08,
+      "step": 244
+    },
+    {
+      "capture_elapsed_seconds": 101.003956842,
+      "capture_quantization_error_seconds": 0.003956841999993799,
+      "frame_index": 123,
+      "sim_time_seconds": 4.949999889358878,
+      "source_rviz_frame_index": 2525,
+      "source_rviz_time_seconds": 101.0,
+      "step": 246
+    },
+    {
+      "capture_elapsed_seconds": 101.51117101,
+      "capture_quantization_error_seconds": 0.008828989999997816,
+      "frame_index": 124,
+      "sim_time_seconds": 4.9899998884648085,
+      "source_rviz_frame_index": 2538,
+      "source_rviz_time_seconds": 101.52,
+      "step": 248
+    },
+    {
+      "capture_elapsed_seconds": 102.443987618,
+      "capture_quantization_error_seconds": 0.003987617999996473,
+      "frame_index": 125,
+      "sim_time_seconds": 5.029999887570739,
+      "source_rviz_frame_index": 2561,
+      "source_rviz_time_seconds": 102.44,
+      "step": 250
+    },
+    {
+      "capture_elapsed_seconds": 102.949964357,
+      "capture_quantization_error_seconds": 0.01003564299999482,
+      "frame_index": 126,
+      "sim_time_seconds": 5.069999886676669,
+      "source_rviz_frame_index": 2574,
+      "source_rviz_time_seconds": 102.96,
+      "step": 252
+    },
+    {
+      "capture_elapsed_seconds": 103.45789366,
+      "capture_quantization_error_seconds": 0.01789365999999859,
+      "frame_index": 127,
+      "sim_time_seconds": 5.1099998857825994,
+      "source_rviz_frame_index": 2586,
+      "source_rviz_time_seconds": 103.44,
+      "step": 254
+    },
+    {
+      "capture_elapsed_seconds": 104.382859306,
+      "capture_quantization_error_seconds": 0.017140694000005396,
+      "frame_index": 128,
+      "sim_time_seconds": 5.14999988488853,
+      "source_rviz_frame_index": 2610,
+      "source_rviz_time_seconds": 104.4,
+      "step": 256
+    },
+    {
+      "capture_elapsed_seconds": 104.887631809,
+      "capture_quantization_error_seconds": 0.0076318090000029315,
+      "frame_index": 129,
+      "sim_time_seconds": 5.18999988399446,
+      "source_rviz_frame_index": 2622,
+      "source_rviz_time_seconds": 104.88,
+      "step": 258
+    },
+    {
+      "capture_elapsed_seconds": 105.824983986,
+      "capture_quantization_error_seconds": 0.015016013999996858,
+      "frame_index": 130,
+      "sim_time_seconds": 5.22999988310039,
+      "source_rviz_frame_index": 2646,
+      "source_rviz_time_seconds": 105.84,
+      "step": 260
+    },
+    {
+      "capture_elapsed_seconds": 106.325039515,
+      "capture_quantization_error_seconds": 0.0050395150000071,
+      "frame_index": 131,
+      "sim_time_seconds": 5.269999882206321,
+      "source_rviz_frame_index": 2658,
+      "source_rviz_time_seconds": 106.32,
+      "step": 262
+    },
+    {
+      "capture_elapsed_seconds": 106.821017127,
+      "capture_quantization_error_seconds": 0.01898287299999879,
+      "frame_index": 132,
+      "sim_time_seconds": 5.309999881312251,
+      "source_rviz_frame_index": 2671,
+      "source_rviz_time_seconds": 106.84,
+      "step": 264
+    },
+    {
+      "capture_elapsed_seconds": 107.744930025,
+      "capture_quantization_error_seconds": 0.015069975000002955,
+      "frame_index": 133,
+      "sim_time_seconds": 5.349999880418181,
+      "source_rviz_frame_index": 2694,
+      "source_rviz_time_seconds": 107.76,
+      "step": 266
+    },
+    {
+      "capture_elapsed_seconds": 108.252144387,
+      "capture_quantization_error_seconds": 0.012144387000006418,
+      "frame_index": 134,
+      "sim_time_seconds": 5.389999879524112,
+      "source_rviz_frame_index": 2706,
+      "source_rviz_time_seconds": 108.24,
+      "step": 268
+    },
+    {
+      "capture_elapsed_seconds": 109.177982783,
+      "capture_quantization_error_seconds": 0.017982783000007885,
+      "frame_index": 135,
+      "sim_time_seconds": 5.429999878630042,
+      "source_rviz_frame_index": 2729,
+      "source_rviz_time_seconds": 109.16,
+      "step": 270
+    },
+    {
+      "capture_elapsed_seconds": 109.692370474,
+      "capture_quantization_error_seconds": 0.012370473999993692,
+      "frame_index": 136,
+      "sim_time_seconds": 5.469999877735972,
+      "source_rviz_frame_index": 2742,
+      "source_rviz_time_seconds": 109.68,
+      "step": 272
+    },
+    {
+      "capture_elapsed_seconds": 110.198385908,
+      "capture_quantization_error_seconds": 0.0016140919999969583,
+      "frame_index": 137,
+      "sim_time_seconds": 5.509999876841903,
+      "source_rviz_frame_index": 2755,
+      "source_rviz_time_seconds": 110.2,
+      "step": 274
+    },
+    {
+      "capture_elapsed_seconds": 111.13006076,
+      "capture_quantization_error_seconds": 0.010060760000001778,
+      "frame_index": 138,
+      "sim_time_seconds": 5.549999875947833,
+      "source_rviz_frame_index": 2778,
+      "source_rviz_time_seconds": 111.12,
+      "step": 276
+    },
+    {
+      "capture_elapsed_seconds": 111.637482062,
+      "capture_quantization_error_seconds": 0.0025179379999968887,
+      "frame_index": 139,
+      "sim_time_seconds": 5.589999875053763,
+      "source_rviz_frame_index": 2791,
+      "source_rviz_time_seconds": 111.64,
+      "step": 278
+    },
+    {
+      "capture_elapsed_seconds": 112.845833783,
+      "capture_quantization_error_seconds": 0.005833782999999926,
+      "frame_index": 140,
+      "sim_time_seconds": 5.629999874159694,
+      "source_rviz_frame_index": 2821,
+      "source_rviz_time_seconds": 112.84,
+      "step": 280
+    },
+    {
+      "capture_elapsed_seconds": 113.358891415,
+      "capture_quantization_error_seconds": 0.0011085849999972197,
+      "frame_index": 141,
+      "sim_time_seconds": 5.669999873265624,
+      "source_rviz_frame_index": 2834,
+      "source_rviz_time_seconds": 113.36,
+      "step": 282
+    },
+    {
+      "capture_elapsed_seconds": 113.85995334,
+      "capture_quantization_error_seconds": 0.019953340000000708,
+      "frame_index": 142,
+      "sim_time_seconds": 5.709999872371554,
+      "source_rviz_frame_index": 2846,
+      "source_rviz_time_seconds": 113.84,
+      "step": 284
+    },
+    {
+      "capture_elapsed_seconds": 114.768190255,
+      "capture_quantization_error_seconds": 0.008190254999988156,
+      "frame_index": 143,
+      "sim_time_seconds": 5.749999871477485,
+      "source_rviz_frame_index": 2869,
+      "source_rviz_time_seconds": 114.76,
+      "step": 286
+    },
+    {
+      "capture_elapsed_seconds": 115.273990919,
+      "capture_quantization_error_seconds": 0.00600908100000197,
+      "frame_index": 144,
+      "sim_time_seconds": 5.789999870583415,
+      "source_rviz_frame_index": 2882,
+      "source_rviz_time_seconds": 115.28,
+      "step": 288
+    },
+    {
+      "capture_elapsed_seconds": 116.200661486,
+      "capture_quantization_error_seconds": 0.0006614859999984901,
+      "frame_index": 145,
+      "sim_time_seconds": 5.829999869689345,
+      "source_rviz_frame_index": 2905,
+      "source_rviz_time_seconds": 116.2,
+      "step": 290
+    },
+    {
+      "capture_elapsed_seconds": 116.702532191,
+      "capture_quantization_error_seconds": 0.017467808999995782,
+      "frame_index": 146,
+      "sim_time_seconds": 5.869999868795276,
+      "source_rviz_frame_index": 2918,
+      "source_rviz_time_seconds": 116.72,
+      "step": 292
+    },
+    {
+      "capture_elapsed_seconds": 117.207821016,
+      "capture_quantization_error_seconds": 0.007821015999994074,
+      "frame_index": 147,
+      "sim_time_seconds": 5.909999867901206,
+      "source_rviz_frame_index": 2930,
+      "source_rviz_time_seconds": 117.2,
+      "step": 294
+    },
+    {
+      "capture_elapsed_seconds": 118.115832072,
+      "capture_quantization_error_seconds": 0.004167928000001098,
+      "frame_index": 148,
+      "sim_time_seconds": 5.949999867007136,
+      "source_rviz_frame_index": 2953,
+      "source_rviz_time_seconds": 118.12,
+      "step": 296
+    },
+    {
+      "capture_elapsed_seconds": 118.61742877,
+      "capture_quantization_error_seconds": 0.017428770000009308,
+      "frame_index": 149,
+      "sim_time_seconds": 5.989999866113067,
+      "source_rviz_frame_index": 2965,
+      "source_rviz_time_seconds": 118.6,
+      "step": 298
+    },
+    {
+      "capture_elapsed_seconds": 119.5147926,
+      "capture_quantization_error_seconds": 0.005207399999989093,
+      "frame_index": 150,
+      "sim_time_seconds": 6.029999865218997,
+      "source_rviz_frame_index": 2988,
+      "source_rviz_time_seconds": 119.52,
+      "step": 300
+    },
+    {
+      "capture_elapsed_seconds": 120.016823719,
+      "capture_quantization_error_seconds": 0.016823719000001347,
+      "frame_index": 151,
+      "sim_time_seconds": 6.069999864324927,
+      "source_rviz_frame_index": 3000,
+      "source_rviz_time_seconds": 120.0,
+      "step": 302
+    },
+    {
+      "capture_elapsed_seconds": 120.536503085,
+      "capture_quantization_error_seconds": 0.016503085000010742,
+      "frame_index": 152,
+      "sim_time_seconds": 6.109999863430858,
+      "source_rviz_frame_index": 3013,
+      "source_rviz_time_seconds": 120.52,
+      "step": 304
+    },
+    {
+      "capture_elapsed_seconds": 121.477853012,
+      "capture_quantization_error_seconds": 0.0021469880000068997,
+      "frame_index": 153,
+      "sim_time_seconds": 6.149999862536788,
+      "source_rviz_frame_index": 3037,
+      "source_rviz_time_seconds": 121.48,
+      "step": 306
+    },
+    {
+      "capture_elapsed_seconds": 121.977047647,
+      "capture_quantization_error_seconds": 0.01704764700001249,
+      "frame_index": 154,
+      "sim_time_seconds": 6.189999861642718,
+      "source_rviz_frame_index": 3049,
+      "source_rviz_time_seconds": 121.96,
+      "step": 308
+    },
+    {
+      "capture_elapsed_seconds": 122.8793519,
+      "capture_quantization_error_seconds": 0.0006480999999922687,
+      "frame_index": 155,
+      "sim_time_seconds": 6.229999860748649,
+      "source_rviz_frame_index": 3072,
+      "source_rviz_time_seconds": 122.88,
+      "step": 310
+    },
+    {
+      "capture_elapsed_seconds": 123.380143688,
+      "capture_quantization_error_seconds": 0.019856312000001708,
+      "frame_index": 156,
+      "sim_time_seconds": 6.269999859854579,
+      "source_rviz_frame_index": 3085,
+      "source_rviz_time_seconds": 123.4,
+      "step": 312
+    },
+    {
+      "capture_elapsed_seconds": 123.887212557,
+      "capture_quantization_error_seconds": 0.007212557000002562,
+      "frame_index": 157,
+      "sim_time_seconds": 6.309999858960509,
+      "source_rviz_frame_index": 3097,
+      "source_rviz_time_seconds": 123.88,
+      "step": 314
+    },
+    {
+      "capture_elapsed_seconds": 124.782129119,
+      "capture_quantization_error_seconds": 0.017870880999993233,
+      "frame_index": 158,
+      "sim_time_seconds": 6.34999985806644,
+      "source_rviz_frame_index": 3120,
+      "source_rviz_time_seconds": 124.8,
+      "step": 316
+    },
+    {
+      "capture_elapsed_seconds": 125.287729167,
+      "capture_quantization_error_seconds": 0.0077291669999937085,
+      "frame_index": 159,
+      "sim_time_seconds": 6.38999985717237,
+      "source_rviz_frame_index": 3132,
+      "source_rviz_time_seconds": 125.28,
+      "step": 318
+    },
+    {
+      "capture_elapsed_seconds": 126.205211151,
+      "capture_quantization_error_seconds": 0.0052111509999974714,
+      "frame_index": 160,
+      "sim_time_seconds": 6.4299998562783,
+      "source_rviz_frame_index": 3155,
+      "source_rviz_time_seconds": 126.2,
+      "step": 320
+    },
+    {
+      "capture_elapsed_seconds": 126.718783414,
+      "capture_quantization_error_seconds": 0.0012165859999981876,
+      "frame_index": 161,
+      "sim_time_seconds": 6.469999855384231,
+      "source_rviz_frame_index": 3168,
+      "source_rviz_time_seconds": 126.72,
+      "step": 322
+    },
+    {
+      "capture_elapsed_seconds": 127.219719198,
+      "capture_quantization_error_seconds": 0.019719198000004212,
+      "frame_index": 162,
+      "sim_time_seconds": 6.509999854490161,
+      "source_rviz_frame_index": 3180,
+      "source_rviz_time_seconds": 127.2,
+      "step": 324
+    },
+    {
+      "capture_elapsed_seconds": 128.409933987,
+      "capture_quantization_error_seconds": 0.00993398699998238,
+      "frame_index": 163,
+      "sim_time_seconds": 6.549999853596091,
+      "source_rviz_frame_index": 3210,
+      "source_rviz_time_seconds": 128.4,
+      "step": 326
+    },
+    {
+      "capture_elapsed_seconds": 128.926723732,
+      "capture_quantization_error_seconds": 0.006723732000011751,
+      "frame_index": 164,
+      "sim_time_seconds": 6.589999852702022,
+      "source_rviz_frame_index": 3223,
+      "source_rviz_time_seconds": 128.92,
+      "step": 328
+    },
+    {
+      "capture_elapsed_seconds": 129.862242296,
+      "capture_quantization_error_seconds": 0.017757703999990326,
+      "frame_index": 165,
+      "sim_time_seconds": 6.629999851807952,
+      "source_rviz_frame_index": 3247,
+      "source_rviz_time_seconds": 129.88,
+      "step": 330
+    },
+    {
+      "capture_elapsed_seconds": 130.364956072,
+      "capture_quantization_error_seconds": 0.004956071999998812,
+      "frame_index": 166,
+      "sim_time_seconds": 6.669999850913882,
+      "source_rviz_frame_index": 3259,
+      "source_rviz_time_seconds": 130.36,
+      "step": 332
+    },
+    {
+      "capture_elapsed_seconds": 130.880341598,
+      "capture_quantization_error_seconds": 0.00034159800000566065,
+      "frame_index": 167,
+      "sim_time_seconds": 6.709999850019813,
+      "source_rviz_frame_index": 3272,
+      "source_rviz_time_seconds": 130.88,
+      "step": 334
+    },
+    {
+      "capture_elapsed_seconds": 131.80767025,
+      "capture_quantization_error_seconds": 0.0076702499999896645,
+      "frame_index": 168,
+      "sim_time_seconds": 6.749999849125743,
+      "source_rviz_frame_index": 3295,
+      "source_rviz_time_seconds": 131.8,
+      "step": 336
+    },
+    {
+      "capture_elapsed_seconds": 132.320060995,
+      "capture_quantization_error_seconds": 6.0995000012553646e-05,
+      "frame_index": 169,
+      "sim_time_seconds": 6.789999848231673,
+      "source_rviz_frame_index": 3308,
+      "source_rviz_time_seconds": 132.32,
+      "step": 338
+    },
+    {
+      "capture_elapsed_seconds": 133.215963428,
+      "capture_quantization_error_seconds": 0.015963428000020485,
+      "frame_index": 170,
+      "sim_time_seconds": 6.829999847337604,
+      "source_rviz_frame_index": 3330,
+      "source_rviz_time_seconds": 133.2,
+      "step": 340
+    },
+    {
+      "capture_elapsed_seconds": 133.721674488,
+      "capture_quantization_error_seconds": 0.0016744879999919249,
+      "frame_index": 171,
+      "sim_time_seconds": 6.869999846443534,
+      "source_rviz_frame_index": 3343,
+      "source_rviz_time_seconds": 133.72,
+      "step": 342
+    },
+    {
+      "capture_elapsed_seconds": 134.222109621,
+      "capture_quantization_error_seconds": 0.017890379000021994,
+      "frame_index": 172,
+      "sim_time_seconds": 6.909999845549464,
+      "source_rviz_frame_index": 3356,
+      "source_rviz_time_seconds": 134.24,
+      "step": 344
+    },
+    {
+      "capture_elapsed_seconds": 135.137383193,
+      "capture_quantization_error_seconds": 0.017383193000000574,
+      "frame_index": 173,
+      "sim_time_seconds": 6.9499998446553946,
+      "source_rviz_frame_index": 3378,
+      "source_rviz_time_seconds": 135.12,
+      "step": 346
+    },
+    {
+      "capture_elapsed_seconds": 137.201618575,
+      "capture_quantization_error_seconds": 0.0016185750000090593,
+      "frame_index": 174,
+      "sim_time_seconds": 6.989999843761325,
+      "source_rviz_frame_index": 3430,
+      "source_rviz_time_seconds": 137.2,
+      "step": 348
+    },
+    {
+      "capture_elapsed_seconds": 138.125305721,
+      "capture_quantization_error_seconds": 0.005305720999984942,
+      "frame_index": 175,
+      "sim_time_seconds": 7.029999842867255,
+      "source_rviz_frame_index": 3453,
+      "source_rviz_time_seconds": 138.12,
+      "step": 350
+    },
+    {
+      "capture_elapsed_seconds": 138.627173387,
+      "capture_quantization_error_seconds": 0.01282661299998722,
+      "frame_index": 176,
+      "sim_time_seconds": 7.0699998419731855,
+      "source_rviz_frame_index": 3466,
+      "source_rviz_time_seconds": 138.64,
+      "step": 352
+    },
+    {
+      "capture_elapsed_seconds": 139.133559201,
+      "capture_quantization_error_seconds": 0.013559200999992527,
+      "frame_index": 177,
+      "sim_time_seconds": 7.109999841079116,
+      "source_rviz_frame_index": 3478,
+      "source_rviz_time_seconds": 139.12,
+      "step": 354
+    },
+    {
+      "capture_elapsed_seconds": 140.07428669,
+      "capture_quantization_error_seconds": 0.005713310000004412,
+      "frame_index": 178,
+      "sim_time_seconds": 7.149999840185046,
+      "source_rviz_frame_index": 3502,
+      "source_rviz_time_seconds": 140.08,
+      "step": 356
+    },
+    {
+      "capture_elapsed_seconds": 140.574430492,
+      "capture_quantization_error_seconds": 0.01443049200000246,
+      "frame_index": 179,
+      "sim_time_seconds": 7.1899998392909765,
+      "source_rviz_frame_index": 3514,
+      "source_rviz_time_seconds": 140.56,
+      "step": 358
+    },
+    {
+      "capture_elapsed_seconds": 141.492209395,
+      "capture_quantization_error_seconds": 0.012209395000013501,
+      "frame_index": 180,
+      "sim_time_seconds": 7.229999838396907,
+      "source_rviz_frame_index": 3537,
+      "source_rviz_time_seconds": 141.48,
+      "step": 360
+    },
+    {
+      "capture_elapsed_seconds": 142.008260829,
+      "capture_quantization_error_seconds": 0.008260828999993919,
+      "frame_index": 181,
+      "sim_time_seconds": 7.269999837502837,
+      "source_rviz_frame_index": 3550,
+      "source_rviz_time_seconds": 142.0,
+      "step": 362
+    },
+    {
+      "capture_elapsed_seconds": 142.522288568,
+      "capture_quantization_error_seconds": 0.0022885679999831154,
+      "frame_index": 182,
+      "sim_time_seconds": 7.3099998366087675,
+      "source_rviz_frame_index": 3563,
+      "source_rviz_time_seconds": 142.52,
+      "step": 364
+    },
+    {
+      "capture_elapsed_seconds": 143.435799647,
+      "capture_quantization_error_seconds": 0.0042003529999874445,
+      "frame_index": 183,
+      "sim_time_seconds": 7.349999835714698,
+      "source_rviz_frame_index": 3586,
+      "source_rviz_time_seconds": 143.44,
+      "step": 366
+    },
+    {
+      "capture_elapsed_seconds": 143.952790432,
+      "capture_quantization_error_seconds": 0.0072095680000074935,
+      "frame_index": 184,
+      "sim_time_seconds": 7.389999834820628,
+      "source_rviz_frame_index": 3599,
+      "source_rviz_time_seconds": 143.96,
+      "step": 368
+    },
+    {
+      "capture_elapsed_seconds": 145.171104953,
+      "capture_quantization_error_seconds": 0.01110495300000025,
+      "frame_index": 185,
+      "sim_time_seconds": 7.4299998339265585,
+      "source_rviz_frame_index": 3629,
+      "source_rviz_time_seconds": 145.16,
+      "step": 370
+    },
+    {
+      "capture_elapsed_seconds": 145.677098849,
+      "capture_quantization_error_seconds": 0.0029011510000032104,
+      "frame_index": 186,
+      "sim_time_seconds": 7.469999833032489,
+      "source_rviz_frame_index": 3642,
+      "source_rviz_time_seconds": 145.68,
+      "step": 372
+    },
+    {
+      "capture_elapsed_seconds": 146.183992921,
+      "capture_quantization_error_seconds": 0.016007078999990654,
+      "frame_index": 187,
+      "sim_time_seconds": 7.509999832138419,
+      "source_rviz_frame_index": 3655,
+      "source_rviz_time_seconds": 146.2,
+      "step": 374
+    },
+    {
+      "capture_elapsed_seconds": 147.115281589,
+      "capture_quantization_error_seconds": 0.004718410999998923,
+      "frame_index": 188,
+      "sim_time_seconds": 7.5499998312443495,
+      "source_rviz_frame_index": 3678,
+      "source_rviz_time_seconds": 147.12,
+      "step": 376
+    },
+    {
+      "capture_elapsed_seconds": 147.617641516,
+      "capture_quantization_error_seconds": 0.017641515999997637,
+      "frame_index": 189,
+      "sim_time_seconds": 7.58999983035028,
+      "source_rviz_frame_index": 3690,
+      "source_rviz_time_seconds": 147.6,
+      "step": 378
+    },
+    {
+      "capture_elapsed_seconds": 148.580390377,
+      "capture_quantization_error_seconds": 0.019609623000008014,
+      "frame_index": 190,
+      "sim_time_seconds": 7.62999982945621,
+      "source_rviz_frame_index": 3715,
+      "source_rviz_time_seconds": 148.6,
+      "step": 380
+    },
+    {
+      "capture_elapsed_seconds": 149.083055114,
+      "capture_quantization_error_seconds": 0.003055113999977266,
+      "frame_index": 191,
+      "sim_time_seconds": 7.6699998285621405,
+      "source_rviz_frame_index": 3727,
+      "source_rviz_time_seconds": 149.08,
+      "step": 382
+    },
+    {
+      "capture_elapsed_seconds": 149.595573807,
+      "capture_quantization_error_seconds": 0.004426193000000467,
+      "frame_index": 192,
+      "sim_time_seconds": 7.709999827668071,
+      "source_rviz_frame_index": 3740,
+      "source_rviz_time_seconds": 149.6,
+      "step": 384
+    },
+    {
+      "capture_elapsed_seconds": 150.519790317,
+      "capture_quantization_error_seconds": 0.00020968300000845375,
+      "frame_index": 193,
+      "sim_time_seconds": 7.749999826774001,
+      "source_rviz_frame_index": 3763,
+      "source_rviz_time_seconds": 150.52,
+      "step": 386
+    },
+    {
+      "capture_elapsed_seconds": 151.021218055,
+      "capture_quantization_error_seconds": 0.018781945000000633,
+      "frame_index": 194,
+      "sim_time_seconds": 7.7899998258799314,
+      "source_rviz_frame_index": 3776,
+      "source_rviz_time_seconds": 151.04,
+      "step": 388
+    },
+    {
+      "capture_elapsed_seconds": 151.958589547,
+      "capture_quantization_error_seconds": 0.0014104530000054183,
+      "frame_index": 195,
+      "sim_time_seconds": 7.829999824985862,
+      "source_rviz_frame_index": 3799,
+      "source_rviz_time_seconds": 151.96,
+      "step": 390
+    },
+    {
+      "capture_elapsed_seconds": 152.459022256,
+      "capture_quantization_error_seconds": 0.019022255999999516,
+      "frame_index": 196,
+      "sim_time_seconds": 7.869999824091792,
+      "source_rviz_frame_index": 3811,
+      "source_rviz_time_seconds": 152.44,
+      "step": 392
+    },
+    {
+      "capture_elapsed_seconds": 152.976224149,
+      "capture_quantization_error_seconds": 0.01622414899998148,
+      "frame_index": 197,
+      "sim_time_seconds": 7.909999823197722,
+      "source_rviz_frame_index": 3824,
+      "source_rviz_time_seconds": 152.96,
+      "step": 394
+    },
+    {
+      "capture_elapsed_seconds": 153.901658024,
+      "capture_quantization_error_seconds": 0.01834197599998788,
+      "frame_index": 198,
+      "sim_time_seconds": 7.949999822303653,
+      "source_rviz_frame_index": 3848,
+      "source_rviz_time_seconds": 153.92,
+      "step": 396
+    },
+    {
+      "capture_elapsed_seconds": 154.422175158,
+      "capture_quantization_error_seconds": 0.01782484200001022,
+      "frame_index": 199,
+      "sim_time_seconds": 7.989999821409583,
+      "source_rviz_frame_index": 3861,
+      "source_rviz_time_seconds": 154.44,
+      "step": 398
+    },
+    {
+      "capture_elapsed_seconds": 155.358483301,
+      "capture_quantization_error_seconds": 0.001516699000006838,
+      "frame_index": 200,
+      "sim_time_seconds": 8.029999820515513,
+      "source_rviz_frame_index": 3884,
+      "source_rviz_time_seconds": 155.36,
+      "step": 400
+    },
+    {
+      "capture_elapsed_seconds": 155.864154534,
+      "capture_quantization_error_seconds": 0.015845466000001807,
+      "frame_index": 201,
+      "sim_time_seconds": 8.069999819621444,
+      "source_rviz_frame_index": 3897,
+      "source_rviz_time_seconds": 155.88,
+      "step": 402
+    },
+    {
+      "capture_elapsed_seconds": 156.369774411,
+      "capture_quantization_error_seconds": 0.009774410999995098,
+      "frame_index": 202,
+      "sim_time_seconds": 8.109999818727374,
+      "source_rviz_frame_index": 3909,
+      "source_rviz_time_seconds": 156.36,
+      "step": 404
+    },
+    {
+      "capture_elapsed_seconds": 157.294397438,
+      "capture_quantization_error_seconds": 0.014397438000003149,
+      "frame_index": 203,
+      "sim_time_seconds": 8.149999817833304,
+      "source_rviz_frame_index": 3932,
+      "source_rviz_time_seconds": 157.28,
+      "step": 406
+    },
+    {
+      "capture_elapsed_seconds": 157.806883855,
+      "capture_quantization_error_seconds": 0.006883854999983896,
+      "frame_index": 204,
+      "sim_time_seconds": 8.189999816939235,
+      "source_rviz_frame_index": 3945,
+      "source_rviz_time_seconds": 157.8,
+      "step": 408
+    },
+    {
+      "capture_elapsed_seconds": 158.729564962,
+      "capture_quantization_error_seconds": 0.00956496200001311,
+      "frame_index": 205,
+      "sim_time_seconds": 8.229999816045165,
+      "source_rviz_frame_index": 3968,
+      "source_rviz_time_seconds": 158.72,
+      "step": 410
+    },
+    {
+      "capture_elapsed_seconds": 159.239050958,
+      "capture_quantization_error_seconds": 0.0009490420000020094,
+      "frame_index": 206,
+      "sim_time_seconds": 8.269999815151095,
+      "source_rviz_frame_index": 3981,
+      "source_rviz_time_seconds": 159.24,
+      "step": 412
+    },
+    {
+      "capture_elapsed_seconds": 159.741847728,
+      "capture_quantization_error_seconds": 0.018152271999980485,
+      "frame_index": 207,
+      "sim_time_seconds": 8.309999814257026,
+      "source_rviz_frame_index": 3994,
+      "source_rviz_time_seconds": 159.76,
+      "step": 414
+    },
+    {
+      "capture_elapsed_seconds": 160.653428396,
+      "capture_quantization_error_seconds": 0.013428396000023213,
+      "frame_index": 208,
+      "sim_time_seconds": 8.349999813362956,
+      "source_rviz_frame_index": 4016,
+      "source_rviz_time_seconds": 160.64,
+      "step": 416
+    },
+    {
+      "capture_elapsed_seconds": 161.154600796,
+      "capture_quantization_error_seconds": 0.005399203999985502,
+      "frame_index": 209,
+      "sim_time_seconds": 8.389999812468886,
+      "source_rviz_frame_index": 4029,
+      "source_rviz_time_seconds": 161.16,
+      "step": 418
+    },
+    {
+      "capture_elapsed_seconds": 162.341535004,
+      "capture_quantization_error_seconds": 0.01846499600000584,
+      "frame_index": 210,
+      "sim_time_seconds": 8.429999811574817,
+      "source_rviz_frame_index": 4059,
+      "source_rviz_time_seconds": 162.36,
+      "step": 420
+    },
+    {
+      "capture_elapsed_seconds": 162.843298607,
+      "capture_quantization_error_seconds": 0.0032986070000049494,
+      "frame_index": 211,
+      "sim_time_seconds": 8.469999810680747,
+      "source_rviz_frame_index": 4071,
+      "source_rviz_time_seconds": 162.84,
+      "step": 422
+    },
+    {
+      "capture_elapsed_seconds": 163.353531981,
+      "capture_quantization_error_seconds": 0.006468019000010372,
+      "frame_index": 212,
+      "sim_time_seconds": 8.509999809786677,
+      "source_rviz_frame_index": 4084,
+      "source_rviz_time_seconds": 163.36,
+      "step": 424
+    },
+    {
+      "capture_elapsed_seconds": 164.305059992,
+      "capture_quantization_error_seconds": 0.014940007999996396,
+      "frame_index": 213,
+      "sim_time_seconds": 8.549999808892608,
+      "source_rviz_frame_index": 4108,
+      "source_rviz_time_seconds": 164.32,
+      "step": 426
+    },
+    {
+      "capture_elapsed_seconds": 164.805962004,
+      "capture_quantization_error_seconds": 0.005962003999997023,
+      "frame_index": 214,
+      "sim_time_seconds": 8.589999807998538,
+      "source_rviz_frame_index": 4120,
+      "source_rviz_time_seconds": 164.8,
+      "step": 428
+    },
+    {
+      "capture_elapsed_seconds": 165.717671767,
+      "capture_quantization_error_seconds": 0.0023282329999858575,
+      "frame_index": 215,
+      "sim_time_seconds": 8.629999807104468,
+      "source_rviz_frame_index": 4143,
+      "source_rviz_time_seconds": 165.72,
+      "step": 430
+    },
+    {
+      "capture_elapsed_seconds": 166.223842646,
+      "capture_quantization_error_seconds": 0.016157354000000623,
+      "frame_index": 216,
+      "sim_time_seconds": 8.669999806210399,
+      "source_rviz_frame_index": 4156,
+      "source_rviz_time_seconds": 166.24,
+      "step": 432
+    },
+    {
+      "capture_elapsed_seconds": 166.726655377,
+      "capture_quantization_error_seconds": 0.006655376999987084,
+      "frame_index": 217,
+      "sim_time_seconds": 8.709999805316329,
+      "source_rviz_frame_index": 4168,
+      "source_rviz_time_seconds": 166.72,
+      "step": 434
+    },
+    {
+      "capture_elapsed_seconds": 167.635557501,
+      "capture_quantization_error_seconds": 0.004442498999992495,
+      "frame_index": 218,
+      "sim_time_seconds": 8.74999980442226,
+      "source_rviz_frame_index": 4191,
+      "source_rviz_time_seconds": 167.64,
+      "step": 436
+    },
+    {
+      "capture_elapsed_seconds": 168.141185493,
+      "capture_quantization_error_seconds": 0.018814507000001868,
+      "frame_index": 219,
+      "sim_time_seconds": 8.78999980352819,
+      "source_rviz_frame_index": 4204,
+      "source_rviz_time_seconds": 168.16,
+      "step": 438
+    },
+    {
+      "capture_elapsed_seconds": 169.049033529,
+      "capture_quantization_error_seconds": 0.00903352900002119,
+      "frame_index": 220,
+      "sim_time_seconds": 8.82999980263412,
+      "source_rviz_frame_index": 4226,
+      "source_rviz_time_seconds": 169.04,
+      "step": 440
+    },
+    {
+      "capture_elapsed_seconds": 169.559634807,
+      "capture_quantization_error_seconds": 0.00036519299999326904,
+      "frame_index": 221,
+      "sim_time_seconds": 8.86999980174005,
+      "source_rviz_frame_index": 4239,
+      "source_rviz_time_seconds": 169.56,
+      "step": 442
+    },
+    {
+      "capture_elapsed_seconds": 170.056368542,
+      "capture_quantization_error_seconds": 0.016368542000009256,
+      "frame_index": 222,
+      "sim_time_seconds": 8.90999980084598,
+      "source_rviz_frame_index": 4251,
+      "source_rviz_time_seconds": 170.04,
+      "step": 444
+    },
+    {
+      "capture_elapsed_seconds": 170.980056038,
+      "capture_quantization_error_seconds": 0.01994396200001347,
+      "frame_index": 223,
+      "sim_time_seconds": 8.949999799951911,
+      "source_rviz_frame_index": 4275,
+      "source_rviz_time_seconds": 171.0,
+      "step": 446
+    },
+    {
+      "capture_elapsed_seconds": 171.480441109,
+      "capture_quantization_error_seconds": 0.0004411090000076001,
+      "frame_index": 224,
+      "sim_time_seconds": 8.989999799057841,
+      "source_rviz_frame_index": 4287,
+      "source_rviz_time_seconds": 171.48,
+      "step": 448
+    },
+    {
+      "capture_elapsed_seconds": 172.38815743,
+      "capture_quantization_error_seconds": 0.011842569999998886,
+      "frame_index": 225,
+      "sim_time_seconds": 9.029999798163772,
+      "source_rviz_frame_index": 4310,
+      "source_rviz_time_seconds": 172.4,
+      "step": 450
+    },
+    {
+      "capture_elapsed_seconds": 172.89975074,
+      "capture_quantization_error_seconds": 0.019750740000006317,
+      "frame_index": 226,
+      "sim_time_seconds": 9.069999797269702,
+      "source_rviz_frame_index": 4322,
+      "source_rviz_time_seconds": 172.88,
+      "step": 452
+    },
+    {
+      "capture_elapsed_seconds": 173.406495899,
+      "capture_quantization_error_seconds": 0.0064958989999865935,
+      "frame_index": 227,
+      "sim_time_seconds": 9.109999796375632,
+      "source_rviz_frame_index": 4335,
+      "source_rviz_time_seconds": 173.4,
+      "step": 454
+    },
+    {
+      "capture_elapsed_seconds": 174.33397516,
+      "capture_quantization_error_seconds": 0.013975160000001097,
+      "frame_index": 228,
+      "sim_time_seconds": 9.149999795481563,
+      "source_rviz_frame_index": 4358,
+      "source_rviz_time_seconds": 174.32,
+      "step": 456
+    },
+    {
+      "capture_elapsed_seconds": 174.834674031,
+      "capture_quantization_error_seconds": 0.00532596900001181,
+      "frame_index": 229,
+      "sim_time_seconds": 9.189999794587493,
+      "source_rviz_frame_index": 4371,
+      "source_rviz_time_seconds": 174.84,
+      "step": 458
+    },
+    {
+      "capture_elapsed_seconds": 175.766355746,
+      "capture_quantization_error_seconds": 0.006355745999996998,
+      "frame_index": 230,
+      "sim_time_seconds": 9.229999793693423,
+      "source_rviz_frame_index": 4394,
+      "source_rviz_time_seconds": 175.76,
+      "step": 460
+    },
+    {
+      "capture_elapsed_seconds": 176.279708175,
+      "capture_quantization_error_seconds": 0.0002918250000050193,
+      "frame_index": 231,
+      "sim_time_seconds": 9.269999792799354,
+      "source_rviz_frame_index": 4407,
+      "source_rviz_time_seconds": 176.28,
+      "step": 462
+    },
+    {
+      "capture_elapsed_seconds": 176.791177179,
+      "capture_quantization_error_seconds": 0.00882282100002385,
+      "frame_index": 232,
+      "sim_time_seconds": 9.309999791905284,
+      "source_rviz_frame_index": 4420,
+      "source_rviz_time_seconds": 176.8,
+      "step": 464
+    },
+    {
+      "capture_elapsed_seconds": 178.017865893,
+      "capture_quantization_error_seconds": 0.01786589299999264,
+      "frame_index": 233,
+      "sim_time_seconds": 9.349999791011214,
+      "source_rviz_frame_index": 4450,
+      "source_rviz_time_seconds": 178.0,
+      "step": 466
+    },
+    {
+      "capture_elapsed_seconds": 178.528617966,
+      "capture_quantization_error_seconds": 0.008617966000002752,
+      "frame_index": 234,
+      "sim_time_seconds": 9.389999790117145,
+      "source_rviz_frame_index": 4463,
+      "source_rviz_time_seconds": 178.52,
+      "step": 468
+    },
+    {
+      "capture_elapsed_seconds": 179.470847399,
+      "capture_quantization_error_seconds": 0.009152600999982496,
+      "frame_index": 235,
+      "sim_time_seconds": 9.429999789223075,
+      "source_rviz_frame_index": 4487,
+      "source_rviz_time_seconds": 179.48,
+      "step": 470
+    },
+    {
+      "capture_elapsed_seconds": 179.97377755,
+      "capture_quantization_error_seconds": 0.01377754999998615,
+      "frame_index": 236,
+      "sim_time_seconds": 9.469999788329005,
+      "source_rviz_frame_index": 4499,
+      "source_rviz_time_seconds": 179.96,
+      "step": 472
+    },
+    {
+      "capture_elapsed_seconds": 180.474969526,
+      "capture_quantization_error_seconds": 0.005030473999994456,
+      "frame_index": 237,
+      "sim_time_seconds": 9.509999787434936,
+      "source_rviz_frame_index": 4512,
+      "source_rviz_time_seconds": 180.48,
+      "step": 474
+    },
+    {
+      "capture_elapsed_seconds": 181.393208213,
+      "capture_quantization_error_seconds": 0.0067917869999973846,
+      "frame_index": 238,
+      "sim_time_seconds": 9.549999786540866,
+      "source_rviz_frame_index": 4535,
+      "source_rviz_time_seconds": 181.4,
+      "step": 476
+    },
+    {
+      "capture_elapsed_seconds": 181.89824652,
+      "capture_quantization_error_seconds": 0.01824651999999105,
+      "frame_index": 239,
+      "sim_time_seconds": 9.589999785646796,
+      "source_rviz_frame_index": 4547,
+      "source_rviz_time_seconds": 181.88,
+      "step": 478
+    },
+    {
+      "capture_elapsed_seconds": 182.800715696,
+      "capture_quantization_error_seconds": 0.0007156959999861101,
+      "frame_index": 240,
+      "sim_time_seconds": 9.629999784752727,
+      "source_rviz_frame_index": 4570,
+      "source_rviz_time_seconds": 182.8,
+      "step": 480
+    },
+    {
+      "capture_elapsed_seconds": 183.301593563,
+      "capture_quantization_error_seconds": 0.01840643699998168,
+      "frame_index": 241,
+      "sim_time_seconds": 9.669999783858657,
+      "source_rviz_frame_index": 4583,
+      "source_rviz_time_seconds": 183.32,
+      "step": 482
+    },
+    {
+      "capture_elapsed_seconds": 183.810275342,
+      "capture_quantization_error_seconds": 0.01027534199999991,
+      "frame_index": 242,
+      "sim_time_seconds": 9.709999782964587,
+      "source_rviz_frame_index": 4595,
+      "source_rviz_time_seconds": 183.8,
+      "step": 484
+    },
+    {
+      "capture_elapsed_seconds": 184.717655292,
+      "capture_quantization_error_seconds": 0.002344708000009632,
+      "frame_index": 243,
+      "sim_time_seconds": 9.749999782070518,
+      "source_rviz_frame_index": 4618,
+      "source_rviz_time_seconds": 184.72,
+      "step": 486
+    },
+    {
+      "capture_elapsed_seconds": 185.218937724,
+      "capture_quantization_error_seconds": 0.018937724000011258,
+      "frame_index": 244,
+      "sim_time_seconds": 9.789999781176448,
+      "source_rviz_frame_index": 4630,
+      "source_rviz_time_seconds": 185.2,
+      "step": 488
+    },
+    {
+      "capture_elapsed_seconds": 186.128900514,
+      "capture_quantization_error_seconds": 0.008900514000004023,
+      "frame_index": 245,
+      "sim_time_seconds": 9.829999780282378,
+      "source_rviz_frame_index": 4653,
+      "source_rviz_time_seconds": 186.12,
+      "step": 490
+    },
+    {
+      "capture_elapsed_seconds": 186.630942883,
+      "capture_quantization_error_seconds": 0.009057116999997561,
+      "frame_index": 246,
+      "sim_time_seconds": 9.869999779388309,
+      "source_rviz_frame_index": 4666,
+      "source_rviz_time_seconds": 186.64,
+      "step": 492
+    },
+    {
+      "capture_elapsed_seconds": 187.145818133,
+      "capture_quantization_error_seconds": 0.014181866999990689,
+      "frame_index": 247,
+      "sim_time_seconds": 9.909999778494239,
+      "source_rviz_frame_index": 4679,
+      "source_rviz_time_seconds": 187.16,
+      "step": 494
+    },
+    {
+      "capture_elapsed_seconds": 188.076992109,
+      "capture_quantization_error_seconds": 0.0030078910000099768,
+      "frame_index": 248,
+      "sim_time_seconds": 9.94999977760017,
+      "source_rviz_frame_index": 4702,
+      "source_rviz_time_seconds": 188.08,
+      "step": 496
+    },
+    {
+      "capture_elapsed_seconds": 188.583207055,
+      "capture_quantization_error_seconds": 0.016792944999991732,
+      "frame_index": 249,
+      "sim_time_seconds": 9.9899997767061,
+      "source_rviz_frame_index": 4715,
+      "source_rviz_time_seconds": 188.6,
+      "step": 498
+    },
+    {
+      "capture_elapsed_seconds": 189.484009358,
+      "capture_quantization_error_seconds": 0.004009358000018892,
+      "frame_index": 250,
+      "sim_time_seconds": 10.02999977581203,
+      "source_rviz_frame_index": 4737,
+      "source_rviz_time_seconds": 189.48,
+      "step": 500
+    }
+  ],
+  "input_sha256": {
+    "camera_trace": "edd6f02d6c18faea7361acec0306691c5dfc7d9c8f143133ac8dc6ea1e799f19",
+    "reference_first_view": "62d254f90376689b96256947ae69576853ddac086afb26470c57b2c0d99db7b4",
+    "source_rviz_video": "f607c2a90e7cb7b4853ecc8833fba91b979bc9956bd2cdb36745e860508cdfd3",
+    "timeline": "3c117b19d999b580dc95b2d4d78236ba30ed4495519b0f64ab16f1a64a48800d"
+  },
+  "max_capture_quantization_error_seconds": 0.01998243699999591,
+  "mode": "native_rviz_wall_clock_to_simulator_time_frame_selection",
+  "output_sha256": "86adf32260dbd61ff55c9bbca0e02c3310867e575b157a90b010a212aee1510f",
+  "poll_seconds": 0.005,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "schema_version": 1,
+  "source_rviz_fps": 25.0,
+  "source_rviz_frame_count": 6264
+}

@@ -524,6 +524,7 @@ class EntrypointWiringTest(unittest.TestCase):
         self.assertIn("office-review-camera-focal-length-mm", shared)
         self.assertIn("office_review_output_sha256.txt", shared)
         self.assertIn("SCAN_NATIVE_RVIZ_ENABLED", shared)
+        self.assertIn("SCAN_NATIVE_RVIZ_PRESTART_GATE", shared)
         self.assertIn("SCAN_VISUAL_REVIEW_ONLY", shared)
         self.assertIn("SCAN_RECORD_ROSBAG", shared)
         self.assertIn("rosbag.disabled.txt", shared)
@@ -561,6 +562,10 @@ class EntrypointWiringTest(unittest.TestCase):
         self.assertIn("native_scan_rviz3d_5070ti_sim_time.mp4", native_rviz)
         self.assertIn("office_review_terminal_validation.json", native_rviz)
         self.assertIn("office_review_third_person_rviz_4k.mp4", native_rviz)
+        self.assertIn("office_review_third_person_rviz_4k_transfer.mp4", native_rviz)
+        self.assertIn("live_pointcloud_continuity_audit.json", native_rviz)
+        self.assertIn("lite3_sim_bridge.delivery_reliability audit", native_rviz)
+        self.assertIn("lite3_sim_bridge.delivery_reliability compress", native_rviz)
         self.assertIn("office_pedestrian_motion_audit.json", native_rviz)
         self.assertIn(
             "SCAN_OFFICE_PEDESTRIAN_MOTION_MODE=background_ping_pong",
@@ -606,6 +611,12 @@ class EntrypointWiringTest(unittest.TestCase):
         self.assertIn("file://{}/meshes/", native_rviz_launch)
         self.assertIn('"source_mode": "live"', native_rviz_launch)
         self.assertIn('"robot_root_frame": "TORSO"', native_rviz_launch)
+        self.assertIn('"require_live_lidar": True', native_rviz_launch)
+        self.assertIn("SCAN_NATIVE_RVIZ_PRESTART_GATE=1", native_rviz)
+        self.assertLess(
+            native_rviz_launch.index('executable="rviz_replay_node"'),
+            native_rviz_launch.index('executable="robot_state_publisher"'),
+        )
 
 
 if __name__ == "__main__":

@@ -137,6 +137,7 @@ VOXEL_CAPTURE_PERIOD_SECONDS=${SCAN_VOXEL_CAPTURE_PERIOD_SECONDS:-0.1}
 VISUAL_REVIEW_ONLY=${SCAN_VISUAL_REVIEW_ONLY:-0}
 RECORD_ROSBAG=${SCAN_RECORD_ROSBAG:-1}
 NATIVE_RVIZ_ENABLED=${SCAN_NATIVE_RVIZ_ENABLED:-0}
+NATIVE_RVIZ_PRESTART_GATE=${SCAN_NATIVE_RVIZ_PRESTART_GATE:-0}
 NATIVE_RVIZ_DISPLAY=${SCAN_NATIVE_RVIZ_DISPLAY:-:0}
 NATIVE_RVIZ_XAUTHORITY=${SCAN_NATIVE_RVIZ_XAUTHORITY:-/run/user/1000/gdm/Xauthority}
 NATIVE_RVIZ_IMAGE=${SCAN_NATIVE_RVIZ_IMAGE:-localhost/machine-dog-nav/foxy-scan-rviz:20260818}
@@ -199,6 +200,14 @@ if [[ $VISUAL_REVIEW_ONLY == 1 ]] \
 fi
 if [[ $NATIVE_RVIZ_ENABLED != 0 && $NATIVE_RVIZ_ENABLED != 1 ]]; then
   echo "SCAN_NATIVE_RVIZ_ENABLED must be 0 or 1" >&2
+  exit 64
+fi
+if [[ $NATIVE_RVIZ_PRESTART_GATE != 0 && $NATIVE_RVIZ_PRESTART_GATE != 1 ]]; then
+  echo "SCAN_NATIVE_RVIZ_PRESTART_GATE must be 0 or 1" >&2
+  exit 64
+fi
+if [[ $NATIVE_RVIZ_PRESTART_GATE == 1 && $NATIVE_RVIZ_ENABLED != 1 ]]; then
+  echo "SCAN_NATIVE_RVIZ_PRESTART_GATE=1 requires native RViz" >&2
   exit 64
 fi
 if [[ ! $VOXEL_CAPTURE_PERIOD_SECONDS =~ ^([0-9]+([.][0-9]*)?|[.][0-9]+)$ ]] \
@@ -556,6 +565,7 @@ fi
   printf 'visual_review_only=%s\n' "$VISUAL_REVIEW_ONLY"
   printf 'record_rosbag=%s\n' "$RECORD_ROSBAG"
   printf 'native_rviz_enabled=%s\n' "$NATIVE_RVIZ_ENABLED"
+  printf 'native_rviz_prestart_gate=%s\n' "$NATIVE_RVIZ_PRESTART_GATE"
   printf 'native_rviz_display=%s\n' "$NATIVE_RVIZ_DISPLAY"
   printf 'native_rviz_image=%s\n' "$CONTAINER_IMAGE"
   printf 'native_rviz_config_rel=%s\n' "$NATIVE_RVIZ_CONFIG_REL"
@@ -677,6 +687,10 @@ if (( ports_ready != 1 )); then
   wait "$ISAAC_PID" || true
   echo "Isaac endpoints did not become ready" >&2
   exit 70
+fi
+
+if [[ $NATIVE_RVIZ_PRESTART_GATE == 1 ]]; then
+  kill -STOP "$ISAAC_PID"
 fi
 
 set +e
@@ -864,7 +878,46 @@ podman run --rm --name "$CONTAINER_NAME" \
       echo "voxel capture exited unexpectedly: $CAPTURE_CODE" >&2
       exit 1
     fi
-  '
+  ' &
+container_pid=$!
+
+if [[ $NATIVE_RVIZ_PRESTART_GATE == 1 ]]; then
+  prestart_ready=0
+  for _ in $(seq 1 600); do
+    if podman container exists "$CONTAINER_NAME" 2>/dev/null \
+      && podman exec "$CONTAINER_NAME" bash -lc '
+        source /opt/ros/foxy/setup.bash
+        ros2 node list 2>/dev/null | grep -qx /lite3_native_rviz_review
+        ros2 topic info /quad_0/cloud 2>/dev/null \
+          | grep -Eq "Subscription count: [1-9][0-9]*"
+      '; then
+      prestart_ready=1
+      break
+    fi
+    if ! kill -0 "$container_pid" 2>/dev/null \
+      || ! kill -0 "$ISAAC_PID" 2>/dev/null; then
+      break
+    fi
+    sleep 0.25
+  done
+  {
+    printf 'prestart_gate=1\n'
+    printf 'subscription_ready=%s\n' "$prestart_ready"
+    printf 'source_topic=/quad_0/cloud\n'
+    printf 'source_mode=live\n'
+  } >"$OUTPUT_DIR/native_rviz_prestart_gate.txt"
+  kill -CONT "$ISAAC_PID" 2>/dev/null || true
+  if (( prestart_ready != 1 )); then
+    podman stop --time 5 "$CONTAINER_NAME" >/dev/null 2>&1 || true
+    wait "$container_pid" || true
+    wait "$ISAAC_PID" || true
+    set -e
+    echo "native RViz live-cloud subscription was not ready before Isaac" >&2
+    exit 70
+  fi
+fi
+
+wait "$container_pid"
 container_code=$?
 wait "$ISAAC_PID"
 isaac_code=$?

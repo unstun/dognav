@@ -22,14 +22,8 @@ def _launch_nodes(context):
     )
 
     return [
-        Node(
-            package="robot_state_publisher",
-            executable="robot_state_publisher",
-            name="lite3_robot_state_publisher",
-            output="screen",
-            parameters=[{"robot_description": robot_description}],
-            remappings=[("joint_states", "/quad_0/joint_states")],
-        ),
+        # Start the observation-only live-cloud audit before the heavier URDF
+        # publisher so the short preflight does not lose its startup scans.
         Node(
             package="lite3_sim_bridge",
             executable="rviz_replay_node",
@@ -43,9 +37,17 @@ def _launch_nodes(context):
                     "sample_count": 160,
                     "audit_path": LaunchConfiguration("audit_path"),
                     "preload_first_snapshot": False,
-                    "require_live_lidar": False,
+                    "require_live_lidar": True,
                 }
             ],
+        ),
+        Node(
+            package="robot_state_publisher",
+            executable="robot_state_publisher",
+            name="lite3_robot_state_publisher",
+            output="screen",
+            parameters=[{"robot_description": robot_description}],
+            remappings=[("joint_states", "/quad_0/joint_states")],
         ),
     ]
 

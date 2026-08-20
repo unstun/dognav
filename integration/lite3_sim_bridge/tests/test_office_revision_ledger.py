@@ -50,6 +50,40 @@ class OfficeRevisionLedgerTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "evidence hash mismatch"):
                 VALIDATOR.validate(path, REPOSITORY_ROOT)
 
+    def test_revision_history_cannot_drop_parent_revision(self) -> None:
+        payload = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
+        payload["revision_history"] = payload["revision_history"][1:]
+        with tempfile.TemporaryDirectory() as directory:
+            path = self._write_payload(payload, directory)
+            with self.assertRaisesRegex(ValueError, "parent"):
+                VALIDATOR.validate(path, REPOSITORY_ROOT)
+
+    def test_revision_parent_chain_must_be_append_only(self) -> None:
+        payload = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
+        payload["revision_history"][1]["parent_revision"] = None
+        payload["current_working_revision"] = payload["revision_history"][-1]
+        with tempfile.TemporaryDirectory() as directory:
+            path = self._write_payload(payload, directory)
+            with self.assertRaisesRegex(ValueError, "parent"):
+                VALIDATOR.validate(path, REPOSITORY_ROOT)
+
+    def test_current_revision_must_match_history_tail(self) -> None:
+        payload = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
+        payload["current_working_revision"]["status"] = "drifted"
+        with tempfile.TemporaryDirectory() as directory:
+            path = self._write_payload(payload, directory)
+            with self.assertRaisesRegex(ValueError, "final revision_history entry"):
+                VALIDATOR.validate(path, REPOSITORY_ROOT)
+
+    def test_planned_revision_requires_fail_closed_gate_inventory(self) -> None:
+        payload = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
+        payload["revision_history"][1]["automated_gates"] = []
+        payload["current_working_revision"] = payload["revision_history"][-1]
+        with tempfile.TemporaryDirectory() as directory:
+            path = self._write_payload(payload, directory)
+            with self.assertRaisesRegex(ValueError, "automated_gates"):
+                VALIDATOR.validate(path, REPOSITORY_ROOT)
+
 
 if __name__ == "__main__":
     unittest.main()

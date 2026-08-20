@@ -1,0 +1,585 @@
+{
+  "bbox_publish_count": 0,
+  "bbox_snapshot_files": [],
+  "body_pose_count": 99,
+  "checks": {
+    "all_bspline_paths_use_declared_sample_count": true,
+    "all_received_live_lidar_nonempty": true,
+    "body_path_has_multiple_poses": true,
+    "body_stamps_strictly_increase": true,
+    "bspline_observed": true,
+    "bspline_sampling_errors_zero": true,
+    "current_pose_matches_body_path": true,
+    "live_lidar_audit_enabled": false,
+    "live_lidar_observed_when_required": false,
+    "live_lidar_simulator_gap_max_le_0_2_seconds": true,
+    "live_lidar_stamps_strictly_increase": true,
+    "root_transform_matches_body_path": true
+  },
+  "claim_boundary": "ROS 2 Foxy live visualization adapter; the SCAN planned path is sampled from each received /planning/bspline message, while the actual path, current pose, and robot-root transform come from /quad_0/body_pose in the same run; no planning, simulator stepping, or post-render path drawing is performed",
+  "current_pose_publish_count": 99,
+  "first_body_stamp_ns": 29999999,
+  "last_body_stamp_ns": 10029999775,
+  "live_lidar_empty_count": 0,
+  "live_lidar_first_stamp_ns": 29999999,
+  "live_lidar_last_stamp_ns": 10029999775,
+  "live_lidar_nonempty_count": 99,
+  "live_lidar_observations": [
+    {
+      "point_count": 15783,
+      "stamp_ns": 29999999,
+      "wall_time_ns": 14164665610905
+    },
+    {
+      "point_count": 15744,
+      "stamp_ns": 129999997,
+      "wall_time_ns": 14167703437912
+    },
+    {
+      "point_count": 15781,
+      "stamp_ns": 229999994,
+      "wall_time_ns": 14169588449313
+    },
+    {
+      "point_count": 15973,
+      "stamp_ns": 329999992,
+      "wall_time_ns": 14172063946439
+    },
+    {
+      "point_count": 15856,
+      "stamp_ns": 429999990,
+      "wall_time_ns": 14173936090518
+    },
+    {
+      "point_count": 15863,
+      "stamp_ns": 529999988,
+      "wall_time_ns": 14176055255746
+    },
+    {
+      "point_count": 15865,
+      "stamp_ns": 629999985,
+      "wall_time_ns": 14177706933545
+    },
+    {
+      "point_count": 15917,
+      "stamp_ns": 729999983,
+      "wall_time_ns": 14179814604853
+    },
+    {
+      "point_count": 15963,
+      "stamp_ns": 829999981,
+      "wall_time_ns": 14181515443662
+    },
+    {
+      "point_count": 15983,
+      "stamp_ns": 929999979,
+      "wall_time_ns": 14183626459362
+    },
+    {
+      "point_count": 15932,
+      "stamp_ns": 1029999976,
+      "wall_time_ns": 14185604803727
+    },
+    {
+      "point_count": 15849,
+      "stamp_ns": 1129999974,
+      "wall_time_ns": 14187643967964
+    },
+    {
+      "point_count": 15872,
+      "stamp_ns": 1229999972,
+      "wall_time_ns": 14189166588179
+    },
+    {
+      "point_count": 15886,
+      "stamp_ns": 1429999968,
+      "wall_time_ns": 14193294872680
+    },
+    {
+      "point_count": 15862,
+      "stamp_ns": 1629999963,
+      "wall_time_ns": 14197044287948
+    },
+    {
+      "point_count": 15757,
+      "stamp_ns": 1729999961,
+      "wall_time_ns": 14198994088020
+    },
+    {
+      "point_count": 15717,
+      "stamp_ns": 1829999959,
+      "wall_time_ns": 14200444891773
+    },
+    {
+      "point_count": 15718,
+      "stamp_ns": 1929999956,
+      "wall_time_ns": 14202633192135
+    },
+    {
+      "point_count": 15714,
+      "stamp_ns": 2029999954,
+      "wall_time_ns": 14204084583442
+    },
+    {
+      "point_count": 15672,
+      "stamp_ns": 2129999952,
+      "wall_time_ns": 14205984583820
+    },
+    {
+      "point_count": 15734,
+      "stamp_ns": 2229999950,
+      "wall_time_ns": 14207444148653
+    },
+    {
+      "point_count": 15684,
+      "stamp_ns": 2329999947,
+      "wall_time_ns": 14209346891904
+    },
+    {
+      "point_count": 15740,
+      "stamp_ns": 2429999945,
+      "wall_time_ns": 14210785541484
+    },
+    {
+      "point_count": 15739,
+      "stamp_ns": 2529999943,
+      "wall_time_ns": 14212685644753
+    },
+    {
+      "point_count": 15716,
+      "stamp_ns": 2629999941,
+      "wall_time_ns": 14214136018803
+    },
+    {
+      "point_count": 15654,
+      "stamp_ns": 2729999938,
+      "wall_time_ns": 14216033423499
+    },
+    {
+      "point_count": 15717,
+      "stamp_ns": 2829999936,
+      "wall_time_ns": 14217777043149
+    },
+    {
+      "point_count": 15593,
+      "stamp_ns": 2929999934,
+      "wall_time_ns": 14219644174269
+    },
+    {
+      "point_count": 15631,
+      "stamp_ns": 3029999932,
+      "wall_time_ns": 14221095520678
+    },
+    {
+      "point_count": 15605,
+      "stamp_ns": 3129999930,
+      "wall_time_ns": 14223005877749
+    },
+    {
+      "point_count": 15636,
+      "stamp_ns": 3229999927,
+      "wall_time_ns": 14224474448811
+    },
+    {
+      "point_count": 15675,
+      "stamp_ns": 3329999925,
+      "wall_time_ns": 14226364197545
+    },
+    {
+      "point_count": 15571,
+      "stamp_ns": 3429999923,
+      "wall_time_ns": 14227825129077
+    },
+    {
+      "point_count": 15583,
+      "stamp_ns": 3529999921,
+      "wall_time_ns": 14229714925023
+    },
+    {
+      "point_count": 15550,
+      "stamp_ns": 3629999918,
+      "wall_time_ns": 14231194354035
+    },
+    {
+      "point_count": 15538,
+      "stamp_ns": 3729999916,
+      "wall_time_ns": 14233394450779
+    },
+    {
+      "point_count": 15579,
+      "stamp_ns": 3829999914,
+      "wall_time_ns": 14234843978000
+    },
+    {
+      "point_count": 15510,
+      "stamp_ns": 3929999912,
+      "wall_time_ns": 14236765099384
+    },
+    {
+      "point_count": 15523,
+      "stamp_ns": 4029999909,
+      "wall_time_ns": 14238255312226
+    },
+    {
+      "point_count": 15561,
+      "stamp_ns": 4129999907,
+      "wall_time_ns": 14240157042945
+    },
+    {
+      "point_count": 15495,
+      "stamp_ns": 4229999905,
+      "wall_time_ns": 14241624722110
+    },
+    {
+      "point_count": 15531,
+      "stamp_ns": 4329999903,
+      "wall_time_ns": 14243542945423
+    },
+    {
+      "point_count": 15478,
+      "stamp_ns": 4429999900,
+      "wall_time_ns": 14245004849772
+    },
+    {
+      "point_count": 15535,
+      "stamp_ns": 4529999898,
+      "wall_time_ns": 14246914250859
+    },
+    {
+      "point_count": 15542,
+      "stamp_ns": 4629999896,
+      "wall_time_ns": 14248646011732
+    },
+    {
+      "point_count": 15456,
+      "stamp_ns": 4729999894,
+      "wall_time_ns": 14250533971810
+    },
+    {
+      "point_count": 15483,
+      "stamp_ns": 4829999892,
+      "wall_time_ns": 14251995298423
+    },
+    {
+      "point_count": 15441,
+      "stamp_ns": 4929999889,
+      "wall_time_ns": 14253894411491
+    },
+    {
+      "point_count": 15395,
+      "stamp_ns": 5029999887,
+      "wall_time_ns": 14255355211971
+    },
+    {
+      "point_count": 15377,
+      "stamp_ns": 5129999885,
+      "wall_time_ns": 14257234607250
+    },
+    {
+      "point_count": 15315,
+      "stamp_ns": 5229999883,
+      "wall_time_ns": 14258674839125
+    },
+    {
+      "point_count": 15308,
+      "stamp_ns": 5329999880,
+      "wall_time_ns": 14260562887109
+    },
+    {
+      "point_count": 15431,
+      "stamp_ns": 5429999878,
+      "wall_time_ns": 14262025018037
+    },
+    {
+      "point_count": 15275,
+      "stamp_ns": 5529999876,
+      "wall_time_ns": 14263903655963
+    },
+    {
+      "point_count": 15364,
+      "stamp_ns": 5629999874,
+      "wall_time_ns": 14265637644076
+    },
+    {
+      "point_count": 15311,
+      "stamp_ns": 5729999871,
+      "wall_time_ns": 14267523754246
+    },
+    {
+      "point_count": 15321,
+      "stamp_ns": 5829999869,
+      "wall_time_ns": 14268945586435
+    },
+    {
+      "point_count": 15359,
+      "stamp_ns": 5929999867,
+      "wall_time_ns": 14270823713662
+    },
+    {
+      "point_count": 15284,
+      "stamp_ns": 6029999865,
+      "wall_time_ns": 14272255112148
+    },
+    {
+      "point_count": 15304,
+      "stamp_ns": 6129999862,
+      "wall_time_ns": 14274143133085
+    },
+    {
+      "point_count": 15271,
+      "stamp_ns": 6229999860,
+      "wall_time_ns": 14275594313516
+    },
+    {
+      "point_count": 15246,
+      "stamp_ns": 6329999858,
+      "wall_time_ns": 14277485355597
+    },
+    {
+      "point_count": 15321,
+      "stamp_ns": 6429999856,
+      "wall_time_ns": 14278955106996
+    },
+    {
+      "point_count": 15278,
+      "stamp_ns": 6529999854,
+      "wall_time_ns": 14281143552268
+    },
+    {
+      "point_count": 15400,
+      "stamp_ns": 6629999851,
+      "wall_time_ns": 14282586319742
+    },
+    {
+      "point_count": 15395,
+      "stamp_ns": 6729999849,
+      "wall_time_ns": 14284473360052
+    },
+    {
+      "point_count": 15324,
+      "stamp_ns": 6829999847,
+      "wall_time_ns": 14285924558245
+    },
+    {
+      "point_count": 15351,
+      "stamp_ns": 6929999845,
+      "wall_time_ns": 14287813850418
+    },
+    {
+      "point_count": 15409,
+      "stamp_ns": 7029999842,
+      "wall_time_ns": 14289244157932
+    },
+    {
+      "point_count": 15445,
+      "stamp_ns": 7129999840,
+      "wall_time_ns": 14291124268545
+    },
+    {
+      "point_count": 15523,
+      "stamp_ns": 7229999838,
+      "wall_time_ns": 14292585483631
+    },
+    {
+      "point_count": 15433,
+      "stamp_ns": 7329999836,
+      "wall_time_ns": 14294475304901
+    },
+    {
+      "point_count": 15466,
+      "stamp_ns": 7429999833,
+      "wall_time_ns": 14296205787283
+    },
+    {
+      "point_count": 15564,
+      "stamp_ns": 7529999831,
+      "wall_time_ns": 14298103617664
+    },
+    {
+      "point_count": 15491,
+      "stamp_ns": 7629999829,
+      "wall_time_ns": 14299564923574
+    },
+    {
+      "point_count": 15632,
+      "stamp_ns": 7729999827,
+      "wall_time_ns": 14301433407654
+    },
+    {
+      "point_count": 15654,
+      "stamp_ns": 7829999824,
+      "wall_time_ns": 14302884651234
+    },
+    {
+      "point_count": 15548,
+      "stamp_ns": 7929999822,
+      "wall_time_ns": 14304774871532
+    },
+    {
+      "point_count": 15613,
+      "stamp_ns": 8029999820,
+      "wall_time_ns": 14306205170954
+    },
+    {
+      "point_count": 15589,
+      "stamp_ns": 8129999818,
+      "wall_time_ns": 14308085454056
+    },
+    {
+      "point_count": 15512,
+      "stamp_ns": 8229999816,
+      "wall_time_ns": 14309554912669
+    },
+    {
+      "point_count": 15550,
+      "stamp_ns": 8329999813,
+      "wall_time_ns": 14311473310528
+    },
+    {
+      "point_count": 15460,
+      "stamp_ns": 8429999811,
+      "wall_time_ns": 14313194306551
+    },
+    {
+      "point_count": 15509,
+      "stamp_ns": 8529999809,
+      "wall_time_ns": 14315103829124
+    },
+    {
+      "point_count": 15630,
+      "stamp_ns": 8629999807,
+      "wall_time_ns": 14316553927519
+    },
+    {
+      "point_count": 15585,
+      "stamp_ns": 8729999804,
+      "wall_time_ns": 14318434501286
+    },
+    {
+      "point_count": 15593,
+      "stamp_ns": 8829999802,
+      "wall_time_ns": 14319864298937
+    },
+    {
+      "point_count": 15574,
+      "stamp_ns": 8929999800,
+      "wall_time_ns": 14321754534429
+    },
+    {
+      "point_count": 15715,
+      "stamp_ns": 9029999798,
+      "wall_time_ns": 14323195883676
+    },
+    {
+      "point_count": 15603,
+      "stamp_ns": 9129999795,
+      "wall_time_ns": 14325066400606
+    },
+    {
+      "point_count": 15654,
+      "stamp_ns": 9229999793,
+      "wall_time_ns": 14326503987556
+    },
+    {
+      "point_count": 15632,
+      "stamp_ns": 9329999791,
+      "wall_time_ns": 14328703748021
+    },
+    {
+      "point_count": 15677,
+      "stamp_ns": 9429999789,
+      "wall_time_ns": 14330165101944
+    },
+    {
+      "point_count": 15538,
+      "stamp_ns": 9529999786,
+      "wall_time_ns": 14332044864974
+    },
+    {
+      "point_count": 15606,
+      "stamp_ns": 9629999784,
+      "wall_time_ns": 14333486678518
+    },
+    {
+      "point_count": 15542,
+      "stamp_ns": 9729999782,
+      "wall_time_ns": 14335353783776
+    },
+    {
+      "point_count": 15502,
+      "stamp_ns": 9829999780,
+      "wall_time_ns": 14336794879046
+    },
+    {
+      "point_count": 15421,
+      "stamp_ns": 9929999778,
+      "wall_time_ns": 14338694029607
+    },
+    {
+      "point_count": 15341,
+      "stamp_ns": 10029999775,
+      "wall_time_ns": 14340154235657
+    }
+  ],
+  "live_lidar_point_count": {
+    "max": 15983,
+    "median": 15564,
+    "min": 15246
+  },
+  "live_lidar_publish_count": 99,
+  "live_lidar_publish_count_semantics": "legacy handled-source-message count; no live cloud is republished",
+  "live_lidar_received_count": 99,
+  "live_lidar_simulator_time_gap": {
+    "max_seconds": 0.199999996,
+    "median_seconds": 0.099999998,
+    "min_seconds": 0.099999997,
+    "p95_seconds": 0.099999998
+  },
+  "live_lidar_stamp_regression_count": 0,
+  "live_lidar_wall_time_arrival_gap": {
+    "max_seconds": 4.128284501,
+    "median_seconds": 1.8713305045,
+    "min_seconds": 1.421832189,
+    "p95_seconds": 2.1998109068500002
+  },
+  "preloaded_snapshot_file": null,
+  "published_topics": [
+    "/review/lite3_actual_path",
+    "/review/lite3_current_pose",
+    "/review/scan_planned_path",
+    "/review/sliding_map_bbox",
+    "/review/occupancy",
+    "/review/occupancy_inflate",
+    "/tf:world_to_TORSO"
+  ],
+  "rejected_body_pose_count": 0,
+  "rejected_bspline_count": 0,
+  "require_live_lidar": false,
+  "root_transform_publish_count": 99,
+  "sample_count_per_trajectory": 160,
+  "schema_version": 2,
+  "source_mode": "live",
+  "source_topics": [
+    "/quad_0/cloud",
+    "/quad_0/body_pose",
+    "/planning/bspline"
+  ],
+  "status": "FAIL",
+  "trajectory_ids": [
+    1,
+    2,
+    3
+  ],
+  "trajectory_point_counts": {
+    "1": 160,
+    "2": 160,
+    "3": 160
+  },
+  "trajectory_start_stamps_ns": {
+    "1": 1787214891674613206,
+    "2": 1787214911372387759,
+    "3": 1787215035279487894
+  },
+  "voxel_point_counts": {},
+  "voxel_publish_count": 0
+}

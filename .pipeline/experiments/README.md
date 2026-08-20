@@ -12,9 +12,12 @@ The main record groups are:
 For the Office experiment, candidates 38 and 39 remain the immutable same-input
 evidence that passed the declared automated AC51--AC54 gate. AC55 remains a
 human gate owned by Dr Sun. The current working revision is
-`office-r2.0.0-preflight`, its presentation template is
-`office-dualview-v1.0.0`, and both `accepted_revision` and `formal_candidate`
-remain null. The source snapshot is backed by commit `f320db3c356a` on branch
+`office-r2.0.1-preflight`, parent `office-r2.0.0-preflight`; its only change
+group is `golden_dualview_delivery_reliability`. The presentation layout remains
+the frozen `office-dualview-v1.0.0` template, while its persistence/audit and
+transfer-delivery contract is `office-dualview-v1.0.1`. Both
+`accepted_revision` and `formal_candidate` remain null. The normalized parent
+snapshot is backed by commit `f320db3c356a` on branch
 `codex/scan-foxy-isaac`; archive commit `6dba7c2` and the canonical local
 experiment paths now contain the MID-360 and golden dual-view evidence. Large
 videos remain local-only by repository policy, with hashes and textual evidence
@@ -27,6 +30,16 @@ RViz synchronization checks passed, but it did not reach the goal, the
 full-duration pedestrian gate is `NOT_GATED`, it is not a new complete AC54
 run, and it cannot satisfy AC55 or formal validation. It does not replace
 candidates 38 or 39.
+
+`office_crowd_r2_0_1_live_cloud_transfer_preflight06` is the latest 10.04 s
+delivery-reliability preflight. It observes 96 of 101 genuine generated clouds
+(0.950495 coverage), finds no ROS-stamp regression, measures a 0.2 s maximum
+simulator-time receipt gap, and finds the cloud visible in all 251 delivered
+video frames. Its CRF 26 transfer entity is 11,543,483 bytes versus a
+58,781,800-byte master (80.36% smaller), fully decodes, and has SSIM 0.974314.
+Attempts 01--05 remain immutable failures. This is automated short-preflight
+evidence pending Dr Sun's visual review; it does not reach the goal, rerun AC54,
+decide AC55, or authorize a formal candidate.
 
 Before a behavior-changing run, record the parent implementation, motivation,
 exact change, expected signals, failure signals, command, local source commit,

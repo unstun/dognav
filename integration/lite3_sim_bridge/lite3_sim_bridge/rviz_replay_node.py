@@ -5,6 +5,7 @@ from __future__ import annotations
 import bisect
 import json
 from pathlib import Path
+import time
 
 import numpy as np
 import rclpy
@@ -157,6 +158,13 @@ class RvizReplayNode(Node):
             qos_profile_sensor_data,
         )
         self.create_subscription(Bspline, "/planning/bspline", self._bspline, 20)
+        if self._source_mode == "live":
+            self.create_subscription(
+                PointCloud2,
+                "/quad_0/cloud",
+                self._live_lidar,
+                qos_profile_sensor_data,
+            )
         if self._preload_first_snapshot and self._bbox_records:
             first_snapshot_file = self._bbox_records[0][1]
             self._publish_snapshot_file(first_snapshot_file, None)
@@ -224,6 +232,25 @@ class RvizReplayNode(Node):
             root_transform_published=root_transform_published
         )
         self._publish_snapshot(stamp_ns, message.header.stamp)
+
+    def _live_lidar(self, message: PointCloud2) -> None:
+        """Observe the same cloud RViz receives; never mutate or republish it."""
+
+        declared_point_count = int(message.width) * int(message.height)
+        expected_data_size = int(message.row_step) * int(message.height)
+        point_count = (
+            declared_point_count
+            if declared_point_count > 0
+            and int(message.point_step) > 0
+            and expected_data_size > 0
+            and len(message.data) >= expected_data_size
+            else 0
+        )
+        self._audit.accept_live_lidar_message(
+            stamp_ns=_stamp_ns(message.header.stamp),
+            point_count=point_count,
+            wall_time_ns=time.monotonic_ns(),
+        )
 
     def _publish_snapshot(self, body_stamp_ns: int, header_stamp) -> None:
         if not self._bbox_records:

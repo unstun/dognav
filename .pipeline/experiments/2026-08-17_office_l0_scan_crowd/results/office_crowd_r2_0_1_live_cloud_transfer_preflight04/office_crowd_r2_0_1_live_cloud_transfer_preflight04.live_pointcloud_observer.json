@@ -1,0 +1,10 @@
+{
+  "claim_boundary": "Pre-started observation-only same-run subscription to /quad_0/cloud; messages are counted but never modified, republished, replayed, or synthesized.",
+  "nonempty_message_count": 0,
+  "observations": [],
+  "ros_received_message_count": 0,
+  "schema_version": 1,
+  "source_mode": "live",
+  "source_topic": "/quad_0/cloud",
+  "status": "FAIL"
+}

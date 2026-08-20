@@ -3,7 +3,34 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import math
+import statistics
 from typing import Mapping
+
+
+def _percentile(values: list[float], percentile: float) -> float | None:
+    if not values:
+        return None
+    ordered = sorted(float(value) for value in values)
+    if len(ordered) == 1:
+        return ordered[0]
+    position = (len(ordered) - 1) * float(percentile)
+    lower = math.floor(position)
+    upper = math.ceil(position)
+    if lower == upper:
+        return ordered[lower]
+    weight = position - lower
+    return ordered[lower] * (1.0 - weight) + ordered[upper] * weight
+
+
+def _gap_statistics(values_ns: list[int]) -> Mapping[str, float | None]:
+    seconds = [float(value) / 1.0e9 for value in values_ns]
+    return {
+        "min_seconds": min(seconds) if seconds else None,
+        "median_seconds": statistics.median(seconds) if seconds else None,
+        "p95_seconds": _percentile(seconds, 0.95),
+        "max_seconds": max(seconds) if seconds else None,
+    }
 
 
 @dataclass
@@ -27,6 +54,17 @@ class ReplayAuditState:
     voxel_publish_count: int = 0
     voxel_point_counts: dict[str, dict[str, int]] = field(default_factory=dict)
     live_lidar_publish_count: int = 0
+    live_lidar_received_count: int = 0
+    live_lidar_nonempty_count: int = 0
+    live_lidar_empty_count: int = 0
+    live_lidar_stamp_regression_count: int = 0
+    live_lidar_first_stamp_ns: int | None = None
+    live_lidar_last_stamp_ns: int | None = None
+    live_lidar_simulator_gap_ns: list[int] = field(default_factory=list)
+    live_lidar_wall_gap_ns: list[int] = field(default_factory=list)
+    live_lidar_point_counts: list[int] = field(default_factory=list)
+    live_lidar_observations: list[dict[str, int]] = field(default_factory=list)
+    _last_live_lidar_wall_time_ns: int | None = None
     preloaded_snapshot_file: str | None = None
     current_pose_publish_count: int = 0
     root_transform_publish_count: int = 0
@@ -97,6 +135,56 @@ class ReplayAuditState:
             "live_lidar": checked_live_count,
         }
 
+    def accept_live_lidar_message(
+        self, *, stamp_ns: int, point_count: int, wall_time_ns: int
+    ) -> None:
+        """Observe one genuine live cloud without altering or republishing it."""
+
+        checked_stamp = int(stamp_ns)
+        checked_point_count = int(point_count)
+        checked_wall_time = int(wall_time_ns)
+        if checked_stamp < 0 or checked_point_count < 0 or checked_wall_time <= 0:
+            raise ValueError("live LiDAR stamp/count/wall time must be nonnegative")
+        if (
+            self._last_live_lidar_wall_time_ns is not None
+            and checked_wall_time <= self._last_live_lidar_wall_time_ns
+        ):
+            raise ValueError("live LiDAR wall time must strictly increase")
+
+        self.live_lidar_received_count += 1
+        # Compatibility field retained for the prior audit schema. In live mode
+        # this counts handled source messages; the node still publishes no cloud.
+        self.live_lidar_publish_count += 1
+        self.live_lidar_point_counts.append(checked_point_count)
+        if checked_point_count > 0:
+            self.live_lidar_nonempty_count += 1
+        else:
+            self.live_lidar_empty_count += 1
+
+        if self.live_lidar_first_stamp_ns is None:
+            self.live_lidar_first_stamp_ns = checked_stamp
+        if self.live_lidar_last_stamp_ns is not None:
+            gap_ns = checked_stamp - self.live_lidar_last_stamp_ns
+            if gap_ns <= 0:
+                self.live_lidar_stamp_regression_count += 1
+            else:
+                self.live_lidar_simulator_gap_ns.append(gap_ns)
+                self.live_lidar_last_stamp_ns = checked_stamp
+        else:
+            self.live_lidar_last_stamp_ns = checked_stamp
+        if self._last_live_lidar_wall_time_ns is not None:
+            self.live_lidar_wall_gap_ns.append(
+                checked_wall_time - self._last_live_lidar_wall_time_ns
+            )
+        self._last_live_lidar_wall_time_ns = checked_wall_time
+        self.live_lidar_observations.append(
+            {
+                "stamp_ns": checked_stamp,
+                "wall_time_ns": checked_wall_time,
+                "point_count": checked_point_count,
+            }
+        )
+
     def record_preloaded_snapshot(self, snapshot_file: str) -> None:
         self.preloaded_snapshot_file = str(snapshot_file)
 
@@ -142,6 +230,33 @@ class ReplayAuditState:
                     ),
                 }
             )
+        if self.source_mode == "live":
+            simulator_gap_statistics = _gap_statistics(
+                self.live_lidar_simulator_gap_ns
+            )
+            checks.update(
+                {
+                    "live_lidar_audit_enabled": self.require_live_lidar,
+                    "live_lidar_observed_when_required": (
+                        self.require_live_lidar
+                        and self.live_lidar_received_count > 0
+                        and self.live_lidar_publish_count > 0
+                    ),
+                    "all_received_live_lidar_nonempty": (
+                        self.live_lidar_received_count > 0
+                        and self.live_lidar_nonempty_count
+                        == self.live_lidar_received_count
+                        and self.live_lidar_empty_count == 0
+                    ),
+                    "live_lidar_stamps_strictly_increase": (
+                        self.live_lidar_stamp_regression_count == 0
+                    ),
+                    "live_lidar_simulator_gap_max_le_0_2_seconds": (
+                        simulator_gap_statistics["max_seconds"] is not None
+                        and float(simulator_gap_statistics["max_seconds"]) <= 0.2
+                    ),
+                }
+            )
         published_topics = [
             "/review/lite3_actual_path",
             "/review/lite3_current_pose",
@@ -150,7 +265,7 @@ class ReplayAuditState:
             "/review/occupancy",
             "/review/occupancy_inflate",
         ]
-        if self.live_lidar_publish_count > 0:
+        if self.source_mode == "replay" and self.live_lidar_publish_count > 0:
             published_topics.append("/review/live_lidar")
         if self.root_transform_publish_count > 0:
             published_topics.append("/tf:world_to_TORSO")
@@ -202,6 +317,37 @@ class ReplayAuditState:
             "bbox_snapshot_files": sorted(self.bbox_snapshot_files),
             "voxel_publish_count": self.voxel_publish_count,
             "live_lidar_publish_count": self.live_lidar_publish_count,
+            "live_lidar_publish_count_semantics": (
+                "legacy handled-source-message count; no live cloud is republished"
+                if self.source_mode == "live"
+                else "replayed snapshot publication count"
+            ),
+            "live_lidar_received_count": self.live_lidar_received_count,
+            "live_lidar_nonempty_count": self.live_lidar_nonempty_count,
+            "live_lidar_empty_count": self.live_lidar_empty_count,
+            "live_lidar_first_stamp_ns": self.live_lidar_first_stamp_ns,
+            "live_lidar_last_stamp_ns": self.live_lidar_last_stamp_ns,
+            "live_lidar_stamp_regression_count": (
+                self.live_lidar_stamp_regression_count
+            ),
+            "live_lidar_simulator_time_gap": _gap_statistics(
+                self.live_lidar_simulator_gap_ns
+            ),
+            "live_lidar_wall_time_arrival_gap": _gap_statistics(
+                self.live_lidar_wall_gap_ns
+            ),
+            "live_lidar_point_count": {
+                "min": min(self.live_lidar_point_counts)
+                if self.live_lidar_point_counts
+                else None,
+                "median": statistics.median(self.live_lidar_point_counts)
+                if self.live_lidar_point_counts
+                else None,
+                "max": max(self.live_lidar_point_counts)
+                if self.live_lidar_point_counts
+                else None,
+            },
+            "live_lidar_observations": self.live_lidar_observations,
             "current_pose_publish_count": self.current_pose_publish_count,
             "root_transform_publish_count": self.root_transform_publish_count,
             "preloaded_snapshot_file": self.preloaded_snapshot_file,

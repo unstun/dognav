@@ -1,0 +1,40 @@
+{
+  "checks": {
+    "frame_count_matches_trace": true,
+    "frame_rate_25fps": true,
+    "h264_yuv420p": true,
+    "resolution_dual_4k": true
+  },
+  "layout": {
+    "panels": {
+      "left": "high external side third-person view",
+      "right": "native 5070 Ti SCAN RViz synchronized to simulator time"
+    },
+    "resolution": [
+      3840,
+      1080
+    ]
+  },
+  "probe": {
+    "format": {
+      "duration": "10.040000",
+      "size": "58781800"
+    },
+    "programs": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "height": 1080,
+        "nb_frames": "251",
+        "nb_read_frames": "251",
+        "pix_fmt": "yuv420p",
+        "profile": "High",
+        "r_frame_rate": "25/1",
+        "width": 3840
+      }
+    ]
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "trace_frame_count": 251
+}

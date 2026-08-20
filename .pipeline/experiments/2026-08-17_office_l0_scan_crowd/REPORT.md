@@ -1,15 +1,17 @@
 # Office L0 Lite3 + SCAN-Planner + Eight-Pedestrian Closed Loop
 
-> Record opened: 2026-08-17; latest update: 2026-08-19
+> Record opened: 2026-08-17; latest update: 2026-08-20
 > Branch: `codex/scan-foxy-isaac`
-> Archive commit: `6dba7c2`
+> Parent-state archive commit: `6dba7c2`
 > Tasks: `.trellis/tasks/07-23-scan-planner-reproduction` and child
-> `.trellis/tasks/08-17-office-crowd-review-visual-r2`
+> `.trellis/tasks/08-17-office-crowd-review-visual-r2` and child
+> `.trellis/tasks/08-20-office-r2-0-1-live-cloud-transfer`
 > Stage: `experiment + analysis`
 > Status: candidates 38 and 39 retain AC54 PASS under their immutable old
-> inputs. The current source-backed MID-360 result is golden dual-view short
-> preflight02 only; it has not rerun AC54, AC55 remains pending, and no accepted
-> revision or formal candidate exists.
+> inputs. The current working revision is `office-r2.0.1-preflight`; its sixth
+> 10.04-second delivery-reliability preflight passed declared automated checks
+> and remains pending Dr Sun's visual review. It has not rerun AC54, AC55 remains
+> pending, and no accepted revision or formal candidate exists.
 
 ## 1. Result
 
@@ -381,3 +383,51 @@ This run does not reach the Office goal, does not rerun AC54 under the new
 sensor input, does not authorize full dry runs or a formal candidate, and
 cannot satisfy AC55. The next action is to wait for Dr Sun's visual-preflight
 decision.
+
+## 13. R2.0.1 live-cloud and transfer-delivery reliability preflight
+
+`office-r2.0.1-preflight` is a one-change-group instrumentation and delivery
+patch over `office-r2.0.0-preflight`. The confirmed display defect was a clock
+domain mismatch: genuine MID-360 scans remain 10 Hz in simulator time, while
+the approximately 0.051 real-time factor makes successive arrivals several
+wall-clock seconds apart. RViz's former 0.4 s decay therefore expired the last
+cloud before the next real cloud arrived. The repair sets only the native
+`Live LiDAR Cloud` display decay to zero, whose Foxy meaning is to retain the
+latest points until replaced; it does not alter the sensor schedule, pattern,
+range, ray count, timestamps, planner, route, policy, robot, or pedestrians.
+
+The live-mode audit is now observation-only and fail-closed. It subscribes to
+the same-run `/quad_0/cloud`, requires at least one real observation, checks
+nonempty clouds and strictly increasing stamps, separates simulator-time gaps
+from recorded wall-clock gaps, and verifies the delivered combined video rather
+than inferring visibility from ROS receipt alone. A native-RViz prestart gate
+pauses Isaac until the original same-container subscriber is ready, removing a
+short-run startup measurement race without changing any simulated timing.
+
+Five attempts remain immutable negative evidence. `preflight01` exposed a stale
+Foxy install tree; `preflight02` and `preflight03` each received 95/101 clouds
+and correctly failed the 0.95 coverage gate; `preflight04` and `preflight05`
+showed that a separate observer container received no DDS clouds, so that
+abandoned path was removed rather than promoted.
+
+`office_crowd_r2_0_1_live_cloud_transfer_preflight06` is the first automated
+PASS for this patch. It generated 101 scans at 10.0000002 Hz simulator time and
+observed 96 nonempty live clouds, for 0.950495 coverage. ROS stamps have zero
+regressions. Received-cloud simulator-time gaps are 0.100 s median, 0.130 s p95,
+and 0.200 s maximum; wall-clock gaps are separately recorded as 1.898 s median,
+3.218 s p95, and 4.899 s maximum. Point counts range from 15,208 to 16,202 with
+a median of 15,569. The cyan live cloud is visible in all 251 post-warm-up
+frames, so visibility is 1.0 and the longest blank run is zero frames.
+
+The 3840x1080, 25 fps, 251-frame, 10.04 s H.264 High/YUV420p/BT.709 master is
+58,781,800 bytes (`f3da239d...e9bb27f`). CRF 22, 24, and 26 all pass full decode,
+media parity, at least 50% reduction, and the 0.97 SSIM floor. CRF 26 is the
+smallest passing transfer entity: 11,543,483 bytes
+(`d0d8cbb3...08f3591d`), 80.36% smaller, SSIM 0.974314. VMAF is explicitly
+unavailable in the deployed ffmpeg and is not fabricated. Direct frame/contact
+sheet inspection retained legible dashboard text, paths, robot, and cloud.
+
+This remains a 10.04-second automated visual-delivery preflight pending Dr
+Sun's review. It is not a full route, AC54 rerun, AC55 decision, accepted
+revision, formal candidate, upstream SCAN reproduction, or real-robot result.
+Candidate38/39 and every earlier Office run remain unchanged.

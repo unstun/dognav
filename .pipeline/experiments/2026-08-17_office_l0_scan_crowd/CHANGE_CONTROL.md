@@ -83,18 +83,27 @@ presentation-contract change creates a new revision first.
 
 - Frozen automated baseline: candidate38 and candidate39, AC54 PASS under their
   historical inputs, AC55 still pending.
-- Frozen presentation template: `office-dualview-v1.0.0`, high external
+- Frozen presentation baseline: `office-dualview-v1.0.0`, high external
   third-person at left and simulator-time synchronized native 5070 Ti RViz at
-  right, 1920 x 1080 per panel.
-- Current working revision: `office-r2.0.0-preflight`, containing the
-  source-backed MID-360 input and the frozen dual-view presentation contract.
+  right, 1920 x 1080 per panel. The current instrumentation/delivery patch is
+  `office-dualview-v1.0.1`; it does not change that layout.
+- Current working revision: `office-r2.0.1-preflight`, parent
+  `office-r2.0.0-preflight`, with the single change group
+  `golden_dualview_delivery_reliability`.
 - Canonical archive: source snapshot `f320db3c356a`, state archive `6dba7c2`,
   branch `codex/scan-foxy-isaac`. The referenced result directories are present
   at their canonical local paths and hash-verified; large binary entities remain
   local-only under repository policy while their hashes and textual evidence
   are Git-backed.
-- Latest run: `office_crowd_mid360_dualview_preflight02`, a 10-second visual
-  preflight only. It did not reach the goal, did not run the full-duration
-  pedestrian fraction gate, did not rerun AC54, and cannot satisfy AC55.
-- Next action: wait for Dr Sun's visual decision. Full dry runs and a formal
-  candidate require a fresh explicit authorization.
+- Latest run: `office_crowd_r2_0_1_live_cloud_transfer_preflight06`, a
+  10.04-second automated visual-delivery preflight. Its live-cloud continuity,
+  delivered-frame visibility, and CRF-selected transfer entity pass their
+  declared automated gates. Attempts 01--05 remain immutable failures.
+- The navigation inputs are unchanged: MID-360 stays at 10 Hz simulator time,
+  20,000 ordered rays per scan, 0.1--40 m, with the pinned pattern and same-step
+  stamp. The repair retains the latest genuine `/quad_0/cloud` sample in RViz
+  until the next real message; it does not increase, duplicate, or synthesize
+  sensor data.
+- `accepted_revision` and `formal_candidate` remain null. AC54 was not rerun,
+  AC55 remains pending, and full dry runs/formal-candidate work require fresh
+  explicit authorization after Dr Sun reviews the short transfer video.

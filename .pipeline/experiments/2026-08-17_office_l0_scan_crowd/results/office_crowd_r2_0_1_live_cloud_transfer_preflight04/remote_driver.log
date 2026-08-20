@@ -1,0 +1,2 @@
+container=0 isaac=0
+{"status": "PASS", "output": {"path": "/home/sun/machine-dog-nav-runs/2026-08-17_office_l0_scan_crowd/results/office_crowd_r2_0_1_live_cloud_transfer_preflight04/native_scan_voxel_review.mp4", "sha256": "5eae76b625beca16763ce3c837423bb9336ba69034266ed3a937bdcd6c4bf12b", "codec": "h264_high_crf16_bt709_direct", "frame_count": 97, "source_snapshot_count": 49, "fps": 10.0, "duration_seconds": 9.7, "source_simulator_duration_seconds": 9.699999783, "width": 1920, "height": 1080}}

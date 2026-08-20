@@ -17,6 +17,12 @@ RUN_STATUS_VALUES = {
     "formal_candidate_automated_passed",
     "human_accepted",
 }
+REQUIRED_PLANNED_REVISION_FIELDS = {
+    "allowed_components",
+    "expected_artifacts",
+    "automated_gates",
+    "unauthorized_actions",
+}
 
 
 def _sha256(path: Path) -> str:
@@ -29,14 +35,70 @@ def _sha256(path: Path) -> str:
 
 def validate(ledger_path: Path, repository_root: Path) -> None:
     payload = json.loads(ledger_path.read_text(encoding="utf-8"))
-    if payload.get("schema_version") != 1:
-        raise ValueError("schema_version must be 1")
-    if payload.get("protocol_version") != "office-change-control-v1":
+    if payload.get("schema_version") != 2:
+        raise ValueError("schema_version must be 2")
+    if payload.get("protocol_version") != "office-change-control-v2":
         raise ValueError("unexpected protocol_version")
+
+    revision_history = payload.get("revision_history")
+    if not isinstance(revision_history, list) or not revision_history:
+        raise ValueError("revision_history must be a nonempty append-only list")
+    revision_ids: list[str] = []
+    for index, record in enumerate(revision_history):
+        if not isinstance(record, dict):
+            raise ValueError(f"revision_history[{index}] must be an object")
+        record_revision = record.get("revision")
+        if (
+            not isinstance(record_revision, str)
+            or REVISION_PATTERN.fullmatch(record_revision) is None
+        ):
+            raise ValueError(f"revision_history[{index}].revision is invalid")
+        if record_revision in revision_ids:
+            raise ValueError(f"duplicate revision: {record_revision}")
+        expected_parent = None if index == 0 else revision_ids[-1]
+        if record.get("parent_revision") != expected_parent:
+            raise ValueError(
+                f"revision {record_revision} parent must be {expected_parent!r}"
+            )
+        is_baseline = record.get("normalization_baseline") is True
+        if is_baseline != (index == 0):
+            raise ValueError("only the first revision may be the normalization baseline")
+        for key in (
+            "status",
+            "source_commit",
+            "source_commit_state",
+            "canonical_branch",
+            "artifact_state",
+            "change_group",
+            "claim_boundary",
+        ):
+            if not record.get(key):
+                raise ValueError(f"revision {record_revision}.{key} is required")
+        if re.fullmatch(r"[0-9a-f]{40}", str(record["source_commit"])) is None:
+            raise ValueError(f"revision {record_revision}.source_commit must be full SHA-1")
+        if not isinstance(record.get("frozen_invariants"), list) or not record[
+            "frozen_invariants"
+        ]:
+            raise ValueError(f"revision {record_revision}.frozen_invariants must be nonempty")
+        if not is_baseline:
+            if record.get("change_group") != "golden_dualview_delivery_reliability":
+                raise ValueError(
+                    f"revision {record_revision} must declare exactly the authorized change group"
+                )
+            if not record.get("planned_run_id"):
+                raise ValueError(f"revision {record_revision}.planned_run_id is required")
+            if not isinstance(record.get("rollback"), dict) or not record["rollback"]:
+                raise ValueError(f"revision {record_revision}.rollback is required")
+            for key in REQUIRED_PLANNED_REVISION_FIELDS:
+                if not isinstance(record.get(key), list) or not record[key]:
+                    raise ValueError(f"revision {record_revision}.{key} must be nonempty")
+        revision_ids.append(record_revision)
 
     current = payload.get("current_working_revision")
     if not isinstance(current, dict):
         raise ValueError("current_working_revision must be an object")
+    if current != revision_history[-1]:
+        raise ValueError("current_working_revision must equal the final revision_history entry")
     revision = current.get("revision")
     if not isinstance(revision, str) or REVISION_PATTERN.fullmatch(revision) is None:
         raise ValueError("current revision does not match the Office revision format")
@@ -61,9 +123,12 @@ def validate(ledger_path: Path, repository_root: Path) -> None:
         if run_id in run_ids:
             raise ValueError(f"duplicate run_id: {run_id}")
         run_ids.add(run_id)
-        if run.get("revision") != revision and run.get("legacy_unversioned") is not True:
+        if (
+            run.get("revision") not in revision_ids
+            and run.get("legacy_unversioned") is not True
+        ):
             raise ValueError(
-                f"run {run_id} must map to the current revision or be explicitly legacy-unversioned"
+                f"run {run_id} must map to revision_history or be explicitly legacy-unversioned"
             )
         if run.get("stage") not in RUN_STAGE_VALUES:
             raise ValueError(f"run {run_id} has an invalid stage")

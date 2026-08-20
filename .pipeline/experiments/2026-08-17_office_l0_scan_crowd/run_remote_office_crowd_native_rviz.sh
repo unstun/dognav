@@ -47,14 +47,22 @@ MOTION_AUDIT_PATH=$RESULT_DIR/office_pedestrian_motion_audit.json
 COMBINED_PATH=$RESULT_DIR/office_review_third_person_rviz_4k.mp4
 COMBINED_FFPROBE_PATH=$RESULT_DIR/office_review_third_person_rviz_4k_ffprobe.json
 COMBINED_VALIDATION_PATH=$RESULT_DIR/office_review_third_person_rviz_4k_validation.json
+TRANSFER_PATH=$RESULT_DIR/office_review_third_person_rviz_4k_transfer.mp4
+TRANSFER_FFPROBE_PATH=$RESULT_DIR/office_review_third_person_rviz_4k_transfer_ffprobe.json
+TRANSFER_VALIDATION_PATH=$RESULT_DIR/office_review_third_person_rviz_4k_transfer_validation.json
+TRANSFER_SHA256_PATH=$RESULT_DIR/office_review_third_person_rviz_4k_transfer_sha256.txt
+COMPRESSION_MANIFEST_PATH=$RESULT_DIR/video_compression_manifest.json
+LIVE_POINTCLOUD_AUDIT_PATH=$RESULT_DIR/live_pointcloud_continuity_audit.json
 CAPTURE_TIMELINE_PATH=$RESULT_DIR/native_scan_rviz3d_capture_timeline.jsonl
 REVIEW_AUDIT_PATH=$RESULT_DIR/native_rviz_review_audit.json
+DELIVERY_RELIABILITY_SOURCE=$RUN_ROOT/integration/lite3_sim_bridge/lite3_sim_bridge/delivery_reliability.py
 RUN_DRIVER_LOG=$RUN_ROOT/results/${RUN_ID}.driver.log
 
 for required in \
   "$RUN_ROOT/run_remote_office_crowd.sh" \
   "$RUN_ROOT/acceptance_thresholds_office_crowd.json" \
   "$RUN_ROOT/integration/lite3_sim_bridge/lite3_sim_bridge/rviz_time_sync.py" \
+  "$DELIVERY_RELIABILITY_SOURCE" \
   "$FOXY_WORKSPACE/install/setup.bash" \
   "$RVIZ_CONFIG" \
   "$XAUTHORITY_PATH" \
@@ -97,6 +105,7 @@ cleanup() {
 trap cleanup EXIT INT TERM
 
 SCAN_NATIVE_RVIZ_ENABLED=1 \
+SCAN_NATIVE_RVIZ_PRESTART_GATE=1 \
 SCAN_NATIVE_RVIZ_DISPLAY="$DISPLAY_NAME" \
 SCAN_NATIVE_RVIZ_XAUTHORITY="$XAUTHORITY_PATH" \
 SCAN_NATIVE_RVIZ_IMAGE="$RVIZ_IMAGE" \
@@ -288,11 +297,20 @@ required = (
     "bspline_observed",
     "current_pose_matches_body_path",
     "root_transform_matches_body_path",
+    "live_lidar_audit_enabled",
+    "live_lidar_observed_when_required",
+    "all_received_live_lidar_nonempty",
+    "live_lidar_stamps_strictly_increase",
+    "live_lidar_simulator_gap_max_le_0_2_seconds",
 )
 if audit.get("status") != "PASS" or audit.get("source_mode") != "live":
     raise SystemExit("native RViz review audit did not pass")
 if not all(audit.get("checks", {}).get(name) for name in required):
     raise SystemExit("native RViz review audit is missing a required live check")
+if audit.get("require_live_lidar") is not True:
+    raise SystemExit("native RViz live LiDAR audit was not required")
+if int(audit.get("live_lidar_publish_count", 0)) <= 0:
+    raise SystemExit("native RViz live LiDAR handled count is zero")
 PY
 
 # The raw RViz capture is wall-clock long because Isaac runs slower than real
@@ -370,6 +388,14 @@ python -u -m lite3_sim_bridge.rviz_time_sync synchronize \
   --output-video "$SYNC_CAPTURE_PATH" \
   --output-metadata "$SYNC_METADATA_PATH" \
   >"$RESULT_DIR/native_scan_rviz3d_sync.log" 2>&1
+
+python -u -m lite3_sim_bridge.delivery_reliability audit \
+  --sensor-metrics "$RESULT_DIR/isaac/sensor_metrics.jsonl" \
+  --native-audit "$REVIEW_AUDIT_PATH" \
+  --rviz-config "$RVIZ_CONFIG" \
+  --video "$SYNC_CAPTURE_PATH" \
+  --output "$LIVE_POINTCLOUD_AUDIT_PATH" \
+  >"$RESULT_DIR/live_pointcloud_continuity_audit.log" 2>&1
 
 # A long visual review must show the complete route and a continuous terminal
 # stop, not merely run for an arbitrary number of seconds. Reuse the frozen
@@ -533,6 +559,15 @@ if not passed:
     raise SystemExit("combined third-person and RViz video validation failed")
 PY
 
+python -u -m lite3_sim_bridge.delivery_reliability compress \
+  --master "$COMBINED_PATH" \
+  --transfer "$TRANSFER_PATH" \
+  --ffprobe-output "$TRANSFER_FFPROBE_PATH" \
+  --validation-output "$TRANSFER_VALIDATION_PATH" \
+  --sha256-output "$TRANSFER_SHA256_PATH" \
+  --manifest-output "$COMPRESSION_MANIFEST_PATH" \
+  >"$RESULT_DIR/video_compression.log" 2>&1
+
 ffprobe -v error -select_streams v:0 \
   -show_entries stream=codec_name,profile,width,height,pix_fmt,r_frame_rate,nb_frames \
   -show_entries format=duration,size \
@@ -546,6 +581,7 @@ ffprobe -v error -select_streams v:0 \
 sha256sum \
   "$0" \
   "$RUN_ROOT/integration/lite3_sim_bridge/lite3_sim_bridge/rviz_time_sync.py" \
+  "$DELIVERY_RELIABILITY_SOURCE" \
   "$RVIZ_CONFIG" \
   "$RESULT_DIR/native_scan_rviz3d_image_id.txt" \
   "$RESULT_DIR/native_scan_rviz3d_window.txt" \
@@ -553,17 +589,24 @@ sha256sum \
   "$RESULT_DIR/native_scan_rviz3d_sim_time_ffprobe.json" \
   "$RESULT_DIR/native_rviz_robot_state.log" \
   "$REVIEW_AUDIT_PATH" \
+  "$LIVE_POINTCLOUD_AUDIT_PATH" \
   "$CAPTURE_TIMELINE_PATH" \
   "$SYNC_METADATA_PATH" \
   "$TERMINAL_VALIDATION_PATH" \
   "$MOTION_AUDIT_PATH" \
   "$COMBINED_FFPROBE_PATH" \
   "$COMBINED_VALIDATION_PATH" \
+  "$TRANSFER_FFPROBE_PATH" \
+  "$TRANSFER_VALIDATION_PATH" \
+  "$TRANSFER_SHA256_PATH" \
+  "$COMPRESSION_MANIFEST_PATH" \
   "$CAPTURE_PATH" \
   "$SYNC_CAPTURE_PATH" \
   "$COMBINED_PATH" \
+  "$TRANSFER_PATH" \
   >"$RESULT_DIR/native_scan_rviz3d_sha256.txt"
 
 printf 'native RViz capture: %s\n' "$CAPTURE_PATH"
 printf 'sim-time synchronized native RViz capture: %s\n' "$SYNC_CAPTURE_PATH"
 printf 'combined third-person and RViz review: %s\n' "$COMBINED_PATH"
+printf 'preferred compressed transfer review: %s\n' "$TRANSFER_PATH"

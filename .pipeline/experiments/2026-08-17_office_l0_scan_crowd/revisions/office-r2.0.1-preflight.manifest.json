@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "revision": "office-r2.0.1-preflight",
+  "parent_revision": "office-r2.0.0-preflight",
+  "presentation_contract": "office-dualview-v1.0.1",
+  "change_group": "golden_dualview_delivery_reliability",
+  "branch": "codex/scan-foxy-isaac",
+  "baseline_commit": "a4efd0ea3cb9e13f70d2b279291916229d09cdc6",
+  "final_commit_resolution": "the single Git commit containing this manifest",
+  "status": "automated_short_preflight_pass_human_review_pending",
+  "claim_boundary": "10.04-second Office delivery-reliability preflight only; no AC54 rerun, AC55 decision, accepted revision, formal candidate, upstream SCAN reproduction, full route, or real-robot validation",
+  "frozen_invariants": [
+    "MID-360 remains 10 Hz simulator time, 20000 ordered rays per scan, pinned pattern, 0.1-40 m, and same-step stamped",
+    "SCAN planner, Lite3 V12 policy, robot assets, Office route, pedestrians, and acceptance thresholds are unchanged",
+    "candidate38, candidate39, office-r2.0.0-preflight, and all existing run directories remain immutable",
+    "accepted_revision and formal_candidate remain null; AC55 remains pending Dr Sun"
+  ],
+  "configuration_change": {
+    "path": "integration/lite3_sim_bridge/config/foxy_native_scan_review.rviz",
+    "display": "Live LiDAR Cloud",
+    "topic_before": "/quad_0/cloud",
+    "topic_after": "/quad_0/cloud",
+    "decay_time_before_seconds": 0.4000000059604645,
+    "decay_time_after_seconds": 0.0,
+    "official_semantics_source": "https://github.com/ros2/rviz/blob/foxy/rviz_default_plugins/src/rviz_default_plugins/displays/pointcloud/point_cloud_common.cpp"
+  },
+  "file_changes": [
+    {"path": ".pipeline/experiments/2026-08-13_scan_foxy_isaac_closed_loop/run_remote_closed_loop.sh", "before_sha256": "3b780c6480564e594a265a2870e62dcbe3722ba9a12e1ab2f0cbbc6091ee9ba8", "after_sha256": "8e4f749946a4a59e99791ea33155d67889f80265d2767f65ce28cfdb13c89984"},
+    {"path": ".pipeline/experiments/README.md", "before_sha256": "cf4f216602b25ef4e607f7662a431809b531d2ce26efd8442ad9ef108093e2fc", "after_sha256": "a2c18b195c54f95ddd7fc0e165a2140f3e8adb215f4bd9994e8671b8cec42dd6"},
+    {"path": ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/CHANGE_CONTROL.md", "before_sha256": "c40ba24db46d433e6f96fc8e5a7706e515546348ec247ee96aad4baa3e9e3497", "after_sha256": "5399b47a42816acd1ccab5f2ada271e15c0cfddc5087351ae57a8d6ae39443a0"},
+    {"path": ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/REPORT.md", "before_sha256": "d555da4cc605d802e949eb737a249e6223028c2df6b1bac2e662078b4d8f8ba8", "after_sha256": "56de6f3384a37c1e8b4bba7d169137252f9ff399ad63512ab0fb411cd3ffb1e7"},
+    {"path": ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/revision_ledger.json", "before_sha256": "b9a886e29004f2248ea2e0e8ecbc8f7869ca36c4c99cdb8b9e128712582f0888", "after_sha256": "6e773837444b0bc80b06ac31282809306241deb976615366b1238c34c94389d7"},
+    {"path": ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/run_remote_office_crowd_native_rviz.sh", "before_sha256": "9fb8341a72d949d80496e16ac69343496e960849e7f848cc7e78c90a295dcad5", "after_sha256": "4e58c0b3472cb324c8a919638ac4a9ae51df64b68c412f898b90a93a5fe1c85b"},
+    {"path": ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/validate_revision_ledger.py", "before_sha256": "b04e120633c504b2de31a3a3ccf112108cc93292cb964a69a5c21f2c24b723a5", "after_sha256": "bb94e6a019300ba388dde1150fbe1def7443f44f4f60cd60d8465970c4972ba1"},
+    {"path": ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/revisions/office-r2.0.1-preflight.md", "before_sha256": null, "after_sha256": "912e84670281e7a8bf08caa538f3ead00dd67ad7d39872e54f2de3ffe5e05b83"},
+    {"path": ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/revisions/office-r2.0.1-preflight.local-recursive-sha256.txt", "before_sha256": null, "after_sha256": "a2bffd7c2aa9dc7174c4993e5365d1e27735fc8aaba3ad2372c273b798d333ba"},
+    {"path": ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/revisions/office-r2.0.1-preflight.remote-recursive-sha256.txt", "before_sha256": null, "after_sha256": "a2bffd7c2aa9dc7174c4993e5365d1e27735fc8aaba3ad2372c273b798d333ba"},
+    {"path": ".trellis/tasks/08-20-office-r2-0-1-live-cloud-transfer/prd.md", "before_sha256": null, "after_sha256": "599b8ac472245ed1024b6fe97cb5e1736e4b6282ebda9266cc468e9228be57d0"},
+    {"path": ".trellis/tasks/08-20-office-r2-0-1-live-cloud-transfer/design.md", "before_sha256": null, "after_sha256": "1c54d72b481476cc83e24caf06320d3aa0fd79de74c9a21b2b4e3a1e01da157b"},
+    {"path": ".trellis/tasks/08-20-office-r2-0-1-live-cloud-transfer/implement.md", "before_sha256": null, "after_sha256": "0487025e389ac44e850e40cf7d4ac205828ca4c8cc780e2a58b67ba690a28131"},
+    {"path": ".trellis/tasks/08-20-office-r2-0-1-live-cloud-transfer/task.json", "before_sha256": null, "after_sha256": "e9c4ce5d0794d73c3d395dadf49b7450aa282f12173274997018dada5d906291"},
+    {"path": ".trellis/tasks/08-20-office-r2-0-1-live-cloud-transfer/implement.jsonl", "before_sha256": null, "after_sha256": "40dabff4b3e0949c79f6dbbbec55ba4d8eb31ab989ba5c77786bf2c951c88b92"},
+    {"path": ".trellis/tasks/08-20-office-r2-0-1-live-cloud-transfer/check.jsonl", "before_sha256": null, "after_sha256": "40dabff4b3e0949c79f6dbbbec55ba4d8eb31ab989ba5c77786bf2c951c88b92"},
+    {"path": "bigmemory/热区/状态简报.md", "before_sha256": "2941cca273bcc41ff57c99f6eaae98ccdd7a12e7db1ca9d7658073d1f1f77f9f", "after_sha256": "df0ce255b0ea619853aeb28c63d5cb06e2a2f452dc3ff845c2ee4f081a7d60db"},
+    {"path": "bigmemory/热区/近期改动.md", "before_sha256": "20c089d61d1f9a074d7d9d1970d5433a2bcd9cb341c68a1655caad4661c901ac", "after_sha256": "2b3c4d901e69392a02e379f8091f833a8e6bc5f5ec9f482da77416071ff97d8d"},
+    {"path": "bigmemory/热区/未关闭决策.md", "before_sha256": "3a13d9484f37527ba96a6d65d9fba46eeabbb47d2b211a9d18f128ef19c197f0", "after_sha256": "aa4c1ceecda8207832c36bdd6777f99c8b763ce966b238d45a959b1c59630de9"},
+    {"path": "bigmemory/冷区/改动记录/2026-08-20-office-r2.0.1-preflight.md", "before_sha256": null, "after_sha256": "e7a4c343b22d889c4549b8cce09c65ee70ff90f2dd19c93c0035e957e76ffd09"},
+    {"path": "bigmemory/冷区/踩坑记录/2026-08-20-office-r2.0.1-preflight.md", "before_sha256": null, "after_sha256": "a73266ffef8672bc0769b988f534cb013e370cf85687888c5cfe58ab80fdc4fd"},
+    {"path": "bigmemory/冷区/心路历程/2026-08-20-office-r2.0.1-preflight.md", "before_sha256": null, "after_sha256": "e85f54104d0b43c0c2b866eeb3b7b492952db3fea5e963c8a11d096bbd6f8182"},
+    {"path": "bigmemory/冷区/里程碑/2026-08-20-office-r2.0.1-preflight.md", "before_sha256": null, "after_sha256": "f317e34c624e1e77b5d5fd87864572827c0d8df3317be364e67855bb9a46d7ea"},
+    {"path": "integration/lite3_sim_bridge/config/foxy_native_scan_review.rviz", "before_sha256": "e6ec1a554a990855a708d5904d80c7919c46304018e0cf9365f826060243f8bd", "after_sha256": "c536461b7773c67d5638c90788d7e17774464ce4d397d9cada0654e535b505cb"},
+    {"path": "integration/lite3_sim_bridge/launch/native_rviz_review.launch.py", "before_sha256": "9be71bb6bc190d02e8c057ed0a2a9ee31eff914103cfdd52857e077baae3ab7a", "after_sha256": "cb77ca1a4c8ba988f25cd74ffe7913df54d4f11ada9c385b68a81aaaec05e2c1"},
+    {"path": "integration/lite3_sim_bridge/lite3_sim_bridge/rviz_replay_core.py", "before_sha256": "2e1cf623b75dd3c47514dde0036d7a6c6be32d87199497cf477ce45f36ca376f", "after_sha256": "bfd9090003b16fa467cbaca4f210f79cd0926bcbd88769799704e8a8b2c4ab1d"},
+    {"path": "integration/lite3_sim_bridge/lite3_sim_bridge/rviz_replay_node.py", "before_sha256": "7ec51ec856973500283a5ca58341a381374be345de16def8eae1a4198d269972", "after_sha256": "fdbeacd8811e9d3116e4573b97c16e183852a8dd3f4644d82d0c696e5f4120e4"},
+    {"path": "integration/lite3_sim_bridge/lite3_sim_bridge/delivery_reliability.py", "before_sha256": null, "after_sha256": "5c7405a8afd49ac58f8cd68d66ff4f567b11fd93e91a6f2443da005c12f025c3"},
+    {"path": "integration/lite3_sim_bridge/tests/test_delivery_reliability.py", "before_sha256": null, "after_sha256": "6b60ad6907836a451b202d5a9211eaa0848d11a692516046c85ce3a8ddd7665f"},
+    {"path": "integration/lite3_sim_bridge/tests/test_office_review_presentation.py", "before_sha256": "d74f68d0377ea496081312d5e96ee47b1d70a0a57f64e2b10552a8ace3eccf92", "after_sha256": "1d5453a2c1b46e3ce71e27487b078e7d57213bbb5978238fe8f5f6fe295a0b74"},
+    {"path": "integration/lite3_sim_bridge/tests/test_office_revision_ledger.py", "before_sha256": "59cfa73734424ade7959676365c022dcf1386db33cf007a559fb37618ec492a2", "after_sha256": "4495806b3fe5e535212d740443860ef4cf66555f91727c79563cc5fb7db99f09"},
+    {"path": "integration/lite3_sim_bridge/tests/test_rviz_replay_core.py", "before_sha256": "cb72a68d0579731b4b5e885caa984f885928f669e9974b19216959280feb2e02", "after_sha256": "0224ae077b7f380d0b8f842eb840fd3e48e8c4bbf5a586e3e7d6c64a754ec83f"}
+  ],
+  "manifest_self_hash": "resolved by the Git blob in final_commit_resolution; self-hashing cannot be embedded without changing the file",
+  "global_memory_update": {
+    "path": "/Users/sun/.codex/memories/extensions/ad_hoc/notes/20260820-024122-office-r201-delivery-preflight.md",
+    "before_sha256": null,
+    "after_sha256": "adda081ee531d4e29d2cef80f21a173212d15367b826b2db22c395041444e044"
+  },
+  "runs": [
+    {"run_id": "office_crowd_r2_0_1_live_cloud_transfer_preflight01", "status": "FAIL", "reason": "stale install tree left require_live_lidar=false"},
+    {"run_id": "office_crowd_r2_0_1_live_cloud_transfer_preflight02", "status": "FAIL", "reason": "95/101 coverage equals 0.940594 and is below 0.95"},
+    {"run_id": "office_crowd_r2_0_1_live_cloud_transfer_preflight03", "status": "FAIL", "reason": "node reorder alone still yielded 95/101"},
+    {"run_id": "office_crowd_r2_0_1_live_cloud_transfer_preflight04", "status": "FAIL", "reason": "separate observer container received zero DDS clouds"},
+    {"run_id": "office_crowd_r2_0_1_live_cloud_transfer_preflight05", "status": "FAIL", "reason": "matching separate container identity still received zero"},
+    {"run_id": "office_crowd_r2_0_1_live_cloud_transfer_preflight06", "status": "automated_short_preflight_PASS_human_review_pending", "duration_seconds": 10.04}
+  ],
+  "successful_run_audit": {
+    "generated_scan_count": 101,
+    "generated_frequency_hz": 10.000000200000004,
+    "ros_received_message_count": 96,
+    "received_generated_coverage": 0.9504950495049505,
+    "nonempty_message_count": 96,
+    "stamp_regression_count": 0,
+    "simulator_gap_seconds": {"min": 0.099999997, "median": 0.099999998, "p95": 0.12999999709999974, "max": 0.199999996},
+    "wall_gap_seconds_record_only": {"min": 1.434137683, "median": 1.898251983, "p95": 3.218109519699998, "max": 4.899382266},
+    "point_count": {"min": 15208, "median": 15569, "max": 16202},
+    "visible_frames": 251,
+    "post_warmup_visible_fraction": 1.0,
+    "longest_blank_frames": 0,
+    "audit_sha256": "b5c22581555ad46fb4f9ebd3899cd0cc5e597388a815d802980161c36c263c7e"
+  },
+  "media": {
+    "contract": {"codec": "h264", "profile": "High", "width": 3840, "height": 1080, "fps": 25, "frames": 251, "duration_seconds": 10.04, "pixel_format": "yuv420p", "color": "BT.709 tv-range"},
+    "master": {"path": "results/office_crowd_r2_0_1_live_cloud_transfer_preflight06/office_review_third_person_rviz_4k.mp4", "bytes": 58781800, "sha256": "f3da239ddab98816efba855b83d1bbf30d645688eb5987c63f47405c3e9bb27f"},
+    "crf22": {"bytes": 18640083, "ssim": 0.983774, "status": "PASS"},
+    "crf24": {"bytes": 14637497, "ssim": 0.979406, "status": "PASS"},
+    "transfer_crf26": {"path": "results/office_crowd_r2_0_1_live_cloud_transfer_preflight06/office_review_third_person_rviz_4k_transfer.mp4", "bytes": 11543483, "size_reduction_fraction": 0.8036214780765475, "ssim": 0.974314, "sha256": "d0d8cbb3e2ed1347e91f3ecec732b47a3f4614cbdd0c3d579a5a3b0408f3591d", "full_decode": "PASS"},
+    "vmaf": {"available": false, "reason": "libvmaf filter unavailable"},
+    "selection_reason": "CRF26 was the smallest of CRF22, CRF24, and CRF26 that passed every media, full-decode, reduction, and SSIM gate"
+  },
+  "remote_local_parity": {
+    "status": "PASS",
+    "file_count_each": 128,
+    "tree_size": "8.6 GiB",
+    "local_manifest": "office-r2.0.1-preflight.local-recursive-sha256.txt",
+    "remote_manifest": "office-r2.0.1-preflight.remote-recursive-sha256.txt",
+    "manifest_sha256_each": "a2bffd7c2aa9dc7174c4993e5365d1e27735fc8aaba3ad2372c273b798d333ba"
+  },
+  "tests": {
+    "targeted": "42 tests passed",
+    "full_bridge": "134 tests passed, 1 skipped",
+    "ledger_validator": "PASS",
+    "trellis_validation": "PASS",
+    "shell_syntax_and_shellcheck": "PASS",
+    "python_compile": "PASS",
+    "json_parse": "PASS",
+    "diff_check": "PASS"
+  },
+  "known_limits": [
+    "short preflight did not reach the Office goal",
+    "terminal goal/stop gate was skipped",
+    "full-duration pedestrian fraction gate was not gated",
+    "VMAF was unavailable; SSIM and direct visual inspection were used",
+    "human visual review remains pending Dr Sun"
+  ],
+  "rollback": {
+    "command": "git revert <single office-r2.0.1 fix commit containing this manifest>",
+    "restores_rviz_decay_seconds": 0.4000000059604645,
+    "preserve_all_r2_0_1_result_directories": true
+  },
+  "next_step": "Dr Sun reviews the canonical local transfer MP4; any full dry run, new AC54 candidate, AC55 decision, training, or real-robot action requires explicit authorization"
+}

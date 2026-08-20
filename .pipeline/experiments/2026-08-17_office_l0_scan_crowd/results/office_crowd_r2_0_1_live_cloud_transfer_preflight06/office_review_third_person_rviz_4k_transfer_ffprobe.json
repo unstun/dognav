@@ -1,0 +1,24 @@
+{
+  "format": {
+    "duration": 10.04,
+    "size": 11543483
+  },
+  "streams": [
+    {
+      "codec_name": "h264",
+      "color_primaries": "bt709",
+      "color_range": "tv",
+      "color_space": "bt709",
+      "color_transfer": "bt709",
+      "duration_seconds": 10.04,
+      "fps": 25.0,
+      "frame_count": 251,
+      "height": 1080,
+      "pix_fmt": "yuv420p",
+      "profile": "High",
+      "r_frame_rate": "25/1",
+      "size_bytes": 11543483,
+      "width": 3840
+    }
+  ]
+}

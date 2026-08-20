@@ -1,8 +1,8 @@
 {
-  "schema_version": 1,
-  "protocol_version": "office-change-control-v1",
+  "schema_version": 2,
+  "protocol_version": "office-change-control-v2",
   "experiment_id": "office-l0-scan-crowd",
-  "updated_at": "2026-08-19",
+  "updated_at": "2026-08-20",
   "source_of_truth": ".pipeline/experiments/2026-08-17_office_l0_scan_crowd",
   "version_format": "office-rMAJOR.MINOR.PATCH[-qualifier]",
   "accepted_revision": null,
@@ -12,46 +12,224 @@
     "owner": "Dr Sun",
     "status": "pending"
   },
+  "revision_history": [
+    {
+      "revision": "office-r2.0.0-preflight",
+      "normalization_baseline": true,
+      "parent_revision": null,
+      "status": "human_preflight_review_pending",
+      "source_commit": "f320db3c356a2c2fe980e812172fa6ea57929861",
+      "source_commit_state": "canonical_branch_backed_preflight_snapshot_with_canonical_local_runtime_artifacts",
+      "canonical_branch": "codex/scan-foxy-isaac",
+      "archive_commit": "6dba7c2",
+      "artifact_state": "canonical_local_paths_recursively_hash_verified",
+      "change_group": "Normalization snapshot of accumulated Office R2 work; all later revisions must declare exactly one change group.",
+      "claim_boundary": "Working visual preflight revision only; not a frozen source release, formal candidate, AC54 rerun, or AC55 decision.",
+      "component_contracts": {
+        "presentation": {
+          "version": "office-dualview-v1.0.0",
+          "status": "user_selected_frozen_template",
+          "contract": "High external third-person at left plus simulator-time-synchronized native 5070 Ti RViz at right, 1920 x 1080 per panel."
+        },
+        "lidar": {
+          "version": "livox-mid360-geometric-v1.0.0",
+          "status": "source_and_runtime_smoke_checks_passed",
+          "contract": "Pinned ordered Livox MID-360 pattern, 0.1-40 m, 10 Hz, 20000 rays per scan, same-step sensor/body/cloud stamp."
+        },
+        "pedestrians": {
+          "version": "office-safe-mixed-motion-v1.0.0",
+          "status": "full_preflight_checks_passed",
+          "contract": "Two crossing actors single-pass; six background actors ping-pong with 0.6 s idle turns and phase-conditioned animation."
+        },
+        "navigation_acceptance": {
+          "version": "candidate38-candidate39-ac54-baseline",
+          "status": "historical_automated_baseline_not_reusable_for_mid360",
+          "contract": "Candidate38 and candidate39 retain AC54 PASS under their original immutable inputs; MID-360 requires fresh automated runs."
+        }
+      },
+      "frozen_invariants": [
+        "candidate38 and candidate39 evidence is immutable",
+        "Lite3 policy and pinned robot asset are unchanged",
+        "SCAN planning behavior, Office route endpoints, and frozen thresholds are unchanged",
+        "AC55 remains human-owned and unchecked"
+      ]
+    },
+    {
+      "revision": "office-r2.0.1-preflight",
+      "normalization_baseline": false,
+      "parent_revision": "office-r2.0.0-preflight",
+      "status": "human_preflight_review_pending",
+      "source_commit": "a4efd0ea3cb9e13f70d2b279291916229d09cdc6",
+      "source_commit_state": "single_task_owned_fix_commit_to_be_resolved_from_canonical_git_history",
+      "canonical_branch": "codex/scan-foxy-isaac",
+      "archive_commit": null,
+      "artifact_state": "preflight06_automated_pass_complete_128_file_8_6_gib_remote_local_tree_sha256_verified",
+      "change_group": "golden_dualview_delivery_reliability",
+      "rationale": "Retain each genuine 10 Hz simulator-time MID-360 cloud in RViz until the next real arrival, close the zero-live-count audit blind spot, and provide a verified smaller transfer copy without changing navigation inputs.",
+      "confirmed_root_cause": "The simulator produces nonempty MID-360 scans at 10 Hz simulator time, but the approximately 0.051 real-time factor yields wall-clock gaps much longer than the RViz 0.4-second decay. The display expires between genuine messages, while live auditing is disabled and can pass with zero live-cloud observations.",
+      "claim_boundary": "Instrumentation and delivery-reliability preflight only; not an AC54 rerun, AC55 decision, accepted revision, formal candidate, full Office run, upstream SCAN reproduction, or real-robot validation.",
+      "component_contracts": {
+        "presentation": {
+          "version": "office-dualview-v1.0.1",
+          "status": "automated_short_preflight_pass_human_review_pending",
+          "contract": "The office-dualview-v1.0.0 layout is unchanged; the native 5070 Ti RViz panel persistently displays the latest genuine same-run /quad_0/cloud message and the package includes a separately verified transfer encode."
+        },
+        "lidar": {
+          "version": "livox-mid360-geometric-v1.0.0",
+          "status": "frozen_unchanged",
+          "contract": "Pinned ordered Livox MID-360 pattern, 0.1-40 m, 10 Hz, 20000 rays per scan, same-step sensor/body/cloud stamp."
+        },
+        "pedestrians": {
+          "version": "office-safe-mixed-motion-v1.0.0",
+          "status": "frozen_unchanged",
+          "contract": "Two crossing actors single-pass; six background actors ping-pong with 0.6 s idle turns and phase-conditioned animation."
+        },
+        "navigation_acceptance": {
+          "version": "candidate38-candidate39-ac54-baseline",
+          "status": "historical_automated_baseline_not_reusable_for_mid360",
+          "contract": "Candidate38 and candidate39 retain AC54 PASS under their original immutable inputs; this short preflight does not rerun or inherit AC54."
+        }
+      },
+      "allowed_components": [
+        "native RViz live-cloud display persistence",
+        "observation-only same-run /quad_0/cloud continuity audit",
+        "short-preflight evidence validation and packaging",
+        "CRF 22/24/26 transfer-video comparison and selection",
+        "Office revision ledger, validator, tests, report, indexes, Trellis, and memory archives"
+      ],
+      "frozen_invariants": [
+        "MID-360 remains 10 Hz simulator time, 20000 rays per scan, pinned pattern, 0.1-40 m, and same-step stamped",
+        "SCAN planning behavior and parameters are unchanged",
+        "Lite3 V12 policy and robot assets are unchanged",
+        "Office route, pedestrians, and acceptance thresholds are unchanged",
+        "candidate38, candidate39, office-r2.0.0-preflight, and all existing run directories are immutable",
+        "AC54 is not rerun or inherited; AC55 remains human-owned and pending",
+        "accepted_revision and formal_candidate remain null"
+      ],
+      "planned_run_id": "office_crowd_r2_0_1_live_cloud_transfer_preflight01",
+      "expected_artifacts": [
+        "live_pointcloud_continuity_audit.json",
+        "office_review_third_person_rviz_4k.mp4",
+        "office_review_third_person_rviz_4k_transfer.mp4",
+        "office_review_third_person_rviz_4k_transfer_ffprobe.json",
+        "office_review_third_person_rviz_4k_transfer_validation.json",
+        "office_review_third_person_rviz_4k_transfer_sha256.txt",
+        "video_compression_manifest.json",
+        "complete source, runtime, media, and recursive local/remote SHA-256 evidence"
+      ],
+      "automated_gates": [
+        "generated MID-360 scan frequency remains approximately 10 Hz simulator time",
+        "received/generated coverage is at least 0.95 and every received cloud is nonempty",
+        "ROS stamps strictly increase and maximum simulator-time gap is at most 0.2 seconds",
+        "require_live_lidar is true and received live-cloud count is nonzero",
+        "post-warm-up cloud-visible frame ratio is at least 0.98 and longest blank run is at most two frames",
+        "transfer video preserves media/layout/frame/duration contracts, decodes completely, and is at least 50 percent smaller",
+        "targeted and full local test suites plus syntax, compile, JSON, ledger, Trellis, and diff checks pass",
+        "remote and canonical local artifact trees are recursively SHA-256 identical"
+      ],
+      "unauthorized_actions": [
+        "full-duration dry run",
+        "formal candidate execution or promotion",
+        "AC54 or AC55 promotion",
+        "accepted_revision or formal_candidate assignment",
+        "MID-360, SCAN, policy, robot, route, pedestrian, or acceptance-threshold change",
+        "training or real-robot actuation"
+      ],
+      "rollback": {
+        "preferred_command": "git revert <office-r2.0.1-fix-commit>",
+        "rviz_live_cloud_decay_restore_seconds": 0.4000000059604645,
+        "preserve_evidence": true,
+        "notes": "Restore r2.0.0 display/audit/transfer behavior without deleting any r2.0.1 run, archive, candidate38, or candidate39 evidence."
+      }
+    }
+  ],
   "current_working_revision": {
-    "revision": "office-r2.0.0-preflight",
-    "normalization_baseline": true,
-    "parent_revision": null,
+    "revision": "office-r2.0.1-preflight",
+    "normalization_baseline": false,
+    "parent_revision": "office-r2.0.0-preflight",
     "status": "human_preflight_review_pending",
-    "source_commit": "f320db3c356a2c2fe980e812172fa6ea57929861",
-    "source_commit_state": "canonical_branch_backed_preflight_snapshot_with_canonical_local_runtime_artifacts",
+    "source_commit": "a4efd0ea3cb9e13f70d2b279291916229d09cdc6",
+    "source_commit_state": "single_task_owned_fix_commit_to_be_resolved_from_canonical_git_history",
     "canonical_branch": "codex/scan-foxy-isaac",
-    "archive_commit": "6dba7c2",
-    "artifact_state": "canonical_local_paths_recursively_hash_verified",
-    "change_group": "Normalization snapshot of accumulated Office R2 work; all later revisions must declare exactly one change group.",
-    "claim_boundary": "Working visual preflight revision only; not a frozen source release, formal candidate, AC54 rerun, or AC55 decision.",
+    "archive_commit": null,
+    "artifact_state": "preflight06_automated_pass_complete_128_file_8_6_gib_remote_local_tree_sha256_verified",
+    "change_group": "golden_dualview_delivery_reliability",
+    "rationale": "Retain each genuine 10 Hz simulator-time MID-360 cloud in RViz until the next real arrival, close the zero-live-count audit blind spot, and provide a verified smaller transfer copy without changing navigation inputs.",
+    "confirmed_root_cause": "The simulator produces nonempty MID-360 scans at 10 Hz simulator time, but the approximately 0.051 real-time factor yields wall-clock gaps much longer than the RViz 0.4-second decay. The display expires between genuine messages, while live auditing is disabled and can pass with zero live-cloud observations.",
+    "claim_boundary": "Instrumentation and delivery-reliability preflight only; not an AC54 rerun, AC55 decision, accepted revision, formal candidate, full Office run, upstream SCAN reproduction, or real-robot validation.",
     "component_contracts": {
       "presentation": {
-        "version": "office-dualview-v1.0.0",
-        "status": "user_selected_frozen_template",
-        "contract": "High external third-person at left plus simulator-time-synchronized native 5070 Ti RViz at right, 1920 x 1080 per panel."
+        "version": "office-dualview-v1.0.1",
+        "status": "automated_short_preflight_pass_human_review_pending",
+        "contract": "The office-dualview-v1.0.0 layout is unchanged; the native 5070 Ti RViz panel persistently displays the latest genuine same-run /quad_0/cloud message and the package includes a separately verified transfer encode."
       },
       "lidar": {
         "version": "livox-mid360-geometric-v1.0.0",
-        "status": "source_and_runtime_smoke_checks_passed",
+        "status": "frozen_unchanged",
         "contract": "Pinned ordered Livox MID-360 pattern, 0.1-40 m, 10 Hz, 20000 rays per scan, same-step sensor/body/cloud stamp."
       },
       "pedestrians": {
         "version": "office-safe-mixed-motion-v1.0.0",
-        "status": "full_preflight_checks_passed",
+        "status": "frozen_unchanged",
         "contract": "Two crossing actors single-pass; six background actors ping-pong with 0.6 s idle turns and phase-conditioned animation."
       },
       "navigation_acceptance": {
         "version": "candidate38-candidate39-ac54-baseline",
         "status": "historical_automated_baseline_not_reusable_for_mid360",
-        "contract": "Candidate38 and candidate39 retain AC54 PASS under their original immutable inputs; MID-360 requires fresh automated runs."
+        "contract": "Candidate38 and candidate39 retain AC54 PASS under their original immutable inputs; this short preflight does not rerun or inherit AC54."
       }
     },
+    "allowed_components": [
+      "native RViz live-cloud display persistence",
+      "observation-only same-run /quad_0/cloud continuity audit",
+      "short-preflight evidence validation and packaging",
+      "CRF 22/24/26 transfer-video comparison and selection",
+      "Office revision ledger, validator, tests, report, indexes, Trellis, and memory archives"
+    ],
     "frozen_invariants": [
-      "candidate38 and candidate39 evidence is immutable",
-      "Lite3 policy and pinned robot asset are unchanged",
-      "SCAN planning behavior, Office route endpoints, and frozen thresholds are unchanged",
-      "AC55 remains human-owned and unchecked"
-    ]
+      "MID-360 remains 10 Hz simulator time, 20000 rays per scan, pinned pattern, 0.1-40 m, and same-step stamped",
+      "SCAN planning behavior and parameters are unchanged",
+      "Lite3 V12 policy and robot assets are unchanged",
+      "Office route, pedestrians, and acceptance thresholds are unchanged",
+      "candidate38, candidate39, office-r2.0.0-preflight, and all existing run directories are immutable",
+      "AC54 is not rerun or inherited; AC55 remains human-owned and pending",
+      "accepted_revision and formal_candidate remain null"
+    ],
+    "planned_run_id": "office_crowd_r2_0_1_live_cloud_transfer_preflight01",
+    "expected_artifacts": [
+      "live_pointcloud_continuity_audit.json",
+      "office_review_third_person_rviz_4k.mp4",
+      "office_review_third_person_rviz_4k_transfer.mp4",
+      "office_review_third_person_rviz_4k_transfer_ffprobe.json",
+      "office_review_third_person_rviz_4k_transfer_validation.json",
+      "office_review_third_person_rviz_4k_transfer_sha256.txt",
+      "video_compression_manifest.json",
+      "complete source, runtime, media, and recursive local/remote SHA-256 evidence"
+    ],
+    "automated_gates": [
+      "generated MID-360 scan frequency remains approximately 10 Hz simulator time",
+      "received/generated coverage is at least 0.95 and every received cloud is nonempty",
+      "ROS stamps strictly increase and maximum simulator-time gap is at most 0.2 seconds",
+      "require_live_lidar is true and received live-cloud count is nonzero",
+      "post-warm-up cloud-visible frame ratio is at least 0.98 and longest blank run is at most two frames",
+      "transfer video preserves media/layout/frame/duration contracts, decodes completely, and is at least 50 percent smaller",
+      "targeted and full local test suites plus syntax, compile, JSON, ledger, Trellis, and diff checks pass",
+      "remote and canonical local artifact trees are recursively SHA-256 identical"
+    ],
+    "unauthorized_actions": [
+      "full-duration dry run",
+      "formal candidate execution or promotion",
+      "AC54 or AC55 promotion",
+      "accepted_revision or formal_candidate assignment",
+      "MID-360, SCAN, policy, robot, route, pedestrian, or acceptance-threshold change",
+      "training or real-robot actuation"
+    ],
+    "rollback": {
+      "preferred_command": "git revert <office-r2.0.1-fix-commit>",
+      "rviz_live_cloud_decay_restore_seconds": 0.4000000059604645,
+      "preserve_evidence": true,
+      "notes": "Restore r2.0.0 display/audit/transfer behavior without deleting any r2.0.1 run, archive, candidate38, or candidate39 evidence."
+    }
   },
   "automated_baseline_runs": [
     {
@@ -121,16 +299,98 @@
           "sha256": "d19ea46972279521ef4163d0b48ad252eae5791a99a40b5254b625e9d13ff0be"
         }
       ]
+    },
+    {
+      "run_id": "office_crowd_r2_0_1_live_cloud_transfer_preflight01",
+      "revision": "office-r2.0.1-preflight",
+      "stage": "preflight",
+      "status": "failed",
+      "immutable": true,
+      "result": "Generated 101 scans and observed 99 live clouds, but the Foxy install tree still carried require_live_lidar=false. The new fail-closed native audit rejected the run; source/install rebuild was required.",
+      "evidence_scope": "Full 6.6 GiB run preserved remotely; lightweight audit/log/identity evidence recovered locally."
+    },
+    {
+      "run_id": "office_crowd_r2_0_1_live_cloud_transfer_preflight02",
+      "revision": "office-r2.0.1-preflight",
+      "stage": "preflight",
+      "status": "failed",
+      "immutable": true,
+      "result": "The rebuilt native audit passed and video visibility was 251/251 with zero blank frames, but only 95 of 101 generated scans were observed (0.940594), below the 0.95 coverage gate.",
+      "evidence_scope": "Full 6.7 GiB run preserved remotely; lightweight audit/log/identity evidence recovered locally."
+    },
+    {
+      "run_id": "office_crowd_r2_0_1_live_cloud_transfer_preflight03",
+      "revision": "office-r2.0.1-preflight",
+      "stage": "preflight",
+      "status": "failed",
+      "immutable": true,
+      "result": "Starting the audit node before robot_state_publisher did not remove the generic runner startup race; coverage remained 95/101 (0.940594), so the hard gate failed.",
+      "evidence_scope": "Full 6.9 GiB run preserved remotely; lightweight audit/log/identity evidence recovered locally."
+    },
+    {
+      "run_id": "office_crowd_r2_0_1_live_cloud_transfer_preflight04",
+      "revision": "office-r2.0.1-preflight",
+      "stage": "preflight",
+      "status": "failed",
+      "immutable": true,
+      "result": "A separate prestarted observer reached READY but its isolated ROS 2 container received zero clouds; the unsupported cross-container DDS path was rejected and removed.",
+      "evidence_scope": "Full 7.0 GiB run and staging evidence preserved remotely; lightweight audit/log/observer evidence recovered locally."
+    },
+    {
+      "run_id": "office_crowd_r2_0_1_live_cloud_transfer_preflight05",
+      "revision": "office-r2.0.1-preflight",
+      "stage": "preflight",
+      "status": "failed",
+      "immutable": true,
+      "result": "Matching the separate observer container identity still produced zero cross-container observations. The abandoned observer source was removed while all failure evidence was retained.",
+      "evidence_scope": "Full 8.2 GiB run preserved remotely; lightweight audit/log/observer evidence recovered locally."
+    },
+    {
+      "run_id": "office_crowd_r2_0_1_live_cloud_transfer_preflight06",
+      "revision": "office-r2.0.1-preflight",
+      "stage": "preflight",
+      "status": "human_preflight_review_pending",
+      "immutable": true,
+      "duration_seconds": 10.04,
+      "full_route": false,
+      "formal_evidence": false,
+      "automated_results": {
+        "native_rviz_prestart_gate": "PASS",
+        "live_pointcloud_continuity": "PASS",
+        "combined_video": "PASS",
+        "transfer_video": "PASS",
+        "terminal_goal_stop": "SKIPPED",
+        "full_duration_motion_fraction": "NOT_GATED"
+      },
+      "measurements": {
+        "generated_scans": 101,
+        "generated_frequency_hz": 10.000000200000004,
+        "ros_received_clouds": 96,
+        "generated_received_coverage": 0.9504950495049505,
+        "simulator_gap_max_seconds": 0.199999996,
+        "wall_gap_median_seconds": 1.898251983,
+        "wall_gap_p95_seconds": 3.218109519699998,
+        "wall_gap_max_seconds": 4.899382266,
+        "post_warmup_visible_fraction": 1.0,
+        "longest_blank_video_frames": 0,
+        "master_size_bytes": 58781800,
+        "transfer_size_bytes": 11543483,
+        "size_reduction_fraction": 0.8036214780765475,
+        "selected_crf": 26,
+        "ssim": 0.974314
+      },
+      "claim_boundary": "Automated 10.04-second Office R2.0.1 visual preflight only; pending Dr Sun review, with no AC54 rerun, AC55 decision, goal/terminal gate, accepted revision, or formal candidate.",
+      "evidence_scope": "The complete 128-file, 8.6 GiB run is preserved at matching remote and canonical local paths. Sorted recursive SHA-256 manifests are byte-identical with SHA-256 a2bffd7c2aa9dc7174c4993e5365d1e27735fc8aaba3ad2372c273b798d333ba."
     }
   ],
   "next_action": {
-    "action": "wait_for_dr_sun_visual_preflight_decision",
+    "action": "wait_for_dr_sun_visual_review_of_preflight06",
     "full_run_authorized": false,
     "formal_candidate_authorized": false,
     "allowed_without_new_authorization": [
-      "read-only evidence inspection",
-      "version-ledger correction",
-      "local validation of already-owned changes"
+      "read-only evidence review and reporting",
+      "version-ledger, archive, report, Trellis, and memory closeout",
+      "task-owned commit and canonical-branch push"
     ]
   }
 }

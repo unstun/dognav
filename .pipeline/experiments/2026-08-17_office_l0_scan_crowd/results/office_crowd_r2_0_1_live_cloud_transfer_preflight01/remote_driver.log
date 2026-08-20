@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+AssertionError
+container=0 isaac=0
+{"status": "PASS", "output": {"path": "/home/sun/machine-dog-nav-runs/2026-08-17_office_l0_scan_crowd/results/office_crowd_r2_0_1_live_cloud_transfer_preflight01/native_scan_voxel_review.mp4", "sha256": "2e5ae66e5357bdf9afd19d2df865a67762ad11c9e1972cd6e0f76a3ad71f5457", "codec": "h264_high_crf16_bt709_direct", "frame_count": 99, "source_snapshot_count": 50, "fps": 10.0, "duration_seconds": 9.9, "source_simulator_duration_seconds": 9.899999778, "width": 1920, "height": 1080}}

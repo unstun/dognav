@@ -1,0 +1,4 @@
+prestart_gate=1
+subscription_ready=1
+source_topic=/quad_0/cloud
+source_mode=live
