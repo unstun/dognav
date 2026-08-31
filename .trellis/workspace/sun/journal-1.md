@@ -84,3 +84,32 @@ Upgraded the project Trellis harness from 0.6.7 to 0.6.14, preserved local safet
 ### Next Steps
 
 - Resume planning for 07-23-scan-planner-reproduction and prepare the 5070 Ti execution gate.
+
+
+## Session 3: Office R2.0.1 live-cloud delivery preflight
+
+**Date**: 2026-08-31
+**Task**: Office R2.0.1 live-cloud delivery preflight
+**Branch**: `codex/scan-foxy-isaac`
+
+### Summary
+
+Completed and verified the 10.04-second live-cloud continuity and transfer-video preflight; preserved immutable run evidence and AC54/AC55 boundaries.
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `1213f1e23592f939b969ca7d173b0d5c790bd5c3` | (see git log) |
+
+### Testing
+
+- [OK] 42 targeted tests passed; 134 bridge tests passed with 1 skipped; ledger/Trellis/shell/compile/JSON/media/hash gates passed
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- Run the separately authorized 60-second current-v2.0.1 human-review video task.
