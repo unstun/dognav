@@ -1,0 +1,48 @@
+{
+  "capture_period_seconds": 0.1,
+  "checks": {
+    "body_time_advances": true,
+    "bspline_observed": true,
+    "captured_frames": true,
+    "decode_errors_zero": true,
+    "inflated_occupancy_nonempty": true,
+    "live_sensor_cloud_nonempty": true,
+    "raw_occupancy_nonempty": true
+  },
+  "claim_boundary": "native live sensor cloud plus SCAN PointCloud2 occupancy capture; no Isaac scene-truth voxels",
+  "decode_error_count": 0,
+  "first_body_stamp_ns": 129999997,
+  "frame_count": 300,
+  "inflated_point_count_max": 75078,
+  "inflated_point_count_min": 16285,
+  "last_body_stamp_ns": 59929998660,
+  "live_point_count_max": 16881,
+  "live_point_count_min": 16704,
+  "raw_point_count_max": 23327,
+  "raw_point_count_min": 4979,
+  "schema_version": 2,
+  "status": "PASS",
+  "topics": [
+    "/grid_map/occupancy",
+    "/grid_map/occupancy_inflate",
+    "/quad_0/cloud_raw",
+    "/quad_0/lidar_pose",
+    "/grid_map/sliding_map_bbox",
+    "/quad_0/body_pose",
+    "/planning/bspline"
+  ],
+  "trajectory_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ]
+}

@@ -505,3 +505,40 @@ slope/step tests and route-height GTests therefore do not establish a Lite3
 terrain limit or complex-terrain capability. A non-flat short preflight remains
 blocked on a separate explicit Dr Sun approval. `accepted_revision` and
 `formal_candidate` remain null.
+
+## 15. v2.0.1 full-duration flat dry run
+
+Dr Sun authorized one 60-second flat Office dry run on 2026-08-31. The first
+attempt, `office_v2_0_1_go2_geometry_dryrun01`, completed 60.03 seconds and
+601/601 dual-cloud scans, but its attached SSH channel closed before terminal
+validation and video packaging. It remains immutable FAIL evidence. The run
+also exposed a postprocessor path defect: after conda activation, the native
+driver prepended the historical run-root bridge instead of the synchronized
+canonical bridge. The driver now consistently uses `BRIDGE_ROOT`, and a
+regression test pins that contract.
+
+The detached retry `office_v2_0_1_go2_geometry_dryrun02` passed the declared
+flat full-duration dry-run gates. It ran for 60.029998658 seconds, generated and
+audited 601/601 raw/planner scan pairs, showed `/quad_0/cloud_raw` in all 1,501
+delivered frames with zero blank frames, reached the frozen goal with 0.10591 m
+XY error, and held the two-second terminal window with zero command and
+0.01166 m/s maximum planar speed. All eight pedestrians passed the
+full-duration root-motion and animation-coherence audit.
+
+The preserved 3840x1080 master is 327,133,479 bytes, 25 fps, 1,501 frames and
+60.04 seconds; SHA-256 is
+`232f8c8f66454987624ccd33499e4ebaf0a1da7daa545acc7a9c4664da7df6a1`.
+The same-resolution standard transfer is 62,373,833 bytes with SSIM 0.976733;
+SHA-256 is
+`f672dae7d4654b63c6aedab548a2f89ee90f946497e4e8b53aa7fd8cd0328126`.
+An initial 1920x540 under-10 MB attempt remains FAIL because SSIM was 0.939357.
+The passing delivery copy uses the same full frame sequence and panel order at
+1280x360: 9,176,726 bytes, SSIM 0.964990, SHA-256
+`308f8500634fc567413ab826d9782bdbd2dc239ec7e7b63fc9b3b75b1fcac0b5`.
+It passed complete decode, frame/duration/media checks and 10-second-interval
+local visual inspection.
+
+This is flat full-duration dry-run and human-review delivery evidence, not a
+non-flat result, fresh AC54 run, AC55 decision, accepted revision, formal
+candidate, training result, or real-robot validation. AC55 remains pending Dr
+Sun, while `accepted_revision` and `formal_candidate` remain null.

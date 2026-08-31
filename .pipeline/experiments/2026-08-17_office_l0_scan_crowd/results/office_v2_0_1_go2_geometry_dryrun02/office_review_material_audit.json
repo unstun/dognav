@@ -1,0 +1,1684 @@
+{
+  "schema_version": 3,
+  "mode": "office_review_material_override",
+  "scope": "visual_mesh_prims_only",
+  "claim": "Opaque (opacity=1.0) non-emissive (emission=0.0) review-only visual material applied strictly to Lite3 visual mesh prims for Office human review legibility. Does not modify URDF, collision meshes, mass, inertia, joints, policy, or sensors.",
+  "robot_root_path": "/World/envs/env_0/Robot",
+  "robot_asset_sha256": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d",
+  "referenced_mesh_sha256": {
+    "./meshes/torso.STL": "6f3f5fc4b9985db56d741ac1b6b93e11d9fb283eb128f8800ad9603772bbcda2",
+    "./meshes/hip.STL": "3386fa94992dbfc4d3e06c6d9fb110e2c4abd87f94c3ac766fdcce85c43341f3",
+    "./meshes/thigh.STL": "f29ea97407a9a30cb4549206d080848350d8b455bf4b9a63441241cdacab1719",
+    "./meshes/shank.STL": "5410bae3b9b1e9fbc30343041450a80fc609806c2a83418bd2288b0720aec098",
+    "./meshes/carrier-rev-j-print-ready-side.stl": "7dcb46fcf52602d84d21bc08c06161993644c70d0930f96bc8346724116f7e58",
+    "./meshes/s410-guard-access-print-ready-flange-down.stl": "fdbdc58d4b25a82ce685873764760a932fc276716c46b93b77c59c68077a591e",
+    "./meshes/mid360-body-runtime.stl": "883a99cb9c2eee18212257dbd60f51d187e07f31d4f2b4393ff215822a73b5d1",
+    "./meshes/mid360-optical-runtime.stl": "4a14a259764204a2fc77e3ad6e1cd1b61a8cf5107c09b805b52bd58d72853848",
+    "./meshes/d435i-body-runtime.stl": "944961e4eb4c60caac4da8d1a7784401e59c9289b96be72537518ce3b870140a",
+    "./meshes/d435i-optical-runtime.stl": "71c7e43a18c8950d62c9d709a969a94df6d3520cee936c1f69665755ed1c289a",
+    "./meshes/pro-interface-envelope.stl": "39758a1a3766bcdf7c75aa6056d94678d6589aff12477836f87162196e963604"
+  },
+  "torso_color_linear_rgb": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "limb_color_linear_rgb": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "opacity": 1.0,
+  "emission": 0.0,
+  "torso_prim_count": 6,
+  "limb_prim_count": 12,
+  "unknown_prim_count": 2,
+  "total_affected_prims": 20,
+  "affected_prims": [
+    {
+      "prim_path": "/World/envs/env_0/Robot/TORSO/visuals/torso/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/TORSO/visuals",
+      "part_class": "torso",
+      "material_path": "/World/Looks/Lite3_Review_Torso_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/FL_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/FL_HIP/visuals",
+      "part_class": "limb",
+      "material_path": "/World/Looks/Lite3_Review_Limb_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/FL_THIGH/visuals",
+      "part_class": "limb",
+      "material_path": "/World/Looks/Lite3_Review_Limb_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/FL_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/FL_SHANK/visuals",
+      "part_class": "limb",
+      "material_path": "/World/Looks/Lite3_Review_Limb_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/FR_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/FR_HIP/visuals",
+      "part_class": "limb",
+      "material_path": "/World/Looks/Lite3_Review_Limb_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/FR_THIGH/visuals",
+      "part_class": "limb",
+      "material_path": "/World/Looks/Lite3_Review_Limb_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/FR_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/FR_SHANK/visuals",
+      "part_class": "limb",
+      "material_path": "/World/Looks/Lite3_Review_Limb_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/HL_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/HL_HIP/visuals",
+      "part_class": "limb",
+      "material_path": "/World/Looks/Lite3_Review_Limb_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/HL_THIGH/visuals",
+      "part_class": "limb",
+      "material_path": "/World/Looks/Lite3_Review_Limb_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/HL_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/HL_SHANK/visuals",
+      "part_class": "limb",
+      "material_path": "/World/Looks/Lite3_Review_Limb_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/HR_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/HR_HIP/visuals",
+      "part_class": "limb",
+      "material_path": "/World/Looks/Lite3_Review_Limb_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/HR_THIGH/visuals",
+      "part_class": "limb",
+      "material_path": "/World/Looks/Lite3_Review_Limb_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/HR_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/HR_SHANK/visuals",
+      "part_class": "limb",
+      "material_path": "/World/Looks/Lite3_Review_Limb_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/pro_interface_link/visuals",
+      "part_class": "unknown",
+      "material_path": "/World/Looks/Lite3_Review_Torso_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/sensor_carrier_link/visuals",
+      "part_class": "torso",
+      "material_path": "/World/Looks/Lite3_Review_Torso_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/d435i_body_link/visuals",
+      "part_class": "torso",
+      "material_path": "/World/Looks/Lite3_Review_Torso_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/d435i_body_link/visuals",
+      "part_class": "torso",
+      "material_path": "/World/Looks/Lite3_Review_Torso_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/mid360_body_link/visuals",
+      "part_class": "torso",
+      "material_path": "/World/Looks/Lite3_Review_Torso_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/mid360_body_link/visuals",
+      "part_class": "torso",
+      "material_path": "/World/Looks/Lite3_Review_Torso_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    },
+    {
+      "prim_path": "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/mesh",
+      "binding_target_path": "/World/envs/env_0/Robot/s410_guard_link/visuals",
+      "part_class": "unknown",
+      "material_path": "/World/Looks/Lite3_Review_Torso_Material",
+      "color_rgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "opacity": 1.0,
+      "emission": 0.0
+    }
+  ],
+  "physics_inventory_unchanged": true,
+  "pre_inventory": {
+    "query_phase": "before_binding",
+    "robot_root_path": "/World/envs/env_0/Robot",
+    "robot_asset_sha256": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d",
+    "referenced_mesh_sha256": {
+      "./meshes/torso.STL": "6f3f5fc4b9985db56d741ac1b6b93e11d9fb283eb128f8800ad9603772bbcda2",
+      "./meshes/hip.STL": "3386fa94992dbfc4d3e06c6d9fb110e2c4abd87f94c3ac766fdcce85c43341f3",
+      "./meshes/thigh.STL": "f29ea97407a9a30cb4549206d080848350d8b455bf4b9a63441241cdacab1719",
+      "./meshes/shank.STL": "5410bae3b9b1e9fbc30343041450a80fc609806c2a83418bd2288b0720aec098",
+      "./meshes/carrier-rev-j-print-ready-side.stl": "7dcb46fcf52602d84d21bc08c06161993644c70d0930f96bc8346724116f7e58",
+      "./meshes/s410-guard-access-print-ready-flange-down.stl": "fdbdc58d4b25a82ce685873764760a932fc276716c46b93b77c59c68077a591e",
+      "./meshes/mid360-body-runtime.stl": "883a99cb9c2eee18212257dbd60f51d187e07f31d4f2b4393ff215822a73b5d1",
+      "./meshes/mid360-optical-runtime.stl": "4a14a259764204a2fc77e3ad6e1cd1b61a8cf5107c09b805b52bd58d72853848",
+      "./meshes/d435i-body-runtime.stl": "944961e4eb4c60caac4da8d1a7784401e59c9289b96be72537518ce3b870140a",
+      "./meshes/d435i-optical-runtime.stl": "71c7e43a18c8950d62c9d709a969a94df6d3520cee936c1f69665755ed1c289a",
+      "./meshes/pro-interface-envelope.stl": "39758a1a3766bcdf7c75aa6056d94678d6589aff12477836f87162196e963604"
+    },
+    "body_paths": [
+      "/World/envs/env_0/Robot/FL_FOOT",
+      "/World/envs/env_0/Robot/FL_HIP",
+      "/World/envs/env_0/Robot/FL_SHANK",
+      "/World/envs/env_0/Robot/FL_THIGH",
+      "/World/envs/env_0/Robot/FR_FOOT",
+      "/World/envs/env_0/Robot/FR_HIP",
+      "/World/envs/env_0/Robot/FR_SHANK",
+      "/World/envs/env_0/Robot/FR_THIGH",
+      "/World/envs/env_0/Robot/HL_FOOT",
+      "/World/envs/env_0/Robot/HL_HIP",
+      "/World/envs/env_0/Robot/HL_SHANK",
+      "/World/envs/env_0/Robot/HL_THIGH",
+      "/World/envs/env_0/Robot/HR_FOOT",
+      "/World/envs/env_0/Robot/HR_HIP",
+      "/World/envs/env_0/Robot/HR_SHANK",
+      "/World/envs/env_0/Robot/HR_THIGH",
+      "/World/envs/env_0/Robot/TORSO",
+      "/World/envs/env_0/Robot/d435i_body_link",
+      "/World/envs/env_0/Robot/d435i_depth_optical_frame",
+      "/World/envs/env_0/Robot/mid360_body_link",
+      "/World/envs/env_0/Robot/mid360_scan_frame",
+      "/World/envs/env_0/Robot/pro_interface_link",
+      "/World/envs/env_0/Robot/s410_guard_link",
+      "/World/envs/env_0/Robot/sensor_carrier_link"
+    ],
+    "body_records": [
+      {
+        "path": "/World/envs/env_0/Robot/FL_FOOT",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FL_HIP",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FL_SHANK",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FL_THIGH",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FR_FOOT",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FR_HIP",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FR_SHANK",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FR_THIGH",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HL_FOOT",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HL_HIP",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HL_SHANK",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HL_THIGH",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HR_FOOT",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HR_HIP",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HR_SHANK",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HR_THIGH",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/TORSO",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/d435i_body_link",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/d435i_depth_optical_frame",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/mid360_body_link",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/mid360_scan_frame",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/pro_interface_link",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/s410_guard_link",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/sensor_carrier_link",
+        "type": "Xform"
+      }
+    ],
+    "joint_paths": [
+      "/World/envs/env_0/Robot/joints/FL_Ankle",
+      "/World/envs/env_0/Robot/joints/FL_HipX_joint",
+      "/World/envs/env_0/Robot/joints/FL_HipY_joint",
+      "/World/envs/env_0/Robot/joints/FL_Knee_joint",
+      "/World/envs/env_0/Robot/joints/FR_Ankle",
+      "/World/envs/env_0/Robot/joints/FR_HipX_joint",
+      "/World/envs/env_0/Robot/joints/FR_HipY_joint",
+      "/World/envs/env_0/Robot/joints/FR_Knee_joint",
+      "/World/envs/env_0/Robot/joints/HL_Ankle",
+      "/World/envs/env_0/Robot/joints/HL_HipX_joint",
+      "/World/envs/env_0/Robot/joints/HL_HipY_joint",
+      "/World/envs/env_0/Robot/joints/HL_Knee_joint",
+      "/World/envs/env_0/Robot/joints/HR_Ankle",
+      "/World/envs/env_0/Robot/joints/HR_HipX_joint",
+      "/World/envs/env_0/Robot/joints/HR_HipY_joint",
+      "/World/envs/env_0/Robot/joints/HR_Knee_joint",
+      "/World/envs/env_0/Robot/joints/d435i_body_joint",
+      "/World/envs/env_0/Robot/joints/d435i_depth_optical_joint",
+      "/World/envs/env_0/Robot/joints/mid360_body_joint",
+      "/World/envs/env_0/Robot/joints/mid360_scan_joint",
+      "/World/envs/env_0/Robot/joints/pro_interface_joint",
+      "/World/envs/env_0/Robot/joints/s410_guard_joint",
+      "/World/envs/env_0/Robot/joints/sensor_carrier_joint"
+    ],
+    "joint_records": [
+      {
+        "path": "/World/envs/env_0/Robot/joints/FL_Ankle",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/FL_HipX_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/FL_HipY_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/FL_Knee_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/FR_Ankle",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/FR_HipX_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/FR_HipY_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/FR_Knee_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HL_Ankle",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HL_HipX_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HL_HipY_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HL_Knee_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HR_Ankle",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HR_HipX_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HR_HipY_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HR_Knee_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/d435i_body_joint",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/d435i_depth_optical_joint",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/mid360_body_joint",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/mid360_scan_joint",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/pro_interface_joint",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/s410_guard_joint",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/sensor_carrier_joint",
+        "type": "PhysicsFixedJoint"
+      }
+    ],
+    "collision_prim_paths": [
+      "/World/envs/env_0/Robot/FL_FOOT/collisions/mesh_0/sphere",
+      "/World/envs/env_0/Robot/FL_HIP/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/FL_SHANK/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/FL_SHANK/collisions/mesh_1/capsule",
+      "/World/envs/env_0/Robot/FL_THIGH/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/FR_FOOT/collisions/mesh_0/sphere",
+      "/World/envs/env_0/Robot/FR_HIP/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/FR_SHANK/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/FR_SHANK/collisions/mesh_1/capsule",
+      "/World/envs/env_0/Robot/FR_THIGH/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/HL_FOOT/collisions/mesh_0/sphere",
+      "/World/envs/env_0/Robot/HL_HIP/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/HL_SHANK/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/HL_SHANK/collisions/mesh_1/capsule",
+      "/World/envs/env_0/Robot/HL_THIGH/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/HR_FOOT/collisions/mesh_0/sphere",
+      "/World/envs/env_0/Robot/HR_HIP/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/HR_SHANK/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/HR_SHANK/collisions/mesh_1/capsule",
+      "/World/envs/env_0/Robot/HR_THIGH/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/TORSO/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/TORSO/collisions/mesh_1/box",
+      "/World/envs/env_0/Robot/d435i_body_link/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/mid360_body_link/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_front_nose_collision/box",
+      "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_rear_body_collision/box",
+      "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_front_rail_collision/box",
+      "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_rear_rail_collision/box",
+      "/World/envs/env_0/Robot/sensor_carrier_link/collisions/mesh_0/box"
+    ],
+    "visual_mesh_paths": [
+      "/World/envs/env_0/Robot/FL_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/FL_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/FR_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/FR_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/HL_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/HL_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/HR_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/HR_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/TORSO/visuals/torso/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/mesh"
+    ],
+    "visual_mesh_records": [
+      {
+        "path": "/World/envs/env_0/Robot/FL_HIP/visuals/hip/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/FL_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FL_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/Looks/material_100100100"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FR_HIP/visuals/hip/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/FR_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FR_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/FR_SHANK/visuals/shank/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HL_HIP/visuals/hip/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/HL_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HL_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/HL_SHANK/visuals/shank/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HR_HIP/visuals/hip/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/HR_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HR_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/HR_SHANK/visuals/shank/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/TORSO/visuals/torso/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/TORSO/visuals/torso/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/Looks/DefaultMaterial"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/Looks/DefaultMaterial"
+      }
+    ],
+    "material_bindings": {
+      "/World/envs/env_0/Robot/FL_HIP/visuals/hip/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/FL_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/FL_SHANK/visuals/shank/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/Looks/material_100100100",
+      "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/FR_HIP/visuals/hip/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/FR_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/FR_SHANK/visuals/shank/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/FR_SHANK/visuals/shank/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/HL_HIP/visuals/hip/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/HL_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/HL_SHANK/visuals/shank/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/HL_SHANK/visuals/shank/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/HR_HIP/visuals/hip/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/HR_HIP/visuals/hip/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/HR_SHANK/visuals/shank/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/HR_SHANK/visuals/shank/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/TORSO/visuals/torso/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/TORSO/visuals/torso/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/mesh": "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/Looks/DefaultMaterial"
+    },
+    "mass_properties": {
+      "/World/envs/env_0/Robot/FL_FOOT": 0.019999999552965164,
+      "/World/envs/env_0/Robot/FL_HIP": 0.550000011920929,
+      "/World/envs/env_0/Robot/FL_SHANK": 0.15299999713897705,
+      "/World/envs/env_0/Robot/FL_THIGH": 0.8600000143051147,
+      "/World/envs/env_0/Robot/FR_FOOT": 0.019999999552965164,
+      "/World/envs/env_0/Robot/FR_HIP": 0.550000011920929,
+      "/World/envs/env_0/Robot/FR_SHANK": 0.15299999713897705,
+      "/World/envs/env_0/Robot/FR_THIGH": 0.8600000143051147,
+      "/World/envs/env_0/Robot/HL_FOOT": 0.019999999552965164,
+      "/World/envs/env_0/Robot/HL_HIP": 0.550000011920929,
+      "/World/envs/env_0/Robot/HL_SHANK": 0.15299999713897705,
+      "/World/envs/env_0/Robot/HL_THIGH": 0.8600000143051147,
+      "/World/envs/env_0/Robot/HR_FOOT": 0.019999999552965164,
+      "/World/envs/env_0/Robot/HR_HIP": 0.550000011920929,
+      "/World/envs/env_0/Robot/HR_SHANK": 0.15299999713897705,
+      "/World/envs/env_0/Robot/HR_THIGH": 0.8600000143051147,
+      "/World/envs/env_0/Robot/TORSO": 5.605599880218506,
+      "/World/envs/env_0/Robot/d435i_body_link": 0.07500000298023224,
+      "/World/envs/env_0/Robot/d435i_depth_optical_frame": 9.999999974752427e-07,
+      "/World/envs/env_0/Robot/mid360_body_link": 0.26499998569488525,
+      "/World/envs/env_0/Robot/mid360_scan_frame": 9.999999974752427e-07,
+      "/World/envs/env_0/Robot/pro_interface_link": 0.8873999714851379,
+      "/World/envs/env_0/Robot/s410_guard_link": 0.02550770528614521,
+      "/World/envs/env_0/Robot/sensor_carrier_link": 0.09127917140722275
+    },
+    "inertia_properties": {
+      "/World/envs/env_0/Robot/FL_FOOT": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "/World/envs/env_0/Robot/FL_HIP": [
+        0.0003949000092688948,
+        0.0004028000112157315,
+        0.00044720000005327165
+      ],
+      "/World/envs/env_0/Robot/FL_SHANK": [
+        0.0008903900161385536,
+        0.0009067200007848442,
+        3.126600131508894e-05
+      ],
+      "/World/envs/env_0/Robot/FL_THIGH": [
+        0.005735999904572964,
+        0.0049600000493228436,
+        0.0014359999913722277
+      ],
+      "/World/envs/env_0/Robot/FR_FOOT": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "/World/envs/env_0/Robot/FR_HIP": [
+        0.00044720000005327165,
+        0.0004028000112157315,
+        0.0003949000092688948
+      ],
+      "/World/envs/env_0/Robot/FR_SHANK": [
+        0.0008903900161385536,
+        0.0009067200007848442,
+        3.126600131508894e-05
+      ],
+      "/World/envs/env_0/Robot/FR_THIGH": [
+        0.005735999904572964,
+        0.0049600000493228436,
+        0.0014359999913722277
+      ],
+      "/World/envs/env_0/Robot/HL_FOOT": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "/World/envs/env_0/Robot/HL_HIP": [
+        0.0003949000092688948,
+        0.0004028000112157315,
+        0.00044720000005327165
+      ],
+      "/World/envs/env_0/Robot/HL_SHANK": [
+        0.0008903900161385536,
+        0.0009067200007848442,
+        3.126600131508894e-05
+      ],
+      "/World/envs/env_0/Robot/HL_THIGH": [
+        0.005735999904572964,
+        0.0049600000493228436,
+        0.0014359999913722277
+      ],
+      "/World/envs/env_0/Robot/HR_FOOT": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "/World/envs/env_0/Robot/HR_HIP": [
+        0.00044720000005327165,
+        0.0004028000112157315,
+        0.0003949000092688948
+      ],
+      "/World/envs/env_0/Robot/HR_SHANK": [
+        0.0008903900161385536,
+        0.0009067200007848442,
+        3.126600131508894e-05
+      ],
+      "/World/envs/env_0/Robot/HR_THIGH": [
+        0.005735999904572964,
+        0.0049600000493228436,
+        0.0014359999913722277
+      ],
+      "/World/envs/env_0/Robot/TORSO": [
+        0.024560000747442245,
+        0.05517999827861786,
+        0.07016000151634216
+      ],
+      "/World/envs/env_0/Robot/d435i_body_link": [
+        5.453125049825758e-05,
+        7.812500371073838e-06,
+        5.453125049825758e-05
+      ],
+      "/World/envs/env_0/Robot/d435i_depth_optical_frame": [
+        9.999999960041972e-13,
+        9.999999960041972e-13,
+        9.999999960041972e-13
+      ],
+      "/World/envs/env_0/Robot/mid360_body_link": [
+        0.0001710318902041763,
+        0.0001710318902041763,
+        0.00017555720114614815
+      ],
+      "/World/envs/env_0/Robot/mid360_scan_frame": [
+        9.999999960041972e-13,
+        9.999999960041972e-13,
+        9.999999960041972e-13
+      ],
+      "/World/envs/env_0/Robot/pro_interface_link": [
+        0.0010173516348004341,
+        0.003010842949151993,
+        0.0036584443878382444
+      ],
+      "/World/envs/env_0/Robot/s410_guard_link": [
+        2.519611007301137e-05,
+        3.6203506169840693e-05,
+        3.6402536352397874e-05
+      ],
+      "/World/envs/env_0/Robot/sensor_carrier_link": [
+        7.70988262956962e-05,
+        0.0001478508929722011,
+        0.00021447187464218587
+      ]
+    },
+    "sensor_target_paths": [
+      "/World/envs/env_0/Robot/d435i_body_link",
+      "/World/envs/env_0/Robot/d435i_body_link/collisions",
+      "/World/envs/env_0/Robot/d435i_body_link/collisions/mesh_0",
+      "/World/envs/env_0/Robot/d435i_body_link/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/Looks",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/Looks",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/d435i_depth_optical_frame",
+      "/World/envs/env_0/Robot/d435i_depth_optical_frame/collisions",
+      "/World/envs/env_0/Robot/d435i_depth_optical_frame/visuals",
+      "/World/envs/env_0/Robot/joints/d435i_body_joint",
+      "/World/envs/env_0/Robot/joints/d435i_depth_optical_joint",
+      "/World/envs/env_0/Robot/joints/mid360_body_joint",
+      "/World/envs/env_0/Robot/joints/mid360_scan_joint",
+      "/World/envs/env_0/Robot/joints/pro_interface_joint",
+      "/World/envs/env_0/Robot/joints/s410_guard_joint",
+      "/World/envs/env_0/Robot/joints/sensor_carrier_joint",
+      "/World/envs/env_0/Robot/mid360_body_link",
+      "/World/envs/env_0/Robot/mid360_body_link/collisions",
+      "/World/envs/env_0/Robot/mid360_body_link/collisions/mesh_0",
+      "/World/envs/env_0/Robot/mid360_body_link/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/Looks",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/Looks",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/mid360_scan_frame",
+      "/World/envs/env_0/Robot/mid360_scan_frame/collisions",
+      "/World/envs/env_0/Robot/mid360_scan_frame/visuals",
+      "/World/envs/env_0/Robot/pro_interface_link",
+      "/World/envs/env_0/Robot/pro_interface_link/collisions",
+      "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_front_nose_collision",
+      "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_front_nose_collision/box",
+      "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_rear_body_collision",
+      "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_rear_body_collision/box",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/Looks",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/s410_guard_link",
+      "/World/envs/env_0/Robot/s410_guard_link/collisions",
+      "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_front_rail_collision",
+      "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_front_rail_collision/box",
+      "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_rear_rail_collision",
+      "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_rear_rail_collision/box",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/Looks",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/sensor_carrier_link",
+      "/World/envs/env_0/Robot/sensor_carrier_link/collisions",
+      "/World/envs/env_0/Robot/sensor_carrier_link/collisions/mesh_0",
+      "/World/envs/env_0/Robot/sensor_carrier_link/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/Looks",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/mesh"
+    ]
+  },
+  "post_inventory": {
+    "query_phase": "after_binding",
+    "robot_root_path": "/World/envs/env_0/Robot",
+    "robot_asset_sha256": "803d552703bcc4f72ce15f38b95bc3f62e3e4ada0b42bf3ecf71b32b6590bb9d",
+    "referenced_mesh_sha256": {
+      "./meshes/torso.STL": "6f3f5fc4b9985db56d741ac1b6b93e11d9fb283eb128f8800ad9603772bbcda2",
+      "./meshes/hip.STL": "3386fa94992dbfc4d3e06c6d9fb110e2c4abd87f94c3ac766fdcce85c43341f3",
+      "./meshes/thigh.STL": "f29ea97407a9a30cb4549206d080848350d8b455bf4b9a63441241cdacab1719",
+      "./meshes/shank.STL": "5410bae3b9b1e9fbc30343041450a80fc609806c2a83418bd2288b0720aec098",
+      "./meshes/carrier-rev-j-print-ready-side.stl": "7dcb46fcf52602d84d21bc08c06161993644c70d0930f96bc8346724116f7e58",
+      "./meshes/s410-guard-access-print-ready-flange-down.stl": "fdbdc58d4b25a82ce685873764760a932fc276716c46b93b77c59c68077a591e",
+      "./meshes/mid360-body-runtime.stl": "883a99cb9c2eee18212257dbd60f51d187e07f31d4f2b4393ff215822a73b5d1",
+      "./meshes/mid360-optical-runtime.stl": "4a14a259764204a2fc77e3ad6e1cd1b61a8cf5107c09b805b52bd58d72853848",
+      "./meshes/d435i-body-runtime.stl": "944961e4eb4c60caac4da8d1a7784401e59c9289b96be72537518ce3b870140a",
+      "./meshes/d435i-optical-runtime.stl": "71c7e43a18c8950d62c9d709a969a94df6d3520cee936c1f69665755ed1c289a",
+      "./meshes/pro-interface-envelope.stl": "39758a1a3766bcdf7c75aa6056d94678d6589aff12477836f87162196e963604"
+    },
+    "body_paths": [
+      "/World/envs/env_0/Robot/FL_FOOT",
+      "/World/envs/env_0/Robot/FL_HIP",
+      "/World/envs/env_0/Robot/FL_SHANK",
+      "/World/envs/env_0/Robot/FL_THIGH",
+      "/World/envs/env_0/Robot/FR_FOOT",
+      "/World/envs/env_0/Robot/FR_HIP",
+      "/World/envs/env_0/Robot/FR_SHANK",
+      "/World/envs/env_0/Robot/FR_THIGH",
+      "/World/envs/env_0/Robot/HL_FOOT",
+      "/World/envs/env_0/Robot/HL_HIP",
+      "/World/envs/env_0/Robot/HL_SHANK",
+      "/World/envs/env_0/Robot/HL_THIGH",
+      "/World/envs/env_0/Robot/HR_FOOT",
+      "/World/envs/env_0/Robot/HR_HIP",
+      "/World/envs/env_0/Robot/HR_SHANK",
+      "/World/envs/env_0/Robot/HR_THIGH",
+      "/World/envs/env_0/Robot/TORSO",
+      "/World/envs/env_0/Robot/d435i_body_link",
+      "/World/envs/env_0/Robot/d435i_depth_optical_frame",
+      "/World/envs/env_0/Robot/mid360_body_link",
+      "/World/envs/env_0/Robot/mid360_scan_frame",
+      "/World/envs/env_0/Robot/pro_interface_link",
+      "/World/envs/env_0/Robot/s410_guard_link",
+      "/World/envs/env_0/Robot/sensor_carrier_link"
+    ],
+    "body_records": [
+      {
+        "path": "/World/envs/env_0/Robot/FL_FOOT",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FL_HIP",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FL_SHANK",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FL_THIGH",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FR_FOOT",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FR_HIP",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FR_SHANK",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FR_THIGH",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HL_FOOT",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HL_HIP",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HL_SHANK",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HL_THIGH",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HR_FOOT",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HR_HIP",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HR_SHANK",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HR_THIGH",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/TORSO",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/d435i_body_link",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/d435i_depth_optical_frame",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/mid360_body_link",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/mid360_scan_frame",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/pro_interface_link",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/s410_guard_link",
+        "type": "Xform"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/sensor_carrier_link",
+        "type": "Xform"
+      }
+    ],
+    "joint_paths": [
+      "/World/envs/env_0/Robot/joints/FL_Ankle",
+      "/World/envs/env_0/Robot/joints/FL_HipX_joint",
+      "/World/envs/env_0/Robot/joints/FL_HipY_joint",
+      "/World/envs/env_0/Robot/joints/FL_Knee_joint",
+      "/World/envs/env_0/Robot/joints/FR_Ankle",
+      "/World/envs/env_0/Robot/joints/FR_HipX_joint",
+      "/World/envs/env_0/Robot/joints/FR_HipY_joint",
+      "/World/envs/env_0/Robot/joints/FR_Knee_joint",
+      "/World/envs/env_0/Robot/joints/HL_Ankle",
+      "/World/envs/env_0/Robot/joints/HL_HipX_joint",
+      "/World/envs/env_0/Robot/joints/HL_HipY_joint",
+      "/World/envs/env_0/Robot/joints/HL_Knee_joint",
+      "/World/envs/env_0/Robot/joints/HR_Ankle",
+      "/World/envs/env_0/Robot/joints/HR_HipX_joint",
+      "/World/envs/env_0/Robot/joints/HR_HipY_joint",
+      "/World/envs/env_0/Robot/joints/HR_Knee_joint",
+      "/World/envs/env_0/Robot/joints/d435i_body_joint",
+      "/World/envs/env_0/Robot/joints/d435i_depth_optical_joint",
+      "/World/envs/env_0/Robot/joints/mid360_body_joint",
+      "/World/envs/env_0/Robot/joints/mid360_scan_joint",
+      "/World/envs/env_0/Robot/joints/pro_interface_joint",
+      "/World/envs/env_0/Robot/joints/s410_guard_joint",
+      "/World/envs/env_0/Robot/joints/sensor_carrier_joint"
+    ],
+    "joint_records": [
+      {
+        "path": "/World/envs/env_0/Robot/joints/FL_Ankle",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/FL_HipX_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/FL_HipY_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/FL_Knee_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/FR_Ankle",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/FR_HipX_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/FR_HipY_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/FR_Knee_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HL_Ankle",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HL_HipX_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HL_HipY_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HL_Knee_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HR_Ankle",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HR_HipX_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HR_HipY_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/HR_Knee_joint",
+        "type": "PhysicsRevoluteJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/d435i_body_joint",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/d435i_depth_optical_joint",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/mid360_body_joint",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/mid360_scan_joint",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/pro_interface_joint",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/s410_guard_joint",
+        "type": "PhysicsFixedJoint"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/joints/sensor_carrier_joint",
+        "type": "PhysicsFixedJoint"
+      }
+    ],
+    "collision_prim_paths": [
+      "/World/envs/env_0/Robot/FL_FOOT/collisions/mesh_0/sphere",
+      "/World/envs/env_0/Robot/FL_HIP/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/FL_SHANK/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/FL_SHANK/collisions/mesh_1/capsule",
+      "/World/envs/env_0/Robot/FL_THIGH/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/FR_FOOT/collisions/mesh_0/sphere",
+      "/World/envs/env_0/Robot/FR_HIP/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/FR_SHANK/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/FR_SHANK/collisions/mesh_1/capsule",
+      "/World/envs/env_0/Robot/FR_THIGH/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/HL_FOOT/collisions/mesh_0/sphere",
+      "/World/envs/env_0/Robot/HL_HIP/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/HL_SHANK/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/HL_SHANK/collisions/mesh_1/capsule",
+      "/World/envs/env_0/Robot/HL_THIGH/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/HR_FOOT/collisions/mesh_0/sphere",
+      "/World/envs/env_0/Robot/HR_HIP/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/HR_SHANK/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/HR_SHANK/collisions/mesh_1/capsule",
+      "/World/envs/env_0/Robot/HR_THIGH/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/TORSO/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/TORSO/collisions/mesh_1/box",
+      "/World/envs/env_0/Robot/d435i_body_link/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/mid360_body_link/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_front_nose_collision/box",
+      "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_rear_body_collision/box",
+      "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_front_rail_collision/box",
+      "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_rear_rail_collision/box",
+      "/World/envs/env_0/Robot/sensor_carrier_link/collisions/mesh_0/box"
+    ],
+    "visual_mesh_paths": [
+      "/World/envs/env_0/Robot/FL_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/FL_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/FR_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/FR_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/HL_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/HL_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/HR_HIP/visuals/hip/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/HR_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/TORSO/visuals/torso/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/mesh"
+    ],
+    "visual_mesh_records": [
+      {
+        "path": "/World/envs/env_0/Robot/FL_HIP/visuals/hip/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Limb_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FL_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Limb_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Limb_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FR_HIP/visuals/hip/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Limb_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FR_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Limb_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Limb_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HL_HIP/visuals/hip/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Limb_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HL_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Limb_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Limb_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HR_HIP/visuals/hip/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Limb_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HR_SHANK/visuals/shank/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Limb_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Limb_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/TORSO/visuals/torso/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Torso_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Torso_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Torso_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Torso_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Torso_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Torso_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Torso_Material"
+      },
+      {
+        "path": "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/mesh",
+        "visibility": "inherited",
+        "collision_api": false,
+        "material_binding": "/World/Looks/Lite3_Review_Torso_Material"
+      }
+    ],
+    "material_bindings": {
+      "/World/envs/env_0/Robot/FL_HIP/visuals/hip/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Limb_Material",
+      "/World/envs/env_0/Robot/FL_SHANK/visuals/shank/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Limb_Material",
+      "/World/envs/env_0/Robot/FL_THIGH/visuals/thigh/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Limb_Material",
+      "/World/envs/env_0/Robot/FR_HIP/visuals/hip/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Limb_Material",
+      "/World/envs/env_0/Robot/FR_SHANK/visuals/shank/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Limb_Material",
+      "/World/envs/env_0/Robot/FR_THIGH/visuals/thigh/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Limb_Material",
+      "/World/envs/env_0/Robot/HL_HIP/visuals/hip/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Limb_Material",
+      "/World/envs/env_0/Robot/HL_SHANK/visuals/shank/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Limb_Material",
+      "/World/envs/env_0/Robot/HL_THIGH/visuals/thigh/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Limb_Material",
+      "/World/envs/env_0/Robot/HR_HIP/visuals/hip/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Limb_Material",
+      "/World/envs/env_0/Robot/HR_SHANK/visuals/shank/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Limb_Material",
+      "/World/envs/env_0/Robot/HR_THIGH/visuals/thigh/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Limb_Material",
+      "/World/envs/env_0/Robot/TORSO/visuals/torso/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Torso_Material",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Torso_Material",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Torso_Material",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Torso_Material",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Torso_Material",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Torso_Material",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Torso_Material",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/mesh": "/World/Looks/Lite3_Review_Torso_Material"
+    },
+    "mass_properties": {
+      "/World/envs/env_0/Robot/FL_FOOT": 0.019999999552965164,
+      "/World/envs/env_0/Robot/FL_HIP": 0.550000011920929,
+      "/World/envs/env_0/Robot/FL_SHANK": 0.15299999713897705,
+      "/World/envs/env_0/Robot/FL_THIGH": 0.8600000143051147,
+      "/World/envs/env_0/Robot/FR_FOOT": 0.019999999552965164,
+      "/World/envs/env_0/Robot/FR_HIP": 0.550000011920929,
+      "/World/envs/env_0/Robot/FR_SHANK": 0.15299999713897705,
+      "/World/envs/env_0/Robot/FR_THIGH": 0.8600000143051147,
+      "/World/envs/env_0/Robot/HL_FOOT": 0.019999999552965164,
+      "/World/envs/env_0/Robot/HL_HIP": 0.550000011920929,
+      "/World/envs/env_0/Robot/HL_SHANK": 0.15299999713897705,
+      "/World/envs/env_0/Robot/HL_THIGH": 0.8600000143051147,
+      "/World/envs/env_0/Robot/HR_FOOT": 0.019999999552965164,
+      "/World/envs/env_0/Robot/HR_HIP": 0.550000011920929,
+      "/World/envs/env_0/Robot/HR_SHANK": 0.15299999713897705,
+      "/World/envs/env_0/Robot/HR_THIGH": 0.8600000143051147,
+      "/World/envs/env_0/Robot/TORSO": 5.605599880218506,
+      "/World/envs/env_0/Robot/d435i_body_link": 0.07500000298023224,
+      "/World/envs/env_0/Robot/d435i_depth_optical_frame": 9.999999974752427e-07,
+      "/World/envs/env_0/Robot/mid360_body_link": 0.26499998569488525,
+      "/World/envs/env_0/Robot/mid360_scan_frame": 9.999999974752427e-07,
+      "/World/envs/env_0/Robot/pro_interface_link": 0.8873999714851379,
+      "/World/envs/env_0/Robot/s410_guard_link": 0.02550770528614521,
+      "/World/envs/env_0/Robot/sensor_carrier_link": 0.09127917140722275
+    },
+    "inertia_properties": {
+      "/World/envs/env_0/Robot/FL_FOOT": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "/World/envs/env_0/Robot/FL_HIP": [
+        0.0003949000092688948,
+        0.0004028000112157315,
+        0.00044720000005327165
+      ],
+      "/World/envs/env_0/Robot/FL_SHANK": [
+        0.0008903900161385536,
+        0.0009067200007848442,
+        3.126600131508894e-05
+      ],
+      "/World/envs/env_0/Robot/FL_THIGH": [
+        0.005735999904572964,
+        0.0049600000493228436,
+        0.0014359999913722277
+      ],
+      "/World/envs/env_0/Robot/FR_FOOT": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "/World/envs/env_0/Robot/FR_HIP": [
+        0.00044720000005327165,
+        0.0004028000112157315,
+        0.0003949000092688948
+      ],
+      "/World/envs/env_0/Robot/FR_SHANK": [
+        0.0008903900161385536,
+        0.0009067200007848442,
+        3.126600131508894e-05
+      ],
+      "/World/envs/env_0/Robot/FR_THIGH": [
+        0.005735999904572964,
+        0.0049600000493228436,
+        0.0014359999913722277
+      ],
+      "/World/envs/env_0/Robot/HL_FOOT": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "/World/envs/env_0/Robot/HL_HIP": [
+        0.0003949000092688948,
+        0.0004028000112157315,
+        0.00044720000005327165
+      ],
+      "/World/envs/env_0/Robot/HL_SHANK": [
+        0.0008903900161385536,
+        0.0009067200007848442,
+        3.126600131508894e-05
+      ],
+      "/World/envs/env_0/Robot/HL_THIGH": [
+        0.005735999904572964,
+        0.0049600000493228436,
+        0.0014359999913722277
+      ],
+      "/World/envs/env_0/Robot/HR_FOOT": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "/World/envs/env_0/Robot/HR_HIP": [
+        0.00044720000005327165,
+        0.0004028000112157315,
+        0.0003949000092688948
+      ],
+      "/World/envs/env_0/Robot/HR_SHANK": [
+        0.0008903900161385536,
+        0.0009067200007848442,
+        3.126600131508894e-05
+      ],
+      "/World/envs/env_0/Robot/HR_THIGH": [
+        0.005735999904572964,
+        0.0049600000493228436,
+        0.0014359999913722277
+      ],
+      "/World/envs/env_0/Robot/TORSO": [
+        0.024560000747442245,
+        0.05517999827861786,
+        0.07016000151634216
+      ],
+      "/World/envs/env_0/Robot/d435i_body_link": [
+        5.453125049825758e-05,
+        7.812500371073838e-06,
+        5.453125049825758e-05
+      ],
+      "/World/envs/env_0/Robot/d435i_depth_optical_frame": [
+        9.999999960041972e-13,
+        9.999999960041972e-13,
+        9.999999960041972e-13
+      ],
+      "/World/envs/env_0/Robot/mid360_body_link": [
+        0.0001710318902041763,
+        0.0001710318902041763,
+        0.00017555720114614815
+      ],
+      "/World/envs/env_0/Robot/mid360_scan_frame": [
+        9.999999960041972e-13,
+        9.999999960041972e-13,
+        9.999999960041972e-13
+      ],
+      "/World/envs/env_0/Robot/pro_interface_link": [
+        0.0010173516348004341,
+        0.003010842949151993,
+        0.0036584443878382444
+      ],
+      "/World/envs/env_0/Robot/s410_guard_link": [
+        2.519611007301137e-05,
+        3.6203506169840693e-05,
+        3.6402536352397874e-05
+      ],
+      "/World/envs/env_0/Robot/sensor_carrier_link": [
+        7.70988262956962e-05,
+        0.0001478508929722011,
+        0.00021447187464218587
+      ]
+    },
+    "sensor_target_paths": [
+      "/World/envs/env_0/Robot/d435i_body_link",
+      "/World/envs/env_0/Robot/d435i_body_link/collisions",
+      "/World/envs/env_0/Robot/d435i_body_link/collisions/mesh_0",
+      "/World/envs/env_0/Robot/d435i_body_link/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/Looks",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_aluminum_body_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/Looks",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+      "/World/envs/env_0/Robot/d435i_body_link/visuals/d435i_body_link_d435i_optical_details_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/d435i_depth_optical_frame",
+      "/World/envs/env_0/Robot/d435i_depth_optical_frame/collisions",
+      "/World/envs/env_0/Robot/d435i_depth_optical_frame/visuals",
+      "/World/envs/env_0/Robot/joints/d435i_body_joint",
+      "/World/envs/env_0/Robot/joints/d435i_depth_optical_joint",
+      "/World/envs/env_0/Robot/joints/mid360_body_joint",
+      "/World/envs/env_0/Robot/joints/mid360_scan_joint",
+      "/World/envs/env_0/Robot/joints/pro_interface_joint",
+      "/World/envs/env_0/Robot/joints/s410_guard_joint",
+      "/World/envs/env_0/Robot/joints/sensor_carrier_joint",
+      "/World/envs/env_0/Robot/mid360_body_link",
+      "/World/envs/env_0/Robot/mid360_body_link/collisions",
+      "/World/envs/env_0/Robot/mid360_body_link/collisions/mesh_0",
+      "/World/envs/env_0/Robot/mid360_body_link/collisions/mesh_0/capsule",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/Looks",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_metal_housing_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/Looks",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+      "/World/envs/env_0/Robot/mid360_body_link/visuals/mid360_body_link_mid360_optical_window_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/mid360_scan_frame",
+      "/World/envs/env_0/Robot/mid360_scan_frame/collisions",
+      "/World/envs/env_0/Robot/mid360_scan_frame/visuals",
+      "/World/envs/env_0/Robot/pro_interface_link",
+      "/World/envs/env_0/Robot/pro_interface_link/collisions",
+      "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_front_nose_collision",
+      "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_front_nose_collision/box",
+      "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_rear_body_collision",
+      "/World/envs/env_0/Robot/pro_interface_link/collisions/pro_interface_rear_body_collision/box",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/Looks",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+      "/World/envs/env_0/Robot/pro_interface_link/visuals/pro_interface_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/s410_guard_link",
+      "/World/envs/env_0/Robot/s410_guard_link/collisions",
+      "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_front_rail_collision",
+      "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_front_rail_collision/box",
+      "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_rear_rail_collision",
+      "/World/envs/env_0/Robot/s410_guard_link/collisions/s410_guard_rear_rail_collision/box",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/Looks",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+      "/World/envs/env_0/Robot/s410_guard_link/visuals/s410_guard_link_material/node_STL_BINARY_/mesh",
+      "/World/envs/env_0/Robot/sensor_carrier_link",
+      "/World/envs/env_0/Robot/sensor_carrier_link/collisions",
+      "/World/envs/env_0/Robot/sensor_carrier_link/collisions/mesh_0",
+      "/World/envs/env_0/Robot/sensor_carrier_link/collisions/mesh_0/box",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/Looks",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/Looks/DefaultMaterial",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/Looks/DefaultMaterial/DefaultMaterial",
+      "/World/envs/env_0/Robot/sensor_carrier_link/visuals/sensor_carrier_link_material/node_STL_BINARY_/mesh"
+    ]
+  }
+}

@@ -35,12 +35,56 @@ class OfficeRevisionLedgerTest(unittest.TestCase):
     def test_current_ledger_and_evidence_hashes_pass(self) -> None:
         VALIDATOR.validate(LEDGER_PATH, REPOSITORY_ROOT)
 
-    def test_unauthorized_full_run_promotion_fails(self) -> None:
+    def test_full_run_authorization_cannot_be_inferred(self) -> None:
         payload = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
-        payload["next_action"]["full_run_authorized"] = True
+        payload["revision_history"][-1].pop("full_duration_run_authorization")
         with tempfile.TemporaryDirectory() as directory:
             path = self._write_payload(payload, directory)
-            with self.assertRaisesRegex(ValueError, "full_run_authorized"):
+            with self.assertRaisesRegex(ValueError, "full_duration_run_authorization"):
+                VALIDATOR.validate(path, REPOSITORY_ROOT)
+
+    def test_full_run_authorization_is_exactly_sixty_seconds(self) -> None:
+        payload = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
+        payload["revision_history"][-1]["full_duration_run_authorization"][
+            "duration_seconds"
+        ] = 30
+        with tempfile.TemporaryDirectory() as directory:
+            path = self._write_payload(payload, directory)
+            with self.assertRaisesRegex(ValueError, "duration_seconds"):
+                VALIDATOR.validate(path, REPOSITORY_ROOT)
+
+    def test_pending_full_run_id_cannot_already_exist(self) -> None:
+        payload = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
+        authorization = payload["revision_history"][-1][
+            "full_duration_run_authorization"
+        ]
+        run_id = "office_v2_0_1_go2_geometry_dryrun03"
+        authorization["run_id"] = run_id
+        authorization["status"] = "approved_pending_execution"
+        payload["next_action"]["full_run_authorized"] = True
+        payload["runs"].append(
+            {
+                "run_id": run_id,
+                "revision": payload["current_working_revision"],
+                "stage": "dryrun",
+                "status": "failed",
+                "immutable": True,
+            }
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            path = self._write_payload(payload, directory)
+            with self.assertRaisesRegex(ValueError, "cannot already exist"):
+                VALIDATOR.validate(path, REPOSITORY_ROOT)
+
+    def test_consumed_full_run_authorization_requires_run_record(self) -> None:
+        payload = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
+        run_id = payload["revision_history"][-1]["full_duration_run_authorization"][
+            "run_id"
+        ]
+        payload["runs"] = [run for run in payload["runs"] if run["run_id"] != run_id]
+        with tempfile.TemporaryDirectory() as directory:
+            path = self._write_payload(payload, directory)
+            with self.assertRaisesRegex(ValueError, "requires its run record"):
                 VALIDATOR.validate(path, REPOSITORY_ROOT)
 
     def test_evidence_hash_drift_fails(self) -> None:

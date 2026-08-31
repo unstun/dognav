@@ -1,0 +1,86 @@
+{
+  "passed": true,
+  "issues": [],
+  "checks": {
+    "video_probes": {
+      "first": {
+        "codec": "h264",
+        "profile": "High",
+        "pix_fmt": "yuv420p",
+        "width": 2560,
+        "height": 1440,
+        "nb_frames": 1501,
+        "nb_read_frames": 1501,
+        "r_frame_rate": "25/1",
+        "fps": 25.0,
+        "color_range": "tv",
+        "color_space": "bt709",
+        "color_transfer": "bt709",
+        "color_primaries": "bt709"
+      },
+      "side": {
+        "codec": "h264",
+        "profile": "High",
+        "pix_fmt": "yuv420p",
+        "width": 2560,
+        "height": 1440,
+        "nb_frames": 1501,
+        "nb_read_frames": 1501,
+        "r_frame_rate": "25/1",
+        "fps": 25.0,
+        "color_range": "tv",
+        "color_space": "bt709",
+        "color_transfer": "bt709",
+        "color_primaries": "bt709"
+      },
+      "overview": {
+        "codec": "h264",
+        "profile": "High",
+        "pix_fmt": "yuv420p",
+        "width": 2560,
+        "height": 1440,
+        "nb_frames": 1501,
+        "nb_read_frames": 1501,
+        "r_frame_rate": "25/1",
+        "fps": 25.0,
+        "color_range": "tv",
+        "color_space": "bt709",
+        "color_transfer": "bt709",
+        "color_primaries": "bt709"
+      },
+      "dashboard": {
+        "codec": "h264",
+        "profile": "High",
+        "pix_fmt": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "nb_frames": 1501,
+        "nb_read_frames": 1501,
+        "r_frame_rate": "25/1",
+        "fps": 25.0,
+        "color_range": "tv",
+        "color_space": "bt709",
+        "color_transfer": "bt709",
+        "color_primaries": "bt709"
+      }
+    },
+    "decoded_frames": {
+      "first": 1501,
+      "side": 1501,
+      "overview": 1501,
+      "dashboard": 1501
+    },
+    "content_mae": {
+      "first_vs_side": 60.90290451049805,
+      "first_vs_overview": 54.30799865722656,
+      "side_vs_overview": 60.08706283569336
+    },
+    "trace_row_count": 1501,
+    "requested_duration": {
+      "seconds": 60.0,
+      "minimum_frame_count": 1500,
+      "minimum_last_sim_time_seconds": 59.959999,
+      "actual_last_sim_time_seconds": 60.02999865822494
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "artifact": "office_review_third_person_rviz_4k_transfer_under10mb_v2.mp4",
+  "checks": {
+    "duration_matches_master": true,
+    "existing_transfer_hash_unchanged": true,
+    "frame_count_matches_master": true,
+    "frame_rate_matches_master": true,
+    "full_decode_succeeded": true,
+    "h264_high_yuv420p_bt709": true,
+    "master_hash_unchanged": true,
+    "resolution_is_labeled_1280x360_delivery": true,
+    "ssim_at_least_minimum": true,
+    "strictly_below_10000000_bytes": true
+  },
+  "claim_boundary": "Delivery validation only; this does not add navigation, AC54, AC55, formal-candidate, non-flat, training, or real-robot evidence.",
+  "manual_review": {
+    "findings": "PASS: the third-person Office view and native RViz raw-cloud view remain visible, correctly ordered, and temporally progressive across the full-duration contact sheet and local 10-second interval frame inspection.",
+    "inspection_date": "2026-08-31",
+    "inspection_scope": "Remote-generated 20-second contact sheet plus local direct-video frame extraction at 10-second intervals over the complete 60.04-second delivery copy.",
+    "status": "PASS"
+  },
+  "probe": {
+    "codec_name": "h264",
+    "color_primaries": "bt709",
+    "color_range": "tv",
+    "color_space": "bt709",
+    "color_transfer": "bt709",
+    "duration_seconds": 60.04,
+    "frame_count": 1501,
+    "frame_rate": "25/1",
+    "height": 360,
+    "pixel_format": "yuv420p",
+    "profile": "High",
+    "size_bytes": 9176726,
+    "width": 1280
+  },
+  "purpose": "Full-duration directly playable review delivery copy strictly below 10000000 bytes; the 4K master and standard transfer remain immutable.",
+  "quality": {
+    "minimum_ssim": 0.95,
+    "ssim_against_same_resolution_lanczos_reference": 0.96499
+  },
+  "resolution_policy": "Explicitly labeled 1280x360 delivery copy preserving the 32:9 dual-panel order; the 3840x1080 master is the visual authority.",
+  "schema_version": 1,
+  "sha256": {
+    "existing_transfer": "f672dae7d4654b63c6aedab548a2f89ee90f946497e4e8b53aa7fd8cd0328126",
+    "master": "232f8c8f66454987624ccd33499e4ebaf0a1da7daa545acc7a9c4664da7df6a1",
+    "under_10mb_transfer": "308f8500634fc567413ab826d9782bdbd2dc239ec7e7b63fc9b3b75b1fcac0b5"
+  },
+  "source": "office_review_third_person_rviz_4k.mp4",
+  "status": "PASS",
+  "target_video_bitrate_kbps": 1225
+}

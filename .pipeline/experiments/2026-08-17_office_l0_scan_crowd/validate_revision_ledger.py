@@ -33,6 +33,9 @@ GO2_REFERENCE_VALUES = {
     "grid_map.obstacles_inflation_z_up": 0.1,
     "grid_map.obstacles_inflation_z_down": 0.1,
 }
+FULL_DURATION_RUN_PATTERN = re.compile(
+    r"^office_v2_0_1_go2_geometry_dryrun[0-9]{2}$"
+)
 
 
 def _sha256(path: Path) -> str:
@@ -241,14 +244,56 @@ def validate(ledger_path: Path, repository_root: Path) -> None:
     next_action = payload.get("next_action")
     if not isinstance(next_action, dict):
         raise ValueError("next_action must be an object")
-    if next_action.get("full_run_authorized") is not False:
-        raise ValueError("full_run_authorized must remain false before fresh approval")
     if next_action.get("formal_candidate_authorized") is not False:
         raise ValueError("formal_candidate_authorized must remain false before fresh approval")
     if next_action.get("flat_short_regression_authorized") is not True:
         raise ValueError("flat_short_regression_authorized must reflect Dr Sun approval")
     if next_action.get("nonflat_preflight_authorized") is not False:
         raise ValueError("nonflat_preflight_authorized must remain false before fresh approval")
+
+    authorization = go2_record.get("full_duration_run_authorization")
+    if not isinstance(authorization, dict):
+        raise ValueError("full_duration_run_authorization is required")
+    run_id = authorization.get("run_id")
+    if (
+        not isinstance(run_id, str)
+        or FULL_DURATION_RUN_PATTERN.fullmatch(run_id) is None
+    ):
+        raise ValueError("full_duration_run_authorization.run_id is invalid")
+    expected_authorization = {
+        "authorized_by": "Dr Sun",
+        "authorized_at": "2026-08-31",
+        "stage": "dryrun",
+        "duration_seconds": 60,
+        "flat_office_only": True,
+        "require_terminal_gate": True,
+        "require_pedestrian_motion_gate": True,
+        "nonflat_authorized": False,
+        "formal_candidate_authorized": False,
+        "delivery_byte_limit_exclusive": 10_000_000,
+    }
+    for key, expected in expected_authorization.items():
+        if authorization.get(key) != expected:
+            raise ValueError(f"full_duration_run_authorization.{key} drifted")
+    if not authorization.get("claim_boundary"):
+        raise ValueError("full_duration_run_authorization.claim_boundary is required")
+
+    full_run_authorized = next_action.get("full_run_authorized")
+    authorization_status = authorization.get("status")
+    if full_run_authorized is True:
+        if authorization_status != "approved_pending_execution":
+            raise ValueError(
+                "full_run_authorized requires approved_pending_execution status"
+            )
+        if run_id in run_ids:
+            raise ValueError("an authorized pending full-duration run cannot already exist")
+    elif full_run_authorized is False:
+        if authorization_status != "consumed":
+            raise ValueError("completed full-duration authorization must be consumed")
+        if run_id not in run_ids:
+            raise ValueError("consumed full-duration authorization requires its run record")
+    else:
+        raise ValueError("full_run_authorized must be boolean")
 
 
 def main() -> int:

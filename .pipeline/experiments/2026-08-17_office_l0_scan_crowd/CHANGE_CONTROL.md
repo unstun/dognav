@@ -116,9 +116,13 @@ presentation-contract change creates a new revision first.
   from SCAN-Planner commit `348e8a590a50a5a6bbab8d8c6dcfd171f009be26`.
   These are Go2 reference values, not Lite3 calibration. Go2's 0.75 m/s speed
   was not copied; Lite3 remains at 0.50 m/s.
+- Dr Sun authorized the 60-second flat dry run on 2026-08-31. Immutable
+  `dryrun01` failed during delivery packaging; detached `dryrun02` passed the
+  declared full-duration flat gates and produced preserved 4K, standard, and
+  9,176,726-byte review entities. That authorization is consumed.
 - `accepted_revision` and `formal_candidate` remain null. AC54 was not rerun,
-  AC55 remains pending, and full dry runs/formal-candidate work require fresh
-  explicit authorization after Dr Sun reviews the short transfer video.
+  AC55 remains pending, and non-flat or formal-candidate work requires fresh
+  explicit authorization after Dr Sun reviews the full-duration video.
 - Non-flat simulation remains separately unauthorized. Static slope, step, and
   sparse-cloud tests plus SCAN route-height GTests do not validate Lite3 complex
   terrain capability.

@@ -18,8 +18,12 @@ values from the pinned upstream Go2 configuration while keeping Lite3 speed at
 0.50 m/s and preserving the Office map, sensor, policy, controller, crowd, and
 acceptance contracts. Flat 10.04 s run `office_v2_0_1_go2_geometry_preflight02`
 has 101/101 same-scan audits and directly openable master/transfer videos. The
-first run and two postprocessing failures remain preserved. No non-flat run,
-AC54, AC55, formal candidate, training, or real-robot execution was performed.
+first run and two postprocessing failures remain preserved. Full-duration
+`dryrun01` is an immutable packaging failure; `dryrun02` passed the declared
+60-second flat terminal, crowd, dual-cloud, RViz and delivery gates with
+601/601 paired scans. Its separate directly playable review copy is 9,176,726
+bytes. No non-flat run, fresh AC54, AC55, formal candidate, training, or
+real-robot execution was performed.
 
 This experiment evaluates whether the official Isaac Sim 5.1 Office L0 scene
 can support the pinned Lite3 V12/SCAN closed loop with eight official animated

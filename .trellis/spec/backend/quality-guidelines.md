@@ -59,6 +59,83 @@ must be checked at runtime.
 - Are source, checkpoint, config, logs, metrics, ROS recording, and video
   synchronized locally and hash-verified?
 
+## Scenario: Preserve the Synchronized Bridge Root After Environment Activation
+
+### 1. Scope / Trigger
+
+Use this contract when a remote experiment driver activates conda, RoboStack,
+ROS, or another environment before running bridge-dependent postprocessors.
+Activation can rewrite `PYTHONPATH`; a historical run root may still contain an
+importable but stale bridge and silently invalidate same-run evidence.
+
+### 2. Signatures
+
+```text
+BRIDGE_ROOT=<hash-checked synchronized bridge package root>
+RUN_ROOT=<historical experiment root; artifacts only>
+PYTHONPATH="$BRIDGE_ROOT${PYTHONPATH:+:$PYTHONPATH}"
+```
+
+### 3. Contracts
+
+- Resolve and hash-check `BRIDGE_ROOT` against the canonical local source before
+  launch. `RUN_ROOT` is an artifact namespace and must not supply importable
+  bridge code.
+- After every environment activation, prepend the same `BRIDGE_ROOT` again;
+  do not reconstruct a package path from `RUN_ROOT`.
+- Record the effective bridge path and source hash with the run inputs. A
+  postprocessor import must resolve under `BRIDGE_ROOT` before it evaluates
+  runtime evidence.
+- A stale-import failure is an instrumentation failure. Preserve the run and
+  its failed audit; use a new run ID after repairing the driver.
+
+### 4. Validation & Error Matrix
+
+| Condition | Required behavior |
+|---|---|
+| Environment activation removes or reorders `PYTHONPATH` | Re-prepend the pinned `BRIDGE_ROOT` |
+| Imported bridge path is outside `BRIDGE_ROOT` | Fail before postprocessing |
+| Local and remote bridge hashes differ | Stop before remote execution |
+| Stale bridge produces a failed audit | Preserve FAIL; do not relabel or overwrite the run |
+
+### 5. Good / Base / Bad Cases
+
+- **Good:** the driver syncs one bridge root, verifies its hash, activates the
+  environment, re-prepends that root, and records the effective import path.
+- **Base:** a clean image-installed package may be used only when its installed
+  hash is the explicitly pinned execution source.
+- **Bad:** activate conda and prepend `$RUN_ROOT/integration/...`; an older
+  module imports successfully and yields a plausible but false audit failure.
+
+### 6. Tests Required
+
+- Statically assert every post-activation `PYTHONPATH` export uses
+  `BRIDGE_ROOT` and that the historical `$RUN_ROOT/integration/...` expression
+  is absent.
+- In the remote preflight, import the bridge module and assert its resolved path
+  lies below `BRIDGE_ROOT`; compare the synchronized source hash before launch.
+- Preserve one fixture showing that a stale module would fail the current audit
+  instead of silently accepting its result.
+
+### 7. Wrong vs Correct
+
+#### Wrong
+
+```bash
+source "$CONDA_ROOT/etc/profile.d/conda.sh"
+conda activate "$ENV_NAME"
+export PYTHONPATH="$RUN_ROOT/integration/lite3_sim_bridge${PYTHONPATH:+:$PYTHONPATH}"
+```
+
+#### Correct
+
+```bash
+source "$CONDA_ROOT/etc/profile.d/conda.sh"
+conda activate "$ENV_NAME"
+export PYTHONPATH="$BRIDGE_ROOT${PYTHONPATH:+:$PYTHONPATH}"
+python3 -c 'import lite3_sim_bridge; print(lite3_sim_bridge.__file__)'
+```
+
 ## Scenario: Articulated Locomotion Follows a Perception-Replanned Trajectory
 
 ### 1. Scope / Trigger

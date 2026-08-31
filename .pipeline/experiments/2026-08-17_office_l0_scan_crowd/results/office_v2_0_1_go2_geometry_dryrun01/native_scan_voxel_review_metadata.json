@@ -1,0 +1,67 @@
+{
+  "claim_boundary": "true XYZ visualization of live LiDAR and native SCAN occupancy topics; deterministic display subsampling only; no scene-truth voxels",
+  "inflated_point_count": {
+    "maximum": 69806,
+    "minimum": 16726
+  },
+  "live_point_count": {
+    "maximum": 16881,
+    "minimum": 16704
+  },
+  "output": {
+    "codec": "h264_high_crf16_bt709_direct",
+    "duration_seconds": 59.8,
+    "fps": 10.0,
+    "frame_count": 598,
+    "height": 1080,
+    "path": "/home/sun/machine-dog-nav-runs/2026-08-17_office_l0_scan_crowd/results/office_v2_0_1_go2_geometry_dryrun01/native_scan_voxel_review.mp4",
+    "sha256": "5adc5c9f5e098f2f599fa9d58433f65719b15e9fec81896bea9def4bd66005e8",
+    "source_simulator_duration_seconds": 59.799998663,
+    "source_snapshot_count": 300,
+    "width": 1920
+  },
+  "raw_point_count": {
+    "maximum": 23362,
+    "minimum": 5175
+  },
+  "render_geometry": {
+    "camera": "sliding-map-following fixed RViz-style isometric view",
+    "dimension_count": 3,
+    "display_sampling": "live and raw local layers complete; deterministic inflation subsampling only",
+    "inflated_display_point_limit": 30000,
+    "live_display_point_limit": 18000,
+    "projection": "matplotlib_mplot3d_perspective",
+    "raw_display_point_limit": 50000,
+    "spatial_dimensions": [
+      "x",
+      "y",
+      "z"
+    ],
+    "vertical_scale": 1.0,
+    "xy_inset_role": "auxiliary planning correlation only"
+  },
+  "schema_version": 3,
+  "sources": {
+    "capture_metadata_sha256": "bb2c7842faff12e385b13a75413af3ffa819781fac19372b842044b46e69fb6f",
+    "capture_summary_sha256": "b79767ea5a63914d04f4c1dd5551c2a569d4ca59ea8ca63578821778cf349c23",
+    "run_identity_sha256": "64cd5bba9c3e9a3648b09f3d63d873469cfca913a09cccc5f5d9e2e7e91a6888",
+    "snapshot_aggregate_sha256": "5c59d25e5a75a1533a81dd5363eeb43d8951cea6d14962b9ba8b50e7079d2b78",
+    "topics": [
+      "/grid_map/occupancy",
+      "/grid_map/occupancy_inflate",
+      "/quad_0/cloud_raw",
+      "/quad_0/lidar_pose",
+      "/grid_map/sliding_map_bbox",
+      "/quad_0/body_pose",
+      "/planning/bspline"
+    ]
+  },
+  "trajectory_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ]
+}

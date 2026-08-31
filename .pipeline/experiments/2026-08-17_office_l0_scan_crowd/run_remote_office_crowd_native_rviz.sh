@@ -323,7 +323,7 @@ PY
 # shellcheck source=/dev/null
 source /home/sun/miniconda3/etc/profile.d/conda.sh
 conda activate isaaclab
-export PYTHONPATH="$RUN_ROOT/integration/lite3_sim_bridge${PYTHONPATH:+:$PYTHONPATH}"
+export PYTHONPATH=$BRIDGE_ROOT${PYTHONPATH:+:$PYTHONPATH}
 python3 - \
   "$RESULT_DIR/isaac/metrics.jsonl" \
   "$RESULT_DIR/isaac/run_identity.json" \

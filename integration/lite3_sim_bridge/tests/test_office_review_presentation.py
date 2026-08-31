@@ -581,6 +581,16 @@ class EntrypointWiringTest(unittest.TestCase):
         self.assertIn('"resolution": [3840, 1080]', native_rviz)
         self.assertIn("lite3_sim_bridge.rviz_time_sync", native_rviz)
         self.assertIn("foxy_native_scan_review.rviz", native_rviz)
+        self.assertEqual(
+            native_rviz.count(
+                "export PYTHONPATH=$BRIDGE_ROOT${PYTHONPATH:+:$PYTHONPATH}"
+            ),
+            2,
+        )
+        self.assertNotIn(
+            'export PYTHONPATH="$RUN_ROOT/integration/lite3_sim_bridge',
+            native_rviz,
+        )
         rviz_review = (
             repo / "integration/lite3_sim_bridge/config/foxy_native_scan_review.rviz"
         ).read_text()

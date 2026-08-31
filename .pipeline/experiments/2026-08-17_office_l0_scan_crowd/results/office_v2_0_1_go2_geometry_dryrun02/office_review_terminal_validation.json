@@ -1,0 +1,33 @@
+{
+  "checks": {
+    "continuous_terminal_stop": {
+      "command_limit": 0.05,
+      "maximum_command_abs": 0.0,
+      "maximum_planar_speed_mps": 0.011659174642981227,
+      "passed": true,
+      "planar_speed_limit_mps": 0.15,
+      "window_seconds": 2.0
+    },
+    "goal_xy": {
+      "error_m": 0.10590981970198211,
+      "final_xy_m": [
+        -8.315855979919434,
+        -0.5371428728103638
+      ],
+      "goal_xy_m": [
+        -8.375,
+        -0.625
+      ],
+      "maximum_error_m": 0.25,
+      "passed": true
+    },
+    "minimum_simulation_duration": {
+      "actual_seconds": 60.02999865822494,
+      "minimum_seconds": 50.0,
+      "passed": true
+    }
+  },
+  "claim_boundary": "Supplemental visual endpoint and terminal-stop gate; this does not replace formal Office acceptance or human AC55 review.",
+  "schema_version": 1,
+  "status": "PASS"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "v2-0-1-full-duration-review-video",
+  "name": "v2-0-1-full-duration-review-video",
+  "title": "v2.0.1 60-second Office review video",
+  "description": "Run and recover one immutable 60-second current-v2.0.1 Office dual-cloud/SCAN human-review video, preserving the master and validating a separately playable transfer copy under 10,000,000 bytes without promoting AC54 or AC55.",
+  "status": "in_progress",
+  "dev_type": null,
+  "scope": "One immutable 60-second flat Office v2.0.1 dual-cloud/SCAN dry run with full-duration endpoint, terminal-stop, pedestrian, native-RViz and delivery gates; preserve 4K master and provide a validated sub-10,000,000-byte review copy",
+  "package": null,
+  "priority": "P2",
+  "creator": "sun",
+  "assignee": "sun",
+  "createdAt": "2026-08-31",
+  "completedAt": null,
+  "branch": "codex/scan-foxy-isaac",
+  "base_branch": "main",
+  "worktree_path": null,
+  "commit": null,
+  "pr_url": null,
+  "subtasks": [],
+  "children": [],
+  "parent": "08-20-v2-0-1-cloud-traversability",
+  "relatedFiles": [
+    ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/revision_ledger.json",
+    ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/run_remote_office_crowd_native_rviz.sh",
+    ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/acceptance_thresholds_office_crowd.json",
+    "integration/lite3_sim_bridge/lite3_sim_bridge/delivery_reliability.py",
+    "integration/lite3_sim_bridge/config/foxy_native_scan_review.rviz"
+  ],
+  "notes": "Dr Sun explicitly authorized the 60-second complete-duration option on 2026-08-31. This does not authorize non-flat simulation, AC55, formal promotion, training, or real-robot actuation.",
+  "meta": {
+    "revision": "office-v2.0.1-go2-geometry-preflight",
+    "planned_run_id": "office_v2_0_1_go2_geometry_dryrun02",
+    "duration_seconds": 60,
+    "stage": "experiment + analysis",
+    "delivery_byte_limit_exclusive": 10000000
+  }
+}

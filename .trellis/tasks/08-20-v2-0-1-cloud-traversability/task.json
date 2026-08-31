@@ -18,7 +18,9 @@
   "commit": null,
   "pr_url": null,
   "subtasks": [],
-  "children": [],
+  "children": [
+    "08-31-v2-0-1-full-duration-review-video"
+  ],
   "parent": "08-17-office-crowd-review-visual-r2",
   "relatedFiles": [
     "integration/lite3_sim_bridge/lite3_sim_bridge/run_isaac_v12_fallback.py",

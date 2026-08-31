@@ -2,7 +2,7 @@
   "schema_version": 3,
   "protocol_version": "office-change-control-v3",
   "experiment_id": "office-l0-scan-crowd",
-  "updated_at": "2026-08-20",
+  "updated_at": "2026-08-31",
   "source_of_truth": ".pipeline/experiments/2026-08-17_office_l0_scan_crowd",
   "version_format": "office-rMAJOR.MINOR.PATCH[-qualifier]",
   "accepted_revision": null,
@@ -146,7 +146,7 @@
       "revision": "office-v2.0.1-go2-geometry-preflight",
       "normalization_baseline": false,
       "parent_revision": "office-r2.0.1-preflight",
-      "status": "flat_short_preflight_passed_human_and_nonflat_gates_pending",
+      "status": "full_duration_flat_dryrun_passed_human_review_pending",
       "source_commit": "1213f1e23592f939b969ca7d173b0d5c790bd5c3",
       "source_commit_state": "pre_edit_commit_with_unrelated_dirty_worktree_and_clean_owned_runtime_paths",
       "canonical_branch": "codex/scan-foxy-isaac",
@@ -193,9 +193,12 @@
         ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/revision_ledger.json",
         ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/validate_revision_ledger.py",
         ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/run_remote_office_crowd_native_rviz.sh",
+        ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/postprocess_under10mb_review.sh",
         ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/revisions/office-v2.0.1-go2-geometry-preflight.*",
         ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/results/office_v2_0_1_go2_geometry_preflight*/**",
+        ".pipeline/experiments/2026-08-17_office_l0_scan_crowd/results/office_v2_0_1_go2_geometry_dryrun*/**",
         ".trellis/tasks/08-20-v2-0-1-cloud-traversability/**",
+        ".trellis/tasks/08-31-v2-0-1-full-duration-review-video/**",
         "bigmemory/热区/状态简报.md",
         "bigmemory/热区/近期改动.md",
         "bigmemory/热区/未关闭决策.md",
@@ -296,6 +299,28 @@
         "r2_0_1_transfer_video_sha256": "d0d8cbb3e2ed1347e91f3ecec732b47a3f4614cbdd0c3d579a5a3b0408f3591d"
       },
       "planned_run_id": "office_v2_0_1_go2_geometry_preflight01",
+      "full_duration_run_authorization": {
+        "status": "consumed",
+        "authorized_by": "Dr Sun",
+        "authorized_at": "2026-08-31",
+        "run_id": "office_v2_0_1_go2_geometry_dryrun02",
+        "stage": "dryrun",
+        "duration_seconds": 60,
+        "flat_office_only": true,
+        "require_terminal_gate": true,
+        "require_pedestrian_motion_gate": true,
+        "nonflat_authorized": false,
+        "formal_candidate_authorized": false,
+        "delivery_byte_limit_exclusive": 10000000,
+        "prior_attempts": [
+          {
+            "run_id": "office_v2_0_1_go2_geometry_dryrun01",
+            "outcome": "failed_delivery_pipeline_after_completed_simulation",
+            "reason": "The attached SSH execution channel closed after the 60-second simulator, Foxy, voxel, native-RViz synchronization, and pedestrian audit completed but before terminal validation, 4K composition, transfer encoding, and final packaging. The run is immutable and was not resumed in place."
+          }
+        ],
+        "claim_boundary": "One full-duration flat Office v2.0.1 dual-cloud/SCAN dry run and human-review video; not non-flat, AC54, AC55, formal candidate, training, or real-robot authorization."
+      },
       "expected_artifacts": [
         "dual-cloud per-scan audit with raw, ground, planner, and conservative-retention counts",
         "raw/planner PointCloud2 same-stamp and scan-ID parity evidence",
@@ -303,6 +328,7 @@
         "flat Office short-regression inputs, logs, routes, commands, and validation reports",
         "directly openable third-person plus native-RViz master MP4 when submitted for human review",
         "verified compressed transfer MP4 with encoder, media, decode, size, ratio, and SHA-256 evidence",
+        "separately labeled full-duration directly playable transfer copy strictly below 10000000 bytes with frame/duration parity and legibility evidence",
         "complete remote and canonical local recursive SHA-256 manifests"
       ],
       "automated_gates": [
@@ -313,6 +339,8 @@
         "RViz Decay 0 uses /quad_0/cloud_raw and SCAN subscribes only to /quad_0/cloud",
         "unit/synthetic, full bridge, Foxy build/test, compile, JSON, shell, diff, Trellis, and ledger gates pass before flat regression",
         "flat Office short regression preserves all frozen contracts",
+        "authorized 60-second flat dry run reaches the frozen goal, passes the two-second terminal stop and full-duration pedestrian-motion gates, and retains dual-cloud/native-RViz continuity",
+        "the full-duration 4K master is preserved and a separate complete directly playable delivery copy is strictly below 10000000 bytes",
         "historical ledger prefix and r2.0.1 evidence hashes remain unchanged"
       ],
       "unauthorized_actions": [
@@ -634,19 +662,134 @@
           "sha256": "6f2da1d7dd7cc58a3f34c03f6dc65f90601729f52a9892952b70cb9e1f17d9c4"
         }
       ]
+    },
+    {
+      "run_id": "office_v2_0_1_go2_geometry_dryrun01",
+      "revision": "office-v2.0.1-go2-geometry-preflight",
+      "stage": "dryrun",
+      "status": "failed",
+      "immutable": true,
+      "duration_seconds": 60.03,
+      "full_route": false,
+      "formal_evidence": false,
+      "why_run": "First Dr Sun-authorized 60-second flat Office dual-cloud/SCAN human-review dry run with full-duration gates enabled.",
+      "failure_reason": "The attached SSH execution channel closed after simulator and major same-run evidence completed but before the outer native-RViz driver finished terminal validation, 4K composition, transfer encoding, and packaging. The result directory is preserved and was not resumed or relabeled.",
+      "automated_results": {
+        "isaac_qualification": "PASS",
+        "dual_cloud_scan_pairing": "PASS_601_OF_601",
+        "native_rviz": "PASS",
+        "full_duration_pedestrian_motion": "PASS",
+        "raw_cloud_continuity": "FAIL_STALE_HISTORICAL_IMPORT_IN_POSTPROCESSOR",
+        "terminal_goal_stop": "NOT_PRODUCED_AFTER_CHANNEL_CLOSE",
+        "combined_video": "NOT_PRODUCED",
+        "transfer_video": "NOT_PRODUCED"
+      },
+      "measurements": {
+        "simulation_duration_seconds": 60.02999865822494,
+        "generated_scans": 601,
+        "foxy_audited_scans": 601,
+        "first_scan_id": 1,
+        "last_scan_id": 601,
+        "raw_cloud_received": 601,
+        "raw_cloud_coverage": 1.0,
+        "raw_cloud_visible_fraction": 1.0,
+        "raw_cloud_longest_blank_frames": 0,
+        "remote_result_size_gib": 13
+      },
+      "claim_boundary": "Immutable failed delivery attempt with a completed 60-second flat simulation and partial automated evidence; not a delivered review video, AC54, AC55, formal candidate, non-flat, training, or real-robot result.",
+      "remote_complete_tree_manifest_sha256": "1cc6f1034bd586e029199bd8bff321a7f1aab3555f5e91940db37ec59d4e0a51",
+      "evidence_scope": "The complete approximately 13 GiB interrupted result remains preserved on the 5070 Ti execution copy. Sixteen lightweight failure files and the 366-entry remote recursive manifest were recovered locally; no PASS delivery entity was produced."
+    },
+    {
+      "run_id": "office_v2_0_1_go2_geometry_dryrun02",
+      "revision": "office-v2.0.1-go2-geometry-preflight",
+      "stage": "dryrun",
+      "status": "human_preflight_review_pending",
+      "immutable": true,
+      "duration_seconds": 60.04,
+      "full_route": true,
+      "formal_evidence": false,
+      "why_run": "Detached retry of the Dr Sun-authorized 60-second flat Office dual-cloud/SCAN human-review dry run after preserving dryrun01 and fixing the historical bridge-path import in the postprocessor.",
+      "automated_results": {
+        "isaac_qualification": "PASS",
+        "dual_cloud_scan_pairing": "PASS_601_OF_601",
+        "native_rviz": "PASS",
+        "raw_cloud_continuity": "PASS_601_OF_601",
+        "full_duration_pedestrian_motion": "PASS",
+        "terminal_goal_stop": "PASS",
+        "combined_4k_video": "PASS",
+        "standard_transfer_video": "PASS",
+        "under_10000000_byte_transfer_video": "PASS_AUTOMATED_AND_MANUAL_INSPECTION",
+        "nonflat_simulation": "NOT_RUN",
+        "ac54": "NOT_RUN",
+        "ac55": "PENDING_DR_SUN"
+      },
+      "measurements": {
+        "simulation_duration_seconds": 60.02999865822494,
+        "generated_scans": 601,
+        "foxy_audited_scans": 601,
+        "raw_cloud_received": 601,
+        "raw_cloud_coverage": 1.0,
+        "raw_cloud_visible_frames": 1501,
+        "raw_cloud_total_frames": 1501,
+        "raw_cloud_longest_blank_frames": 0,
+        "goal_error_m": 0.10590981970198211,
+        "terminal_maximum_command_abs": 0.0,
+        "terminal_maximum_planar_speed_mps": 0.011659174642981227,
+        "master_size_bytes": 327133479,
+        "standard_transfer_size_bytes": 62373833,
+        "standard_transfer_ssim": 0.976733,
+        "under_10mb_transfer_size_bytes": 9176726,
+        "under_10mb_transfer_ssim": 0.96499
+      },
+      "video": {
+        "master": "office_review_third_person_rviz_4k.mp4",
+        "master_sha256": "232f8c8f66454987624ccd33499e4ebaf0a1da7daa545acc7a9c4664da7df6a1",
+        "standard_transfer": "office_review_third_person_rviz_4k_transfer.mp4",
+        "standard_transfer_sha256": "f672dae7d4654b63c6aedab548a2f89ee90f946497e4e8b53aa7fd8cd0328126",
+        "under_10mb_transfer": "office_review_third_person_rviz_4k_transfer_under10mb_v2.mp4",
+        "under_10mb_transfer_sha256": "308f8500634fc567413ab826d9782bdbd2dc239ec7e7b63fc9b3b75b1fcac0b5",
+        "master_and_standard_media": "3840x1080, 25 fps, 1501 frames, 60.04 s, H.264 High, yuv420p",
+        "under_10mb_media": "1280x360, 25 fps, 1501 frames, 60.04 s, H.264 High, yuv420p, BT.709",
+        "complete_local_decode": "PASS_ALL_THREE"
+      },
+      "claim_boundary": "Full-duration flat Office v2.0.1 dry-run evidence and human-review delivery only; not non-flat or complex-terrain validation, fresh AC54, Dr Sun AC55 acceptance, formal-candidate promotion, training, or real-robot evidence.",
+      "remote_complete_tree_manifest_sha256": "624cff17e90d3f838257fb5f20a0db7ad04e078dc5e3486da1722dc3a401df73",
+      "evidence_scope": "The complete remote execution tree has a 398-entry recursive SHA-256 manifest. The canonical local review subset contains the 4K master, standard transfer, under-10MB transfer, complete-decode and quality evidence, and focused runtime audits; rosbag, raw event streams, voxel snapshots, and auxiliary videos remain on the execution copy.",
+      "evidence": [
+        {
+          "path": "results/office_v2_0_1_go2_geometry_dryrun02/dual_cloud_scan_audit.jsonl",
+          "sha256": "c305f41a154dc9f8ea355a096f36b2778e89187955f9a7b929cc2ccfe9f1aaf1"
+        },
+        {
+          "path": "results/office_v2_0_1_go2_geometry_dryrun02/live_pointcloud_continuity_audit.json",
+          "sha256": "406278a55141f5114de1f6158328dc0c42bd989becab3d666d2b310116f33ad3"
+        },
+        {
+          "path": "results/office_v2_0_1_go2_geometry_dryrun02/office_review_terminal_validation.json",
+          "sha256": "63df4aee8c8e5836d2757fd2f933f6d19c3c98b9512a6b4afc3837c0262d2465"
+        },
+        {
+          "path": "results/office_v2_0_1_go2_geometry_dryrun02/office_pedestrian_motion_audit.json",
+          "sha256": "85a8d6e199100a6720a221a4e12333459eb2282cd58689ff40468177bc10ea9a"
+        },
+        {
+          "path": "results/office_v2_0_1_go2_geometry_dryrun02/office_review_third_person_rviz_4k_transfer_under10mb_v2_validation.json",
+          "sha256": "0d3afdf9ff932a40c29d2c066dddf9210cfa5420f1e3bbd543f3bf81c6d94e24"
+        }
+      ]
     }
   ],
   "next_action": {
-    "action": "await_Dr_Sun_review_and_separate_nonflat_short_preflight_authorization",
+    "action": "await_Dr_Sun_full_duration_video_review_and_separate_nonflat_or_formal_authorization",
     "flat_short_regression_authorized": true,
     "nonflat_preflight_authorized": false,
     "full_run_authorized": false,
     "formal_candidate_authorized": false,
     "allowed_without_new_authorization": [
-      "task-owned local implementation and tests within allowed_files",
-      "Foxy build and tests after Python gates pass",
-      "one flat Office short regression after all local gates pass",
-      "failure preservation, local evidence recovery, reporting, Trellis, and project bigmemory updates"
+      "task-owned closeout reporting, validation, Trellis, and project-memory changes for the completed full-duration flat dry run",
+      "preservation and review of immutable dryrun01 and dryrun02 evidence",
+      "no additional simulation, non-flat execution, formal-candidate promotion, training, or real-robot actuation without new authorization"
     ]
   }
 }

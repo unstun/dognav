@@ -29,8 +29,12 @@ into `/quad_0/cloud_raw` for persistent RViz display and `/quad_0/cloud` for
 SCAN, and borrows only the five pinned Go2 collision-envelope values. Flat
 short-preflight run 01 is retained as failed; run 02 produced 101/101 paired
 scan audits and verified master/transfer videos after preserving two
-postprocessing failures. Non-flat simulation still requires Dr Sun's separate
-approval, so the result is not complex-terrain validation.
+postprocessing failures. The later full-duration `dryrun01` remains an
+immutable delivery-pipeline failure; detached `dryrun02` passed the declared
+60-second flat gates with 601/601 paired scans and produced a complete
+9,176,726-byte review copy alongside its 4K master. AC55 remains pending and
+non-flat simulation still requires Dr Sun's separate approval, so this is not
+complex-terrain or formal validation.
 
 The source-backed MID-360 sensor qualification and
 `office_crowd_mid360_dualview_preflight02` are limited smoke/preflight evidence.
