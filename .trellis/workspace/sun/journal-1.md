@@ -113,3 +113,24 @@ Completed and verified the 10.04-second live-cloud continuity and transfer-video
 ### Next Steps
 
 - Run the separately authorized 60-second current-v2.0.1 human-review video task.
+
+
+## Session 4: Office v2.0.1 60-second review video
+
+**Date**: 2026-08-31
+**Task**: Office v2.0.1 60-second review video
+**Branch**: `codex/scan-foxy-isaac`
+
+### Summary
+
+Completed and recovered the authorized 60-second flat Office v2.0.1 dry run, preserved the interrupted first attempt, delivered validated 4K/standard/sub-10MB review entities, and kept AC55/non-flat/formal promotion pending.
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `9b28bcf` | (see git log) |
+
+### Status
+
+[OK] **Completed**
